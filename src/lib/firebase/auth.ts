@@ -40,10 +40,10 @@ export async function signOut(): Promise<void> {
   await fetch("/api/auth/session", { method: "DELETE" });
 }
 
-export async function createSessionCookie(idToken: string): Promise<void> {
+export async function createSessionCookie(idToken: string, role?: string): Promise<void> {
   await fetch("/api/auth/session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ idToken }),
+    body: JSON.stringify({ idToken, role }),
   });
 }

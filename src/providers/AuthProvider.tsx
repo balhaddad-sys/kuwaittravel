@@ -29,14 +29,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchUserData = useCallback(async (uid: string) => {
+  const fetchUserData = useCallback(async (uid: string): Promise<User | null> => {
     try {
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
       const data = await getDocument<User>(COLLECTIONS.USERS, uid);
       setUserData(data);
+      return data;
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Failed to fetch user data"));
+      return null;
     }
   }, []);
 
@@ -62,9 +64,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
         setFirebaseUser(user);
         if (user) {
-          await fetchUserData(user.uid);
+          const data = await fetchUserData(user.uid);
           const idToken = await user.getIdToken();
-          await createSessionCookie(idToken);
+          await createSessionCookie(idToken, data?.role);
         } else {
           setUserData(null);
         }
@@ -92,12 +94,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { createSessionCookie } = await import("@/lib/firebase/auth");
       const result = await confirmationResult.confirm(code);
       setFirebaseUser(result.user);
-      const idToken = await result.user.getIdToken();
-      await createSessionCookie(idToken);
 
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
       const existingUser = await getDocument<User>(COLLECTIONS.USERS, result.user.uid);
+
+      const idToken = await result.user.getIdToken();
+      await createSessionCookie(idToken, existingUser?.role);
 
       if (existingUser) {
         setUserData(existingUser);
@@ -117,9 +120,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { createSessionCookie } = await import("@/lib/firebase/auth");
       const result = await googleSignIn();
       setFirebaseUser(result.user);
+      const data = await fetchUserData(result.user.uid);
       const idToken = await result.user.getIdToken();
-      await createSessionCookie(idToken);
-      await fetchUserData(result.user.uid);
+      await createSessionCookie(idToken, data?.role);
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Google sign-in failed"));
       throw err;
