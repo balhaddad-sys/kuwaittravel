@@ -10,17 +10,25 @@ import { createDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
 import { UserCircle, Building2 } from "lucide-react";
-import type { UserRole } from "@/types";
+
+type SafeRole = "traveler" | "campaign_owner";
 
 export default function OnboardingPage() {
   const [step, setStep] = useState<"role" | "profile">("role");
-  const [role, setRole] = useState<UserRole | null>(null);
+  const [role, setRole] = useState<SafeRole | null>(null);
   const [name, setName] = useState("");
   const [nameAr, setNameAr] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const { firebaseUser, refreshUserData } = useAuth();
+  const { firebaseUser, userData, refreshUserData } = useAuth();
+
+  // Redirect already-onboarded users to their home
+  useEffect(() => {
+    if (userData?.role) {
+      router.replace(ROLE_HOME_ROUTES[userData.role]);
+    }
+  }, [userData, router]);
 
   // Pre-populate name from Google account
   useEffect(() => {
@@ -29,7 +37,7 @@ export default function OnboardingPage() {
     }
   }, [firebaseUser?.displayName, name]);
 
-  const handleRoleSelect = (selectedRole: UserRole) => {
+  const handleRoleSelect = (selectedRole: SafeRole) => {
     setRole(selectedRole);
     if (selectedRole === "campaign_owner") {
       router.push("/register-campaign");

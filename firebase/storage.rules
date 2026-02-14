@@ -27,28 +27,37 @@ service firebase.storage {
       return request.resource.size < 10 * 1024 * 1024;
     }
 
-    // User profile photos and documents
+    // User profile photos and documents (sensitive — owner-only read)
     match /users/{userId}/{allPaths=**} {
-      allow read: if isAuthenticated();
+      allow read: if isOwner(userId);
       allow write: if isOwner(userId) && (isImage() || isPDF()) && isUnder5MB();
     }
 
-    // Campaign media (logos, covers, gallery)
+    // Campaign media — public read, write requires uploader metadata for audit
     match /campaigns/{campaignId}/{allPaths=**} {
       allow read: if isAuthenticated();
-      allow write: if isAuthenticated() && (isImage() || isPDF()) && isUnder10MB();
+      allow write: if isAuthenticated()
+        && (isImage() || isPDF())
+        && isUnder10MB()
+        && request.resource.metadata['uploadedBy'] == request.auth.uid;
     }
 
-    // Trip media
+    // Trip media — same as campaigns
     match /trips/{tripId}/{allPaths=**} {
       allow read: if isAuthenticated();
-      allow write: if isAuthenticated() && (isImage() || isPDF()) && isUnder10MB();
+      allow write: if isAuthenticated()
+        && (isImage() || isPDF())
+        && isUnder10MB()
+        && request.resource.metadata['uploadedBy'] == request.auth.uid;
     }
 
-    // Booking documents (passports, visas)
+    // Booking documents — write requires uploader metadata for audit
     match /bookings/{bookingId}/{allPaths=**} {
       allow read: if isAuthenticated();
-      allow write: if isAuthenticated() && (isImage() || isPDF()) && isUnder5MB();
+      allow write: if isAuthenticated()
+        && (isImage() || isPDF())
+        && isUnder5MB()
+        && request.resource.metadata['uploadedBy'] == request.auth.uid;
     }
   }
 }

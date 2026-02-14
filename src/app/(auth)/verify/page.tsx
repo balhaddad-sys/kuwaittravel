@@ -6,12 +6,9 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
-import { COLLECTIONS } from "@/lib/firebase/collections";
-import { getDocument } from "@/lib/firebase/firestore";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
 import { ShieldCheck } from "lucide-react";
 import type { ConfirmationResult } from "firebase/auth";
-import type { User } from "@/types";
 
 export default function VerifyPage() {
   const [code, setCode] = useState("");
@@ -43,18 +40,13 @@ export default function VerifyPage() {
         return;
       }
 
-      await confirmOTP(confirmationResult, code);
+      const { isNewUser, role } = await confirmOTP(confirmationResult, code);
       sessionStorage.removeItem("confirmationResult");
 
-      // Check if user exists in Firestore
-      const result = await confirmationResult.confirm(code).catch(() => null);
-      if (result) {
-        const existingUser = await getDocument<User>(COLLECTIONS.USERS, result.user.uid);
-        if (existingUser?.role) {
-          router.push(ROLE_HOME_ROUTES[existingUser.role]);
-        } else {
-          router.push("/onboarding");
-        }
+      if (isNewUser || !role) {
+        router.push("/onboarding");
+      } else {
+        router.push(ROLE_HOME_ROUTES[role]);
       }
     } catch {
       setError("رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.");

@@ -6,8 +6,12 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
+import { getDocument } from "@/lib/firebase/firestore";
+import { COLLECTIONS } from "@/lib/firebase/collections";
+import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
 import { Phone } from "lucide-react";
 import type { ConfirmationResult } from "firebase/auth";
+import type { User } from "@/types";
 
 function GoogleIcon({ className }: { className?: string }) {
   return (
@@ -51,6 +55,16 @@ export default function LoginPage() {
     setGoogleLoading(true);
     try {
       await signInWithGoogle();
+      // After sign-in, check if user already has a Firestore profile
+      const { getFirebaseAuth } = await import("@/lib/firebase/config");
+      const currentUser = getFirebaseAuth().currentUser;
+      if (currentUser) {
+        const existingUser = await getDocument<User>(COLLECTIONS.USERS, currentUser.uid);
+        if (existingUser?.role) {
+          router.push(ROLE_HOME_ROUTES[existingUser.role]);
+          return;
+        }
+      }
       router.push("/onboarding");
     } catch {
       setError("فشل تسجيل الدخول بحساب Google. يرجى المحاولة مرة أخرى.");

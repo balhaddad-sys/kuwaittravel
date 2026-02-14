@@ -1,6 +1,7 @@
 "use client";
 
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
+import { RoleGuard } from "@/components/auth/RoleGuard";
 import {
   LayoutDashboard, Building2, Users, Wallet, AlertOctagon,
   ScrollText, Settings, Shield,
@@ -18,6 +19,7 @@ const sidebarItems: SidebarItem[] = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
+    <RoleGuard allowedRoles={["admin", "super_admin"]}>
     <div className="flex min-h-screen">
       <Sidebar
         items={sidebarItems}
@@ -36,5 +38,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {children}
       </main>
     </div>
+    </RoleGuard>
   );
 }

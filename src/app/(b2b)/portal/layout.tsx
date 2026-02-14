@@ -1,6 +1,7 @@
 "use client";
 
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
+import { RoleGuard } from "@/components/auth/RoleGuard";
 import {
   LayoutDashboard,
   Map,
@@ -27,6 +28,7 @@ const sidebarItems: SidebarItem[] = [
 
 export default function B2BLayout({ children }: { children: React.ReactNode }) {
   return (
+    <RoleGuard allowedRoles={["campaign_owner", "campaign_staff"]}>
     <div className="flex min-h-screen">
       <Sidebar
         items={sidebarItems}
@@ -45,5 +47,6 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
     </div>
+    </RoleGuard>
   );
 }

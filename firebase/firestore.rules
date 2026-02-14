@@ -17,7 +17,7 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-      return isAuthenticated() && getUserRole() == 'admin';
+      return isAuthenticated() && getUserRole() in ['admin', 'super_admin'];
     }
 
     function isCampaignOwner(campaignId) {
@@ -34,17 +34,32 @@ service cloud.firestore {
       return isCampaignOwner(campaignId) || isCampaignStaff(campaignId) || isAdmin();
     }
 
+    // Allowed roles for self-registration (no admin/super_admin)
+    function isSafeRole(role) {
+      return role in ['traveler', 'campaign_owner', 'campaign_staff'];
+    }
+
     // ── Users ─────────────────────────────────────────────────────────
     match /users/{userId} {
       allow read: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId);
-      allow update: if isOwner(userId) || isAdmin();
+
+      // Users can only self-assign safe roles (not admin/super_admin)
+      allow create: if isOwner(userId)
+        && request.resource.data.uid == request.auth.uid
+        && isSafeRole(request.resource.data.role);
+
+      // Owner can update own profile but cannot escalate to admin/super_admin
+      // Admins can update any user including role changes
+      allow update: if isAdmin()
+        || (isOwner(userId)
+            && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role'])
+                || isSafeRole(request.resource.data.role)));
+
       allow delete: if isAdmin();
     }
 
     // ── Campaigns ─────────────────────────────────────────────────────
     match /campaigns/{campaignId} {
-      // Public fields readable by all authenticated users (for storefront)
       allow read: if isAuthenticated();
       allow create: if isAuthenticated();
       allow update: if isCampaignOwner(campaignId) || isAdmin();
@@ -65,7 +80,6 @@ service cloud.firestore {
       allow update: if hasCampaignAccess(resource.data.campaignId) || isAdmin();
       allow delete: if isAdmin();
 
-      // Itinerary blocks
       match /itinerary_blocks/{blockId} {
         allow read: if isAuthenticated();
         allow write: if hasCampaignAccess(
@@ -73,7 +87,6 @@ service cloud.firestore {
         ) || isAdmin();
       }
 
-      // Inventory
       match /inventory/{itemId} {
         allow read: if isAuthenticated();
         allow write: if hasCampaignAccess(
@@ -81,7 +94,6 @@ service cloud.firestore {
         ) || isAdmin();
       }
 
-      // Pricing tiers
       match /pricing_tiers/{tierId} {
         allow read: if isAuthenticated();
         allow write: if hasCampaignAccess(
@@ -92,23 +104,22 @@ service cloud.firestore {
 
     // ── Bookings ──────────────────────────────────────────────────────
     match /bookings/{bookingId} {
-      allow read: if isOwner(resource.data.userId) ||
+      allow read: if isOwner(resource.data.travelerId) ||
         hasCampaignAccess(resource.data.campaignId) || isAdmin();
       allow create: if isAuthenticated() &&
-        request.resource.data.userId == request.auth.uid;
-      allow update: if isOwner(resource.data.userId) ||
+        request.resource.data.travelerId == request.auth.uid;
+      allow update: if isOwner(resource.data.travelerId) ||
         hasCampaignAccess(resource.data.campaignId) || isAdmin();
       allow delete: if isAdmin();
 
-      // Passengers subcollection
       match /passengers/{passengerId} {
         allow read: if isOwner(
-          get(/databases/$(database)/documents/bookings/$(bookingId)).data.userId
+          get(/databases/$(database)/documents/bookings/$(bookingId)).data.travelerId
         ) || hasCampaignAccess(
           get(/databases/$(database)/documents/bookings/$(bookingId)).data.campaignId
         ) || isAdmin();
         allow write: if isOwner(
-          get(/databases/$(database)/documents/bookings/$(bookingId)).data.userId
+          get(/databases/$(database)/documents/bookings/$(bookingId)).data.travelerId
         ) || hasCampaignAccess(
           get(/databases/$(database)/documents/bookings/$(bookingId)).data.campaignId
         ) || isAdmin();
@@ -117,9 +128,9 @@ service cloud.firestore {
 
     // ── Payments (server-write only) ──────────────────────────────────
     match /payments/{paymentId} {
-      allow read: if isOwner(resource.data.userId) ||
+      allow read: if isOwner(resource.data.payerId) ||
         hasCampaignAccess(resource.data.campaignId) || isAdmin();
-      allow write: if false; // Server-side only via Admin SDK
+      allow write: if false;
     }
 
     // ── Payouts (admin-managed) ───────────────────────────────────────
@@ -130,15 +141,15 @@ service cloud.firestore {
 
     // ── Notifications ─────────────────────────────────────────────────
     match /notifications/{notificationId} {
-      allow read: if isOwner(resource.data.userId) || isAdmin();
+      allow read: if isOwner(resource.data.recipientId) || isAdmin();
       allow create: if hasCampaignAccess(request.resource.data.campaignId) || isAdmin();
-      allow update: if isOwner(resource.data.userId) || isAdmin();
+      allow update: if isOwner(resource.data.recipientId) || isAdmin();
       allow delete: if isAdmin();
     }
 
     // ── SOS Events ────────────────────────────────────────────────────
     match /sos_events/{eventId} {
-      allow read: if isOwner(resource.data.userId) ||
+      allow read: if isOwner(resource.data.travelerId) ||
         hasCampaignAccess(resource.data.campaignId) || isAdmin();
       allow create: if isAuthenticated();
       allow update: if hasCampaignAccess(resource.data.campaignId) || isAdmin();
@@ -147,7 +158,7 @@ service cloud.firestore {
 
     // ── Disputes ──────────────────────────────────────────────────────
     match /disputes/{disputeId} {
-      allow read: if isOwner(resource.data.userId) ||
+      allow read: if isOwner(resource.data.filedBy) ||
         hasCampaignAccess(resource.data.campaignId) || isAdmin();
       allow create: if isAuthenticated();
       allow update: if isAdmin();
@@ -155,10 +166,10 @@ service cloud.firestore {
 
       match /messages/{messageId} {
         allow read: if isOwner(
-          get(/databases/$(database)/documents/disputes/$(disputeId)).data.userId
+          get(/databases/$(database)/documents/disputes/$(disputeId)).data.filedBy
         ) || isAdmin();
         allow create: if isOwner(
-          get(/databases/$(database)/documents/disputes/$(disputeId)).data.userId
+          get(/databases/$(database)/documents/disputes/$(disputeId)).data.filedBy
         ) || isAdmin();
       }
     }
@@ -166,7 +177,7 @@ service cloud.firestore {
     // ── Audit Logs (immutable) ────────────────────────────────────────
     match /audit_logs/{logId} {
       allow read: if isAdmin();
-      allow write: if false; // Server-side only
+      allow write: if false;
     }
   }
 }

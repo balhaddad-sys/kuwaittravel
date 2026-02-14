@@ -2,7 +2,12 @@
 
 import { createContext, useState, useEffect, useCallback } from "react";
 import type { User as FirebaseUser, ConfirmationResult } from "firebase/auth";
-import type { User } from "@/types";
+import type { User, UserRole } from "@/types";
+
+interface OTPResult {
+  isNewUser: boolean;
+  role?: UserRole;
+}
 
 interface AuthContextValue {
   firebaseUser: FirebaseUser | null;
@@ -10,7 +15,7 @@ interface AuthContextValue {
   loading: boolean;
   error: Error | null;
   signInWithPhone: (phoneNumber: string) => Promise<ConfirmationResult>;
-  confirmOTP: (confirmationResult: ConfirmationResult, code: string) => Promise<void>;
+  confirmOTP: (confirmationResult: ConfirmationResult, code: string) => Promise<OTPResult>;
   signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   refreshUserData: () => Promise<void>;
@@ -81,7 +86,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const confirmOTP = async (
     confirmationResult: ConfirmationResult,
     code: string
-  ): Promise<void> => {
+  ): Promise<OTPResult> => {
     setError(null);
     try {
       const { createSessionCookie } = await import("@/lib/firebase/auth");
@@ -89,7 +94,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setFirebaseUser(result.user);
       const idToken = await result.user.getIdToken();
       await createSessionCookie(idToken);
-      await fetchUserData(result.user.uid);
+
+      const { getDocument } = await import("@/lib/firebase/firestore");
+      const { COLLECTIONS } = await import("@/lib/firebase/collections");
+      const existingUser = await getDocument<User>(COLLECTIONS.USERS, result.user.uid);
+
+      if (existingUser) {
+        setUserData(existingUser);
+        return { isNewUser: false, role: existingUser.role };
+      }
+      return { isNewUser: true };
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Invalid OTP"));
       throw err;

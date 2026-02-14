@@ -7,6 +7,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
+import { useAuth } from "@/hooks/useAuth";
 import {
   FileText, CreditCard, Settings, HelpCircle, LogOut, ChevronLeft,
   Shield, Globe,
@@ -22,6 +23,12 @@ const menuItems = [
 
 export default function ProfilePage() {
   const router = useRouter();
+  const { userData, logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    router.push("/login");
+  };
 
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
@@ -31,29 +38,21 @@ export default function ProfilePage() {
           <div className="flex items-center gap-4">
             <Avatar size="xl" className="border-4 border-white/20" />
             <div>
-              <h1 className="text-heading-lg font-bold text-white">أحمد محمد العلي</h1>
-              <p className="text-body-md text-navy-200">+965 9900 1234</p>
-              <Badge variant="gold" size="sm" className="mt-1">مسافر موثق ✓</Badge>
+              <h1 className="text-heading-lg font-bold text-white">
+                {userData?.displayNameAr || userData?.displayName || ""}
+              </h1>
+              <p className="text-body-md text-navy-200">
+                {userData?.phone || userData?.email || ""}
+              </p>
+              {userData?.isVerified && (
+                <Badge variant="gold" size="sm" className="mt-1">مسافر موثق ✓</Badge>
+              )}
             </div>
           </div>
         </Container>
       </div>
 
       <Container className="py-6 space-y-4">
-        {/* Quick Stats */}
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { label: "رحلات", value: "5" },
-            { label: "حجوزات", value: "8" },
-            { label: "تقييمات", value: "3" },
-          ].map((stat, i) => (
-            <Card key={i} variant="elevated" padding="md" className="text-center">
-              <p className="text-heading-md font-bold text-navy-900 dark:text-white">{stat.value}</p>
-              <p className="text-body-sm text-navy-500">{stat.label}</p>
-            </Card>
-          ))}
-        </div>
-
         {/* Menu */}
         <Card variant="elevated" padding="sm">
           {menuItems.map((item, i) => (
@@ -81,7 +80,13 @@ export default function ProfilePage() {
         </Card>
 
         {/* Logout */}
-        <Button variant="ghost" fullWidth className="text-error hover:bg-error-light" leftIcon={<LogOut className="h-5 w-5" />}>
+        <Button
+          variant="ghost"
+          fullWidth
+          className="text-error hover:bg-error-light"
+          leftIcon={<LogOut className="h-5 w-5" />}
+          onClick={handleLogout}
+        >
           تسجيل الخروج
         </Button>
       </Container>
