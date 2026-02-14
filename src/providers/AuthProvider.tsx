@@ -66,7 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (user) {
           const data = await fetchUserData(user.uid);
           const idToken = await user.getIdToken();
-          await createSessionCookie(idToken, data?.role);
+          createSessionCookie(idToken, data?.role);
         } else {
           setUserData(null);
         }
@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const existingUser = await getDocument<User>(COLLECTIONS.USERS, result.user.uid);
 
       const idToken = await result.user.getIdToken();
-      await createSessionCookie(idToken, existingUser?.role);
+      createSessionCookie(idToken, existingUser?.role);
 
       if (existingUser) {
         setUserData(existingUser);
@@ -122,7 +122,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setFirebaseUser(result.user);
       const data = await fetchUserData(result.user.uid);
       const idToken = await result.user.getIdToken();
-      await createSessionCookie(idToken, data?.role);
+      createSessionCookie(idToken, data?.role);
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Google sign-in failed"));
       throw err;

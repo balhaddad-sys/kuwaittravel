@@ -36,14 +36,15 @@ export async function signInWithGoogle(): Promise<UserCredential> {
 
 export async function signOut(): Promise<void> {
   await firebaseSignOut(getFirebaseAuth());
-  // Clear session cookie
-  await fetch("/api/auth/session", { method: "DELETE" });
+  document.cookie = "session=; path=/; max-age=0";
+  document.cookie = "session_role=; path=/; max-age=0";
 }
 
-export async function createSessionCookie(idToken: string, role?: string): Promise<void> {
-  await fetch("/api/auth/session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ idToken, role }),
-  });
+export function createSessionCookie(idToken: string, role?: string): void {
+  const maxAge = 60 * 60 * 24 * 5; // 5 days
+  const secure = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `session=${encodeURIComponent(idToken)}; path=/; max-age=${maxAge}; SameSite=Lax${secure}`;
+  if (role) {
+    document.cookie = `session_role=${role}; path=/; max-age=${maxAge}; SameSite=Lax${secure}`;
+  }
 }
