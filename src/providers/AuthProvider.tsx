@@ -11,6 +11,7 @@ interface AuthContextValue {
   error: Error | null;
   signInWithPhone: (phoneNumber: string) => Promise<ConfirmationResult>;
   confirmOTP: (confirmationResult: ConfirmationResult, code: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   refreshUserData: () => Promise<void>;
 }
@@ -95,6 +96,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const signInWithGoogle = async (): Promise<void> => {
+    setError(null);
+    try {
+      const { signInWithGoogle: googleSignIn } = await import("@/lib/firebase/auth");
+      const { createSessionCookie } = await import("@/lib/firebase/auth");
+      const result = await googleSignIn();
+      setFirebaseUser(result.user);
+      const idToken = await result.user.getIdToken();
+      await createSessionCookie(idToken);
+      await fetchUserData(result.user.uid);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error("Google sign-in failed"));
+      throw err;
+    }
+  };
+
   const logout = async (): Promise<void> => {
     const { signOut: firebaseSignOut } = await import("@/lib/firebase/auth");
     await firebaseSignOut();
@@ -117,6 +134,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         error,
         signInWithPhone,
         confirmOTP,
+        signInWithGoogle,
         logout,
         refreshUserData,
       }}

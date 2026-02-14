@@ -1,8 +1,11 @@
 import {
   signInWithPhoneNumber,
+  signInWithPopup,
+  GoogleAuthProvider,
   RecaptchaVerifier,
   signOut as firebaseSignOut,
   type ConfirmationResult,
+  type UserCredential,
 } from "firebase/auth";
 import { auth } from "./config";
 
@@ -21,6 +24,12 @@ export function getRecaptchaVerifier(containerId: string = "recaptcha-container"
 export async function sendOTP(phoneNumber: string): Promise<ConfirmationResult> {
   const verifier = getRecaptchaVerifier();
   return signInWithPhoneNumber(auth, phoneNumber, verifier);
+}
+
+const googleProvider = new GoogleAuthProvider();
+
+export async function signInWithGoogle(): Promise<UserCredential> {
+  return signInWithPopup(auth, googleProvider);
 }
 
 export async function signOut(): Promise<void> {
