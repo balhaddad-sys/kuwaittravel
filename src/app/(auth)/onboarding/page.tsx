@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -18,8 +18,16 @@ export default function OnboardingPage() {
   const [name, setName] = useState("");
   const [nameAr, setNameAr] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
   const { firebaseUser, refreshUserData } = useAuth();
+
+  // Pre-populate name from Google account
+  useEffect(() => {
+    if (firebaseUser?.displayName && !name) {
+      setName(firebaseUser.displayName);
+    }
+  }, [firebaseUser?.displayName, name]);
 
   const handleRoleSelect = (selectedRole: UserRole) => {
     setRole(selectedRole);
@@ -33,6 +41,7 @@ export default function OnboardingPage() {
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!firebaseUser || !role) return;
+    setError("");
     setLoading(true);
 
     try {
@@ -40,9 +49,11 @@ export default function OnboardingPage() {
         COLLECTIONS.USERS,
         {
           uid: firebaseUser.uid,
+          email: firebaseUser.email || "",
           phone: firebaseUser.phoneNumber || "",
           displayName: name,
           displayNameAr: nameAr,
+          photoURL: firebaseUser.photoURL || "",
           role,
           preferredLanguage: "ar" as const,
           notificationTokens: [],
@@ -54,8 +65,9 @@ export default function OnboardingPage() {
 
       await refreshUserData();
       router.push(ROLE_HOME_ROUTES[role]);
-    } catch {
-      // Handle error
+    } catch (err) {
+      console.error("Onboarding error:", err);
+      setError("حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى.");
     } finally {
       setLoading(false);
     }
@@ -131,6 +143,9 @@ export default function OnboardingPage() {
           onChange={(e) => setName(e.target.value)}
           required
         />
+        {error && (
+          <p className="text-body-sm text-red-500 text-center">{error}</p>
+        )}
         <Button type="submit" fullWidth loading={loading} size="lg">
           إنشاء الحساب
         </Button>
