@@ -49,16 +49,14 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           channelId: live
           projectId: rahal-kwt
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
 
       - name: Deploy Firestore Rules
         run: npx firebase-tools deploy --only firestore:rules --project rahal-kwt
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
 
       - name: Deploy Storage Rules
         run: npx firebase-tools deploy --only storage:rules --project rahal-kwt
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
 
   deploy-preview:
     name: Deploy Preview
@@ -105,3 +103,5 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: rahal-kwt
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
