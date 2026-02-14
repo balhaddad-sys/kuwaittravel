@@ -5,12 +5,11 @@ import { useRouter } from "next/navigation";
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { TripCard } from "@/components/shared/TripCard";
 import { SearchInput } from "@/components/forms/SearchInput";
 import { FAB } from "@/components/ui/FAB";
-import { Plus, Map, Filter } from "lucide-react";
+import { Plus, Map } from "lucide-react";
 
 const mockTrips = [
   { id: "1", title: "رحلة كربلاء المقدسة - أربعين", destination: "كربلاء", departureDate: "2026-03-15", returnDate: "2026-03-20", price: 285, capacity: 45, booked: 38, status: "active" as const },

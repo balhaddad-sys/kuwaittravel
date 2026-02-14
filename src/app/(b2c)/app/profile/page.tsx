@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import {
   FileText, CreditCard, Settings, HelpCircle, LogOut, ChevronLeft,
-  Shield, Moon, Globe,
+  Shield, Globe,
 } from "lucide-react";
 
 const menuItems = [

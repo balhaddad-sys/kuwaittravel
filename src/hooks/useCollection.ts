@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { type QueryConstraint } from "firebase/firestore";
 import { onCollectionChange } from "@/lib/firebase/firestore";
 
@@ -10,17 +10,24 @@ export function useCollection<T>(
 ) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [error] = useState<Error | null>(null);
+  const initialLoad = useRef(true);
+  const constraintsKey = useMemo(() => JSON.stringify(constraints), [constraints]);
+
+  const handleItems = useCallback((items: T[]) => {
+    setData(items);
+    if (initialLoad.current) {
+      setLoading(false);
+      initialLoad.current = false;
+    }
+  }, []);
 
   useEffect(() => {
-    setLoading(true);
-    const unsubscribe = onCollectionChange<T>(collectionName, constraints, (items) => {
-      setData(items);
-      setLoading(false);
-    });
+    const unsubscribe = onCollectionChange<T>(collectionName, constraints, handleItems);
 
     return () => unsubscribe();
-  }, [collectionName, JSON.stringify(constraints)]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [collectionName, constraintsKey, handleItems]);
 
   return { data, loading, error };
 }

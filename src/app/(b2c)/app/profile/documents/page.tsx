@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { FileUpload } from "@/components/forms/FileUpload";
-import { ArrowRight, FileText, Upload, CheckCircle2, AlertCircle } from "lucide-react";
+import { ArrowRight, FileText, CheckCircle2, AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function DocumentsPage() {

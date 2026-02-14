@@ -5,7 +5,6 @@ import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { Button } from "@/components/ui/Button";
 import { Map, Calendar, MapPin, ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { formatKWD } from "@/lib/utils/format";

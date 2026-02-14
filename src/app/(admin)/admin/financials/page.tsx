@@ -4,7 +4,6 @@ import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
 import { StatCard } from "@/components/data-display/StatCard";
-import { Badge } from "@/components/ui/Badge";
 import { Wallet, TrendingUp, ArrowUpRight, Building2 } from "lucide-react";
 import { formatKWD } from "@/lib/utils/format";
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { User } from "lucide-react";
 
@@ -15,12 +16,21 @@ const sizeMap = {
   xl: "h-16 w-16 text-lg",
 };
 
+const sizePx = {
+  sm: 32,
+  md: 40,
+  lg: 48,
+  xl: 64,
+};
+
 function Avatar({ src, alt, size = "md", className }: AvatarProps) {
   if (src) {
     return (
-      <img
+      <Image
         src={src}
         alt={alt || ""}
+        width={sizePx[size]}
+        height={sizePx[size]}
         className={cn("rounded-full object-cover", sizeMap[size], className)}
       />
     );

@@ -3,12 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Container } from "@/components/layout/Container";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { TripCard } from "@/components/shared/TripCard";
 import { CampaignCard } from "@/components/shared/CampaignCard";
 import { SearchInput } from "@/components/forms/SearchInput";
-import { MapPin, Star, ArrowLeft, Flame } from "lucide-react";
+import { Star, ArrowLeft, Flame } from "lucide-react";
 
 const featuredTrips = [
   { id: "1", title: "رحلة كربلاء المقدسة - أربعين", destination: "كربلاء", departureDate: "2026-03-15", returnDate: "2026-03-20", price: 285, capacity: 45, booked: 38, status: "active" as const, campaignName: "حملة النور" },
@@ -31,7 +29,7 @@ const destinations = [
 
 export default function DiscoverPage() {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
+  const [, setSearchQuery] = useState("");
 
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">

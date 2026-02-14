@@ -32,23 +32,20 @@ export function getFirebaseStorage(): FirebaseStorage {
 }
 
 // Lazy getters for backwards compatibility
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const auth: Auth = new Proxy({} as Auth, {
   get(_, prop) {
-    return (getFirebaseAuth() as any)[prop];
+    return (getFirebaseAuth() as unknown as Record<string | symbol, unknown>)[prop];
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const db: Firestore = new Proxy({} as Firestore, {
   get(_, prop) {
-    return (getFirebaseDb() as any)[prop];
+    return (getFirebaseDb() as unknown as Record<string | symbol, unknown>)[prop];
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const storage: FirebaseStorage = new Proxy({} as FirebaseStorage, {
   get(_, prop) {
-    return (getFirebaseStorage() as any)[prop];
+    return (getFirebaseStorage() as unknown as Record<string | symbol, unknown>)[prop];
   },
 });

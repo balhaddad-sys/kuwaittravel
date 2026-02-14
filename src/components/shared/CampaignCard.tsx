@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
@@ -29,7 +30,7 @@ function CampaignCard({
   return (
     <Card variant="elevated" padding="none" hoverable onClick={onClick} className={className}>
       <div className="relative h-28 bg-navy-100 dark:bg-navy-800 rounded-t-[var(--radius-card)] overflow-hidden">
-        {coverUrl && <img src={coverUrl} alt={name} className="h-full w-full object-cover" />}
+        {coverUrl && <Image src={coverUrl} alt={name} width={400} height={200} className="h-full w-full object-cover" />}
       </div>
       <div className="relative px-4 pb-4">
         <div className="-mt-6 mb-3 flex items-end gap-3">

@@ -1,9 +1,14 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 type Direction = "rtl" | "ltr";
 type Language = "ar" | "en";
+
+function getStoredLanguage(): Language {
+  if (typeof window === "undefined") return "ar";
+  return (localStorage.getItem("language") as Language) || "ar";
+}
 
 interface DirectionContextValue {
   direction: Direction;
@@ -21,18 +26,16 @@ export function useDirection() {
 }
 
 export function DirectionProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("ar");
+  const [language, setLanguageState] = useState<Language>(getStoredLanguage);
 
-  useEffect(() => {
-    const stored = localStorage.getItem("language") as Language | null;
-    if (stored) setLanguageState(stored);
+  const applyDirection = useCallback((lang: Language) => {
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = lang;
   }, []);
 
   useEffect(() => {
-    const dir = language === "ar" ? "rtl" : "ltr";
-    document.documentElement.dir = dir;
-    document.documentElement.lang = language;
-  }, [language]);
+    applyDirection(language);
+  }, [language, applyDirection]);
 
   const direction = language === "ar" ? "rtl" : "ltr";
 

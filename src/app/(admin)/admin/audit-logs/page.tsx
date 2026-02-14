@@ -4,7 +4,7 @@ import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { ScrollText, User, Clock } from "lucide-react";
+import { ScrollText, Clock } from "lucide-react";
 
 const mockLogs = [
   { id: "1", actor: "المشرف العام", action: "campaign.approve", target: "حملة النور", date: "2026-02-14 10:30" },

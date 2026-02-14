@@ -18,7 +18,6 @@ import {
   BookOpen,
   TrendingUp,
 } from "lucide-react";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 // Mock data for demonstration
@@ -43,8 +42,6 @@ const mockTrips = [
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [showQuickMenu, setShowQuickMenu] = useState(false);
-
   return (
     <>
       <AppBar

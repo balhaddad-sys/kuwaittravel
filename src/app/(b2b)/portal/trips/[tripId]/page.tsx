@@ -1,20 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useParams } from "next/navigation";
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { StatusChip } from "@/components/ui/StatusChip";
 import { Input } from "@/components/ui/Input";
 import { StatCard } from "@/components/data-display/StatCard";
 import { PassengerRow } from "@/components/data-display/PassengerRow";
 import { SearchInput } from "@/components/forms/SearchInput";
 import {
   Users, Calendar, MapPin, Wallet, FileText, Bell, QrCode,
-  Download, Send, Filter, MoreVertical, Copy, Trash2, Edit,
+  Download, Send, MoreVertical, Copy, Trash2, Edit,
 } from "lucide-react";
 import { DropdownMenu } from "@/components/ui/DropdownMenu";
 
@@ -49,8 +47,6 @@ const mockPassengers: MockPassenger[] = [
 ];
 
 export default function TripDetailPage() {
-  const router = useRouter();
-  const params = useParams();
   const [activeTab, setActiveTab] = useState<"passengers" | "itinerary" | "documents" | "announcements">("passengers");
   const [searchQuery, setSearchQuery] = useState("");
   const [passengerFilter, setPassengerFilter] = useState("all");

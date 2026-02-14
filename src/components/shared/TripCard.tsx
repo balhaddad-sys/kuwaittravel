@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { StatusChip } from "@/components/ui/StatusChip";
 import { Calendar, MapPin, Users } from "lucide-react";
 import { formatKWD } from "@/lib/utils/format";
@@ -24,7 +24,6 @@ function TripCard({
   title,
   destination,
   departureDate,
-  returnDate,
   price,
   capacity,
   booked,
@@ -42,7 +41,7 @@ function TripCard({
       {/* Cover */}
       <div className="relative h-40 bg-navy-100 dark:bg-navy-800 rounded-t-[var(--radius-card)] overflow-hidden">
         {coverImage ? (
-          <img src={coverImage} alt={title} className="h-full w-full object-cover" />
+          <Image src={coverImage} alt={title} width={400} height={200} className="h-full w-full object-cover" />
         ) : (
           <div className="flex h-full items-center justify-center">
             <MapPin className="h-10 w-10 text-navy-300" />
