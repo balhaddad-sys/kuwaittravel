@@ -7,11 +7,12 @@ import {
   type ConfirmationResult,
   type UserCredential,
 } from "firebase/auth";
-import { auth } from "./config";
+import { getFirebaseAuth } from "./config";
 
 let recaptchaVerifier: RecaptchaVerifier | null = null;
 
 export function getRecaptchaVerifier(containerId: string = "recaptcha-container"): RecaptchaVerifier {
+  const auth = getFirebaseAuth();
   if (recaptchaVerifier) {
     recaptchaVerifier.clear();
   }
@@ -22,6 +23,7 @@ export function getRecaptchaVerifier(containerId: string = "recaptcha-container"
 }
 
 export async function sendOTP(phoneNumber: string): Promise<ConfirmationResult> {
+  const auth = getFirebaseAuth();
   const verifier = getRecaptchaVerifier();
   return signInWithPhoneNumber(auth, phoneNumber, verifier);
 }
@@ -29,11 +31,11 @@ export async function sendOTP(phoneNumber: string): Promise<ConfirmationResult> 
 const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<UserCredential> {
-  return signInWithPopup(auth, googleProvider);
+  return signInWithPopup(getFirebaseAuth(), googleProvider);
 }
 
 export async function signOut(): Promise<void> {
-  await firebaseSignOut(auth);
+  await firebaseSignOut(getFirebaseAuth());
   // Clear session cookie
   await fetch("/api/auth/session", { method: "DELETE" });
 }

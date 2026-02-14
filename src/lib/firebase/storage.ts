@@ -5,25 +5,25 @@ import {
   deleteObject,
   type UploadMetadata,
 } from "firebase/storage";
-import { storage } from "./config";
+import { getFirebaseStorage } from "./config";
 
 export async function uploadFile(
   path: string,
   file: File,
   metadata?: UploadMetadata
 ): Promise<string> {
-  const storageRef = ref(storage, path);
+  const storageRef = ref(getFirebaseStorage(), path);
   await uploadBytes(storageRef, file, metadata);
   return getDownloadURL(storageRef);
 }
 
 export async function getFileUrl(path: string): Promise<string> {
-  const storageRef = ref(storage, path);
+  const storageRef = ref(getFirebaseStorage(), path);
   return getDownloadURL(storageRef);
 }
 
 export async function deleteFile(path: string): Promise<void> {
-  const storageRef = ref(storage, path);
+  const storageRef = ref(getFirebaseStorage(), path);
   await deleteObject(storageRef);
 }
 
