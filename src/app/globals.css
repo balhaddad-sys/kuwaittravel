@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/* ============================================
+   KUWAIT TRAVEL PLATFORM — DESIGN TOKENS
+   Tailwind v4 CSS-based configuration
+   ============================================ */
+
+@theme inline {
+  /* === COLORS: Navy (Primary) === */
+  --color-navy-50: #E8EBF0;
+  --color-navy-100: #C5CBD7;
+  --color-navy-200: #9EA8BD;
+  --color-navy-300: #7786A3;
+  --color-navy-400: #596D90;
+  --color-navy-500: #3B547D;
+  --color-navy-600: #2F4468;
+  --color-navy-700: #1B2A4A;
+  --color-navy-800: #121D33;
+  --color-navy-900: #0A111F;
+  --color-navy-950: #050912;
+
+  /* === COLORS: Gold (Accent) === */
+  --color-gold-50: #FBF6E8;
+  --color-gold-100: #F5E9C5;
+  --color-gold-200: #EDDA9E;
+  --color-gold-300: #E5CA77;
+  --color-gold-400: #D9B75C;
+  --color-gold-500: #C9A84C;
+  --color-gold-600: #B5933D;
+  --color-gold-700: #9A7A2F;
+  --color-gold-800: #7F6224;
+  --color-gold-900: #644B1A;
+
+  /* === COLORS: Surface === */
+  --color-surface-light: #FFFFFF;
+  --color-surface-muted: #F8F9FC;
+  --color-surface-border: #E2E6EE;
+  --color-surface-dark: #121212;
+  --color-surface-dark-card: #1E1E1E;
+  --color-surface-dark-border: #2C2C2C;
+
+  /* === COLORS: Semantic === */
+  --color-success: #22C55E;
+  --color-success-light: #DCFCE7;
+  --color-warning: #F59E0B;
+  --color-warning-light: #FEF3C7;
+  --color-error: #EF4444;
+  --color-error-light: #FEE2E2;
+  --color-info: #3B82F6;
+  --color-info-light: #DBEAFE;
+
+  /* === FONTS === */
+  --font-arabic: "Tajawal", "Cairo", sans-serif;
+  --font-latin: "Inter", sans-serif;
+
+  /* === FONT SIZES === */
+  --text-display-lg: 2.25rem;
+  --text-display-lg--line-height: 2.75rem;
+  --text-display-md: 1.875rem;
+  --text-display-md--line-height: 2.375rem;
+  --text-heading-lg: 1.5rem;
+  --text-heading-lg--line-height: 2rem;
+  --text-heading-md: 1.25rem;
+  --text-heading-md--line-height: 1.75rem;
+  --text-heading-sm: 1.125rem;
+  --text-heading-sm--line-height: 1.5rem;
+  --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.5rem;
+  --text-body-md: 0.875rem;
+  --text-body-md--line-height: 1.25rem;
+  --text-body-sm: 0.75rem;
+  --text-body-sm--line-height: 1rem;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.125rem;
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+  --radius-card: 16px;
+  --radius-btn: 14px;
+  --radius-input: 12px;
+  --radius-chip: 100px;
+  --radius-fab: 18px;
+
+  /* === SHADOWS === */
+  --shadow-card: 0 2px 8px rgba(27, 42, 74, 0.06);
+  --shadow-card-hover: 0 4px 16px rgba(27, 42, 74, 0.10);
+  --shadow-sidebar: 4px 0 12px rgba(27, 42, 74, 0.04);
+  --shadow-topbar: 0 2px 8px rgba(27, 42, 74, 0.04);
+  --shadow-modal: 0 8px 32px rgba(27, 42, 74, 0.16);
+  --shadow-fab: 0 4px 12px rgba(27, 42, 74, 0.20);
+
+  /* === Z-INDEX === */
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-fab: 150;
+  --z-sidebar: 200;
+  --z-topbar: 250;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  /* === TRANSITIONS === */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+}
+
+/* === BASE STYLES === */
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #1B2A4A;
+    --muted: #F8F9FC;
+    --border: #E2E6EE;
+  }
+
+  .dark {
+    --background: #121212;
+    --foreground: #EDEDED;
+    --muted: #1E1E1E;
+    --border: #2C2C2C;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-arabic);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html[dir="ltr"] body {
+    font-family: var(--font-latin);
+  }
+
+  /* Focus ring for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--color-navy-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-navy-200);
+    border-radius: 3px;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-dark-border);
+  }
+}
+
+/* === UTILITY CLASSES === */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Skeleton shimmer animation */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-surface-muted) 25%,
+      var(--color-surface-border) 50%,
+      var(--color-surface-muted) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Slide up animation for toasts */
+  @keyframes slide-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s var(--ease-default);
+  }
+
+  /* Fade in */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s var(--ease-default);
+  }
+
+  /* Scale in for modals */
+  @keyframes scale-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.2s var(--ease-default);
+  }
+
+  /* Checkmark animation */
+  @keyframes checkmark {
+    0% { stroke-dashoffset: 24; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  .animate-checkmark {
+    animation: checkmark 0.4s var(--ease-default) forwards;
+  }
+}
