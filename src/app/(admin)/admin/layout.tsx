@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         }
       />
       <main className="flex-1 ms-[260px] transition-all duration-300">
-        <PageTransition>{children}</PageTransition>
+        <PageTransition variant="admin">{children}</PageTransition>
       </main>
     </div>
     </RoleGuard>

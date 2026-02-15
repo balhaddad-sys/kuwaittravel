@@ -48,7 +48,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           </section>
 
           <div className="mx-auto w-full max-w-md">
-            <PageTransition>{children}</PageTransition>
+            <PageTransition variant="auth">{children}</PageTransition>
           </div>
         </main>
       </div>
