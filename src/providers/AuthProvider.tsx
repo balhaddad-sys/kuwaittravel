@@ -58,15 +58,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     (async () => {
       const { onAuthStateChanged } = await import("firebase/auth");
       const { getFirebaseAuth } = await import("@/lib/firebase/config");
-      const { createSessionCookie } = await import("@/lib/firebase/auth");
       const firebaseAuth = getFirebaseAuth();
 
       unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
         setFirebaseUser(user);
         if (user) {
-          const data = await fetchUserData(user.uid);
-          const idToken = await user.getIdToken();
-          createSessionCookie(idToken, data?.role);
+          await fetchUserData(user.uid);
         } else {
           setUserData(null);
         }
@@ -91,16 +88,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   ): Promise<OTPResult> => {
     setError(null);
     try {
-      const { createSessionCookie } = await import("@/lib/firebase/auth");
       const result = await confirmationResult.confirm(code);
       setFirebaseUser(result.user);
 
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
       const existingUser = await getDocument<User>(COLLECTIONS.USERS, result.user.uid);
-
-      const idToken = await result.user.getIdToken();
-      createSessionCookie(idToken, existingUser?.role);
 
       if (existingUser) {
         setUserData(existingUser);
@@ -117,12 +110,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setError(null);
     try {
       const { signInWithGoogle: googleSignIn } = await import("@/lib/firebase/auth");
-      const { createSessionCookie } = await import("@/lib/firebase/auth");
       const result = await googleSignIn();
       setFirebaseUser(result.user);
-      const data = await fetchUserData(result.user.uid);
-      const idToken = await result.user.getIdToken();
-      createSessionCookie(idToken, data?.role);
+      await fetchUserData(result.user.uid);
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Google sign-in failed"));
       throw err;
