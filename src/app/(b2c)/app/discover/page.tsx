@@ -125,29 +125,29 @@ export default function DiscoverPage() {
   }, [filteredTrips]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-surface-muted/70 dark:bg-surface-dark">
+    <div className="relative min-h-screen bg-surface-muted/70 dark:bg-surface-dark">
       <div className="pointer-events-none absolute -top-28 -start-20 h-72 w-72 rounded-full bg-gold-300/30 blur-3xl" />
       <div className="pointer-events-none absolute -top-20 -end-20 h-80 w-80 rounded-full bg-navy-300/30 blur-3xl" />
       <div className="pointer-events-none absolute bottom-20 start-1/3 h-64 w-64 rounded-full bg-info/10 blur-3xl" />
 
-      <section className="relative border-b border-surface-border/70 bg-gradient-to-br from-navy-800 via-navy-700 to-navy-900 px-4 pb-10 pt-12">
+      <section className="relative border-b border-surface-border/70 bg-gradient-to-br from-navy-800 via-navy-700 to-navy-900 px-4 pb-8 pt-8 sm:pb-10 sm:pt-12">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-body-sm text-white/90 backdrop-blur-sm">
                 <Compass className="h-3.5 w-3.5 text-gold-300" />
                 {t("بوابة اكتشاف الرحلات", "Travel Discovery")}
               </div>
-              <h1 className="mt-4 text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+              <h1 className="mt-3 text-2xl font-extrabold leading-tight text-white sm:mt-4 sm:text-4xl lg:text-5xl">
                 {t("استكشف رحلتك القادمة", "Discover Your Next Journey")}
               </h1>
-              <p className="mt-3 max-w-2xl text-body-lg text-navy-100">
+              <p className="mt-2 max-w-2xl text-body-md text-navy-100 sm:mt-3 sm:text-body-lg">
                 {t(
                   "تصميم سفر حديث يدعم العربية والإنجليزية بسلاسة، مع واجهة أسرع للبحث والحجز.",
                   "A premium bilingual travel experience with smoother search and booking."
                 )}
               </p>
-              <div className="mt-6 max-w-2xl">
+              <div className="mt-4 max-w-2xl sm:mt-6">
                 <SearchInput
                   placeholder={t("ابحث عن رحلة أو حملة...", "Search for a trip or campaign...")}
                   onSearch={setSearchQuery}
@@ -156,31 +156,31 @@ export default function DiscoverPage() {
               </div>
             </div>
 
-            <div className="grid gap-3 rounded-3xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
-              <div className="rounded-2xl border border-white/15 bg-white/8 p-4">
-                <p className="text-[11px] uppercase tracking-wider text-navy-100/75">
-                  {t("رحلات متاحة", "Available Trips")}
+            <div className="grid grid-cols-3 gap-2 rounded-2xl border border-white/15 bg-white/10 p-3 backdrop-blur-md lg:grid-cols-1 lg:gap-3 lg:rounded-3xl lg:p-4">
+              <div className="rounded-xl border border-white/15 bg-white/8 p-3 lg:rounded-2xl lg:p-4">
+                <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
+                  {t("رحلات", "Trips")}
                 </p>
-                <p className="mt-1 text-3xl font-bold text-white">{filteredTrips.length}</p>
+                <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{filteredTrips.length}</p>
               </div>
-              <div className="rounded-2xl border border-white/15 bg-white/8 p-4">
-                <p className="text-[11px] uppercase tracking-wider text-navy-100/75">
-                  {t("حملات نشطة", "Active Campaigns")}
+              <div className="rounded-xl border border-white/15 bg-white/8 p-3 lg:rounded-2xl lg:p-4">
+                <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
+                  {t("حملات", "Campaigns")}
                 </p>
-                <p className="mt-1 text-3xl font-bold text-white">{campaigns.length}</p>
+                <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{campaigns.length}</p>
               </div>
-              <div className="rounded-2xl border border-white/15 bg-white/8 p-4">
-                <p className="text-[11px] uppercase tracking-wider text-navy-100/75">
+              <div className="rounded-xl border border-white/15 bg-white/8 p-3 lg:rounded-2xl lg:p-4">
+                <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
                   {t("وجهات", "Destinations")}
                 </p>
-                <p className="mt-1 text-3xl font-bold text-white">{destinations.length}</p>
+                <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{destinations.length}</p>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      <Container className="relative space-y-10 py-8">
+      <Container className="relative space-y-6 py-6 sm:space-y-10 sm:py-8">
         <section>
           <div className="mb-4 flex items-center gap-2">
             <Globe2 className="h-5 w-5 text-gold-500" />

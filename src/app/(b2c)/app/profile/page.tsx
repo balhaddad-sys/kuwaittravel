@@ -33,12 +33,12 @@ export default function ProfilePage() {
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
       {/* Profile Header */}
-      <div className="bg-gradient-to-bl from-navy-700 to-navy-900 px-4 pt-12 pb-8">
+      <div className="bg-gradient-to-bl from-navy-700 to-navy-900 px-4 pt-8 pb-6 sm:pt-12 sm:pb-8">
         <Container>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Avatar size="xl" className="border-4 border-white/20" />
-            <div>
-              <h1 className="text-heading-lg font-bold text-white">
+            <div className="min-w-0">
+              <h1 className="truncate text-heading-md font-bold text-white sm:text-heading-lg">
                 {userData?.displayNameAr || userData?.displayName || ""}
               </h1>
               <p className="text-body-md text-navy-200">

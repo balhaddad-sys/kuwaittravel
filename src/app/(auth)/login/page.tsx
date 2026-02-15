@@ -84,9 +84,9 @@ export default function LoginPage() {
     <>
       <div id="recaptcha-container" />
       <Card variant="elevated" padding="lg">
-        <div className="text-center mb-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-navy-700">
-            <Phone className="h-7 w-7 text-white" />
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-navy-700">
+            <Phone className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
           </div>
           <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
             {t("مرحباً بك", "Welcome")}

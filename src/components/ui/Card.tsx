@@ -12,8 +12,8 @@ interface CardProps {
 const paddingMap = {
   none: "",
   sm: "p-3",
-  md: "p-4",
-  lg: "p-6",
+  md: "p-3 sm:p-4",
+  lg: "p-4 sm:p-6",
 };
 
 const variantMap = {

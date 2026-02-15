@@ -105,10 +105,10 @@ export default function MyTripsPage() {
 
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
-      <div className="bg-white dark:bg-surface-dark-card border-b border-surface-border dark:border-surface-dark-border px-4 pt-12 pb-4">
+      <div className="bg-white dark:bg-surface-dark-card border-b border-surface-border dark:border-surface-dark-border px-4 pt-8 pb-4 sm:pt-12">
         <Container>
-          <h1 className="text-display-md font-bold text-navy-900 dark:text-white">رحلاتي</h1>
-          <div className="flex gap-2 mt-4">
+          <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">رحلاتي</h1>
+          <div className="flex gap-2 mt-3 sm:mt-4">
             {(["upcoming", "past"] as const).map((t) => (
               <button
                 key={t}
@@ -137,19 +137,19 @@ export default function MyTripsPage() {
 
               return (
                 <Card key={booking.id} variant="elevated" padding="md" hoverable onClick={() => router.push(`/app/my-trips/${booking.id}`)}>
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-[var(--radius-lg)] bg-navy-100 dark:bg-navy-800">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="hidden h-14 w-14 items-center justify-center rounded-[var(--radius-lg)] bg-navy-100 dark:bg-navy-800 sm:flex">
                       <MapPin className="h-6 w-6 text-navy-500" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-body-lg font-semibold text-navy-900 dark:text-white truncate">{booking.tripTitle}</h3>
-                      <div className="flex items-center gap-3 mt-1 text-body-sm text-navy-500">
+                      <h3 className="text-body-md font-semibold text-navy-900 dark:text-white truncate sm:text-body-lg">{booking.tripTitle}</h3>
+                      <div className="flex flex-wrap items-center gap-2 mt-1 text-body-sm text-navy-500 sm:gap-3">
                         <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {departureLabel}</span>
                         <Badge variant={statusInfo.variant} size="sm">{statusInfo.ar}</Badge>
                       </div>
                     </div>
                     <div className="text-end shrink-0">
-                      <p className="text-body-md font-bold text-navy-900 dark:text-white">{formatKWD(booking.totalKWD)}</p>
+                      <p className="text-body-sm font-bold text-navy-900 dark:text-white sm:text-body-md">{formatKWD(booking.totalKWD)}</p>
                       <ChevronLeft className="h-4 w-4 text-navy-400 ms-auto mt-1 rtl:rotate-180" />
                     </div>
                   </div>

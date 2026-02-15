@@ -19,7 +19,7 @@ function BottomNav({ items }: BottomNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-3 start-3 end-3 z-[var(--z-sticky)] safe-area-bottom">
+    <nav className="fixed bottom-0 start-0 end-0 z-[var(--z-sticky)] pb-[max(0.75rem,env(safe-area-inset-bottom,0.75rem))] px-3">
       <div className="relative mx-auto flex h-16 max-w-xl items-center justify-around rounded-2xl border border-surface-border/80 bg-white/84 px-2 backdrop-blur-sm shadow-[0_14px_28px_rgba(16,39,73,0.18)] dark:border-surface-dark-border/80 dark:bg-surface-dark/78">
         <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/65 to-transparent" />
         {items.map((item) => {

@@ -15,7 +15,7 @@ function StatCard({ title, value, change, icon, className }: StatCardProps) {
       <div className="flex items-start justify-between">
         <div>
           <p className="text-body-sm text-navy-500 dark:text-navy-400">{title}</p>
-          <p className="mt-1 text-display-md font-bold text-navy-900 dark:text-white">{value}</p>
+          <p className="mt-1 text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">{value}</p>
           {change && (
             <p className={cn(
               "mt-1 text-body-sm font-medium",
@@ -26,7 +26,7 @@ function StatCard({ title, value, change, icon, className }: StatCardProps) {
           )}
         </div>
         {icon && (
-          <div className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-lg)] bg-navy-50 dark:bg-navy-800 text-navy-500">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-navy-50 dark:bg-navy-800 text-navy-500 sm:h-12 sm:w-12">
             {icon}
           </div>
         )}

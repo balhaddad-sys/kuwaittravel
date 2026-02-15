@@ -31,7 +31,7 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
               href={item.href}
               prefetch
               className={cn(
-                "shrink-0 rounded-full border px-3 py-1.5 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
+                "shrink-0 rounded-full border px-3.5 py-2 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
                 isActive
                   ? "border-navy-600 bg-navy-600 text-white shadow-[0_6px_16px_rgba(23,57,108,0.24)]"
                   : "border-surface-border bg-white text-navy-700 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-navy-100"

@@ -18,7 +18,7 @@ export default function B2CLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <RoleGuard allowedRoles={["traveler", "campaign_owner", "campaign_staff", "admin", "super_admin"]}>
-      <div className="min-h-screen pb-24 safe-area-bottom">
+      <div className="min-h-screen pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
         <PageTransition variant="app">{children}</PageTransition>
         <BottomNav items={navItems} />
       </div>

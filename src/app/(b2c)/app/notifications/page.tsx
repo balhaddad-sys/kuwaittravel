@@ -22,9 +22,9 @@ const typeIcons: Record<string, React.ReactNode> = {
 export default function NotificationsPage() {
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
-      <div className="bg-white dark:bg-surface-dark-card border-b border-surface-border dark:border-surface-dark-border px-4 pt-12 pb-4">
+      <div className="bg-white dark:bg-surface-dark-card border-b border-surface-border dark:border-surface-dark-border px-4 pt-8 pb-4 sm:pt-12">
         <Container>
-          <h1 className="text-display-md font-bold text-navy-900 dark:text-white">الإشعارات</h1>
+          <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">الإشعارات</h1>
         </Container>
       </div>
 
