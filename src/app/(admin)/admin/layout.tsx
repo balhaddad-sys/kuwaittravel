@@ -1,6 +1,7 @@
 "use client";
 
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import {
   LayoutDashboard, Building2, Users, Wallet, AlertOctagon,
@@ -38,7 +39,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         }
       />
       <main className="flex-1 ms-[260px] transition-all duration-300">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
     </div>
     </RoleGuard>

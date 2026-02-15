@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils/cn";
+import Link from "next/link";
 import { Menu } from "lucide-react";
 
 interface Breadcrumb {
@@ -38,9 +39,9 @@ function AppBar({ title, breadcrumbs, actions, onMenuToggle, className }: AppBar
                 <span key={i} className="flex items-center gap-1.5">
                   {i > 0 && <span>/</span>}
                   {crumb.href ? (
-                    <a href={crumb.href} className="hover:text-navy-600 transition-colors">
+                    <Link href={crumb.href} className="hover:text-navy-600 transition-colors">
                       {crumb.label}
-                    </a>
+                    </Link>
                   ) : (
                     <span className="text-navy-600 dark:text-navy-300">{crumb.label}</span>
                   )}

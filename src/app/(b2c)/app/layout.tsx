@@ -1,6 +1,7 @@
 "use client";
 
 import { BottomNav } from "@/components/layout/BottomNav";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import { Compass, Map, Bell, User } from "lucide-react";
 
@@ -15,7 +16,7 @@ export default function B2CLayout({ children }: { children: React.ReactNode }) {
   return (
     <RoleGuard allowedRoles={["traveler", "campaign_owner", "campaign_staff", "admin", "super_admin"]}>
       <div className="min-h-screen pb-20">
-        {children}
+        <PageTransition>{children}</PageTransition>
         <BottomNav items={navItems} />
       </div>
     </RoleGuard>
