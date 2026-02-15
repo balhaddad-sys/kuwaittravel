@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Timestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
@@ -14,11 +15,17 @@ import { FileUpload } from "@/components/forms/FileUpload";
 import { Badge } from "@/components/ui/Badge";
 import { useToast } from "@/components/feedback/ToastProvider";
 import { DESTINATIONS, TRIP_TYPES, ROOM_TYPES } from "@/lib/utils/constants";
+import { useAuth } from "@/hooks/useAuth";
+import { createDocument, getDocument } from "@/lib/firebase/firestore";
+import { COLLECTIONS } from "@/lib/firebase/collections";
+import type { Campaign, TripType } from "@/types";
 
 export default function CreateTripPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { firebaseUser, userData } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState<File[]>([]);
 
   // Form state
   const [basics, setBasics] = useState({
@@ -48,11 +55,145 @@ export default function CreateTripPage() {
     excludes: "",
   });
 
+  const toDate = (value: string): Date | null => {
+    if (!value) return null;
+    const date = new Date(`${value}T00:00:00`);
+    return Number.isNaN(date.getTime()) ? null : date;
+  };
+
   const handleComplete = async () => {
+    if (!firebaseUser || !userData) {
+      toast({
+        type: "error",
+        title: "يرجى تسجيل الدخول أولاً",
+      });
+      router.push("/login");
+      return;
+    }
+
+    if (!userData.campaignId) {
+      toast({
+        type: "error",
+        title: "لا يمكن إنشاء الرحلة",
+        description: "حسابك غير مرتبط بحملة حالياً.",
+      });
+      return;
+    }
+
+    const departureDate = toDate(basics.departureDate);
+    const returnDate = toDate(basics.returnDate || basics.departureDate);
+    const registrationDeadline = toDate(
+      basics.registrationDeadline || basics.departureDate
+    );
+    const basePriceKWD = Number(pricing.basePriceKWD);
+    const totalCapacity = Number(pricing.totalCapacity);
+
+    if (
+      !departureDate ||
+      !returnDate ||
+      !registrationDeadline ||
+      !Number.isFinite(basePriceKWD) ||
+      basePriceKWD <= 0 ||
+      !Number.isFinite(totalCapacity) ||
+      totalCapacity <= 0
+    ) {
+      toast({
+        type: "error",
+        title: "تحقق من بيانات الرحلة",
+        description: "الرجاء إدخال تواريخ صحيحة وسعر/سعة أكبر من صفر.",
+      });
+      return;
+    }
+
+    if (returnDate < departureDate) {
+      toast({
+        type: "error",
+        title: "تاريخ العودة غير صحيح",
+        description: "تاريخ العودة يجب أن يكون بعد تاريخ المغادرة.",
+      });
+      return;
+    }
+
     setLoading(true);
     try {
-      // TODO: Save to Firestore
-      toast({ type: "success", title: "تم إنشاء الرحلة بنجاح" });
+      const selectedDestination = DESTINATIONS.find(
+        (destination) => destination.id === basics.destination
+      );
+
+      const campaign = await getDocument<Campaign>(
+        COLLECTIONS.CAMPAIGNS,
+        userData.campaignId
+      );
+
+      const tripType = TRIP_TYPES.some((type) => type.id === basics.type)
+        ? (basics.type as TripType)
+        : "ziyarat";
+
+      const tripId = await createDocument(COLLECTIONS.TRIPS, {
+        campaignId: userData.campaignId,
+        campaignName:
+          campaign?.nameAr ||
+          campaign?.name ||
+          userData.displayNameAr ||
+          userData.displayName,
+        title: basics.title || basics.titleAr,
+        titleAr: basics.titleAr,
+        description: description.description || description.descriptionAr,
+        descriptionAr: description.descriptionAr,
+        type: tripType,
+        coverImageUrl: "",
+        galleryUrls: [],
+        departureDate: Timestamp.fromDate(departureDate),
+        returnDate: Timestamp.fromDate(returnDate),
+        registrationDeadline: Timestamp.fromDate(registrationDeadline),
+        departureCity: "الكويت",
+        destinations: [
+          {
+            city: selectedDestination?.nameAr || "غير محدد",
+            country: selectedDestination?.country || "غير محدد",
+            arrivalDate: Timestamp.fromDate(departureDate),
+            departureDate: Timestamp.fromDate(returnDate),
+          },
+        ],
+        totalCapacity,
+        bookedCount: 0,
+        remainingCapacity: totalCapacity,
+        basePriceKWD,
+        currency: "KWD" as const,
+        status: "registration_open" as const,
+        isTemplate: false,
+        tags: [
+          basics.destination,
+          tripType,
+          selectedDestination?.nameEn || "",
+        ].filter((tag) => Boolean(tag)),
+        featured: false,
+        adminApproved: false,
+        roomInventory: {
+          double: Number(pricing.doubleRooms) || 0,
+          triple: Number(pricing.tripleRooms) || 0,
+          quad: Number(pricing.quadRooms) || 0,
+        },
+        includes: description.includes
+          .split("\n")
+          .map((item) => item.trim())
+          .filter((item) => item.length > 0),
+        excludes: description.excludes
+          .split("\n")
+          .map((item) => item.trim())
+          .filter((item) => item.length > 0),
+        draftAssets: images.map((file) => ({
+          name: file.name,
+          size: file.size,
+          type: file.type,
+        })),
+      });
+
+      toast({
+        type: "success",
+        title: "تم إنشاء الرحلة بنجاح",
+        description: `رقم الرحلة: ${tripId}`,
+      });
       router.push("/portal/trips");
     } catch {
       toast({ type: "error", title: "حدث خطأ أثناء إنشاء الرحلة" });
@@ -114,7 +255,14 @@ export default function CreateTripPage() {
           </div>
         </div>
       ),
-      isValid: Boolean(basics.titleAr && basics.type && basics.destination && basics.departureDate),
+      isValid: Boolean(
+        basics.titleAr &&
+          basics.type &&
+          basics.destination &&
+          basics.departureDate &&
+          basics.returnDate &&
+          basics.registrationDeadline
+      ),
     },
     {
       label: "السعة والتسعير",
@@ -199,7 +347,7 @@ export default function CreateTripPage() {
             accept="image/*"
             multiple
             maxSize={5}
-            onFilesChange={() => {}}
+            onFilesChange={setImages}
             hint="أضف صور جذابة للرحلة (الحد الأقصى 5 ميغابايت لكل صورة)"
           />
         </div>

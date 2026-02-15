@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { where } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
@@ -10,24 +11,71 @@ import { TripCard } from "@/components/shared/TripCard";
 import { SearchInput } from "@/components/forms/SearchInput";
 import { FAB } from "@/components/ui/FAB";
 import { Plus, Map } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { getDocuments } from "@/lib/firebase/firestore";
+import { COLLECTIONS } from "@/lib/firebase/collections";
+import { formatTimestamp, parseTimestamp } from "@/lib/utils/format";
+import { toTripCardStatus } from "@/lib/utils/trip";
+import type { Trip } from "@/types";
 
-const mockTrips = [
-  { id: "1", title: "رحلة كربلاء المقدسة - أربعين", destination: "كربلاء", departureDate: "2026-03-15", returnDate: "2026-03-20", price: 285, capacity: 45, booked: 38, status: "active" as const },
-  { id: "2", title: "رحلة مشهد المقدسة", destination: "مشهد", departureDate: "2026-04-01", returnDate: "2026-04-05", price: 450, capacity: 30, booked: 12, status: "active" as const },
-  { id: "3", title: "عمرة رجب", destination: "مكة", departureDate: "2026-05-10", returnDate: "2026-05-17", price: 650, capacity: 50, booked: 50, status: "completed" as const },
-  { id: "4", title: "زيارة النجف الأشرف", destination: "النجف", departureDate: "2026-02-20", returnDate: "2026-02-23", price: 180, capacity: 40, booked: 40, status: "completed" as const },
-];
+type TripFilter = "all" | "active" | "draft" | "completed" | "cancelled";
 
 export default function TripsPage() {
   const router = useRouter();
+  const { userData } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
-  const [filter, setFilter] = useState<string>("all");
+  const [filter, setFilter] = useState<TripFilter>("all");
+  const [trips, setTrips] = useState<Trip[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
 
-  const filteredTrips = mockTrips.filter((trip) => {
-    const matchesSearch = trip.title.includes(searchQuery) || trip.destination.includes(searchQuery);
-    const matchesFilter = filter === "all" || trip.status === filter;
-    return matchesSearch && matchesFilter;
-  });
+  useEffect(() => {
+    async function fetchTrips() {
+      if (!userData?.campaignId) {
+        setTrips([]);
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      setLoadError("");
+
+      try {
+        const campaignTrips = await getDocuments<Trip>(COLLECTIONS.TRIPS, [
+          where("campaignId", "==", userData.campaignId),
+        ]);
+        setTrips(campaignTrips);
+      } catch {
+        setLoadError("تعذر تحميل الرحلات حالياً. حاول مرة أخرى.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTrips();
+  }, [userData?.campaignId]);
+
+  const filteredTrips = useMemo(() => {
+    const normalizedSearch = searchQuery.trim().toLowerCase();
+
+    return [...trips]
+      .sort((a, b) => {
+        const aDate = parseTimestamp(a.departureDate)?.getTime() || 0;
+        const bDate = parseTimestamp(b.departureDate)?.getTime() || 0;
+        return aDate - bDate;
+      })
+      .filter((trip) => {
+        const destination = trip.destinations?.[0]?.city || "";
+        const cardStatus = toTripCardStatus(trip.status);
+        const matchesSearch =
+          normalizedSearch.length === 0 ||
+          trip.titleAr.toLowerCase().includes(normalizedSearch) ||
+          trip.title.toLowerCase().includes(normalizedSearch) ||
+          destination.toLowerCase().includes(normalizedSearch);
+        const matchesFilter = filter === "all" || cardStatus === filter;
+        return matchesSearch && matchesFilter;
+      });
+  }, [filter, searchQuery, trips]);
 
   return (
     <>
@@ -42,42 +90,70 @@ export default function TripsPage() {
       />
 
       <Container className="py-6 space-y-6">
-        {/* Search and Filters */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <SearchInput
-            placeholder="ابحث في الرحلات..."
-            onSearch={setSearchQuery}
-            className="flex-1"
+        {!userData?.campaignId && !loading && (
+          <EmptyState
+            icon={<Map className="h-16 w-16" />}
+            title="لا توجد حملة مرتبطة بالحساب"
+            description="أكمل تسجيل بيانات الحملة أولاً لبدء إدارة الرحلات."
+            action={{ label: "العودة للوحة التحكم", onClick: () => router.push("/portal/dashboard") }}
           />
-          <div className="flex gap-2">
-            {[
-              { value: "all", label: "الكل" },
-              { value: "active", label: "نشطة" },
-              { value: "draft", label: "مسودة" },
-              { value: "completed", label: "مكتملة" },
-            ].map((f) => (
-              <button
-                key={f.value}
-                onClick={() => setFilter(f.value)}
-                className={`px-4 py-2 rounded-[var(--radius-chip)] text-body-sm font-medium transition-all ${
-                  filter === f.value
-                    ? "bg-navy-700 text-white"
-                    : "bg-surface-muted text-navy-600 hover:bg-navy-100 dark:bg-surface-dark-card dark:text-navy-300"
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
+        )}
+
+        {/* Search and Filters */}
+        {userData?.campaignId && (
+          <div className="flex flex-col sm:flex-row gap-3">
+            <SearchInput
+              placeholder="ابحث في الرحلات..."
+              onSearch={setSearchQuery}
+              className="flex-1"
+            />
+            <div className="flex gap-2">
+              {[
+                { value: "all", label: "الكل" },
+                { value: "active", label: "نشطة" },
+                { value: "draft", label: "مسودة" },
+                { value: "completed", label: "مكتملة" },
+                { value: "cancelled", label: "ملغاة" },
+              ].map((f) => (
+                <button
+                  key={f.value}
+                  onClick={() => setFilter(f.value as TripFilter)}
+                  className={`px-4 py-2 rounded-[var(--radius-chip)] text-body-sm font-medium transition-all ${
+                    filter === f.value
+                      ? "bg-navy-700 text-white"
+                      : "bg-surface-muted text-navy-600 hover:bg-navy-100 dark:bg-surface-dark-card dark:text-navy-300"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {loadError && (
+          <p className="text-body-sm text-error">{loadError}</p>
+        )}
 
         {/* Trips Grid */}
-        {filteredTrips.length > 0 ? (
+        {loading ? (
+          <p className="text-body-md text-navy-500 text-center py-10">
+            جاري تحميل الرحلات...
+          </p>
+        ) : filteredTrips.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredTrips.map((trip) => (
               <TripCard
                 key={trip.id}
-                {...trip}
+                title={trip.titleAr || trip.title}
+                destination={trip.destinations?.[0]?.city || "غير محدد"}
+                departureDate={formatTimestamp(trip.departureDate)}
+                returnDate={formatTimestamp(trip.returnDate)}
+                price={trip.basePriceKWD}
+                capacity={trip.totalCapacity}
+                booked={trip.bookedCount || 0}
+                status={toTripCardStatus(trip.status)}
+                coverImage={trip.coverImageUrl}
                 onClick={() => router.push(`/portal/trips/${trip.id}`)}
               />
             ))}

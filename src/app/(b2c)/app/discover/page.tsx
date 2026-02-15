@@ -1,35 +1,120 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { TripCard } from "@/components/shared/TripCard";
 import { CampaignCard } from "@/components/shared/CampaignCard";
 import { SearchInput } from "@/components/forms/SearchInput";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { Star, ArrowLeft, Flame } from "lucide-react";
+import { getDocuments } from "@/lib/firebase/firestore";
+import { COLLECTIONS } from "@/lib/firebase/collections";
+import { formatTimestamp, parseTimestamp } from "@/lib/utils/format";
+import { toTripCardStatus } from "@/lib/utils/trip";
+import type { Campaign, Trip } from "@/types";
 
-const featuredTrips = [
-  { id: "1", title: "رحلة كربلاء المقدسة - أربعين", destination: "كربلاء", departureDate: "2026-03-15", returnDate: "2026-03-20", price: 285, capacity: 45, booked: 38, status: "active" as const, campaignName: "حملة النور" },
-  { id: "2", title: "رحلة مشهد المقدسة", destination: "مشهد", departureDate: "2026-04-01", returnDate: "2026-04-05", price: 450, capacity: 30, booked: 12, status: "active" as const, campaignName: "حملة الهدى" },
-  { id: "3", title: "عمرة رجب", destination: "مكة", departureDate: "2026-05-10", returnDate: "2026-05-17", price: 650, capacity: 50, booked: 35, status: "active" as const, campaignName: "حملة السلام" },
-];
-
-const topCampaigns = [
-  { id: "1", name: "حملة النور", description: "خدمة المسافرين منذ 2015 - رحلات زيارية متميزة", rating: 4.8, totalTrips: 45, verified: true },
-  { id: "2", name: "حملة الهدى", description: "رحلات مشهد وكربلاء بأسعار مناسبة", rating: 4.6, totalTrips: 32, verified: true },
-];
-
-const destinations = [
-  { id: "karbala", nameAr: "كربلاء", emoji: "🕌", count: 12 },
-  { id: "najaf", nameAr: "النجف", emoji: "🕌", count: 8 },
-  { id: "mashhad", nameAr: "مشهد", emoji: "🕌", count: 6 },
-  { id: "mecca", nameAr: "مكة", emoji: "🕋", count: 15 },
-  { id: "medina", nameAr: "المدينة", emoji: "🕌", count: 10 },
-];
+const DISCOVERABLE_TRIP_STATUSES = new Set([
+  "published",
+  "registration_open",
+  "registration_closed",
+  "in_progress",
+]);
 
 export default function DiscoverPage() {
   const router = useRouter();
-  const [, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [trips, setTrips] = useState<Trip[]>([]);
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+
+  useEffect(() => {
+    async function fetchDiscoverData() {
+      setLoading(true);
+      setLoadError("");
+
+      try {
+        const [tripsData, campaignsData] = await Promise.all([
+          getDocuments<Trip>(COLLECTIONS.TRIPS),
+          getDocuments<Campaign>(COLLECTIONS.CAMPAIGNS),
+        ]);
+
+        setTrips(
+          tripsData.filter((trip) =>
+            DISCOVERABLE_TRIP_STATUSES.has(trip.status)
+          )
+        );
+        setCampaigns(campaignsData.filter((campaign) => campaign.isActive));
+      } catch {
+        setLoadError("تعذر تحميل بيانات الاكتشاف حالياً.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchDiscoverData();
+  }, []);
+
+  const campaignMap = useMemo(
+    () => new Map(campaigns.map((campaign) => [campaign.id, campaign])),
+    [campaigns]
+  );
+
+  const filteredTrips = useMemo(() => {
+    const normalizedSearch = searchQuery.trim().toLowerCase();
+    return [...trips]
+      .sort((a, b) => {
+        const aDate = parseTimestamp(a.departureDate)?.getTime() || 0;
+        const bDate = parseTimestamp(b.departureDate)?.getTime() || 0;
+        return aDate - bDate;
+      })
+      .filter((trip) => {
+        const destination = trip.destinations?.[0]?.city || "";
+        const campaignName =
+          campaignMap.get(trip.campaignId)?.nameAr ||
+          campaignMap.get(trip.campaignId)?.name ||
+          trip.campaignName ||
+          "";
+
+        if (!normalizedSearch) return true;
+
+        return (
+          trip.titleAr.toLowerCase().includes(normalizedSearch) ||
+          trip.title.toLowerCase().includes(normalizedSearch) ||
+          destination.toLowerCase().includes(normalizedSearch) ||
+          campaignName.toLowerCase().includes(normalizedSearch)
+        );
+      });
+  }, [campaignMap, searchQuery, trips]);
+
+  const topCampaigns = useMemo(() => {
+    return [...campaigns]
+      .sort((a, b) => {
+        const aScore = (a.stats?.averageRating || 0) * 100 + (a.stats?.totalTrips || 0);
+        const bScore = (b.stats?.averageRating || 0) * 100 + (b.stats?.totalTrips || 0);
+        return bScore - aScore;
+      })
+      .slice(0, 6);
+  }, [campaigns]);
+
+  const destinations = useMemo(() => {
+    const cityCounter = new Map<string, number>();
+
+    filteredTrips.forEach((trip) => {
+      const city = trip.destinations?.[0]?.city || "غير محدد";
+      cityCounter.set(city, (cityCounter.get(city) || 0) + 1);
+    });
+
+    return [...cityCounter.entries()]
+      .map(([city, count], index) => ({
+        id: `${city}-${index}`,
+        city,
+        count,
+      }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 8);
+  }, [filteredTrips]);
 
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
@@ -62,8 +147,10 @@ export default function DiscoverPage() {
                 key={dest.id}
                 className="flex flex-col items-center gap-2 rounded-[var(--radius-xl)] bg-white dark:bg-surface-dark-card shadow-card px-5 py-4 min-w-[100px] hover:shadow-card-hover transition-all"
               >
-                <span className="text-2xl">{dest.emoji}</span>
-                <span className="text-body-sm font-medium text-navy-700 dark:text-navy-200 whitespace-nowrap">{dest.nameAr}</span>
+                <span className="text-2xl">🕌</span>
+                <span className="text-body-sm font-medium text-navy-700 dark:text-navy-200 whitespace-nowrap">
+                  {dest.city}
+                </span>
                 <span className="text-[11px] text-navy-400">{dest.count} رحلة</span>
               </button>
             ))}
@@ -84,14 +171,38 @@ export default function DiscoverPage() {
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {featuredTrips.map((trip) => (
+            {filteredTrips.slice(0, 9).map((trip) => (
               <TripCard
                 key={trip.id}
-                {...trip}
-                onClick={() => router.push(`/app/campaigns/1/trips/${trip.id}`)}
+                title={trip.titleAr || trip.title}
+                destination={trip.destinations?.[0]?.city || "غير محدد"}
+                departureDate={formatTimestamp(trip.departureDate)}
+                returnDate={formatTimestamp(trip.returnDate)}
+                price={trip.basePriceKWD}
+                capacity={trip.totalCapacity}
+                booked={trip.bookedCount || 0}
+                status={toTripCardStatus(trip.status)}
+                campaignName={
+                  campaignMap.get(trip.campaignId)?.nameAr ||
+                  campaignMap.get(trip.campaignId)?.name ||
+                  trip.campaignName
+                }
+                coverImage={trip.coverImageUrl}
+                onClick={() =>
+                  router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)
+                }
               />
             ))}
           </div>
+          {!loading && filteredTrips.length === 0 && (
+            <div className="mt-4">
+              <EmptyState
+                icon={<Flame className="h-12 w-12" />}
+                title="لا توجد رحلات متاحة حالياً"
+                description="جرّب البحث بكلمات مختلفة أو عد لاحقاً."
+              />
+            </div>
+          )}
         </section>
 
         {/* Top Campaigns */}
@@ -108,12 +219,35 @@ export default function DiscoverPage() {
             {topCampaigns.map((campaign) => (
               <CampaignCard
                 key={campaign.id}
-                {...campaign}
+                name={campaign.nameAr || campaign.name}
+                description={campaign.descriptionAr || campaign.description}
+                logoUrl={campaign.logoUrl}
+                coverUrl={campaign.coverImageUrl}
+                rating={campaign.stats?.averageRating || 0}
+                totalTrips={campaign.stats?.totalTrips || 0}
+                verified={campaign.verificationStatus === "approved"}
                 onClick={() => router.push(`/app/campaigns/${campaign.id}`)}
               />
             ))}
           </div>
+          {!loading && topCampaigns.length === 0 && (
+            <div className="mt-4">
+              <EmptyState
+                icon={<Star className="h-12 w-12" />}
+                title="لا توجد حملات معروضة حالياً"
+                description="ستظهر الحملات هنا عند نشرها."
+              />
+            </div>
+          )}
         </section>
+
+        {loading && (
+          <p className="text-body-md text-navy-500 text-center">جاري تحميل بيانات الاكتشاف...</p>
+        )}
+
+        {loadError && (
+          <p className="text-body-sm text-error text-center">{loadError}</p>
+        )}
       </Container>
     </div>
   );

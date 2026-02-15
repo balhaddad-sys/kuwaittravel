@@ -7,10 +7,16 @@ import { AppBar } from "@/components/layout/AppBar";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/Textarea";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { getDocument } from "@/lib/firebase/firestore";
+import { useToast } from "@/components/feedback/ToastProvider";
+import { useAuth } from "@/hooks/useAuth";
+import { createDocument, getDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
+import { formatKWD } from "@/lib/utils/format";
+import { isBookableTrip } from "@/lib/utils/trip";
 import type { Trip } from "@/types";
 import {
   MapPin,
@@ -48,8 +54,13 @@ export default function TripDetailPage({
 }) {
   const { id, tripId } = use(params);
   const router = useRouter();
+  const { toast } = useToast();
+  const { firebaseUser, userData } = useAuth();
   const [trip, setTrip] = useState<Trip | null>(null);
   const [loading, setLoading] = useState(true);
+  const [bookingLoading, setBookingLoading] = useState(false);
+  const [passengerCount, setPassengerCount] = useState(1);
+  const [specialRequests, setSpecialRequests] = useState("");
 
   useEffect(() => {
     async function fetchTrip() {
@@ -96,6 +107,79 @@ export default function TripDetailPage({
   }
 
   const statusInfo = statusLabels[trip.status] || statusLabels.published;
+  const remainingCapacity = Math.max(trip.remainingCapacity || 0, 0);
+  const canBook = isBookableTrip(trip.status) && remainingCapacity > 0;
+  const bookingAmount = trip.basePriceKWD * passengerCount;
+
+  const handleBookNow = async () => {
+    if (!firebaseUser || !userData) {
+      router.push("/login");
+      return;
+    }
+
+    if (!canBook) {
+      toast({
+        type: "warning",
+        title: "الحجز غير متاح حالياً",
+      });
+      return;
+    }
+
+    if (passengerCount < 1 || passengerCount > remainingCapacity) {
+      toast({
+        type: "error",
+        title: "عدد المسافرين غير صالح",
+        description: `يمكنك حجز من 1 إلى ${remainingCapacity} مقاعد.`,
+      });
+      return;
+    }
+
+    setBookingLoading(true);
+
+    try {
+      const bookingId = await createDocument(COLLECTIONS.BOOKINGS, {
+        travelerId: firebaseUser.uid,
+        travelerName: userData.displayNameAr || userData.displayName,
+        travelerPhone: userData.phone || firebaseUser.phoneNumber || "",
+        campaignId: trip.campaignId,
+        tripId: trip.id,
+        tripTitle: trip.titleAr || trip.title,
+        numberOfPassengers: passengerCount,
+        subtotalKWD: bookingAmount,
+        discountKWD: 0,
+        totalKWD: bookingAmount,
+        paidKWD: 0,
+        remainingKWD: bookingAmount,
+        status: "pending_payment" as const,
+        paymentSchedule: trip.registrationDeadline
+          ? [
+              {
+                dueDate: trip.registrationDeadline,
+                amountKWD: bookingAmount,
+                status: "pending" as const,
+              },
+            ]
+          : [],
+        ...(specialRequests.trim().length > 0
+          ? { specialRequests: specialRequests.trim() }
+          : {}),
+      });
+
+      toast({
+        type: "success",
+        title: "تم إنشاء الحجز بنجاح",
+      });
+
+      router.push(`/app/my-trips/${bookingId}`);
+    } catch {
+      toast({
+        type: "error",
+        title: "تعذر إتمام الحجز حالياً",
+      });
+    } finally {
+      setBookingLoading(false);
+    }
+  };
 
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
@@ -243,6 +327,44 @@ export default function TripDetailPage({
           </div>
         </Card>
 
+        {/* Booking Form */}
+        <Card variant="outlined" padding="md">
+          <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white mb-3">
+            بيانات الحجز
+          </h3>
+          <div className="space-y-3">
+            <Input
+              label="عدد المسافرين"
+              type="number"
+              min={1}
+              max={Math.max(remainingCapacity, 1)}
+              value={passengerCount}
+              onChange={(event) =>
+                setPassengerCount(Math.max(1, Number(event.target.value) || 1))
+              }
+            />
+            <Textarea
+              label="طلبات خاصة (اختياري)"
+              value={specialRequests}
+              onChange={(event) => setSpecialRequests(event.target.value)}
+              placeholder="مثال: غرفة قريبة من المصعد"
+            />
+            <div className="flex items-center justify-between rounded-[var(--radius-md)] bg-surface-muted dark:bg-surface-dark p-3">
+              <span className="text-body-md text-navy-600 dark:text-navy-300">
+                إجمالي الحجز
+              </span>
+              <span className="text-heading-sm font-bold text-navy-900 dark:text-white">
+                {formatKWD(bookingAmount)}
+              </span>
+            </div>
+            {!canBook && (
+              <p className="text-body-sm text-error">
+                الحجز متوقف حالياً لهذه الرحلة.
+              </p>
+            )}
+          </div>
+        </Card>
+
         {/* Book Now Button */}
         <div className="sticky bottom-20 z-10">
           <Button
@@ -250,8 +372,11 @@ export default function TripDetailPage({
             size="lg"
             fullWidth
             className="shadow-lg"
+            loading={bookingLoading}
+            disabled={!canBook}
+            onClick={handleBookNow}
           >
-            احجز الآن - {trip.basePriceKWD} د.ك
+            احجز الآن - {formatKWD(bookingAmount)}
           </Button>
         </div>
       </Container>

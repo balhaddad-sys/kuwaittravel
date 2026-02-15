@@ -41,11 +41,10 @@ export default function CampaignDetailPage({
           getDocument<Campaign>(COLLECTIONS.CAMPAIGNS, id),
           getDocuments<Trip>(COLLECTIONS.TRIPS, [
             where("campaignId", "==", id),
-            where("status", "!=", "draft"),
           ]),
         ]);
         setCampaign(campaignData);
-        setTrips(tripsData);
+        setTrips(tripsData.filter((trip) => trip.status !== "draft"));
       } catch (error) {
         console.error("Error fetching campaign data:", error);
       } finally {

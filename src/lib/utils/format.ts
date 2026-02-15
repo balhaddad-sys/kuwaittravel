@@ -22,6 +22,46 @@ export function formatDate(date: Date | string, locale = "ar-KW"): string {
   }).format(d);
 }
 
+type TimestampLike = {
+  seconds?: number;
+  toDate?: () => Date;
+};
+
+/**
+ * Convert Firestore-like timestamps into a Date.
+ */
+export function parseTimestamp(value: unknown): Date | null {
+  if (!value) return null;
+
+  if (value instanceof Date) return value;
+
+  if (typeof value === "string") {
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  if (typeof value === "object") {
+    const ts = value as TimestampLike;
+    if (typeof ts.toDate === "function") {
+      return ts.toDate();
+    }
+    if (typeof ts.seconds === "number") {
+      return new Date(ts.seconds * 1000);
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Format Firestore-like timestamps using locale formatting.
+ */
+export function formatTimestamp(value: unknown, locale = "ar-KW"): string {
+  const parsed = parseTimestamp(value);
+  if (!parsed) return "غير محدد";
+  return formatDate(parsed, locale);
+}
+
 /**
  * Format a date as relative time (e.g., "3 days ago")
  */
