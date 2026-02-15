@@ -1,7 +1,6 @@
 import {
   signInWithPhoneNumber,
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   GoogleAuthProvider,
   RecaptchaVerifier,
   signOut as firebaseSignOut,
@@ -31,12 +30,8 @@ export async function sendOTP(phoneNumber: string): Promise<ConfirmationResult> 
 
 const googleProvider = new GoogleAuthProvider();
 
-export async function signInWithGoogle(): Promise<void> {
-  await signInWithRedirect(getFirebaseAuth(), googleProvider);
-}
-
-export async function checkGoogleRedirectResult(): Promise<UserCredential | null> {
-  return getRedirectResult(getFirebaseAuth());
+export async function signInWithGoogle(): Promise<UserCredential> {
+  return signInWithPopup(getFirebaseAuth(), googleProvider);
 }
 
 export async function signOut(): Promise<void> {

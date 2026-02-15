@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -10,6 +10,7 @@ import { useDirection } from "@/providers/DirectionProvider";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
 import { Phone } from "lucide-react";
 import type { ConfirmationResult } from "firebase/auth";
+import type { User } from "@/types";
 
 function GoogleIcon({ className }: { className?: string }) {
   return (
@@ -28,20 +29,8 @@ export default function LoginPage() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const { signInWithPhone, signInWithGoogle, userData, firebaseUser } = useAuth();
+  const { signInWithPhone, signInWithGoogle } = useAuth();
   const { t } = useDirection();
-
-  // After Google redirect, firebaseUser is set by onAuthStateChanged.
-  // Route to the right page once userData resolves.
-  useEffect(() => {
-    if (!firebaseUser) return;
-    if (userData?.role) {
-      router.replace(ROLE_HOME_ROUTES[userData.role]);
-    } else if (userData === null && firebaseUser) {
-      // User exists in Firebase Auth but has no Firestore doc — needs onboarding
-      router.replace("/onboarding");
-    }
-  }, [firebaseUser, userData, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,7 +55,19 @@ export default function LoginPage() {
     setGoogleLoading(true);
     try {
       await signInWithGoogle();
-      // signInWithRedirect navigates away — onAuthStateChanged + useEffect above handles routing on return
+      // After popup closes, check if user has a Firestore profile
+      const { getFirebaseAuth } = await import("@/lib/firebase/config");
+      const { getDocument } = await import("@/lib/firebase/firestore");
+      const { COLLECTIONS } = await import("@/lib/firebase/collections");
+      const currentUser = getFirebaseAuth().currentUser;
+      if (currentUser) {
+        const existingUser = await getDocument<User>(COLLECTIONS.USERS, currentUser.uid);
+        if (existingUser?.role) {
+          router.replace(ROLE_HOME_ROUTES[existingUser.role]);
+          return;
+        }
+      }
+      router.replace("/onboarding");
     } catch {
       setError(t("فشل تسجيل الدخول بحساب Google. يرجى المحاولة مرة أخرى.", "Google sign-in failed. Please try again."));
     } finally {
