@@ -218,25 +218,6 @@
     animation: fade-in 0.2s var(--ease-default);
   }
 
-  /* Route transition for app-like navigation feel */
-  @keyframes page-enter {
-    from {
-      opacity: 0;
-      transform: translateY(8px) scale(0.995);
-      filter: saturate(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: saturate(1);
-    }
-  }
-
-  .animate-page-enter {
-    animation: page-enter 0.26s var(--ease-default);
-    will-change: transform, opacity, filter;
-  }
-
   /* Scale in for modals */
   @keyframes scale-in {
     from { transform: scale(0.95); opacity: 0; }
