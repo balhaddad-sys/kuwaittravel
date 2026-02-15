@@ -26,10 +26,11 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] flex h-screen flex-col border-e border-surface-border/75 dark:border-surface-dark-border/80 bg-gradient-to-b from-white/92 via-surface-muted/78 to-white/92 dark:from-surface-dark/92 dark:via-surface-dark-card/88 dark:to-surface-dark/92 backdrop-blur-md shadow-sidebar transition-all duration-300",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] flex h-screen flex-col border-e border-surface-border/75 dark:border-surface-dark-border/80 bg-gradient-to-b from-white/92 via-surface-muted/78 to-white/92 dark:from-surface-dark/92 dark:via-surface-dark-card/88 dark:to-surface-dark/92 backdrop-blur-sm shadow-sidebar transition-all duration-300",
         collapsed ? "w-[72px]" : "w-[260px]"
       )}
     >
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/70 to-transparent" />
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-surface-border dark:border-surface-dark-border">
         {!collapsed && header}
@@ -52,7 +53,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
               className={cn(
                 "flex items-center gap-3 rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transition-all duration-300",
                 isActive
-                  ? "bg-gradient-to-br from-navy-600 to-navy-700 text-white font-medium shadow-[0_8px_20px_rgba(36,78,71,0.32)]"
+                  ? "bg-gradient-to-br from-navy-600 to-navy-700 text-white font-medium shadow-[0_10px_24px_rgba(23,57,108,0.32)]"
                   : "text-navy-700 dark:text-navy-200 hover:bg-white/55 dark:hover:bg-surface-dark-card/70 hover:text-navy-800 dark:hover:text-white"
               )}
               title={collapsed ? item.label : undefined}

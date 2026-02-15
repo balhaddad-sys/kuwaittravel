@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { createDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
@@ -22,6 +23,7 @@ export default function OnboardingPage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const { firebaseUser, userData, refreshUserData } = useAuth();
+  const { t } = useDirection();
 
   // Redirect already-onboarded users to their home
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function OnboardingPage() {
       router.push(ROLE_HOME_ROUTES[role]);
     } catch (err) {
       console.error("Onboarding error:", err);
-      setError("حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى.");
+      setError(t("حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى.", "Something went wrong while creating your account. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -86,10 +88,10 @@ export default function OnboardingPage() {
       <Card variant="elevated" padding="lg">
         <div className="text-center mb-8">
           <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
-            أهلاً وسهلاً
+            {t("أهلاً وسهلاً", "Welcome")}
           </h1>
           <p className="mt-2 text-body-md text-navy-500">
-            كيف تريد استخدام المنصة؟
+            {t("كيف تريد استخدام المنصة؟", "How would you like to use the platform?")}
           </p>
         </div>
 
@@ -102,8 +104,8 @@ export default function OnboardingPage() {
               <UserCircle className="h-6 w-6 text-navy-700" />
             </div>
             <div>
-              <p className="text-body-lg font-semibold text-navy-900">مسافر</p>
-              <p className="text-body-sm text-navy-500">ابحث واحجز رحلاتك الزيارية</p>
+              <p className="text-body-lg font-semibold text-navy-900">{t("مسافر", "Traveler")}</p>
+              <p className="text-body-sm text-navy-500">{t("ابحث واحجز رحلاتك الزيارية", "Find and book pilgrimage trips")}</p>
             </div>
           </button>
 
@@ -115,8 +117,8 @@ export default function OnboardingPage() {
               <Building2 className="h-6 w-6 text-gold-700" />
             </div>
             <div>
-              <p className="text-body-lg font-semibold text-navy-900">مدير حملة</p>
-              <p className="text-body-sm text-navy-500">أدر حملتك وأنشئ رحلات جديدة</p>
+              <p className="text-body-lg font-semibold text-navy-900">{t("مدير حملة", "Campaign Owner")}</p>
+              <p className="text-body-sm text-navy-500">{t("أدر حملتك وأنشئ رحلات جديدة", "Manage your campaign and launch new trips")}</p>
             </div>
           </button>
         </div>
@@ -128,23 +130,23 @@ export default function OnboardingPage() {
     <Card variant="elevated" padding="lg">
       <div className="text-center mb-8">
         <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
-          أكمل ملفك الشخصي
+          {t("أكمل ملفك الشخصي", "Complete Your Profile")}
         </h1>
         <p className="mt-2 text-body-md text-navy-500">
-          أدخل اسمك للمتابعة
+          {t("أدخل اسمك للمتابعة", "Enter your name to continue")}
         </p>
       </div>
 
       <form onSubmit={handleProfileSubmit} className="space-y-4">
         <Input
-          label="الاسم بالعربي"
-          placeholder="الاسم الكامل"
+          label={t("الاسم بالعربي", "Arabic Name")}
+          placeholder={t("الاسم الكامل", "Full Arabic Name")}
           value={nameAr}
           onChange={(e) => setNameAr(e.target.value)}
           required
         />
         <Input
-          label="الاسم بالإنجليزي"
+          label={t("الاسم بالإنجليزي", "English Name")}
           placeholder="Full Name"
           dir="ltr"
           value={name}
@@ -155,7 +157,7 @@ export default function OnboardingPage() {
           <p className="text-body-sm text-red-500 text-center">{error}</p>
         )}
         <Button type="submit" fullWidth loading={loading} size="lg">
-          إنشاء الحساب
+          {t("إنشاء الحساب", "Create Account")}
         </Button>
       </form>
     </Card>

@@ -7,7 +7,9 @@ import { TripCard } from "@/components/shared/TripCard";
 import { CampaignCard } from "@/components/shared/CampaignCard";
 import { SearchInput } from "@/components/forms/SearchInput";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { Star, ArrowLeft, Flame } from "lucide-react";
+import { useDirection } from "@/providers/DirectionProvider";
+import { Star, ArrowLeft, Flame, Globe2, Compass } from "lucide-react";
+import { limit, where, type QueryConstraint } from "firebase/firestore";
 import { getDocuments } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { formatTimestamp, parseTimestamp } from "@/lib/utils/format";
@@ -23,6 +25,7 @@ const DISCOVERABLE_TRIP_STATUSES = new Set([
 
 export default function DiscoverPage() {
   const router = useRouter();
+  const { t, language } = useDirection();
   const [searchQuery, setSearchQuery] = useState("");
   const [trips, setTrips] = useState<Trip[]>([]);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
@@ -35,19 +38,24 @@ export default function DiscoverPage() {
       setLoadError("");
 
       try {
+        const tripConstraints: QueryConstraint[] = [
+          where("status", "in", Array.from(DISCOVERABLE_TRIP_STATUSES)),
+          limit(36),
+        ];
+        const campaignConstraints: QueryConstraint[] = [
+          where("isActive", "==", true),
+          limit(24),
+        ];
+
         const [tripsData, campaignsData] = await Promise.all([
-          getDocuments<Trip>(COLLECTIONS.TRIPS),
-          getDocuments<Campaign>(COLLECTIONS.CAMPAIGNS),
+          getDocuments<Trip>(COLLECTIONS.TRIPS, tripConstraints),
+          getDocuments<Campaign>(COLLECTIONS.CAMPAIGNS, campaignConstraints),
         ]);
 
-        setTrips(
-          tripsData.filter((trip) =>
-            DISCOVERABLE_TRIP_STATUSES.has(trip.status)
-          )
-        );
-        setCampaigns(campaignsData.filter((campaign) => campaign.isActive));
+        setTrips(tripsData);
+        setCampaigns(campaignsData);
       } catch {
-        setLoadError("تعذر تحميل بيانات الاكتشاف حالياً.");
+        setLoadError("load_error");
       } finally {
         setLoading(false);
       }
@@ -117,65 +125,107 @@ export default function DiscoverPage() {
   }, [filteredTrips]);
 
   return (
-    <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-bl from-navy-700 via-navy-800 to-navy-900 px-4 pt-12 pb-8">
-        <Container>
-          <h1 className="text-display-md font-bold text-white mb-2">
-            رحال
-          </h1>
-          <p className="text-body-lg text-navy-200 mb-6">
-            اكتشف واحجز رحلاتك الزيارية بكل سهولة
-          </p>
-          <SearchInput
-            placeholder="ابحث عن رحلة أو حملة..."
-            onSearch={setSearchQuery}
-            className="[&_input]:bg-white/10 [&_input]:border-white/20 [&_input]:text-white [&_input]:placeholder:text-white/50"
-          />
-        </Container>
-      </div>
+    <div className="relative min-h-screen overflow-hidden bg-surface-muted/70 dark:bg-surface-dark">
+      <div className="pointer-events-none absolute -top-28 -start-20 h-72 w-72 rounded-full bg-gold-300/30 blur-3xl" />
+      <div className="pointer-events-none absolute -top-20 -end-20 h-80 w-80 rounded-full bg-navy-300/30 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-20 start-1/3 h-64 w-64 rounded-full bg-info/10 blur-3xl" />
 
-      <Container className="py-6 space-y-8">
-        {/* Destinations */}
+      <section className="relative border-b border-surface-border/70 bg-gradient-to-br from-navy-800 via-navy-700 to-navy-900 px-4 pb-10 pt-12">
+        <Container>
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-body-sm text-white/90 backdrop-blur-sm">
+                <Compass className="h-3.5 w-3.5 text-gold-300" />
+                {t("بوابة اكتشاف الرحلات", "Travel Discovery")}
+              </div>
+              <h1 className="mt-4 text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+                {t("استكشف رحلتك القادمة", "Discover Your Next Journey")}
+              </h1>
+              <p className="mt-3 max-w-2xl text-body-lg text-navy-100">
+                {t(
+                  "تصميم سفر حديث يدعم العربية والإنجليزية بسلاسة، مع واجهة أسرع للبحث والحجز.",
+                  "A premium bilingual travel experience with smoother search and booking."
+                )}
+              </p>
+              <div className="mt-6 max-w-2xl">
+                <SearchInput
+                  placeholder={t("ابحث عن رحلة أو حملة...", "Search for a trip or campaign...")}
+                  onSearch={setSearchQuery}
+                  className="[&_input]:border-white/20 [&_input]:bg-white/10 [&_input]:text-white [&_input]:placeholder:text-white/60 [&_input]:focus:border-gold-300/60 [&_input]:focus:ring-gold-300/20 [&_svg]:text-white/70"
+                />
+              </div>
+            </div>
+
+            <div className="grid gap-3 rounded-3xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+              <div className="rounded-2xl border border-white/15 bg-white/8 p-4">
+                <p className="text-[11px] uppercase tracking-wider text-navy-100/75">
+                  {t("رحلات متاحة", "Available Trips")}
+                </p>
+                <p className="mt-1 text-3xl font-bold text-white">{filteredTrips.length}</p>
+              </div>
+              <div className="rounded-2xl border border-white/15 bg-white/8 p-4">
+                <p className="text-[11px] uppercase tracking-wider text-navy-100/75">
+                  {t("حملات نشطة", "Active Campaigns")}
+                </p>
+                <p className="mt-1 text-3xl font-bold text-white">{campaigns.length}</p>
+              </div>
+              <div className="rounded-2xl border border-white/15 bg-white/8 p-4">
+                <p className="text-[11px] uppercase tracking-wider text-navy-100/75">
+                  {t("وجهات", "Destinations")}
+                </p>
+                <p className="mt-1 text-3xl font-bold text-white">{destinations.length}</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <Container className="relative space-y-10 py-8">
         <section>
-          <h2 className="text-heading-md font-bold text-navy-900 dark:text-white mb-4">
-            الوجهات
-          </h2>
-          <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none">
+          <div className="mb-4 flex items-center gap-2">
+            <Globe2 className="h-5 w-5 text-gold-500" />
+            <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+              {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
             {destinations.map((dest) => (
               <button
                 key={dest.id}
-                className="flex flex-col items-center gap-2 rounded-[var(--radius-xl)] bg-white dark:bg-surface-dark-card shadow-card px-5 py-4 min-w-[100px] hover:shadow-card-hover transition-all"
+                className="group rounded-2xl border border-surface-border/80 bg-white/80 p-4 text-start shadow-card backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-navy-200 hover:shadow-card-hover dark:border-surface-dark-border/75 dark:bg-surface-dark-card/80 dark:hover:border-navy-600"
               >
-                <span className="text-2xl">🕌</span>
-                <span className="text-body-sm font-medium text-navy-700 dark:text-navy-200 whitespace-nowrap">
+                <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-md">
+                  <Compass className="h-4 w-4" />
+                </div>
+                <p className="mt-3 line-clamp-1 text-body-md font-semibold text-navy-800 dark:text-navy-100">
                   {dest.city}
-                </span>
-                <span className="text-[11px] text-navy-400">{dest.count} رحلة</span>
+                </p>
+                <p className="text-[11px] text-navy-500 dark:text-navy-300">
+                  {dest.count} {t("رحلة", "trips")}
+                </p>
               </button>
             ))}
           </div>
         </section>
 
-        {/* Featured Trips */}
         <section>
-          <div className="flex items-center justify-between mb-4">
+          <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Flame className="h-5 w-5 text-gold-500" />
               <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
-                رحلات مميزة
+                {t("رحلات مميزة", "Featured Trips")}
               </h2>
             </div>
-            <button className="text-body-sm font-medium text-navy-500 hover:text-navy-700 flex items-center gap-1">
-              عرض الكل <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+            <button className="flex items-center gap-1 text-body-sm font-medium text-navy-500 transition-colors hover:text-navy-700 dark:hover:text-navy-100">
+              {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {filteredTrips.slice(0, 9).map((trip) => (
               <TripCard
                 key={trip.id}
-                title={trip.titleAr || trip.title}
-                destination={trip.destinations?.[0]?.city || "غير محدد"}
+                title={language === "ar" ? (trip.titleAr || trip.title) : (trip.title || trip.titleAr)}
+                destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
                 departureDate={formatTimestamp(trip.departureDate)}
                 returnDate={formatTimestamp(trip.returnDate)}
                 price={trip.basePriceKWD}
@@ -183,9 +233,9 @@ export default function DiscoverPage() {
                 booked={trip.bookedCount || 0}
                 status={toTripCardStatus(trip.status)}
                 campaignName={
-                  campaignMap.get(trip.campaignId)?.nameAr ||
-                  campaignMap.get(trip.campaignId)?.name ||
-                  trip.campaignName
+                  language === "ar"
+                    ? (campaignMap.get(trip.campaignId)?.nameAr || campaignMap.get(trip.campaignId)?.name || trip.campaignName)
+                    : (campaignMap.get(trip.campaignId)?.name || campaignMap.get(trip.campaignId)?.nameAr || trip.campaignName)
                 }
                 coverImage={trip.coverImageUrl}
                 onClick={() =>
@@ -198,29 +248,26 @@ export default function DiscoverPage() {
             <div className="mt-4">
               <EmptyState
                 icon={<Flame className="h-12 w-12" />}
-                title="لا توجد رحلات متاحة حالياً"
-                description="جرّب البحث بكلمات مختلفة أو عد لاحقاً."
+                title={t("لا توجد رحلات متاحة حالياً", "No trips available at the moment")}
+                description={t("جرّب البحث بكلمات مختلفة أو عد لاحقاً.", "Try a different search term or check back soon.")}
               />
             </div>
           )}
         </section>
 
-        {/* Top Campaigns */}
         <section>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-gold-500" />
-              <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
-                حملات موثوقة
-              </h2>
-            </div>
+          <div className="mb-4 flex items-center gap-2">
+            <Star className="h-5 w-5 text-gold-500" />
+            <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+              {t("حملات موثوقة", "Trusted Campaigns")}
+            </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {topCampaigns.map((campaign) => (
               <CampaignCard
                 key={campaign.id}
-                name={campaign.nameAr || campaign.name}
-                description={campaign.descriptionAr || campaign.description}
+                name={language === "ar" ? (campaign.nameAr || campaign.name) : (campaign.name || campaign.nameAr)}
+                description={language === "ar" ? (campaign.descriptionAr || campaign.description) : (campaign.description || campaign.descriptionAr)}
                 logoUrl={campaign.logoUrl}
                 coverUrl={campaign.coverImageUrl}
                 rating={campaign.stats?.averageRating || 0}
@@ -234,19 +281,23 @@ export default function DiscoverPage() {
             <div className="mt-4">
               <EmptyState
                 icon={<Star className="h-12 w-12" />}
-                title="لا توجد حملات معروضة حالياً"
-                description="ستظهر الحملات هنا عند نشرها."
+                title={t("لا توجد حملات معروضة حالياً", "No campaigns available right now")}
+                description={t("ستظهر الحملات هنا عند نشرها.", "Campaigns will appear here once published.")}
               />
             </div>
           )}
         </section>
 
         {loading && (
-          <p className="text-body-md text-navy-500 text-center">جاري تحميل بيانات الاكتشاف...</p>
+          <p className="text-center text-body-md text-navy-500">
+            {t("جاري تحميل بيانات الاكتشاف...", "Loading discovery content...")}
+          </p>
         )}
 
         {loadError && (
-          <p className="text-body-sm text-error text-center">{loadError}</p>
+          <p className="text-center text-body-sm text-error">
+            {t("تعذر تحميل بيانات الاكتشاف حالياً.", "Unable to load discovery content right now.")}
+          </p>
         )}
       </Container>
     </div>

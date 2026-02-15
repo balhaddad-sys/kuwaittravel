@@ -1,20 +1,39 @@
 import type { Metadata, Viewport } from "next";
-import { Tajawal, Inter } from "next/font/google";
+import { Noto_Sans_Arabic, Manrope } from "next/font/google";
 import { Providers } from "@/providers/Providers";
 import "./globals.css";
 
-const tajawal = Tajawal({
-  variable: "--font-tajawal",
+const notoSansArabic = Noto_Sans_Arabic({
+  variable: "--font-arabic-ui",
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-latin-ui",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
+
+const initUiScript = `
+(() => {
+  try {
+    const language = localStorage.getItem("language") || "ar";
+    const resolvedDir = language === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = language;
+    document.documentElement.dir = resolvedDir;
+
+    const theme = localStorage.getItem("theme") || "system";
+    const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.classList.toggle("dark", isDark);
+  } catch {
+    document.documentElement.lang = "ar";
+    document.documentElement.dir = "rtl";
+  }
+})();
+`;
 
 export const metadata: Metadata = {
   title: {
@@ -48,8 +67,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: initUiScript }} />
+      </head>
       <body
-        className={`${tajawal.variable} ${inter.variable} font-arabic antialiased`}
+        className={`${notoSansArabic.variable} ${manrope.variable} font-arabic antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

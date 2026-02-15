@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { createDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { Building2 } from "lucide-react";
@@ -23,6 +24,7 @@ export default function RegisterCampaignPage() {
   });
   const router = useRouter();
   const { firebaseUser, refreshUserData } = useAuth();
+  const { t } = useDirection();
 
   const updateField = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -94,23 +96,23 @@ export default function RegisterCampaignPage() {
           <Building2 className="h-7 w-7 text-navy-900" />
         </div>
         <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
-          تسجيل حملة جديدة
+          {t("تسجيل حملة جديدة", "Register New Campaign")}
         </h1>
         <p className="mt-2 text-body-md text-navy-500">
-          أدخل بيانات حملتك للبدء
+          {t("أدخل بيانات حملتك للبدء", "Provide campaign details to get started")}
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="اسم الحملة بالعربي"
-          placeholder="حملة النور"
+          label={t("اسم الحملة بالعربي", "Campaign Name (Arabic)")}
+          placeholder={t("حملة النور", "Al Noor Campaign")}
           value={form.nameAr}
           onChange={(e) => updateField("nameAr", e.target.value)}
           required
         />
         <Input
-          label="اسم الحملة بالإنجليزي"
+          label={t("اسم الحملة بالإنجليزي", "Campaign Name (English)")}
           placeholder="Al Noor Campaign"
           dir="ltr"
           value={form.name}
@@ -118,15 +120,15 @@ export default function RegisterCampaignPage() {
           required
         />
         <Input
-          label="رقم الترخيص"
-          placeholder="رقم ترخيص وزارة الأوقاف"
+          label={t("رقم الترخيص", "License Number")}
+          placeholder={t("رقم ترخيص وزارة الأوقاف", "Official license number")}
           value={form.licenseNumber}
           onChange={(e) => updateField("licenseNumber", e.target.value)}
           required
         />
         <Input
-          label="رقم التواصل"
-          placeholder="9XXXXXXX"
+          label={t("رقم التواصل", "Contact Number")}
+          placeholder={t("9XXXXXXX", "5XXXXXXX")}
           type="tel"
           dir="ltr"
           value={form.contactPhone}
@@ -134,13 +136,13 @@ export default function RegisterCampaignPage() {
           required
         />
         <Textarea
-          label="وصف الحملة"
-          placeholder="نبذة عن الحملة وخدماتها..."
+          label={t("وصف الحملة", "Campaign Description")}
+          placeholder={t("نبذة عن الحملة وخدماتها...", "Short description of the campaign and services...")}
           value={form.descriptionAr}
           onChange={(e) => updateField("descriptionAr", e.target.value)}
         />
         <Button type="submit" fullWidth loading={loading} size="lg">
-          تسجيل الحملة
+          {t("تسجيل الحملة", "Register Campaign")}
         </Button>
       </form>
     </Card>

@@ -14,13 +14,21 @@ function LanguageToggle({ className }: LanguageToggleProps) {
   return (
     <button
       onClick={() => setLanguage(language === "ar" ? "en" : "ar")}
+      aria-label={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}
       className={cn(
-        "flex items-center gap-1.5 rounded-[var(--radius-btn)] px-3 py-2 text-body-sm font-medium text-navy-600 dark:text-navy-300 hover:bg-surface-muted dark:hover:bg-surface-dark-card transition-colors",
+        "inline-flex items-center gap-2 rounded-full border border-surface-border/80 dark:border-surface-dark-border/80 bg-white/70 dark:bg-surface-dark-card/70 px-3 py-1.5 text-body-sm text-navy-700 dark:text-navy-200 backdrop-blur-sm transition-all duration-300 hover:bg-white/90 dark:hover:bg-surface-dark-card",
         className
       )}
     >
-      <Languages className="h-4 w-4" />
-      {language === "ar" ? "English" : "العربية"}
+      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-navy-100 dark:bg-navy-900/45">
+        <Languages className="h-3.5 w-3.5" />
+      </span>
+      <span className="font-semibold tracking-wide">
+        {language === "ar" ? "EN" : "AR"}
+      </span>
+      <span className="hidden md:inline text-body-sm text-navy-500 dark:text-navy-300">
+        {language === "ar" ? "English" : "العربية"}
+      </span>
     </button>
   );
 }

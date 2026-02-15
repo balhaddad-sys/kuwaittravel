@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { getDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { Shield } from "lucide-react";
@@ -37,14 +38,15 @@ export default function AdminLoginPage() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
   const { signInWithPhone, signInWithGoogle, logout } = useAuth();
+  const { t } = useDirection();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const errorParam = new URLSearchParams(window.location.search).get("error");
     if (errorParam === "unauthorized") {
-      setError("هذا المدخل مخصص للمشرفين فقط.");
+      setError(t("هذا المدخل مخصص للمشرفين فقط.", "This access point is restricted to administrators only."));
     }
-  }, []);
+  }, [t]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -63,7 +65,7 @@ export default function AdminLoginPage() {
       ] = confirmationResult;
       router.push("/admin-verify");
     } catch {
-      setError("فشل في إرسال رمز التحقق. يرجى المحاولة مرة أخرى.");
+      setError(t("فشل في إرسال رمز التحقق. يرجى المحاولة مرة أخرى.", "Failed to send verification code. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -93,9 +95,9 @@ export default function AdminLoginPage() {
       }
 
       await logout();
-      setError("هذا المدخل مخصص للمشرفين فقط.");
+      setError(t("هذا المدخل مخصص للمشرفين فقط.", "This access point is restricted to administrators only."));
     } catch {
-      setError("فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.");
+      setError(t("فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.", "Sign-in failed. Please try again."));
     } finally {
       setGoogleLoading(false);
     }
@@ -110,10 +112,10 @@ export default function AdminLoginPage() {
             <Shield className="h-7 w-7 text-navy-900" />
           </div>
           <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
-            دخول المشرفين
+            {t("دخول المشرفين", "Admin Sign In")}
           </h1>
           <p className="mt-2 text-body-md text-navy-500">
-            هذه البوابة مخصصة للمشرفين فقط
+            {t("هذه البوابة مخصصة للمشرفين فقط", "This gateway is reserved for administrators")}
           </p>
         </div>
 
@@ -127,7 +129,7 @@ export default function AdminLoginPage() {
           className="mb-4"
         >
           <GoogleIcon className="h-5 w-5 me-2" />
-          الدخول بحساب Google
+          {t("الدخول بحساب Google", "Continue with Google")}
         </Button>
 
         <div className="relative my-6">
@@ -135,14 +137,14 @@ export default function AdminLoginPage() {
             <div className="w-full border-t border-navy-200 dark:border-navy-600" />
           </div>
           <div className="relative flex justify-center text-body-sm">
-            <span className="bg-white dark:bg-navy-800 px-3 text-navy-400">أو</span>
+            <span className="bg-white dark:bg-navy-800 px-3 text-navy-400">{t("أو", "or")}</span>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            label="رقم الهاتف"
-            placeholder="9XXXXXXX"
+            label={t("رقم الهاتف", "Phone Number")}
+            placeholder={t("9XXXXXXX", "5XXXXXXX")}
             type="tel"
             dir="ltr"
             value={phone}
@@ -151,7 +153,7 @@ export default function AdminLoginPage() {
             error={error}
           />
           <Button type="submit" fullWidth loading={loading} size="lg">
-            إرسال رمز المشرف
+            {t("إرسال رمز المشرف", "Send Admin Code")}
           </Button>
           <Button
             type="button"
@@ -159,8 +161,14 @@ export default function AdminLoginPage() {
             fullWidth
             onClick={() => router.push("/login")}
           >
-            العودة لدخول المستخدمين
+            {t("العودة لدخول المستخدمين", "Back to User Login")}
           </Button>
+          <p className="text-center text-body-sm text-navy-500">
+            {t(
+              "إذا لم يكن حسابك مُفعلاً كمشرف، استخدم سكربت grant-admin مرة واحدة.",
+              "If your account is not promoted yet, run the one-time grant-admin script."
+            )}
+          </p>
         </form>
       </Card>
     </>

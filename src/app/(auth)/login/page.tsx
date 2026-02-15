@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { getDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
@@ -31,6 +32,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const { signInWithPhone, signInWithGoogle } = useAuth();
+  const { t } = useDirection();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +46,7 @@ export default function LoginPage() {
       (window as unknown as Record<string, ConfirmationResult>).__confirmationResult = confirmationResult;
       router.push("/verify");
     } catch {
-      setError("فشل في إرسال رمز التحقق. يرجى المحاولة مرة أخرى.");
+      setError(t("فشل في إرسال رمز التحقق. يرجى المحاولة مرة أخرى.", "Failed to send verification code. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -67,7 +69,7 @@ export default function LoginPage() {
       }
       router.push("/onboarding");
     } catch {
-      setError("فشل تسجيل الدخول بحساب Google. يرجى المحاولة مرة أخرى.");
+      setError(t("فشل تسجيل الدخول بحساب Google. يرجى المحاولة مرة أخرى.", "Google sign-in failed. Please try again."));
     } finally {
       setGoogleLoading(false);
     }
@@ -82,10 +84,10 @@ export default function LoginPage() {
             <Phone className="h-7 w-7 text-white" />
           </div>
           <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
-            مرحباً بك
+            {t("مرحباً بك", "Welcome")}
           </h1>
           <p className="mt-2 text-body-md text-navy-500">
-            سجّل الدخول للمتابعة
+            {t("سجّل الدخول للمتابعة", "Sign in to continue")}
           </p>
         </div>
 
@@ -100,7 +102,7 @@ export default function LoginPage() {
           className="mb-4"
         >
           <GoogleIcon className="h-5 w-5 me-2" />
-          الدخول بحساب Google
+          {t("الدخول بحساب Google", "Continue with Google")}
         </Button>
 
         {/* Divider */}
@@ -109,15 +111,15 @@ export default function LoginPage() {
             <div className="w-full border-t border-navy-200 dark:border-navy-600" />
           </div>
           <div className="relative flex justify-center text-body-sm">
-            <span className="bg-white dark:bg-navy-800 px-3 text-navy-400">أو</span>
+            <span className="bg-white dark:bg-navy-800 px-3 text-navy-400">{t("أو", "or")}</span>
           </div>
         </div>
 
         {/* Phone Sign-In */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            label="رقم الهاتف"
-            placeholder="9XXXXXXX"
+            label={t("رقم الهاتف", "Phone Number")}
+            placeholder={t("9XXXXXXX", "5XXXXXXX")}
             type="tel"
             dir="ltr"
             value={phone}
@@ -126,7 +128,7 @@ export default function LoginPage() {
             error={error}
           />
           <Button type="submit" fullWidth loading={loading} size="lg">
-            إرسال رمز التحقق
+            {t("إرسال رمز التحقق", "Send Verification Code")}
           </Button>
         </form>
       </Card>

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils/cn";
 import Link from "next/link";
+import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { Menu } from "lucide-react";
 
 interface Breadcrumb {
@@ -12,17 +13,26 @@ interface AppBarProps {
   breadcrumbs?: Breadcrumb[];
   actions?: React.ReactNode;
   onMenuToggle?: () => void;
+  showLanguageToggle?: boolean;
   className?: string;
 }
 
-function AppBar({ title, breadcrumbs, actions, onMenuToggle, className }: AppBarProps) {
+function AppBar({
+  title,
+  breadcrumbs,
+  actions,
+  onMenuToggle,
+  showLanguageToggle = true,
+  className,
+}: AppBarProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-[var(--z-topbar)] flex h-[72px] items-center justify-between gap-4 border-b border-surface-border/80 dark:border-surface-dark-border/80 bg-white/78 dark:bg-surface-dark/70 backdrop-blur-md px-6 shadow-topbar",
+        "relative sticky top-0 z-[var(--z-topbar)] flex h-[72px] items-center justify-between gap-4 border-b border-surface-border/80 dark:border-surface-dark-border/80 bg-white/78 dark:bg-surface-dark/70 backdrop-blur-sm px-6 shadow-topbar",
         className
       )}
     >
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/60 to-transparent" />
       <div className="flex items-center gap-3">
         {onMenuToggle && (
           <button
@@ -56,7 +66,10 @@ function AppBar({ title, breadcrumbs, actions, onMenuToggle, className }: AppBar
           )}
         </div>
       </div>
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
+      <div className="flex items-center gap-2">
+        {showLanguageToggle && <LanguageToggle className="shrink-0" />}
+        {actions && <div className="flex items-center gap-2">{actions}</div>}
+      </div>
     </header>
   );
 }

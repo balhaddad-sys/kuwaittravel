@@ -20,7 +20,8 @@ function BottomNav({ items }: BottomNavProps) {
 
   return (
     <nav className="fixed bottom-3 start-3 end-3 z-[var(--z-sticky)] safe-area-bottom">
-      <div className="mx-auto max-w-xl flex items-center justify-around h-16 rounded-2xl border border-surface-border/80 dark:border-surface-dark-border/80 bg-white/80 dark:bg-surface-dark/78 backdrop-blur-md shadow-[0_14px_28px_rgba(18,31,27,0.18)] px-2">
+      <div className="relative mx-auto flex h-16 max-w-xl items-center justify-around rounded-2xl border border-surface-border/80 bg-white/84 px-2 backdrop-blur-sm shadow-[0_14px_28px_rgba(16,39,73,0.18)] dark:border-surface-dark-border/80 dark:bg-surface-dark/78">
+        <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/65 to-transparent" />
         {items.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
           return (
@@ -30,7 +31,7 @@ function BottomNav({ items }: BottomNavProps) {
               className={cn(
                 "flex flex-col items-center justify-center gap-0.5 px-3 py-1.5 min-w-[64px] rounded-xl transition-all duration-300",
                 isActive
-                  ? "bg-navy-100/75 dark:bg-navy-900/45 text-navy-700 dark:text-gold-300"
+                  ? "bg-navy-100/75 dark:bg-navy-900/45 text-navy-700 dark:text-gold-300 shadow-[0_6px_16px_rgba(23,57,108,0.14)]"
                   : "text-navy-500 dark:text-navy-400 hover:text-navy-700 dark:hover:text-navy-200"
               )}
             >

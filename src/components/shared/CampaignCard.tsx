@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
+import { useDirection } from "@/providers/DirectionProvider";
 import { Star, MapPin } from "lucide-react";
 
 interface CampaignCardProps {
@@ -27,6 +30,8 @@ function CampaignCard({
   onClick,
   className,
 }: CampaignCardProps) {
+  const { t } = useDirection();
+
   return (
     <Card variant="elevated" padding="none" hoverable onClick={onClick} className={className}>
       <div className="relative h-28 bg-navy-100 dark:bg-navy-800 rounded-t-[var(--radius-card)] overflow-hidden">
@@ -35,7 +40,7 @@ function CampaignCard({
       <div className="relative px-4 pb-4">
         <div className="-mt-6 mb-3 flex items-end gap-3">
           <Avatar src={logoUrl} alt={name} size="xl" className="border-4 border-white dark:border-surface-dark-card" />
-          {verified && <Badge variant="gold" size="sm">موثق ✓</Badge>}
+          {verified && <Badge variant="gold" size="sm">{t("موثق", "Verified")} ✓</Badge>}
         </div>
         <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">{name}</h3>
         <p className="text-body-sm text-navy-500 mt-1 line-clamp-2">{description}</p>
@@ -46,7 +51,7 @@ function CampaignCard({
           </span>
           <span className="flex items-center gap-1">
             <MapPin className="h-3.5 w-3.5" />
-            {totalTrips} رحلة
+            {totalTrips} {t("رحلة", "trips")}
           </span>
         </div>
       </div>

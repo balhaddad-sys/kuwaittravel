@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { ShieldCheck } from "lucide-react";
 import type { ConfirmationResult } from "firebase/auth";
 import type { User } from "@/types";
@@ -24,6 +25,7 @@ export default function AdminVerifyPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [phone, setPhone] = useState("");
+  const { t } = useDirection();
 
   useEffect(() => {
     const stored = sessionStorage.getItem(ADMIN_CONFIRMATION_KEY);
@@ -63,7 +65,7 @@ export default function AdminVerifyPage() {
       await logout();
       router.replace("/admin-login?error=unauthorized");
     } catch {
-      setError("رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.");
+      setError(t("رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.", "Invalid verification code. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -76,16 +78,16 @@ export default function AdminVerifyPage() {
           <ShieldCheck className="h-7 w-7 text-navy-900" />
         </div>
         <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
-          تحقق دخول المشرف
+          {t("تحقق دخول المشرف", "Admin Verification")}
         </h1>
         <p className="mt-2 text-body-md text-navy-500">
-          أدخل الرمز المرسل إلى {phone}
+          {t(`أدخل الرمز المرسل إلى ${phone}`, `Enter the code sent to ${phone}`)}
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="رمز التحقق"
+          label={t("رمز التحقق", "Verification Code")}
           placeholder="000000"
           type="text"
           dir="ltr"
@@ -102,7 +104,7 @@ export default function AdminVerifyPage() {
           size="lg"
           disabled={code.length !== 6}
         >
-          تأكيد دخول المشرف
+          {t("تأكيد دخول المشرف", "Confirm Admin Login")}
         </Button>
       </form>
     </Card>

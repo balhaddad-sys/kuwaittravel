@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
@@ -19,6 +20,12 @@ export function RoleGuard({
 }: RoleGuardProps) {
   const { userData, loading } = useAuth();
   const router = useRouter();
+  const allowedRolesKey = allowedRoles.join("|");
+  const allowedRoleSet = useMemo(
+    () => new Set(allowedRolesKey.split("|").filter(Boolean) as UserRole[]),
+    [allowedRolesKey]
+  );
+  const hasAccess = Boolean(userData && allowedRoleSet.has(userData.role));
 
   useEffect(() => {
     if (loading) return;
@@ -28,10 +35,10 @@ export function RoleGuard({
       return;
     }
 
-    if (!allowedRoles.includes(userData.role)) {
+    if (!allowedRoleSet.has(userData.role)) {
       router.replace(ROLE_HOME_ROUTES[userData.role]);
     }
-  }, [userData, loading, allowedRoles, router, unauthenticatedRedirect]);
+  }, [userData, loading, allowedRoleSet, router, unauthenticatedRedirect]);
 
   if (loading) {
     return (
@@ -41,7 +48,7 @@ export function RoleGuard({
     );
   }
 
-  if (!userData || !allowedRoles.includes(userData.role)) {
+  if (!hasAccess) {
     return null;
   }
 

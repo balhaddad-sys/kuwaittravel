@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { Card } from "@/components/ui/Card";
 import { StatusChip } from "@/components/ui/StatusChip";
+import { useDirection } from "@/providers/DirectionProvider";
 import { Calendar, MapPin, Users } from "lucide-react";
 import { formatKWD } from "@/lib/utils/format";
 
@@ -33,13 +36,14 @@ function TripCard({
   onClick,
   className,
 }: TripCardProps) {
+  const { t } = useDirection();
   const remaining = capacity - booked;
   const fillPercent = capacity > 0 ? (booked / capacity) * 100 : 0;
 
   return (
     <Card variant="elevated" padding="none" hoverable onClick={onClick} className={className}>
       {/* Cover */}
-      <div className="relative h-40 bg-navy-100 dark:bg-navy-800 rounded-t-[var(--radius-card)] overflow-hidden">
+      <div className="relative h-40 overflow-hidden rounded-t-[var(--radius-card)] bg-navy-100 dark:bg-navy-800">
         {coverImage ? (
           <Image src={coverImage} alt={title} width={400} height={200} className="h-full w-full object-cover" />
         ) : (
@@ -47,6 +51,7 @@ function TripCard({
             <MapPin className="h-10 w-10 text-navy-300" />
           </div>
         )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/35 via-transparent to-transparent" />
         <div className="absolute top-3 end-3">
           <StatusChip status={status} />
         </div>
@@ -85,7 +90,7 @@ function TripCard({
               "font-medium",
               remaining <= 5 ? "text-error" : "text-navy-500"
             )}>
-              {remaining > 0 ? `${remaining} متبقي` : "مكتمل"}
+              {remaining > 0 ? t(`${remaining} متبقي`, `${remaining} left`) : t("مكتمل", "Full")}
             </span>
           </div>
           <div className="h-1.5 rounded-full bg-surface-muted dark:bg-surface-dark-border overflow-hidden">
@@ -101,7 +106,7 @@ function TripCard({
 
         {/* Price */}
         <div className="flex items-center justify-between pt-2 border-t border-surface-border dark:border-surface-dark-border">
-          <span className="text-body-sm text-navy-400">يبدأ من</span>
+          <span className="text-body-sm text-navy-400">{t("يبدأ من", "From")}</span>
           <span className="text-heading-sm font-bold text-navy-900 dark:text-white">
             {formatKWD(price)}
           </span>

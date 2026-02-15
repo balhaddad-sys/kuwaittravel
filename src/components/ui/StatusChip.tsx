@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils/cn";
+import { useDirection } from "@/providers/DirectionProvider";
 
 type Status = "active" | "draft" | "pending" | "completed" | "cancelled" | "suspended";
 
@@ -17,6 +20,7 @@ const statusConfig: Record<Status, { label: string; labelAr: string; dotColor: s
 };
 
 function StatusChip({ status, className }: StatusChipProps) {
+  const { language } = useDirection();
   const config = statusConfig[status];
   return (
     <span
@@ -28,7 +32,7 @@ function StatusChip({ status, className }: StatusChipProps) {
       )}
     >
       <span className={cn("h-2 w-2 rounded-full", config.dotColor)} />
-      {config.labelAr}
+      {language === "ar" ? config.labelAr : config.label}
     </span>
   );
 }

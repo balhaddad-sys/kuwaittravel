@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
 import { ShieldCheck } from "lucide-react";
 import type { ConfirmationResult } from "firebase/auth";
@@ -17,6 +18,7 @@ export default function VerifyPage() {
   const [phone, setPhone] = useState("");
   const router = useRouter();
   const { confirmOTP } = useAuth();
+  const { t } = useDirection();
 
   useEffect(() => {
     const stored = sessionStorage.getItem("confirmationResult");
@@ -49,7 +51,7 @@ export default function VerifyPage() {
         router.push(ROLE_HOME_ROUTES[role]);
       }
     } catch {
-      setError("رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.");
+      setError(t("رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.", "Invalid verification code. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -62,16 +64,16 @@ export default function VerifyPage() {
           <ShieldCheck className="h-7 w-7 text-navy-900" />
         </div>
         <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
-          التحقق من الرقم
+          {t("التحقق من الرقم", "Verify Number")}
         </h1>
         <p className="mt-2 text-body-md text-navy-500">
-          أدخل الرمز المرسل إلى {phone}
+          {t(`أدخل الرمز المرسل إلى ${phone}`, `Enter the code sent to ${phone}`)}
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="رمز التحقق"
+          label={t("رمز التحقق", "Verification Code")}
           placeholder="000000"
           type="text"
           dir="ltr"
@@ -82,7 +84,7 @@ export default function VerifyPage() {
           className="text-center text-2xl tracking-widest"
         />
         <Button type="submit" fullWidth loading={loading} size="lg" disabled={code.length !== 6}>
-          تأكيد
+          {t("تأكيد", "Confirm")}
         </Button>
       </form>
     </Card>
