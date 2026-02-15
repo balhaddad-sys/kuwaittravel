@@ -9,9 +9,14 @@ import type { UserRole } from "@/types";
 interface RoleGuardProps {
   allowedRoles: UserRole[];
   children: React.ReactNode;
+  unauthenticatedRedirect?: string;
 }
 
-export function RoleGuard({ allowedRoles, children }: RoleGuardProps) {
+export function RoleGuard({
+  allowedRoles,
+  children,
+  unauthenticatedRedirect = "/login",
+}: RoleGuardProps) {
   const { userData, loading } = useAuth();
   const router = useRouter();
 
@@ -19,14 +24,14 @@ export function RoleGuard({ allowedRoles, children }: RoleGuardProps) {
     if (loading) return;
 
     if (!userData) {
-      router.replace("/login");
+      router.replace(unauthenticatedRedirect);
       return;
     }
 
     if (!allowedRoles.includes(userData.role)) {
       router.replace(ROLE_HOME_ROUTES[userData.role]);
     }
-  }, [userData, loading, allowedRoles, router]);
+  }, [userData, loading, allowedRoles, router, unauthenticatedRedirect]);
 
   if (loading) {
     return (

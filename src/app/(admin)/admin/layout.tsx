@@ -19,7 +19,10 @@ const sidebarItems: SidebarItem[] = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <RoleGuard allowedRoles={["admin", "super_admin"]}>
+    <RoleGuard
+      allowedRoles={["admin", "super_admin"]}
+      unauthenticatedRedirect="/admin-login"
+    >
     <div className="flex min-h-screen">
       <Sidebar
         items={sidebarItems}

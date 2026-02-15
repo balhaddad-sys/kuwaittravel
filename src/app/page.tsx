@@ -13,7 +13,7 @@ export default function HomePage() {
           <Plane className="h-10 w-10 text-navy-900" />
         </div>
         <h1 className="text-display-lg font-bold text-white mb-3">
-          سفر الكويت
+          رحال
         </h1>
         <p className="text-body-lg text-navy-200 max-w-md mx-auto">
           منصة حجز الرحلات الزيارية الأولى في الكويت — احجز رحلات الحج والعمرة والزيارات بكل سهولة
@@ -48,7 +48,7 @@ export default function HomePage() {
         </button>
 
         <button
-          onClick={() => router.push("/admin/dashboard")}
+          onClick={() => router.push("/admin-login")}
           className="flex flex-col items-center gap-3 rounded-[var(--radius-xl)] bg-white/10 backdrop-blur-sm border border-white/10 p-6 text-center transition-all hover:bg-white/15 hover:scale-105"
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-600">
@@ -71,7 +71,7 @@ export default function HomePage() {
       </div>
 
       <p className="mt-8 text-body-sm text-navy-400">
-        Kuwait Travel Platform v0.1.0
+        Rahal v0.1.0
       </p>
     </div>
   );

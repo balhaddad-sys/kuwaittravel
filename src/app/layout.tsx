@@ -18,16 +18,16 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kuwait Travel | حجز رحلات زيارية",
-    template: "%s | Kuwait Travel",
+    default: "رحال | حجز رحلات زيارية",
+    template: "%s | رحال",
   },
   description:
-    "منصة حجز الرحلات الزيارية الأولى في الكويت - احجز رحلات الحج والعمرة والزيارات بكل سهولة",
+    "رحال — منصة حجز الرحلات الزيارية الأولى في الكويت. احجز رحلات الحج والعمرة والزيارات بكل سهولة",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Kuwait Travel",
+    title: "رحال",
   },
 };
 

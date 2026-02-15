@@ -1,7 +1,7 @@
 {
-  "name": "Kuwait Travel | سفر الكويت",
-  "short_name": "KW Travel",
-  "description": "منصة حجز الرحلات الزيارية الأولى في الكويت",
+  "name": "رحال | Rahal",
+  "short_name": "رحال",
+  "description": "رحال — منصة حجز الرحلات الزيارية الأولى في الكويت",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",

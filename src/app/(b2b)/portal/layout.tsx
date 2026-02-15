@@ -35,7 +35,7 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
         header={
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-navy-700 text-white text-sm font-bold">
-              KT
+              ر
             </div>
             <span className="text-heading-sm font-bold text-navy-900 dark:text-white">
               بوابة الحملة

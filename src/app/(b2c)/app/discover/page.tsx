@@ -122,7 +122,7 @@ export default function DiscoverPage() {
       <div className="bg-gradient-to-bl from-navy-700 via-navy-800 to-navy-900 px-4 pt-12 pb-8">
         <Container>
           <h1 className="text-display-md font-bold text-white mb-2">
-            سفر الكويت
+            رحال
           </h1>
           <p className="text-body-lg text-navy-200 mb-6">
             اكتشف واحجز رحلاتك الزيارية بكل سهولة

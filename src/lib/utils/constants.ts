@@ -1,5 +1,5 @@
-export const APP_NAME = "Kuwait Travel";
-export const APP_NAME_AR = "سفر الكويت";
+export const APP_NAME = "Rahal";
+export const APP_NAME_AR = "رحال";
 export const DEFAULT_LOCALE = "ar";
 
 export const DESTINATIONS = [
