@@ -53,28 +53,47 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    let unsubscribe: (() => void) | undefined;
+    let unsubscribeAuth: (() => void) | undefined;
+    let unsubscribeUser: (() => void) | undefined;
 
     (async () => {
       const { onAuthStateChanged } = await import("firebase/auth");
       const { getFirebaseAuth } = await import("@/lib/firebase/config");
+      const { onDocumentChange } = await import("@/lib/firebase/firestore");
+      const { COLLECTIONS } = await import("@/lib/firebase/collections");
       const firebaseAuth = getFirebaseAuth();
 
-      unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
+      unsubscribeAuth = onAuthStateChanged(firebaseAuth, (user) => {
         setFirebaseUser(user);
+
+        // Clean up previous user listener
+        if (unsubscribeUser) {
+          unsubscribeUser();
+          unsubscribeUser = undefined;
+        }
+
         if (user) {
-          await fetchUserData(user.uid);
+          // Listen for real-time changes to the user document
+          unsubscribeUser = onDocumentChange<User>(
+            COLLECTIONS.USERS,
+            user.uid,
+            (data) => {
+              setUserData(data);
+              setLoading(false);
+            }
+          );
         } else {
           setUserData(null);
+          setLoading(false);
         }
-        setLoading(false);
       });
     })();
 
     return () => {
-      if (unsubscribe) unsubscribe();
+      if (unsubscribeAuth) unsubscribeAuth();
+      if (unsubscribeUser) unsubscribeUser();
     };
-  }, [fetchUserData]);
+  }, []);
 
   const signInWithPhone = async (phoneNumber: string): Promise<ConfirmationResult> => {
     setError(null);
