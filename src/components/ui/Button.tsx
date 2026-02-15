@@ -28,17 +28,22 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...props
     },
     ref
-  ) => {
-    const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 rounded-[var(--radius-btn)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+    ) => {
+      const baseStyles =
+        "inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 rounded-[var(--radius-btn)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
 
-    const variants = {
-      primary: "bg-navy-700 text-white hover:bg-navy-600 active:bg-navy-800",
-      secondary: "bg-gold-500 text-navy-900 hover:bg-gold-400 active:bg-gold-600",
-      outline: "border-2 border-navy-700 text-navy-700 hover:bg-navy-50 active:bg-navy-100",
-      ghost: "text-navy-700 hover:bg-navy-50 active:bg-navy-100",
-      danger: "bg-error text-white hover:bg-red-600 active:bg-red-700",
-    };
+      const variants = {
+        primary:
+          "bg-gradient-to-br from-navy-600 to-navy-700 text-white shadow-[0_10px_24px_rgba(36,78,71,0.32)] hover:from-navy-500 hover:to-navy-600 hover:-translate-y-0.5 active:translate-y-0 active:from-navy-700 active:to-navy-800",
+        secondary:
+          "bg-gradient-to-br from-gold-400 to-gold-500 text-navy-900 shadow-[0_10px_24px_rgba(201,153,50,0.28)] hover:from-gold-300 hover:to-gold-400 hover:-translate-y-0.5 active:translate-y-0 active:from-gold-500 active:to-gold-600",
+        outline:
+          "border border-navy-300/80 dark:border-navy-600 bg-white/75 dark:bg-surface-dark-card/70 text-navy-700 dark:text-navy-100 hover:bg-navy-50/70 dark:hover:bg-navy-900/40 hover:border-navy-400 dark:hover:border-navy-500",
+        ghost:
+          "text-navy-700 dark:text-navy-200 hover:bg-white/65 dark:hover:bg-surface-dark-card/65",
+        danger:
+          "bg-gradient-to-br from-error to-red-700 text-white shadow-[0_10px_24px_rgba(207,78,78,0.30)] hover:from-red-500 hover:to-red-700 hover:-translate-y-0.5 active:translate-y-0",
+      };
 
     const sizes = {
       sm: "h-9 px-3 text-body-sm",

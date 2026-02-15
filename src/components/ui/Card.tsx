@@ -17,9 +17,11 @@ const paddingMap = {
 };
 
 const variantMap = {
-  elevated: "bg-white dark:bg-surface-dark-card shadow-card",
-  outlined: "bg-white dark:bg-surface-dark-card border border-surface-border dark:border-surface-dark-border",
-  filled: "bg-surface-muted dark:bg-surface-dark-card",
+  elevated:
+    "bg-white/88 dark:bg-surface-dark-card/88 border border-surface-border/80 dark:border-surface-dark-border/80 shadow-card backdrop-blur-sm",
+  outlined:
+    "bg-white/82 dark:bg-surface-dark-card/82 border border-surface-border dark:border-surface-dark-border backdrop-blur-sm",
+  filled: "bg-surface-muted/90 dark:bg-surface-dark-card/80 border border-surface-border/60 dark:border-surface-dark-border/70",
 };
 
 function Card({
@@ -33,10 +35,10 @@ function Card({
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-card)] transition-all duration-200",
+        "rounded-[var(--radius-card)] transition-all duration-300",
         variantMap[variant],
         paddingMap[padding],
-        hoverable && "cursor-pointer hover:shadow-card-hover hover:-translate-y-0.5",
+        hoverable && "cursor-pointer hover:shadow-card-hover hover:-translate-y-1 hover:border-navy-200 dark:hover:border-navy-600",
         onClick && "cursor-pointer",
         className
       )}

@@ -24,10 +24,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={cn(
-            "w-full rounded-[var(--radius-input)] border bg-white px-4 py-2.5 text-body-md transition-all duration-200 min-h-[100px] resize-y",
-            "border-surface-border dark:border-surface-dark-border dark:bg-surface-dark-card",
-            "placeholder:text-navy-300 dark:placeholder:text-navy-600",
-            "hover:border-navy-400 focus:border-navy-500 focus:ring-2 focus:ring-navy-500/20 focus:outline-none",
+            "w-full rounded-[var(--radius-input)] border bg-white/88 px-4 py-2.5 text-body-md transition-all duration-300 min-h-[100px] resize-y backdrop-blur-sm",
+            "border-surface-border/90 dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80",
+            "placeholder:text-navy-400 dark:placeholder:text-navy-500",
+            "hover:border-navy-300 dark:hover:border-navy-600 focus:border-navy-400 focus:ring-4 focus:ring-navy-400/15 focus:outline-none",
+            "shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",
             error && "border-error focus:border-error focus:ring-error/20",
             className
           )}

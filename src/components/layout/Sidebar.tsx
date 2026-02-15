@@ -26,7 +26,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] flex h-screen flex-col border-e border-surface-border dark:border-surface-dark-border bg-white dark:bg-surface-dark transition-all duration-300",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] flex h-screen flex-col border-e border-surface-border/75 dark:border-surface-dark-border/80 bg-gradient-to-b from-white/92 via-surface-muted/78 to-white/92 dark:from-surface-dark/92 dark:via-surface-dark-card/88 dark:to-surface-dark/92 backdrop-blur-md shadow-sidebar transition-all duration-300",
         collapsed ? "w-[72px]" : "w-[260px]"
       )}
     >
@@ -50,10 +50,10 @@ function Sidebar({ items, header, footer }: SidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transition-all duration-200",
+                "flex items-center gap-3 rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transition-all duration-300",
                 isActive
-                  ? "bg-navy-700 text-white font-medium"
-                  : "text-navy-600 dark:text-navy-300 hover:bg-surface-muted dark:hover:bg-surface-dark-card"
+                  ? "bg-gradient-to-br from-navy-600 to-navy-700 text-white font-medium shadow-[0_8px_20px_rgba(36,78,71,0.32)]"
+                  : "text-navy-700 dark:text-navy-200 hover:bg-white/55 dark:hover:bg-surface-dark-card/70 hover:text-navy-800 dark:hover:text-white"
               )}
               title={collapsed ? item.label : undefined}
             >

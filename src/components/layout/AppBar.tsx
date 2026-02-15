@@ -19,7 +19,7 @@ function AppBar({ title, breadcrumbs, actions, onMenuToggle, className }: AppBar
   return (
     <header
       className={cn(
-        "sticky top-0 z-[var(--z-topbar)] flex h-16 items-center justify-between gap-4 border-b border-surface-border dark:border-surface-dark-border bg-white/95 dark:bg-surface-dark/95 backdrop-blur-sm px-6",
+        "sticky top-0 z-[var(--z-topbar)] flex h-[72px] items-center justify-between gap-4 border-b border-surface-border/80 dark:border-surface-dark-border/80 bg-white/78 dark:bg-surface-dark/70 backdrop-blur-md px-6 shadow-topbar",
         className
       )}
     >

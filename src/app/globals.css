@@ -7,47 +7,47 @@
 
 @theme inline {
   /* === COLORS: Navy (Primary) === */
-  --color-navy-50: #E8EBF0;
-  --color-navy-100: #C5CBD7;
-  --color-navy-200: #9EA8BD;
-  --color-navy-300: #7786A3;
-  --color-navy-400: #596D90;
-  --color-navy-500: #3B547D;
-  --color-navy-600: #2F4468;
-  --color-navy-700: #1B2A4A;
-  --color-navy-800: #121D33;
-  --color-navy-900: #0A111F;
-  --color-navy-950: #050912;
+  --color-navy-50: #EDF5F3;
+  --color-navy-100: #D5E5E1;
+  --color-navy-200: #B6D0C9;
+  --color-navy-300: #8EB6AB;
+  --color-navy-400: #679C8F;
+  --color-navy-500: #4C8275;
+  --color-navy-600: #37695E;
+  --color-navy-700: #244E47;
+  --color-navy-800: #173933;
+  --color-navy-900: #0E2522;
+  --color-navy-950: #081714;
 
   /* === COLORS: Gold (Accent) === */
-  --color-gold-50: #FBF6E8;
-  --color-gold-100: #F5E9C5;
-  --color-gold-200: #EDDA9E;
-  --color-gold-300: #E5CA77;
-  --color-gold-400: #D9B75C;
-  --color-gold-500: #C9A84C;
-  --color-gold-600: #B5933D;
-  --color-gold-700: #9A7A2F;
-  --color-gold-800: #7F6224;
-  --color-gold-900: #644B1A;
+  --color-gold-50: #FFF8EB;
+  --color-gold-100: #F9EBC9;
+  --color-gold-200: #F1D998;
+  --color-gold-300: #E7C566;
+  --color-gold-400: #DBB04A;
+  --color-gold-500: #C99932;
+  --color-gold-600: #AD8024;
+  --color-gold-700: #8A651C;
+  --color-gold-800: #6A4A15;
+  --color-gold-900: #4A330F;
 
   /* === COLORS: Surface === */
-  --color-surface-light: #FFFFFF;
-  --color-surface-muted: #F8F9FC;
-  --color-surface-border: #E2E6EE;
-  --color-surface-dark: #121212;
-  --color-surface-dark-card: #1E1E1E;
-  --color-surface-dark-border: #2C2C2C;
+  --color-surface-light: #FCFBF8;
+  --color-surface-muted: #F4F1EA;
+  --color-surface-border: #E5DFD2;
+  --color-surface-dark: #141917;
+  --color-surface-dark-card: #1B2421;
+  --color-surface-dark-border: #2A3633;
 
   /* === COLORS: Semantic === */
-  --color-success: #22C55E;
-  --color-success-light: #DCFCE7;
-  --color-warning: #F59E0B;
-  --color-warning-light: #FEF3C7;
-  --color-error: #EF4444;
-  --color-error-light: #FEE2E2;
-  --color-info: #3B82F6;
-  --color-info-light: #DBEAFE;
+  --color-success: #2F9E67;
+  --color-success-light: #D9F4E5;
+  --color-warning: #D18A21;
+  --color-warning-light: #FCECCF;
+  --color-error: #CF4E4E;
+  --color-error-light: #F9DEDE;
+  --color-info: #3B78B5;
+  --color-info-light: #DCEAF8;
 
   /* === FONTS === */
   --font-arabic: "Tajawal", "Cairo", sans-serif;
@@ -86,12 +86,12 @@
   --radius-fab: 18px;
 
   /* === SHADOWS === */
-  --shadow-card: 0 2px 8px rgba(27, 42, 74, 0.06);
-  --shadow-card-hover: 0 4px 16px rgba(27, 42, 74, 0.10);
-  --shadow-sidebar: 4px 0 12px rgba(27, 42, 74, 0.04);
-  --shadow-topbar: 0 2px 8px rgba(27, 42, 74, 0.04);
-  --shadow-modal: 0 8px 32px rgba(27, 42, 74, 0.16);
-  --shadow-fab: 0 4px 12px rgba(27, 42, 74, 0.20);
+  --shadow-card: 0 8px 24px rgba(21, 36, 32, 0.08);
+  --shadow-card-hover: 0 14px 34px rgba(21, 36, 32, 0.14);
+  --shadow-sidebar: 0 10px 30px rgba(18, 31, 27, 0.15);
+  --shadow-topbar: 0 8px 26px rgba(18, 31, 27, 0.08);
+  --shadow-modal: 0 20px 56px rgba(18, 31, 27, 0.25);
+  --shadow-fab: 0 14px 30px rgba(18, 31, 27, 0.28);
 
   /* === Z-INDEX === */
   --z-dropdown: 50;
@@ -112,17 +112,17 @@
 /* === BASE STYLES === */
 @layer base {
   :root {
-    --background: #FFFFFF;
-    --foreground: #1B2A4A;
-    --muted: #F8F9FC;
-    --border: #E2E6EE;
+    --background: #FCFBF8;
+    --foreground: #173933;
+    --muted: #F4F1EA;
+    --border: #E5DFD2;
   }
 
   .dark {
-    --background: #121212;
-    --foreground: #EDEDED;
-    --muted: #1E1E1E;
-    --border: #2C2C2C;
+    --background: #141917;
+    --foreground: #E8F0ED;
+    --muted: #1B2421;
+    --border: #2A3633;
   }
 
   html {
@@ -132,10 +132,19 @@
 
   body {
     background-color: var(--background);
+    background-image:
+      radial-gradient(1200px 380px at 8% -8%, color-mix(in srgb, var(--color-gold-100) 52%, transparent), transparent 72%),
+      radial-gradient(900px 320px at 96% 4%, color-mix(in srgb, var(--color-navy-100) 42%, transparent), transparent 70%);
     color: var(--foreground);
     font-family: var(--font-arabic);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(920px 320px at 6% -4%, rgba(201, 153, 50, 0.09), transparent 74%),
+      radial-gradient(860px 330px at 100% 0%, rgba(103, 156, 143, 0.12), transparent 74%);
   }
 
   html[dir="ltr"] body {
