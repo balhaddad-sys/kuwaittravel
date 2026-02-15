@@ -30,15 +30,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
     ) => {
       const baseStyles =
-        "inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 rounded-[var(--radius-btn)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
+        "inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] font-medium transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 focus-visible:ring-offset-2 active:scale-[0.985] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
 
       const variants = {
         primary:
-          "bg-gradient-to-br from-navy-600 to-navy-700 text-white shadow-[0_10px_24px_rgba(36,78,71,0.32)] hover:from-navy-500 hover:to-navy-600 hover:-translate-y-0.5 active:translate-y-0 active:from-navy-700 active:to-navy-800",
+          "bg-gradient-to-br from-navy-600 to-navy-700 text-white shadow-[0_10px_24px_rgba(23,57,108,0.30)] hover:from-navy-500 hover:to-navy-600 hover:-translate-y-0.5 active:translate-y-0 active:from-navy-700 active:to-navy-800",
         secondary:
           "bg-gradient-to-br from-gold-400 to-gold-500 text-navy-900 shadow-[0_10px_24px_rgba(201,153,50,0.28)] hover:from-gold-300 hover:to-gold-400 hover:-translate-y-0.5 active:translate-y-0 active:from-gold-500 active:to-gold-600",
         outline:
-          "border border-navy-300/80 dark:border-navy-600 bg-white/75 dark:bg-surface-dark-card/70 text-navy-700 dark:text-navy-100 hover:bg-navy-50/70 dark:hover:bg-navy-900/40 hover:border-navy-400 dark:hover:border-navy-500",
+          "border border-navy-300/80 bg-white/75 text-navy-700 hover:border-navy-400 hover:bg-navy-50/70 dark:border-navy-600 dark:bg-surface-dark-card/70 dark:text-navy-100 dark:hover:border-navy-500 dark:hover:bg-navy-900/40",
         ghost:
           "text-navy-700 dark:text-navy-200 hover:bg-white/65 dark:hover:bg-surface-dark-card/65",
         danger:

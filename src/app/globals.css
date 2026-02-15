@@ -104,6 +104,10 @@
 
   /* === TRANSITIONS === */
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-micro: 160ms;
+  --duration-ui: 240ms;
   --duration-fast: 100ms;
   --duration-normal: 200ms;
   --duration-slow: 300ms;
@@ -128,6 +132,14 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    touch-action: manipulation;
   }
 
   body {
@@ -184,6 +196,14 @@
 
 /* === UTILITY CLASSES === */
 @layer utilities {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -239,6 +259,7 @@
   .page-transition-shell {
     position: relative;
     isolation: isolate;
+    contain: layout paint;
   }
 
   .page-transition-content {
@@ -255,6 +276,8 @@
     transform-origin: 50% 8%;
     animation-name: page-enter;
     will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 
   html[dir="ltr"] .page-transition-content {

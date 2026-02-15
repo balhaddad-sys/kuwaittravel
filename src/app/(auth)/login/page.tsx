@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -31,6 +31,11 @@ export default function LoginPage() {
   const router = useRouter();
   const { signInWithPhone, signInWithGoogle } = useAuth();
   const { t } = useDirection();
+
+  useEffect(() => {
+    router.prefetch("/verify");
+    router.prefetch("/onboarding");
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

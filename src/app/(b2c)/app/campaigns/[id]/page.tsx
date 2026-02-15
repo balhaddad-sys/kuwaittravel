@@ -2,6 +2,7 @@
 
 import { use, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { where } from "firebase/firestore";
 import { Container } from "@/components/layout/Container";
 import { AppBar } from "@/components/layout/AppBar";
@@ -99,9 +100,11 @@ export default function CampaignDetailPage({
         <Card variant="elevated" padding="lg">
           <div className="flex items-start gap-4">
             {campaign.logoUrl ? (
-              <img
+              <Image
                 src={campaign.logoUrl}
                 alt={campaign.nameAr || campaign.name}
+                width={64}
+                height={64}
                 className="h-16 w-16 rounded-[var(--radius-lg)] object-cover"
               />
             ) : (

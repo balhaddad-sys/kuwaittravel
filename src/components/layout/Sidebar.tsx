@@ -26,7 +26,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] flex h-screen flex-col border-e border-surface-border/75 dark:border-surface-dark-border/80 bg-gradient-to-b from-white/92 via-surface-muted/78 to-white/92 dark:from-surface-dark/92 dark:via-surface-dark-card/88 dark:to-surface-dark/92 backdrop-blur-sm shadow-sidebar transition-all duration-300",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-surface-border/75 bg-gradient-to-b from-white/92 via-surface-muted/78 to-white/92 shadow-sidebar transition-all duration-300 dark:border-surface-dark-border/80 dark:from-surface-dark/92 dark:via-surface-dark-card/88 dark:to-surface-dark/92 lg:flex",
         collapsed ? "w-[72px]" : "w-[260px]"
       )}
     >
@@ -36,7 +36,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
         {!collapsed && header}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="rounded-lg p-2 text-navy-400 hover:bg-surface-muted dark:hover:bg-surface-dark-card transition-colors"
+          className="rounded-lg p-2 text-navy-400 transition-[background-color,color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:bg-surface-muted dark:hover:bg-surface-dark-card active:scale-[0.97]"
         >
           {collapsed ? <PanelLeft className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
         </button>
@@ -50,8 +50,9 @@ function Sidebar({ items, header, footer }: SidebarProps) {
             <Link
               key={item.href}
               href={item.href}
+              prefetch
               className={cn(
-                "flex items-center gap-3 rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transition-all duration-300",
+                "flex items-center gap-3 rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
                 isActive
                   ? "bg-gradient-to-br from-navy-600 to-navy-700 text-white font-medium shadow-[0_10px_24px_rgba(23,57,108,0.32)]"
                   : "text-navy-700 dark:text-navy-200 hover:bg-white/55 dark:hover:bg-surface-dark-card/70 hover:text-navy-800 dark:hover:text-white"

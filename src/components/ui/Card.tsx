@@ -35,10 +35,10 @@ function Card({
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-card)] transition-all duration-300",
+        "rounded-[var(--radius-card)] transform-gpu transition-[transform,box-shadow,border-color,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)]",
         variantMap[variant],
         paddingMap[padding],
-        hoverable && "cursor-pointer hover:shadow-card-hover hover:-translate-y-1 hover:border-navy-200 dark:hover:border-navy-600",
+        hoverable && "cursor-pointer will-change-transform hover:-translate-y-1 hover:border-navy-200 hover:shadow-card-hover dark:hover:border-navy-600",
         onClick && "cursor-pointer",
         className
       )}

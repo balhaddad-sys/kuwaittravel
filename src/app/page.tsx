@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useDirection } from "@/providers/DirectionProvider";
@@ -9,6 +10,13 @@ import { PlaneTakeoff, Building2, Shield, Compass, Sparkles } from "lucide-react
 export default function HomePage() {
   const router = useRouter();
   const { t } = useDirection();
+
+  useEffect(() => {
+    router.prefetch("/login");
+    router.prefetch("/app/discover");
+    router.prefetch("/portal/dashboard");
+    router.prefetch("/admin-login");
+  }, [router]);
 
   const entryPoints = [
     {
@@ -96,7 +104,7 @@ export default function HomePage() {
               <button
                 key={entry.title}
                 onClick={entry.onClick}
-                className="group rounded-2xl border border-surface-border/80 bg-white/80 p-4 text-start shadow-card backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover dark:border-surface-dark-border/80 dark:bg-surface-dark-card/75"
+                className="group rounded-2xl border border-surface-border/80 bg-white/80 p-4 text-start shadow-card backdrop-blur-sm transform-gpu transition-[transform,box-shadow,border-color,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:-translate-y-1 hover:shadow-card-hover dark:border-surface-dark-border/80 dark:bg-surface-dark-card/75 active:scale-[0.995]"
               >
                 <div className="flex items-start gap-3">
                   <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${entry.iconBg} shadow-md`}>

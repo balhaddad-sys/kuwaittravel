@@ -2,6 +2,7 @@
 
 import { use, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { AppBar } from "@/components/layout/AppBar";
 import { Card } from "@/components/ui/Card";
@@ -196,11 +197,15 @@ export default function TripDetailPage({
         {/* Trip Header */}
         <Card variant="elevated" padding="lg">
           {trip.coverImageUrl && (
-            <img
-              src={trip.coverImageUrl}
-              alt={trip.titleAr || trip.title}
-              className="w-full h-48 object-cover rounded-[var(--radius-lg)] mb-4"
-            />
+            <div className="relative mb-4 h-48 w-full overflow-hidden rounded-[var(--radius-lg)]">
+              <Image
+                src={trip.coverImageUrl}
+                alt={trip.titleAr || trip.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 900px"
+              />
+            </div>
           )}
           <div className="flex items-start justify-between gap-3">
             <div>

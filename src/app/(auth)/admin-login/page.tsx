@@ -40,11 +40,13 @@ export default function AdminLoginPage() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    router.prefetch("/admin-verify");
+    router.prefetch("/admin/dashboard");
     const errorParam = new URLSearchParams(window.location.search).get("error");
     if (errorParam === "unauthorized") {
       setError(t("هذا المدخل مخصص للمشرفين فقط.", "This access point is restricted to administrators only."));
     }
-  }, [t]);
+  }, [router, t]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();

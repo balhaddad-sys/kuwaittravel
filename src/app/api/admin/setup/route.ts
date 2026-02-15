@@ -4,7 +4,13 @@ import { COLLECTIONS } from "@/lib/firebase/collections";
 import { FieldValue } from "firebase-admin/firestore";
 
 export async function POST(request: NextRequest) {
+  const setupEnabled = process.env.ADMIN_SETUP_ENABLED === "true";
   const setupKey = process.env.ADMIN_SETUP_KEY;
+
+  // This endpoint should never be available in production consumer deployments.
+  if (!setupEnabled || process.env.NODE_ENV === "production") {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
 
   if (!setupKey) {
     return NextResponse.json(
@@ -13,8 +19,18 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const body = await request.json();
-  const { key, uid } = body as { key?: string; uid?: string };
+  const contentType = request.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    return NextResponse.json({ error: "Invalid content type" }, { status: 400 });
+  }
+
+  let body: { key?: string; uid?: string };
+  try {
+    body = (await request.json()) as { key?: string; uid?: string };
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON payload" }, { status: 400 });
+  }
+  const { key, uid } = body;
 
   if (!key || key !== setupKey) {
     return NextResponse.json({ error: "Invalid setup key" }, { status: 403 });

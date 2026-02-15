@@ -28,12 +28,12 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-[var(--radius-input)] border border-surface-border bg-white py-2.5 ps-10 pe-10 text-body-md transition-all duration-200 hover:border-navy-400 focus:border-navy-500 focus:ring-2 focus:ring-navy-500/20 focus:outline-none dark:border-surface-dark-border dark:bg-surface-dark-card"
+        className="w-full rounded-[var(--radius-input)] border border-surface-border bg-white py-2.5 ps-10 pe-10 text-body-md transform-gpu transition-[border-color,box-shadow,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-navy-400 focus:border-navy-500 focus:ring-2 focus:ring-navy-500/20 focus:outline-none dark:border-surface-dark-border dark:bg-surface-dark-card"
       />
       {value && (
         <button
           onClick={() => setValue("")}
-          className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-navy-400 hover:text-navy-600 transition-colors"
+          className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-navy-400 transition-[color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-navy-600 active:scale-[0.92]"
         >
           <X className="h-4 w-4" />
         </button>

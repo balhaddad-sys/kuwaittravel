@@ -37,7 +37,7 @@ function AppBar({
         {onMenuToggle && (
           <button
             onClick={onMenuToggle}
-            className="rounded-lg p-2 text-navy-400 hover:bg-surface-muted dark:hover:bg-surface-dark-card transition-colors lg:hidden"
+            className="rounded-lg p-2 text-navy-400 transition-[background-color,color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:bg-surface-muted dark:hover:bg-surface-dark-card active:scale-[0.97] lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -49,7 +49,7 @@ function AppBar({
                 <span key={i} className="flex items-center gap-1.5">
                   {i > 0 && <span>/</span>}
                   {crumb.href ? (
-                    <Link href={crumb.href} className="hover:text-navy-600 transition-colors">
+                    <Link href={crumb.href} prefetch className="transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-navy-600">
                       {crumb.label}
                     </Link>
                   ) : (

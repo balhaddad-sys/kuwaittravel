@@ -14,6 +14,7 @@ import { Building2 } from "lucide-react";
 
 export default function RegisterCampaignPage() {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     nameAr: "",
@@ -32,10 +33,19 @@ export default function RegisterCampaignPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!firebaseUser) return;
+    if (!firebaseUser) {
+      setError(t("يجب تسجيل الدخول أولاً.", "You must sign in first."));
+      return;
+    }
+
+    setError("");
     setLoading(true);
 
     try {
+      const normalizedPhone = form.contactPhone.startsWith("+")
+        ? form.contactPhone
+        : `+965${form.contactPhone}`;
+
       // Create campaign
       const campaignId = await createDocument(COLLECTIONS.CAMPAIGNS, {
         ownerId: firebaseUser.uid,
@@ -46,7 +56,7 @@ export default function RegisterCampaignPage() {
         descriptionAr: form.descriptionAr,
         licenseNumber: form.licenseNumber,
         licenseImageUrl: "",
-        contactPhone: form.contactPhone,
+        contactPhone: normalizedPhone,
         galleryUrls: [],
         socialMedia: {},
         verificationStatus: "pending" as const,
@@ -83,7 +93,12 @@ export default function RegisterCampaignPage() {
       await refreshUserData();
       router.push("/portal/dashboard");
     } catch {
-      // Handle error
+      setError(
+        t(
+          "تعذر إكمال تسجيل الحملة حالياً. يرجى المحاولة مرة أخرى.",
+          "Unable to complete campaign registration right now. Please try again."
+        )
+      );
     } finally {
       setLoading(false);
     }
@@ -141,6 +156,7 @@ export default function RegisterCampaignPage() {
           value={form.descriptionAr}
           onChange={(e) => updateField("descriptionAr", e.target.value)}
         />
+        {error && <p className="text-center text-body-sm text-error">{error}</p>}
         <Button type="submit" fullWidth loading={loading} size="lg">
           {t("تسجيل الحملة", "Register Campaign")}
         </Button>

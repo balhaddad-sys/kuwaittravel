@@ -1,6 +1,7 @@
 "use client";
 
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
+import { MobileTopNav } from "@/components/layout/MobileTopNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useDirection } from "@/providers/DirectionProvider";
@@ -41,7 +42,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         }
       />
-      <main className="flex-1 ms-[260px] transition-all duration-300">
+      <main className="flex-1 ms-0 lg:ms-[260px] transition-all duration-300">
+        <MobileTopNav items={sidebarItems} />
         <PageTransition variant="admin">{children}</PageTransition>
       </main>
     </div>

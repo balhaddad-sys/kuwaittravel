@@ -28,8 +28,9 @@ function BottomNav({ items }: BottomNavProps) {
             <Link
               key={item.href}
               href={item.href}
+              prefetch
               className={cn(
-                "flex flex-col items-center justify-center gap-0.5 px-3 py-1.5 min-w-[64px] rounded-xl transition-all duration-300",
+                "flex min-w-[64px] flex-col items-center justify-center gap-0.5 rounded-xl px-3 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
                 isActive
                   ? "bg-navy-100/75 dark:bg-navy-900/45 text-navy-700 dark:text-gold-300 shadow-[0_6px_16px_rgba(23,57,108,0.14)]"
                   : "text-navy-500 dark:text-navy-400 hover:text-navy-700 dark:hover:text-navy-200"

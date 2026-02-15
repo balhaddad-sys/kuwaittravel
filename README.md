@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rahal Kuwait Travel
 
-## Getting Started
+Production-ready bilingual (Arabic/English) travel platform built with Next.js + Firebase.
 
-First, run the development server:
+## Local Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create local env file:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Fill required Firebase values in `.env.local`.
+
+4. Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Required Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+From `.env.example`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `NEXT_PUBLIC_FIREBASE_API_KEY`
+- `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+- `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+- `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+- `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+- `NEXT_PUBLIC_FIREBASE_APP_ID`
+- `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` (optional)
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_CLIENT_EMAIL`
+- `FIREBASE_PRIVATE_KEY`
+- `ADMIN_SETUP_KEY` (optional)
+- `ADMIN_SETUP_ENABLED` (`false` in production)
 
-## Learn More
+## Production Readiness Commands
 
-To learn more about Next.js, take a look at the following resources:
+Run before every deployment:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run check
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Admin Bootstrap
 
-## Deploy on Vercel
+Use the script below once to promote an existing user to admin:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run grant-admin -- --service-account "C:/path/to/service-account.json" --uid FIREBASE_UID --role super_admin
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can also use `--email` or `--phone` instead of `--uid`.
+
+## Security Notes
+
+- `/api/admin/setup` is disabled unless:
+  - `ADMIN_SETUP_ENABLED=true`
+  - and `NODE_ENV` is not `production`
+- Keep `ADMIN_SETUP_ENABLED=false` for consumer deployment.
+
+## Deployment (Firebase Hosting)
+
+1. Build and verify:
+
+```bash
+npm run lint && npm run build
+```
+
+2. Deploy:
+
+```bash
+firebase deploy
+```
+
+## Mobile QA Checklist
+
+Validate these on iOS Safari and Android Chrome:
+
+- Login and OTP flow
+- Discover page scrolling and card taps
+- Booking flow (`/app/campaigns/[id]/trips/[tripId]`)
+- Portal and Admin navigation chips (mobile top nav)
+- Language switch (`AR/EN`) with correct `dir` changes
+- Bottom navigation and sticky action buttons with safe-area insets
