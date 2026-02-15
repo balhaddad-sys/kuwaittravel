@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
-import { getDocument } from "@/lib/firebase/firestore";
-import { COLLECTIONS } from "@/lib/firebase/collections";
 import { Shield } from "lucide-react";
 import type { ConfirmationResult } from "firebase/auth";
 import type { User } from "@/types";
@@ -37,7 +35,7 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
-  const { signInWithPhone, signInWithGoogle, logout } = useAuth();
+  const { signInWithPhone, signInWithGoogle, logout, userData, firebaseUser } = useAuth();
   const { t } = useDirection();
 
   useEffect(() => {
@@ -47,6 +45,19 @@ export default function AdminLoginPage() {
       setError(t("هذا المدخل مخصص للمشرفين فقط.", "This access point is restricted to administrators only."));
     }
   }, [t]);
+
+  // After Google redirect, check if user is admin
+  useEffect(() => {
+    if (!firebaseUser || !userData) return;
+    if (isAdminRole(userData.role)) {
+      router.replace("/admin/dashboard");
+    } else {
+      // Non-admin user — log them out
+      logout().then(() => {
+        setError(t("هذا المدخل مخصص للمشرفين فقط.", "This access point is restricted to administrators only."));
+      });
+    }
+  }, [firebaseUser, userData, router, logout, t]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -74,28 +85,9 @@ export default function AdminLoginPage() {
   const handleGoogleSignIn = async () => {
     setError("");
     setGoogleLoading(true);
-
     try {
       await signInWithGoogle();
-      const { getFirebaseAuth } = await import("@/lib/firebase/config");
-      const currentUser = getFirebaseAuth().currentUser;
-
-      if (!currentUser) {
-        throw new Error("Missing authenticated user");
-      }
-
-      const existingUser = await getDocument<User>(
-        COLLECTIONS.USERS,
-        currentUser.uid
-      );
-
-      if (isAdminRole(existingUser?.role)) {
-        router.push("/admin/dashboard");
-        return;
-      }
-
-      await logout();
-      setError(t("هذا المدخل مخصص للمشرفين فقط.", "This access point is restricted to administrators only."));
+      // signInWithRedirect navigates away — useEffect above handles routing on return
     } catch {
       setError(t("فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.", "Sign-in failed. Please try again."));
     } finally {

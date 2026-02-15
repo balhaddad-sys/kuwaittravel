@@ -129,9 +129,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setError(null);
     try {
       const { signInWithGoogle: googleSignIn } = await import("@/lib/firebase/auth");
-      const result = await googleSignIn();
-      setFirebaseUser(result.user);
-      await fetchUserData(result.user.uid);
+      await googleSignIn();
+      // signInWithRedirect navigates away — onAuthStateChanged handles the rest on return
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Google sign-in failed"));
       throw err;
