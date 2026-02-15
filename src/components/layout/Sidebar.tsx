@@ -45,7 +45,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
       {/* Nav Items */}
       <nav className="flex-1 overflow-y-auto p-3 space-y-1">
         {items.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+          const isActive = pathname === item.href || (pathname ?? "").startsWith(item.href + "/");
           return (
             <Link
               key={item.href}

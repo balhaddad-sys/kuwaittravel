@@ -23,7 +23,7 @@ function BottomNav({ items }: BottomNavProps) {
       <div className="relative mx-auto flex h-16 max-w-xl items-center justify-around rounded-2xl border border-surface-border/80 bg-white/84 px-2 backdrop-blur-sm shadow-[0_14px_28px_rgba(16,39,73,0.18)] dark:border-surface-dark-border/80 dark:bg-surface-dark/78">
         <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/65 to-transparent" />
         {items.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+          const isActive = pathname === item.href || (pathname ?? "").startsWith(item.href + "/");
           return (
             <Link
               key={item.href}
