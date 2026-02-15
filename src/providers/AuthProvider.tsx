@@ -23,6 +23,14 @@ interface AuthContextValue {
 
 export const AuthContext = createContext<AuthContextValue | null>(null);
 
+/** Trim role to guard against Firestore whitespace (e.g. "super_admin " → "super_admin") */
+function normalizeUserData(data: User | null): User | null {
+  if (data?.role) {
+    data.role = data.role.trim() as UserRole;
+  }
+  return data;
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
   const [userData, setUserData] = useState<User | null>(null);
@@ -33,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
-      const data = await getDocument<User>(COLLECTIONS.USERS, uid);
+      const data = normalizeUserData(await getDocument<User>(COLLECTIONS.USERS, uid));
       setUserData(data);
       return data;
     } catch (err) {
@@ -78,7 +86,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             COLLECTIONS.USERS,
             user.uid,
             (data) => {
-              setUserData(data);
+              setUserData(normalizeUserData(data));
               setLoading(false);
             }
           );
@@ -112,7 +120,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
-      const existingUser = await getDocument<User>(COLLECTIONS.USERS, result.user.uid);
+      const existingUser = normalizeUserData(await getDocument<User>(COLLECTIONS.USERS, result.user.uid));
 
       if (existingUser) {
         setUserData(existingUser);

@@ -14,8 +14,9 @@ import type { User } from "@/types";
 const ADMIN_CONFIRMATION_KEY = "adminConfirmationResult";
 const ADMIN_CONFIRMATION_GLOBAL = "__adminConfirmationResult";
 
-function isAdminRole(role: User["role"] | undefined): boolean {
-  return role === "admin" || role === "super_admin";
+function isAdminRole(role: User["role"] | string | undefined): boolean {
+  const trimmed = role?.trim();
+  return trimmed === "admin" || trimmed === "super_admin";
 }
 
 function GoogleIcon({ className }: { className?: string }) {

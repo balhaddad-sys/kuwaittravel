@@ -67,8 +67,9 @@ export default function LoginPage() {
       const currentUser = getFirebaseAuth().currentUser;
       if (currentUser) {
         const existingUser = await getDocument<User>(COLLECTIONS.USERS, currentUser.uid);
-        if (existingUser?.role) {
-          router.replace(ROLE_HOME_ROUTES[existingUser.role]);
+        const role = existingUser?.role?.trim() as User["role"] | undefined;
+        if (role) {
+          router.replace(ROLE_HOME_ROUTES[role]);
           return;
         }
       }
