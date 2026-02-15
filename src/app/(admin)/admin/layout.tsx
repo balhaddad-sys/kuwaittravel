@@ -15,10 +15,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const sidebarItems: SidebarItem[] = [
     { label: t("لوحة التحكم", "Dashboard"), href: "/admin/dashboard", icon: <LayoutDashboard className="h-5 w-5" /> },
-    { label: t("الحملات", "Campaigns"), href: "/admin/campaigns", icon: <Building2 className="h-5 w-5" />, badge: 3 },
+    { label: t("الحملات", "Campaigns"), href: "/admin/campaigns", icon: <Building2 className="h-5 w-5" /> },
     { label: t("المستخدمون", "Users"), href: "/admin/users", icon: <Users className="h-5 w-5" /> },
     { label: t("المالية", "Financials"), href: "/admin/financials", icon: <Wallet className="h-5 w-5" /> },
-    { label: t("النزاعات", "Disputes"), href: "/admin/disputes", icon: <AlertOctagon className="h-5 w-5" />, badge: 2 },
+    { label: t("النزاعات", "Disputes"), href: "/admin/disputes", icon: <AlertOctagon className="h-5 w-5" /> },
     { label: t("سجل العمليات", "Audit Logs"), href: "/admin/audit-logs", icon: <ScrollText className="h-5 w-5" /> },
     { label: t("الإعدادات", "Settings"), href: "/admin/settings", icon: <Settings className="h-5 w-5" /> },
   ];
