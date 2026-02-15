@@ -4,12 +4,15 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useDirection } from "@/providers/DirectionProvider";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/Button";
+import { isPrivilegedAdminEmail } from "@/lib/utils/roles";
 import { PlaneTakeoff, Building2, Shield, Compass, Sparkles } from "lucide-react";
 
 export default function HomePage() {
   const router = useRouter();
   const { t } = useDirection();
+  const { userData, firebaseUser } = useAuth();
 
   useEffect(() => {
     router.prefetch("/login");
@@ -17,6 +20,10 @@ export default function HomePage() {
     router.prefetch("/portal/dashboard");
     router.prefetch("/admin-login");
   }, [router]);
+
+  const hasAdminRole = userData?.role === "admin" || userData?.role === "super_admin";
+  const isPrivilegedEmail = isPrivilegedAdminEmail(firebaseUser?.email);
+  const canSeeAdminEntry = hasAdminRole || isPrivilegedEmail;
 
   const entryPoints = [
     {
@@ -33,13 +40,15 @@ export default function HomePage() {
       iconBg: "from-gold-500 to-gold-600",
       onClick: () => router.push("/portal/dashboard"),
     },
-    {
-      title: t("إدارة المشرفين", "Admin Console"),
-      subtitle: t("دخول مخصص لفريق الإدارة", "Dedicated entry for administrators"),
-      icon: <Shield className="h-5 w-5 text-white" />,
-      iconBg: "from-navy-700 to-navy-900",
-      onClick: () => router.push("/admin-login"),
-    },
+    ...(canSeeAdminEntry
+      ? [{
+          title: t("إدارة المشرفين", "Admin Console"),
+          subtitle: t("دخول مخصص لفريق الإدارة", "Dedicated entry for administrators"),
+          icon: <Shield className="h-5 w-5 text-white" />,
+          iconBg: "from-navy-700 to-navy-900",
+          onClick: () => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login"),
+        }]
+      : []),
   ];
 
   return (

@@ -35,6 +35,7 @@ From `.env.example`:
 - `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
 - `NEXT_PUBLIC_FIREBASE_APP_ID`
 - `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` (optional)
+- `NEXT_PUBLIC_ADMIN_EMAILS` (comma-separated emails that should see admin shortcut)
 - `FIREBASE_PROJECT_ID`
 - `FIREBASE_CLIENT_EMAIL`
 - `FIREBASE_PRIVATE_KEY`
@@ -71,7 +72,7 @@ You can also use `--email` or `--phone` instead of `--uid`.
 1. Build and verify:
 
 ```bash
-npm run lint && npm run build
+npm run check
 ```
 
 2. Deploy:

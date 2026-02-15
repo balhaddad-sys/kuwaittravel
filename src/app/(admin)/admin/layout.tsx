@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         }
       />
-      <main className="flex-1 ms-0 lg:ms-[260px] transition-all duration-300">
+      <main className="travel-shell-bg flex-1 ms-0 lg:ms-[260px] transition-all duration-300">
         <MobileTopNav items={sidebarItems} />
         <PageTransition variant="admin">{children}</PageTransition>
       </main>

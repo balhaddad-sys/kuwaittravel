@@ -2,8 +2,10 @@
 
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
 import { MobileTopNav } from "@/components/layout/MobileTopNav";
+import { OwnerQuickActions } from "@/components/layout/OwnerQuickActions";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
+import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
 import {
   LayoutDashboard,
@@ -20,6 +22,8 @@ import {
 
 export default function B2BLayout({ children }: { children: React.ReactNode }) {
   const { t } = useDirection();
+  const { userData } = useAuth();
+  const showOwnerQuickActions = userData?.role === "campaign_owner";
 
   const sidebarItems: SidebarItem[] = [
     { label: t("لوحة التحكم", "Dashboard"), href: "/portal/dashboard", icon: <LayoutDashboard className="h-5 w-5" /> },
@@ -49,8 +53,9 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
           </div>
         }
       />
-      <main className="flex-1 ms-0 lg:ms-[260px] transition-all duration-300">
+      <main className="travel-shell-bg flex-1 ms-0 lg:ms-[260px] transition-all duration-300">
         <MobileTopNav items={sidebarItems} />
+        {showOwnerQuickActions && <OwnerQuickActions />}
         <PageTransition variant="portal">{children}</PageTransition>
       </main>
     </div>

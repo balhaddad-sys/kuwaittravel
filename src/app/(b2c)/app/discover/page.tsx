@@ -124,6 +124,15 @@ export default function DiscoverPage() {
       .slice(0, 8);
   }, [filteredTrips]);
 
+  useEffect(() => {
+    filteredTrips.slice(0, 8).forEach((trip) => {
+      router.prefetch(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`);
+    });
+    topCampaigns.slice(0, 8).forEach((campaign) => {
+      router.prefetch(`/app/campaigns/${campaign.id}`);
+    });
+  }, [filteredTrips, topCampaigns, router]);
+
   return (
     <div className="relative min-h-screen bg-surface-muted/70 dark:bg-surface-dark">
       <div className="pointer-events-none absolute -top-28 -start-20 h-72 w-72 rounded-full bg-gold-300/30 blur-3xl" />

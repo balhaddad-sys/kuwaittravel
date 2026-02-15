@@ -30,3 +30,19 @@ export function canAccessRoute(role: UserRole, pathname: string): boolean {
   }
   return true;
 }
+
+function normalizedEmail(value: string | null | undefined): string {
+  return (value || "").trim().toLowerCase();
+}
+
+export function isPrivilegedAdminEmail(email: string | null | undefined): boolean {
+  const candidate = normalizedEmail(email);
+  if (!candidate) return false;
+
+  const configured = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || "")
+    .split(",")
+    .map((item) => normalizedEmail(item))
+    .filter(Boolean);
+
+  return configured.includes(candidate);
+}
