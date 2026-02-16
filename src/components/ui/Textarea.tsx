@@ -18,7 +18,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={textareaId}
-            className="text-label font-medium text-navy-700 transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-focus-within:text-navy-800 dark:text-navy-200 dark:group-focus-within:text-white"
+            className="text-label font-medium text-[var(--clr-text-main)] transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-focus-within:text-[var(--clr-primary)]"
           >
             {label}
           </label>
@@ -27,18 +27,16 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={cn(
-            "min-h-[100px] w-full resize-y rounded-[var(--radius-input)] border bg-white/86 px-4 py-2.5 text-body-md transform-gpu transition-[border-color,box-shadow,background-color,color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] backdrop-blur-sm",
-            "border-surface-border/90 dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80",
-            "placeholder:text-navy-400 dark:placeholder:text-navy-500",
-            "hover:border-navy-300 dark:hover:border-navy-600 focus:border-navy-400 focus:bg-white/95 focus:ring-4 focus:ring-navy-400/20 focus:outline-none dark:focus:bg-surface-dark-card/92",
-            "shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",
-            error && "border-error focus:border-error focus:ring-error/20",
+            "inline-input min-h-[100px] w-full resize-y text-body-md text-[var(--clr-text-main)] placeholder:text-[var(--clr-text-muted)]",
+            "shadow-none",
+            "focus:ring-0",
+            error && "border-b-error focus:border-b-error",
             className
           )}
           {...props}
         />
         {error && <p className="text-body-sm text-error">{error}</p>}
-        {hint && !error && <p className="text-body-sm text-navy-400">{hint}</p>}
+        {hint && !error && <p className="text-body-sm text-[var(--clr-text-muted)]">{hint}</p>}
       </div>
     );
   }

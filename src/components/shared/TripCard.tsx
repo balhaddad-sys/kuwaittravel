@@ -27,6 +27,7 @@ function TripCard({
   title,
   destination,
   departureDate,
+  returnDate,
   price,
   capacity,
   booked,
@@ -41,7 +42,13 @@ function TripCard({
   const fillPercent = capacity > 0 ? (booked / capacity) * 100 : 0;
 
   return (
-    <Card variant="elevated" padding="none" hoverable onClick={onClick} className={className}>
+    <Card
+      variant="elevated"
+      padding="none"
+      hoverable
+      onClick={onClick}
+      className={cn("trip-card", className)}
+    >
       {/* Cover */}
       <div className="relative h-40 overflow-hidden rounded-t-[var(--radius-card)] bg-navy-100 dark:bg-navy-800">
         {coverImage ? (
@@ -54,6 +61,11 @@ function TripCard({
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/35 via-transparent to-transparent" />
         <div className="absolute top-3 end-3">
           <StatusChip status={status} />
+        </div>
+        <div className="absolute top-3 start-3">
+          <span className="rounded-full border border-white/16 bg-black/42 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+            {departureDate} - {returnDate}
+          </span>
         </div>
         {campaignName && (
           <div className="absolute bottom-3 start-3">
@@ -99,12 +111,12 @@ function TripCard({
             </span>
           </div>
           <div className="h-1.5 rounded-full bg-surface-muted dark:bg-surface-dark-border overflow-hidden">
-            <div
-              className={cn(
-                "h-full rounded-full transition-all duration-500",
-                fillPercent >= 90 ? "bg-error" : fillPercent >= 70 ? "bg-warning" : "bg-success"
-              )}
-              style={{ width: `${Math.min(fillPercent, 100)}%` }}
+              <div
+                className={cn(
+                  "h-full rounded-full transition-all duration-500",
+                  fillPercent >= 90 ? "bg-error" : fillPercent >= 70 ? "bg-warning" : "bg-success"
+                )}
+                style={{ width: `${Math.min(fillPercent, 100)}%` }}
             />
           </div>
         </div>
@@ -112,7 +124,7 @@ function TripCard({
         {/* Price */}
         <div className="flex items-center justify-between pt-2 border-t border-surface-border dark:border-surface-dark-border">
           <span className="text-body-sm text-navy-400">{t("يبدأ من", "From")}</span>
-          <span className="text-heading-sm font-bold text-navy-900 dark:text-white">
+          <span className="font-numbers text-heading-sm font-bold text-navy-900 dark:text-white">
             {formatKWD(price)}
           </span>
         </div>

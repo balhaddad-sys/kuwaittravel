@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_Arabic, Manrope } from "next/font/google";
+import { Tajawal, Inter } from "next/font/google";
 import { Providers } from "@/providers/Providers";
 import "./globals.css";
 
-const notoSansArabic = Noto_Sans_Arabic({
+const tajawal = Tajawal({
   variable: "--font-arabic-ui",
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "700", "800", "900"],
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-latin-ui",
+const inter = Inter({
+  variable: "--font-numeric-ui",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
@@ -56,8 +56,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#1B2A4A" },
-    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+    { media: "(prefers-color-scheme: light)", color: "#0F5A3E" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B1B14" },
   ],
 };
 
@@ -72,7 +72,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: initUiScript }} />
       </head>
       <body
-        className={`${notoSansArabic.variable} ${manrope.variable} font-arabic antialiased`}
+        className={`${tajawal.variable} ${inter.variable} font-arabic antialiased`}
       >
         <Providers>{children}</Providers>
       </body>
