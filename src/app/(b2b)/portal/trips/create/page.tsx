@@ -62,6 +62,15 @@ export default function CreateTripPage() {
   };
 
   const handleComplete = async () => {
+    console.log("[CreateTrip] Starting submission...", {
+      hasUser: !!firebaseUser,
+      hasUserData: !!userData,
+      campaignId: userData?.campaignId,
+      role: userData?.role,
+      basics,
+      pricing,
+    });
+
     if (!firebaseUser || !userData) {
       toast({
         type: "error",
@@ -195,8 +204,16 @@ export default function CreateTripPage() {
         description: `رقم الرحلة: ${tripId}`,
       });
       router.push("/portal/trips");
-    } catch {
-      toast({ type: "error", title: "حدث خطأ أثناء إنشاء الرحلة" });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error("Trip creation error:", error);
+      toast({
+        type: "error",
+        title: "حدث خطأ أثناء إنشاء الرحلة",
+        description: message.includes("permission")
+          ? "ليس لديك صلاحية لإنشاء رحلات. تحقق من ارتباط حسابك بالحملة."
+          : message,
+      });
     } finally {
       setLoading(false);
     }
