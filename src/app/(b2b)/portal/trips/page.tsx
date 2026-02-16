@@ -109,7 +109,7 @@ export default function TripsPage() {
               onSearch={setSearchQuery}
               className="flex-1"
             />
-            <div className="flex gap-2">
+            <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {[
                 { value: "all", label: "الكل" },
                 { value: "active", label: "نشطة" },
@@ -120,7 +120,7 @@ export default function TripsPage() {
                 <button
                   key={f.value}
                   onClick={() => setFilter(f.value as TripFilter)}
-                  className={`travel-filter-chip px-4 py-2 text-body-sm font-medium ${
+                  className={`travel-filter-chip shrink-0 px-4 py-2 text-body-sm font-medium ${
                     filter === f.value
                       ? "travel-filter-chip-active"
                       : ""

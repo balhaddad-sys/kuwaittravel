@@ -16,7 +16,7 @@ export default function FinancialsPage() {
     <>
       <AppBar title="المالية" breadcrumbs={[{ label: "المشرف العام", href: "/admin/dashboard" }, { label: "المالية" }]} />
       <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard title="GMV الشهري" value={formatKWD(0)} icon={<Wallet className="h-5 w-5 text-gold-500" />} hoverable />
           <StatCard title="عمولة المنصة" value={formatKWD(0)} icon={<TrendingUp className="h-5 w-5 text-gold-500" />} hoverable />
           <StatCard title="المدفوعات المعلقة" value={formatKWD(0)} icon={<ArrowUpRight className="h-5 w-5 text-gold-500" />} hoverable />
@@ -36,7 +36,7 @@ export default function FinancialsPage() {
                   key={item.value}
                   type="button"
                   onClick={() => setPeriod(item.value)}
-                  className={`rounded-full px-3 py-1 text-body-sm transition-colors ${period === item.value ? "bg-navy-700 text-white" : "text-navy-600 dark:text-navy-300"}`}
+                  className={`rounded-full px-2 py-1 text-body-sm transition-colors sm:px-3 ${period === item.value ? "bg-navy-700 text-white" : "text-navy-600 dark:text-navy-300"}`}
                 >
                   {item.label}
                 </button>

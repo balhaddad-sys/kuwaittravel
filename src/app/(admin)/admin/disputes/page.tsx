@@ -14,7 +14,7 @@ export default function DisputesPage() {
     <>
       <AppBar title="إدارة النزاعات" breadcrumbs={[{ label: "المشرف العام", href: "/admin/dashboard" }, { label: "النزاعات" }]} />
       <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
             { value: "all", label: "الكل" },
             { value: "open", label: "مفتوحة" },
@@ -25,7 +25,7 @@ export default function DisputesPage() {
               key={item.value}
               type="button"
               onClick={() => setFilter(item.value)}
-              className={`travel-filter-chip px-3 py-1.5 text-body-sm font-medium ${filter === item.value ? "travel-filter-chip-active" : ""}`}
+              className={`travel-filter-chip shrink-0 px-3 py-1.5 text-body-sm font-medium ${filter === item.value ? "travel-filter-chip-active" : ""}`}
             >
               {item.label}
             </button>

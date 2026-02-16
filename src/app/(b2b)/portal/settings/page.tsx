@@ -17,9 +17,9 @@ export default function SettingsPage() {
         title="الإعدادات"
         breadcrumbs={[{ label: "بوابة الحملة", href: "/portal/dashboard" }, { label: "الإعدادات" }]}
       />
-      <Container size="md" className="travel-orbit-bg py-6 space-y-6">
+      <Container size="md" className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
         <Card variant="elevated" padding="lg" className="space-y-4">
-          <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">البيانات البنكية</h3>
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white">البيانات البنكية</h3>
           <Input label="اسم البنك" placeholder="بنك الكويت الوطني" />
           <Input label="رقم الآيبان" placeholder="KW00XXXX..." dir="ltr" />
           <Input label="اسم صاحب الحساب" placeholder="الاسم كما يظهر في الحساب" />
@@ -29,7 +29,7 @@ export default function SettingsPage() {
         </Card>
 
         <Card variant="elevated" padding="lg" className="space-y-4">
-          <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">إعدادات الإشعارات</h3>
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white">إعدادات الإشعارات</h3>
           <div className="space-y-3">
             {[
               { label: "إشعارات الحجوزات الجديدة", checked: true },
@@ -37,9 +37,9 @@ export default function SettingsPage() {
               { label: "تنبيهات المستندات الناقصة", checked: true },
               { label: "تقارير أسبوعية", checked: false },
             ].map((setting, i) => (
-              <label key={i} className="flex items-center justify-between py-2">
-                <span className="text-body-md text-navy-700 dark:text-navy-200">{setting.label}</span>
-                <input type="checkbox" defaultChecked={setting.checked} className="h-5 w-5 rounded border-navy-300 text-navy-700" />
+              <label key={i} className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
+                <span className="text-body-sm sm:text-body-md text-navy-700 dark:text-navy-200">{setting.label}</span>
+                <input type="checkbox" defaultChecked={setting.checked} className="h-5 w-5 shrink-0 rounded border-navy-300 text-navy-700" />
               </label>
             ))}
           </div>

@@ -16,7 +16,7 @@ export default function WalletPage() {
         breadcrumbs={[{ label: "بوابة الحملة", href: "/portal/dashboard" }, { label: "المحفظة" }]}
       />
       <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard title="الرصيد المتاح" value={formatKWD(0)} icon={<Wallet className="h-5 w-5" />} hoverable />
           <StatCard title="رصيد معلق" value={formatKWD(0)} icon={<Clock className="h-5 w-5" />} hoverable />
           <StatCard title="التحويل القادم" value="—" icon={<ArrowUpRight className="h-5 w-5" />} hoverable />

@@ -19,7 +19,7 @@ export default function AdminDashboardPage() {
         breadcrumbs={[{ label: t("المشرف العام", "Admin Console") }, { label: t("لوحة التحكم", "Dashboard") }]}
       />
       <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard title={t("إجمالي الحملات", "Total Campaigns")} value="0" icon={<Building2 className="h-6 w-6" />} className="animate-stagger-in" hoverable />
           <StatCard title={t("إجمالي المستخدمين", "Total Users")} value="0" icon={<Users className="h-6 w-6" />} className="animate-stagger-in stagger-delay-1" hoverable />
           <StatCard title={t("GMV (د.ك)", "GMV (KWD)")} value={formatKWD(0)} icon={<Wallet className="h-6 w-6" />} className="animate-stagger-in stagger-delay-2" hoverable />
@@ -59,7 +59,7 @@ export default function AdminDashboardPage() {
         </div>
 
         <Card variant="elevated" padding="lg" className="overflow-hidden">
-          <div className="-mx-6 -mt-6 mb-4 border-b border-surface-border/80 bg-gradient-to-r from-navy-700 to-navy-900 px-6 py-3 text-white dark:border-surface-dark-border/80">
+          <div className="-mx-4 -mt-4 mb-4 border-b border-surface-border/80 bg-gradient-to-r from-navy-700 to-navy-900 px-4 py-3 text-white dark:border-surface-dark-border/80 sm:-mx-6 sm:-mt-6 sm:px-6">
             <h3 className="text-body-lg sm:text-heading-sm font-bold flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-gold-300" /> {t("ملخص الإيرادات", "Revenue Summary")}
             </h3>
@@ -67,15 +67,15 @@ export default function AdminDashboardPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <div>
               <p className="text-body-sm text-navy-500">{t("إجمالي GMV", "Total GMV")}</p>
-              <p className="tabular-nums text-heading-md sm:text-heading-lg font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
+              <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
             </div>
             <div>
               <p className="text-body-sm text-navy-500">{t("عمولة المنصة (2%)", "Platform Fee (2%)")}</p>
-              <p className="tabular-nums text-heading-md sm:text-heading-lg font-bold text-success">{formatKWD(0)}</p>
+              <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-success">{formatKWD(0)}</p>
             </div>
             <div>
               <p className="text-body-sm text-navy-500">{t("المدفوعات للحملات", "Campaign Payouts")}</p>
-              <p className="tabular-nums text-heading-md sm:text-heading-lg font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
+              <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
             </div>
           </div>
         </Card>

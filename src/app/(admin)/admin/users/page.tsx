@@ -16,7 +16,7 @@ export default function UsersPage() {
       <AppBar title="إدارة المستخدمين" breadcrumbs={[{ label: "المشرف العام", href: "/admin/dashboard" }, { label: "المستخدمون" }]} />
       <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
         <SearchInput placeholder="ابحث بالاسم أو رقم الهاتف..." onSearch={() => {}} />
-        <div className="flex flex-wrap gap-2">
+        <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
             { value: "all", label: "الكل" },
             { value: "traveler", label: "مسافر" },
@@ -28,7 +28,7 @@ export default function UsersPage() {
               key={filter.value}
               type="button"
               onClick={() => setRoleFilter(filter.value)}
-              className={`travel-filter-chip px-3 py-1.5 text-body-sm font-medium ${roleFilter === filter.value ? "travel-filter-chip-active" : ""}`}
+              className={`travel-filter-chip shrink-0 px-3 py-1.5 text-body-sm font-medium ${roleFilter === filter.value ? "travel-filter-chip-active" : ""}`}
             >
               {filter.label}
             </button>

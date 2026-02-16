@@ -24,7 +24,7 @@ function StatCard({ title, value, change, icon, hoverable = false, className }: 
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-body-sm text-navy-500 dark:text-navy-300">{title}</p>
-          <p className="tabular-nums mt-1 text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">
+          <p className="tabular-nums mt-1 text-body-lg font-bold text-navy-900 dark:text-white sm:text-heading-lg lg:text-display-md">
             {value}
           </p>
           {change && (
