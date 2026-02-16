@@ -35,10 +35,14 @@ function ProgressBarInner() {
 
   // Complete when pathname changes (route loaded)
   useEffect(() => {
-    if (prevPath.current !== pathname) {
+    if (prevPath.current === pathname) return;
+
+    const completeTick = window.setTimeout(() => {
       complete();
-      prevPath.current = pathname;
-    }
+    }, 0);
+
+    prevPath.current = pathname;
+    return () => window.clearTimeout(completeTick);
   }, [pathname, complete]);
 
   // Listen for navigation events
@@ -81,7 +85,7 @@ function ProgressBarInner() {
       style={{ opacity: active ? 1 : 0, transition: "opacity 300ms ease-out" }}
     >
       <div
-        className="h-full bg-gradient-to-r from-gold-400 via-emerald-400 to-gold-400"
+        className="h-full bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400"
         style={{
           width: `${width}%`,
           transition:
@@ -89,7 +93,7 @@ function ProgressBarInner() {
               ? "width 200ms ease-out"
               : "width 400ms cubic-bezier(0.4, 0, 0.2, 1)",
           boxShadow:
-            "0 0 8px rgba(16, 185, 129, 0.6), 0 0 2px rgba(212, 175, 55, 0.4)",
+            "0 0 10px rgba(0, 108, 228, 0.65), 0 0 3px rgba(0, 108, 228, 0.4)",
           borderRadius: "0 2px 2px 0",
         }}
       />

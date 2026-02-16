@@ -31,7 +31,7 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
       <Search
         className={cn(
           "pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)]",
-          isFocused ? "text-navy-600 dark:text-navy-200" : "text-navy-400"
+          isFocused ? "text-gold-600 dark:text-gold-300" : "text-navy-400"
         )}
       />
       <input
@@ -41,13 +41,13 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={placeholder}
-        className="w-full rounded-[var(--radius-input)] border border-surface-border/90 bg-white/86 py-2.5 ps-10 pe-10 text-body-md transform-gpu shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] transition-[border-color,box-shadow,background-color,width] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] backdrop-blur-sm hover:border-navy-300 focus:border-navy-400 focus:bg-white/95 focus:ring-4 focus:ring-navy-400/20 focus:outline-none dark:border-surface-dark-border/90 dark:bg-surface-dark-card/82 dark:hover:border-navy-600 dark:focus:bg-surface-dark-card/92"
+        className="w-full rounded-[var(--radius-pill)] border border-surface-border bg-white py-2.5 ps-10 pe-10 text-body-md text-navy-800 transform-gpu shadow-[0_2px_8px_rgba(15,17,22,0.05)] transition-[border-color,box-shadow,background-color,width] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-navy-300 focus:border-gold-400 focus:bg-white focus:ring-4 focus:ring-gold-300/25 focus:outline-none dark:border-surface-dark-border dark:bg-surface-dark-card/88 dark:text-navy-100 dark:hover:border-navy-500 dark:focus:border-gold-500 dark:focus:ring-gold-500/25"
       />
       {value && (
         <button
           type="button"
           onClick={() => setValue("")}
-          className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-navy-400 transition-[color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-navy-600 active:scale-[0.92]"
+          className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-navy-400 transition-[color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-gold-600 active:scale-[0.92]"
         >
           <X className="h-4 w-4" />
         </button>

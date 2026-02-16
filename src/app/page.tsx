@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useDirection } from "@/providers/DirectionProvider";
 import { useAuth } from "@/hooks/useAuth";
-import { Button } from "@/components/ui/Button";
 import { isPrivilegedAdminEmail } from "@/lib/utils/roles";
 import {
   PlaneTakeoff,
@@ -13,8 +12,6 @@ import {
   Shield,
   Compass,
   Sparkles,
-  MapPin,
-  Users,
   Star,
   ChevronLeft,
   ArrowRight,
@@ -24,7 +21,7 @@ import {
 
 export default function HomePage() {
   const router = useRouter();
-  const { t, language } = useDirection();
+  const { t } = useDirection();
   const { userData, firebaseUser } = useAuth();
   const [exiting, setExiting] = useState(false);
 
@@ -58,8 +55,8 @@ export default function HomePage() {
         "Discover and book trips in minutes"
       ),
       icon: <PlaneTakeoff className="h-6 w-6" />,
-      gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-      shadowColor: "shadow-[0_8px_30px_rgba(20,184,166,0.3)]",
+      gradient: "from-sky-500 via-blue-500 to-indigo-500",
+      shadowColor: "shadow-[0_8px_30px_rgba(0,108,228,0.3)]",
       onClick: () => navigateTo("/app/discover"),
     },
     {
@@ -69,8 +66,8 @@ export default function HomePage() {
         "Manage trips, bookings, and documents"
       ),
       icon: <Building2 className="h-6 w-6" />,
-      gradient: "from-amber-400 via-orange-400 to-yellow-500",
-      shadowColor: "shadow-[0_8px_30px_rgba(245,158,11,0.3)]",
+      gradient: "from-blue-500 via-indigo-500 to-violet-500",
+      shadowColor: "shadow-[0_8px_30px_rgba(67,96,229,0.3)]",
       onClick: () => navigateTo("/portal/dashboard"),
     },
     ...(canSeeAdminEntry
@@ -82,8 +79,8 @@ export default function HomePage() {
               "Dedicated entry for administrators"
             ),
             icon: <Shield className="h-6 w-6" />,
-            gradient: "from-violet-500 via-purple-500 to-indigo-500",
-            shadowColor: "shadow-[0_8px_30px_rgba(139,92,246,0.3)]",
+            gradient: "from-slate-500 via-slate-600 to-slate-700",
+            shadowColor: "shadow-[0_8px_30px_rgba(60,74,96,0.3)]",
             onClick: () =>
               navigateTo(
                 hasAdminRole ? "/admin/dashboard" : "/admin-login"
@@ -101,20 +98,20 @@ export default function HomePage() {
 
   return (
     <div
-      className={`relative min-h-screen overflow-hidden bg-[#050d09] transition-[opacity,transform] duration-[140ms] ease-out ${exiting ? "scale-[0.97] opacity-0" : ""}`}
+      className={`relative min-h-screen overflow-hidden bg-white transition-[opacity,transform] duration-[140ms] ease-out dark:bg-[#0f1116] ${exiting ? "scale-[0.97] opacity-0" : ""}`}
     >
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0">
         {/* Large gradient orbs */}
-        <div className="absolute -top-[40%] end-[-20%] h-[800px] w-[800px] rounded-full bg-gradient-to-br from-emerald-600/20 via-teal-600/10 to-transparent blur-[120px]" />
-        <div className="absolute -bottom-[30%] start-[-15%] h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-gold-500/15 via-amber-500/8 to-transparent blur-[100px]" />
-        <div className="absolute top-[20%] start-[40%] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-400/8 to-transparent blur-[80px]" />
+        <div className="absolute -top-[40%] end-[-20%] h-[800px] w-[800px] rounded-full bg-gradient-to-br from-gold-500/16 via-sky-400/10 to-transparent blur-[120px]" />
+        <div className="absolute -bottom-[30%] start-[-15%] h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-navy-400/10 via-gold-400/8 to-transparent blur-[100px]" />
+        <div className="absolute top-[20%] start-[40%] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-gold-400/8 to-transparent blur-[80px]" />
         {/* Grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.028] dark:opacity-[0.04]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+              "linear-gradient(rgba(34,34,34,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(34,34,34,0.07) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
@@ -124,12 +121,12 @@ export default function HomePage() {
         {/* Top Bar */}
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 shadow-[0_4px_20px_rgba(212,175,55,0.4)]">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 shadow-[0_4px_20px_rgba(0,108,228,0.3)]">
               <Compass className="h-5 w-5 text-white" />
             </span>
             <div>
-              <p className="text-body-md font-bold text-white">Rahal</p>
-              <p className="text-[11px] text-white/40">Travel OS</p>
+              <p className="text-body-md font-bold text-navy-900 dark:text-white">Rahal</p>
+              <p className="text-[11px] text-navy-500 dark:text-white/40">Travel OS</p>
             </div>
           </div>
           <LanguageToggle />
@@ -138,16 +135,16 @@ export default function HomePage() {
         {/* Hero */}
         <div className="mt-10 flex flex-1 flex-col items-center justify-center text-center sm:mt-0">
           {/* Badge */}
-          <div className="animate-stagger-fade-up inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-1.5 backdrop-blur-sm">
-            <Sparkles className="h-3.5 w-3.5 text-gold-400" />
-            <span className="text-body-sm font-medium text-gold-300">
+          <div className="animate-stagger-fade-up inline-flex items-center gap-2 rounded-full border border-gold-300/70 bg-gold-50/80 px-4 py-1.5 backdrop-blur-sm dark:border-gold-600/50 dark:bg-gold-900/20">
+            <Sparkles className="h-3.5 w-3.5 text-gold-500" />
+            <span className="text-body-sm font-medium text-gold-700 dark:text-gold-300">
               {t("تجربة سفر فاخرة", "Premium Travel Experience")}
             </span>
           </div>
 
           {/* Title */}
           <h1
-            className="animate-stagger-fade-up mt-6 text-5xl font-black leading-[1.1] tracking-tight text-white sm:mt-8 sm:text-7xl lg:text-8xl"
+            className="animate-stagger-fade-up mt-6 text-5xl font-black leading-[1.1] tracking-tight text-navy-900 dark:text-white sm:mt-8 sm:text-7xl lg:text-8xl"
             style={{ "--stagger-delay": "100ms" } as React.CSSProperties}
           >
             {t("رحال", "Rahal")}
@@ -155,7 +152,7 @@ export default function HomePage() {
 
           {/* Subtitle */}
           <p
-            className="animate-stagger-fade-up mx-auto mt-4 max-w-xl text-body-lg leading-relaxed text-white/50 sm:mt-6 sm:text-xl"
+            className="animate-stagger-fade-up mx-auto mt-4 max-w-xl text-body-lg leading-relaxed text-navy-600 dark:text-white/60 sm:mt-6 sm:text-xl"
             style={{ "--stagger-delay": "200ms" } as React.CSSProperties}
           >
             {t(
@@ -171,7 +168,7 @@ export default function HomePage() {
           >
             <button
               onClick={() => navigateTo("/login")}
-              className="group inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_8px_30px_rgba(16,185,129,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(16,185,129,0.45)] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_8px_30px_rgba(0,108,228,0.34)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,108,228,0.44)] active:scale-[0.98]"
             >
               <PlaneTakeoff className="h-5 w-5" />
               {t("ابدأ الآن", "Start Now")}
@@ -179,7 +176,7 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => navigateTo("/app/discover")}
-              className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-7 py-3.5 text-body-lg font-bold text-white/80 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10 hover:text-white active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-white px-7 py-3.5 text-body-lg font-bold text-navy-700 shadow-[0_4px_18px_rgba(15,17,22,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-navy-50 hover:text-navy-900 active:scale-[0.98] dark:border-surface-dark-border dark:bg-surface-dark-card/80 dark:text-navy-100 dark:hover:border-navy-500 dark:hover:bg-navy-900/40"
             >
               {t("استكشاف الرحلات", "Explore Trips")}
             </button>
@@ -190,15 +187,15 @@ export default function HomePage() {
             className="animate-stagger-fade-up mt-10 flex items-center gap-6 sm:mt-14 sm:gap-10"
             style={{ "--stagger-delay": "400ms" } as React.CSSProperties}
           >
-            {stats.map((stat, i) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="flex items-center justify-center gap-1.5">
-                  <span className="text-emerald-400/60">{stat.icon}</span>
-                  <p className="font-numbers text-2xl font-black text-white sm:text-3xl">
+                  <span className="text-gold-500/70 dark:text-gold-300/70">{stat.icon}</span>
+                  <p className="font-numbers text-2xl font-black text-navy-900 dark:text-white sm:text-3xl">
                     {stat.value}
                   </p>
                 </div>
-                <p className="mt-0.5 text-[11px] text-white/35 sm:text-body-sm">
+                <p className="mt-0.5 text-[11px] text-navy-500 dark:text-white/45 sm:text-body-sm">
                   {stat.label}
                 </p>
               </div>
@@ -212,7 +209,7 @@ export default function HomePage() {
             <button
               key={entry.title}
               onClick={entry.onClick}
-              className={`animate-stagger-fade-up group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-start backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07] active:scale-[0.98] sm:rounded-3xl sm:p-6`}
+              className={`animate-stagger-fade-up group relative overflow-hidden rounded-2xl border border-surface-border bg-white/90 p-5 text-start shadow-[0_10px_28px_rgba(20,28,40,0.08)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-navy-300 hover:bg-white active:scale-[0.98] dark:border-surface-dark-border dark:bg-surface-dark-card/82 dark:hover:border-navy-500 dark:hover:bg-surface-dark-card/94 sm:rounded-3xl sm:p-6`}
               style={
                 { "--stagger-delay": `${500 + i * 100}ms` } as React.CSSProperties
               }
@@ -230,12 +227,12 @@ export default function HomePage() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-body-lg font-bold text-white">
+                    <h3 className="text-body-lg font-bold text-navy-900 dark:text-white">
                       {entry.title}
                     </h3>
-                    <ChevronLeft className="h-5 w-5 shrink-0 text-white/20 transition-all duration-200 group-hover:text-white/50 group-hover:-translate-x-0.5 rtl:rotate-180 rtl:group-hover:translate-x-0.5" />
+                    <ChevronLeft className="h-5 w-5 shrink-0 text-navy-400 transition-all duration-200 group-hover:text-gold-600 group-hover:-translate-x-0.5 rtl:rotate-180 rtl:group-hover:translate-x-0.5 dark:text-white/30 dark:group-hover:text-gold-300" />
                   </div>
-                  <p className="mt-1 text-body-sm text-white/40 group-hover:text-white/55">
+                  <p className="mt-1 text-body-sm text-navy-500 group-hover:text-navy-700 dark:text-white/45 dark:group-hover:text-white/65">
                     {entry.subtitle}
                   </p>
                 </div>

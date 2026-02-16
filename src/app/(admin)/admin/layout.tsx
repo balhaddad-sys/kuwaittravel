@@ -5,9 +5,10 @@ import { MobileTopNav } from "@/components/layout/MobileTopNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useDirection } from "@/providers/DirectionProvider";
+import Link from "next/link";
 import {
   LayoutDashboard, Building2, Users, Wallet, AlertOctagon,
-  ScrollText, Settings, Shield,
+  ScrollText, Settings, Shield, Compass, PlaneTakeoff,
 } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -21,6 +22,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: t("النزاعات", "Disputes"), href: "/admin/disputes", icon: <AlertOctagon className="h-5 w-5" /> },
     { label: t("سجل العمليات", "Audit Logs"), href: "/admin/audit-logs", icon: <ScrollText className="h-5 w-5" /> },
     { label: t("الإعدادات", "Settings"), href: "/admin/settings", icon: <Settings className="h-5 w-5" /> },
+  ];
+
+  const switchItems: SidebarItem[] = [
+    { label: t("المسافرون", "Travelers"), href: "/app/discover", icon: <Compass className="h-5 w-5" /> },
+    { label: t("بوابة الحملات", "Portal"), href: "/portal/dashboard", icon: <PlaneTakeoff className="h-5 w-5" /> },
   ];
 
   return (
@@ -42,9 +48,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </span>
           </div>
         }
+        footer={
+          <div className="space-y-1.5">
+            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-navy-400 dark:text-navy-500">
+              {t("التبديل إلى", "Switch to")}
+            </p>
+            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-navy-100/60 dark:text-navy-300 dark:hover:bg-navy-800/50">
+              <Compass className="h-4 w-4 text-emerald-500" />
+              {t("المسافرون", "Travelers")}
+            </Link>
+            <Link href="/portal/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-navy-100/60 dark:text-navy-300 dark:hover:bg-navy-800/50">
+              <PlaneTakeoff className="h-4 w-4 text-amber-500" />
+              {t("بوابة الحملات", "Campaign Portal")}
+            </Link>
+          </div>
+        }
       />
       <main className="travel-shell-bg flex-1 ms-0 lg:ms-[286px] transition-all duration-300">
-        <MobileTopNav items={sidebarItems} />
+        <MobileTopNav items={[...sidebarItems, ...switchItems]} />
         <PageTransition variant="admin">{children}</PageTransition>
       </main>
     </div>

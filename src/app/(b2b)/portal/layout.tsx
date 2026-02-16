@@ -7,6 +7,7 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
+import Link from "next/link";
 import {
   LayoutDashboard,
   Map,
@@ -18,12 +19,15 @@ import {
   Settings,
   Building2,
   PlaneTakeoff,
+  Compass,
+  Shield,
 } from "lucide-react";
 
 export default function B2BLayout({ children }: { children: React.ReactNode }) {
   const { t } = useDirection();
   const { userData } = useAuth();
   const showOwnerQuickActions = userData?.role === "campaign_owner";
+  const isAdmin = userData?.role === "admin" || userData?.role === "super_admin";
 
   const sidebarItems: SidebarItem[] = [
     { label: t("لوحة التحكم", "Dashboard"), href: "/portal/dashboard", icon: <LayoutDashboard className="h-5 w-5" /> },
@@ -37,8 +41,15 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
     { label: t("الإعدادات", "Settings"), href: "/portal/settings", icon: <Settings className="h-5 w-5" /> },
   ];
 
+  const switchItems: SidebarItem[] = [
+    { label: t("المسافرون", "Travelers"), href: "/app/discover", icon: <Compass className="h-5 w-5" /> },
+    ...(isAdmin
+      ? [{ label: t("الإدارة", "Admin"), href: "/admin/dashboard", icon: <Shield className="h-5 w-5" /> }]
+      : []),
+  ];
+
   return (
-    <RoleGuard allowedRoles={["campaign_owner", "campaign_staff"]}>
+    <RoleGuard allowedRoles={["campaign_owner", "campaign_staff", "admin", "super_admin"]}>
     <div className="flex min-h-screen">
       <Sidebar
         items={sidebarItems}
@@ -52,9 +63,26 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
             </span>
           </div>
         }
+        footer={
+          <div className="space-y-1.5">
+            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-navy-400 dark:text-navy-500">
+              {t("التبديل إلى", "Switch to")}
+            </p>
+            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-navy-100/60 dark:text-navy-300 dark:hover:bg-navy-800/50">
+              <Compass className="h-4 w-4 text-emerald-500" />
+              {t("المسافرون", "Travelers")}
+            </Link>
+            {isAdmin && (
+              <Link href="/admin/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-navy-100/60 dark:text-navy-300 dark:hover:bg-navy-800/50">
+                <Shield className="h-4 w-4 text-violet-500" />
+                {t("إدارة المشرفين", "Admin Console")}
+              </Link>
+            )}
+          </div>
+        }
       />
       <main className="travel-shell-bg flex-1 ms-0 lg:ms-[286px] transition-all duration-300">
-        <MobileTopNav items={sidebarItems} />
+        <MobileTopNav items={[...sidebarItems, ...switchItems]} />
         {showOwnerQuickActions && <OwnerQuickActions />}
         <PageTransition variant="portal">{children}</PageTransition>
       </main>
