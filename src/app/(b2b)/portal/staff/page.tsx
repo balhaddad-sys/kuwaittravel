@@ -3,6 +3,7 @@
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { UserPlus, Users } from "lucide-react";
 
@@ -18,13 +19,15 @@ export default function StaffPage() {
           </Button>
         }
       />
-      <Container className="py-3 sm:py-6">
-        <EmptyState
-          icon={<Users className="h-16 w-16" />}
-          title="لا يوجد أعضاء"
-          description="أضف أعضاء فريقك لمساعدتك في إدارة الحملة"
-          action={{ label: "إضافة عضو", onClick: () => {} }}
-        />
+      <Container className="travel-orbit-bg py-3 sm:py-6">
+        <Card variant="elevated" padding="none">
+          <EmptyState
+            icon={<Users className="h-16 w-16" />}
+            title="لا يوجد أعضاء"
+            description="أضف أعضاء فريقك لمساعدتك في إدارة الحملة / Invite teammates to support operations"
+            action={{ label: "إضافة عضو", onClick: () => {} }}
+          />
+        </Card>
       </Container>
     </>
   );

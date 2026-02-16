@@ -9,18 +9,36 @@ import { Users } from "lucide-react";
 import { useState } from "react";
 
 export default function UsersPage() {
-  const [search, setSearch] = useState("");
+  const [roleFilter, setRoleFilter] = useState("all");
 
   return (
     <>
       <AppBar title="إدارة المستخدمين" breadcrumbs={[{ label: "المشرف العام", href: "/admin/dashboard" }, { label: "المستخدمون" }]} />
-      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-4">
-        <SearchInput placeholder="ابحث بالاسم أو رقم الهاتف..." onSearch={setSearch} />
-        <Card variant="outlined" padding="none">
+      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
+        <SearchInput placeholder="ابحث بالاسم أو رقم الهاتف..." onSearch={() => {}} />
+        <div className="flex flex-wrap gap-2">
+          {[
+            { value: "all", label: "الكل" },
+            { value: "traveler", label: "مسافر" },
+            { value: "campaign_owner", label: "صاحب حملة" },
+            { value: "campaign_staff", label: "فريق الحملة" },
+            { value: "admin", label: "مشرف" },
+          ].map((filter) => (
+            <button
+              key={filter.value}
+              type="button"
+              onClick={() => setRoleFilter(filter.value)}
+              className={`travel-filter-chip px-3 py-1.5 text-body-sm font-medium ${roleFilter === filter.value ? "travel-filter-chip-active" : ""}`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+        <Card variant="elevated" padding="none">
           <EmptyState
             icon={<Users className="h-16 w-16" />}
             title="لا يوجد مستخدمون"
-            description="سيظهر هنا المستخدمون المسجلون في المنصة"
+            description="ستظهر هنا حسابات المسافرين وأصحاب الحملات مع حالة التحقق"
           />
         </Card>
       </Container>

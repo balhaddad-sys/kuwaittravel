@@ -84,9 +84,9 @@ export default function LoginPage() {
   return (
     <>
       <div id="recaptcha-container" />
-      <Card variant="elevated" padding="lg">
+      <Card variant="elevated" padding="lg" className="travel-orbit-bg overflow-hidden">
         <div className="text-center mb-6 sm:mb-8">
-          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-navy-700">
+          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-gold-300/80 bg-navy-700 shadow-[0_0_0_6px_rgba(249,158,56,0.12)]">
             <Phone className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
           </div>
           <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
@@ -105,7 +105,7 @@ export default function LoginPage() {
           size="lg"
           loading={googleLoading}
           onClick={handleGoogleSignIn}
-          className="mb-4"
+          className="mb-4 border-surface-border/90 bg-white/92 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]"
         >
           <GoogleIcon className="h-5 w-5 me-2" />
           {t("الدخول بحساب Google", "Continue with Google")}
@@ -114,7 +114,7 @@ export default function LoginPage() {
         {/* Divider */}
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-navy-200 dark:border-navy-600" />
+            <div className="w-full travel-divider" />
           </div>
           <div className="relative flex justify-center text-body-sm">
             <span className="bg-white dark:bg-navy-800 px-3 text-navy-400">{t("أو", "or")}</span>

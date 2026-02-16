@@ -85,7 +85,16 @@ export default function OnboardingPage() {
 
   if (step === "role") {
     return (
-      <Card variant="elevated" padding="lg">
+      <Card variant="elevated" padding="lg" className="travel-orbit-bg overflow-hidden">
+        <div className="mb-6 rounded-[var(--radius-lg)] border border-gold-200/70 bg-gold-50/75 px-4 py-3 dark:border-gold-800/45 dark:bg-gold-900/20">
+          <div className="flex items-center justify-between text-body-sm font-medium text-gold-700 dark:text-gold-300">
+            <span>{t("الخطوة 1 من 2", "Step 1 of 2")}</span>
+            <span>{t("اختيار الدور", "Select Role")}</span>
+          </div>
+          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-gold-100/80 dark:bg-gold-900/50">
+            <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-gold-400 to-gold-500" />
+          </div>
+        </div>
         <div className="text-center mb-8">
           <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
             {t("أهلاً وسهلاً", "Welcome")}
@@ -98,10 +107,10 @@ export default function OnboardingPage() {
         <div className="space-y-3">
           <button
             onClick={() => handleRoleSelect("traveler")}
-            className="travel-panel flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-navy-300 hover:bg-navy-50/40 dark:hover:border-navy-600"
+            className="travel-panel animate-stagger-in flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-navy-300 hover:bg-navy-50/40 dark:hover:border-navy-600"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-100">
-              <UserCircle className="h-6 w-6 text-navy-700" />
+            <div className="travel-icon-circle travel-icon-circle-lg border-navy-200/80 bg-gradient-to-br from-navy-100 to-navy-200">
+              <UserCircle className="h-7 w-7 text-navy-700" />
             </div>
             <div>
               <p className="text-body-lg font-semibold text-navy-900 dark:text-white">{t("مسافر", "Traveler")}</p>
@@ -111,10 +120,10 @@ export default function OnboardingPage() {
 
           <button
             onClick={() => handleRoleSelect("campaign_owner")}
-            className="travel-panel flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-gold-300/80 hover:bg-gold-50/50 dark:hover:border-gold-700/60 dark:hover:bg-gold-900/20"
+            className="travel-panel animate-stagger-in stagger-delay-2 flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-gold-300/80 hover:bg-gold-50/50 dark:hover:border-gold-700/60 dark:hover:bg-gold-900/20"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-100">
-              <Building2 className="h-6 w-6 text-gold-700" />
+            <div className="travel-icon-circle travel-icon-circle-lg travel-icon-circle-gold">
+              <Building2 className="h-7 w-7 text-gold-700" />
             </div>
             <div>
               <p className="text-body-lg font-semibold text-navy-900 dark:text-white">{t("مدير حملة", "Campaign Owner")}</p>
@@ -127,7 +136,16 @@ export default function OnboardingPage() {
   }
 
   return (
-    <Card variant="elevated" padding="lg">
+    <Card variant="elevated" padding="lg" className="travel-orbit-bg overflow-hidden">
+      <div className="mb-6 rounded-[var(--radius-lg)] border border-gold-200/70 bg-gold-50/75 px-4 py-3 dark:border-gold-800/45 dark:bg-gold-900/20">
+        <div className="flex items-center justify-between text-body-sm font-medium text-gold-700 dark:text-gold-300">
+          <span>{t("الخطوة 2 من 2", "Step 2 of 2")}</span>
+          <span>{t("بيانات الملف", "Profile Info")}</span>
+        </div>
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-gold-100/80 dark:bg-gold-900/50">
+          <div className="h-full w-full rounded-full bg-gradient-to-r from-gold-400 to-gold-500" />
+        </div>
+      </div>
       <div className="text-center mb-8">
         <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
           {t("أكمل ملفك الشخصي", "Complete Your Profile")}

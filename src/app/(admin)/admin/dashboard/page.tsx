@@ -18,18 +18,21 @@ export default function AdminDashboardPage() {
         title={t("لوحة تحكم المشرف", "Admin Dashboard")}
         breadcrumbs={[{ label: t("المشرف العام", "Admin Console") }, { label: t("لوحة التحكم", "Dashboard") }]}
       />
-      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          <StatCard title={t("إجمالي الحملات", "Total Campaigns")} value="0" icon={<Building2 className="h-6 w-6" />} />
-          <StatCard title={t("إجمالي المستخدمين", "Total Users")} value="0" icon={<Users className="h-6 w-6" />} />
-          <StatCard title={t("GMV (د.ك)", "GMV (KWD)")} value={formatKWD(0)} icon={<Wallet className="h-6 w-6" />} />
-          <StatCard title={t("الرحلات النشطة", "Active Trips")} value="0" icon={<Map className="h-6 w-6" />} />
+          <StatCard title={t("إجمالي الحملات", "Total Campaigns")} value="0" icon={<Building2 className="h-6 w-6" />} className="animate-stagger-in" hoverable />
+          <StatCard title={t("إجمالي المستخدمين", "Total Users")} value="0" icon={<Users className="h-6 w-6" />} className="animate-stagger-in stagger-delay-1" hoverable />
+          <StatCard title={t("GMV (د.ك)", "GMV (KWD)")} value={formatKWD(0)} icon={<Wallet className="h-6 w-6" />} className="animate-stagger-in stagger-delay-2" hoverable />
+          <StatCard title={t("الرحلات النشطة", "Active Trips")} value="0" icon={<Map className="h-6 w-6" />} className="animate-stagger-in stagger-delay-3" hoverable />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
-          <Card variant="elevated" padding="lg">
+          <Card variant="elevated" padding="lg" className="travel-glow">
             <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
-              <Building2 className="h-5 w-5 text-warning" /> {t("حملات بانتظار التحقق", "Campaigns Pending Verification")}
+              <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
+                <Building2 className="h-4 w-4" />
+              </span>
+              {t("حملات بانتظار التحقق", "Campaigns Pending Verification")}
             </h3>
             <EmptyState
               icon={<Building2 className="h-12 w-12" />}
@@ -39,9 +42,12 @@ export default function AdminDashboardPage() {
             />
           </Card>
 
-          <Card variant="elevated" padding="lg">
+          <Card variant="elevated" padding="lg" className="travel-glow">
             <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-error" /> {t("نزاعات مفتوحة", "Open Disputes")}
+              <span className="travel-icon-circle travel-icon-circle-sm border-error/30 text-error dark:border-error/40">
+                <AlertTriangle className="h-4 w-4" />
+              </span>
+              {t("نزاعات مفتوحة", "Open Disputes")}
             </h3>
             <EmptyState
               icon={<AlertTriangle className="h-12 w-12" />}
@@ -52,22 +58,24 @@ export default function AdminDashboardPage() {
           </Card>
         </div>
 
-        <Card variant="elevated" padding="lg">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-success" /> {t("ملخص الإيرادات", "Revenue Summary")}
-          </h3>
+        <Card variant="elevated" padding="lg" className="overflow-hidden">
+          <div className="-mx-6 -mt-6 mb-4 border-b border-surface-border/80 bg-gradient-to-r from-navy-700 to-navy-900 px-6 py-3 text-white dark:border-surface-dark-border/80">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-gold-300" /> {t("ملخص الإيرادات", "Revenue Summary")}
+            </h3>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <div>
               <p className="text-body-sm text-navy-500">{t("إجمالي GMV", "Total GMV")}</p>
-              <p className="text-heading-md sm:text-heading-lg font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
+              <p className="tabular-nums text-heading-md sm:text-heading-lg font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
             </div>
             <div>
               <p className="text-body-sm text-navy-500">{t("عمولة المنصة (2%)", "Platform Fee (2%)")}</p>
-              <p className="text-heading-md sm:text-heading-lg font-bold text-success">{formatKWD(0)}</p>
+              <p className="tabular-nums text-heading-md sm:text-heading-lg font-bold text-success">{formatKWD(0)}</p>
             </div>
             <div>
               <p className="text-body-sm text-navy-500">{t("المدفوعات للحملات", "Campaign Payouts")}</p>
-              <p className="text-heading-md sm:text-heading-lg font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
+              <p className="tabular-nums text-heading-md sm:text-heading-lg font-bold text-navy-900 dark:text-white">{formatKWD(0)}</p>
             </div>
           </div>
         </Card>

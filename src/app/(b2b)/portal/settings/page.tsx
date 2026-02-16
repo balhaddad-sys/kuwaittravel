@@ -17,7 +17,7 @@ export default function SettingsPage() {
         title="الإعدادات"
         breadcrumbs={[{ label: "بوابة الحملة", href: "/portal/dashboard" }, { label: "الإعدادات" }]}
       />
-      <Container size="md" className="py-6 space-y-6">
+      <Container size="md" className="travel-orbit-bg py-6 space-y-6">
         <Card variant="elevated" padding="lg" className="space-y-4">
           <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">البيانات البنكية</h3>
           <Input label="اسم البنك" placeholder="بنك الكويت الوطني" />

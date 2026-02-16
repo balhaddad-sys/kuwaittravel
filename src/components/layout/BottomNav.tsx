@@ -9,6 +9,7 @@ interface BottomNavItem {
   href: string;
   icon: React.ReactNode;
   activeIcon?: React.ReactNode;
+  notification?: boolean;
 }
 
 interface BottomNavProps {
@@ -32,7 +33,7 @@ function BottomNav({ items }: BottomNavProps) {
               className={cn(
                 "group relative flex min-w-[64px] flex-col items-center justify-center gap-0.5 rounded-xl px-3 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
                 isActive
-                  ? "border border-navy-200/90 bg-gradient-to-b from-white/95 to-navy-50/84 text-navy-700 shadow-[0_8px_20px_rgba(16,39,73,0.14)] dark:border-navy-700 dark:from-surface-dark-card/95 dark:to-navy-900/34 dark:text-gold-300"
+                  ? "scale-[1.05] border border-navy-200/90 bg-gradient-to-b from-white/95 to-navy-50/84 text-navy-700 shadow-[0_8px_20px_rgba(16,39,73,0.14)] dark:border-navy-700 dark:from-surface-dark-card/95 dark:to-navy-900/34 dark:text-gold-300"
                   : "border border-transparent text-navy-500 hover:text-navy-700 dark:text-navy-400 dark:hover:text-navy-200"
               )}
             >
@@ -42,6 +43,9 @@ function BottomNav({ items }: BottomNavProps) {
               <span className="h-6 w-6">
                 {isActive && item.activeIcon ? item.activeIcon : item.icon}
               </span>
+              {item.notification && (
+                <span className="absolute end-4 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-surface-dark-card" />
+              )}
               <span className={cn("text-[11px]", isActive && "font-semibold")}>
                 {item.label}
               </span>

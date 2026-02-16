@@ -68,19 +68,19 @@ export default function ProfilePage() {
             <button
               key={i}
               onClick={() => router.push(item.href)}
-              className="flex w-full items-center gap-3 rounded-[var(--radius-md)] px-4 py-3.5 text-start transition-colors hover:bg-surface-muted dark:hover:bg-surface-dark-card"
+              className="group flex w-full items-center gap-3 rounded-[var(--radius-md)] px-4 py-3.5 text-start transition-colors hover:bg-surface-muted dark:hover:bg-surface-dark-card"
             >
               <item.icon className="h-5 w-5 text-navy-500 shrink-0" />
               <span className="flex-1 text-body-md text-navy-700 dark:text-navy-200">
                 {t(item.labelAr, item.labelEn)}
               </span>
-              <ChevronLeft className="h-4 w-4 text-navy-400 rtl:rotate-180" />
+              <ChevronLeft className="h-4 w-4 text-gold-500/85 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
             </button>
           ))}
         </Card>
 
         {showAdminShortcut && (
-          <Card variant="outlined" padding="md">
+          <Card variant="outlined" padding="md" className="border-gold-300/65 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] dark:border-gold-800/45 dark:shadow-[0_0_0_1px_rgba(249,158,56,0.08)]">
             <button
               onClick={() => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login")}
               className="flex w-full items-center gap-3 rounded-[var(--radius-md)] text-start"
@@ -118,7 +118,7 @@ export default function ProfilePage() {
         <Button
           variant="ghost"
           fullWidth
-          className="text-error hover:bg-error-light"
+          className="border border-error/25 bg-[linear-gradient(110deg,rgba(255,255,255,0.5),rgba(251,225,225,0.66),rgba(255,255,255,0.5))] text-error hover:bg-error-light dark:border-error/35 dark:bg-[linear-gradient(110deg,rgba(213,83,83,0.12),rgba(213,83,83,0.22),rgba(213,83,83,0.12))]"
           leftIcon={<LogOut className="h-5 w-5" />}
           onClick={handleLogout}
         >

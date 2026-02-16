@@ -107,7 +107,7 @@ export default function MyTripsPage() {
 
   return (
     <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
-      <div className="border-b border-surface-border bg-white/78 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/74 sm:pt-12">
+      <div className="travel-cover-pattern border-b border-surface-border bg-white/78 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/74 sm:pt-12">
         <Container>
           <h1 className="travel-title text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">
             {t("رحلاتي", "My Trips")}
@@ -117,10 +117,10 @@ export default function MyTripsPage() {
               <button
                 key={t}
                 onClick={() => setTab(t)}
-                className={`px-4 py-2 rounded-[var(--radius-chip)] text-body-sm font-medium transition-all ${
+                className={`travel-filter-chip px-4 py-2 text-body-sm font-medium ${
                   tab === t
-                    ? "bg-gradient-to-br from-navy-600 to-navy-700 text-white"
-                    : "bg-surface-muted text-navy-600 dark:bg-surface-dark-card dark:text-navy-300"
+                    ? "travel-filter-chip-active"
+                    : ""
                 }`}
               >
                 {t === "upcoming"
@@ -141,12 +141,18 @@ export default function MyTripsPage() {
           <div className="space-y-3">
             {filteredBookings.map((booking) => {
               const statusInfo = statusLabels[booking.status] || statusLabels.confirmed;
+              const accentClass =
+                booking.status === "confirmed" ? "bg-success/85" :
+                booking.status === "pending_payment" ? "bg-warning/85" :
+                booking.status === "cancelled" ? "bg-error/85" :
+                "bg-info/85";
               const departureLabel = booking.tripDepartureDate
                 ? formatDate(booking.tripDepartureDate)
                 : t("غير محدد", "Not set");
 
               return (
-                <Card key={booking.id} variant="elevated" padding="md" hoverable onClick={() => router.push(`/app/my-trips/${booking.id}`)}>
+                <Card key={booking.id} variant="elevated" padding="md" hoverable onClick={() => router.push(`/app/my-trips/${booking.id}`)} className="relative overflow-hidden">
+                  <span className={`absolute inset-y-2 start-0 w-1 rounded-full ${accentClass}`} />
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className="hidden h-14 w-14 items-center justify-center rounded-[var(--radius-lg)] bg-navy-100 dark:bg-navy-800 sm:flex">
                       <MapPin className="h-6 w-6 text-navy-500" />

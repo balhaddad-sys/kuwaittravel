@@ -4,6 +4,7 @@ interface BadgeProps {
   variant?: "default" | "success" | "warning" | "error" | "info" | "gold";
   size?: "sm" | "md";
   children: React.ReactNode;
+  dot?: boolean;
   className?: string;
 }
 
@@ -13,7 +14,7 @@ const variantMap = {
   warning: "bg-warning-light text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/60",
   error: "bg-error-light text-red-800 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
   info: "bg-info-light text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800/60",
-  gold: "travel-chip",
+  gold: "travel-chip travel-gold-shimmer bg-[linear-gradient(110deg,rgba(255,234,205,0.8),rgba(255,248,237,0.96),rgba(255,213,157,0.78),rgba(255,248,237,0.96))] dark:bg-[linear-gradient(110deg,rgba(126,63,20,0.34),rgba(95,49,18,0.22),rgba(161,82,20,0.28),rgba(95,49,18,0.22))]",
 };
 
 const sizeMap = {
@@ -21,7 +22,16 @@ const sizeMap = {
   md: "px-2.5 py-1 text-body-sm",
 };
 
-function Badge({ variant = "default", size = "md", children, className }: BadgeProps) {
+const dotMap = {
+  default: "bg-navy-500 dark:bg-navy-300",
+  success: "bg-success",
+  warning: "bg-warning",
+  error: "bg-error",
+  info: "bg-info",
+  gold: "bg-gold-500 dark:bg-gold-400",
+};
+
+function Badge({ variant = "default", size = "md", children, dot = false, className }: BadgeProps) {
   return (
     <span
       className={cn(
@@ -31,6 +41,7 @@ function Badge({ variant = "default", size = "md", children, className }: BadgeP
         className
       )}
     >
+      {dot && <span className={cn("me-1.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full", dotMap[variant])} />}
       {children}
     </span>
   );

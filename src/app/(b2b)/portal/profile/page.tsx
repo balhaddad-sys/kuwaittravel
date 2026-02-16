@@ -46,10 +46,10 @@ export default function ProfilePage() {
           )
         }
       />
-      <Container size="md" className="py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container size="md" className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Cover + Avatar */}
         <Card variant="elevated" padding="none">
-          <div className="relative h-32 sm:h-48 bg-gradient-to-l from-navy-700 to-navy-900 rounded-t-[var(--radius-card)]">
+          <div className="travel-cover-pattern relative h-32 sm:h-48 rounded-t-[var(--radius-card)] bg-gradient-to-l from-navy-700 via-navy-800 to-navy-900">
             {editing && (
               <button className="absolute top-4 end-4 flex items-center gap-1.5 rounded-lg bg-black/40 px-3 py-1.5 text-body-sm text-white hover:bg-black/60 transition-colors">
                 <Camera className="h-4 w-4" /> تغيير الغلاف
@@ -59,7 +59,7 @@ export default function ProfilePage() {
           <div className="relative px-4 sm:px-6 pb-4 sm:pb-6">
             <div className="-mt-10 sm:-mt-12 flex items-end gap-3 sm:gap-4">
               <div className="relative">
-                <Avatar size="xl" className="border-4 border-white dark:border-surface-dark-card h-20 w-20 sm:h-24 sm:w-24" />
+                <Avatar size="xl" ring className="border-4 border-white dark:border-surface-dark-card h-20 w-20 sm:h-24 sm:w-24" />
                 {editing && (
                   <button className="absolute bottom-0 end-0 flex h-8 w-8 items-center justify-center rounded-full bg-navy-700 text-white hover:bg-navy-600">
                     <Camera className="h-4 w-4" />
@@ -95,13 +95,16 @@ export default function ProfilePage() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-navy-600 dark:text-navy-300">
-                  <Phone className="h-4 w-4 text-navy-400 shrink-0" /> <span className="truncate">{profile.contactPhone || "—"}</span>
+                  <span className="travel-icon-circle travel-icon-circle-sm"><Phone className="h-3.5 w-3.5 text-navy-500 shrink-0" /></span>
+                  <span className="truncate">{profile.contactPhone || "—"}</span>
                 </div>
                 <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-navy-600 dark:text-navy-300">
-                  <Mail className="h-4 w-4 text-navy-400 shrink-0" /> <span className="truncate">{profile.contactEmail || "—"}</span>
+                  <span className="travel-icon-circle travel-icon-circle-sm"><Mail className="h-3.5 w-3.5 text-navy-500 shrink-0" /></span>
+                  <span className="truncate">{profile.contactEmail || "—"}</span>
                 </div>
                 <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-navy-600 dark:text-navy-300">
-                  <Globe className="h-4 w-4 text-navy-400 shrink-0" /> <span className="truncate">{profile.website || "—"}</span>
+                  <span className="travel-icon-circle travel-icon-circle-sm"><Globe className="h-3.5 w-3.5 text-navy-500 shrink-0" /></span>
+                  <span className="truncate">{profile.website || "—"}</span>
                 </div>
               </div>
             </div>
@@ -109,7 +112,7 @@ export default function ProfilePage() {
         </Card>
 
         {/* License */}
-        <Card variant="outlined" padding="lg">
+        <Card variant="outlined" padding="lg" className="border-gold-300/70 dark:border-gold-800/45">
           <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-2">رقم الترخيص</h3>
           <p className="text-body-md sm:text-body-lg font-mono text-navy-600 dark:text-navy-300">{profile.licenseNumber || "—"}</p>
         </Card>

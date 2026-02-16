@@ -48,13 +48,13 @@ function AppBar({
             <nav className="hidden items-center gap-1.5 text-body-sm text-navy-400 sm:flex">
               {breadcrumbs.map((crumb, i) => (
                 <span key={i} className="flex items-center gap-1.5">
-                  {i > 0 && <span>/</span>}
+                  {i > 0 && <span className="text-navy-300 dark:text-navy-500">›</span>}
                   {crumb.href ? (
                     <Link href={crumb.href} prefetch className="transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-navy-600">
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className="text-navy-600 dark:text-navy-300">{crumb.label}</span>
+                    <span className="font-semibold text-navy-700 dark:text-navy-200">{crumb.label}</span>
                   )}
                 </span>
               ))}

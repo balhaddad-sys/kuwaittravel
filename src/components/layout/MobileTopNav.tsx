@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
@@ -12,6 +13,25 @@ interface MobileTopNavProps {
 
 export function MobileTopNav({ items, className }: MobileTopNavProps) {
   const pathname = usePathname();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const activeItemRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current || !activeItemRef.current) return;
+    const container = containerRef.current;
+    const activeItem = activeItemRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const activeRect = activeItem.getBoundingClientRect();
+    const nextScrollLeft =
+      activeItem.offsetLeft - container.clientWidth / 2 + activeItem.clientWidth / 2;
+
+    if (
+      activeRect.left < containerRect.left + 20 ||
+      activeRect.right > containerRect.right - 20
+    ) {
+      container.scrollTo({ left: nextScrollLeft, behavior: "smooth" });
+    }
+  }, [pathname]);
 
   return (
     <nav
@@ -20,24 +40,31 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
         className
       )}
     >
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div
+        ref={containerRef}
+        className="flex items-center gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {items.map((item) => {
           const isActive =
             pathname === item.href || (pathname ?? "").startsWith(item.href + "/");
 
           return (
             <Link
+              ref={isActive ? activeItemRef : null}
               key={item.href}
               href={item.href}
               prefetch
               className={cn(
-                "shrink-0 rounded-full border px-3.5 py-2 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
+                "relative shrink-0 rounded-full border px-3.5 py-2 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
                 isActive
                   ? "border-navy-500/70 bg-gradient-to-br from-navy-700 to-navy-800 text-white shadow-[0_8px_18px_rgba(16,39,73,0.3)]"
                   : "border-surface-border/90 bg-white/85 text-navy-700 dark:border-surface-dark-border/90 dark:bg-surface-dark-card/85 dark:text-navy-100"
               )}
             >
               {item.label}
+              {isActive && (
+                <span className="pointer-events-none absolute inset-x-4 bottom-1 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-300 to-transparent" />
+              )}
             </Link>
           );
         })}

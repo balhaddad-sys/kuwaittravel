@@ -22,6 +22,12 @@ interface SidebarProps {
 function Sidebar({ items, header, footer }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const dividerIndices =
+    items.length >= 9
+      ? new Set([4, 7])
+      : items.length >= 7
+        ? new Set([4])
+        : new Set<number>();
 
   return (
     <aside
@@ -48,52 +54,57 @@ function Sidebar({ items, header, footer }: SidebarProps) {
 
       {/* Nav Items */}
       <nav className="relative flex-1 space-y-1.5 overflow-y-auto p-3">
-        {items.map((item) => {
+        {items.map((item, index) => {
           const isActive = pathname === item.href || (pathname ?? "").startsWith(item.href + "/");
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              prefetch
-              className={cn(
-                "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
-                isActive
-                  ? "border border-navy-500/70 bg-gradient-to-br from-navy-700 via-navy-700 to-navy-800 font-medium text-white shadow-[0_12px_28px_rgba(16,39,73,0.36)]"
-                  : "border border-transparent text-navy-700 hover:border-navy-200/80 hover:bg-white/65 hover:text-navy-900 dark:text-navy-200 dark:hover:border-navy-700 dark:hover:bg-surface-dark-card/72 dark:hover:text-white"
+            <div key={item.href}>
+              {dividerIndices.has(index) && (
+                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-navy-200/70 to-transparent dark:via-navy-700/60" />
               )}
-              title={collapsed ? item.label : undefined}
-            >
-              {isActive && (
-                <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-gold-300/90" />
-              )}
-              <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-gold-200")}>
-                {item.icon}
-              </span>
-              {!collapsed && (
-                <>
-                  <span className="flex-1 truncate">{item.label}</span>
-                  {item.badge !== undefined && (
-                    <span
-                      className={cn(
-                        "flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold",
-                        isActive
-                          ? "bg-white/18 text-white"
-                          : "travel-chip"
-                      )}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
-                </>
-              )}
-            </Link>
+              <Link
+                href={item.href}
+                prefetch
+                className={cn(
+                  "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
+                  isActive
+                    ? "border border-navy-500/70 bg-gradient-to-br from-navy-700 via-navy-700 to-navy-800 font-medium text-white shadow-[0_12px_28px_rgba(16,39,73,0.36)]"
+                    : "border border-transparent text-navy-700 hover:border-navy-200/80 hover:bg-white/65 hover:text-navy-900 dark:text-navy-200 dark:hover:border-navy-700 dark:hover:bg-surface-dark-card/72 dark:hover:text-white"
+                )}
+                title={collapsed ? item.label : undefined}
+              >
+                {isActive && (
+                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-gold-300/90" />
+                )}
+                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-gold-200")}>
+                  {item.icon}
+                </span>
+                {!collapsed && (
+                  <>
+                    <span className="flex-1 truncate">{item.label}</span>
+                    {item.badge !== undefined && (
+                      <span
+                        className={cn(
+                          "flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold",
+                          isActive
+                            ? "bg-white/18 text-white"
+                            : "travel-chip"
+                        )}
+                      >
+                        {item.badge}
+                      </span>
+                    )}
+                  </>
+                )}
+              </Link>
+            </div>
           );
         })}
       </nav>
 
       {/* Footer */}
       {footer && !collapsed && (
-        <div className="border-t border-surface-border/85 p-4 dark:border-surface-dark-border/85">
+        <div className="relative border-t border-surface-border/85 p-4 dark:border-surface-dark-border/85">
+          <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/75 to-transparent" />
           {footer}
         </div>
       )}

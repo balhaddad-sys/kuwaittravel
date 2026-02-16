@@ -135,7 +135,7 @@ export default function DiscoverPage() {
 
   return (
     <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
-      <section className="relative border-b border-surface-border/70 bg-gradient-to-br from-navy-800 via-navy-700 to-navy-900 px-4 pb-8 pt-8 sm:pb-10 sm:pt-12">
+      <section className="travel-gradient-hero relative border-b border-surface-border/70 px-4 pb-8 pt-8 sm:pb-10 sm:pt-12">
         <Container>
           <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
@@ -162,19 +162,19 @@ export default function DiscoverPage() {
             </div>
 
             <div className="grid grid-cols-3 gap-2 rounded-2xl border border-white/15 bg-white/10 p-3 backdrop-blur-md lg:grid-cols-1 lg:gap-3 lg:rounded-3xl lg:p-4">
-              <div className="rounded-xl border border-white/15 bg-white/8 p-3 lg:rounded-2xl lg:p-4">
+              <div className="rounded-xl border border-white/24 bg-white/8 p-3 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] lg:rounded-2xl lg:p-4">
                 <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
                   {t("رحلات", "Trips")}
                 </p>
                 <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{filteredTrips.length}</p>
               </div>
-              <div className="rounded-xl border border-white/15 bg-white/8 p-3 lg:rounded-2xl lg:p-4">
+              <div className="rounded-xl border border-white/24 bg-white/8 p-3 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] lg:rounded-2xl lg:p-4">
                 <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
                   {t("حملات", "Campaigns")}
                 </p>
                 <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{campaigns.length}</p>
               </div>
-              <div className="rounded-xl border border-white/15 bg-white/8 p-3 lg:rounded-2xl lg:p-4">
+              <div className="rounded-xl border border-white/24 bg-white/8 p-3 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] lg:rounded-2xl lg:p-4">
                 <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
                   {t("وجهات", "Destinations")}
                 </p>
@@ -187,17 +187,22 @@ export default function DiscoverPage() {
 
       <Container className="relative space-y-6 py-6 sm:space-y-10 sm:py-8">
         <section>
-          <div className="mb-4 flex items-center gap-2">
-            <Globe2 className="h-5 w-5 text-gold-500" />
-            <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
-              {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
-            </h2>
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Globe2 className="h-5 w-5 text-gold-500" />
+              <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+                {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
+              </h2>
+            </div>
+            <button className="flex items-center gap-1 text-body-sm font-medium text-navy-500 transition-colors hover:text-navy-700 dark:hover:text-navy-100">
+              {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+            </button>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
             {destinations.map((dest) => (
               <button
                 key={dest.id}
-                className="travel-panel group rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-navy-200 hover:shadow-card-hover dark:hover:border-navy-600"
+                className="travel-panel group rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-200/80 hover:shadow-card-hover dark:hover:border-gold-700/45"
               >
                 <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-md">
                   <Compass className="h-4 w-4" />
@@ -261,11 +266,16 @@ export default function DiscoverPage() {
         </section>
 
         <section>
-          <div className="mb-4 flex items-center gap-2">
-            <Star className="h-5 w-5 text-gold-500" />
-            <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
-              {t("حملات موثوقة", "Trusted Campaigns")}
-            </h2>
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Star className="h-5 w-5 text-gold-500" />
+              <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+                {t("حملات موثوقة", "Trusted Campaigns")}
+              </h2>
+            </div>
+            <button className="flex items-center gap-1 text-body-sm font-medium text-navy-500 transition-colors hover:text-navy-700 dark:hover:text-navy-100">
+              {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+            </button>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {topCampaigns.map((campaign) => (

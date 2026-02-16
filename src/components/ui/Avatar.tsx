@@ -5,7 +5,9 @@ import { User } from "lucide-react";
 interface AvatarProps {
   src?: string | null;
   alt?: string;
+  name?: string;
   size?: "sm" | "md" | "lg" | "xl";
+  ring?: boolean;
   className?: string;
 }
 
@@ -23,7 +25,9 @@ const sizePx = {
   xl: 64,
 };
 
-function Avatar({ src, alt, size = "md", className }: AvatarProps) {
+function Avatar({ src, alt, name, size = "md", ring = false, className }: AvatarProps) {
+  const initial = (name || alt || "").trim().charAt(0).toUpperCase();
+
   if (src) {
     return (
       <Image
@@ -31,7 +35,12 @@ function Avatar({ src, alt, size = "md", className }: AvatarProps) {
         alt={alt || ""}
         width={sizePx[size]}
         height={sizePx[size]}
-        className={cn("rounded-full object-cover", sizeMap[size], className)}
+        className={cn(
+          "rounded-full object-cover",
+          ring && "ring-2 ring-white/90 ring-offset-2 ring-offset-transparent dark:ring-gold-300/40",
+          sizeMap[size],
+          className
+        )}
       />
     );
   }
@@ -39,12 +48,17 @@ function Avatar({ src, alt, size = "md", className }: AvatarProps) {
   return (
     <div
       className={cn(
-        "flex items-center justify-center rounded-full bg-navy-100 text-navy-500 dark:bg-navy-800 dark:text-navy-300",
+        "flex items-center justify-center rounded-full border border-navy-100/85 bg-gradient-to-br from-navy-100 to-navy-200 text-navy-700 dark:border-navy-700 dark:from-navy-700 dark:to-navy-900 dark:text-navy-100",
+        ring && "ring-2 ring-white/90 ring-offset-2 ring-offset-transparent dark:ring-gold-300/40",
         sizeMap[size],
         className
       )}
     >
-      <User className="h-1/2 w-1/2" />
+      {initial ? (
+        <span className="font-bold">{initial}</span>
+      ) : (
+        <User className="h-1/2 w-1/2" />
+      )}
     </div>
   );
 }

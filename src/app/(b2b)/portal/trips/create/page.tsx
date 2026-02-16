@@ -406,7 +406,7 @@ export default function CreateTripPage() {
         ]}
       />
 
-      <Container size="md" className="py-6">
+      <Container size="md" className="travel-orbit-bg py-6">
         <Card variant="elevated" padding="lg">
           <MultiStepForm
             steps={steps}

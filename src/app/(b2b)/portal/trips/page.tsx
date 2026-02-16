@@ -89,14 +89,16 @@ export default function TripsPage() {
         }
       />
 
-      <Container className="py-6 space-y-6">
+      <Container className="travel-orbit-bg py-6 space-y-6">
         {!userData?.campaignId && !loading && (
-          <EmptyState
-            icon={<Map className="h-16 w-16" />}
-            title="لا توجد حملة مرتبطة بالحساب"
-            description="أكمل تسجيل بيانات الحملة أولاً لبدء إدارة الرحلات."
-            action={{ label: "العودة للوحة التحكم", onClick: () => router.push("/portal/dashboard") }}
-          />
+          <div className="travel-section p-4">
+            <EmptyState
+              icon={<Map className="h-16 w-16" />}
+              title="لا توجد حملة مرتبطة بالحساب"
+              description="أكمل تسجيل بيانات الحملة أولاً لبدء إدارة الرحلات."
+              action={{ label: "العودة للوحة التحكم", onClick: () => router.push("/portal/dashboard") }}
+            />
+          </div>
         )}
 
         {/* Search and Filters */}
@@ -118,10 +120,10 @@ export default function TripsPage() {
                 <button
                   key={f.value}
                   onClick={() => setFilter(f.value as TripFilter)}
-                  className={`px-4 py-2 rounded-[var(--radius-chip)] text-body-sm font-medium transition-all ${
+                  className={`travel-filter-chip px-4 py-2 text-body-sm font-medium ${
                     filter === f.value
-                      ? "bg-navy-700 text-white"
-                      : "bg-surface-muted text-navy-600 hover:bg-navy-100 dark:bg-surface-dark-card dark:text-navy-300"
+                      ? "travel-filter-chip-active"
+                      : ""
                   }`}
                 >
                   {f.label}
@@ -159,12 +161,14 @@ export default function TripsPage() {
             ))}
           </div>
         ) : (
-          <EmptyState
-            icon={<Map className="h-16 w-16" />}
-            title="لا توجد رحلات"
-            description={searchQuery ? "لم يتم العثور على نتائج مطابقة" : "ابدأ بإنشاء رحلتك الأولى"}
-            action={!searchQuery ? { label: "إنشاء رحلة", onClick: () => router.push("/portal/trips/create") } : undefined}
-          />
+          <div className="travel-section p-4">
+            <EmptyState
+              icon={<Map className="h-16 w-16" />}
+              title="لا توجد رحلات"
+              description={searchQuery ? "لم يتم العثور على نتائج مطابقة" : "ابدأ بإنشاء رحلتك الأولى"}
+              action={!searchQuery ? { label: "إنشاء رحلة", onClick: () => router.push("/portal/trips/create") } : undefined}
+            />
+          </div>
         )}
       </Container>
 

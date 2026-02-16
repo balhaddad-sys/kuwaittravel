@@ -191,9 +191,26 @@
   ::-webkit-scrollbar-thumb {
     background: var(--color-navy-200);
     border-radius: 3px;
+    transition: background 0.2s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-navy-300);
   }
   .dark ::-webkit-scrollbar-thumb {
     background: var(--color-surface-dark-border);
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-navy-600);
+  }
+
+  /* Selection styling */
+  ::selection {
+    background: var(--color-gold-100);
+    color: var(--color-navy-900);
+  }
+  .dark ::selection {
+    background: var(--color-gold-800);
+    color: var(--color-gold-100);
   }
 }
 
@@ -231,9 +248,12 @@
   }
 
   .dark .travel-panel {
-    border-color: color-mix(in srgb, var(--color-surface-dark-border) 82%, transparent);
-    background: color-mix(in srgb, var(--color-surface-dark-card) 82%, transparent);
-    box-shadow: 0 20px 42px rgba(8, 23, 46, 0.34);
+    border-color: color-mix(in srgb, var(--color-surface-dark-border) 88%, transparent);
+    background: color-mix(in srgb, var(--color-surface-dark-card) 85%, transparent);
+    box-shadow:
+      0 20px 42px rgba(8, 23, 46, 0.34),
+      0 0 0 1px rgba(147, 190, 255, 0.08),
+      0 0 36px rgba(47, 103, 186, 0.1);
   }
 
   .travel-chip {
@@ -286,6 +306,195 @@
     box-shadow: 0 20px 42px rgba(8, 23, 46, 0.34);
   }
 
+  .travel-gradient-hero {
+    background: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-700) 40%, var(--color-navy-900) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .travel-gradient-hero::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(600px 300px at 15% 80%, rgba(249, 158, 56, 0.18), transparent 70%),
+      radial-gradient(500px 250px at 85% 20%, rgba(147, 190, 255, 0.14), transparent 70%);
+  }
+
+  .travel-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-gold-300) 56%, transparent),
+      transparent
+    );
+    border: none;
+  }
+
+  .dark .travel-divider {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-gold-700) 44%, transparent),
+      transparent
+    );
+  }
+
+  .travel-glow {
+    position: relative;
+  }
+
+  .travel-glow::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(249, 158, 56, 0.12), transparent 72%);
+    z-index: -1;
+  }
+
+  .dark .travel-glow::after {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(249, 158, 56, 0.08), transparent 72%);
+  }
+
+  /* Standardized icon containers */
+  .travel-icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    border: 1px solid color-mix(in srgb, var(--color-navy-100) 80%, transparent);
+    background: linear-gradient(
+      135deg,
+      white,
+      color-mix(in srgb, var(--color-navy-50) 72%, transparent)
+    );
+    color: var(--color-navy-500);
+    box-shadow: 0 2px 8px rgba(16, 39, 73, 0.06);
+  }
+
+  .dark .travel-icon-circle {
+    border-color: var(--color-navy-700);
+    background: linear-gradient(
+      135deg,
+      var(--color-surface-dark-card),
+      color-mix(in srgb, var(--color-navy-900) 42%, transparent)
+    );
+  }
+
+  .travel-icon-circle-sm { width: 2rem; height: 2rem; }
+  .travel-icon-circle-md { width: 2.5rem; height: 2.5rem; }
+  .travel-icon-circle-lg { width: 3rem; height: 3rem; }
+
+  .travel-icon-circle-gold {
+    border-color: color-mix(in srgb, var(--color-gold-200) 80%, transparent);
+    background: linear-gradient(
+      135deg,
+      var(--color-gold-50),
+      color-mix(in srgb, var(--color-gold-100) 72%, transparent)
+    );
+    color: var(--color-gold-600);
+  }
+
+  .dark .travel-icon-circle-gold {
+    border-color: var(--color-gold-800);
+    background: linear-gradient(135deg, rgba(126, 63, 20, 0.3), rgba(95, 49, 18, 0.2));
+    color: var(--color-gold-400);
+  }
+
+  .travel-stat-accent {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .travel-stat-accent::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0 2rem;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-gold-300) 72%, transparent),
+      transparent
+    );
+  }
+
+  .travel-filter-chip {
+    border: 1px solid color-mix(in srgb, var(--color-surface-border) 90%, transparent);
+    border-radius: var(--radius-chip);
+    background: color-mix(in srgb, white 84%, transparent);
+    color: var(--color-navy-600);
+    transition:
+      border-color var(--duration-ui) var(--ease-smooth),
+      background-color var(--duration-ui) var(--ease-smooth),
+      color var(--duration-ui) var(--ease-smooth),
+      transform var(--duration-ui) var(--ease-smooth);
+  }
+
+  .travel-filter-chip:hover {
+    border-color: color-mix(in srgb, var(--color-navy-300) 86%, transparent);
+    background: color-mix(in srgb, var(--color-navy-50) 72%, transparent);
+    color: var(--color-navy-700);
+  }
+
+  .travel-filter-chip-active {
+    border-color: color-mix(in srgb, var(--color-navy-500) 78%, transparent);
+    background: linear-gradient(135deg, var(--color-navy-700), var(--color-navy-800));
+    color: white;
+    box-shadow: 0 10px 22px rgba(16, 39, 73, 0.24);
+    position: relative;
+  }
+
+  .travel-filter-chip-active::after {
+    content: "";
+    position: absolute;
+    inset-inline: 12px;
+    bottom: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--color-gold-300), transparent);
+  }
+
+  .dark .travel-filter-chip {
+    border-color: color-mix(in srgb, var(--color-surface-dark-border) 90%, transparent);
+    background: color-mix(in srgb, var(--color-surface-dark-card) 78%, transparent);
+    color: var(--color-navy-300);
+  }
+
+  .dark .travel-filter-chip:hover {
+    border-color: color-mix(in srgb, var(--color-navy-600) 86%, transparent);
+    background: color-mix(in srgb, var(--color-navy-900) 58%, transparent);
+    color: var(--color-navy-100);
+  }
+
+  .travel-cover-pattern {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .travel-cover-pattern::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(460px 220px at 18% -12%, rgba(255, 255, 255, 0.22), transparent 70%),
+      radial-gradient(320px 180px at 84% 14%, rgba(249, 158, 56, 0.2), transparent 68%),
+      repeating-linear-gradient(128deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 14px);
+    z-index: -1;
+  }
+
+  .travel-gold-shimmer {
+    background-size: 180% 100%;
+    animation: gold-shimmer 2.8s ease-in-out infinite;
+  }
+
   .travel-title {
     text-wrap: balance;
     letter-spacing: 0.01em;
@@ -293,6 +502,11 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Tabular numbers for financial/stat displays */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 
   /* Skeleton shimmer animation */
@@ -421,6 +635,88 @@
     .page-transition-content {
       animation: none;
       transform: none;
+    }
+  }
+
+  /* Float animation for decorative elements */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Soft gold pulse for empty state icons */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(249, 158, 56, 0); }
+    50% { box-shadow: 0 0 0 8px rgba(249, 158, 56, 0.08); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Stat number entrance animation */
+  @keyframes count-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-count-up {
+    animation: count-up 0.5s var(--ease-smooth) both;
+  }
+
+  /* Staggered entrance for grid items */
+  @keyframes stagger-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .animate-stagger-in {
+    animation: stagger-in 0.4s var(--ease-smooth) both;
+  }
+
+  .stagger-delay-1 { animation-delay: 50ms; }
+  .stagger-delay-2 { animation-delay: 100ms; }
+  .stagger-delay-3 { animation-delay: 150ms; }
+  .stagger-delay-4 { animation-delay: 200ms; }
+
+  /* FAB entrance */
+  @keyframes fab-enter {
+    from { opacity: 0; transform: translateY(20px) scale(0.8); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .animate-fab-enter {
+    animation: fab-enter 0.4s var(--ease-emphasized) both;
+    animation-delay: 300ms;
+  }
+
+  @keyframes fab-idle-pulse {
+    0%, 100% {
+      box-shadow:
+        0 16px 38px rgba(8, 23, 46, 0.28),
+        0 0 0 0 rgba(249, 158, 56, 0);
+    }
+    50% {
+      box-shadow:
+        0 18px 42px rgba(8, 23, 46, 0.34),
+        0 0 0 8px rgba(249, 158, 56, 0.12);
+    }
+  }
+
+  .animate-fab-idle {
+    animation: fab-idle-pulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes gold-shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
     }
   }
 

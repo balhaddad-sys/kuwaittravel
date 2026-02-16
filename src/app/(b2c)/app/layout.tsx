@@ -17,7 +17,7 @@ export default function B2CLayout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { label: t("اكتشف", "Discover"), href: "/app/discover", icon: <Compass className="h-6 w-6" /> },
     { label: t("رحلاتي", "My Trips"), href: "/app/my-trips", icon: <Map className="h-6 w-6" /> },
-    { label: t("الإشعارات", "Alerts"), href: "/app/notifications", icon: <Bell className="h-6 w-6" /> },
+    { label: t("الإشعارات", "Alerts"), href: "/app/notifications", icon: <Bell className="h-6 w-6" />, notification: true },
     { label: t("حسابي", "Profile"), href: "/app/profile", icon: <User className="h-6 w-6" /> },
     ...(showAdminShortcut
       ? [{ label: t("الإدارة", "Admin"), href: hasAdminRole ? "/admin/dashboard" : "/admin-login", icon: <Shield className="h-6 w-6" /> }]
