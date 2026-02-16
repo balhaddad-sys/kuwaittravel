@@ -19,12 +19,12 @@ function StatCard({ title, value, change, icon, hoverable = false, className }: 
       variant="elevated"
       padding="lg"
       hoverable={hoverable}
-      className={cn("travel-stat-accent relative overflow-hidden", className)}
+      className={cn(className)}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-body-sm text-navy-500 dark:text-navy-300">{title}</p>
-          <p className="tabular-nums mt-1 text-heading-lg font-bold text-navy-900 animate-count-up dark:text-white sm:text-display-md">
+          <p className="tabular-nums mt-1 text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">
             {value}
           </p>
           {change && (

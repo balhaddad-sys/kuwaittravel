@@ -20,9 +20,9 @@ const paddingMap = {
 const variantMap = {
   elevated: "travel-panel",
   outlined:
-    "border border-surface-border bg-white/88 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/78",
+    "border border-surface-border bg-white dark:border-surface-dark-border dark:bg-surface-dark-card",
   filled:
-    "border border-surface-border/70 bg-surface-muted/90 dark:border-surface-dark-border/75 dark:bg-surface-dark-card/84",
+    "border border-surface-border bg-surface-muted dark:border-surface-dark-border dark:bg-surface-dark-card",
 };
 
 function Card({
@@ -45,7 +45,7 @@ function Card({
         hoverable &&
           "cursor-pointer will-change-transform hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-card-hover dark:hover:border-gold-600",
         variant === "outlined" &&
-          "hover:border-gold-300/90 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_12px_24px_rgba(20,28,40,0.1)] dark:hover:border-gold-700/45",
+          "hover:border-gold-300/90 hover:shadow-card-hover dark:hover:border-gold-700/45",
         isInteractive &&
           "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/35 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
         className
@@ -61,9 +61,6 @@ function Card({
         }
       }}
     >
-      {variant === "elevated" && (
-        <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/80 to-transparent" />
-      )}
       {children}
     </div>
   );

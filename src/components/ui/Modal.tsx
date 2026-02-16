@@ -45,10 +45,10 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
 
   return (
     <div className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4">
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm animate-fade-in" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/45 animate-fade-in" onClick={onClose} />
       <div
         className={cn(
-          "relative w-full overflow-hidden rounded-[var(--radius-xl)] bg-white dark:bg-surface-dark-card shadow-modal animate-scale-in",
+          "relative w-full overflow-hidden rounded-[var(--radius-xl)] border border-surface-border bg-white shadow-modal animate-scale-in dark:border-surface-dark-border dark:bg-surface-dark-card",
           sizeMap[size],
           className
         )}
@@ -56,7 +56,6 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
         aria-modal="true"
         aria-labelledby={title ? "modal-title" : undefined}
       >
-        <span className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/80 to-transparent" />
         {(title || description) && (
           <div className="flex items-start justify-between p-6 pb-0">
             <div>

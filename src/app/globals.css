@@ -76,24 +76,24 @@
 
   /* === BORDER RADIUS === */
   --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 18px;
-  --radius-2xl: 24px;
-  --radius-card: 16px;
-  --radius-btn: 16px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-card: 12px;
+  --radius-btn: 999px;
   --radius-input: 8px;
   --radius-chip: 999px;
   --radius-pill: 999px;
   --radius-fab: 999px;
 
   /* === SHADOWS === */
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
-  --shadow-sidebar: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-topbar: 0 6px 20px rgba(0, 0, 0, 0.08);
-  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.16);
-  --shadow-fab: 0 12px 28px rgba(0, 108, 228, 0.28);
+  --shadow-card: 0 2px 10px rgba(15, 17, 22, 0.05);
+  --shadow-card-hover: 0 10px 24px rgba(15, 17, 22, 0.1);
+  --shadow-sidebar: 0 8px 24px rgba(15, 17, 22, 0.08);
+  --shadow-topbar: 0 2px 10px rgba(15, 17, 22, 0.06);
+  --shadow-modal: 0 14px 44px rgba(15, 17, 22, 0.18);
+  --shadow-fab: 0 10px 24px rgba(0, 108, 228, 0.28);
 
   /* === Z-INDEX === */
   --z-dropdown: 50;
@@ -163,10 +163,7 @@
 
   body {
     background-color: var(--background);
-    background-image:
-      radial-gradient(920px 340px at -6% -10%, rgba(0, 108, 228, 0.08), transparent 72%),
-      radial-gradient(860px 300px at 106% -8%, rgba(34, 34, 34, 0.05), transparent 70%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 247, 249, 1));
+    background-image: none;
     color: var(--foreground);
     font-family: var(--font-arabic);
     -webkit-font-smoothing: antialiased;
@@ -174,10 +171,7 @@
   }
 
   .dark body {
-    background-image:
-      radial-gradient(980px 420px at -6% -8%, rgba(0, 108, 228, 0.15), transparent 74%),
-      radial-gradient(940px 400px at 106% -10%, rgba(143, 167, 204, 0.08), transparent 76%),
-      linear-gradient(180deg, rgba(15, 17, 22, 0.96), rgba(15, 17, 22, 1));
+    background-image: linear-gradient(180deg, rgba(15, 17, 22, 0.98), rgba(15, 17, 22, 1));
   }
 
   html[lang="en"] body {
@@ -241,44 +235,36 @@
   }
 
   .travel-shell-bg {
-    background-image:
-      radial-gradient(860px 340px at -8% -12%, rgba(0, 108, 228, 0.12), transparent 70%),
-      radial-gradient(780px 300px at 108% -8%, rgba(34, 34, 34, 0.05), transparent 70%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 249, 1));
+    background: #ffffff;
   }
 
   .dark .travel-shell-bg {
-    background-image:
-      radial-gradient(900px 340px at -10% -10%, rgba(0, 108, 228, 0.16), transparent 70%),
-      radial-gradient(840px 320px at 108% -8%, rgba(143, 167, 204, 0.08), transparent 72%),
-      linear-gradient(180deg, rgba(15, 17, 22, 0.95), rgba(15, 17, 22, 1));
+    background: #0f1116;
   }
 
   .travel-panel {
-    border: 1px solid color-mix(in srgb, var(--color-surface-border) 86%, transparent);
-    background: color-mix(in srgb, white 94%, transparent);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-surface-border);
+    background: #ffffff;
+    backdrop-filter: none;
     box-shadow: var(--shadow-card);
   }
 
   .dark .travel-panel {
-    border-color: color-mix(in srgb, var(--color-surface-dark-border) 88%, transparent);
-    background: color-mix(in srgb, var(--color-surface-dark-card) 88%, transparent);
-    box-shadow:
-      0 16px 36px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(0, 108, 228, 0.16);
+    border-color: var(--color-surface-dark-border);
+    background: var(--color-surface-dark-card);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
   }
 
   .travel-chip {
-    border: 1px solid color-mix(in srgb, var(--color-gold-300) 55%, transparent);
-    background: linear-gradient(135deg, rgba(224, 239, 255, 0.8), rgba(241, 247, 255, 0.96));
-    color: var(--color-gold-700);
+    border: 1px solid var(--color-surface-border);
+    background: #ffffff;
+    color: var(--color-navy-700);
   }
 
   .dark .travel-chip {
-    border-color: color-mix(in srgb, var(--color-gold-700) 64%, transparent);
-    background: linear-gradient(135deg, rgba(0, 67, 146, 0.28), rgba(0, 31, 68, 0.16));
-    color: var(--color-gold-300);
+    border-color: var(--color-surface-dark-border);
+    background: var(--color-surface-dark-card);
+    color: var(--color-navy-200);
   }
 
   .travel-orbit-bg {
@@ -291,68 +277,52 @@
     content: "";
     pointer-events: none;
     position: absolute;
-    inset: -20% -8% auto -12%;
-    height: 420px;
-    background:
-      radial-gradient(560px 240px at 8% 10%, rgba(0, 108, 228, 0.18), transparent 72%),
-      radial-gradient(560px 260px at 92% 6%, rgba(34, 34, 34, 0.08), transparent 74%);
+    inset: 0;
+    height: 0;
+    background: none;
     z-index: -1;
   }
 
   .dark .travel-orbit-bg::before {
-    background:
-      radial-gradient(560px 240px at 8% 10%, rgba(0, 108, 228, 0.18), transparent 72%),
-      radial-gradient(560px 260px at 92% 6%, rgba(143, 167, 204, 0.1), transparent 74%);
+    background: none;
   }
 
   .travel-section {
-    border: 1px solid color-mix(in srgb, var(--color-surface-border) 82%, transparent);
+    border: 1px solid var(--color-surface-border);
     border-radius: var(--radius-2xl);
-    background: color-mix(in srgb, white 84%, transparent);
+    background: #ffffff;
     box-shadow: var(--shadow-card);
-    backdrop-filter: blur(10px);
+    backdrop-filter: none;
   }
 
   .dark .travel-section {
-    border-color: color-mix(in srgb, var(--color-surface-dark-border) 84%, transparent);
-    background: color-mix(in srgb, var(--color-surface-dark-card) 82%, transparent);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+    border-color: var(--color-surface-dark-border);
+    background: var(--color-surface-dark-card);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
   }
 
   .travel-gradient-hero {
-    background: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-700) 40%, var(--color-navy-900) 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%);
     position: relative;
     overflow: hidden;
   }
 
+  .dark .travel-gradient-hero {
+    background: linear-gradient(180deg, #151a23 0%, #0f1116 100%);
+  }
+
   .travel-gradient-hero::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(600px 300px at 15% 80%, rgba(0, 108, 228, 0.22), transparent 70%),
-      radial-gradient(500px 250px at 85% 20%, rgba(197, 211, 233, 0.14), transparent 70%);
+    content: none;
   }
 
   .travel-divider {
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      color-mix(in srgb, var(--color-gold-300) 56%, transparent),
-      transparent
-    );
+    background: var(--color-surface-border);
     border: none;
   }
 
   .dark .travel-divider {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      color-mix(in srgb, var(--color-gold-500) 44%, transparent),
-      transparent
-    );
+    background: var(--color-surface-dark-border);
   }
 
   .travel-glow {
@@ -360,16 +330,11 @@
   }
 
   .travel-glow::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: -30%;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(0, 108, 228, 0.14), transparent 72%);
-    z-index: -1;
+    content: none;
   }
 
   .dark .travel-glow::after {
-    background: radial-gradient(50% 50% at 50% 50%, rgba(0, 108, 228, 0.16), transparent 72%);
+    background: none;
   }
 
   /* Standardized icon containers */
@@ -377,24 +342,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-lg);
-    border: 1px solid color-mix(in srgb, var(--color-navy-100) 80%, transparent);
-    background: linear-gradient(
-      135deg,
-      white,
-      color-mix(in srgb, var(--color-navy-50) 72%, transparent)
-    );
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-surface-border);
+    background: #ffffff;
     color: var(--color-navy-500);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: none;
   }
 
   .dark .travel-icon-circle {
-    border-color: var(--color-navy-700);
-    background: linear-gradient(
-      135deg,
-      var(--color-surface-dark-card),
-      color-mix(in srgb, var(--color-navy-900) 42%, transparent)
-    );
+    border-color: var(--color-surface-dark-border);
+    background: var(--color-surface-dark-card);
   }
 
   .travel-icon-circle-sm { width: 2rem; height: 2rem; }
@@ -402,19 +359,15 @@
   .travel-icon-circle-lg { width: 3rem; height: 3rem; }
 
   .travel-icon-circle-gold {
-    border-color: color-mix(in srgb, var(--color-gold-200) 80%, transparent);
-    background: linear-gradient(
-      135deg,
-      var(--color-gold-50),
-      color-mix(in srgb, var(--color-gold-100) 80%, white)
-    );
+    border-color: color-mix(in srgb, var(--color-gold-400) 40%, var(--color-surface-border));
+    background: var(--color-gold-50);
     color: var(--color-gold-600);
   }
 
   .dark .travel-icon-circle-gold {
-    border-color: var(--color-gold-800);
-    background: linear-gradient(135deg, rgba(0, 67, 146, 0.35), rgba(0, 31, 68, 0.2));
-    color: var(--color-gold-400);
+    border-color: var(--color-gold-700);
+    background: color-mix(in srgb, var(--color-gold-900) 30%, var(--color-surface-dark-card));
+    color: var(--color-gold-300);
   }
 
   .travel-stat-accent {
@@ -423,18 +376,7 @@
   }
 
   .travel-stat-accent::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0 2rem;
-    top: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      color-mix(in srgb, var(--color-gold-300) 72%, transparent),
-      transparent
-    );
+    content: none;
   }
 
   .travel-filter-chip {
@@ -456,21 +398,15 @@
   }
 
   .travel-filter-chip-active {
-    border-color: color-mix(in srgb, var(--color-navy-500) 78%, transparent);
-    background: linear-gradient(135deg, var(--color-gold-600), var(--color-gold-500));
+    border-color: var(--color-gold-600);
+    background: var(--color-gold-500);
     color: white;
-    box-shadow: 0 10px 22px rgba(0, 108, 228, 0.25);
+    box-shadow: none;
     position: relative;
   }
 
   .travel-filter-chip-active::after {
-    content: "";
-    position: absolute;
-    inset-inline: 12px;
-    bottom: 0;
-    height: 2px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, transparent, var(--color-gold-300), transparent);
+    content: none;
   }
 
   .dark .travel-filter-chip {
@@ -492,15 +428,7 @@
   }
 
   .travel-cover-pattern::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(460px 220px at 18% -12%, rgba(255, 255, 255, 0.22), transparent 70%),
-      radial-gradient(320px 180px at 84% 14%, rgba(0, 108, 228, 0.2), transparent 68%),
-      repeating-linear-gradient(128deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 14px);
-    z-index: -1;
+    content: none;
   }
 
   .travel-gold-shimmer {
@@ -511,42 +439,47 @@
   .trip-card {
     background: var(--clr-surface);
     border-radius: var(--radius-md);
+    border: 1px solid var(--color-surface-border);
     box-shadow: var(--shadow-card);
     overflow: hidden;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   }
 
   .trip-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-card-hover);
   }
 
   .inline-input {
-    background-color: #F3F4F7;
-    border: none;
-    border-bottom: 2px solid transparent;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-surface-border);
+    border-bottom: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-md);
     padding: 12px 16px;
     font-family: var(--font-arabic);
     transition:
-      border-bottom var(--transition-fast),
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast),
       background-color var(--transition-fast);
   }
 
   .inline-input:focus {
     outline: none;
-    border-bottom: 2px solid var(--clr-primary);
+    border-color: var(--clr-primary);
     background-color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(0, 108, 228, 0.12);
   }
 
   .dark .inline-input {
-    background-color: color-mix(in srgb, var(--color-surface-dark-card) 94%, transparent);
+    border-color: var(--color-surface-dark-border);
+    background-color: var(--color-surface-dark-card);
     color: var(--foreground);
   }
 
   .dark .inline-input:focus {
-    border-bottom-color: var(--clr-primary);
-    background-color: color-mix(in srgb, var(--color-surface-dark-card) 74%, transparent);
+    border-color: var(--clr-primary);
+    background-color: var(--color-surface-dark-card);
+    box-shadow: 0 0 0 4px rgba(0, 108, 228, 0.2);
   }
 
   .fab-button {
@@ -790,14 +723,7 @@
   }
 
   .travel-hero-glass::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.12) 100%),
-      radial-gradient(ellipse 70% 50% at 20% 100%, rgba(0, 108, 228, 0.16), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 0%, rgba(34, 34, 34, 0.08), transparent);
-    pointer-events: none;
+    content: none;
   }
 
   /* Elevated card with action accent */
@@ -807,29 +733,16 @@
   }
 
   .travel-card-premium::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    inset-inline: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-gold-400), var(--color-gold-500), var(--color-gold-400));
-    opacity: 0.7;
-    border-radius: 0 0 4px 4px;
+    content: none;
   }
 
   /* Mesh gradient background for sections */
   .travel-mesh-bg {
-    background:
-      radial-gradient(at 0% 0%, rgba(0, 108, 228, 0.08) 0%, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(34, 34, 34, 0.05) 0%, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(0, 108, 228, 0.04) 0%, transparent 50%);
+    background: transparent;
   }
 
   .dark .travel-mesh-bg {
-    background:
-      radial-gradient(at 0% 0%, rgba(0, 108, 228, 0.12) 0%, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(143, 167, 204, 0.07) 0%, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(0, 108, 228, 0.06) 0%, transparent 50%);
+    background: transparent;
   }
 
   /* Staggered entrance with configurable delay via CSS var */

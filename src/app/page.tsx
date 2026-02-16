@@ -55,8 +55,8 @@ export default function HomePage() {
         "Discover and book trips in minutes"
       ),
       icon: <PlaneTakeoff className="h-6 w-6" />,
-      gradient: "from-sky-500 via-blue-500 to-indigo-500",
-      shadowColor: "shadow-[0_8px_30px_rgba(0,108,228,0.3)]",
+      gradient: "from-sky-500 to-blue-600",
+      shadowColor: "shadow-[0_6px_16px_rgba(0,108,228,0.24)]",
       onClick: () => navigateTo("/app/discover"),
     },
     {
@@ -66,8 +66,8 @@ export default function HomePage() {
         "Manage trips, bookings, and documents"
       ),
       icon: <Building2 className="h-6 w-6" />,
-      gradient: "from-blue-500 via-indigo-500 to-violet-500",
-      shadowColor: "shadow-[0_8px_30px_rgba(67,96,229,0.3)]",
+      gradient: "from-blue-600 to-indigo-600",
+      shadowColor: "shadow-[0_6px_16px_rgba(67,96,229,0.24)]",
       onClick: () => navigateTo("/portal/dashboard"),
     },
     ...(canSeeAdminEntry
@@ -79,8 +79,8 @@ export default function HomePage() {
               "Dedicated entry for administrators"
             ),
             icon: <Shield className="h-6 w-6" />,
-            gradient: "from-slate-500 via-slate-600 to-slate-700",
-            shadowColor: "shadow-[0_8px_30px_rgba(60,74,96,0.3)]",
+            gradient: "from-slate-600 to-slate-700",
+            shadowColor: "shadow-[0_6px_16px_rgba(60,74,96,0.24)]",
             onClick: () =>
               navigateTo(
                 hasAdminRole ? "/admin/dashboard" : "/admin-login"
@@ -100,28 +100,11 @@ export default function HomePage() {
     <div
       className={`relative min-h-screen overflow-hidden bg-white transition-[opacity,transform] duration-[140ms] ease-out dark:bg-[#0f1116] ${exiting ? "scale-[0.97] opacity-0" : ""}`}
     >
-      {/* Background Effects */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* Large gradient orbs */}
-        <div className="absolute -top-[40%] end-[-20%] h-[800px] w-[800px] rounded-full bg-gradient-to-br from-gold-500/16 via-sky-400/10 to-transparent blur-[120px]" />
-        <div className="absolute -bottom-[30%] start-[-15%] h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-navy-400/10 via-gold-400/8 to-transparent blur-[100px]" />
-        <div className="absolute top-[20%] start-[40%] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-gold-400/8 to-transparent blur-[80px]" />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.028] dark:opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(34,34,34,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(34,34,34,0.07) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-5 sm:px-8 sm:py-8">
         {/* Top Bar */}
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 shadow-[0_4px_20px_rgba(0,108,228,0.3)]">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-500 to-gold-600 shadow-[0_4px_12px_rgba(0,108,228,0.2)]">
               <Compass className="h-5 w-5 text-white" />
             </span>
             <div>
@@ -135,7 +118,7 @@ export default function HomePage() {
         {/* Hero */}
         <div className="mt-10 flex flex-1 flex-col items-center justify-center text-center sm:mt-0">
           {/* Badge */}
-          <div className="animate-stagger-fade-up inline-flex items-center gap-2 rounded-full border border-gold-300/70 bg-gold-50/80 px-4 py-1.5 backdrop-blur-sm dark:border-gold-600/50 dark:bg-gold-900/20">
+          <div className="animate-stagger-fade-up inline-flex items-center gap-2 rounded-full border border-gold-300/70 bg-gold-50 px-4 py-1.5 dark:border-gold-600/50 dark:bg-gold-900/20">
             <Sparkles className="h-3.5 w-3.5 text-gold-500" />
             <span className="text-body-sm font-medium text-gold-700 dark:text-gold-300">
               {t("تجربة سفر فاخرة", "Premium Travel Experience")}
@@ -168,7 +151,7 @@ export default function HomePage() {
           >
             <button
               onClick={() => navigateTo("/login")}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_8px_30px_rgba(0,108,228,0.34)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,108,228,0.44)] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_6px_16px_rgba(0,108,228,0.25)] transition-all duration-300 hover:bg-gold-600 active:scale-[0.98]"
             >
               <PlaneTakeoff className="h-5 w-5" />
               {t("ابدأ الآن", "Start Now")}
@@ -176,7 +159,7 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => navigateTo("/app/discover")}
-              className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-white px-7 py-3.5 text-body-lg font-bold text-navy-700 shadow-[0_4px_18px_rgba(15,17,22,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-navy-50 hover:text-navy-900 active:scale-[0.98] dark:border-surface-dark-border dark:bg-surface-dark-card/80 dark:text-navy-100 dark:hover:border-navy-500 dark:hover:bg-navy-900/40"
+              className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-white px-7 py-3.5 text-body-lg font-bold text-navy-700 shadow-[0_2px_10px_rgba(15,17,22,0.06)] transition-all duration-300 hover:border-navy-300 hover:bg-navy-50 hover:text-navy-900 active:scale-[0.98] dark:border-surface-dark-border dark:bg-surface-dark-card/80 dark:text-navy-100 dark:hover:border-navy-500 dark:hover:bg-navy-900/40"
             >
               {t("استكشاف الرحلات", "Explore Trips")}
             </button>
@@ -209,16 +192,11 @@ export default function HomePage() {
             <button
               key={entry.title}
               onClick={entry.onClick}
-              className={`animate-stagger-fade-up group relative overflow-hidden rounded-2xl border border-surface-border bg-white/90 p-5 text-start shadow-[0_10px_28px_rgba(20,28,40,0.08)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-navy-300 hover:bg-white active:scale-[0.98] dark:border-surface-dark-border dark:bg-surface-dark-card/82 dark:hover:border-navy-500 dark:hover:bg-surface-dark-card/94 sm:rounded-3xl sm:p-6`}
+              className={`animate-stagger-fade-up group relative overflow-hidden rounded-2xl border border-surface-border bg-white p-5 text-start shadow-[0_4px_16px_rgba(20,28,40,0.07)] transition-all duration-300 hover:border-navy-300 hover:bg-white active:scale-[0.98] dark:border-surface-dark-border dark:bg-surface-dark-card dark:hover:border-navy-500 sm:rounded-3xl sm:p-6`}
               style={
                 { "--stagger-delay": `${500 + i * 100}ms` } as React.CSSProperties
               }
             >
-              {/* Card glow */}
-              <div
-                className={`pointer-events-none absolute -end-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br ${entry.gradient} opacity-10 blur-2xl transition-opacity duration-500 group-hover:opacity-20`}
-              />
-
               <div className="relative flex items-start gap-4">
                 <span
                   className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${entry.gradient} ${entry.shadowColor} text-white transition-transform duration-300 group-hover:scale-110`}

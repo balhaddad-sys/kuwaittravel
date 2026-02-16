@@ -28,17 +28,15 @@ function AppBar({
   return (
     <header
       className={cn(
-        "relative sticky top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-surface-border/80 bg-white/78 px-4 shadow-topbar backdrop-blur-md dark:border-surface-dark-border/80 dark:bg-surface-dark/72 sm:h-[72px] sm:gap-4 sm:px-6",
+        "sticky top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-surface-border bg-white px-4 shadow-topbar dark:border-surface-dark-border dark:bg-surface-dark-card sm:h-[72px] sm:gap-4 sm:px-6",
         className
       )}
     >
-      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/70 to-transparent" />
-      <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(760px_120px_at_10%_-20%,rgba(255,213,157,0.22),transparent)] dark:bg-[radial-gradient(760px_120px_at_10%_-20%,rgba(249,158,56,0.16),transparent)]" />
       <div className="flex min-w-0 items-center gap-2 sm:gap-3">
         {onMenuToggle && (
           <button
             onClick={onMenuToggle}
-            className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-navy-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-navy-200 hover:bg-white/65 dark:hover:border-navy-700 dark:hover:bg-surface-dark-card active:scale-[0.97] lg:hidden"
+            className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-navy-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-surface-border hover:bg-surface-light dark:hover:border-surface-dark-border dark:hover:bg-surface-dark active:scale-[0.97] lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>

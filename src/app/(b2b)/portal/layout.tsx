@@ -55,7 +55,7 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
         items={sidebarItems}
         header={
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-gold-300/70 bg-gradient-to-br from-gold-500 to-gold-600 text-sm font-bold text-white shadow-md">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-gold-300 bg-gold-500 text-sm font-bold text-white shadow-sm">
               <PlaneTakeoff className="h-4 w-4" />
             </div>
             <span className="text-heading-sm font-bold text-navy-900 dark:text-white">
@@ -68,13 +68,13 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
             <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-navy-400 dark:text-navy-500">
               {t("التبديل إلى", "Switch to")}
             </p>
-            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-navy-100/60 dark:text-navy-300 dark:hover:bg-navy-800/50">
-              <Compass className="h-4 w-4 text-emerald-500" />
+            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-surface-light dark:text-navy-300 dark:hover:bg-surface-dark">
+              <Compass className="h-4 w-4 text-gold-500" />
               {t("المسافرون", "Travelers")}
             </Link>
             {isAdmin && (
-              <Link href="/admin/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-navy-100/60 dark:text-navy-300 dark:hover:bg-navy-800/50">
-                <Shield className="h-4 w-4 text-violet-500" />
+              <Link href="/admin/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-navy-600 transition-colors hover:bg-surface-light dark:text-navy-300 dark:hover:bg-surface-dark">
+                <Shield className="h-4 w-4 text-gold-500" />
                 {t("إدارة المشرفين", "Admin Console")}
               </Link>
             )}

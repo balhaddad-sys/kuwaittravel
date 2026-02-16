@@ -30,19 +30,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center gap-2 rounded-[var(--radius-pill)] font-semibold transform-gpu border transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 active:scale-[0.985] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none";
+      "inline-flex items-center justify-center gap-2 rounded-[var(--radius-pill)] font-semibold transform-gpu border transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none";
 
     const variants = {
       primary:
-        "border-gold-600/90 bg-gold-500 text-white shadow-[0_12px_26px_rgba(0,108,228,0.28)] hover:-translate-y-0.5 hover:bg-gold-600 hover:shadow-[0_16px_32px_rgba(0,108,228,0.34)] active:translate-y-0 active:bg-gold-700",
+        "border-gold-600 bg-gold-500 text-white shadow-[0_4px_12px_rgba(0,108,228,0.2)] hover:bg-gold-600 active:bg-gold-700",
       secondary:
-        "border-navy-200 bg-white text-navy-800 shadow-[0_6px_18px_rgba(15,17,22,0.07)] hover:-translate-y-0.5 hover:border-navy-300 hover:bg-navy-50 hover:shadow-[0_10px_24px_rgba(15,17,22,0.11)] active:translate-y-0 dark:border-navy-600 dark:bg-surface-dark-card/90 dark:text-white dark:hover:border-navy-500 dark:hover:bg-navy-900/45",
+        "border-surface-border bg-white text-navy-800 shadow-none hover:border-navy-300 hover:bg-navy-50 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-white dark:hover:border-navy-500 dark:hover:bg-navy-900/45",
       outline:
-        "border-navy-300/80 bg-transparent text-navy-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] hover:border-gold-400 hover:bg-gold-50/55 hover:text-gold-700 dark:border-navy-600 dark:text-navy-100 dark:hover:border-gold-500 dark:hover:bg-gold-900/20 dark:hover:text-gold-200",
+        "border-navy-300/80 bg-transparent text-navy-700 shadow-none hover:border-gold-400 hover:bg-gold-50/55 hover:text-gold-700 dark:border-navy-600 dark:text-navy-100 dark:hover:border-gold-500 dark:hover:bg-gold-900/20 dark:hover:text-gold-200",
       ghost:
-        "border-transparent text-navy-700 dark:text-navy-200 hover:border-navy-200/70 hover:bg-navy-50/70 dark:hover:border-navy-700 dark:hover:bg-surface-dark-card/65",
+        "border-transparent text-navy-700 dark:text-navy-200 hover:border-navy-200/70 hover:bg-navy-50 dark:hover:border-navy-700 dark:hover:bg-surface-dark-card/65",
       danger:
-        "border-red-500/80 bg-gradient-to-br from-error to-red-700 text-white shadow-[0_10px_24px_rgba(207,78,78,0.3)] hover:-translate-y-0.5 hover:from-red-500 hover:to-red-700 active:translate-y-0",
+        "border-red-600 bg-error text-white shadow-[0_4px_12px_rgba(207,78,78,0.24)] hover:bg-red-700",
     };
 
     const sizes = {

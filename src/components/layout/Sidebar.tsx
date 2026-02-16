@@ -32,14 +32,12 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-surface-border/75 bg-white/78 shadow-sidebar backdrop-blur-md transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] dark:border-surface-dark-border/80 dark:bg-surface-dark/72 lg:flex",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-surface-border bg-white shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] dark:border-surface-dark-border dark:bg-surface-dark-card lg:flex",
         collapsed ? "w-[84px]" : "w-[286px]"
       )}
     >
-      <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(560px_180px_at_0%_-8%,rgba(255,213,157,0.26),transparent)] dark:bg-[radial-gradient(560px_180px_at_0%_-8%,rgba(249,158,56,0.14),transparent)]" />
-      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/75 to-transparent" />
       {/* Header */}
-      <div className="relative flex items-center justify-between border-b border-surface-border/85 p-4 dark:border-surface-dark-border/85">
+      <div className="relative flex items-center justify-between border-b border-surface-border p-4 dark:border-surface-dark-border">
         {!collapsed && (
           <div className="max-w-[190px] truncate">{header}</div>
         )}
@@ -67,15 +65,15 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                 className={cn(
                   "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
                   isActive
-                    ? "border border-navy-500/70 bg-gradient-to-br from-navy-700 via-navy-700 to-navy-800 font-medium text-white shadow-[0_12px_28px_rgba(16,39,73,0.36)]"
-                    : "border border-transparent text-navy-700 hover:border-navy-200/80 hover:bg-white/65 hover:text-navy-900 dark:text-navy-200 dark:hover:border-navy-700 dark:hover:bg-surface-dark-card/72 dark:hover:text-white"
+                    ? "border border-gold-200 bg-gold-50 font-semibold text-gold-700 dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
+                    : "border border-transparent text-navy-700 hover:border-surface-border hover:bg-surface-light hover:text-navy-900 dark:text-navy-200 dark:hover:border-surface-dark-border dark:hover:bg-surface-dark dark:hover:text-white"
                 )}
                 title={collapsed ? item.label : undefined}
               >
                 {isActive && (
-                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-gold-300/90" />
+                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-gold-500" />
                 )}
-                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-gold-200")}>
+                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-gold-600 dark:text-gold-300")}>
                   {item.icon}
                 </span>
                 {!collapsed && (
@@ -103,8 +101,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
 
       {/* Footer */}
       {footer && !collapsed && (
-        <div className="relative border-t border-surface-border/85 p-4 dark:border-surface-dark-border/85">
-          <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/75 to-transparent" />
+        <div className="relative border-t border-surface-border p-4 dark:border-surface-dark-border">
           {footer}
         </div>
       )}

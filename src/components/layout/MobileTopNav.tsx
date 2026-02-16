@@ -36,7 +36,7 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-[var(--z-sticky)] border-b border-surface-border/80 bg-white/78 px-3 py-2 backdrop-blur-md dark:border-surface-dark-border/80 dark:bg-surface-dark/72 lg:hidden",
+        "sticky top-0 z-[var(--z-sticky)] border-b border-surface-border bg-white px-3 py-2 dark:border-surface-dark-border dark:bg-surface-dark-card lg:hidden",
         className
       )}
     >
@@ -57,13 +57,13 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
               className={cn(
                 "relative shrink-0 rounded-full border px-3.5 py-2 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
                 isActive
-                  ? "border-navy-500/70 bg-gradient-to-br from-navy-700 to-navy-800 text-white shadow-[0_8px_18px_rgba(16,39,73,0.3)]"
-                  : "border-surface-border/90 bg-white/85 text-navy-700 dark:border-surface-dark-border/90 dark:bg-surface-dark-card/85 dark:text-navy-100"
+                  ? "border-gold-200 bg-gold-50 text-gold-700 shadow-none dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
+                  : "border-surface-border bg-white text-navy-700 dark:border-surface-dark-border dark:bg-surface-dark dark:text-navy-100"
               )}
             >
               {item.label}
               {isActive && (
-                <span className="pointer-events-none absolute inset-x-4 bottom-1 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-300 to-transparent" />
+                <span className="pointer-events-none absolute inset-x-4 bottom-1 h-0.5 rounded-full bg-gold-500" />
               )}
             </Link>
           );

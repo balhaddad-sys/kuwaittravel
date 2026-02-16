@@ -31,7 +31,7 @@ export function OwnerQuickActions({ className }: OwnerQuickActionsProps) {
   return (
     <div
       className={cn(
-        "sticky top-[56px] z-[var(--z-sticky)] border-b border-surface-border/80 bg-white/78 px-3 py-2 backdrop-blur-md dark:border-surface-dark-border/80 dark:bg-surface-dark/72 lg:hidden",
+        "sticky top-[56px] z-[var(--z-sticky)] border-b border-surface-border bg-white px-3 py-2 dark:border-surface-dark-border dark:bg-surface-dark-card lg:hidden",
         className
       )}
     >
@@ -43,7 +43,7 @@ export function OwnerQuickActions({ className }: OwnerQuickActionsProps) {
               key={action.href}
               href={action.href}
               prefetch
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-surface-border/90 bg-white/85 px-3 py-1.5 text-body-sm font-medium text-navy-700 shadow-sm transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-gold-300/70 hover:bg-gold-50/70 active:scale-[0.97] dark:border-surface-dark-border/90 dark:bg-surface-dark-card/85 dark:text-navy-100 dark:hover:border-gold-700/60 dark:hover:bg-gold-900/20"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-surface-border bg-white px-3 py-1.5 text-body-sm font-medium text-navy-700 shadow-none transform-gpu transition-[transform,background-color,color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-gold-300 hover:bg-gold-50 active:scale-[0.97] dark:border-surface-dark-border dark:bg-surface-dark dark:text-navy-100 dark:hover:border-gold-700 dark:hover:bg-gold-900/20"
             >
               <Icon className="h-4 w-4" />
               <span>{actionLabel(action.key, t)}</span>

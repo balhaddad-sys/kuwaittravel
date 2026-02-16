@@ -38,7 +38,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               "inline-input w-full text-body-md text-[var(--clr-text-main)] placeholder:text-[var(--clr-text-muted)]",
               "shadow-none",
               "focus:ring-0",
-              error && "border-b-error focus:border-b-error",
+              error && "border-error focus:border-error",
               leftAddon && "ps-10",
               rightAddon && "pe-10",
               className
