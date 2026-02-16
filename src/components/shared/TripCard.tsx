@@ -47,22 +47,28 @@ function TripCard({
       padding="none"
       hoverable
       onClick={onClick}
-      className={cn("trip-card", className)}
+      className={cn("trip-card group", className)}
     >
       {/* Cover */}
-      <div className="relative h-40 overflow-hidden rounded-t-[var(--radius-card)] bg-navy-100 dark:bg-navy-800">
+      <div className="relative h-36 overflow-hidden rounded-t-[var(--radius-card)] bg-navy-100 dark:bg-navy-800 sm:h-40">
         {coverImage ? (
-          <Image src={coverImage} alt={title} width={400} height={200} className="h-full w-full object-cover" />
+          <Image
+            src={coverImage}
+            alt={title}
+            width={400}
+            height={200}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
         ) : (
-          <div className="flex h-full items-center justify-center">
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-navy-100 to-navy-200 dark:from-navy-800 dark:to-navy-700">
             <MapPin className="h-10 w-10 text-navy-300" />
           </div>
         )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/35 via-transparent to-transparent" />
-        <div className="absolute top-3 end-3">
+        <div className="absolute end-3 top-3">
           <StatusChip status={status} />
         </div>
-        <div className="absolute top-3 start-3">
+        <div className="absolute start-3 top-3">
           <span className="rounded-full border border-white/16 bg-black/42 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
             {departureDate} - {returnDate}
           </span>
@@ -77,15 +83,14 @@ function TripCard({
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-3">
+      <div className="space-y-3 p-3 sm:p-4">
         <div>
-          <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white line-clamp-1">
+          <h3 className="line-clamp-1 text-body-lg font-bold text-navy-900 dark:text-white sm:text-heading-sm">
             {title}
           </h3>
-          {campaignName && <p className="mt-0.5 text-body-sm text-navy-500 dark:text-navy-300">{campaignName}</p>}
         </div>
 
-        <div className="flex items-center gap-4 text-body-sm text-navy-500">
+        <div className="flex flex-wrap items-center gap-3 text-body-sm text-navy-500">
           <span className="flex items-center gap-1">
             <MapPin className="h-3.5 w-3.5" />
             {destination}
@@ -98,32 +103,42 @@ function TripCard({
 
         {/* Capacity Bar */}
         <div>
-          <div className="flex items-center justify-between text-body-sm mb-1">
+          <div className="mb-1 flex items-center justify-between text-body-sm">
             <span className="flex items-center gap-1 text-navy-500">
               <Users className="h-3.5 w-3.5" />
               {booked}/{capacity}
             </span>
-            <span className={cn(
-              "font-medium",
-              remaining <= 5 ? "text-error" : "text-navy-500"
-            )}>
-              {remaining > 0 ? t(`${remaining} متبقي`, `${remaining} left`) : t("مكتمل", "Full")}
+            <span
+              className={cn(
+                "font-medium",
+                remaining <= 5 ? "text-error" : "text-navy-500"
+              )}
+            >
+              {remaining > 0
+                ? t(`${remaining} متبقي`, `${remaining} left`)
+                : t("مكتمل", "Full")}
             </span>
           </div>
-          <div className="h-1.5 rounded-full bg-surface-muted dark:bg-surface-dark-border overflow-hidden">
-              <div
-                className={cn(
-                  "h-full rounded-full transition-all duration-500",
-                  fillPercent >= 90 ? "bg-error" : fillPercent >= 70 ? "bg-warning" : "bg-success"
-                )}
-                style={{ width: `${Math.min(fillPercent, 100)}%` }}
+          <div className="h-1.5 overflow-hidden rounded-full bg-surface-muted dark:bg-surface-dark-border">
+            <div
+              className={cn(
+                "h-full rounded-full transition-all duration-500",
+                fillPercent >= 90
+                  ? "bg-error"
+                  : fillPercent >= 70
+                    ? "bg-warning"
+                    : "bg-success"
+              )}
+              style={{ width: `${Math.min(fillPercent, 100)}%` }}
             />
           </div>
         </div>
 
         {/* Price */}
-        <div className="flex items-center justify-between pt-2 border-t border-surface-border dark:border-surface-dark-border">
-          <span className="text-body-sm text-navy-400">{t("يبدأ من", "From")}</span>
+        <div className="flex items-center justify-between border-t border-surface-border pt-3 dark:border-surface-dark-border">
+          <span className="text-body-sm text-navy-400">
+            {t("يبدأ من", "From")}
+          </span>
           <span className="font-numbers text-heading-sm font-bold text-navy-900 dark:text-white">
             {formatKWD(price)}
           </span>

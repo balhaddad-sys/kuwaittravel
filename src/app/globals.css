@@ -797,4 +797,152 @@
   .animate-checkmark {
     animation: checkmark 0.4s var(--ease-default) forwards;
   }
+
+  /* ===== SOPHISTICATED DESIGN ENHANCEMENTS ===== */
+
+  /* Glassmorphic hero overlay for detail pages */
+  .travel-hero-glass {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .travel-hero-glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.12) 100%),
+      radial-gradient(ellipse 70% 50% at 20% 100%, rgba(212, 175, 55, 0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 0%, rgba(15, 90, 62, 0.1), transparent);
+    pointer-events: none;
+  }
+
+  /* Elevated card with gold top accent */
+  .travel-card-premium {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .travel-card-premium::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-gold-400), var(--color-gold-500), var(--color-gold-400));
+    opacity: 0.7;
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* Mesh gradient background for sections */
+  .travel-mesh-bg {
+    background:
+      radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(15, 90, 62, 0.06) 0%, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
+  }
+
+  .dark .travel-mesh-bg {
+    background:
+      radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(15, 90, 62, 0.06) 0%, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+  }
+
+  /* Staggered entrance with configurable delay via CSS var */
+  @keyframes stagger-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-stagger-fade-up {
+    animation: stagger-fade-up 0.5s var(--ease-smooth) both;
+    animation-delay: var(--stagger-delay, 0ms);
+  }
+
+  /* Skeleton shimmer - improved for mobile */
+  .skeleton-card {
+    border-radius: var(--radius-card);
+    background: linear-gradient(
+      110deg,
+      var(--color-surface-muted) 0%,
+      var(--color-surface-muted) 40%,
+      color-mix(in srgb, var(--color-surface-border) 70%, white) 50%,
+      var(--color-surface-muted) 60%,
+      var(--color-surface-muted) 100%
+    );
+    background-size: 250% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  .dark .skeleton-card {
+    background: linear-gradient(
+      110deg,
+      var(--color-surface-dark-card) 0%,
+      var(--color-surface-dark-card) 40%,
+      color-mix(in srgb, var(--color-surface-dark-border) 70%, var(--color-surface-dark-card)) 50%,
+      var(--color-surface-dark-card) 60%,
+      var(--color-surface-dark-card) 100%
+    );
+    background-size: 250% 100%;
+  }
+
+  /* Breathing glow for CTA buttons */
+  @keyframes cta-glow {
+    0%, 100% {
+      box-shadow:
+        0 4px 14px rgba(15, 90, 62, 0.3),
+        0 0 0 0 rgba(212, 175, 55, 0);
+    }
+    50% {
+      box-shadow:
+        0 6px 20px rgba(15, 90, 62, 0.4),
+        0 0 0 6px rgba(212, 175, 55, 0.08);
+    }
+  }
+
+  .animate-cta-glow {
+    animation: cta-glow 3s ease-in-out infinite;
+  }
+
+  /* Notification bell ring */
+  @keyframes bell-ring {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-14deg); }
+    30% { transform: rotate(10deg); }
+    40% { transform: rotate(-8deg); }
+    50% { transform: rotate(4deg); }
+    60% { transform: rotate(0deg); }
+  }
+
+  .animate-bell-ring {
+    animation: bell-ring 2s ease-in-out;
+    transform-origin: top center;
+  }
+
+  /* Horizontal scrollbar hide for mobile carousels */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Touch-friendly tap target enhancement */
+  .tap-target {
+    position: relative;
+  }
+  .tap-target::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+  }
 }

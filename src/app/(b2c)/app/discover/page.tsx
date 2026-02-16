@@ -8,7 +8,7 @@ import { CampaignCard } from "@/components/shared/CampaignCard";
 import { SearchInput } from "@/components/forms/SearchInput";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { useDirection } from "@/providers/DirectionProvider";
-import { Star, ArrowLeft, Flame, Globe2, Compass } from "lucide-react";
+import { Star, ArrowLeft, Flame, Globe2, Compass, TrendingUp } from "lucide-react";
 import { limit, where, type QueryConstraint } from "firebase/firestore";
 import { getDocuments } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
@@ -22,6 +22,49 @@ const DISCOVERABLE_TRIP_STATUSES = new Set([
   "registration_closed",
   "in_progress",
 ]);
+
+function SkeletonCard({ className = "" }: { className?: string }) {
+  return (
+    <div className={`skeleton-card overflow-hidden ${className}`}>
+      <div className="h-40 bg-navy-100/50 dark:bg-navy-800/50" />
+      <div className="space-y-3 p-4">
+        <div className="h-4 w-3/4 rounded-md bg-navy-100/60 dark:bg-navy-800/60" />
+        <div className="h-3 w-1/2 rounded-md bg-navy-100/40 dark:bg-navy-800/40" />
+        <div className="h-2 w-full rounded-full bg-navy-100/30 dark:bg-navy-800/30" />
+        <div className="flex justify-between pt-2">
+          <div className="h-3 w-16 rounded-md bg-navy-100/40 dark:bg-navy-800/40" />
+          <div className="h-4 w-20 rounded-md bg-navy-100/60 dark:bg-navy-800/60" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SkeletonDestination() {
+  return (
+    <div className="skeleton-card rounded-2xl p-4">
+      <div className="h-8 w-8 rounded-xl bg-navy-100/50 dark:bg-navy-800/50" />
+      <div className="mt-3 h-4 w-20 rounded-md bg-navy-100/60 dark:bg-navy-800/60" />
+      <div className="mt-1 h-3 w-12 rounded-md bg-navy-100/40 dark:bg-navy-800/40" />
+    </div>
+  );
+}
+
+function SkeletonCampaign() {
+  return (
+    <div className="skeleton-card overflow-hidden">
+      <div className="h-28 bg-navy-100/50 dark:bg-navy-800/50" />
+      <div className="space-y-3 px-4 pb-4 pt-8">
+        <div className="h-4 w-2/3 rounded-md bg-navy-100/60 dark:bg-navy-800/60" />
+        <div className="h-3 w-full rounded-md bg-navy-100/40 dark:bg-navy-800/40" />
+        <div className="flex gap-4">
+          <div className="h-3 w-12 rounded-md bg-navy-100/40 dark:bg-navy-800/40" />
+          <div className="h-3 w-16 rounded-md bg-navy-100/40 dark:bg-navy-800/40" />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function DiscoverPage() {
   const router = useRouter();
@@ -99,8 +142,10 @@ export default function DiscoverPage() {
   const topCampaigns = useMemo(() => {
     return [...campaigns]
       .sort((a, b) => {
-        const aScore = (a.stats?.averageRating || 0) * 100 + (a.stats?.totalTrips || 0);
-        const bScore = (b.stats?.averageRating || 0) * 100 + (b.stats?.totalTrips || 0);
+        const aScore =
+          (a.stats?.averageRating || 0) * 100 + (a.stats?.totalTrips || 0);
+        const bScore =
+          (b.stats?.averageRating || 0) * 100 + (b.stats?.totalTrips || 0);
         return bScore - aScore;
       })
       .slice(0, 6);
@@ -135,6 +180,7 @@ export default function DiscoverPage() {
 
   return (
     <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+      {/* Hero Section */}
       <section className="travel-gradient-hero relative border-b border-surface-border/70 px-4 pb-8 pt-8 sm:pb-10 sm:pt-12">
         <Container>
           <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -154,38 +200,57 @@ export default function DiscoverPage() {
               </p>
               <div className="mt-4 max-w-2xl sm:mt-6">
                 <SearchInput
-                  placeholder={t("ابحث عن رحلة أو حملة...", "Search for a trip or campaign...")}
+                  placeholder={t(
+                    "ابحث عن رحلة أو حملة...",
+                    "Search for a trip or campaign..."
+                  )}
                   onSearch={setSearchQuery}
                   className="[&_input]:border-white/20 [&_input]:bg-white/10 [&_input]:text-white [&_input]:placeholder:text-white/60 [&_input]:focus:border-gold-300/60 [&_input]:focus:ring-gold-300/20 [&_svg]:text-white/70"
                 />
               </div>
             </div>
 
+            {/* Stats Panel */}
             <div className="grid grid-cols-3 gap-2 rounded-2xl border border-white/15 bg-white/10 p-3 backdrop-blur-md lg:grid-cols-1 lg:gap-3 lg:rounded-3xl lg:p-4">
-              <div className="rounded-xl border border-white/24 bg-white/8 p-3 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] lg:rounded-2xl lg:p-4">
-                <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
-                  {t("رحلات", "Trips")}
-                </p>
-                <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{filteredTrips.length}</p>
-              </div>
-              <div className="rounded-xl border border-white/24 bg-white/8 p-3 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] lg:rounded-2xl lg:p-4">
-                <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
-                  {t("حملات", "Campaigns")}
-                </p>
-                <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{campaigns.length}</p>
-              </div>
-              <div className="rounded-xl border border-white/24 bg-white/8 p-3 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] lg:rounded-2xl lg:p-4">
-                <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
-                  {t("وجهات", "Destinations")}
-                </p>
-                <p className="mt-0.5 text-xl font-bold text-white lg:mt-1 lg:text-3xl">{destinations.length}</p>
-              </div>
+              {[
+                {
+                  label: t("رحلات", "Trips"),
+                  value: loading ? "—" : filteredTrips.length,
+                  icon: <TrendingUp className="h-3.5 w-3.5 text-gold-300/70" />,
+                },
+                {
+                  label: t("حملات", "Campaigns"),
+                  value: loading ? "—" : campaigns.length,
+                  icon: <Star className="h-3.5 w-3.5 text-gold-300/70" />,
+                },
+                {
+                  label: t("وجهات", "Destinations"),
+                  value: loading ? "—" : destinations.length,
+                  icon: <Globe2 className="h-3.5 w-3.5 text-gold-300/70" />,
+                },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-white/24 bg-white/8 p-3 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] lg:rounded-2xl lg:p-4"
+                >
+                  <div className="flex items-center gap-1.5">
+                    {stat.icon}
+                    <p className="text-[10px] uppercase tracking-wider text-navy-100/75 lg:text-[11px]">
+                      {stat.label}
+                    </p>
+                  </div>
+                  <p className="mt-0.5 font-numbers text-xl font-bold text-white lg:mt-1 lg:text-3xl">
+                    {stat.value}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </Container>
       </section>
 
       <Container className="relative space-y-6 py-6 sm:space-y-10 sm:py-8">
+        {/* Popular Destinations */}
         <section>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -195,29 +260,45 @@ export default function DiscoverPage() {
               </h2>
             </div>
             <button className="flex items-center gap-1 text-body-sm font-medium text-navy-500 transition-colors hover:text-navy-700 dark:hover:text-navy-100">
-              {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+              {t("عرض الكل", "View all")}{" "}
+              <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
             </button>
           </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-            {destinations.map((dest) => (
-              <button
-                key={dest.id}
-                className="travel-panel group rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-200/80 hover:shadow-card-hover dark:hover:border-gold-700/45"
-              >
-                <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-md">
-                  <Compass className="h-4 w-4" />
-                </div>
-                <p className="mt-3 line-clamp-1 text-body-md font-semibold text-navy-800 dark:text-navy-100">
-                  {dest.city}
-                </p>
-                <p className="text-[11px] text-navy-500 dark:text-navy-300">
-                  {dest.count} {t("رحلة", "trips")}
-                </p>
-              </button>
-            ))}
-          </div>
+
+          {loading ? (
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <SkeletonDestination key={i} />
+              ))}
+            </div>
+          ) : destinations.length > 0 ? (
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+              {destinations.map((dest, i) => (
+                <button
+                  key={dest.id}
+                  className="travel-panel group rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-200/80 hover:shadow-card-hover dark:hover:border-gold-700/45 animate-stagger-fade-up"
+                  style={
+                    {
+                      "--stagger-delay": `${i * 60}ms`,
+                    } as React.CSSProperties
+                  }
+                >
+                  <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-md transition-transform duration-300 group-hover:scale-110">
+                    <Compass className="h-4 w-4" />
+                  </div>
+                  <p className="mt-3 line-clamp-1 text-body-md font-semibold text-navy-800 dark:text-navy-100">
+                    {dest.city}
+                  </p>
+                  <p className="text-[11px] text-navy-500 dark:text-navy-300">
+                    {dest.count} {t("رحلة", "trips")}
+                  </p>
+                </button>
+              ))}
+            </div>
+          ) : null}
         </section>
 
+        {/* Featured Trips */}
         <section>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -225,46 +306,86 @@ export default function DiscoverPage() {
               <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
                 {t("رحلات مميزة", "Featured Trips")}
               </h2>
+              {!loading && filteredTrips.length > 0 && (
+                <span className="rounded-full bg-navy-100/80 px-2 py-0.5 text-[11px] font-medium text-navy-600 dark:bg-navy-800/80 dark:text-navy-300">
+                  {filteredTrips.length}
+                </span>
+              )}
             </div>
             <button className="flex items-center gap-1 text-body-sm font-medium text-navy-500 transition-colors hover:text-navy-700 dark:hover:text-navy-100">
-              {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+              {t("عرض الكل", "View all")}{" "}
+              <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
             </button>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredTrips.slice(0, 9).map((trip) => (
-              <TripCard
-                key={trip.id}
-                title={language === "ar" ? (trip.titleAr || trip.title) : (trip.title || trip.titleAr)}
-                destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
-                departureDate={formatTimestamp(trip.departureDate)}
-                returnDate={formatTimestamp(trip.returnDate)}
-                price={trip.basePriceKWD}
-                capacity={trip.totalCapacity}
-                booked={trip.bookedCount || 0}
-                status={toTripCardStatus(trip.status)}
-                campaignName={
-                  language === "ar"
-                    ? (campaignMap.get(trip.campaignId)?.nameAr || campaignMap.get(trip.campaignId)?.name || trip.campaignName)
-                    : (campaignMap.get(trip.campaignId)?.name || campaignMap.get(trip.campaignId)?.nameAr || trip.campaignName)
-                }
-                coverImage={trip.coverImageUrl}
-                onClick={() =>
-                  router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)
-                }
-              />
-            ))}
-          </div>
-          {!loading && filteredTrips.length === 0 && (
-            <div className="mt-4">
-              <EmptyState
-                icon={<Flame className="h-12 w-12" />}
-                title={t("لا توجد رحلات متاحة حالياً", "No trips available at the moment")}
-                description={t("جرّب البحث بكلمات مختلفة أو عد لاحقاً.", "Try a different search term or check back soon.")}
-              />
+
+          {loading ? (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <SkeletonCard key={i} />
+              ))}
             </div>
+          ) : filteredTrips.length > 0 ? (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredTrips.slice(0, 9).map((trip, i) => (
+                <div
+                  key={trip.id}
+                  className="animate-stagger-fade-up"
+                  style={
+                    {
+                      "--stagger-delay": `${i * 60}ms`,
+                    } as React.CSSProperties
+                  }
+                >
+                  <TripCard
+                    title={
+                      language === "ar"
+                        ? trip.titleAr || trip.title
+                        : trip.title || trip.titleAr
+                    }
+                    destination={
+                      trip.destinations?.[0]?.city || t("غير محدد", "Not set")
+                    }
+                    departureDate={formatTimestamp(trip.departureDate)}
+                    returnDate={formatTimestamp(trip.returnDate)}
+                    price={trip.basePriceKWD}
+                    capacity={trip.totalCapacity}
+                    booked={trip.bookedCount || 0}
+                    status={toTripCardStatus(trip.status)}
+                    campaignName={
+                      language === "ar"
+                        ? campaignMap.get(trip.campaignId)?.nameAr ||
+                          campaignMap.get(trip.campaignId)?.name ||
+                          trip.campaignName
+                        : campaignMap.get(trip.campaignId)?.name ||
+                          campaignMap.get(trip.campaignId)?.nameAr ||
+                          trip.campaignName
+                    }
+                    coverImage={trip.coverImageUrl}
+                    onClick={() =>
+                      router.push(
+                        `/app/campaigns/${trip.campaignId}/trips/${trip.id}`
+                      )
+                    }
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState
+              icon={<Flame className="h-12 w-12" />}
+              title={t(
+                "لا توجد رحلات متاحة حالياً",
+                "No trips available at the moment"
+              )}
+              description={t(
+                "جرّب البحث بكلمات مختلفة أو عد لاحقاً.",
+                "Try a different search term or check back soon."
+              )}
+            />
           )}
         </section>
 
+        {/* Trusted Campaigns */}
         <section>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -274,45 +395,74 @@ export default function DiscoverPage() {
               </h2>
             </div>
             <button className="flex items-center gap-1 text-body-sm font-medium text-navy-500 transition-colors hover:text-navy-700 dark:hover:text-navy-100">
-              {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+              {t("عرض الكل", "View all")}{" "}
+              <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
             </button>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {topCampaigns.map((campaign) => (
-              <CampaignCard
-                key={campaign.id}
-                name={language === "ar" ? (campaign.nameAr || campaign.name) : (campaign.name || campaign.nameAr)}
-                description={language === "ar" ? (campaign.descriptionAr || campaign.description) : (campaign.description || campaign.descriptionAr)}
-                logoUrl={campaign.logoUrl}
-                coverUrl={campaign.coverImageUrl}
-                rating={campaign.stats?.averageRating || 0}
-                totalTrips={campaign.stats?.totalTrips || 0}
-                verified={campaign.verificationStatus === "approved"}
-                onClick={() => router.push(`/app/campaigns/${campaign.id}`)}
-              />
-            ))}
-          </div>
-          {!loading && topCampaigns.length === 0 && (
-            <div className="mt-4">
-              <EmptyState
-                icon={<Star className="h-12 w-12" />}
-                title={t("لا توجد حملات معروضة حالياً", "No campaigns available right now")}
-                description={t("ستظهر الحملات هنا عند نشرها.", "Campaigns will appear here once published.")}
-              />
+
+          {loading ? (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <SkeletonCampaign key={i} />
+              ))}
             </div>
+          ) : topCampaigns.length > 0 ? (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {topCampaigns.map((campaign, i) => (
+                <div
+                  key={campaign.id}
+                  className="animate-stagger-fade-up"
+                  style={
+                    {
+                      "--stagger-delay": `${i * 60}ms`,
+                    } as React.CSSProperties
+                  }
+                >
+                  <CampaignCard
+                    name={
+                      language === "ar"
+                        ? campaign.nameAr || campaign.name
+                        : campaign.name || campaign.nameAr
+                    }
+                    description={
+                      language === "ar"
+                        ? campaign.descriptionAr || campaign.description
+                        : campaign.description || campaign.descriptionAr
+                    }
+                    logoUrl={campaign.logoUrl}
+                    coverUrl={campaign.coverImageUrl}
+                    rating={campaign.stats?.averageRating || 0}
+                    totalTrips={campaign.stats?.totalTrips || 0}
+                    verified={campaign.verificationStatus === "approved"}
+                    onClick={() => router.push(`/app/campaigns/${campaign.id}`)}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState
+              icon={<Star className="h-12 w-12" />}
+              title={t(
+                "لا توجد حملات معروضة حالياً",
+                "No campaigns available right now"
+              )}
+              description={t(
+                "ستظهر الحملات هنا عند نشرها.",
+                "Campaigns will appear here once published."
+              )}
+            />
           )}
         </section>
 
-        {loading && (
-          <p className="text-center text-body-md text-navy-500">
-            {t("جاري تحميل بيانات الاكتشاف...", "Loading discovery content...")}
-          </p>
-        )}
-
         {loadError && (
-          <p className="text-center text-body-sm text-error">
-            {t("تعذر تحميل بيانات الاكتشاف حالياً.", "Unable to load discovery content right now.")}
-          </p>
+          <div className="travel-panel rounded-2xl p-6 text-center">
+            <p className="text-body-md text-error">
+              {t(
+                "تعذر تحميل بيانات الاكتشاف حالياً.",
+                "Unable to load discovery content right now."
+              )}
+            </p>
+          </div>
         )}
       </Container>
     </div>
