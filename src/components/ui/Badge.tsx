@@ -13,7 +13,7 @@ const variantMap = {
   warning: "bg-warning-light text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/60",
   error: "bg-error-light text-red-800 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
   info: "bg-info-light text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800/60",
-  gold: "bg-gold-100 text-gold-800 border border-gold-200 dark:bg-gold-900/30 dark:text-gold-300 dark:border-gold-700/60",
+  gold: "travel-chip",
 };
 
 const sizeMap = {

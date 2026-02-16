@@ -11,12 +11,12 @@ interface StatusChipProps {
 }
 
 const statusConfig: Record<Status, { label: string; labelAr: string; dotColor: string; bgColor: string; textColor: string }> = {
-  active: { label: "Active", labelAr: "نشط", dotColor: "bg-success", bgColor: "bg-success-light", textColor: "text-green-800" },
-  draft: { label: "Draft", labelAr: "مسودة", dotColor: "bg-navy-400", bgColor: "bg-navy-100", textColor: "text-navy-700" },
-  pending: { label: "Pending", labelAr: "قيد الانتظار", dotColor: "bg-warning", bgColor: "bg-warning-light", textColor: "text-amber-800" },
-  completed: { label: "Completed", labelAr: "مكتمل", dotColor: "bg-success", bgColor: "bg-success-light", textColor: "text-green-800" },
-  cancelled: { label: "Cancelled", labelAr: "ملغي", dotColor: "bg-error", bgColor: "bg-error-light", textColor: "text-red-800" },
-  suspended: { label: "Suspended", labelAr: "معلق", dotColor: "bg-error", bgColor: "bg-error-light", textColor: "text-red-800" },
+  active: { label: "Active", labelAr: "نشط", dotColor: "bg-success", bgColor: "bg-success-light dark:bg-green-900/25", textColor: "text-green-800 dark:text-green-300" },
+  draft: { label: "Draft", labelAr: "مسودة", dotColor: "bg-navy-400", bgColor: "bg-navy-100 dark:bg-navy-900/45", textColor: "text-navy-700 dark:text-navy-200" },
+  pending: { label: "Pending", labelAr: "قيد الانتظار", dotColor: "bg-warning", bgColor: "bg-warning-light dark:bg-amber-900/25", textColor: "text-amber-800 dark:text-amber-300" },
+  completed: { label: "Completed", labelAr: "مكتمل", dotColor: "bg-success", bgColor: "bg-success-light dark:bg-green-900/25", textColor: "text-green-800 dark:text-green-300" },
+  cancelled: { label: "Cancelled", labelAr: "ملغي", dotColor: "bg-error", bgColor: "bg-error-light dark:bg-red-900/25", textColor: "text-red-800 dark:text-red-300" },
+  suspended: { label: "Suspended", labelAr: "معلق", dotColor: "bg-error", bgColor: "bg-error-light dark:bg-red-900/25", textColor: "text-red-800 dark:text-red-300" },
 };
 
 function StatusChip({ status, className }: StatusChipProps) {
@@ -25,9 +25,10 @@ function StatusChip({ status, className }: StatusChipProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--radius-chip)] text-body-sm font-medium",
+        "inline-flex items-center gap-1.5 rounded-[var(--radius-chip)] border px-2.5 py-1 text-body-sm font-medium backdrop-blur-sm",
         config.bgColor,
         config.textColor,
+        "border-current/15",
         className
       )}
     >

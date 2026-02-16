@@ -52,14 +52,10 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden px-4 py-4 sm:px-8 sm:py-6">
-      <div className="pointer-events-none absolute -top-24 -start-16 h-72 w-72 rounded-full bg-gold-300/40 blur-3xl" />
-      <div className="pointer-events-none absolute -top-20 -end-16 h-80 w-80 rounded-full bg-navy-300/40 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 start-1/3 h-64 w-64 rounded-full bg-info/15 blur-3xl" />
-
+    <div className="travel-orbit-bg min-h-screen px-4 py-4 sm:px-8 sm:py-6">
       <div className="relative mx-auto flex min-h-[92vh] w-full max-w-6xl flex-col">
         <div className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 sm:gap-3 rounded-full border border-surface-border/70 bg-white/75 px-3 py-1.5 sm:px-4 sm:py-2 shadow-card backdrop-blur-sm dark:border-surface-dark-border/70 dark:bg-surface-dark-card/72">
+          <div className="inline-flex items-center gap-2 rounded-full border border-surface-border/75 bg-white/76 px-3 py-1.5 shadow-card backdrop-blur-sm dark:border-surface-dark-border/75 dark:bg-surface-dark-card/74 sm:gap-3 sm:px-4 sm:py-2">
             <span className="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-[0_6px_18px_rgba(229,128,29,0.35)]">
               <Compass className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-white" />
             </span>
@@ -74,13 +70,13 @@ export default function HomePage() {
         </div>
 
         <div className="mt-5 grid gap-4 sm:mt-8 sm:gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-          <section className="rounded-2xl border border-surface-border/75 bg-white/78 p-5 shadow-card backdrop-blur-sm dark:border-surface-dark-border/80 dark:bg-surface-dark-card/78 sm:rounded-3xl sm:p-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-gold-200 bg-gold-50 px-3 py-1 text-body-sm font-medium text-gold-700 dark:border-gold-700/50 dark:bg-gold-900/25 dark:text-gold-300">
+          <section className="travel-section p-5 sm:p-10">
+            <div className="travel-chip inline-flex items-center gap-2 rounded-full px-3 py-1 text-body-sm font-medium">
               <Sparkles className="h-3.5 w-3.5" />
               {t("تجربة سفر أكثر أناقة", "Refined Travel Experience")}
             </div>
 
-            <h1 className="mt-3 text-2xl font-extrabold leading-tight text-navy-900 dark:text-white sm:mt-4 sm:text-5xl">
+            <h1 className="travel-title mt-3 text-2xl font-extrabold leading-tight text-navy-900 dark:text-white sm:mt-4 sm:text-5xl">
               {t("رحال", "Rahal")}
             </h1>
             <p className="mt-2 max-w-2xl text-body-md text-navy-600 dark:text-navy-200 sm:mt-3 sm:text-body-lg">
@@ -113,7 +109,7 @@ export default function HomePage() {
               <button
                 key={entry.title}
                 onClick={entry.onClick}
-                className="group rounded-xl border border-surface-border/80 bg-white/80 p-3.5 text-start shadow-card backdrop-blur-sm transform-gpu transition-[transform,box-shadow,border-color,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:-translate-y-1 hover:shadow-card-hover dark:border-surface-dark-border/80 dark:bg-surface-dark-card/75 active:scale-[0.995] sm:rounded-2xl sm:p-4"
+                className="travel-panel group rounded-xl p-3.5 text-start transform-gpu transition-[transform,box-shadow,border-color,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:shadow-card-hover active:scale-[0.995] sm:rounded-2xl sm:p-4"
               >
                 <div className="flex items-start gap-3">
                   <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${entry.iconBg} shadow-md`}>
@@ -130,9 +126,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-auto pt-6 text-center">
-          <p className="text-body-sm text-navy-500 dark:text-navy-300">
-            Rahal v0.1.0
-          </p>
+          <p className="text-body-sm text-navy-500 dark:text-navy-300">Rahal v0.1.0</p>
           <p className="mt-1 text-[11px] text-navy-400 dark:text-navy-400">
             {t("مُهيأ للعربية والإنجليزية", "Built for Arabic and English")}
           </p>

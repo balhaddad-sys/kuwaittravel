@@ -32,10 +32,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             className={cn(
-              "w-full rounded-[var(--radius-input)] border bg-white/88 px-4 py-2.5 text-body-md transform-gpu transition-[border-color,box-shadow,background-color,color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] backdrop-blur-sm",
+              "w-full rounded-[var(--radius-input)] border bg-white/86 px-4 py-2.5 text-body-md transform-gpu transition-[border-color,box-shadow,background-color,color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] backdrop-blur-sm",
               "border-surface-border/90 dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80",
               "placeholder:text-navy-400 dark:placeholder:text-navy-500",
-              "hover:border-navy-300 dark:hover:border-navy-600 focus:border-navy-400 focus:ring-4 focus:ring-navy-400/15 focus:outline-none",
+              "hover:border-navy-300 dark:hover:border-navy-600 focus:border-navy-400 focus:ring-4 focus:ring-navy-400/14 focus:outline-none",
               "shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",
               error && "border-error focus:border-error focus:ring-error/20",
               leftAddon && "ps-10",

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
+import { isPrivilegedAdminEmail } from "@/lib/utils/roles";
 import { Shield } from "lucide-react";
 import type { ConfirmationResult } from "firebase/auth";
 import type { User } from "@/types";
@@ -85,7 +86,7 @@ export default function AdminLoginPage() {
       if (!currentUser) throw new Error("No authenticated user");
 
       const existingUser = await getDocument<User>(COLLECTIONS.USERS, currentUser.uid);
-      if (isAdminRole(existingUser?.role)) {
+      if (isAdminRole(existingUser?.role) || isPrivilegedAdminEmail(currentUser.email)) {
         router.replace("/admin/dashboard");
         return;
       }
@@ -163,6 +164,12 @@ export default function AdminLoginPage() {
             {t(
               "إذا لم يكن حسابك مُفعلاً كمشرف، استخدم سكربت grant-admin مرة واحدة.",
               "If your account is not promoted yet, run the one-time grant-admin script."
+            )}
+          </p>
+          <p className="text-center text-body-sm text-navy-500">
+            {t(
+              "يمكن لحسابات Gmail المضافة في NEXT_PUBLIC_ADMIN_EMAILS الدخول مباشرة.",
+              "Gmail addresses listed in NEXT_PUBLIC_ADMIN_EMAILS can sign in directly."
             )}
           </p>
         </form>

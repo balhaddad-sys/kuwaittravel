@@ -33,9 +33,9 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             ref={ref}
             id={selectId}
             className={cn(
-              "w-full appearance-none rounded-[var(--radius-input)] border bg-white/88 px-4 py-2.5 pe-10 text-body-md transition-all duration-300 backdrop-blur-sm",
+              "w-full appearance-none rounded-[var(--radius-input)] border bg-white/86 px-4 py-2.5 pe-10 text-body-md transition-[border-color,box-shadow,background-color,color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] backdrop-blur-sm",
               "border-surface-border/90 dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80",
-              "hover:border-navy-300 dark:hover:border-navy-600 focus:border-navy-400 focus:ring-4 focus:ring-navy-400/15 focus:outline-none",
+              "hover:border-navy-300 dark:hover:border-navy-600 focus:border-navy-400 focus:ring-4 focus:ring-navy-400/14 focus:outline-none",
               "shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]",
               error && "border-error focus:border-error focus:ring-error/20",
               className

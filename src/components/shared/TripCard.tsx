@@ -55,6 +55,13 @@ function TripCard({
         <div className="absolute top-3 end-3">
           <StatusChip status={status} />
         </div>
+        {campaignName && (
+          <div className="absolute bottom-3 start-3">
+            <span className="rounded-full border border-white/24 bg-black/28 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+              {campaignName}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -63,9 +70,7 @@ function TripCard({
           <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white line-clamp-1">
             {title}
           </h3>
-          {campaignName && (
-            <p className="text-body-sm text-navy-500 mt-0.5">{campaignName}</p>
-          )}
+          {campaignName && <p className="mt-0.5 text-body-sm text-navy-500 dark:text-navy-300">{campaignName}</p>}
         </div>
 
         <div className="flex items-center gap-4 text-body-sm text-navy-500">

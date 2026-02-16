@@ -9,8 +9,11 @@ interface PageHeaderProps {
 
 function PageHeader({ title, description, actions, className }: PageHeaderProps) {
   return (
-    <div className={cn("flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between", className)}>
-      <div>
+    <div className={cn("flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between", className)}>
+      <div className="space-y-1">
+        <span className="travel-chip inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide">
+          Rahal
+        </span>
         <h1 className="text-display-md font-bold text-navy-900 dark:text-white">{title}</h1>
         {description && (
           <p className="mt-1 text-body-lg text-navy-500 dark:text-navy-400">{description}</p>

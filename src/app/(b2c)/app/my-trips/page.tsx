@@ -10,15 +10,16 @@ import { Map as MapIcon, Calendar, MapPin, ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { formatDate, formatKWD, parseTimestamp } from "@/lib/utils/format";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { getDocument, getDocuments } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import type { Booking, Trip } from "@/types";
 
-const statusLabels: Record<string, { ar: string; variant: "success" | "warning" | "error" | "info" }> = {
-  confirmed: { ar: "مؤكد", variant: "success" },
-  pending_payment: { ar: "بانتظار الدفع", variant: "warning" },
-  completed: { ar: "مكتمل", variant: "info" },
-  cancelled: { ar: "ملغي", variant: "error" },
+const statusLabels: Record<string, { ar: string; en: string; variant: "success" | "warning" | "error" | "info" }> = {
+  confirmed: { ar: "مؤكد", en: "Confirmed", variant: "success" },
+  pending_payment: { ar: "بانتظار الدفع", en: "Pending Payment", variant: "warning" },
+  completed: { ar: "مكتمل", en: "Completed", variant: "info" },
+  cancelled: { ar: "ملغي", en: "Cancelled", variant: "error" },
 };
 
 interface EnrichedBooking extends Booking {
@@ -27,6 +28,7 @@ interface EnrichedBooking extends Booking {
 
 export default function MyTripsPage() {
   const router = useRouter();
+  const { t, language } = useDirection();
   const { userData, loading: authLoading } = useAuth();
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
   const [bookings, setBookings] = useState<EnrichedBooking[]>([]);
@@ -80,14 +82,14 @@ export default function MyTripsPage() {
 
         setBookings(enriched);
       } catch {
-        setLoadError("تعذر تحميل رحلاتك حالياً.");
+        setLoadError(t("تعذر تحميل رحلاتك حالياً.", "Unable to load your trips right now."));
       } finally {
         setLoading(false);
       }
     }
 
     fetchBookings();
-  }, [authLoading, userData?.uid]);
+  }, [authLoading, userData?.uid, t]);
 
   const filteredBookings = useMemo(() => {
     const today = new Date();
@@ -104,20 +106,26 @@ export default function MyTripsPage() {
   }, [bookings, tab]);
 
   return (
-    <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
-      <div className="bg-white dark:bg-surface-dark-card border-b border-surface-border dark:border-surface-dark-border px-4 pt-8 pb-4 sm:pt-12">
+    <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+      <div className="border-b border-surface-border bg-white/78 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/74 sm:pt-12">
         <Container>
-          <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">رحلاتي</h1>
+          <h1 className="travel-title text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">
+            {t("رحلاتي", "My Trips")}
+          </h1>
           <div className="flex gap-2 mt-3 sm:mt-4">
             {(["upcoming", "past"] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
                 className={`px-4 py-2 rounded-[var(--radius-chip)] text-body-sm font-medium transition-all ${
-                  tab === t ? "bg-navy-700 text-white" : "bg-surface-muted text-navy-600 dark:bg-surface-dark-card dark:text-navy-300"
+                  tab === t
+                    ? "bg-gradient-to-br from-navy-600 to-navy-700 text-white"
+                    : "bg-surface-muted text-navy-600 dark:bg-surface-dark-card dark:text-navy-300"
                 }`}
               >
-                {t === "upcoming" ? "القادمة" : "السابقة"}
+                {t === "upcoming"
+                  ? language === "ar" ? "القادمة" : "Upcoming"
+                  : language === "ar" ? "السابقة" : "Past"}
               </button>
             ))}
           </div>
@@ -126,14 +134,16 @@ export default function MyTripsPage() {
 
       <Container className="py-6">
         {loading ? (
-          <p className="text-body-md text-center text-navy-500 py-10">جاري تحميل رحلاتك...</p>
+          <p className="py-10 text-center text-body-md text-navy-500">
+            {t("جاري تحميل رحلاتك...", "Loading your trips...")}
+          </p>
         ) : filteredBookings.length > 0 ? (
           <div className="space-y-3">
             {filteredBookings.map((booking) => {
               const statusInfo = statusLabels[booking.status] || statusLabels.confirmed;
               const departureLabel = booking.tripDepartureDate
                 ? formatDate(booking.tripDepartureDate)
-                : "غير محدد";
+                : t("غير محدد", "Not set");
 
               return (
                 <Card key={booking.id} variant="elevated" padding="md" hoverable onClick={() => router.push(`/app/my-trips/${booking.id}`)}>
@@ -145,7 +155,9 @@ export default function MyTripsPage() {
                       <h3 className="text-body-md font-semibold text-navy-900 dark:text-white truncate sm:text-body-lg">{booking.tripTitle}</h3>
                       <div className="flex flex-wrap items-center gap-2 mt-1 text-body-sm text-navy-500 sm:gap-3">
                         <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {departureLabel}</span>
-                        <Badge variant={statusInfo.variant} size="sm">{statusInfo.ar}</Badge>
+                        <Badge variant={statusInfo.variant} size="sm">
+                          {language === "ar" ? statusInfo.ar : statusInfo.en}
+                        </Badge>
                       </div>
                     </div>
                     <div className="text-end shrink-0">
@@ -160,9 +172,9 @@ export default function MyTripsPage() {
         ) : (
           <EmptyState
             icon={<MapIcon className="h-16 w-16" />}
-            title="لا توجد رحلات"
-            description="ابدأ بتصفح الرحلات المتاحة واحجز رحلتك القادمة"
-            action={{ label: "تصفح الرحلات", onClick: () => router.push("/app/discover") }}
+            title={t("لا توجد رحلات", "No Trips Yet")}
+            description={t("ابدأ بتصفح الرحلات المتاحة واحجز رحلتك القادمة", "Browse available trips and make your first booking")}
+            action={{ label: t("تصفح الرحلات", "Explore Trips"), onClick: () => router.push("/app/discover") }}
           />
         )}
 

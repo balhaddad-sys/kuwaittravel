@@ -28,7 +28,7 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-[var(--radius-input)] border border-surface-border bg-white py-2.5 ps-10 pe-10 text-body-md transform-gpu transition-[border-color,box-shadow,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-navy-400 focus:border-navy-500 focus:ring-2 focus:ring-navy-500/20 focus:outline-none dark:border-surface-dark-border dark:bg-surface-dark-card"
+        className="w-full rounded-[var(--radius-input)] border border-surface-border/90 bg-white/86 py-2.5 ps-10 pe-10 text-body-md transform-gpu transition-[border-color,box-shadow,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] backdrop-blur-sm hover:border-navy-300 focus:border-navy-400 focus:ring-4 focus:ring-navy-400/15 focus:outline-none dark:border-surface-dark-border/90 dark:bg-surface-dark-card/82 dark:hover:border-navy-600"
       />
       {value && (
         <button

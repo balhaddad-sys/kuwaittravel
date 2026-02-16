@@ -56,9 +56,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           <div
             key={t.id}
             className={cn(
-              "flex items-start gap-3 rounded-[var(--radius-lg)] bg-white dark:bg-surface-dark-card shadow-modal p-4 animate-slide-up border border-surface-border dark:border-surface-dark-border"
+              "travel-panel animate-slide-up relative flex items-start gap-3 overflow-hidden rounded-[var(--radius-lg)] p-4"
             )}
           >
+            <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/60 to-transparent" />
             {icons[t.type]}
             <div className="flex-1 min-w-0">
               <p className="text-body-md font-medium text-navy-900 dark:text-white">{t.title}</p>

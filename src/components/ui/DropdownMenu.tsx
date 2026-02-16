@@ -37,7 +37,7 @@ function DropdownMenu({ trigger, items, align = "end", className }: DropdownMenu
       {open && (
         <div
           className={cn(
-            "absolute top-full mt-1 z-[var(--z-dropdown)] min-w-[180px] rounded-[var(--radius-lg)] bg-white dark:bg-surface-dark-card shadow-modal border border-surface-border dark:border-surface-dark-border animate-scale-in py-1",
+            "travel-panel absolute top-full z-[var(--z-dropdown)] mt-1 min-w-[180px] animate-scale-in rounded-[var(--radius-lg)] py-1",
             align === "end" ? "end-0" : "start-0"
           )}
         >

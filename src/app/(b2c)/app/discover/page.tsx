@@ -134,20 +134,16 @@ export default function DiscoverPage() {
   }, [filteredTrips, topCampaigns, router]);
 
   return (
-    <div className="relative min-h-screen bg-surface-muted/70 dark:bg-surface-dark">
-      <div className="pointer-events-none absolute -top-28 -start-20 h-72 w-72 rounded-full bg-gold-300/30 blur-3xl" />
-      <div className="pointer-events-none absolute -top-20 -end-20 h-80 w-80 rounded-full bg-navy-300/30 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-20 start-1/3 h-64 w-64 rounded-full bg-info/10 blur-3xl" />
-
+    <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
       <section className="relative border-b border-surface-border/70 bg-gradient-to-br from-navy-800 via-navy-700 to-navy-900 px-4 pb-8 pt-8 sm:pb-10 sm:pt-12">
         <Container>
           <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-body-sm text-white/90 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/12 px-3 py-1 text-body-sm text-white/90 backdrop-blur-sm">
                 <Compass className="h-3.5 w-3.5 text-gold-300" />
                 {t("بوابة اكتشاف الرحلات", "Travel Discovery")}
               </div>
-              <h1 className="mt-3 text-2xl font-extrabold leading-tight text-white sm:mt-4 sm:text-4xl lg:text-5xl">
+              <h1 className="travel-title mt-3 text-2xl font-extrabold leading-tight text-white sm:mt-4 sm:text-4xl lg:text-5xl">
                 {t("استكشف رحلتك القادمة", "Discover Your Next Journey")}
               </h1>
               <p className="mt-2 max-w-2xl text-body-md text-navy-100 sm:mt-3 sm:text-body-lg">
@@ -201,7 +197,7 @@ export default function DiscoverPage() {
             {destinations.map((dest) => (
               <button
                 key={dest.id}
-                className="group rounded-2xl border border-surface-border/80 bg-white/80 p-4 text-start shadow-card backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-navy-200 hover:shadow-card-hover dark:border-surface-dark-border/75 dark:bg-surface-dark-card/80 dark:hover:border-navy-600"
+                className="travel-panel group rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-navy-200 hover:shadow-card-hover dark:hover:border-navy-600"
               >
                 <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-md">
                   <Compass className="h-4 w-4" />

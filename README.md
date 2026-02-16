@@ -60,6 +60,8 @@ npm run grant-admin -- --service-account "C:/path/to/service-account.json" --uid
 
 You can also use `--email` or `--phone` instead of `--uid`.
 
+If an email is listed in `NEXT_PUBLIC_ADMIN_EMAILS`, it can access `/admin-login` and open the admin console entry path directly.
+
 ## Security Notes
 
 - `/api/admin/setup` is disabled unless:

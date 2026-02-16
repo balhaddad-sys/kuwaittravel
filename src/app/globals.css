@@ -106,6 +106,7 @@
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-emphasized: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-travel: cubic-bezier(0.2, 0.8, 0.2, 1);
   --duration-micro: 160ms;
   --duration-ui: 240ms;
   --duration-fast: 100ms;
@@ -147,7 +148,8 @@
     background-image:
       radial-gradient(1200px 420px at -6% -10%, rgba(255, 213, 157, 0.38), transparent 72%),
       radial-gradient(980px 420px at 106% -8%, rgba(147, 190, 255, 0.3), transparent 70%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.92));
+      repeating-linear-gradient(110deg, rgba(16, 39, 73, 0.018) 0 2px, transparent 2px 14px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.94));
     color: var(--foreground);
     font-family: var(--font-arabic);
     -webkit-font-smoothing: antialiased;
@@ -158,6 +160,7 @@
     background-image:
       radial-gradient(980px 420px at -6% -8%, rgba(249, 158, 56, 0.12), transparent 74%),
       radial-gradient(960px 420px at 106% -10%, rgba(47, 103, 186, 0.26), transparent 76%),
+      repeating-linear-gradient(110deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 16px),
       linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 1));
   }
 
@@ -208,14 +211,84 @@
     background-image:
       radial-gradient(920px 360px at -8% -12%, rgba(255, 213, 157, 0.26), transparent 70%),
       radial-gradient(860px 320px at 108% -8%, rgba(147, 190, 255, 0.24), transparent 70%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.94));
+      repeating-linear-gradient(120deg, rgba(16, 39, 73, 0.02) 0 2px, transparent 2px 14px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.95));
   }
 
   .dark .travel-shell-bg {
     background-image:
       radial-gradient(900px 340px at -10% -10%, rgba(249, 158, 56, 0.12), transparent 70%),
       radial-gradient(900px 340px at 108% -8%, rgba(47, 103, 186, 0.2), transparent 72%),
+      repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 16px),
       linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
+  }
+
+  .travel-panel {
+    border: 1px solid color-mix(in srgb, var(--color-surface-border) 78%, transparent);
+    background: color-mix(in srgb, white 88%, transparent);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 40px rgba(16, 39, 73, 0.12);
+  }
+
+  .dark .travel-panel {
+    border-color: color-mix(in srgb, var(--color-surface-dark-border) 82%, transparent);
+    background: color-mix(in srgb, var(--color-surface-dark-card) 82%, transparent);
+    box-shadow: 0 20px 42px rgba(8, 23, 46, 0.34);
+  }
+
+  .travel-chip {
+    border: 1px solid color-mix(in srgb, var(--color-gold-300) 55%, transparent);
+    background: linear-gradient(135deg, rgba(255, 234, 205, 0.74), rgba(255, 248, 237, 0.9));
+    color: var(--color-gold-700);
+  }
+
+  .dark .travel-chip {
+    border-color: color-mix(in srgb, var(--color-gold-700) 64%, transparent);
+    background: linear-gradient(135deg, rgba(126, 63, 20, 0.34), rgba(95, 49, 18, 0.2));
+    color: var(--color-gold-300);
+  }
+
+  .travel-orbit-bg {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .travel-orbit-bg::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: -20% -8% auto -12%;
+    height: 420px;
+    background:
+      radial-gradient(560px 240px at 8% 10%, rgba(255, 213, 157, 0.34), transparent 72%),
+      radial-gradient(560px 260px at 92% 6%, rgba(147, 190, 255, 0.3), transparent 74%);
+    z-index: -1;
+  }
+
+  .dark .travel-orbit-bg::before {
+    background:
+      radial-gradient(560px 240px at 8% 10%, rgba(249, 158, 56, 0.14), transparent 72%),
+      radial-gradient(560px 260px at 92% 6%, rgba(47, 103, 186, 0.2), transparent 74%);
+  }
+
+  .travel-section {
+    border: 1px solid color-mix(in srgb, var(--color-surface-border) 82%, transparent);
+    border-radius: var(--radius-2xl);
+    background: color-mix(in srgb, white 84%, transparent);
+    box-shadow: 0 18px 38px rgba(16, 39, 73, 0.12);
+    backdrop-filter: blur(10px);
+  }
+
+  .dark .travel-section {
+    border-color: color-mix(in srgb, var(--color-surface-dark-border) 84%, transparent);
+    background: color-mix(in srgb, var(--color-surface-dark-card) 82%, transparent);
+    box-shadow: 0 20px 42px rgba(8, 23, 46, 0.34);
+  }
+
+  .travel-title {
+    text-wrap: balance;
+    letter-spacing: 0.01em;
   }
 
   .text-balance {

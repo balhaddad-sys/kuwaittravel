@@ -19,9 +19,9 @@ function BottomNav({ items }: BottomNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 start-0 end-0 z-[var(--z-sticky)] pb-[max(0.75rem,env(safe-area-inset-bottom,0.75rem))] px-3">
-      <div className="relative mx-auto flex h-16 max-w-xl items-center justify-around rounded-2xl border border-surface-border/80 bg-white/84 px-2 backdrop-blur-sm shadow-[0_14px_28px_rgba(16,39,73,0.18)] dark:border-surface-dark-border/80 dark:bg-surface-dark/78">
-        <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/65 to-transparent" />
+    <nav className="fixed inset-x-0 bottom-0 z-[var(--z-sticky)] px-3 pb-[max(0.7rem,env(safe-area-inset-bottom,0.7rem))]">
+      <div className="travel-panel relative mx-auto flex h-[66px] w-full max-w-xl items-center justify-around rounded-[22px] px-2">
+        <span className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/70 to-transparent" />
         {items.map((item) => {
           const isActive = pathname === item.href || (pathname ?? "").startsWith(item.href + "/");
           return (
@@ -30,12 +30,15 @@ function BottomNav({ items }: BottomNavProps) {
               href={item.href}
               prefetch
               className={cn(
-                "flex min-w-[64px] flex-col items-center justify-center gap-0.5 rounded-xl px-3 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
+                "group relative flex min-w-[64px] flex-col items-center justify-center gap-0.5 rounded-xl px-3 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
                 isActive
-                  ? "bg-navy-100/75 dark:bg-navy-900/45 text-navy-700 dark:text-gold-300 shadow-[0_6px_16px_rgba(23,57,108,0.14)]"
-                  : "text-navy-500 dark:text-navy-400 hover:text-navy-700 dark:hover:text-navy-200"
+                  ? "border border-navy-200/90 bg-gradient-to-b from-white/95 to-navy-50/84 text-navy-700 shadow-[0_8px_20px_rgba(16,39,73,0.14)] dark:border-navy-700 dark:from-surface-dark-card/95 dark:to-navy-900/34 dark:text-gold-300"
+                  : "border border-transparent text-navy-500 hover:text-navy-700 dark:text-navy-400 dark:hover:text-navy-200"
               )}
             >
+              {isActive && (
+                <span className="pointer-events-none absolute inset-x-3 top-0 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-300 to-transparent" />
+              )}
               <span className="h-6 w-6">
                 {isActive && item.activeIcon ? item.activeIcon : item.icon}
               </span>

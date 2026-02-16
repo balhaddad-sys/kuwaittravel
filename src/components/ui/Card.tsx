@@ -18,10 +18,11 @@ const paddingMap = {
 
 const variantMap = {
   elevated:
-    "bg-white/88 dark:bg-surface-dark-card/88 border border-surface-border/80 dark:border-surface-dark-border/80 shadow-card backdrop-blur-sm",
+    "travel-panel",
   outlined:
-    "bg-white/82 dark:bg-surface-dark-card/82 border border-surface-border dark:border-surface-dark-border backdrop-blur-sm",
-  filled: "bg-surface-muted/90 dark:bg-surface-dark-card/80 border border-surface-border/60 dark:border-surface-dark-border/70",
+    "border border-surface-border/85 bg-white/74 backdrop-blur-sm dark:border-surface-dark-border/85 dark:bg-surface-dark-card/72",
+  filled:
+    "border border-surface-border/70 bg-surface-muted/90 dark:border-surface-dark-border/75 dark:bg-surface-dark-card/84",
 };
 
 function Card({
@@ -38,7 +39,8 @@ function Card({
         "rounded-[var(--radius-card)] transform-gpu transition-[transform,box-shadow,border-color,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)]",
         variantMap[variant],
         paddingMap[padding],
-        hoverable && "cursor-pointer will-change-transform hover:-translate-y-1 hover:border-navy-200 hover:shadow-card-hover dark:hover:border-navy-600",
+        hoverable &&
+          "cursor-pointer will-change-transform hover:-translate-y-0.5 hover:border-navy-200 hover:shadow-card-hover dark:hover:border-navy-600",
         onClick && "cursor-pointer",
         className
       )}

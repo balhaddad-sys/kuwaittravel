@@ -98,27 +98,27 @@ export default function OnboardingPage() {
         <div className="space-y-3">
           <button
             onClick={() => handleRoleSelect("traveler")}
-            className="flex w-full items-center gap-4 rounded-[var(--radius-card)] border-2 border-surface-border p-4 text-start transition-all hover:border-navy-700 hover:bg-navy-50"
+            className="travel-panel flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-navy-300 hover:bg-navy-50/40 dark:hover:border-navy-600"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-100">
               <UserCircle className="h-6 w-6 text-navy-700" />
             </div>
             <div>
-              <p className="text-body-lg font-semibold text-navy-900">{t("مسافر", "Traveler")}</p>
-              <p className="text-body-sm text-navy-500">{t("ابحث واحجز رحلاتك الزيارية", "Find and book pilgrimage trips")}</p>
+              <p className="text-body-lg font-semibold text-navy-900 dark:text-white">{t("مسافر", "Traveler")}</p>
+              <p className="text-body-sm text-navy-500 dark:text-navy-300">{t("ابحث واحجز رحلاتك الزيارية", "Find and book pilgrimage trips")}</p>
             </div>
           </button>
 
           <button
             onClick={() => handleRoleSelect("campaign_owner")}
-            className="flex w-full items-center gap-4 rounded-[var(--radius-card)] border-2 border-surface-border p-4 text-start transition-all hover:border-gold-500 hover:bg-gold-50"
+            className="travel-panel flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-gold-300/80 hover:bg-gold-50/50 dark:hover:border-gold-700/60 dark:hover:bg-gold-900/20"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-100">
               <Building2 className="h-6 w-6 text-gold-700" />
             </div>
             <div>
-              <p className="text-body-lg font-semibold text-navy-900">{t("مدير حملة", "Campaign Owner")}</p>
-              <p className="text-body-sm text-navy-500">{t("أدر حملتك وأنشئ رحلات جديدة", "Manage your campaign and launch new trips")}</p>
+              <p className="text-body-lg font-semibold text-navy-900 dark:text-white">{t("مدير حملة", "Campaign Owner")}</p>
+              <p className="text-body-sm text-navy-500 dark:text-navy-300">{t("أدر حملتك وأنشئ رحلات جديدة", "Manage your campaign and launch new trips")}</p>
             </div>
           </button>
         </div>
