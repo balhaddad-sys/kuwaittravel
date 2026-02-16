@@ -841,4 +841,51 @@
     position: absolute;
     inset: -8px;
   }
+
+  /* Urgency pulse for "last seats" */
+  @keyframes urgency-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .urgency-pulse {
+    animation: urgency-pulse 2s ease-in-out infinite;
+  }
+
+  /* Sticky booking bar */
+  .sticky-booking-bar {
+    position: sticky;
+    bottom: 4.5rem;
+    z-index: var(--z-sticky);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.92);
+    border-top: 1px solid var(--color-surface-border);
+    box-shadow: 0 -4px 16px rgba(15, 17, 22, 0.06);
+  }
+
+  .dark .sticky-booking-bar {
+    background: rgba(15, 17, 22, 0.92);
+    border-top-color: var(--color-surface-dark-border);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Horizontal section scroll */
+  .horizontal-scroll-section {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .horizontal-scroll-section::-webkit-scrollbar {
+    display: none;
+  }
+  .horizontal-scroll-section > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
 }

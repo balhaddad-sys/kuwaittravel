@@ -1,9 +1,12 @@
 "use client";
 
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { Card } from "@/components/ui/Card";
 import { StatusChip } from "@/components/ui/StatusChip";
+import { WishlistButton } from "@/components/shared/WishlistButton";
+import { SocialProofBadge } from "@/components/shared/SocialProofBadge";
 import { useDirection } from "@/providers/DirectionProvider";
 import { Calendar, MapPin, Users } from "lucide-react";
 import { formatKWD } from "@/lib/utils/format";
@@ -21,6 +24,12 @@ interface TripCardProps {
   campaignName?: string;
   onClick?: () => void;
   className?: string;
+  galleryUrls?: string[];
+  tags?: string[];
+  tripId?: string;
+  remainingCapacity?: number;
+  wishlisted?: boolean;
+  onWishlistToggle?: () => void;
 }
 
 function TripCard({
@@ -36,10 +45,27 @@ function TripCard({
   campaignName,
   onClick,
   className,
+  galleryUrls,
+  tags,
+  remainingCapacity,
+  wishlisted = false,
+  onWishlistToggle,
 }: TripCardProps) {
   const { t } = useDirection();
-  const remaining = capacity - booked;
+  const remaining = remainingCapacity ?? (capacity - booked);
   const fillPercent = capacity > 0 ? (booked / capacity) * 100 : 0;
+
+  // Gallery carousel state
+  const images = galleryUrls && galleryUrls.length > 0 ? galleryUrls : coverImage ? [coverImage] : [];
+  const [activeImg, setActiveImg] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const idx = Math.round(el.scrollLeft / el.offsetWidth);
+    if (idx !== activeImg && idx >= 0 && idx < images.length) setActiveImg(idx);
+  }, [activeImg, images.length]);
 
   return (
     <Card
@@ -49,11 +75,29 @@ function TripCard({
       onClick={onClick}
       className={cn("trip-card group", className)}
     >
-      {/* Cover */}
+      {/* Cover / Gallery */}
       <div className="relative h-52 overflow-hidden rounded-t-[var(--radius-card)] bg-navy-100 dark:bg-navy-800 sm:h-56">
-        {coverImage ? (
+        {images.length > 1 ? (
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex h-full snap-x snap-mandatory overflow-x-auto scrollbar-hide"
+          >
+            {images.slice(0, 4).map((src, i) => (
+              <div key={i} className="relative h-full w-full flex-shrink-0 snap-start">
+                <Image
+                  src={src}
+                  alt={`${title} ${i + 1}`}
+                  width={400}
+                  height={200}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        ) : images.length === 1 ? (
           <Image
-            src={coverImage}
+            src={images[0]}
             alt={title}
             width={400}
             height={200}
@@ -64,20 +108,50 @@ function TripCard({
             <MapPin className="h-10 w-10 text-navy-400" />
           </div>
         )}
+
+        {/* Gradient overlay */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+        {/* Status chip */}
         <div className="absolute end-3 top-3">
           <StatusChip status={status} />
         </div>
+
+        {/* Date badge */}
         <div className="absolute start-3 top-3">
           <span className="rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
             {departureDate} - {returnDate}
           </span>
         </div>
+
+        {/* Wishlist button */}
+        {onWishlistToggle && (
+          <div className="absolute end-3 bottom-3 z-10">
+            <WishlistButton saved={wishlisted} onToggle={onWishlistToggle} size="sm" variant="overlay" />
+          </div>
+        )}
+
+        {/* Campaign name badge */}
         {campaignName && (
           <div className="absolute bottom-3 start-3">
             <span className="rounded-full border border-white/24 bg-black/28 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
               {campaignName}
             </span>
+          </div>
+        )}
+
+        {/* Gallery dots */}
+        {images.length > 1 && (
+          <div className="absolute bottom-8 start-1/2 z-10 flex -translate-x-1/2 items-center gap-1">
+            {images.slice(0, 4).map((_, i) => (
+              <span
+                key={i}
+                className={cn(
+                  "h-1 rounded-full transition-all duration-200",
+                  i === activeImg ? "w-3 bg-white" : "w-1 bg-white/50"
+                )}
+              />
+            ))}
           </div>
         )}
       </div>
@@ -88,6 +162,19 @@ function TripCard({
           <h3 className="line-clamp-1 text-body-lg font-bold text-navy-800 dark:text-white sm:text-heading-sm">
             {title}
           </h3>
+          {/* Tags */}
+          {tags && tags.length > 0 && (
+            <div className="mt-1.5 flex flex-wrap gap-1">
+              {tags.slice(0, 3).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-[var(--radius-chip)] bg-navy-100/60 px-2 py-0.5 text-[10px] font-medium text-navy-600 dark:bg-navy-800/60 dark:text-navy-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-wrap items-center gap-3 text-body-sm text-navy-500 dark:text-navy-300">
@@ -100,6 +187,14 @@ function TripCard({
             {departureDate}
           </span>
         </div>
+
+        {/* Social proof */}
+        <SocialProofBadge
+          bookedCount={booked}
+          remainingCapacity={remaining}
+          totalCapacity={capacity}
+          variant="inline"
+        />
 
         {/* Capacity Bar */}
         <div>

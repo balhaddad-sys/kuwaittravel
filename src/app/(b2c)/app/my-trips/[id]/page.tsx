@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { useDirection } from "@/providers/DirectionProvider";
 import { getDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import type { Booking } from "@/types";
@@ -23,17 +24,17 @@ import {
 
 const statusLabels: Record<
   string,
-  { ar: string; variant: "success" | "warning" | "error" | "info" | "default" }
+  { ar: string; en: string; variant: "success" | "warning" | "error" | "info" | "default" }
 > = {
-  pending_payment: { ar: "بانتظار الدفع", variant: "warning" },
-  confirmed: { ar: "مؤكد", variant: "success" },
-  partially_paid: { ar: "مدفوع جزئيًا", variant: "warning" },
-  fully_paid: { ar: "مدفوع بالكامل", variant: "success" },
-  checked_in: { ar: "تم تسجيل الوصول", variant: "info" },
-  in_transit: { ar: "في الطريق", variant: "info" },
-  completed: { ar: "مكتمل", variant: "default" },
-  cancelled: { ar: "ملغي", variant: "error" },
-  refunded: { ar: "مسترد", variant: "error" },
+  pending_payment: { ar: "بانتظار الدفع", en: "Pending Payment", variant: "warning" },
+  confirmed: { ar: "مؤكد", en: "Confirmed", variant: "success" },
+  partially_paid: { ar: "مدفوع جزئيًا", en: "Partially Paid", variant: "warning" },
+  fully_paid: { ar: "مدفوع بالكامل", en: "Fully Paid", variant: "success" },
+  checked_in: { ar: "تم تسجيل الوصول", en: "Checked In", variant: "info" },
+  in_transit: { ar: "في الطريق", en: "In Transit", variant: "info" },
+  completed: { ar: "مكتمل", en: "Completed", variant: "default" },
+  cancelled: { ar: "ملغي", en: "Cancelled", variant: "error" },
+  refunded: { ar: "مسترد", en: "Refunded", variant: "error" },
 };
 
 const statusIcons: Record<string, React.ReactNode> = {
@@ -45,6 +46,15 @@ const statusIcons: Record<string, React.ReactNode> = {
   refunded: <XCircle className="h-5 w-5" />,
 };
 
+function formatPaymentDate(dueDate: unknown, language: string): string {
+  if (!dueDate || typeof dueDate !== "object") return language === "ar" ? "غير محدد" : "Not set";
+  const ts = dueDate as { seconds: number };
+  if (!ts.seconds) return language === "ar" ? "غير محدد" : "Not set";
+  return new Date(ts.seconds * 1000).toLocaleDateString(
+    language === "ar" ? "ar-KW" : "en-US"
+  );
+}
+
 export default function BookingDetailPage({
   params,
 }: {
@@ -52,16 +62,14 @@ export default function BookingDetailPage({
 }) {
   const { id } = use(params);
   const router = useRouter();
+  const { t, language } = useDirection();
   const [booking, setBooking] = useState<Booking | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchBooking() {
       try {
-        const bookingData = await getDocument<Booking>(
-          COLLECTIONS.BOOKINGS,
-          id
-        );
+        const bookingData = await getDocument<Booking>(COLLECTIONS.BOOKINGS, id);
         setBooking(bookingData);
       } catch (error) {
         console.error("Error fetching booking:", error);
@@ -74,9 +82,9 @@ export default function BookingDetailPage({
 
   if (loading) {
     return (
-      <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
-        <AppBar title="جاري التحميل..." />
-        <Container className="py-6 space-y-4">
+      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+        <AppBar title={t("جاري التحميل...", "Loading...")} />
+        <Container className="space-y-4 py-6">
           <Skeleton className="h-32 w-full" />
           <Skeleton className="h-24 w-full" />
           <Skeleton className="h-24 w-full" />
@@ -87,14 +95,14 @@ export default function BookingDetailPage({
 
   if (!booking) {
     return (
-      <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
-        <AppBar title="الحجز" />
+      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+        <AppBar title={t("الحجز", "Booking")} />
         <EmptyState
           icon={<Receipt className="h-16 w-16" />}
-          title="الحجز غير موجود"
-          description="لم يتم العثور على هذا الحجز"
+          title={t("الحجز غير موجود", "Booking not found")}
+          description={t("لم يتم العثور على هذا الحجز", "This booking could not be found")}
           action={{
-            label: "العودة لرحلاتي",
+            label: t("العودة لرحلاتي", "Back to My Trips"),
             onClick: () => router.push("/app/my-trips"),
           }}
         />
@@ -105,20 +113,20 @@ export default function BookingDetailPage({
   const statusInfo = statusLabels[booking.status] || statusLabels.confirmed;
 
   return (
-    <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
+    <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
       <AppBar
-        title="تفاصيل الحجز"
+        title={t("تفاصيل الحجز", "Booking Details")}
         breadcrumbs={[
-          { label: "رحلاتي", href: "/app/my-trips" },
+          { label: t("رحلاتي", "My Trips"), href: "/app/my-trips" },
           { label: booking.tripTitle },
         ]}
       />
 
-      <Container className="py-6 space-y-6">
+      <Container className="space-y-6 py-6">
         {/* Booking Status */}
         <Card variant="elevated" padding="lg">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-100 dark:bg-navy-800 text-navy-600 dark:text-navy-300">
+          <div className="mb-4 flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-100 text-navy-600 dark:bg-navy-800 dark:text-navy-300">
               {statusIcons[booking.status] || <CheckCircle2 className="h-5 w-5" />}
             </div>
             <div>
@@ -126,12 +134,12 @@ export default function BookingDetailPage({
                 {booking.tripTitle}
               </h2>
               <Badge variant={statusInfo.variant} className="mt-1">
-                {statusInfo.ar}
+                {language === "ar" ? statusInfo.ar : statusInfo.en}
               </Badge>
             </div>
           </div>
           <div className="flex items-center gap-2 text-body-sm text-navy-500">
-            <span>رقم الحجز:</span>
+            <span>{t("رقم الحجز:", "Booking ID:")}</span>
             <span className="font-mono font-medium text-navy-700 dark:text-navy-200">
               {booking.id}
             </span>
@@ -140,8 +148,8 @@ export default function BookingDetailPage({
 
         {/* Passengers */}
         <Card variant="outlined" padding="md">
-          <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white mb-3">
-            المسافرون
+          <h3 className="mb-3 text-heading-sm font-bold text-navy-900 dark:text-white">
+            {t("المسافرون", "Passengers")}
           </h3>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-navy-100 dark:bg-navy-800">
@@ -149,7 +157,7 @@ export default function BookingDetailPage({
             </div>
             <div>
               <p className="text-body-md font-medium text-navy-900 dark:text-white">
-                {booking.numberOfPassengers} مسافر
+                {booking.numberOfPassengers} {t("مسافر", "passengers")}
               </p>
               <p className="text-body-sm text-navy-500">
                 {booking.travelerName}
@@ -160,35 +168,35 @@ export default function BookingDetailPage({
 
         {/* Payment Info */}
         <Card variant="outlined" padding="md">
-          <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white mb-3">
-            تفاصيل الدفع
+          <h3 className="mb-3 text-heading-sm font-bold text-navy-900 dark:text-white">
+            {t("تفاصيل الدفع", "Payment Details")}
           </h3>
           <div className="space-y-3">
-            <div className="flex items-center justify-between py-2 border-b border-surface-border dark:border-surface-dark-border">
-              <span className="text-body-md text-navy-500">المبلغ الإجمالي</span>
+            <div className="flex items-center justify-between border-b border-surface-border py-2 dark:border-surface-dark-border">
+              <span className="text-body-md text-navy-500">{t("المبلغ الإجمالي", "Total Amount")}</span>
               <span className="text-body-md font-bold text-navy-900 dark:text-white">
-                {booking.totalKWD} د.ك
+                {booking.totalKWD} {t("د.ك", "KWD")}
               </span>
             </div>
             {booking.discountKWD > 0 && (
-              <div className="flex items-center justify-between py-2 border-b border-surface-border dark:border-surface-dark-border">
-                <span className="text-body-md text-navy-500">الخصم</span>
+              <div className="flex items-center justify-between border-b border-surface-border py-2 dark:border-surface-dark-border">
+                <span className="text-body-md text-navy-500">{t("الخصم", "Discount")}</span>
                 <span className="text-body-md font-medium text-green-600 dark:text-green-400">
-                  -{booking.discountKWD} د.ك
+                  -{booking.discountKWD} {t("د.ك", "KWD")}
                 </span>
               </div>
             )}
-            <div className="flex items-center justify-between py-2 border-b border-surface-border dark:border-surface-dark-border">
-              <span className="text-body-md text-navy-500">المدفوع</span>
+            <div className="flex items-center justify-between border-b border-surface-border py-2 dark:border-surface-dark-border">
+              <span className="text-body-md text-navy-500">{t("المدفوع", "Paid")}</span>
               <span className="text-body-md font-medium text-navy-900 dark:text-white">
-                {booking.paidKWD} د.ك
+                {booking.paidKWD} {t("د.ك", "KWD")}
               </span>
             </div>
             {booking.remainingKWD > 0 && (
               <div className="flex items-center justify-between py-2">
-                <span className="text-body-md text-navy-500">المتبقي</span>
+                <span className="text-body-md text-navy-500">{t("المتبقي", "Remaining")}</span>
                 <span className="text-body-md font-bold text-error">
-                  {booking.remainingKWD} د.ك
+                  {booking.remainingKWD} {t("د.ك", "KWD")}
                 </span>
               </div>
             )}
@@ -198,26 +206,22 @@ export default function BookingDetailPage({
         {/* Payment Schedule */}
         {booking.paymentSchedule && booking.paymentSchedule.length > 0 && (
           <Card variant="outlined" padding="md">
-            <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white mb-3">
-              جدول الدفع
+            <h3 className="mb-3 text-heading-sm font-bold text-navy-900 dark:text-white">
+              {t("جدول الدفع", "Payment Schedule")}
             </h3>
             <div className="space-y-3">
               {booking.paymentSchedule.map((payment, index) => {
-                const paymentDate = payment.dueDate
-                  ? new Date(
-                      (payment.dueDate as unknown as { seconds: number }).seconds * 1000
-                    ).toLocaleDateString("ar-KW")
-                  : "غير محدد";
+                const paymentDate = formatPaymentDate(payment.dueDate, language);
                 return (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 rounded-[var(--radius-md)] bg-surface-muted dark:bg-surface-dark"
+                    className="flex items-center justify-between rounded-[var(--radius-md)] bg-surface-muted p-3 dark:bg-surface-dark"
                   >
                     <div className="flex items-center gap-3">
                       <CreditCard className="h-4 w-4 text-navy-400" />
                       <div>
                         <p className="text-body-sm font-medium text-navy-900 dark:text-white">
-                          القسط {index + 1}
+                          {t(`القسط ${index + 1}`, `Installment ${index + 1}`)}
                         </p>
                         <p className="text-body-sm text-navy-500">
                           {paymentDate}
@@ -226,7 +230,7 @@ export default function BookingDetailPage({
                     </div>
                     <div className="text-end">
                       <p className="text-body-sm font-bold text-navy-900 dark:text-white">
-                        {payment.amountKWD} د.ك
+                        {payment.amountKWD} {t("د.ك", "KWD")}
                       </p>
                       <Badge
                         variant={
@@ -239,10 +243,10 @@ export default function BookingDetailPage({
                         size="sm"
                       >
                         {payment.status === "paid"
-                          ? "مدفوع"
+                          ? t("مدفوع", "Paid")
                           : payment.status === "overdue"
-                          ? "متأخر"
-                          : "معلق"}
+                          ? t("متأخر", "Overdue")
+                          : t("معلق", "Pending")}
                       </Badge>
                     </div>
                   </div>
@@ -255,8 +259,8 @@ export default function BookingDetailPage({
         {/* Special Requests */}
         {booking.specialRequests && (
           <Card variant="outlined" padding="md">
-            <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white mb-2">
-              طلبات خاصة
+            <h3 className="mb-2 text-heading-sm font-bold text-navy-900 dark:text-white">
+              {t("طلبات خاصة", "Special Requests")}
             </h3>
             <p className="text-body-md text-navy-600 dark:text-navy-300">
               {booking.specialRequests}

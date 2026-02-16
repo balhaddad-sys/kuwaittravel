@@ -21,3 +21,11 @@ export interface GeoPoint {
   lat: number;
   lng: number;
 }
+
+export interface TripFilterState {
+  tripType: TripType | null;
+  priceMin: number | null;
+  priceMax: number | null;
+  destinations: string[];
+  searchQuery: string;
+}
