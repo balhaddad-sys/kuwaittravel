@@ -48,7 +48,7 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
       <div className="fixed inset-0 bg-black/45 animate-fade-in" onClick={onClose} />
       <div
         className={cn(
-          "relative w-full overflow-hidden rounded-[var(--radius-xl)] border border-surface-border bg-white shadow-modal animate-scale-in dark:border-surface-dark-border dark:bg-surface-dark-card",
+          "relative flex max-h-[calc(100vh-2rem)] w-full flex-col overflow-hidden rounded-[var(--radius-xl)] border border-surface-border bg-white shadow-modal animate-scale-in dark:border-surface-dark-border dark:bg-surface-dark-card",
           sizeMap[size],
           className
         )}
@@ -57,7 +57,7 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
         aria-labelledby={title ? "modal-title" : undefined}
       >
         {(title || description) && (
-          <div className="flex items-start justify-between p-6 pb-0">
+          <div className="shrink-0 flex items-start justify-between p-6 pb-0">
             <div>
               {title && (
                 <h2 id="modal-title" className="text-heading-md font-bold text-navy-900 dark:text-white">
@@ -78,9 +78,9 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
             </button>
           </div>
         )}
-        {children !== undefined && children !== null && <div className="p-6">{children}</div>}
+        {children !== undefined && children !== null && <div className="overflow-y-auto p-6">{children}</div>}
         {footer && (
-          <div className="flex items-center justify-end gap-2 border-t border-surface-border/85 px-6 py-4 dark:border-surface-dark-border/85">
+          <div className="shrink-0 flex items-center justify-end gap-2 border-t border-surface-border/85 px-6 py-4 dark:border-surface-dark-border/85">
             {footer}
           </div>
         )}

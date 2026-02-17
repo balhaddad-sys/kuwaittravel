@@ -62,11 +62,13 @@ export default function AdminCampaignsPage() {
   const [filter, setFilter] = useState<"all" | VerificationStatus>("all");
   const [search, setSearch] = useState("");
 
-  // Detail modal
-  const [selected, setSelected] = useState<Campaign | null>(null);
+  // Detail modal — ID-based so it stays in sync with real-time data
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selected = useMemo(() => campaigns.find((c) => c.id === selectedId) ?? null, [campaigns, selectedId]);
 
   // Reject dialog
-  const [rejectTarget, setRejectTarget] = useState<Campaign | null>(null);
+  const [rejectTargetId, setRejectTargetId] = useState<string | null>(null);
+  const rejectTarget = useMemo(() => campaigns.find((c) => c.id === rejectTargetId) ?? null, [campaigns, rejectTargetId]);
   const [rejectionReason, setRejectionReason] = useState("");
 
   // Action loading
@@ -130,7 +132,7 @@ export default function AdminCampaignsPage() {
       });
       await logAction("campaign_approved", campaign.id, oldStatus, "approved");
       toast({ type: "success", title: t("تمت الموافقة على الحملة", "Campaign approved") });
-      setSelected(null);
+      setSelectedId(null);
     } catch {
       toast({ type: "error", title: t("فشلت العملية", "Action failed") });
     } finally {
@@ -149,9 +151,9 @@ export default function AdminCampaignsPage() {
       });
       await logAction("campaign_rejected", rejectTarget.id, oldStatus, "rejected");
       toast({ type: "success", title: t("تم رفض الحملة", "Campaign rejected") });
-      setRejectTarget(null);
+      setRejectTargetId(null);
       setRejectionReason("");
-      setSelected(null);
+      setSelectedId(null);
     } catch {
       toast({ type: "error", title: t("فشلت العملية", "Action failed") });
     } finally {
@@ -168,7 +170,7 @@ export default function AdminCampaignsPage() {
       });
       await logAction("campaign_suspended", campaign.id, oldStatus, "suspended");
       toast({ type: "success", title: t("تم تعليق الحملة", "Campaign suspended") });
-      setSelected(null);
+      setSelectedId(null);
     } catch {
       toast({ type: "error", title: t("فشلت العملية", "Action failed") });
     } finally {
@@ -250,7 +252,7 @@ export default function AdminCampaignsPage() {
                 variant="elevated"
                 padding="none"
                 className="cursor-pointer transition-shadow hover:shadow-lg"
-                onClick={() => setSelected(campaign)}
+                onClick={() => setSelectedId(campaign.id)}
               >
                 <div className="flex items-center gap-4 p-4">
                   <div className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-navy-100 to-navy-200 dark:from-navy-800 dark:to-navy-700">
@@ -288,7 +290,7 @@ export default function AdminCampaignsPage() {
       {/* Campaign Detail Modal */}
       <Modal
         open={!!selected}
-        onClose={() => setSelected(null)}
+        onClose={() => setSelectedId(null)}
         title={selected?.nameAr || ""}
         description={selected?.name}
         size="lg"
@@ -297,7 +299,7 @@ export default function AdminCampaignsPage() {
             <>
               {selected.verificationStatus === "pending" && (
                 <>
-                  <Button variant="ghost" onClick={() => { setRejectTarget(selected); }} disabled={actionLoading}>
+                  <Button variant="ghost" onClick={() => { setRejectTargetId(selected.id); }} disabled={actionLoading}>
                     <ShieldX className="h-4 w-4 me-1" />
                     {t("رفض", "Reject")}
                   </Button>
@@ -470,13 +472,13 @@ export default function AdminCampaignsPage() {
       {/* Reject Reason Modal */}
       <Modal
         open={!!rejectTarget}
-        onClose={() => { setRejectTarget(null); setRejectionReason(""); }}
+        onClose={() => { setRejectTargetId(null); setRejectionReason(""); }}
         title={t("رفض الحملة", "Reject Campaign")}
         description={rejectTarget ? t(`رفض حملة "${rejectTarget.nameAr}"`, `Reject "${rejectTarget.name}"`) : ""}
         size="sm"
         footer={
           <>
-            <Button variant="ghost" onClick={() => { setRejectTarget(null); setRejectionReason(""); }}>
+            <Button variant="ghost" onClick={() => { setRejectTargetId(null); setRejectionReason(""); }}>
               {t("إلغاء", "Cancel")}
             </Button>
             <Button

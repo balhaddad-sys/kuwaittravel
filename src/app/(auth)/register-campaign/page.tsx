@@ -204,13 +204,24 @@ export default function RegisterCampaignPage() {
             value={form.commercialRegNumber}
             onChange={(e) => update("commercialRegNumber", e.target.value)}
           />
-          <FileUpload
-            label={t("صورة الترخيص", "License Image")}
-            accept="image/*,.pdf"
-            maxSize={5}
-            onFilesChange={(files) => update("licenseFile", files[0] || null)}
-            hint={t("صورة أو ملف PDF — الحد الأقصى 5 ميغابايت", "Image or PDF — max 5MB")}
-          />
+          {form.licenseFile && (
+            <div className="flex items-center gap-2 rounded-[var(--radius-md)] bg-success-light p-2.5 text-body-sm text-green-800">
+              <FileText className="h-4 w-4 shrink-0" />
+              <span className="flex-1 truncate">{t("ملف مرفق:", "File attached:")} {form.licenseFile.name}</span>
+              <button type="button" onClick={() => update("licenseFile", null)} className="shrink-0 text-green-600 hover:text-error transition-colors">
+                {t("تغيير", "Change")}
+              </button>
+            </div>
+          )}
+          {!form.licenseFile && (
+            <FileUpload
+              label={t("صورة الترخيص", "License Image")}
+              accept="image/*,.pdf"
+              maxSize={5}
+              onFilesChange={(files) => update("licenseFile", files[0] || null)}
+              hint={t("صورة أو ملف PDF — الحد الأقصى 5 ميغابايت", "Image or PDF — max 5MB")}
+            />
+          )}
         </div>
       ),
       isValid: form.licenseNumber.trim().length > 0 && form.licenseFile !== null,
@@ -366,7 +377,7 @@ export default function RegisterCampaignPage() {
   ];
 
   return (
-    <Card variant="elevated" padding="lg" className="max-w-2xl mx-auto">
+    <Card variant="elevated" padding="lg">
       <div className="text-center mb-6">
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-lg">
           <ShieldCheck className="h-7 w-7 text-white" />

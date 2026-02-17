@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils/cn";
 import { Upload, X, FileText } from "lucide-react";
+import { useDirection } from "@/providers/DirectionProvider";
 
 interface FileUploadProps {
   label?: string;
@@ -25,6 +26,7 @@ function FileUpload({
   hint,
   className,
 }: FileUploadProps) {
+  const { t } = useDirection();
   const [files, setFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -70,10 +72,10 @@ function FileUpload({
       >
         <Upload className="h-8 w-8 text-navy-400" />
         <p className="text-body-md text-navy-600 dark:text-navy-300">
-          اسحب الملفات هنا أو اضغط للاختيار
+          {t("اسحب الملفات هنا أو اضغط للاختيار", "Drag files here or click to choose")}
         </p>
         <p className="text-body-sm text-navy-400">
-          الحد الأقصى {maxSize} ميغابايت
+          {t(`الحد الأقصى ${maxSize} ميغابايت`, `Max ${maxSize} MB`)}
         </p>
         <input
           ref={inputRef}
