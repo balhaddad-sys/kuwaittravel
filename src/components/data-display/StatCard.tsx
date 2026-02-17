@@ -19,12 +19,12 @@ function StatCard({ title, value, change, icon, hoverable = false, className }: 
       variant="elevated"
       padding="md"
       hoverable={hoverable}
-      className={cn("sm:!p-4 lg:!p-6", className)}
+      className={cn("!p-4 sm:!p-4 lg:!p-6", className)}
     >
       <div className="flex items-start justify-between gap-2 sm:gap-3">
         <div className="min-w-0">
-          <p className="truncate text-[11px] text-navy-500 dark:text-navy-300 sm:text-body-sm">{title}</p>
-          <p className="tabular-nums mt-0.5 text-body-md font-bold text-navy-900 dark:text-white sm:mt-1 sm:text-heading-lg lg:text-display-md">
+          <p className="truncate text-body-sm text-navy-500 dark:text-navy-300">{title}</p>
+          <p className="tabular-nums mt-1 text-heading-sm font-bold text-navy-900 dark:text-white sm:text-heading-lg lg:text-display-md">
             {value}
           </p>
           {change && (
@@ -44,7 +44,7 @@ function StatCard({ title, value, change, icon, hoverable = false, className }: 
           )}
         </div>
         {icon && (
-          <div className="travel-icon-circle travel-icon-circle-sm shrink-0 sm:travel-icon-circle-md lg:travel-icon-circle-lg">
+          <div className="travel-icon-circle travel-icon-circle-md shrink-0 lg:travel-icon-circle-lg">
             {icon}
           </div>
         )}

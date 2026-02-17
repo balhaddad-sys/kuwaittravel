@@ -38,13 +38,13 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-[var(--z-sticky)] border-b border-surface-border bg-white px-3 py-2 dark:border-surface-dark-border dark:bg-surface-dark-card lg:hidden",
+        "sticky top-0 z-[var(--z-sticky)] border-b border-surface-border bg-white px-3 py-2.5 shadow-[0_2px_10px_rgba(15,17,22,0.06)] dark:border-surface-dark-border dark:bg-surface-dark-card lg:hidden",
         className
       )}
     >
       <div
         ref={containerRef}
-        className="flex items-center gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory items-center gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item) => {
           const isActive =
@@ -57,7 +57,7 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
               href={item.href}
               prefetch
               className={cn(
-                "relative shrink-0 whitespace-nowrap rounded-full border px-3.5 py-2 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
+                "relative shrink-0 snap-start whitespace-nowrap rounded-full border px-4 py-2.5 text-body-md font-semibold transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
                 isActive
                   ? "border-gold-200 bg-gold-50 text-gold-700 shadow-none dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
                   : "border-surface-border bg-white text-navy-700 dark:border-surface-dark-border dark:bg-surface-dark dark:text-navy-100"

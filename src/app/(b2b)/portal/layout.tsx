@@ -48,6 +48,15 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
       : []),
   ];
 
+  const mobileNavItems: SidebarItem[] = [
+    sidebarItems[0], // dashboard
+    sidebarItems[1], // trips
+    sidebarItems[2], // bookings
+    sidebarItems[5], // wallet
+    sidebarItems[8], // settings
+    ...switchItems,
+  ];
+
   return (
     <RoleGuard allowedRoles={["campaign_owner", "campaign_staff", "admin", "super_admin"]}>
     <div className="flex min-h-screen">
@@ -82,7 +91,7 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
         }
       />
       <main className="travel-shell-bg flex flex-1 flex-col ms-0 lg:ms-[286px] transition-all duration-300">
-        <MobileTopNav items={[...sidebarItems, ...switchItems]} />
+        <MobileTopNav items={mobileNavItems} />
         {showOwnerQuickActions && <OwnerQuickActions />}
         <PageTransition className="flex-1" variant="portal">{children}</PageTransition>
       </main>
