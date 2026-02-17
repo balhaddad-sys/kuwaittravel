@@ -17,22 +17,25 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
   const activeItemRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current || !activeItemRef.current) return;
-    const container = containerRef.current;
-    const activeItem = activeItemRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const activeRect = activeItem.getBoundingClientRect();
+    const id = requestAnimationFrame(() => {
+      if (!containerRef.current || !activeItemRef.current) return;
+      const container = containerRef.current;
+      const activeItem = activeItemRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const activeRect = activeItem.getBoundingClientRect();
 
-    if (
-      activeRect.left < containerRect.left + 16 ||
-      activeRect.right > containerRect.right - 16
-    ) {
-      activeItem.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
-    }
+      if (
+        activeRect.left < containerRect.left + 16 ||
+        activeRect.right > containerRect.right - 16
+      ) {
+        activeItem.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+    });
+    return () => cancelAnimationFrame(id);
   }, [pathname]);
 
   return (
