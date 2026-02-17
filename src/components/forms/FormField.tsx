@@ -13,14 +13,14 @@ function FormField({ label, error, hint, required, children, className }: FormFi
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       {label && (
-        <label className="text-label font-medium text-navy-700 dark:text-navy-200">
+        <label className="text-label font-medium text-stone-700 dark:text-stone-200">
           {label}
           {required && <span className="text-error ms-0.5">*</span>}
         </label>
       )}
       {children}
       {error && <p className="text-body-sm text-error">{error}</p>}
-      {hint && !error && <p className="text-body-sm text-navy-400">{hint}</p>}
+      {hint && !error && <p className="text-body-sm text-stone-400">{hint}</p>}
     </div>
   );
 }

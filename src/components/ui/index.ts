@@ -12,3 +12,5 @@ export { Skeleton, type SkeletonProps } from "./Skeleton";
 export { Divider, type DividerProps } from "./Divider";
 export { EmptyState, type EmptyStateProps } from "./EmptyState";
 export { DropdownMenu, type DropdownMenuProps, type DropdownItem } from "./DropdownMenu";
+export { FAB, type FABProps } from "./FAB";
+export { SkeletonCard, type SkeletonCardProps } from "./SkeletonCard";

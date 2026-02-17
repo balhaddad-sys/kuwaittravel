@@ -19,9 +19,9 @@ export default function SettingsPage() {
         title={t("الإعدادات", "Settings")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الإعدادات", "Settings") }]}
       />
-      <Container size="md" className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container size="md" className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         <Card variant="elevated" padding="lg" className="space-y-4">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white">{t("البيانات البنكية", "Bank Details")}</h3>
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white">{t("البيانات البنكية", "Bank Details")}</h3>
           <Input label={t("اسم البنك", "Bank Name")} placeholder={t("بنك الكويت الوطني", "National Bank of Kuwait")} />
           <Input label={t("رقم الآيبان", "IBAN Number")} placeholder="KW00XXXX..." dir="ltr" />
           <Input label={t("اسم صاحب الحساب", "Account Holder Name")} placeholder={t("الاسم كما يظهر في الحساب", "Name as it appears on the account")} />
@@ -31,7 +31,7 @@ export default function SettingsPage() {
         </Card>
 
         <Card variant="elevated" padding="lg" className="space-y-4">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white">{t("إعدادات الإشعارات", "Notification Settings")}</h3>
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white">{t("إعدادات الإشعارات", "Notification Settings")}</h3>
           <div className="space-y-3">
             {[
               { label: t("إشعارات الحجوزات الجديدة", "New booking notifications"), checked: true },
@@ -40,8 +40,8 @@ export default function SettingsPage() {
               { label: t("تقارير أسبوعية", "Weekly reports"), checked: false },
             ].map((setting, i) => (
               <label key={i} className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                <span className="text-body-sm sm:text-body-md text-navy-700 dark:text-navy-200">{setting.label}</span>
-                <input type="checkbox" defaultChecked={setting.checked} className="h-5 w-5 shrink-0 rounded border-navy-300 text-navy-700" />
+                <span className="text-body-sm sm:text-body-md text-stone-700 dark:text-stone-200">{setting.label}</span>
+                <input type="checkbox" defaultChecked={setting.checked} className="h-5 w-5 shrink-0 rounded border-stone-400 text-stone-700" />
               </label>
             ))}
           </div>

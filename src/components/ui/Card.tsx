@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/cn";
 
 interface CardProps {
   children: React.ReactNode;
-  variant?: "elevated" | "outlined" | "filled";
+  variant?: "elevated" | "outlined" | "filled" | "glass";
   padding?: "none" | "sm" | "md" | "lg";
   hoverable?: boolean;
   interactive?: boolean;
@@ -18,11 +18,12 @@ const paddingMap = {
 };
 
 const variantMap = {
-  elevated: "travel-panel",
+  elevated: "sacred-panel",
   outlined:
     "border border-surface-border bg-white dark:border-surface-dark-border dark:bg-surface-dark-card",
   filled:
     "border border-surface-border bg-surface-muted dark:border-surface-dark-border dark:bg-surface-dark-card",
+  glass: "sacred-glass",
 };
 
 function Card({
@@ -43,11 +44,9 @@ function Card({
         variantMap[variant],
         paddingMap[padding],
         hoverable &&
-          "cursor-pointer will-change-transform hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-card-hover dark:hover:border-gold-600",
-        variant === "outlined" &&
-          "hover:border-gold-300/90 hover:shadow-card-hover dark:hover:border-gold-700/45",
+          "cursor-pointer will-change-transform hover:-translate-y-0.5 hover:border-amber-200 hover:shadow-card-hover dark:hover:border-amber-700",
         isInteractive &&
-          "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/35 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+          "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/35 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
         className
       )}
       onClick={onClick}

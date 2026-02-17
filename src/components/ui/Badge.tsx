@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils/cn";
 
 interface BadgeProps {
-  variant?: "default" | "success" | "warning" | "error" | "info" | "gold";
+  variant?: "default" | "success" | "warning" | "error" | "info" | "teal" | "amber" | "gold";
   size?: "sm" | "md";
   children: React.ReactNode;
   dot?: boolean;
@@ -9,12 +9,14 @@ interface BadgeProps {
 }
 
 const variantMap = {
-  default: "bg-navy-100/75 text-navy-700 border border-navy-200/80 dark:bg-navy-900/45 dark:text-navy-200 dark:border-navy-700/70",
+  default: "bg-stone-100/75 text-stone-700 border border-stone-200/80 dark:bg-stone-900/45 dark:text-stone-200 dark:border-stone-700/70",
   success: "bg-success-light text-green-800 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800/60",
-  warning: "bg-warning-light text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/60",
+  warning: "bg-warning-light text-orange-800 border border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800/60",
   error: "bg-error-light text-red-800 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
-  info: "bg-info-light text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800/60",
-  gold: "travel-chip travel-gold-shimmer bg-[linear-gradient(110deg,rgba(255,234,205,0.8),rgba(255,248,237,0.96),rgba(255,213,157,0.78),rgba(255,248,237,0.96))] dark:bg-[linear-gradient(110deg,rgba(126,63,20,0.34),rgba(95,49,18,0.22),rgba(161,82,20,0.28),rgba(95,49,18,0.22))]",
+  info: "bg-info-light text-sky-800 border border-sky-200 dark:bg-sky-900/30 dark:text-sky-400 dark:border-sky-800/60",
+  teal: "bg-teal-50 text-teal-800 border border-teal-200 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-800/60",
+  amber: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(254,243,199,0.8),rgba(255,251,235,0.96),rgba(253,230,138,0.78),rgba(255,251,235,0.96))] dark:bg-[linear-gradient(110deg,rgba(120,53,15,0.34),rgba(146,64,14,0.22),rgba(180,83,9,0.28),rgba(146,64,14,0.22))]",
+  gold: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(254,243,199,0.8),rgba(255,251,235,0.96),rgba(253,230,138,0.78),rgba(255,251,235,0.96))] dark:bg-[linear-gradient(110deg,rgba(120,53,15,0.34),rgba(146,64,14,0.22),rgba(180,83,9,0.28),rgba(146,64,14,0.22))]",
 };
 
 const sizeMap = {
@@ -22,13 +24,15 @@ const sizeMap = {
   md: "px-2.5 py-1 text-body-sm",
 };
 
-const dotMap = {
-  default: "bg-navy-500 dark:bg-navy-300",
+const dotMap: Record<string, string> = {
+  default: "bg-stone-500 dark:bg-stone-300",
   success: "bg-success",
   warning: "bg-warning",
   error: "bg-error",
   info: "bg-info",
-  gold: "bg-gold-500 dark:bg-gold-400",
+  teal: "bg-teal-600 dark:bg-teal-400",
+  amber: "bg-amber-500 dark:bg-amber-400",
+  gold: "bg-amber-500 dark:bg-amber-400",
 };
 
 function Badge({ variant = "default", size = "md", children, dot = false, className }: BadgeProps) {

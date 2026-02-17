@@ -55,7 +55,7 @@ export default function DashboardPage() {
         }
       />
 
-      <Container className="travel-orbit-bg py-4 sm:py-6 space-y-4 sm:space-y-6">
+      <Container className="sacred-pattern py-4 sm:py-6 space-y-4 sm:space-y-6">
         {/* Verification Status Banners */}
         {verificationStatus === "pending" && (
           <AlertBanner
@@ -90,7 +90,7 @@ export default function DashboardPage() {
         </div>
 
         <Card variant="elevated" padding="none" className="overflow-hidden">
-          <div className="flex items-center justify-between border-b border-surface-border/85 bg-gradient-to-r from-navy-800 to-navy-900 px-4 py-3 dark:border-surface-dark-border/85">
+          <div className="flex items-center justify-between border-b border-surface-border/85 bg-gradient-to-r from-stone-800 to-stone-900 px-4 py-3 dark:border-surface-dark-border/85">
             <h2 className="text-body-lg sm:text-heading-md font-bold text-white">
               {t("الرحلات النشطة", "Active Trips")}
             </h2>
@@ -110,7 +110,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
           <Card variant="elevated" padding="lg">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-4 flex items-center gap-2">
               <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
                 <BookOpen className="h-4 w-4" />
               </span>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
           </Card>
 
           <Card variant="elevated" padding="lg">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-4 flex items-center gap-2">
               <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
                 <TrendingUp className="h-4 w-4" />
               </span>

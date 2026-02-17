@@ -22,6 +22,9 @@ export interface GeoPoint {
   lng: number;
 }
 
+export type DealBadgeType = "early_bird" | "last_minute" | "best_value" | "trending";
+export type LoyaltyTier = "bronze" | "silver" | "gold" | "platinum";
+
 export interface TripFilterState {
   tripType: TripType | null;
   priceMin: number | null;

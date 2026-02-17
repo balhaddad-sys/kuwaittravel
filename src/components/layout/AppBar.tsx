@@ -36,30 +36,30 @@ function AppBar({
         {onMenuToggle && (
           <button
             onClick={onMenuToggle}
-            className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-navy-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-surface-border hover:bg-surface-light dark:hover:border-surface-dark-border dark:hover:bg-surface-dark active:scale-[0.97] lg:hidden"
+            className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-stone-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-surface-border hover:bg-surface-light dark:hover:border-surface-dark-border dark:hover:bg-surface-dark active:scale-[0.97] lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
         )}
         <div className="min-w-0">
           {breadcrumbs && breadcrumbs.length > 0 && (
-            <nav className="hidden items-center gap-1.5 text-body-sm text-navy-400 sm:flex">
+            <nav className="hidden items-center gap-1.5 text-body-sm text-stone-400 sm:flex">
               {breadcrumbs.map((crumb, i) => (
                 <span key={i} className="flex items-center gap-1.5">
-                  {i > 0 && <span className="text-navy-300 dark:text-navy-500">›</span>}
+                  {i > 0 && <span className="text-stone-300 dark:text-stone-500">›</span>}
                   {crumb.href ? (
-                    <Link href={crumb.href} prefetch className="transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-navy-600">
+                    <Link href={crumb.href} prefetch className="transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-teal-600">
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className="font-semibold text-navy-700 dark:text-navy-200">{crumb.label}</span>
+                    <span className="font-semibold text-stone-700 dark:text-stone-200">{crumb.label}</span>
                   )}
                 </span>
               ))}
             </nav>
           )}
           {title && (
-            <h1 className="truncate text-body-lg font-bold text-navy-900 dark:text-white sm:text-heading-md">
+            <h1 className="truncate text-body-lg font-bold text-stone-900 dark:text-white sm:text-heading-md">
               {title}
             </h1>
           )}

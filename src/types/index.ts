@@ -5,3 +5,6 @@ export * from "./trip";
 export * from "./booking";
 export * from "./payment";
 export * from "./notification";
+export * from "./review";
+export * from "./guide";
+export * from "./checklist";

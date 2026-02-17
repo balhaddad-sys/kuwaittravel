@@ -16,7 +16,7 @@ export default function UsersPage() {
   return (
     <>
       <AppBar title={t("إدارة المستخدمين", "User Management")} breadcrumbs={[{ label: t("المشرف العام", "Admin"), href: "/admin/dashboard" }, { label: t("المستخدمون", "Users") }]} />
-      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
         <SearchInput placeholder={t("ابحث بالاسم أو رقم الهاتف...", "Search by name or phone number...")} onSearch={() => {}} />
         <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
@@ -30,7 +30,7 @@ export default function UsersPage() {
               key={filter.value}
               type="button"
               onClick={() => setRoleFilter(filter.value)}
-              className={`travel-filter-chip shrink-0 px-3 py-1.5 text-body-sm font-medium ${roleFilter === filter.value ? "travel-filter-chip-active" : ""}`}
+              className={`sacred-filter-chip shrink-0 px-3 py-1.5 text-body-sm font-medium ${roleFilter === filter.value ? "sacred-filter-chip-active" : ""}`}
             >
               {filter.label}
             </button>

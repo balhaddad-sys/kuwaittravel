@@ -36,7 +36,7 @@ export default function TripDetailPage() {
         ]}
       />
 
-      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard title="المسافرون" value="0/0" icon={<Users className="h-5 w-5" />} />
           <StatCard title="الإيرادات" value="0 د.ك" icon={<Wallet className="h-5 w-5" />} />
@@ -52,14 +52,14 @@ export default function TripDetailPage() {
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
               className={`relative flex shrink-0 items-center gap-2 px-3 sm:px-4 py-3 text-body-sm sm:text-body-md font-medium border-b-2 transition-all ${
                 activeTab === tab.id
-                  ? "border-navy-700 text-navy-700 dark:text-white"
-                  : "border-transparent text-navy-400 hover:text-navy-600"
+                  ? "border-stone-700 text-stone-700 dark:text-white"
+                  : "border-transparent text-stone-400 hover:text-stone-600"
               }`}
             >
               {tab.icon}
               {tab.label}
               {activeTab === tab.id && (
-                <span className="pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-300 to-transparent" />
+                <span className="pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
               )}
             </button>
           ))}
@@ -106,7 +106,7 @@ export default function TripDetailPage() {
         {activeTab === "announcements" && (
           <div className="space-y-4">
             <Card variant="elevated" padding="lg">
-              <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-4">
+              <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-4">
                 إرسال إعلان جديد
               </h3>
               <div className="space-y-3">

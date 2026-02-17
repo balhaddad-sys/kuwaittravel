@@ -16,7 +16,7 @@ export default function DocumentsPage() {
         title={t("المستندات والكشوفات", "Documents & Statements")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("المستندات", "Documents") }]}
       />
-      <Container className="travel-orbit-bg py-3 sm:py-6">
+      <Container className="sacred-pattern py-3 sm:py-6">
         <Card variant="elevated" padding="none">
           <EmptyState
             icon={<FileText className="h-16 w-16" />}

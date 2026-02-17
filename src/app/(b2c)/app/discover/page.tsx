@@ -227,15 +227,15 @@ export default function DiscoverPage() {
     language === "ar" ? (trip.titleAr || trip.title) : (trip.title || trip.titleAr);
 
   return (
-    <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+    <div className="sacred-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
       {/* Compact Hero */}
-      <section className="travel-gradient-hero relative border-b border-surface-border/70 px-4 pb-6 pt-6 sm:pb-8 sm:pt-10">
+      <section className="sacred-gradient-hero relative border-b border-surface-border/70 px-4 pb-6 pt-6 sm:pb-8 sm:pt-10">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="travel-title text-xl font-extrabold leading-tight text-navy-900 dark:text-white sm:text-3xl lg:text-4xl">
+            <h1 className="sacred-title text-xl font-extrabold leading-tight text-stone-900 dark:text-white sm:text-3xl lg:text-4xl">
               {t("استكشف رحلتك القادمة", "Discover Your Next Journey")}
             </h1>
-            <p className="mt-2 text-body-md text-navy-500 dark:text-navy-300 sm:text-body-lg">
+            <p className="mt-2 text-body-md text-stone-500 dark:text-stone-400 sm:text-body-lg">
               {t(
                 "ابحث واحجز رحلات الحج والعمرة والزيارات بسهولة",
                 "Search and book Hajj, Umrah, and Ziyarat trips with ease"
@@ -264,12 +264,12 @@ export default function DiscoverPage() {
             <button
               type="button"
               onClick={() => setFilterSheetOpen(true)}
-              className="relative flex shrink-0 items-center gap-1.5 rounded-[var(--radius-pill)] border border-surface-border px-3 py-2 text-body-sm font-medium text-navy-600 transition-colors hover:border-navy-300 hover:bg-navy-50 dark:border-surface-dark-border dark:text-navy-300 dark:hover:border-navy-600 dark:hover:bg-navy-900/40"
+              className="relative flex shrink-0 items-center gap-1.5 rounded-[var(--radius-pill)] border border-surface-border px-3 py-2 text-body-sm font-medium text-stone-600 transition-colors hover:border-stone-400 hover:bg-stone-50 dark:border-surface-dark-border dark:text-stone-400 dark:hover:border-stone-600 dark:hover:bg-stone-900/40"
             >
               <SlidersHorizontal className="h-4 w-4" />
               {t("فلتر", "Filter")}
               {activeFilterCount > 0 && (
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gold-500 text-[10px] font-bold text-white">
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[10px] font-bold text-white">
                   {activeFilterCount}
                 </span>
               )}
@@ -280,19 +280,19 @@ export default function DiscoverPage() {
           {activeFilterCount > 0 && (
             <div className="mt-2 flex flex-wrap gap-1.5">
               {filters.tripType && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-gold-100 px-2.5 py-1 text-[11px] font-medium text-gold-700 dark:bg-gold-900/30 dark:text-gold-300">
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
                   {TRIP_TYPE_PILLS.find((p) => p.id === filters.tripType)?.[language === "ar" ? "labelAr" : "labelEn"]}
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, tripType: null }))}><X className="h-3 w-3" /></button>
                 </span>
               )}
               {(filters.priceMin !== null || filters.priceMax !== null) && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-gold-100 px-2.5 py-1 text-[11px] font-medium text-gold-700 dark:bg-gold-900/30 dark:text-gold-300">
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
                   {filters.priceMin ?? 0} - {filters.priceMax ?? "∞"} KWD
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, priceMin: null, priceMax: null }))}><X className="h-3 w-3" /></button>
                 </span>
               )}
               {filters.destinations.map((dest) => (
-                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-gold-100 px-2.5 py-1 text-[11px] font-medium text-gold-700 dark:bg-gold-900/30 dark:text-gold-300">
+                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
                   {dest}
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, destinations: prev.destinations.filter((d) => d !== dest) }))}><X className="h-3 w-3" /></button>
                 </span>
@@ -308,8 +308,8 @@ export default function DiscoverPage() {
           <section>
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Flame className="h-5 w-5 text-gold-500" />
-                <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+                <Flame className="h-5 w-5 text-amber-500" />
+                <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
                   {t("رحلات مميزة", "Featured Trips")}
                 </h2>
               </div>
@@ -351,8 +351,8 @@ export default function DiscoverPage() {
           <section>
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Globe2 className="h-5 w-5 text-gold-500" />
-                <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+                <Globe2 className="h-5 w-5 text-amber-500" />
+                <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
                   {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
                 </h2>
               </div>
@@ -369,16 +369,16 @@ export default function DiscoverPage() {
                         : [...prev.destinations, dest.city],
                     }));
                   }}
-                  className="travel-panel group w-[140px] rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-200/80 hover:shadow-card-hover dark:hover:border-gold-700/45 animate-stagger-fade-up"
+                  className="sacred-panel group w-[140px] rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200/80 hover:shadow-card-hover dark:hover:border-amber-700/45 animate-stagger-fade-up"
                   style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
                 >
-                  <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-md transition-transform duration-300 group-hover:scale-110">
+                  <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-white shadow-md transition-transform duration-300 group-hover:scale-110">
                     <Compass className="h-4 w-4" />
                   </div>
-                  <p className="mt-3 line-clamp-1 text-body-md font-semibold text-navy-800 dark:text-navy-100">
+                  <p className="mt-3 line-clamp-1 text-body-md font-semibold text-stone-800 dark:text-stone-100">
                     {dest.city}
                   </p>
-                  <p className="text-[11px] text-navy-500 dark:text-navy-300">
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400">
                     {dest.count} {t("رحلة", "trips")}
                   </p>
                 </button>
@@ -391,12 +391,12 @@ export default function DiscoverPage() {
         <section>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Compass className="h-5 w-5 text-gold-500" />
-              <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+              <Compass className="h-5 w-5 text-amber-500" />
+              <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
                 {t("جميع الرحلات", "All Trips")}
               </h2>
               {!loading && filteredTrips.length > 0 && (
-                <span className="rounded-full bg-navy-100/80 px-2 py-0.5 text-[11px] font-medium text-navy-600 dark:bg-navy-800/80 dark:text-navy-300">
+                <span className="rounded-full bg-stone-100/80 px-2 py-0.5 text-[11px] font-medium text-stone-600 dark:bg-stone-800/80 dark:text-stone-400">
                   {filteredTrips.length}
                 </span>
               )}
@@ -456,12 +456,12 @@ export default function DiscoverPage() {
           <section>
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-gold-500" />
-                <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+                <Star className="h-5 w-5 text-amber-500" />
+                <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
                   {t("حملات موثوقة", "Trusted Campaigns")}
                 </h2>
               </div>
-              <button className="flex items-center gap-1 text-body-sm font-medium text-navy-500 transition-colors hover:text-navy-700 dark:hover:text-navy-100">
+              <button className="flex items-center gap-1 text-body-sm font-medium text-stone-500 transition-colors hover:text-stone-700 dark:hover:text-stone-100">
                 {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
               </button>
             </div>
@@ -500,8 +500,8 @@ export default function DiscoverPage() {
         {loading && (
           <section>
             <div className="mb-4 flex items-center gap-2">
-              <Star className="h-5 w-5 text-gold-500" />
-              <h2 className="text-heading-md font-bold text-navy-900 dark:text-white">
+              <Star className="h-5 w-5 text-amber-500" />
+              <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
                 {t("حملات موثوقة", "Trusted Campaigns")}
               </h2>
             </div>
@@ -516,7 +516,7 @@ export default function DiscoverPage() {
         )}
 
         {loadError && (
-          <div className="travel-panel rounded-2xl p-6 text-center">
+          <div className="sacred-panel rounded-2xl p-6 text-center">
             <p className="text-body-md text-error">
               {t(
                 "تعذر تحميل بيانات الاكتشاف حالياً.",

@@ -5,7 +5,7 @@ import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { useDirection } from "@/providers/DirectionProvider";
 import { cn } from "@/lib/utils/cn";
-import { SlidersHorizontal, X } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import type { TripType } from "@/types/common";
 
 export interface TripFilterState {

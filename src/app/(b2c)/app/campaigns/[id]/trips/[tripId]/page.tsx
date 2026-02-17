@@ -204,7 +204,7 @@ export default function TripDetailPage({
     },
     {
       key: "route",
-      icon: <MapPin className="h-4 w-4 text-gold-600" />,
+      icon: <MapPin className="h-4 w-4 text-amber-600" />,
       title: t("مسار الرحلة", "Route Snapshot"),
       description: t(
         `المغادرة من ${trip.departureCity || "الكويت"} إلى ${destinationLabel} بتاريخ ${departureDateLabel}، والعودة ${returnDateLabel}.`,
@@ -227,7 +227,7 @@ export default function TripDetailPage({
     },
     {
       key: "pricing",
-      icon: <DollarSign className="h-4 w-4 text-navy-500" />,
+      icon: <DollarSign className="h-4 w-4 text-stone-500" />,
       title: t("الميزانية والدفع", "Budget & Payment"),
       description: t(
         `السعر الحالي ${formatKWD(basePrice)} لكل مسافر ضمن "${selectedTierName}". راجع الإجمالي النهائي قبل التأكيد خاصة عند إضافة أكثر من مسافر.`,
@@ -325,12 +325,12 @@ export default function TripDetailPage({
     {
       label: t("من", "From"),
       value: trip.departureCity || t("غير محدد", "Not set"),
-      icon: <Plane className="h-4 w-4 text-navy-500" />,
+      icon: <Plane className="h-4 w-4 text-stone-500" />,
     },
     {
       label: t("النوع", "Type"),
       value: tripTypeLabel,
-      icon: <Tag className="h-4 w-4 text-gold-500" />,
+      icon: <Tag className="h-4 w-4 text-amber-500" />,
     },
   ];
 
@@ -347,9 +347,9 @@ export default function TripDetailPage({
             <button
               type="button"
               onClick={() => router.back()}
-              className="absolute start-3 top-3 z-10 flex items-center justify-center rounded-full bg-white/90 p-2 shadow-md transition-colors hover:bg-white dark:bg-navy-800/90"
+              className="absolute start-3 top-3 z-10 flex items-center justify-center rounded-full bg-white/90 p-2 shadow-md transition-colors hover:bg-white dark:bg-stone-800/90"
             >
-              <ArrowLeft className="h-5 w-5 text-navy-800 rtl:rotate-180 dark:text-white" />
+              <ArrowLeft className="h-5 w-5 text-stone-800 rtl:rotate-180 dark:text-white" />
             </button>
             {/* Wishlist */}
             <div className="absolute end-3 top-3 z-10">
@@ -368,10 +368,10 @@ export default function TripDetailPage({
         <div>
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0">
-              <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">
+              <h1 className="text-heading-lg font-bold text-stone-900 dark:text-white sm:text-display-md">
                 {tripTitle}
               </h1>
-              <div className="mt-1 flex items-center gap-2 text-body-sm text-navy-500">
+              <div className="mt-1 flex items-center gap-2 text-body-sm text-stone-500">
                 <Building2 className="h-3.5 w-3.5" />
                 <span>{trip.campaignName}</span>
               </div>
@@ -398,8 +398,8 @@ export default function TripDetailPage({
             >
               {item.icon}
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-navy-400">{item.label}</p>
-                <p className="text-body-sm font-medium text-navy-800 dark:text-white">{item.value}</p>
+                <p className="text-[10px] uppercase tracking-wider text-stone-400">{item.label}</p>
+                <p className="text-body-sm font-medium text-stone-800 dark:text-white">{item.value}</p>
               </div>
             </div>
           ))}
@@ -409,14 +409,14 @@ export default function TripDetailPage({
         <Card variant="elevated" padding="md">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-body-sm text-navy-500">{t("يبدأ من", "Starting from")}</p>
-              <p className="font-numbers text-display-md font-bold text-navy-900 dark:text-white">
+              <p className="text-body-sm text-stone-500">{t("يبدأ من", "Starting from")}</p>
+              <p className="font-numbers text-display-md font-bold text-stone-900 dark:text-white">
                 {formatKWD(basePrice)}
               </p>
             </div>
             <div className="text-end">
-              <p className="text-body-sm text-navy-500">{t("المقاعد المتبقية", "Seats remaining")}</p>
-              <p className="font-numbers text-heading-md font-bold text-navy-900 dark:text-white">
+              <p className="text-body-sm text-stone-500">{t("المقاعد المتبقية", "Seats remaining")}</p>
+              <p className="font-numbers text-heading-md font-bold text-stone-900 dark:text-white">
                 {remainingCapacity} / {trip.totalCapacity}
               </p>
             </div>
@@ -441,11 +441,11 @@ export default function TripDetailPage({
         {/* Description (expandable) */}
         {tripDescription && (
           <Card variant="outlined" padding="md">
-            <h3 className="mb-2 text-heading-sm font-bold text-navy-900 dark:text-white">
+            <h3 className="mb-2 text-heading-sm font-bold text-stone-900 dark:text-white">
               {t("عن الرحلة", "About This Trip")}
             </h3>
             <div className={descExpanded ? "" : "max-h-24 overflow-hidden"}>
-              <p className="text-body-md leading-relaxed text-navy-600 dark:text-navy-300">
+              <p className="text-body-md leading-relaxed text-stone-600 dark:text-stone-400">
                 {tripDescription}
               </p>
             </div>
@@ -453,7 +453,7 @@ export default function TripDetailPage({
               <button
                 type="button"
                 onClick={() => setDescExpanded(!descExpanded)}
-                className="mt-2 flex items-center gap-1 text-body-sm font-medium text-gold-600 transition-colors hover:text-gold-700"
+                className="mt-2 flex items-center gap-1 text-body-sm font-medium text-amber-600 transition-colors hover:text-amber-700"
               >
                 {descExpanded ? (
                   <>{t("عرض أقل", "Show less")} <ChevronUp className="h-3.5 w-3.5" /></>
@@ -468,7 +468,7 @@ export default function TripDetailPage({
         {/* Itinerary Timeline */}
         {itineraryBlocks.length > 0 && (
           <Card variant="outlined" padding="md">
-            <h3 className="mb-4 text-heading-sm font-bold text-navy-900 dark:text-white">
+            <h3 className="mb-4 text-heading-sm font-bold text-stone-900 dark:text-white">
               {t("برنامج الرحلة", "Trip Itinerary")}
             </h3>
             <ItineraryTimeline blocks={itineraryBlocks} />
@@ -478,14 +478,14 @@ export default function TripDetailPage({
         {/* Smart Guide */}
         <Card variant="outlined" padding="md">
           <div className="mb-4 flex items-center gap-2">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-gold-100 dark:bg-gold-900/30">
-              <ShieldCheck className="h-4 w-4 text-gold-600 dark:text-gold-400" />
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-amber-100 dark:bg-amber-900/30">
+              <ShieldCheck className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
-              <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">
+              <h3 className="text-heading-sm font-bold text-stone-900 dark:text-white">
                 {t("دليل الرحلة الذكي", "Smart Trip Guide")}
               </h3>
-              <p className="text-body-sm text-navy-500 dark:text-navy-400">
+              <p className="text-body-sm text-stone-500 dark:text-stone-400">
                 {t(
                   "إرشادات عملية مبنية على حالة هذه الرحلة لمساعدتك قبل الدفع وأثناء الاستعداد.",
                   "Practical guidance based on this trip's live details to help before payment and while preparing."
@@ -504,24 +504,24 @@ export default function TripDetailPage({
                   <span className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] bg-white dark:bg-surface-dark-card">
                     {item.icon}
                   </span>
-                  <p className="text-body-md font-semibold text-navy-900 dark:text-white">
+                  <p className="text-body-md font-semibold text-stone-900 dark:text-white">
                     {item.title}
                   </p>
                 </div>
-                <p className="text-body-sm leading-relaxed text-navy-600 dark:text-navy-300">
+                <p className="text-body-sm leading-relaxed text-stone-600 dark:text-stone-400">
                   {item.description}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-4 rounded-[var(--radius-md)] border border-gold-200/70 bg-gold-50/40 p-3 dark:border-gold-900/40 dark:bg-gold-900/10">
-            <p className="mb-2 text-body-md font-semibold text-navy-900 dark:text-white">
+          <div className="mt-4 rounded-[var(--radius-md)] border border-amber-200/70 bg-amber-50/40 p-3 dark:border-amber-900/40 dark:bg-amber-900/10">
+            <p className="mb-2 text-body-md font-semibold text-stone-900 dark:text-white">
               {t("قائمة تجهيز سريعة", "Quick Prep Checklist")}
             </p>
             <ul className="space-y-1.5">
               {prepChecklist.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-body-sm text-navy-700 dark:text-navy-200">
+                <li key={item} className="flex items-start gap-2 text-body-sm text-stone-700 dark:text-stone-200">
                   <span className="mt-0.5 text-success">✓</span>
                   <span>{item}</span>
                 </li>
@@ -533,7 +533,7 @@ export default function TripDetailPage({
         {/* Destinations */}
         {trip.destinations && trip.destinations.length > 0 && (
           <Card variant="outlined" padding="md">
-            <h3 className="mb-3 text-heading-sm font-bold text-navy-900 dark:text-white">
+            <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
               {t("الوجهات", "Destinations")}
             </h3>
             <div className="space-y-2.5">
@@ -542,15 +542,15 @@ export default function TripDetailPage({
                   key={index}
                   className="flex items-center gap-3 rounded-[var(--radius-md)] bg-surface-muted p-3 dark:bg-surface-dark"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gold-100/70 dark:bg-gold-900/30">
-                    <MapPin className="h-4 w-4 text-gold-600 dark:text-gold-400" />
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-100/70 dark:bg-amber-900/30">
+                    <MapPin className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-body-md font-medium text-navy-900 dark:text-white">
+                    <p className="text-body-md font-medium text-stone-900 dark:text-white">
                       {dest.city}
                       {dest.country ? `، ${dest.country}` : ""}
                     </p>
-                    <p className="text-body-sm text-navy-500">
+                    <p className="text-body-sm text-stone-500">
                       {formatTripDate(dest.arrivalDate as unknown as { seconds: number }, language)} -{" "}
                       {formatTripDate(dest.departureDate as unknown as { seconds: number }, language)}
                     </p>
@@ -564,7 +564,7 @@ export default function TripDetailPage({
         {/* Pricing Tiers */}
         {pricingTiers.length > 1 && (
           <Card variant="outlined" padding="md">
-            <h3 className="mb-3 text-heading-sm font-bold text-navy-900 dark:text-white">
+            <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
               {t("باقات الأسعار", "Pricing Tiers")}
             </h3>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -578,28 +578,28 @@ export default function TripDetailPage({
                     onClick={() => setSelectedTier(tier.id)}
                     className={`rounded-[var(--radius-md)] border p-4 text-start transition-all ${
                       isSelected
-                        ? "border-gold-500 bg-gold-50 shadow-sm dark:border-gold-600 dark:bg-gold-900/20"
-                        : "border-surface-border bg-white hover:border-navy-300 dark:border-surface-dark-border dark:bg-surface-dark-card dark:hover:border-navy-600"
+                        ? "border-amber-500 bg-amber-50 shadow-sm dark:border-amber-600 dark:bg-amber-900/20"
+                        : "border-surface-border bg-white hover:border-stone-400 dark:border-surface-dark-border dark:bg-surface-dark-card dark:hover:border-stone-600"
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <p className="text-body-md font-bold text-navy-900 dark:text-white">{tierName}</p>
+                      <p className="text-body-md font-bold text-stone-900 dark:text-white">{tierName}</p>
                       {isSelected && (
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold-500 text-white">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-white">
                           <ShieldCheck className="h-3 w-3" />
                         </span>
                       )}
                     </div>
-                    <p className="mt-1 font-numbers text-heading-sm font-bold text-gold-600 dark:text-gold-400">
+                    <p className="mt-1 font-numbers text-heading-sm font-bold text-amber-600 dark:text-amber-400">
                       {formatKWD(tier.priceKWD)}
                     </p>
                     {tier.description && (
-                      <p className="mt-1 text-body-sm text-navy-500 dark:text-navy-400">{tier.description}</p>
+                      <p className="mt-1 text-body-sm text-stone-500 dark:text-stone-400">{tier.description}</p>
                     )}
                     {tier.includes && tier.includes.length > 0 && (
                       <ul className="mt-2 space-y-1">
                         {tier.includes.slice(0, 4).map((item, i) => (
-                          <li key={i} className="flex items-center gap-1.5 text-body-sm text-navy-600 dark:text-navy-300">
+                          <li key={i} className="flex items-center gap-1.5 text-body-sm text-stone-600 dark:text-stone-400">
                             <span className="text-success">✓</span> {item}
                           </li>
                         ))}
@@ -618,7 +618,7 @@ export default function TripDetailPage({
             {trip.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-[var(--radius-chip)] border border-surface-border bg-white px-3 py-1.5 text-body-sm font-medium text-navy-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-navy-300"
+                className="rounded-[var(--radius-chip)] border border-surface-border bg-white px-3 py-1.5 text-body-sm font-medium text-stone-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-stone-400"
               >
                 {tag}
               </span>
@@ -629,12 +629,12 @@ export default function TripDetailPage({
         {/* Campaign Info */}
         <Card variant="outlined" padding="md" onClick={() => router.push(`/app/campaigns/${id}`)}>
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-gold-100 dark:bg-gold-900/30">
-              <Building2 className="h-5 w-5 text-gold-600 dark:text-gold-400" />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-amber-100 dark:bg-amber-900/30">
+              <Building2 className="h-5 w-5 text-amber-600 dark:text-amber-400" />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-body-md font-bold text-navy-900 dark:text-white">{trip.campaignName}</p>
-              <p className="text-body-sm text-gold-600 dark:text-gold-400">
+              <p className="text-body-md font-bold text-stone-900 dark:text-white">{trip.campaignName}</p>
+              <p className="text-body-sm text-amber-600 dark:text-amber-400">
                 {t("عرض الحملة", "View Campaign")} →
               </p>
             </div>
@@ -643,10 +643,10 @@ export default function TripDetailPage({
 
         {/* Booking Form (toggleable) */}
         {showBookingForm && (
-          <Card variant="elevated" padding="md" className="travel-card-premium">
+          <Card variant="elevated" padding="md" className="sacred-panel">
             <div className="mb-3 flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-gold-500" />
-              <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">
+              <ShieldCheck className="h-5 w-5 text-amber-500" />
+              <h3 className="text-heading-sm font-bold text-stone-900 dark:text-white">
                 {t("بيانات الحجز", "Booking Details")}
               </h3>
             </div>
@@ -666,10 +666,10 @@ export default function TripDetailPage({
                 placeholder={t("مثال: غرفة قريبة من المصعد", "e.g. Room near the elevator")}
               />
               <div className="flex items-center justify-between rounded-[var(--radius-md)] bg-surface-muted p-3 dark:bg-surface-dark">
-                <span className="text-body-md text-navy-600 dark:text-navy-300">
+                <span className="text-body-md text-stone-600 dark:text-stone-400">
                   {t("إجمالي الحجز", "Booking Total")}
                 </span>
-                <span className="font-numbers text-heading-sm font-bold text-navy-900 dark:text-white">
+                <span className="font-numbers text-heading-sm font-bold text-stone-900 dark:text-white">
                   {formatKWD(bookingAmount)}
                 </span>
               </div>
@@ -693,8 +693,8 @@ export default function TripDetailPage({
         <Container>
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-body-sm text-navy-500">{t("يبدأ من", "From")}</p>
-              <p className="font-numbers text-heading-md font-bold text-navy-900 dark:text-white">
+              <p className="text-body-sm text-stone-500">{t("يبدأ من", "From")}</p>
+              <p className="font-numbers text-heading-md font-bold text-stone-900 dark:text-white">
                 {formatKWD(basePrice)}
               </p>
             </div>
@@ -708,7 +708,7 @@ export default function TripDetailPage({
                 } else {
                   setShowBookingForm(true);
                   setTimeout(() => {
-                    document.querySelector(".travel-card-premium")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    document.querySelector(".sacred-panel")?.scrollIntoView({ behavior: "smooth", block: "center" });
                   }, 100);
                 }
               }}

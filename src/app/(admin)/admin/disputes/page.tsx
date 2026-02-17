@@ -15,7 +15,7 @@ export default function DisputesPage() {
   return (
     <>
       <AppBar title={t("إدارة النزاعات", "Manage Disputes")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("النزاعات", "Disputes") }]} />
-      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
         <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
             { value: "all", label: t("الكل", "All") },
@@ -27,13 +27,13 @@ export default function DisputesPage() {
               key={item.value}
               type="button"
               onClick={() => setFilter(item.value)}
-              className={`travel-filter-chip shrink-0 px-3 py-1.5 text-body-sm font-medium ${filter === item.value ? "travel-filter-chip-active" : ""}`}
+              className={`sacred-filter-chip shrink-0 px-3 py-1.5 text-body-sm font-medium ${filter === item.value ? "sacred-filter-chip-active" : ""}`}
             >
               {item.label}
             </button>
           ))}
         </div>
-        <Card variant="elevated" padding="none" className="travel-orbit-bg">
+        <Card variant="elevated" padding="none" className="sacred-pattern">
           <EmptyState
             icon={<AlertOctagon className="h-16 w-16" />}
             title={t("لا توجد نزاعات", "No Disputes")}

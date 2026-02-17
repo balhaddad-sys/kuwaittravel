@@ -19,9 +19,9 @@ export default function NotificationsPage() {
         title={t("الإشعارات", "Notifications")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الإشعارات", "Notifications") }]}
       />
-      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         <Card variant="elevated" padding="lg">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white mb-4">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-4">
             {t("إرسال إشعار جديد", "Send New Notification")}
           </h3>
           <div className="space-y-3">
@@ -45,7 +45,7 @@ export default function NotificationsPage() {
 
         <Card variant="elevated" padding="none">
           <div className="border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white">{t("سجل الإشعارات", "Notification History")}</h3>
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white">{t("سجل الإشعارات", "Notification History")}</h3>
           </div>
           <EmptyState
             icon={<Bell className="h-16 w-16" />}

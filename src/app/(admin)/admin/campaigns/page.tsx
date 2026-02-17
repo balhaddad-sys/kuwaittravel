@@ -201,7 +201,7 @@ export default function AdminCampaignsPage() {
         ]}
       />
 
-      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3">
           <SearchInput
@@ -214,7 +214,7 @@ export default function AdminCampaignsPage() {
               <button
                 key={f.value}
                 onClick={() => setFilter(f.value)}
-                className={`travel-filter-chip shrink-0 inline-flex items-center gap-2 px-3 sm:px-4 py-2 text-body-sm font-medium ${filter === f.value ? "travel-filter-chip-active" : ""}`}
+                className={`sacred-filter-chip shrink-0 inline-flex items-center gap-2 px-3 sm:px-4 py-2 text-body-sm font-medium ${filter === f.value ? "sacred-filter-chip-active" : ""}`}
               >
                 <span>{f.label}</span>
                 <Badge variant={filter === f.value ? "default" : "gold"} size="sm">
@@ -229,7 +229,7 @@ export default function AdminCampaignsPage() {
         {loadingData ? (
           <Card variant="elevated" padding="lg">
             <div className="flex items-center justify-center py-12">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-gold-500 border-t-transparent" />
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
             </div>
           </Card>
         ) : filtered.length === 0 ? (
@@ -255,20 +255,20 @@ export default function AdminCampaignsPage() {
                 onClick={() => setSelectedId(campaign.id)}
               >
                 <div className="flex items-center gap-4 p-4">
-                  <div className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-navy-100 to-navy-200 dark:from-navy-800 dark:to-navy-700">
-                    <Building2 className="h-6 w-6 text-navy-600 dark:text-navy-300" />
+                  <div className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700">
+                    <Building2 className="h-6 w-6 text-stone-600 dark:text-stone-400" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-body-md font-bold text-navy-900 dark:text-white truncate">
+                      <h3 className="text-body-md font-bold text-stone-900 dark:text-white truncate">
                         {campaign.nameAr}
                       </h3>
                       <VerificationChip status={campaign.verificationStatus} />
                     </div>
-                    <p className="text-body-sm text-navy-500 truncate" dir="ltr">
+                    <p className="text-body-sm text-stone-500 truncate" dir="ltr">
                       {campaign.name}
                     </p>
-                    <div className="flex items-center gap-3 mt-1 text-body-sm text-navy-400">
+                    <div className="flex items-center gap-3 mt-1 text-body-sm text-stone-400">
                       <span className="flex items-center gap-1">
                         <FileText className="h-3.5 w-3.5" />
                         {campaign.licenseNumber}
@@ -344,29 +344,29 @@ export default function AdminCampaignsPage() {
 
             {/* Organization */}
             <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
-                <Building2 className="h-4 w-4 text-gold-500" />
+              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
+                <Building2 className="h-4 w-4 text-amber-500" />
                 {t("بيانات المنظمة", "Organization")}
               </h4>
               <dl className="space-y-2 text-body-sm">
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("الاسم بالعربي", "Name (AR)")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white">{selected.nameAr}</dd>
+                  <dt className="text-stone-500">{t("الاسم بالعربي", "Name (AR)")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white">{selected.nameAr}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{selected.name}</dd>
+                  <dt className="text-stone-500">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{selected.name}</dd>
                 </div>
                 {selected.descriptionAr && (
                   <div>
-                    <dt className="text-navy-500 mb-1">{t("الوصف", "Description")}</dt>
-                    <dd className="text-navy-700 dark:text-navy-300">{selected.descriptionAr}</dd>
+                    <dt className="text-stone-500 mb-1">{t("الوصف", "Description")}</dt>
+                    <dd className="text-stone-700 dark:text-stone-400">{selected.descriptionAr}</dd>
                   </div>
                 )}
                 {selected.description && (
                   <div>
-                    <dt className="text-navy-500 mb-1">{t("الوصف بالإنجليزي", "Description (EN)")}</dt>
-                    <dd className="text-navy-700 dark:text-navy-300" dir="ltr">{selected.description}</dd>
+                    <dt className="text-stone-500 mb-1">{t("الوصف بالإنجليزي", "Description (EN)")}</dt>
+                    <dd className="text-stone-700 dark:text-stone-400" dir="ltr">{selected.description}</dd>
                   </div>
                 )}
               </dl>
@@ -374,30 +374,30 @@ export default function AdminCampaignsPage() {
 
             {/* Legal Documents */}
             <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
-                <FileText className="h-4 w-4 text-gold-500" />
+              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
+                <FileText className="h-4 w-4 text-amber-500" />
                 {t("الوثائق الرسمية", "Legal Documents")}
               </h4>
               <dl className="space-y-2 text-body-sm">
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("رقم الترخيص", "License No.")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white">{selected.licenseNumber}</dd>
+                  <dt className="text-stone-500">{t("رقم الترخيص", "License No.")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white">{selected.licenseNumber}</dd>
                 </div>
                 {selected.commercialRegNumber && (
                   <div className="flex justify-between">
-                    <dt className="text-navy-500">{t("السجل التجاري", "Comm. Reg.")}</dt>
-                    <dd className="font-medium text-navy-900 dark:text-white">{selected.commercialRegNumber}</dd>
+                    <dt className="text-stone-500">{t("السجل التجاري", "Comm. Reg.")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white">{selected.commercialRegNumber}</dd>
                   </div>
                 )}
                 {selected.licenseImageUrl && (
                   <div className="flex justify-between items-center">
-                    <dt className="text-navy-500">{t("صورة الترخيص", "License Image")}</dt>
+                    <dt className="text-stone-500">{t("صورة الترخيص", "License Image")}</dt>
                     <dd>
                       <a
                         href={selected.licenseImageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-body-sm font-medium text-gold-600 hover:text-gold-700 transition-colors"
+                        className="inline-flex items-center gap-1 text-body-sm font-medium text-amber-600 hover:text-amber-700 transition-colors"
                       >
                         {t("عرض", "View")}
                         <ExternalLink className="h-3.5 w-3.5" />
@@ -410,31 +410,31 @@ export default function AdminCampaignsPage() {
 
             {/* Contact */}
             <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
-                <Phone className="h-4 w-4 text-gold-500" />
+              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
+                <Phone className="h-4 w-4 text-amber-500" />
                 {t("بيانات التواصل", "Contact Info")}
               </h4>
               <dl className="space-y-2 text-body-sm">
                 <div className="flex justify-between">
-                  <dt className="text-navy-500 flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {t("الهاتف", "Phone")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{formatPhone(selected.contactPhone)}</dd>
+                  <dt className="text-stone-500 flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {t("الهاتف", "Phone")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{formatPhone(selected.contactPhone)}</dd>
                 </div>
                 {selected.contactEmail && (
                   <div className="flex justify-between">
-                    <dt className="text-navy-500 flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {t("البريد", "Email")}</dt>
-                    <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{selected.contactEmail}</dd>
+                    <dt className="text-stone-500 flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {t("البريد", "Email")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{selected.contactEmail}</dd>
                   </div>
                 )}
                 {selected.website && (
                   <div className="flex justify-between">
-                    <dt className="text-navy-500 flex items-center gap-1"><Globe className="h-3.5 w-3.5" /> {t("الموقع", "Website")}</dt>
-                    <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{selected.website}</dd>
+                    <dt className="text-stone-500 flex items-center gap-1"><Globe className="h-3.5 w-3.5" /> {t("الموقع", "Website")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{selected.website}</dd>
                   </div>
                 )}
                 {(selected.socialMedia?.instagram || selected.socialMedia?.whatsapp) && (
                   <div className="flex justify-between">
-                    <dt className="text-navy-500">{t("التواصل الاجتماعي", "Social")}</dt>
-                    <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">
+                    <dt className="text-stone-500">{t("التواصل الاجتماعي", "Social")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">
                       {[selected.socialMedia.instagram, selected.socialMedia.whatsapp].filter(Boolean).join(" · ")}
                     </dd>
                   </div>
@@ -444,23 +444,23 @@ export default function AdminCampaignsPage() {
 
             {/* Status info */}
             <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
-                <ShieldAlert className="h-4 w-4 text-gold-500" />
+              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
+                <ShieldAlert className="h-4 w-4 text-amber-500" />
                 {t("حالة التحقق", "Verification Status")}
               </h4>
               <dl className="space-y-2 text-body-sm">
                 <div className="flex justify-between items-center">
-                  <dt className="text-navy-500">{t("الحالة", "Status")}</dt>
+                  <dt className="text-stone-500">{t("الحالة", "Status")}</dt>
                   <dd><VerificationChip status={selected.verificationStatus} /></dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("تاريخ التسجيل", "Registered")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white">{getCreatedDate(selected)}</dd>
+                  <dt className="text-stone-500">{t("تاريخ التسجيل", "Registered")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white">{getCreatedDate(selected)}</dd>
                 </div>
                 {selected.verifiedBy && (
                   <div className="flex justify-between">
-                    <dt className="text-navy-500">{t("تم التحقق بواسطة", "Verified By")}</dt>
-                    <dd className="font-medium text-navy-900 dark:text-white">{selected.verifiedBy}</dd>
+                    <dt className="text-stone-500">{t("تم التحقق بواسطة", "Verified By")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white">{selected.verifiedBy}</dd>
                   </div>
                 )}
               </dl>

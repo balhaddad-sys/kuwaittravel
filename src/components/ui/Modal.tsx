@@ -60,19 +60,19 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
           <div className="shrink-0 flex items-start justify-between p-6 pb-0">
             <div>
               {title && (
-                <h2 id="modal-title" className="text-heading-md font-bold text-navy-900 dark:text-white">
+                <h2 id="modal-title" className="text-heading-md font-bold text-stone-900 dark:text-white">
                   {title}
                 </h2>
               )}
               {description && (
-                <p className="mt-1 text-body-md text-navy-500 dark:text-navy-400">
+                <p className="mt-1 text-body-md text-stone-500 dark:text-stone-400">
                   {description}
                 </p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="rounded-lg p-1.5 text-navy-400 hover:bg-navy-100 dark:hover:bg-surface-dark-border transition-colors"
+              className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-surface-dark-border transition-colors"
             >
               <X className="h-5 w-5" />
             </button>

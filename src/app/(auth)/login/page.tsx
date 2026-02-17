@@ -84,15 +84,15 @@ export default function LoginPage() {
   return (
     <>
       <div id="recaptcha-container" />
-      <Card variant="elevated" padding="lg" className="travel-orbit-bg overflow-hidden">
+      <Card variant="elevated" padding="lg" className="sacred-pattern overflow-hidden">
         <div className="text-center mb-6 sm:mb-8">
-          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-gold-300/80 bg-navy-700 shadow-[0_0_0_6px_rgba(249,158,56,0.12)]">
+          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-teal-300/80 bg-teal-700 shadow-[0_0_0_6px_rgba(15,118,110,0.12)]">
             <Phone className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
           </div>
-          <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
+          <h1 className="text-heading-lg font-bold text-stone-900 dark:text-white">
             {t("مرحباً بك", "Welcome")}
           </h1>
-          <p className="mt-2 text-body-md text-navy-500">
+          <p className="mt-2 text-body-md text-stone-500">
             {t("سجّل الدخول للمتابعة", "Sign in to continue")}
           </p>
         </div>
@@ -114,10 +114,10 @@ export default function LoginPage() {
         {/* Divider */}
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full travel-divider" />
+            <div className="w-full border-t border-stone-200 dark:border-stone-700" />
           </div>
           <div className="relative flex justify-center text-body-sm">
-            <span className="bg-white dark:bg-navy-800 px-3 text-navy-400">{t("أو", "or")}</span>
+            <span className="bg-white dark:bg-stone-800 px-3 text-stone-400">{t("أو", "or")}</span>
           </div>
         </div>
 

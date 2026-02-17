@@ -43,17 +43,17 @@ function SkeletonBooking() {
   return (
     <div className="skeleton-card overflow-hidden p-4">
       <div className="flex items-center gap-3 sm:gap-4">
-        <div className="hidden h-14 w-14 rounded-[var(--radius-lg)] bg-navy-100/50 dark:bg-navy-800/50 sm:block" />
+        <div className="hidden h-14 w-14 rounded-[var(--radius-lg)] bg-stone-100/50 dark:bg-stone-800/50 sm:block" />
         <div className="flex-1 space-y-2">
-          <div className="h-4 w-3/4 rounded-md bg-navy-100/60 dark:bg-navy-800/60" />
+          <div className="h-4 w-3/4 rounded-md bg-stone-100/60 dark:bg-stone-800/60" />
           <div className="flex gap-2">
-            <div className="h-3 w-24 rounded-md bg-navy-100/40 dark:bg-navy-800/40" />
-            <div className="h-5 w-16 rounded-full bg-navy-100/40 dark:bg-navy-800/40" />
+            <div className="h-3 w-24 rounded-md bg-stone-100/40 dark:bg-stone-800/40" />
+            <div className="h-5 w-16 rounded-full bg-stone-100/40 dark:bg-stone-800/40" />
           </div>
         </div>
         <div className="space-y-2 text-end">
-          <div className="ms-auto h-4 w-16 rounded-md bg-navy-100/60 dark:bg-navy-800/60" />
-          <div className="ms-auto h-4 w-4 rounded bg-navy-100/40 dark:bg-navy-800/40" />
+          <div className="ms-auto h-4 w-16 rounded-md bg-stone-100/60 dark:bg-stone-800/60" />
+          <div className="ms-auto h-4 w-4 rounded bg-stone-100/40 dark:bg-stone-800/40" />
         </div>
       </div>
     </div>
@@ -157,20 +157,20 @@ export default function MyTripsPage() {
   const filteredBookings = tab === "upcoming" ? upcomingBookings : pastBookings;
 
   return (
-    <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+    <div className="sacred-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
       {/* Header */}
-      <div className="travel-cover-pattern border-b border-surface-border bg-white/78 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/74 sm:pt-12">
+      <div className="sacred-pattern border-b border-surface-border bg-white/78 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/74 sm:pt-12">
         <Container>
           <div className="flex items-center gap-3">
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-navy-600 to-navy-800 text-white shadow-md sm:h-11 sm:w-11">
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-600 to-stone-800 text-white shadow-md sm:h-11 sm:w-11">
               <Plane className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="travel-title text-heading-lg font-bold text-navy-900 dark:text-white sm:text-display-md">
+              <h1 className="sacred-title text-heading-lg font-bold text-stone-900 dark:text-white sm:text-display-md">
                 {t("رحلاتي", "My Trips")}
               </h1>
               {!loading && bookings.length > 0 && (
-                <p className="text-body-sm text-navy-500 dark:text-navy-300">
+                <p className="text-body-sm text-stone-500 dark:text-stone-400">
                   {bookings.length}{" "}
                   {t("حجز إجمالي", "total bookings")}
                 </p>
@@ -189,8 +189,8 @@ export default function MyTripsPage() {
                 <button
                   key={tabKey}
                   onClick={() => setTab(tabKey)}
-                  className={`travel-filter-chip flex items-center gap-1.5 px-4 py-2 text-body-sm font-medium ${
-                    tab === tabKey ? "travel-filter-chip-active" : ""
+                  className={`rounded-full border border-stone-300 bg-white text-stone-600 transition-colors hover:border-teal-300 hover:bg-teal-50 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300 dark:hover:border-teal-600 dark:hover:bg-stone-700 flex items-center gap-1.5 px-4 py-2 text-body-sm font-medium ${
+                    tab === tabKey ? "bg-teal-600 text-white border-teal-600 dark:bg-teal-500 dark:border-teal-500" : ""
                   }`}
                 >
                   {tabKey === "upcoming"
@@ -201,7 +201,7 @@ export default function MyTripsPage() {
                       className={`inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[10px] font-bold ${
                         tab === tabKey
                           ? "bg-white/20 text-white"
-                          : "bg-navy-100 text-navy-600 dark:bg-navy-800 dark:text-navy-300"
+                          : "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
                       }`}
                     >
                       {count}
@@ -261,14 +261,14 @@ export default function MyTripsPage() {
                       className={`absolute inset-y-2 start-0 w-1 rounded-full ${accentClass}`}
                     />
                     <div className="flex items-center gap-3 sm:gap-4">
-                      <div className="hidden h-14 w-14 items-center justify-center rounded-[var(--radius-lg)] bg-navy-100 dark:bg-navy-800 sm:flex">
-                        <MapPin className="h-6 w-6 text-navy-500" />
+                      <div className="hidden h-14 w-14 items-center justify-center rounded-[var(--radius-lg)] bg-stone-100 dark:bg-stone-800 sm:flex">
+                        <MapPin className="h-6 w-6 text-stone-500" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h3 className="truncate text-body-md font-semibold text-navy-900 dark:text-white sm:text-body-lg">
+                        <h3 className="truncate text-body-md font-semibold text-stone-900 dark:text-white sm:text-body-lg">
                           {booking.tripTitle}
                         </h3>
-                        <div className="mt-1 flex flex-wrap items-center gap-2 text-body-sm text-navy-500 sm:gap-3">
+                        <div className="mt-1 flex flex-wrap items-center gap-2 text-body-sm text-stone-500 sm:gap-3">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3.5 w-3.5" />{" "}
                             {departureLabel}
@@ -281,10 +281,10 @@ export default function MyTripsPage() {
                         </div>
                       </div>
                       <div className="shrink-0 text-end">
-                        <p className="text-body-sm font-bold text-navy-900 dark:text-white sm:text-body-md">
+                        <p className="text-body-sm font-bold text-stone-900 dark:text-white sm:text-body-md">
                           {formatKWD(booking.totalKWD)}
                         </p>
-                        <ChevronLeft className="ms-auto mt-1 h-4 w-4 text-navy-400 rtl:rotate-180" />
+                        <ChevronLeft className="ms-auto mt-1 h-4 w-4 text-stone-400 rtl:rotate-180" />
                       </div>
                     </div>
                   </Card>

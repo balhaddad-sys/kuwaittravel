@@ -28,35 +28,35 @@ const menuItems = [
     labelEn: "Documents",
     icon: FileText,
     href: "/app/profile/documents",
-    color: "from-navy-500 to-navy-700",
+    color: "from-stone-500 to-stone-700",
   },
   {
     labelAr: "طرق الدفع",
     labelEn: "Payment Methods",
     icon: CreditCard,
     href: "/app/profile/payment-methods",
-    color: "from-gold-500 to-gold-600",
+    color: "from-amber-500 to-amber-600",
   },
   {
     labelAr: "الأمان والخصوصية",
     labelEn: "Security",
     icon: Shield,
     href: "/app/profile/security",
-    color: "from-navy-600 to-navy-800",
+    color: "from-stone-600 to-stone-800",
   },
   {
     labelAr: "الإعدادات",
     labelEn: "Settings",
     icon: Settings,
     href: "/app/profile/settings",
-    color: "from-navy-400 to-navy-600",
+    color: "from-stone-400 to-stone-600",
   },
   {
     labelAr: "المساعدة والدعم",
     labelEn: "Help & Support",
     icon: HelpCircle,
     href: "/app/help",
-    color: "from-gold-400 to-gold-500",
+    color: "from-amber-400 to-amber-500",
   },
 ];
 
@@ -80,9 +80,9 @@ export default function ProfilePage() {
       : userData?.displayName || userData?.displayNameAr || "";
 
   return (
-    <div className="travel-orbit-bg min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+    <div className="sacred-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
       {/* Profile Header */}
-      <div className="travel-gradient-hero relative px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
+      <div className="sacred-gradient-hero relative px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
         <Container>
           <div className="flex items-center gap-3 sm:gap-4">
             <div className="relative">
@@ -96,7 +96,7 @@ export default function ProfilePage() {
               <h1 className="truncate text-heading-md font-bold text-white sm:text-heading-lg">
                 {displayName || t("مسافر", "Traveler")}
               </h1>
-              <p className="text-body-md text-navy-200">
+              <p className="text-body-md text-stone-200">
                 {userData?.phone || userData?.email || ""}
               </p>
               {userData?.isVerified && (
@@ -123,10 +123,10 @@ export default function ProfilePage() {
               >
                 <item.icon className="h-4 w-4" />
               </span>
-              <span className="flex-1 text-body-md text-navy-700 dark:text-navy-200">
+              <span className="flex-1 text-body-md text-stone-700 dark:text-stone-200">
                 {t(item.labelAr, item.labelEn)}
               </span>
-              <ChevronLeft className="h-4 w-4 text-gold-500/85 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+              <ChevronLeft className="h-4 w-4 text-amber-500/85 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
             </button>
           ))}
         </Card>
@@ -135,7 +135,7 @@ export default function ProfilePage() {
           <Card
             variant="outlined"
             padding="md"
-            className="border-gold-300/65 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] dark:border-gold-800/45 dark:shadow-[0_0_0_1px_rgba(249,158,56,0.08)]"
+            className="border-amber-300/65 shadow-[0_0_0_1px_rgba(249,158,56,0.12)] dark:border-amber-800/45 dark:shadow-[0_0_0_1px_rgba(249,158,56,0.08)]"
           >
             <button
               onClick={() =>
@@ -145,21 +145,21 @@ export default function ProfilePage() {
               }
               className="flex w-full items-center gap-3 rounded-[var(--radius-md)] text-start"
             >
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-navy-700 to-navy-900 text-gold-300 shadow-md">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-amber-300 shadow-md">
                 <Sparkles className="h-5 w-5" />
               </span>
               <span className="flex-1">
-                <span className="block text-body-md font-semibold text-navy-900 dark:text-white">
+                <span className="block text-body-md font-semibold text-stone-900 dark:text-white">
                   {t("وضع الإدارة", "Admin Mode")}
                 </span>
-                <span className="block text-body-sm text-navy-500 dark:text-navy-300">
+                <span className="block text-body-sm text-stone-500 dark:text-stone-400">
                   {t(
                     "إدارة الحملات والمستخدمين",
                     "Manage campaigns and platform users"
                   )}
                 </span>
               </span>
-              <ChevronLeft className="h-4 w-4 text-navy-400 rtl:rotate-180" />
+              <ChevronLeft className="h-4 w-4 text-stone-400 rtl:rotate-180" />
             </button>
           </Card>
         )}
@@ -168,8 +168,8 @@ export default function ProfilePage() {
         <Card variant="outlined" padding="md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Globe className="h-5 w-5 text-navy-500" />
-              <span className="text-body-md text-navy-700 dark:text-navy-200">
+              <Globe className="h-5 w-5 text-stone-500" />
+              <span className="text-body-md text-stone-700 dark:text-stone-200">
                 {t("اللغة", "Language")}
               </span>
             </div>

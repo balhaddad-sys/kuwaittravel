@@ -125,13 +125,13 @@ export default function CampaignDetailPage({
                 className="h-16 w-16 rounded-[var(--radius-lg)] object-cover shadow-md"
               />
             ) : (
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-navy-100 to-navy-200 dark:from-navy-800 dark:to-navy-700">
-                <Building2 className="h-8 w-8 text-navy-500" />
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700">
+                <Building2 className="h-8 w-8 text-stone-500" />
               </div>
             )}
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-heading-lg font-bold text-navy-900 dark:text-white">
+                <h2 className="text-heading-lg font-bold text-stone-900 dark:text-white">
                   {getName(campaign)}
                 </h2>
                 {campaign.verificationStatus === "approved" && (
@@ -140,19 +140,19 @@ export default function CampaignDetailPage({
                   </Badge>
                 )}
               </div>
-              <p className="mt-2 text-body-md leading-relaxed text-navy-600 dark:text-navy-300">
+              <p className="mt-2 text-body-md leading-relaxed text-stone-600 dark:text-stone-400">
                 {getDescription(campaign)}
               </p>
               {campaign.stats && (
                 <div className="mt-3 flex flex-wrap items-center gap-4">
-                  <span className="flex items-center gap-1 text-body-sm text-navy-500">
-                    <Star className="h-4 w-4 text-gold-500" />
+                  <span className="flex items-center gap-1 text-body-sm text-stone-500">
+                    <Star className="h-4 w-4 text-amber-500" />
                     {campaign.stats.averageRating.toFixed(1)}
                   </span>
-                  <span className="text-body-sm text-navy-500">
+                  <span className="text-body-sm text-stone-500">
                     {campaign.stats.totalTrips} {t("رحلة", "trips")}
                   </span>
-                  <span className="text-body-sm text-navy-500">
+                  <span className="text-body-sm text-stone-500">
                     {campaign.stats.totalReviews} {t("تقييم", "reviews")}
                   </span>
                 </div>
@@ -166,36 +166,36 @@ export default function CampaignDetailPage({
           campaign.contactEmail ||
           campaign.website) && (
           <Card variant="outlined" padding="md">
-            <h3 className="mb-3 text-heading-sm font-bold text-navy-900 dark:text-white">
+            <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
               {t("معلومات التواصل", "Contact Information")}
             </h3>
             <div className="space-y-2.5">
               {campaign.contactPhone && (
-                <div className="flex items-center gap-2.5 text-body-md text-navy-600 dark:text-navy-300">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-navy-100/70 dark:bg-navy-800/70">
-                    <Phone className="h-4 w-4 text-navy-500" />
+                <div className="flex items-center gap-2.5 text-body-md text-stone-600 dark:text-stone-400">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-stone-100/70 dark:bg-stone-800/70">
+                    <Phone className="h-4 w-4 text-stone-500" />
                   </div>
                   <span dir="ltr">{campaign.contactPhone}</span>
                 </div>
               )}
               {campaign.contactEmail && (
-                <div className="flex items-center gap-2.5 text-body-md text-navy-600 dark:text-navy-300">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-navy-100/70 dark:bg-navy-800/70">
-                    <Mail className="h-4 w-4 text-navy-500" />
+                <div className="flex items-center gap-2.5 text-body-md text-stone-600 dark:text-stone-400">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-stone-100/70 dark:bg-stone-800/70">
+                    <Mail className="h-4 w-4 text-stone-500" />
                   </div>
                   <span className="truncate">{campaign.contactEmail}</span>
                 </div>
               )}
               {campaign.website && (
-                <div className="flex items-center gap-2.5 text-body-md text-navy-600 dark:text-navy-300">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-navy-100/70 dark:bg-navy-800/70">
-                    <Globe className="h-4 w-4 text-navy-500" />
+                <div className="flex items-center gap-2.5 text-body-md text-stone-600 dark:text-stone-400">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-stone-100/70 dark:bg-stone-800/70">
+                    <Globe className="h-4 w-4 text-stone-500" />
                   </div>
                   <a
                     href={campaign.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="truncate text-navy-700 underline dark:text-navy-200"
+                    className="truncate text-stone-700 underline dark:text-stone-200"
                   >
                     {campaign.website}
                   </a>
@@ -208,12 +208,12 @@ export default function CampaignDetailPage({
         {/* Trips */}
         <section>
           <div className="mb-4 flex items-center gap-2">
-            <Calendar className="h-5 w-5 text-gold-500" />
-            <h3 className="text-heading-md font-bold text-navy-900 dark:text-white">
+            <Calendar className="h-5 w-5 text-amber-500" />
+            <h3 className="text-heading-md font-bold text-stone-900 dark:text-white">
               {t("الرحلات المتاحة", "Available Trips")}
             </h3>
             {trips.length > 0 && (
-              <span className="rounded-full bg-navy-100/80 px-2 py-0.5 text-[11px] font-medium text-navy-600 dark:bg-navy-800/80 dark:text-navy-300">
+              <span className="rounded-full bg-stone-100/80 px-2 py-0.5 text-[11px] font-medium text-stone-600 dark:bg-stone-800/80 dark:text-stone-400">
                 {trips.length}
               </span>
             )}
@@ -245,14 +245,14 @@ export default function CampaignDetailPage({
                       }
                     >
                       <div className="flex items-center gap-3 sm:gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-navy-100 to-navy-200 dark:from-navy-800 dark:to-navy-700 sm:h-14 sm:w-14">
-                          <Calendar className="h-5 w-5 text-navy-500 sm:h-6 sm:w-6" />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700 sm:h-14 sm:w-14">
+                          <Calendar className="h-5 w-5 text-stone-500 sm:h-6 sm:w-6" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-body-md font-semibold text-navy-900 dark:text-white sm:text-body-lg">
+                          <h4 className="truncate text-body-md font-semibold text-stone-900 dark:text-white sm:text-body-lg">
                             {tripTitle}
                           </h4>
-                          <div className="mt-1 flex flex-wrap items-center gap-2 text-body-sm text-navy-500 sm:gap-3">
+                          <div className="mt-1 flex flex-wrap items-center gap-2 text-body-sm text-stone-500 sm:gap-3">
                             {trip.destinations?.[0] && (
                               <span className="flex items-center gap-1">
                                 <MapPin className="h-3.5 w-3.5" />
@@ -267,10 +267,10 @@ export default function CampaignDetailPage({
                           </div>
                         </div>
                         <div className="shrink-0 text-end">
-                          <p className="font-numbers text-body-md font-bold text-navy-900 dark:text-white">
+                          <p className="font-numbers text-body-md font-bold text-stone-900 dark:text-white">
                             {formatKWD(trip.basePriceKWD)}
                           </p>
-                          <ChevronLeft className="ms-auto mt-1 h-4 w-4 text-navy-400 rtl:rotate-180" />
+                          <ChevronLeft className="ms-auto mt-1 h-4 w-4 text-stone-400 rtl:rotate-180" />
                         </div>
                       </div>
                     </Card>

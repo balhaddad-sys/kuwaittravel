@@ -60,12 +60,12 @@ describe("SearchInput", () => {
     const input = screen.getByRole("textbox");
     const icon = container.querySelector("svg");
 
-    expect(icon).toHaveClass("text-navy-400");
+    expect(icon).toHaveClass("text-stone-400");
 
     fireEvent.focus(input);
-    expect(icon).toHaveClass("text-gold-600");
+    expect(icon).toHaveClass("text-teal-600");
 
     fireEvent.blur(input);
-    expect(icon).toHaveClass("text-navy-400");
+    expect(icon).toHaveClass("text-stone-400");
   });
 });

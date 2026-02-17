@@ -14,16 +14,16 @@ export default function AuditLogsPage() {
   return (
     <>
       <AppBar title={t("سجل العمليات", "Audit Logs")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("سجل العمليات", "Audit Logs") }]} />
-      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
         <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
           <SearchInput placeholder={t("ابحث بالمستخدم أو نوع العملية...", "Search by user or action type...")} onSearch={() => {}} />
-          <div className="rounded-[var(--radius-input)] border border-surface-border/90 bg-white/80 px-4 py-2.5 text-body-sm text-navy-500 backdrop-blur-sm dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80 dark:text-navy-300">
+          <div className="rounded-[var(--radius-input)] border border-surface-border/90 bg-white/80 px-4 py-2.5 text-body-sm text-stone-500 backdrop-blur-sm dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80 dark:text-stone-400">
             {t("آخر 30 يوماً", "Last 30 days")}
           </div>
         </div>
         <Card variant="elevated" padding="none">
           <div className="border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
-            <h3 className="text-body-md font-semibold text-navy-900 dark:text-white">{t("سجل النشاط والتدقيق", "Activity & Audit Log")}</h3>
+            <h3 className="text-body-md font-semibold text-stone-900 dark:text-white">{t("سجل النشاط والتدقيق", "Activity & Audit Log")}</h3>
           </div>
           <EmptyState
             icon={<ScrollText className="h-16 w-16" />}

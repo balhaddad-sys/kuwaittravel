@@ -44,7 +44,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
         <button
           onClick={() => setCollapsed(!collapsed)}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-navy-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-navy-200 hover:bg-white/70 dark:hover:border-navy-700 dark:hover:bg-surface-dark-card active:scale-[0.97]"
+          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-stone-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-stone-200 hover:bg-white/70 dark:hover:border-stone-700 dark:hover:bg-surface-dark-card active:scale-[0.97]"
         >
           {collapsed ? <PanelLeft className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
         </button>
@@ -57,7 +57,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
           return (
             <div key={item.href}>
               {dividerIndices.has(index) && (
-                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-navy-200/70 to-transparent dark:via-navy-700/60" />
+                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-stone-200/70 to-transparent dark:via-stone-700/60" />
               )}
               <Link
                 href={item.href}
@@ -65,15 +65,15 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                 className={cn(
                   "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
                   isActive
-                    ? "border border-gold-200 bg-gold-50 font-semibold text-gold-700 dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
-                    : "border border-transparent text-navy-700 hover:border-surface-border hover:bg-surface-light hover:text-navy-900 dark:text-navy-200 dark:hover:border-surface-dark-border dark:hover:bg-surface-dark dark:hover:text-white"
+                    ? "border border-teal-200 bg-teal-50 font-semibold text-teal-700 dark:border-teal-700 dark:bg-teal-900/30 dark:text-teal-300"
+                    : "border border-transparent text-stone-700 hover:border-surface-border hover:bg-surface-light hover:text-stone-900 dark:text-stone-200 dark:hover:border-surface-dark-border dark:hover:bg-surface-dark dark:hover:text-white"
                 )}
                 title={collapsed ? item.label : undefined}
               >
                 {isActive && (
-                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-gold-500" />
+                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-teal-500" />
                 )}
-                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-gold-600 dark:text-gold-300")}>
+                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-teal-600 dark:text-teal-300")}>
                   {item.icon}
                 </span>
                 {!collapsed && (

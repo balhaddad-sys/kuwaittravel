@@ -22,7 +22,7 @@ export default function StaffPage() {
           </Button>
         }
       />
-      <Container className="travel-orbit-bg py-3 sm:py-6">
+      <Container className="sacred-pattern py-3 sm:py-6">
         <Card variant="elevated" padding="none">
           <EmptyState
             icon={<Users className="h-16 w-16" />}

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Tajawal, Inter } from "next/font/google";
+import { Tajawal, Inter, Amiri } from "next/font/google";
 import { Providers } from "@/providers/Providers";
 import "./globals.css";
 
@@ -14,6 +14,13 @@ const inter = Inter({
   variable: "--font-numeric-ui",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const amiri = Amiri({
+  variable: "--font-display-ui",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -56,8 +63,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#006CE4" },
-    { media: "(prefers-color-scheme: dark)", color: "#0F1116" },
+    { media: "(prefers-color-scheme: light)", color: "#0F766E" },
+    { media: "(prefers-color-scheme: dark)", color: "#0C0A09" },
   ],
 };
 
@@ -72,7 +79,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: initUiScript }} />
       </head>
       <body
-        className={`${tajawal.variable} ${inter.variable} font-arabic antialiased`}
+        className={`${tajawal.variable} ${inter.variable} ${amiri.variable} font-arabic antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

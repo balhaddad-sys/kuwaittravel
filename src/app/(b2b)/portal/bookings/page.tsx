@@ -17,7 +17,7 @@ export default function BookingsPage() {
         title={t("الحجوزات", "Bookings")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الحجوزات", "Bookings") }]}
       />
-      <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
         <SearchInput placeholder={t("ابحث برقم الحجز أو اسم المسافر...", "Search by booking ID or traveler name...")} onSearch={() => {}} />
         <Card variant="elevated" padding="none">
           <EmptyState

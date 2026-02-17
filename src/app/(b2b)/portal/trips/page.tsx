@@ -91,9 +91,9 @@ export default function TripsPage() {
         }
       />
 
-      <Container className="travel-orbit-bg py-6 space-y-6">
+      <Container className="sacred-pattern py-6 space-y-6">
         {!userData?.campaignId && !loading && (
-          <div className="travel-section p-4">
+          <div className="sacred-section p-4">
             <EmptyState
               icon={<Map className="h-16 w-16" />}
               title={t("لا توجد حملة مرتبطة بالحساب", "No campaign linked to this account")}
@@ -122,10 +122,10 @@ export default function TripsPage() {
                 <button
                   key={f.value}
                   onClick={() => setFilter(f.value as TripFilter)}
-                  className={`travel-filter-chip shrink-0 px-4 py-2 text-body-sm font-medium ${
+                  className={`shrink-0 rounded-full border px-4 py-2 text-body-sm font-medium transition-all ${
                     filter === f.value
-                      ? "travel-filter-chip-active"
-                      : ""
+                      ? "border-teal-600 bg-teal-700 text-white"
+                      : "border-stone-200 bg-white/80 text-stone-600 hover:border-stone-300 hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-800/70 dark:text-stone-300 dark:hover:border-stone-600 dark:hover:bg-stone-900/60"
                   }`}
                 >
                   {f.label}
@@ -141,7 +141,7 @@ export default function TripsPage() {
 
         {/* Trips Grid */}
         {loading ? (
-          <p className="text-body-md text-navy-500 text-center py-10">
+          <p className="text-body-md text-stone-500 text-center py-10">
             {t("جاري تحميل الرحلات...", "Loading trips...")}
           </p>
         ) : filteredTrips.length > 0 ? (
@@ -163,7 +163,7 @@ export default function TripsPage() {
             ))}
           </div>
         ) : (
-          <div className="travel-section p-4">
+          <div className="sacred-section p-4">
             <EmptyState
               icon={<Map className="h-16 w-16" />}
               title={t("لا توجد رحلات", "No trips found")}

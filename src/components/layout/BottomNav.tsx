@@ -32,18 +32,18 @@ function BottomNav({ items }: BottomNavProps) {
               className={cn(
                 "group relative flex min-w-[64px] flex-col items-center justify-center gap-0.5 rounded-xl px-3 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
                 isActive
-                  ? "scale-[1.02] border border-gold-200 bg-gold-50 text-gold-700 shadow-none dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
-                  : "border border-transparent text-navy-500 hover:text-navy-700 dark:text-navy-400 dark:hover:text-navy-200"
+                  ? "scale-[1.02] border border-teal-200 bg-teal-50 text-teal-700 shadow-none dark:border-teal-700 dark:bg-teal-900/20 dark:text-teal-300"
+                  : "border border-transparent text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
               )}
             >
               {isActive && (
-                <span className="pointer-events-none absolute inset-x-4 top-0 h-0.5 rounded-full bg-gold-500" />
+                <span className="pointer-events-none absolute inset-x-4 top-0 h-0.5 rounded-full bg-teal-700" />
               )}
               <span className="h-6 w-6">
                 {isActive && item.activeIcon ? item.activeIcon : item.icon}
               </span>
               {item.notification && (
-                <span className="absolute end-4 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-surface-dark-card" />
+                <span className="absolute end-4 top-2 h-2 w-2 rounded-full bg-amber-500 ring-2 ring-white dark:ring-surface-dark-card" />
               )}
               <span className={cn("text-[11px]", isActive && "font-semibold")}>
                 {item.label}

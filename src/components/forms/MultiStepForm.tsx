@@ -66,8 +66,8 @@ function MultiStepForm({
                 i < currentStep
                   ? "bg-success text-white cursor-pointer"
                   : i === currentStep
-                  ? "bg-navy-700 text-white"
-                  : "bg-surface-muted text-navy-400 dark:bg-surface-dark-card"
+                  ? "bg-amber-500 text-white"
+                  : "bg-surface-muted text-stone-400 dark:bg-surface-dark-card"
               )}
             >
               {i < currentStep ? <Check className="h-4 w-4" /> : i + 1}
@@ -91,7 +91,7 @@ function MultiStepForm({
             key={i}
             className={cn(
               "text-body-sm text-center flex-1",
-              i === currentStep ? "text-navy-700 dark:text-white font-medium" : "text-navy-400"
+              i === currentStep ? "text-stone-700 dark:text-white font-medium" : "text-stone-400"
             )}
           >
             {step.label}

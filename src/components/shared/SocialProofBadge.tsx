@@ -15,7 +15,6 @@ interface SocialProofBadgeProps {
 function SocialProofBadge({
   bookedCount,
   remainingCapacity,
-  totalCapacity,
   variant = "inline",
   className,
 }: SocialProofBadgeProps) {

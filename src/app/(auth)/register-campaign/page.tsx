@@ -170,7 +170,7 @@ export default function RegisterCampaignPage() {
       label: t("بيانات المنظمة", "Organization"),
       content: (
         <div className="space-y-4">
-          <div className="flex items-center gap-2 mb-2 text-navy-500">
+          <div className="flex items-center gap-2 mb-2 text-stone-500">
             <Building2 className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("بيانات المنظمة الأساسية", "Basic organization details")}</span>
           </div>
@@ -210,7 +210,7 @@ export default function RegisterCampaignPage() {
       label: t("الوثائق الرسمية", "Legal Documents"),
       content: (
         <div className="space-y-4">
-          <div className="flex items-center gap-2 mb-2 text-navy-500">
+          <div className="flex items-center gap-2 mb-2 text-stone-500">
             <FileText className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("وثائق الترخيص والتسجيل", "License & registration documents")}</span>
           </div>
@@ -253,7 +253,7 @@ export default function RegisterCampaignPage() {
       label: t("التواصل", "Contact"),
       content: (
         <div className="space-y-4">
-          <div className="flex items-center gap-2 mb-2 text-navy-500">
+          <div className="flex items-center gap-2 mb-2 text-stone-500">
             <Phone className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("بيانات التواصل والحسابات", "Contact info & social media")}</span>
           </div>
@@ -303,83 +303,83 @@ export default function RegisterCampaignPage() {
       label: t("المراجعة", "Review"),
       content: (
         <div className="space-y-5">
-          <div className="flex items-center gap-2 mb-2 text-navy-500">
+          <div className="flex items-center gap-2 mb-2 text-stone-500">
             <ClipboardCheck className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("راجع البيانات قبل الإرسال", "Review your details before submitting")}</span>
           </div>
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-            <h3 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
-              <Building2 className="h-4 w-4 text-gold-500" />
+            <h3 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
+              <Building2 className="h-4 w-4 text-amber-500" />
               {t("بيانات المنظمة", "Organization")}
             </h3>
             <dl className="space-y-2 text-body-sm">
               <div className="flex justify-between">
-                <dt className="text-navy-500">{t("الاسم بالعربي", "Name (AR)")}</dt>
-                <dd className="font-medium text-navy-900 dark:text-white">{form.nameAr || "—"}</dd>
+                <dt className="text-stone-500">{t("الاسم بالعربي", "Name (AR)")}</dt>
+                <dd className="font-medium text-stone-900 dark:text-white">{form.nameAr || "—"}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-navy-500">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
-                <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{form.name || "—"}</dd>
+                <dt className="text-stone-500">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
+                <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{form.name || "—"}</dd>
               </div>
               {form.descriptionAr && (
                 <div>
-                  <dt className="text-navy-500 mb-1">{t("الوصف", "Description")}</dt>
-                  <dd className="text-navy-700 dark:text-navy-300">{form.descriptionAr}</dd>
+                  <dt className="text-stone-500 mb-1">{t("الوصف", "Description")}</dt>
+                  <dd className="text-stone-700 dark:text-stone-400">{form.descriptionAr}</dd>
                 </div>
               )}
             </dl>
           </div>
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-            <h3 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
-              <FileText className="h-4 w-4 text-gold-500" />
+            <h3 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
+              <FileText className="h-4 w-4 text-amber-500" />
               {t("الوثائق الرسمية", "Legal Documents")}
             </h3>
             <dl className="space-y-2 text-body-sm">
               <div className="flex justify-between">
-                <dt className="text-navy-500">{t("رقم الترخيص", "License No.")}</dt>
-                <dd className="font-medium text-navy-900 dark:text-white">{form.licenseNumber || "—"}</dd>
+                <dt className="text-stone-500">{t("رقم الترخيص", "License No.")}</dt>
+                <dd className="font-medium text-stone-900 dark:text-white">{form.licenseNumber || "—"}</dd>
               </div>
               {form.commercialRegNumber && (
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("السجل التجاري", "Comm. Reg.")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white">{form.commercialRegNumber}</dd>
+                  <dt className="text-stone-500">{t("السجل التجاري", "Comm. Reg.")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white">{form.commercialRegNumber}</dd>
                 </div>
               )}
               <div className="flex justify-between">
-                <dt className="text-navy-500">{t("صورة الترخيص", "License File")}</dt>
-                <dd className="font-medium text-navy-900 dark:text-white">{form.licenseFile?.name || "—"}</dd>
+                <dt className="text-stone-500">{t("صورة الترخيص", "License File")}</dt>
+                <dd className="font-medium text-stone-900 dark:text-white">{form.licenseFile?.name || "—"}</dd>
               </div>
             </dl>
           </div>
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-            <h3 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
-              <Phone className="h-4 w-4 text-gold-500" />
+            <h3 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
+              <Phone className="h-4 w-4 text-amber-500" />
               {t("بيانات التواصل", "Contact Info")}
             </h3>
             <dl className="space-y-2 text-body-sm">
               <div className="flex justify-between">
-                <dt className="text-navy-500">{t("الهاتف", "Phone")}</dt>
-                <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">+965 {form.phone}</dd>
+                <dt className="text-stone-500">{t("الهاتف", "Phone")}</dt>
+                <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">+965 {form.phone}</dd>
               </div>
               {form.email && (
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("البريد", "Email")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{form.email}</dd>
+                  <dt className="text-stone-500">{t("البريد", "Email")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{form.email}</dd>
                 </div>
               )}
               {form.website && (
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("الموقع", "Website")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{form.website}</dd>
+                  <dt className="text-stone-500">{t("الموقع", "Website")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{form.website}</dd>
                 </div>
               )}
               {(form.instagram || form.whatsapp) && (
                 <div className="flex justify-between">
-                  <dt className="text-navy-500">{t("التواصل الاجتماعي", "Social")}</dt>
-                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">
+                  <dt className="text-stone-500">{t("التواصل الاجتماعي", "Social")}</dt>
+                  <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">
                     {[form.instagram, form.whatsapp].filter(Boolean).join(" · ")}
                   </dd>
                 </div>
@@ -387,7 +387,7 @@ export default function RegisterCampaignPage() {
             </dl>
           </div>
 
-          <p className="text-body-sm text-navy-400 text-center">
+          <p className="text-body-sm text-stone-400 text-center">
             {t(
               "بالضغط على إرسال، أنت توافق على شروط وأحكام المنصة",
               "By submitting, you agree to the platform terms and conditions"
@@ -402,13 +402,13 @@ export default function RegisterCampaignPage() {
   return (
     <Card variant="elevated" padding="lg">
       <div className="text-center mb-6">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-lg">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-700 shadow-lg">
           <ShieldCheck className="h-7 w-7 text-white" />
         </div>
-        <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
+        <h1 className="text-heading-lg font-bold text-stone-900 dark:text-white">
           {t("تسجيل حملة جديدة", "Register New Campaign")}
         </h1>
-        <p className="mt-2 text-body-md text-navy-500">
+        <p className="mt-2 text-body-md text-stone-500">
           {t(
             "أكمل البيانات التالية لتقديم طلب تسجيل حملتك في المنصة",
             "Complete the following steps to submit your campaign application"
