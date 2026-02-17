@@ -32,19 +32,19 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-surface-border bg-white shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] dark:border-surface-dark-border dark:bg-surface-dark-card lg:flex",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col bg-gradient-to-b from-[#162C4A] to-[#1E3A5F] shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] lg:flex",
         collapsed ? "w-[84px]" : "w-[286px]"
       )}
     >
       {/* Header */}
-      <div className="relative flex items-center justify-between border-b border-surface-border p-4 dark:border-surface-dark-border">
+      <div className="relative flex items-center justify-between border-b border-white/10 p-4">
         {!collapsed && (
           <div className="max-w-[190px] truncate">{header}</div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-stone-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-stone-200 hover:bg-white/70 dark:hover:border-stone-700 dark:hover:bg-surface-dark-card active:scale-[0.97]"
+          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-white/50 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-white/15 hover:bg-white/10 hover:text-white/80 active:scale-[0.97]"
         >
           {collapsed ? <PanelLeft className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
         </button>
@@ -57,7 +57,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
           return (
             <div key={item.href}>
               {dividerIndices.has(index) && (
-                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-stone-200/70 to-transparent dark:via-stone-700/60" />
+                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
               )}
               <Link
                 href={item.href}
@@ -65,15 +65,15 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                 className={cn(
                   "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
                   isActive
-                    ? "border border-teal-200 bg-teal-50 font-semibold text-teal-700 dark:border-teal-700 dark:bg-teal-900/30 dark:text-teal-300"
-                    : "border border-transparent text-stone-700 hover:border-surface-border hover:bg-surface-light hover:text-stone-900 dark:text-stone-200 dark:hover:border-surface-dark-border dark:hover:bg-surface-dark dark:hover:text-white"
+                    ? "border border-white/20 bg-white/15 font-semibold text-white"
+                    : "border border-transparent text-white/60 hover:border-white/10 hover:bg-white/8 hover:text-white/90"
                 )}
                 title={collapsed ? item.label : undefined}
               >
                 {isActive && (
-                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-teal-500" />
+                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-amber-400" />
                 )}
-                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-teal-600 dark:text-teal-300")}>
+                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-amber-300")}>
                   {item.icon}
                 </span>
                 {!collapsed && (
@@ -84,8 +84,8 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                         className={cn(
                           "flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold",
                           isActive
-                            ? "bg-white/18 text-white"
-                            : "travel-chip"
+                            ? "bg-amber-400/20 text-amber-300"
+                            : "bg-white/10 text-white/60"
                         )}
                       >
                         {item.badge}
@@ -101,7 +101,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
 
       {/* Footer */}
       {footer && !collapsed && (
-        <div className="relative border-t border-surface-border p-4 dark:border-surface-dark-border">
+        <div className="relative border-t border-white/10 p-4">
           {footer}
         </div>
       )}

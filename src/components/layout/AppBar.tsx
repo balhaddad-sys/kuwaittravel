@@ -28,7 +28,7 @@ function AppBar({
   return (
     <header
       className={cn(
-        "sticky top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-surface-border bg-white/95 px-4 shadow-topbar backdrop-blur-md dark:border-surface-dark-border dark:bg-surface-dark-card/95 sm:h-[72px] sm:gap-4 sm:px-6 lg:px-8",
+        "sticky top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-white/10 bg-[#1E3A5F]/95 px-4 shadow-topbar backdrop-blur-md sm:h-[72px] sm:gap-4 sm:px-6 lg:px-8",
         className
       )}
     >
@@ -36,30 +36,30 @@ function AppBar({
         {onMenuToggle && (
           <button
             onClick={onMenuToggle}
-            className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-stone-500 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-surface-border hover:bg-surface-light dark:hover:border-surface-dark-border dark:hover:bg-surface-dark active:scale-[0.97] lg:hidden"
+            className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-white/60 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-white/15 hover:bg-white/10 hover:text-white active:scale-[0.97] lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
         )}
         <div className="min-w-0">
           {breadcrumbs && breadcrumbs.length > 0 && (
-            <nav className="hidden items-center gap-1.5 text-body-sm text-stone-400 sm:flex">
+            <nav className="hidden items-center gap-1.5 text-body-sm text-white/40 sm:flex">
               {breadcrumbs.map((crumb, i) => (
                 <span key={i} className="flex items-center gap-1.5">
-                  {i > 0 && <span className="text-stone-300 dark:text-stone-500">›</span>}
+                  {i > 0 && <span className="text-white/25">›</span>}
                   {crumb.href ? (
-                    <Link href={crumb.href} prefetch className="transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-teal-600">
+                    <Link href={crumb.href} prefetch className="transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-amber-300">
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className="font-semibold text-stone-700 dark:text-stone-200">{crumb.label}</span>
+                    <span className="font-semibold text-white">{crumb.label}</span>
                   )}
                 </span>
               ))}
             </nav>
           )}
           {title && (
-            <h1 className="truncate text-body-lg font-bold text-stone-900 dark:text-white sm:text-heading-md">
+            <h1 className="truncate text-body-lg font-bold text-white sm:text-heading-md">
               {title}
             </h1>
           )}
