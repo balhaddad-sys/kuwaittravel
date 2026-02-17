@@ -165,6 +165,99 @@ export default function TripDetailPage({
     trip.returnDate as unknown as { seconds: number }
   );
   const galleryImages = trip.galleryUrls?.length > 0 ? trip.galleryUrls : trip.coverImageUrl ? [trip.coverImageUrl] : [];
+  const tripTypeLabel = t(
+    { hajj: "حج", umrah: "عمرة", ziyarat: "زيارة", combined: "مشترك" }[trip.type] || trip.type,
+    trip.type.charAt(0).toUpperCase() + trip.type.slice(1)
+  );
+  const destinationLabel = trip.destinations?.[0]?.city || trip.departureCity || t("غير محدد", "Not set");
+  const registrationDeadlineLabel = formatTripDate(
+    trip.registrationDeadline as unknown as { seconds: number },
+    language
+  );
+  const departureDateLabel = formatTripDate(
+    trip.departureDate as unknown as { seconds: number },
+    language
+  );
+  const returnDateLabel = formatTripDate(
+    trip.returnDate as unknown as { seconds: number },
+    language
+  );
+  const selectedTierName = activeTier
+    ? language === "ar"
+      ? activeTier.nameAr || activeTier.name
+      : activeTier.name || activeTier.nameAr
+    : t("الباقة الأساسية", "Base Package");
+  const guidanceItems = [
+    {
+      key: "booking_window",
+      icon: <Calendar className="h-4 w-4 text-info" />,
+      title: t("نافذة الحجز", "Booking Window"),
+      description: canBook
+        ? t(
+            `التسجيل متاح حتى ${registrationDeadlineLabel}. الحجز المبكر يساعدك على تثبيت السعر الحالي وتفادي نفاد المقاعد.`,
+            `Registration is open until ${registrationDeadlineLabel}. Booking early helps lock the current price and avoid sellout.`
+          )
+        : t(
+            "التسجيل مغلق حالياً لهذه الرحلة. يمكنك حفظها في المفضلة ومتابعة أي تحديثات من الحملة.",
+            "Registration is currently closed for this trip. Save it to your wishlist and monitor campaign updates."
+          ),
+    },
+    {
+      key: "route",
+      icon: <MapPin className="h-4 w-4 text-gold-600" />,
+      title: t("مسار الرحلة", "Route Snapshot"),
+      description: t(
+        `المغادرة من ${trip.departureCity || "الكويت"} إلى ${destinationLabel} بتاريخ ${departureDateLabel}، والعودة ${returnDateLabel}.`,
+        `Departure from ${trip.departureCity || "Kuwait"} to ${destinationLabel} on ${departureDateLabel}, returning on ${returnDateLabel}.`
+      ),
+    },
+    {
+      key: "capacity",
+      icon: <Users className="h-4 w-4 text-success" />,
+      title: t("توفر المقاعد", "Seat Availability"),
+      description: remainingCapacity > 0
+        ? t(
+            `المتبقي ${remainingCapacity} من أصل ${trip.totalCapacity} مقاعد. إذا كنتم مجموعة، أكمِلوا الحجز معاً لتأمين المقاعد المتجاورة.`,
+            `${remainingCapacity} of ${trip.totalCapacity} seats remain. If you're booking as a group, complete together to secure adjacent seats.`
+          )
+        : t(
+            "لا توجد مقاعد متبقية حالياً. يمكنك متابعة الحملة في حال فتح مقاعد إضافية.",
+            "No seats are currently available. Follow the campaign in case additional seats are released."
+          ),
+    },
+    {
+      key: "pricing",
+      icon: <DollarSign className="h-4 w-4 text-navy-500" />,
+      title: t("الميزانية والدفع", "Budget & Payment"),
+      description: t(
+        `السعر الحالي ${formatKWD(basePrice)} لكل مسافر ضمن "${selectedTierName}". راجع الإجمالي النهائي قبل التأكيد خاصة عند إضافة أكثر من مسافر.`,
+        `Current price is ${formatKWD(basePrice)} per traveler under "${selectedTierName}". Review the final total carefully before confirming, especially for multiple passengers.`
+      ),
+    },
+  ];
+  const prepChecklist = [
+    t(
+      "تأكد من مطابقة الأسماء مع الوثائق الرسمية قبل الدفع.",
+      "Ensure traveler names exactly match official documents before payment."
+    ),
+    t(
+      "احتفظ بنسخة رقمية من الهوية/الجواز وسهولة الوصول لها أثناء السفر.",
+      "Keep a digital copy of ID/passport easily accessible during travel."
+    ),
+    t(
+      "راجع تفاصيل الباقة والخدمات المشمولة لتجنب أي التباس ميداني.",
+      "Review package inclusions in advance to avoid on-ground misunderstandings."
+    ),
+    trip.type === "hajj" || trip.type === "umrah" || trip.type === "ziyarat"
+      ? t(
+          "حضّر مستلزمات الزيارة المناسبة للمشي الطويل والمواقيت المختلفة.",
+          "Prepare suitable essentials for long walks and variable ziyarat timings."
+        )
+      : t(
+          "جهّز خطة يومية مرنة لتوزيع الأنشطة والراحة خلال الرحلة.",
+          "Prepare a flexible daily plan to balance activities and rest."
+        ),
+  ];
 
   const handleBookNow = async () => {
     if (!firebaseUser || !userData) {
@@ -236,10 +329,7 @@ export default function TripDetailPage({
     },
     {
       label: t("النوع", "Type"),
-      value: t(
-        { hajj: "حج", umrah: "عمرة", ziyarat: "زيارة", combined: "مشترك" }[trip.type] || trip.type,
-        trip.type.charAt(0).toUpperCase() + trip.type.slice(1)
-      ),
+      value: tripTypeLabel,
       icon: <Tag className="h-4 w-4 text-gold-500" />,
     },
   ];
@@ -384,6 +474,61 @@ export default function TripDetailPage({
             <ItineraryTimeline blocks={itineraryBlocks} />
           </Card>
         )}
+
+        {/* Smart Guide */}
+        <Card variant="outlined" padding="md">
+          <div className="mb-4 flex items-center gap-2">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-gold-100 dark:bg-gold-900/30">
+              <ShieldCheck className="h-4 w-4 text-gold-600 dark:text-gold-400" />
+            </div>
+            <div>
+              <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">
+                {t("دليل الرحلة الذكي", "Smart Trip Guide")}
+              </h3>
+              <p className="text-body-sm text-navy-500 dark:text-navy-400">
+                {t(
+                  "إرشادات عملية مبنية على حالة هذه الرحلة لمساعدتك قبل الدفع وأثناء الاستعداد.",
+                  "Practical guidance based on this trip's live details to help before payment and while preparing."
+                )}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {guidanceItems.map((item) => (
+              <div
+                key={item.key}
+                className="rounded-[var(--radius-md)] border border-surface-border bg-surface-muted p-3 dark:border-surface-dark-border dark:bg-surface-dark"
+              >
+                <div className="mb-1.5 flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] bg-white dark:bg-surface-dark-card">
+                    {item.icon}
+                  </span>
+                  <p className="text-body-md font-semibold text-navy-900 dark:text-white">
+                    {item.title}
+                  </p>
+                </div>
+                <p className="text-body-sm leading-relaxed text-navy-600 dark:text-navy-300">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-[var(--radius-md)] border border-gold-200/70 bg-gold-50/40 p-3 dark:border-gold-900/40 dark:bg-gold-900/10">
+            <p className="mb-2 text-body-md font-semibold text-navy-900 dark:text-white">
+              {t("قائمة تجهيز سريعة", "Quick Prep Checklist")}
+            </p>
+            <ul className="space-y-1.5">
+              {prepChecklist.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-body-sm text-navy-700 dark:text-navy-200">
+                  <span className="mt-0.5 text-success">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Card>
 
         {/* Destinations */}
         {trip.destinations && trip.destinations.length > 0 && (
