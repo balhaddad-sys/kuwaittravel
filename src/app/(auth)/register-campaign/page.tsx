@@ -11,8 +11,9 @@ import { PhoneInput } from "@/components/forms/PhoneInput";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
 import { useToast } from "@/components/feedback/ToastProvider";
-import { createDocument } from "@/lib/firebase/firestore";
+import { createDocument, updateDocument, getDocument } from "@/lib/firebase/firestore";
 import { uploadFile, generateStoragePath } from "@/lib/firebase/storage";
+import type { User } from "@/types/user";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { ShieldCheck, Building2, FileText, Phone, ClipboardCheck } from "lucide-react";
 
@@ -66,16 +67,22 @@ export default function RegisterCampaignPage() {
 
     setLoading(true);
     try {
+      // Step 1: Upload license image (skip if no file)
       let licenseImageUrl = "";
       if (form.licenseFile) {
-        const path = generateStoragePath("licenses", firebaseUser.uid, form.licenseFile.name);
-        licenseImageUrl = await uploadFile(path, form.licenseFile);
+        try {
+          const path = generateStoragePath("licenses", firebaseUser.uid, form.licenseFile.name);
+          licenseImageUrl = await uploadFile(path, form.licenseFile);
+        } catch (uploadErr) {
+          console.warn("License upload failed, continuing without image:", uploadErr);
+        }
       }
 
       const normalizedPhone = form.phone.startsWith("+")
         ? form.phone
         : `+965${form.phone}`;
 
+      // Step 2: Create campaign document
       const campaignId = await createDocument(COLLECTIONS.CAMPAIGNS, {
         ownerId: firebaseUser.uid,
         name: form.name,
@@ -107,22 +114,35 @@ export default function RegisterCampaignPage() {
         isActive: true,
       });
 
-      await createDocument(
-        COLLECTIONS.USERS,
-        {
-          uid: firebaseUser.uid,
-          phone: firebaseUser.phoneNumber || "",
+      // Step 3: Create or update user document
+      const existingUser = await getDocument<User>(COLLECTIONS.USERS, firebaseUser.uid);
+      if (existingUser) {
+        // User already exists — just link the campaign
+        await updateDocument(COLLECTIONS.USERS, firebaseUser.uid, {
+          campaignId,
+          role: "campaign_owner",
           displayName: form.name,
           displayNameAr: form.nameAr,
-          role: "campaign_owner" as const,
-          campaignId,
-          preferredLanguage: "ar" as const,
-          notificationTokens: [],
-          isVerified: false,
-          isActive: true,
-        },
-        firebaseUser.uid
-      );
+        });
+      } else {
+        // New user — create full profile
+        await createDocument(
+          COLLECTIONS.USERS,
+          {
+            uid: firebaseUser.uid,
+            phone: firebaseUser.phoneNumber || "",
+            displayName: form.name,
+            displayNameAr: form.nameAr,
+            role: "campaign_owner" as const,
+            campaignId,
+            preferredLanguage: "ar" as const,
+            notificationTokens: [],
+            isVerified: false,
+            isActive: true,
+          },
+          firebaseUser.uid
+        );
+      }
 
       await refreshUserData();
       toast({
@@ -131,11 +151,14 @@ export default function RegisterCampaignPage() {
         description: t("سيقوم فريقنا بمراجعة طلبك", "Our team will review your application"),
       });
       router.push("/portal/dashboard");
-    } catch {
+    } catch (err) {
+      console.error("Campaign registration failed:", err);
+      const msg = err instanceof Error ? err.message : String(err);
       toast({
         type: "error",
         title: t("تعذر إكمال التسجيل", "Registration failed"),
-        description: t("يرجى المحاولة مرة أخرى", "Please try again"),
+        description: msg,
+        duration: 8000,
       });
     } finally {
       setLoading(false);
