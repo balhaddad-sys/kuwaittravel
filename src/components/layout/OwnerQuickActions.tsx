@@ -43,7 +43,7 @@ export function OwnerQuickActions({ className }: OwnerQuickActionsProps) {
               key={action.href}
               href={action.href}
               prefetch
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-surface-border bg-white px-3 py-1.5 text-body-sm font-medium text-navy-700 shadow-none transform-gpu transition-[transform,background-color,color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-gold-300 hover:bg-gold-50 active:scale-[0.97] dark:border-surface-dark-border dark:bg-surface-dark dark:text-navy-100 dark:hover:border-gold-700 dark:hover:bg-gold-900/20"
+              className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-surface-border bg-white px-3 py-1.5 text-body-sm font-medium text-navy-700 shadow-none transform-gpu transition-[transform,background-color,color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-gold-300 hover:bg-gold-50 active:scale-[0.97] dark:border-surface-dark-border dark:bg-surface-dark dark:text-navy-100 dark:hover:border-gold-700 dark:hover:bg-gold-900/20"
             >
               <Icon className="h-4 w-4" />
               <span>{actionLabel(action.key, t)}</span>

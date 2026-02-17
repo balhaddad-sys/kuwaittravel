@@ -22,14 +22,16 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
     const activeItem = activeItemRef.current;
     const containerRect = container.getBoundingClientRect();
     const activeRect = activeItem.getBoundingClientRect();
-    const nextScrollLeft =
-      activeItem.offsetLeft - container.clientWidth / 2 + activeItem.clientWidth / 2;
 
     if (
-      activeRect.left < containerRect.left + 20 ||
-      activeRect.right > containerRect.right - 20
+      activeRect.left < containerRect.left + 16 ||
+      activeRect.right > containerRect.right - 16
     ) {
-      container.scrollTo({ left: nextScrollLeft, behavior: "smooth" });
+      activeItem.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
     }
   }, [pathname]);
 
@@ -55,7 +57,7 @@ export function MobileTopNav({ items, className }: MobileTopNavProps) {
               href={item.href}
               prefetch
               className={cn(
-                "relative shrink-0 rounded-full border px-3.5 py-2 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
+                "relative shrink-0 whitespace-nowrap rounded-full border px-3.5 py-2 text-body-sm font-medium transform-gpu transition-[transform,background-color,color,border-color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.97]",
                 isActive
                   ? "border-gold-200 bg-gold-50 text-gold-700 shadow-none dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
                   : "border-surface-border bg-white text-navy-700 dark:border-surface-dark-border dark:bg-surface-dark dark:text-navy-100"
