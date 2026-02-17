@@ -28,7 +28,7 @@ function AppBar({
   return (
     <header
       className={cn(
-        "lg:sticky lg:top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-surface-border bg-white px-4 shadow-topbar dark:border-surface-dark-border dark:bg-surface-dark-card sm:h-[72px] sm:gap-4 sm:px-6",
+        "sticky top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-surface-border bg-white/95 px-4 shadow-topbar backdrop-blur-md dark:border-surface-dark-border dark:bg-surface-dark-card/95 sm:h-[72px] sm:gap-4 sm:px-6 lg:px-8",
         className
       )}
     >

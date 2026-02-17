@@ -123,7 +123,7 @@ function SectionBottomNav({
               prefetch
               onClick={closePanel}
               className={cn(
-                "group relative flex min-w-[56px] flex-col items-center justify-center gap-0.5 rounded-xl px-2 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
+                "group relative flex flex-1 min-w-0 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
                 active
                   ? "scale-[1.02] border border-gold-200 bg-gold-50 text-gold-700 shadow-none dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
                   : "border border-transparent text-navy-500 hover:text-navy-700 dark:text-navy-400 dark:hover:text-navy-200"
@@ -138,7 +138,7 @@ function SectionBottomNav({
               {item.notification && (
                 <span className="absolute end-3 top-1.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-surface-dark-card" />
               )}
-              <span className={cn("text-[11px]", active && "font-semibold")}>
+              <span className={cn("text-[10px] truncate max-w-full", active && "font-semibold")}>
                 {item.label}
               </span>
             </Link>
@@ -151,7 +151,7 @@ function SectionBottomNav({
             type="button"
             onClick={() => setMoreOpen((o) => !o)}
             className={cn(
-              "group relative flex min-w-[56px] flex-col items-center justify-center gap-0.5 rounded-xl px-2 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
+              "group relative flex flex-1 min-w-0 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
               moreOpen || isOverflowActive
                 ? "scale-[1.02] border border-gold-200 bg-gold-50 text-gold-700 shadow-none dark:border-gold-700 dark:bg-gold-900/20 dark:text-gold-300"
                 : "border border-transparent text-navy-500 hover:text-navy-700 dark:text-navy-400 dark:hover:text-navy-200"
@@ -163,7 +163,7 @@ function SectionBottomNav({
             <span className="h-6 w-6 flex items-center justify-center">
               {moreOpen ? <X className="h-5 w-5" /> : <MoreHorizontal className="h-5 w-5" />}
             </span>
-            <span className={cn("text-[11px]", (moreOpen || isOverflowActive) && "font-semibold")}>
+            <span className={cn("text-[10px] truncate max-w-full", (moreOpen || isOverflowActive) && "font-semibold")}>
               {moreLabel}
             </span>
           </button>

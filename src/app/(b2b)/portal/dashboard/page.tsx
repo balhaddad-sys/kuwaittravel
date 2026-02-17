@@ -34,7 +34,7 @@ export default function DashboardPage() {
       />
 
       <Container className="travel-orbit-bg py-4 sm:py-6 space-y-4 sm:space-y-6">
-        <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard title={t("الرحلات النشطة", "Active Trips")} value={0} icon={<Map className="h-6 w-6" />} className="animate-stagger-in" hoverable />
           <StatCard title={t("إجمالي المسافرين", "Total Travelers")} value={0} icon={<Users className="h-6 w-6" />} className="animate-stagger-in stagger-delay-1" hoverable />
           <StatCard title={t("الإيرادات (د.ك)", "Revenue (KWD)")} value="0" icon={<Wallet className="h-6 w-6" />} className="animate-stagger-in stagger-delay-2" hoverable />
