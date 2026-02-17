@@ -11,14 +11,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="relative min-h-screen overflow-hidden px-4 py-4 sm:px-8 sm:py-6">
       {/* Warm travel background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#F8F6F2] via-[#FAF8F4] to-[#FBF7F0] dark:from-[#0A0E17] dark:via-[#0D1220] dark:to-[#0A0E17]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-[#FEFCF8] to-[#FFFBEB] dark:from-[#0C1222] dark:via-[#101828] dark:to-[#0C1222]" />
       <div className="absolute left-0 top-0 h-[50%] w-[60%] bg-gradient-to-br from-teal-100/30 to-transparent dark:from-teal-900/10" />
       <div className="absolute bottom-0 right-0 h-[40%] w-[50%] bg-gradient-to-tl from-amber-100/25 to-transparent dark:from-amber-900/8" />
 
       <div className="relative mx-auto flex min-h-[94vh] w-full max-w-6xl flex-col">
         <header className="flex items-center justify-between">
           <div className="inline-flex items-center gap-2 rounded-full border border-surface-border/70 bg-white/76 px-3 py-1.5 shadow-card backdrop-blur-sm dark:border-surface-dark-border/70 dark:bg-surface-dark-card/72 sm:gap-3 sm:px-4 sm:py-2">
-            <span className="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-700 shadow-[0_6px_18px_rgba(30,58,95,0.25)]">
+            <span className="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-700 shadow-[0_6px_18px_rgba(37,99,235,0.25)]">
               <Compass className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-white" />
             </span>
             <div>

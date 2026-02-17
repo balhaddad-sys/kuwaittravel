@@ -21,7 +21,7 @@ function BottomNav({ items }: BottomNavProps) {
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-[var(--z-sticky)] px-3 pb-[max(0.7rem,env(safe-area-inset-bottom,0.7rem))]">
-      <div className="relative mx-auto flex h-[66px] w-full max-w-xl items-center justify-around rounded-[22px] border border-white/15 bg-[#1E3A5F]/95 px-2 shadow-card backdrop-blur-md">
+      <div className="relative mx-auto flex h-[66px] w-full max-w-xl items-center justify-around rounded-[22px] border border-white/15 bg-[#2563EB]/95 px-2 shadow-card backdrop-blur-md">
         {items.map((item) => {
           const isActive = pathname === item.href || (pathname ?? "").startsWith(item.href + "/");
           return (
@@ -43,7 +43,7 @@ function BottomNav({ items }: BottomNavProps) {
                 {isActive && item.activeIcon ? item.activeIcon : item.icon}
               </span>
               {item.notification && (
-                <span className="absolute end-4 top-2 h-2 w-2 rounded-full bg-amber-400 ring-2 ring-[#1E3A5F]" />
+                <span className="absolute end-4 top-2 h-2 w-2 rounded-full bg-amber-400 ring-2 ring-[#2563EB]" />
               )}
               <span className={cn("text-[11px]", isActive && "font-semibold")}>
                 {item.label}

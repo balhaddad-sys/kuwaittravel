@@ -135,7 +135,7 @@ export default function ProfilePage() {
           <Card
             variant="outlined"
             padding="md"
-            className="border-amber-300/65 shadow-[0_0_0_1px_rgba(197,165,114,0.12)] dark:border-amber-800/45 dark:shadow-[0_0_0_1px_rgba(197,165,114,0.08)]"
+            className="border-amber-300/65 shadow-[0_0_0_1px_rgba(245,158,11,0.12)] dark:border-amber-800/45 dark:shadow-[0_0_0_1px_rgba(245,158,11,0.08)]"
           >
             <button
               onClick={() =>

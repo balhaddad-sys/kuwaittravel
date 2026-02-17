@@ -62,7 +62,7 @@ function SectionBottomNav({
       {hasOverflow && moreOpen && (
         <div
           ref={panelRef}
-          className="mx-auto mb-2 w-full max-w-xl animate-in fade-in slide-in-from-bottom-2 rounded-2xl border border-white/15 bg-[#162C4A]/95 p-2 shadow-card backdrop-blur-md"
+          className="mx-auto mb-2 w-full max-w-xl animate-in fade-in slide-in-from-bottom-2 rounded-2xl border border-white/15 bg-[#1D4ED8]/95 p-2 shadow-card backdrop-blur-md"
         >
           <div className="space-y-0.5">
             {overflowItems.map((item) => (
@@ -113,7 +113,7 @@ function SectionBottomNav({
       )}
 
       {/* Bottom bar */}
-      <div className="relative mx-auto flex h-[66px] w-full max-w-xl items-center justify-around rounded-[22px] border border-white/15 bg-[#1E3A5F]/95 px-2 shadow-card backdrop-blur-md">
+      <div className="relative mx-auto flex h-[66px] w-full max-w-xl items-center justify-around rounded-[22px] border border-white/15 bg-[#2563EB]/95 px-2 shadow-card backdrop-blur-md">
         {primaryItems.map((item) => {
           const active = isActive(item.href);
           return (
@@ -136,7 +136,7 @@ function SectionBottomNav({
                 {active && item.activeIcon ? item.activeIcon : item.icon}
               </span>
               {item.notification && (
-                <span className="absolute end-3 top-1.5 h-2 w-2 rounded-full bg-amber-400 ring-2 ring-[#1E3A5F]" />
+                <span className="absolute end-3 top-1.5 h-2 w-2 rounded-full bg-amber-400 ring-2 ring-[#2563EB]" />
               )}
               <span className={cn("text-[10px] truncate max-w-full", active && "font-semibold")}>
                 {item.label}

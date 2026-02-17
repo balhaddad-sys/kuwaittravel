@@ -32,7 +32,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col bg-gradient-to-b from-[#162C4A] to-[#1E3A5F] shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] lg:flex",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col bg-gradient-to-b from-[#1D4ED8] to-[#2563EB] shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] lg:flex",
         collapsed ? "w-[84px]" : "w-[286px]"
       )}
     >

@@ -93,7 +93,7 @@ function ProgressBarInner() {
               ? "width 200ms ease-out"
               : "width 400ms cubic-bezier(0.4, 0, 0.2, 1)",
           boxShadow:
-            "0 0 10px rgba(30, 58, 95, 0.6), 0 0 3px rgba(30, 58, 95, 0.35)",
+            "0 0 10px rgba(37, 99, 235, 0.6), 0 0 3px rgba(37, 99, 235, 0.35)",
           borderRadius: "0 2px 2px 0",
         }}
       />

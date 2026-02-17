@@ -230,8 +230,8 @@ export default function DiscoverPage() {
     <div className="min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
       {/* Travel Hero — navy gradient header */}
       <section className="relative overflow-hidden px-4 pb-6 pt-6 sm:pb-8 sm:pt-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A5F] via-[#2C4F7D] to-[#3D6599]/40" />
-        <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#C5A572]/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#60A5FA]/40" />
+        <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#F59E0B]/15 to-transparent" />
         <Container className="relative">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-xl font-extrabold leading-tight text-white sm:text-3xl lg:text-4xl" style={{ textWrap: "balance" }}>

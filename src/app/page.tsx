@@ -81,10 +81,10 @@ export default function HomePage() {
       className={`relative min-h-screen overflow-hidden transition-[opacity,transform] duration-[140ms] ease-out ${exiting ? "scale-[0.97] opacity-0" : ""}`}
     >
       {/* Immersive background — warm desert/sky gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A5F] via-[#2C4F7D] to-[#C5A572]/30" />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A5F]/90 via-transparent to-[#C5A572]/20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#F59E0B]/30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/90 via-transparent to-[#F59E0B]/20" />
       {/* Soft horizon glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#C5A572]/25 via-[#C5A572]/8 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#F59E0B]/25 via-[#F59E0B]/8 to-transparent" />
       {/* Stars-like dots for night sky feel */}
       <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: "radial-gradient(circle at 1px 1px, white 0.5px, transparent 0)",
@@ -144,7 +144,7 @@ export default function HomePage() {
           >
             <button
               onClick={() => navigateTo("/app/discover")}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-body-lg font-bold text-[#1E3A5F] shadow-[0_8px_24px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-amber-50 hover:shadow-[0_12px_32px_rgba(0,0,0,0.25)] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-body-lg font-bold text-[#2563EB] shadow-[0_8px_24px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-amber-50 hover:shadow-[0_12px_32px_rgba(0,0,0,0.25)] active:scale-[0.98]"
             >
               <Compass className="h-5 w-5" />
               {t("استكشف الرحلات", "Explore Trips")}
@@ -220,7 +220,7 @@ export default function HomePage() {
             style={{ "--stagger-delay": "600ms" } as React.CSSProperties}
           >
             <div className="relative flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-white shadow-[0_6px_16px_rgba(197,165,114,0.3)] transition-transform duration-300 group-hover:scale-110">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-white shadow-[0_6px_16px_rgba(245,158,11,0.3)] transition-transform duration-300 group-hover:scale-110">
                 <PlaneTakeoff className="h-6 w-6" />
               </span>
               <div className="min-w-0 flex-1">
@@ -244,7 +244,7 @@ export default function HomePage() {
             style={{ "--stagger-delay": "700ms" } as React.CSSProperties}
           >
             <div className="relative flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-[0_6px_16px_rgba(30,58,95,0.3)] transition-transform duration-300 group-hover:scale-110">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-[0_6px_16px_rgba(37,99,235,0.3)] transition-transform duration-300 group-hover:scale-110">
                 <Building2 className="h-6 w-6" />
               </span>
               <div className="min-w-0 flex-1">
