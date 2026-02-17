@@ -32,20 +32,13 @@ function SectionBottomNav({
   const pathname = usePathname();
   const [moreOpen, setMoreOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
-  const prevPathnameRef = useRef(pathname);
 
   const hasOverflow = overflowItems && overflowItems.length > 0;
   const isOverflowActive = [...(overflowItems ?? []), ...(switchItems ?? [])].some(
     (item) => pathname === item.href || (pathname ?? "").startsWith(item.href + "/")
   );
 
-  // Close panel on route change (state reset during render, not in effect)
-  if (prevPathnameRef.current !== pathname) {
-    prevPathnameRef.current = pathname;
-    if (moreOpen) {
-      setMoreOpen(false);
-    }
-  }
+  const closePanel = () => setMoreOpen(false);
 
   // Close panel on outside tap
   useEffect(() => {
@@ -77,6 +70,7 @@ function SectionBottomNav({
                 key={item.href}
                 href={item.href}
                 prefetch
+                onClick={closePanel}
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2.5 text-body-md font-medium transition-colors duration-[var(--duration-ui)]",
                   isActive(item.href)
@@ -105,6 +99,7 @@ function SectionBottomNav({
                     key={item.href}
                     href={item.href}
                     prefetch
+                    onClick={closePanel}
                     className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-body-md font-medium text-navy-600 transition-colors duration-[var(--duration-ui)] hover:bg-surface-light dark:text-navy-300 dark:hover:bg-surface-dark"
                   >
                     <span className="h-5 w-5 shrink-0 text-gold-500">{item.icon}</span>
@@ -126,6 +121,7 @@ function SectionBottomNav({
               key={item.href}
               href={item.href}
               prefetch
+              onClick={closePanel}
               className={cn(
                 "group relative flex min-w-[56px] flex-col items-center justify-center gap-0.5 rounded-xl px-2 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
                 active
