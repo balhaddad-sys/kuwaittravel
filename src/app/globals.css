@@ -562,11 +562,16 @@
   .page-transition-shell {
     position: relative;
     isolation: isolate;
-    contain: layout paint;
+    contain: paint;
+    display: flex;
+    flex-direction: column;
   }
 
   .page-transition-content {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     --page-transition-duration: 300ms;
     --page-transition-y: 10px;
     --page-transition-scale: 0.997;

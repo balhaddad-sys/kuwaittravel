@@ -66,7 +66,7 @@ function AppBar({
         </div>
       </div>
       <div className="flex items-center gap-2">
-        {showLanguageToggle && <LanguageToggle className="shrink-0" />}
+        {showLanguageToggle && <LanguageToggle className="shrink-0 hidden sm:inline-flex" />}
         {actions && <div className="flex items-center gap-2">{actions}</div>}
       </div>
     </header>

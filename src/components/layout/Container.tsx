@@ -16,7 +16,7 @@ const sizeMap = {
 
 function Container({ children, className, size = "xl" }: ContainerProps) {
   return (
-    <div className={cn("mx-auto w-full px-4 sm:px-6 lg:px-8", sizeMap[size], className)}>
+    <div className={cn("mx-auto flex-1 w-full px-4 sm:px-6 lg:px-8", sizeMap[size], className)}>
       {children}
     </div>
   );
