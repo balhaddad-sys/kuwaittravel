@@ -1,8 +1,7 @@
 "use client";
 
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
-import { MobileTopNav } from "@/components/layout/MobileTopNav";
-import { OwnerQuickActions } from "@/components/layout/OwnerQuickActions";
+import { SectionBottomNav, type SectionBottomNavItem } from "@/components/layout/SectionBottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useAuth } from "@/hooks/useAuth";
@@ -26,7 +25,6 @@ import {
 export default function B2BLayout({ children }: { children: React.ReactNode }) {
   const { t } = useDirection();
   const { userData } = useAuth();
-  const showOwnerQuickActions = userData?.role === "campaign_owner";
   const isAdmin = userData?.role === "admin" || userData?.role === "super_admin";
 
   const sidebarItems: SidebarItem[] = [
@@ -41,20 +39,27 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
     { label: t("الإعدادات", "Settings"), href: "/portal/settings", icon: <Settings className="h-5 w-5" /> },
   ];
 
-  const switchItems: SidebarItem[] = [
+  /* ── Bottom nav items (mobile) ── */
+  const bottomPrimary: SectionBottomNavItem[] = [
+    { label: t("الرئيسية", "Home"), href: "/portal/dashboard", icon: <LayoutDashboard className="h-6 w-6" /> },
+    { label: t("الرحلات", "Trips"), href: "/portal/trips", icon: <Map className="h-6 w-6" /> },
+    { label: t("الحجوزات", "Bookings"), href: "/portal/bookings", icon: <BookOpen className="h-6 w-6" /> },
+    { label: t("المحفظة", "Wallet"), href: "/portal/wallet", icon: <Wallet className="h-6 w-6" /> },
+  ];
+
+  const bottomOverflow: SectionBottomNavItem[] = [
+    { label: t("المستندات", "Documents"), href: "/portal/documents", icon: <FileText className="h-5 w-5" /> },
+    { label: t("الإشعارات", "Alerts"), href: "/portal/notifications", icon: <Bell className="h-5 w-5" /> },
+    { label: t("فريق العمل", "Team"), href: "/portal/staff", icon: <Users className="h-5 w-5" /> },
+    { label: t("الملف التعريفي", "Profile"), href: "/portal/profile", icon: <Building2 className="h-5 w-5" /> },
+    { label: t("الإعدادات", "Settings"), href: "/portal/settings", icon: <Settings className="h-5 w-5" /> },
+  ];
+
+  const bottomSwitch: SectionBottomNavItem[] = [
     { label: t("المسافرون", "Travelers"), href: "/app/discover", icon: <Compass className="h-5 w-5" /> },
     ...(isAdmin
       ? [{ label: t("الإدارة", "Admin"), href: "/admin/dashboard", icon: <Shield className="h-5 w-5" /> }]
       : []),
-  ];
-
-  const mobileNavItems: SidebarItem[] = [
-    sidebarItems[0], // dashboard
-    sidebarItems[1], // trips
-    sidebarItems[2], // bookings
-    sidebarItems[5], // wallet
-    sidebarItems[8], // settings
-    ...switchItems,
   ];
 
   return (
@@ -90,11 +95,16 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
           </div>
         }
       />
-      <main className="travel-shell-bg flex flex-1 flex-col ms-0 lg:ms-[286px] transition-all duration-300">
-        <MobileTopNav items={mobileNavItems} />
-        {showOwnerQuickActions && <OwnerQuickActions />}
+      <main className="travel-shell-bg flex flex-1 flex-col ms-0 lg:ms-[286px] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] lg:pb-0 transition-all duration-300">
         <PageTransition className="flex-1" variant="portal">{children}</PageTransition>
       </main>
+      <SectionBottomNav
+        primaryItems={bottomPrimary}
+        overflowItems={bottomOverflow}
+        switchItems={bottomSwitch}
+        moreLabel={t("المزيد", "More")}
+        switchLabel={t("التبديل إلى", "Switch to")}
+      />
     </div>
     </RoleGuard>
   );

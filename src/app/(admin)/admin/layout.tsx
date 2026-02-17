@@ -1,7 +1,7 @@
 "use client";
 
 import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
-import { MobileTopNav } from "@/components/layout/MobileTopNav";
+import { SectionBottomNav, type SectionBottomNavItem } from "@/components/layout/SectionBottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useDirection } from "@/providers/DirectionProvider";
@@ -24,7 +24,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: t("الإعدادات", "Settings"), href: "/admin/settings", icon: <Settings className="h-5 w-5" /> },
   ];
 
-  const switchItems: SidebarItem[] = [
+  /* ── Bottom nav items (mobile) ── */
+  const bottomPrimary: SectionBottomNavItem[] = [
+    { label: t("الرئيسية", "Home"), href: "/admin/dashboard", icon: <LayoutDashboard className="h-6 w-6" /> },
+    { label: t("الحملات", "Campaigns"), href: "/admin/campaigns", icon: <Building2 className="h-6 w-6" /> },
+    { label: t("المستخدمون", "Users"), href: "/admin/users", icon: <Users className="h-6 w-6" /> },
+    { label: t("المالية", "Finance"), href: "/admin/financials", icon: <Wallet className="h-6 w-6" /> },
+  ];
+
+  const bottomOverflow: SectionBottomNavItem[] = [
+    { label: t("النزاعات", "Disputes"), href: "/admin/disputes", icon: <AlertOctagon className="h-5 w-5" /> },
+    { label: t("سجل العمليات", "Audit Logs"), href: "/admin/audit-logs", icon: <ScrollText className="h-5 w-5" /> },
+    { label: t("الإعدادات", "Settings"), href: "/admin/settings", icon: <Settings className="h-5 w-5" /> },
+  ];
+
+  const bottomSwitch: SectionBottomNavItem[] = [
     { label: t("المسافرون", "Travelers"), href: "/app/discover", icon: <Compass className="h-5 w-5" /> },
     { label: t("بوابة الحملات", "Portal"), href: "/portal/dashboard", icon: <PlaneTakeoff className="h-5 w-5" /> },
   ];
@@ -64,10 +78,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         }
       />
-      <main className="travel-shell-bg flex flex-1 flex-col ms-0 lg:ms-[286px] transition-all duration-300">
-        <MobileTopNav items={[...sidebarItems, ...switchItems]} />
+      <main className="travel-shell-bg flex flex-1 flex-col ms-0 lg:ms-[286px] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] lg:pb-0 transition-all duration-300">
         <PageTransition className="flex-1" variant="admin">{children}</PageTransition>
       </main>
+      <SectionBottomNav
+        primaryItems={bottomPrimary}
+        overflowItems={bottomOverflow}
+        switchItems={bottomSwitch}
+        moreLabel={t("المزيد", "More")}
+        switchLabel={t("التبديل إلى", "Switch to")}
+      />
     </div>
     </RoleGuard>
   );

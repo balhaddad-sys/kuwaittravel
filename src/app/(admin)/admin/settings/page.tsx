@@ -6,25 +6,27 @@ import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import { useDirection } from "@/providers/DirectionProvider";
 import { Save, Percent, Wallet } from "lucide-react";
 
 export default function AdminSettingsPage() {
+  const { t } = useDirection();
   const [savingSection, setSavingSection] = useState<"commission" | "payments" | null>(null);
 
   return (
     <>
-      <AppBar title="إعدادات المنصة" breadcrumbs={[{ label: "المشرف العام", href: "/admin/dashboard" }, { label: "الإعدادات" }]} />
+      <AppBar title={t("إعدادات المنصة", "Platform Settings")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("الإعدادات", "Settings") }]} />
       <Container size="md" className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
         <Card variant="elevated" padding="lg" className="space-y-4">
           <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white flex items-center gap-2">
             <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
               <Percent className="h-4 w-4" />
             </span>
-            إعدادات العمولة
+            {t("إعدادات العمولة", "Commission Settings")}
           </h3>
-          <Input label="نسبة العمولة الافتراضية (%)" type="number" defaultValue="2" dir="ltr" hint="النسبة المئوية من كل حجز" />
+          <Input label={t("نسبة العمولة الافتراضية (%)", "Default Commission Rate (%)")} type="number" defaultValue="2" dir="ltr" hint={t("النسبة المئوية من كل حجز", "Percentage of each booking")} />
           <hr className="travel-divider" />
-          <Input label="عمولة الحملات الموثقة (%)" type="number" defaultValue="1.5" dir="ltr" />
+          <Input label={t("عمولة الحملات الموثقة (%)", "Verified Campaign Rate (%)")} type="number" defaultValue="1.5" dir="ltr" />
           <Button
             variant="primary"
             fullWidth
@@ -37,7 +39,7 @@ export default function AdminSettingsPage() {
               setSavingSection(null);
             }}
           >
-            حفظ
+            {t("حفظ", "Save")}
           </Button>
         </Card>
 
@@ -46,11 +48,11 @@ export default function AdminSettingsPage() {
             <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
               <Wallet className="h-4 w-4" />
             </span>
-            إعدادات المدفوعات
+            {t("إعدادات المدفوعات", "Payment Settings")}
           </h3>
-          <Input label="جدول التحويلات" defaultValue="كل خميس" hint="متى يتم تحويل المبالغ للحملات" />
+          <Input label={t("جدول التحويلات", "Transfer Schedule")} defaultValue={t("كل خميس", "Every Thursday")} hint={t("متى يتم تحويل المبالغ للحملات", "When funds are transferred to campaigns")} />
           <hr className="travel-divider" />
-          <Input label="الحد الأدنى للتحويل (د.ك)" type="number" defaultValue="50" dir="ltr" />
+          <Input label={t("الحد الأدنى للتحويل (د.ك)", "Minimum Transfer (KWD)")} type="number" defaultValue="50" dir="ltr" />
           <Button
             variant="primary"
             fullWidth
@@ -63,7 +65,7 @@ export default function AdminSettingsPage() {
               setSavingSection(null);
             }}
           >
-            حفظ
+            {t("حفظ", "Save")}
           </Button>
         </Card>
       </Container>

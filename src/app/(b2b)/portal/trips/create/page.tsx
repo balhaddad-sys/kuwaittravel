@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/Badge";
 import { useToast } from "@/components/feedback/ToastProvider";
 import { DESTINATIONS, TRIP_TYPES, ROOM_TYPES } from "@/lib/utils/constants";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { createDocument, getDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import type { Campaign, TripType } from "@/types";
@@ -24,6 +25,7 @@ export default function CreateTripPage() {
   const router = useRouter();
   const { toast } = useToast();
   const { firebaseUser, userData } = useAuth();
+  const { t } = useDirection();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<File[]>([]);
 
@@ -74,7 +76,7 @@ export default function CreateTripPage() {
     if (!firebaseUser || !userData) {
       toast({
         type: "error",
-        title: "يرجى تسجيل الدخول أولاً",
+        title: t("يرجى تسجيل الدخول أولاً", "Please log in first"),
       });
       router.push("/login");
       return;
@@ -83,8 +85,8 @@ export default function CreateTripPage() {
     if (!userData.campaignId) {
       toast({
         type: "error",
-        title: "لا يمكن إنشاء الرحلة",
-        description: "حسابك غير مرتبط بحملة حالياً.",
+        title: t("لا يمكن إنشاء الرحلة", "Cannot create trip"),
+        description: t("حسابك غير مرتبط بحملة حالياً.", "Your account is not linked to a campaign currently."),
       });
       return;
     }
@@ -108,8 +110,8 @@ export default function CreateTripPage() {
     ) {
       toast({
         type: "error",
-        title: "تحقق من بيانات الرحلة",
-        description: "الرجاء إدخال تواريخ صحيحة وسعر/سعة أكبر من صفر.",
+        title: t("تحقق من بيانات الرحلة", "Verify trip details"),
+        description: t("الرجاء إدخال تواريخ صحيحة وسعر/سعة أكبر من صفر.", "Please enter valid dates and a price/capacity greater than zero."),
       });
       return;
     }
@@ -117,8 +119,8 @@ export default function CreateTripPage() {
     if (returnDate < departureDate) {
       toast({
         type: "error",
-        title: "تاريخ العودة غير صحيح",
-        description: "تاريخ العودة يجب أن يكون بعد تاريخ المغادرة.",
+        title: t("تاريخ العودة غير صحيح", "Invalid return date"),
+        description: t("تاريخ العودة يجب أن يكون بعد تاريخ المغادرة.", "Return date must be after the departure date."),
       });
       return;
     }
@@ -200,8 +202,8 @@ export default function CreateTripPage() {
 
       toast({
         type: "success",
-        title: "تم إنشاء الرحلة بنجاح",
-        description: `رقم الرحلة: ${tripId}`,
+        title: t("تم إنشاء الرحلة بنجاح", "Trip created successfully"),
+        description: `${t("رقم الرحلة", "Trip ID")}: ${tripId}`,
       });
       router.push("/portal/trips");
     } catch (error) {
@@ -209,9 +211,9 @@ export default function CreateTripPage() {
       console.error("Trip creation error:", error);
       toast({
         type: "error",
-        title: "حدث خطأ أثناء إنشاء الرحلة",
+        title: t("حدث خطأ أثناء إنشاء الرحلة", "An error occurred while creating the trip"),
         description: message.includes("permission")
-          ? "ليس لديك صلاحية لإنشاء رحلات. تحقق من ارتباط حسابك بالحملة."
+          ? t("ليس لديك صلاحية لإنشاء رحلات. تحقق من ارتباط حسابك بالحملة.", "You do not have permission to create trips. Check your account's campaign association.")
           : message,
       });
     } finally {
@@ -221,17 +223,17 @@ export default function CreateTripPage() {
 
   const steps = [
     {
-      label: "المعلومات الأساسية",
+      label: t("المعلومات الأساسية", "Basic Information"),
       content: (
         <div className="space-y-4">
           <Input
-            label="عنوان الرحلة بالعربي"
-            placeholder="رحلة كربلاء المقدسة - أربعين"
+            label={t("عنوان الرحلة بالعربي", "Trip title in Arabic")}
+            placeholder={t("رحلة كربلاء المقدسة - أربعين", "Karbala Holy Trip - Arbaeen")}
             value={basics.titleAr}
             onChange={(e) => setBasics({ ...basics, titleAr: e.target.value })}
           />
           <Input
-            label="عنوان الرحلة بالإنجليزي"
+            label={t("عنوان الرحلة بالإنجليزي", "Trip title in English")}
             placeholder="Karbala Holy Trip - Arbaeen"
             dir="ltr"
             value={basics.title}
@@ -239,33 +241,33 @@ export default function CreateTripPage() {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Select
-              label="نوع الرحلة"
-              options={TRIP_TYPES.map((t) => ({ value: t.id, label: t.nameAr }))}
-              placeholder="اختر نوع الرحلة"
+              label={t("نوع الرحلة", "Trip type")}
+              options={TRIP_TYPES.map((tt) => ({ value: tt.id, label: tt.nameAr }))}
+              placeholder={t("اختر نوع الرحلة", "Select trip type")}
               value={basics.type}
               onChange={(e) => setBasics({ ...basics, type: e.target.value })}
             />
             <Select
-              label="الوجهة"
+              label={t("الوجهة", "Destination")}
               options={DESTINATIONS.map((d) => ({ value: d.id, label: `${d.nameAr} - ${d.country}` }))}
-              placeholder="اختر الوجهة"
+              placeholder={t("اختر الوجهة", "Select destination")}
               value={basics.destination}
               onChange={(e) => setBasics({ ...basics, destination: e.target.value })}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <DatePicker
-              label="تاريخ المغادرة"
+              label={t("تاريخ المغادرة", "Departure date")}
               value={basics.departureDate}
               onChange={(e) => setBasics({ ...basics, departureDate: e.target.value })}
             />
             <DatePicker
-              label="تاريخ العودة"
+              label={t("تاريخ العودة", "Return date")}
               value={basics.returnDate}
               onChange={(e) => setBasics({ ...basics, returnDate: e.target.value })}
             />
             <DatePicker
-              label="آخر موعد للتسجيل"
+              label={t("آخر موعد للتسجيل", "Registration deadline")}
               value={basics.registrationDeadline}
               onChange={(e) => setBasics({ ...basics, registrationDeadline: e.target.value })}
             />
@@ -282,12 +284,12 @@ export default function CreateTripPage() {
       ),
     },
     {
-      label: "السعة والتسعير",
+      label: t("السعة والتسعير", "Capacity & Pricing"),
       content: (
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
-              label="السعر الأساسي (د.ك)"
+              label={t("السعر الأساسي (د.ك)", "Base Price (KWD)")}
               placeholder="285.000"
               type="number"
               dir="ltr"
@@ -295,7 +297,7 @@ export default function CreateTripPage() {
               onChange={(e) => setPricing({ ...pricing, basePriceKWD: e.target.value })}
             />
             <Input
-              label="السعة الإجمالية"
+              label={t("السعة الإجمالية", "Total Capacity")}
               placeholder="45"
               type="number"
               dir="ltr"
@@ -305,17 +307,17 @@ export default function CreateTripPage() {
           </div>
 
           <h3 className="text-heading-sm font-semibold text-navy-900 dark:text-white mt-6">
-            الغرف المتاحة
+            {t("الغرف المتاحة", "Available Rooms")}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {ROOM_TYPES.filter((r) => r.id !== "single").map((room) => (
               <Card key={room.id} variant="outlined" padding="md">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-body-md font-medium text-navy-700 dark:text-navy-200">{room.nameAr}</span>
-                  <Badge variant="default" size="sm">{room.capacity} أشخاص</Badge>
+                  <Badge variant="default" size="sm">{room.capacity} {t("أشخاص", "persons")}</Badge>
                 </div>
                 <Input
-                  placeholder="عدد الغرف"
+                  placeholder={t("عدد الغرف", "Number of rooms")}
                   type="number"
                   dir="ltr"
                   value={
@@ -336,74 +338,74 @@ export default function CreateTripPage() {
       isValid: Boolean(pricing.basePriceKWD && pricing.totalCapacity),
     },
     {
-      label: "الوصف والتفاصيل",
+      label: t("الوصف والتفاصيل", "Description & Details"),
       content: (
         <div className="space-y-4">
           <Textarea
-            label="وصف الرحلة بالعربي"
-            placeholder="تفاصيل الرحلة والبرنامج والخدمات المقدمة..."
+            label={t("وصف الرحلة بالعربي", "Trip description (Arabic)")}
+            placeholder={t("تفاصيل الرحلة والبرنامج والخدمات المقدمة...", "Trip details, itinerary, and services provided...")}
             value={description.descriptionAr}
             onChange={(e) => setDescription({ ...description, descriptionAr: e.target.value })}
           />
           <Textarea
-            label="يشمل"
-            placeholder="تذكرة طيران، إقامة فندقية، وجبات..."
+            label={t("يشمل", "Includes")}
+            placeholder={t("تذكرة طيران، إقامة فندقية، وجبات...", "Airfare, hotel accommodation, meals...")}
             value={description.includes}
             onChange={(e) => setDescription({ ...description, includes: e.target.value })}
-            hint="كل بند في سطر منفصل"
+            hint={t("كل بند في سطر منفصل", "Each item on a separate line")}
           />
           <Textarea
-            label="لا يشمل"
-            placeholder="المصاريف الشخصية، التأشيرة..."
+            label={t("لا يشمل", "Excludes")}
+            placeholder={t("المصاريف الشخصية، التأشيرة...", "Personal expenses, visa...")}
             value={description.excludes}
             onChange={(e) => setDescription({ ...description, excludes: e.target.value })}
-            hint="كل بند في سطر منفصل"
+            hint={t("كل بند في سطر منفصل", "Each item on a separate line")}
           />
           <FileUpload
-            label="صور الرحلة"
+            label={t("صور الرحلة", "Trip Photos")}
             accept="image/*"
             multiple
             maxSize={5}
             onFilesChange={setImages}
-            hint="أضف صور جذابة للرحلة (الحد الأقصى 5 ميغابايت لكل صورة)"
+            hint={t("أضف صور جذابة للرحلة (الحد الأقصى 5 ميغابايت لكل صورة)", "Add attractive trip photos (max 5MB per image)")}
           />
         </div>
       ),
     },
     {
-      label: "المراجعة والنشر",
+      label: t("المراجعة والنشر", "Review & Publish"),
       content: (
         <div className="space-y-4">
           <h3 className="text-heading-sm font-bold text-navy-900 dark:text-white">
-            مراجعة بيانات الرحلة
+            {t("مراجعة بيانات الرحلة", "Review Trip Details")}
           </h3>
           <Card variant="filled" padding="md" className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-body-md text-navy-500">العنوان</span>
+              <span className="text-body-md text-navy-500">{t("العنوان", "Title")}</span>
               <span className="text-body-md font-medium text-navy-900 dark:text-white">{basics.titleAr || "—"}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-navy-500">النوع</span>
+              <span className="text-body-md text-navy-500">{t("النوع", "Type")}</span>
               <span className="text-body-md font-medium text-navy-900 dark:text-white">
-                {TRIP_TYPES.find((t) => t.id === basics.type)?.nameAr || "—"}
+                {TRIP_TYPES.find((tp) => tp.id === basics.type)?.nameAr || "—"}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-navy-500">الوجهة</span>
+              <span className="text-body-md text-navy-500">{t("الوجهة", "Destination")}</span>
               <span className="text-body-md font-medium text-navy-900 dark:text-white">
                 {DESTINATIONS.find((d) => d.id === basics.destination)?.nameAr || "—"}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-navy-500">السعر</span>
-              <span className="text-body-md font-bold text-navy-900 dark:text-white">{pricing.basePriceKWD ? `${pricing.basePriceKWD} د.ك` : "—"}</span>
+              <span className="text-body-md text-navy-500">{t("السعر", "Price")}</span>
+              <span className="text-body-md font-bold text-navy-900 dark:text-white">{pricing.basePriceKWD ? `${pricing.basePriceKWD} ${t("د.ك", "KWD")}` : "—"}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-navy-500">السعة</span>
-              <span className="text-body-md font-medium text-navy-900 dark:text-white">{pricing.totalCapacity || "—"} مسافر</span>
+              <span className="text-body-md text-navy-500">{t("السعة", "Capacity")}</span>
+              <span className="text-body-md font-medium text-navy-900 dark:text-white">{pricing.totalCapacity || "—"} {t("مسافر", "travelers")}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-navy-500">تاريخ المغادرة</span>
+              <span className="text-body-md text-navy-500">{t("تاريخ المغادرة", "Departure Date")}</span>
               <span className="text-body-md font-medium text-navy-900 dark:text-white">{basics.departureDate || "—"}</span>
             </div>
           </Card>
@@ -415,11 +417,11 @@ export default function CreateTripPage() {
   return (
     <>
       <AppBar
-        title="إنشاء رحلة جديدة"
+        title={t("إنشاء رحلة جديدة", "Create New Trip")}
         breadcrumbs={[
-          { label: "بوابة الحملة", href: "/portal/dashboard" },
-          { label: "الرحلات", href: "/portal/trips" },
-          { label: "إنشاء رحلة" },
+          { label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" },
+          { label: t("الرحلات", "Trips"), href: "/portal/trips" },
+          { label: t("إنشاء رحلة", "Create Trip") },
         ]}
       />
 
@@ -428,7 +430,7 @@ export default function CreateTripPage() {
           <MultiStepForm
             steps={steps}
             onComplete={handleComplete}
-            completeLabel="نشر الرحلة"
+            completeLabel={t("نشر الرحلة", "Publish Trip")}
             loading={loading}
           />
         </Card>

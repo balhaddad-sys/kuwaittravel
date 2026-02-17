@@ -6,7 +6,7 @@ interface FABProps {
   icon: React.ReactNode;
   label?: string;
   onClick: () => void;
-  position?: "bottom-right" | "bottom-left" | "bottom-center";
+  position?: "bottom-right" | "bottom-left" | "bottom-center" | "bottom-right-nav";
   className?: string;
 }
 
@@ -14,6 +14,7 @@ const positionMap = {
   "bottom-right": "fixed bottom-6 end-6",
   "bottom-left": "fixed bottom-6 start-6",
   "bottom-center": "fixed bottom-6 start-1/2 -translate-x-1/2",
+  "bottom-right-nav": "fixed bottom-24 end-6 lg:bottom-6",
 };
 
 function FAB({ icon, label, onClick, position = "bottom-right", className }: FABProps) {

@@ -96,6 +96,7 @@ export default function DashboardPage() {
       <FAB
         icon={<Plus className="h-6 w-6" />}
         onClick={() => router.push("/portal/trips/create")}
+        position="bottom-right-nav"
       />
     </>
   );

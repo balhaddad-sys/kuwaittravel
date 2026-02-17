@@ -12,6 +12,7 @@ import { SearchInput } from "@/components/forms/SearchInput";
 import { FAB } from "@/components/ui/FAB";
 import { Plus, Map } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useDirection } from "@/providers/DirectionProvider";
 import { getDocuments } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { formatTimestamp, parseTimestamp } from "@/lib/utils/format";
@@ -23,6 +24,7 @@ type TripFilter = "all" | "active" | "draft" | "completed" | "cancelled";
 export default function TripsPage() {
   const router = useRouter();
   const { userData } = useAuth();
+  const { t } = useDirection();
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState<TripFilter>("all");
   const [trips, setTrips] = useState<Trip[]>([]);
@@ -46,7 +48,7 @@ export default function TripsPage() {
         ]);
         setTrips(campaignTrips);
       } catch {
-        setLoadError("تعذر تحميل الرحلات حالياً. حاول مرة أخرى.");
+        setLoadError(t("تعذر تحميل الرحلات حالياً. حاول مرة أخرى.", "Unable to load trips right now. Please try again."));
       } finally {
         setLoading(false);
       }
@@ -80,11 +82,11 @@ export default function TripsPage() {
   return (
     <>
       <AppBar
-        title="الرحلات"
-        breadcrumbs={[{ label: "بوابة الحملة", href: "/portal/dashboard" }, { label: "الرحلات" }]}
+        title={t("الرحلات", "Trips")}
+        breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الرحلات", "Trips") }]}
         actions={
           <Button variant="primary" size="sm" leftIcon={<Plus className="h-4 w-4" />} onClick={() => router.push("/portal/trips/create")}>
-            رحلة جديدة
+            {t("رحلة جديدة", "New Trip")}
           </Button>
         }
       />
@@ -94,9 +96,9 @@ export default function TripsPage() {
           <div className="travel-section p-4">
             <EmptyState
               icon={<Map className="h-16 w-16" />}
-              title="لا توجد حملة مرتبطة بالحساب"
-              description="أكمل تسجيل بيانات الحملة أولاً لبدء إدارة الرحلات."
-              action={{ label: "العودة للوحة التحكم", onClick: () => router.push("/portal/dashboard") }}
+              title={t("لا توجد حملة مرتبطة بالحساب", "No campaign linked to this account")}
+              description={t("أكمل تسجيل بيانات الحملة أولاً لبدء إدارة الرحلات.", "Complete campaign registration first to start managing trips.")}
+              action={{ label: t("العودة للوحة التحكم", "Back to Dashboard"), onClick: () => router.push("/portal/dashboard") }}
             />
           </div>
         )}
@@ -105,17 +107,17 @@ export default function TripsPage() {
         {userData?.campaignId && (
           <div className="flex flex-col sm:flex-row gap-3">
             <SearchInput
-              placeholder="ابحث في الرحلات..."
+              placeholder={t("ابحث في الرحلات...", "Search trips...")}
               onSearch={setSearchQuery}
               className="flex-1"
             />
             <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {[
-                { value: "all", label: "الكل" },
-                { value: "active", label: "نشطة" },
-                { value: "draft", label: "مسودة" },
-                { value: "completed", label: "مكتملة" },
-                { value: "cancelled", label: "ملغاة" },
+                { value: "all", label: t("الكل", "All") },
+                { value: "active", label: t("نشطة", "Active") },
+                { value: "draft", label: t("مسودة", "Draft") },
+                { value: "completed", label: t("مكتملة", "Completed") },
+                { value: "cancelled", label: t("ملغاة", "Cancelled") },
               ].map((f) => (
                 <button
                   key={f.value}
@@ -140,7 +142,7 @@ export default function TripsPage() {
         {/* Trips Grid */}
         {loading ? (
           <p className="text-body-md text-navy-500 text-center py-10">
-            جاري تحميل الرحلات...
+            {t("جاري تحميل الرحلات...", "Loading trips...")}
           </p>
         ) : filteredTrips.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -148,7 +150,7 @@ export default function TripsPage() {
               <TripCard
                 key={trip.id}
                 title={trip.titleAr || trip.title}
-                destination={trip.destinations?.[0]?.city || "غير محدد"}
+                destination={trip.destinations?.[0]?.city || t("غير محدد", "Unspecified")}
                 departureDate={formatTimestamp(trip.departureDate)}
                 returnDate={formatTimestamp(trip.returnDate)}
                 price={trip.basePriceKWD}
@@ -164,15 +166,15 @@ export default function TripsPage() {
           <div className="travel-section p-4">
             <EmptyState
               icon={<Map className="h-16 w-16" />}
-              title="لا توجد رحلات"
-              description={searchQuery ? "لم يتم العثور على نتائج مطابقة" : "ابدأ بإنشاء رحلتك الأولى"}
-              action={!searchQuery ? { label: "إنشاء رحلة", onClick: () => router.push("/portal/trips/create") } : undefined}
+              title={t("لا توجد رحلات", "No trips found")}
+              description={searchQuery ? t("لم يتم العثور على نتائج مطابقة", "No matching results found") : t("ابدأ بإنشاء رحلتك الأولى", "Start by creating your first trip")}
+              action={!searchQuery ? { label: t("إنشاء رحلة", "Create Trip"), onClick: () => router.push("/portal/trips/create") } : undefined}
             />
           </div>
         )}
       </Container>
 
-      <FAB icon={<Plus className="h-6 w-6" />} onClick={() => router.push("/portal/trips/create")} />
+      <FAB icon={<Plus className="h-6 w-6" />} onClick={() => router.push("/portal/trips/create")} position="bottom-right-nav" />
     </>
   );
 }

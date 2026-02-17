@@ -8,29 +8,31 @@ import { StatCard } from "@/components/data-display/StatCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Wallet, TrendingUp, ArrowUpRight, Building2 } from "lucide-react";
 import { formatKWD } from "@/lib/utils/format";
+import { useDirection } from "@/providers/DirectionProvider";
 
 export default function FinancialsPage() {
+  const { t } = useDirection();
   const [period, setPeriod] = useState("month");
 
   return (
     <>
-      <AppBar title="المالية" breadcrumbs={[{ label: "المشرف العام", href: "/admin/dashboard" }, { label: "المالية" }]} />
+      <AppBar title={t("المالية", "Financials")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("المالية", "Financials") }]} />
       <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          <StatCard title="GMV الشهري" value={formatKWD(0)} icon={<Wallet className="h-5 w-5 text-gold-500" />} hoverable />
-          <StatCard title="عمولة المنصة" value={formatKWD(0)} icon={<TrendingUp className="h-5 w-5 text-gold-500" />} hoverable />
-          <StatCard title="المدفوعات المعلقة" value={formatKWD(0)} icon={<ArrowUpRight className="h-5 w-5 text-gold-500" />} hoverable />
-          <StatCard title="المبالغ المستردة" value={formatKWD(0)} icon={<Wallet className="h-5 w-5 text-gold-500" />} hoverable />
+          <StatCard title={t("GMV الشهري", "Monthly GMV")} value={formatKWD(0)} icon={<Wallet className="h-5 w-5 text-gold-500" />} hoverable />
+          <StatCard title={t("عمولة المنصة", "Platform Commission")} value={formatKWD(0)} icon={<TrendingUp className="h-5 w-5 text-gold-500" />} hoverable />
+          <StatCard title={t("المدفوعات المعلقة", "Pending Payouts")} value={formatKWD(0)} icon={<ArrowUpRight className="h-5 w-5 text-gold-500" />} hoverable />
+          <StatCard title={t("المبالغ المستردة", "Refunds")} value={formatKWD(0)} icon={<Wallet className="h-5 w-5 text-gold-500" />} hoverable />
         </div>
 
         <Card variant="elevated" padding="lg">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white">إيرادات الحملات</h3>
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-navy-900 dark:text-white">{t("إيرادات الحملات", "Campaign Revenue")}</h3>
             <div className="inline-flex items-center rounded-full border border-surface-border/80 bg-white/72 p-1 dark:border-surface-dark-border/80 dark:bg-surface-dark-card/72">
               {[
-                { value: "week", label: "أسبوعي" },
-                { value: "month", label: "شهري" },
-                { value: "quarter", label: "ربع سنوي" },
+                { value: "week", label: t("أسبوعي", "Weekly") },
+                { value: "month", label: t("شهري", "Monthly") },
+                { value: "quarter", label: t("ربع سنوي", "Quarterly") },
               ].map((item) => (
                 <button
                   key={item.value}
@@ -45,8 +47,8 @@ export default function FinancialsPage() {
           </div>
           <EmptyState
             icon={<Building2 className="h-16 w-16" />}
-            title="لا توجد إيرادات"
-            description="ستظهر هنا إيرادات الحملات عند إتمام الحجوزات"
+            title={t("لا توجد إيرادات", "No Revenue")}
+            description={t("ستظهر هنا إيرادات الحملات عند إتمام الحجوزات", "Campaign revenue will appear here once bookings are completed")}
           />
         </Card>
       </Container>
