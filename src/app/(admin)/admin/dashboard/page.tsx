@@ -19,7 +19,7 @@ export default function AdminDashboardPage() {
         breadcrumbs={[{ label: t("المشرف العام", "Admin Console") }, { label: t("لوحة التحكم", "Dashboard") }]}
       />
       <Container className="travel-orbit-bg py-3 sm:py-6 space-y-3 sm:space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard title={t("إجمالي الحملات", "Total Campaigns")} value="0" icon={<Building2 className="h-6 w-6" />} className="animate-stagger-in" hoverable />
           <StatCard title={t("إجمالي المستخدمين", "Total Users")} value="0" icon={<Users className="h-6 w-6" />} className="animate-stagger-in stagger-delay-1" hoverable />
           <StatCard title={t("GMV (د.ك)", "GMV (KWD)")} value={formatKWD(0)} icon={<Wallet className="h-6 w-6" />} className="animate-stagger-in stagger-delay-2" hoverable />
