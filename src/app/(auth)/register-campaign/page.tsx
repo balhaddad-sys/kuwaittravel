@@ -3,50 +3,79 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
+import { MultiStepForm } from "@/components/forms/MultiStepForm";
+import { FileUpload } from "@/components/forms/FileUpload";
+import { PhoneInput } from "@/components/forms/PhoneInput";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
+import { useToast } from "@/components/feedback/ToastProvider";
 import { createDocument } from "@/lib/firebase/firestore";
+import { uploadFile, generateStoragePath } from "@/lib/firebase/storage";
 import { COLLECTIONS } from "@/lib/firebase/collections";
-import { Building2 } from "lucide-react";
+import { ShieldCheck, Building2, FileText, Phone, ClipboardCheck } from "lucide-react";
+
+interface FormData {
+  nameAr: string;
+  name: string;
+  descriptionAr: string;
+  description: string;
+  licenseNumber: string;
+  commercialRegNumber: string;
+  licenseFile: File | null;
+  phone: string;
+  email: string;
+  website: string;
+  instagram: string;
+  whatsapp: string;
+}
+
+const initialForm: FormData = {
+  nameAr: "",
+  name: "",
+  descriptionAr: "",
+  description: "",
+  licenseNumber: "",
+  commercialRegNumber: "",
+  licenseFile: null,
+  phone: "",
+  email: "",
+  website: "",
+  instagram: "",
+  whatsapp: "",
+};
 
 export default function RegisterCampaignPage() {
+  const [form, setForm] = useState<FormData>(initialForm);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [form, setForm] = useState({
-    name: "",
-    nameAr: "",
-    licenseNumber: "",
-    contactPhone: "",
-    description: "",
-    descriptionAr: "",
-  });
   const router = useRouter();
   const { firebaseUser, refreshUserData } = useAuth();
   const { t } = useDirection();
+  const { toast } = useToast();
 
-  const updateField = (field: string, value: string) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
+  const update = <K extends keyof FormData>(key: K, value: FormData[K]) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleComplete = async () => {
     if (!firebaseUser) {
-      setError(t("يجب تسجيل الدخول أولاً.", "You must sign in first."));
+      toast({ type: "error", title: t("يجب تسجيل الدخول أولاً", "You must sign in first") });
       return;
     }
 
-    setError("");
     setLoading(true);
-
     try {
-      const normalizedPhone = form.contactPhone.startsWith("+")
-        ? form.contactPhone
-        : `+965${form.contactPhone}`;
+      let licenseImageUrl = "";
+      if (form.licenseFile) {
+        const path = generateStoragePath("licenses", firebaseUser.uid, form.licenseFile.name);
+        licenseImageUrl = await uploadFile(path, form.licenseFile);
+      }
 
-      // Create campaign
+      const normalizedPhone = form.phone.startsWith("+")
+        ? form.phone
+        : `+965${form.phone}`;
+
       const campaignId = await createDocument(COLLECTIONS.CAMPAIGNS, {
         ownerId: firebaseUser.uid,
         name: form.name,
@@ -55,10 +84,16 @@ export default function RegisterCampaignPage() {
         description: form.description,
         descriptionAr: form.descriptionAr,
         licenseNumber: form.licenseNumber,
-        licenseImageUrl: "",
+        commercialRegNumber: form.commercialRegNumber || null,
+        licenseImageUrl,
         contactPhone: normalizedPhone,
+        contactEmail: form.email || null,
+        website: form.website || null,
         galleryUrls: [],
-        socialMedia: {},
+        socialMedia: {
+          instagram: form.instagram || null,
+          whatsapp: form.whatsapp || null,
+        },
         verificationStatus: "pending" as const,
         acceptsOnlinePayment: false,
         paymentMethods: [],
@@ -72,7 +107,6 @@ export default function RegisterCampaignPage() {
         isActive: true,
       });
 
-      // Create user profile
       await createDocument(
         COLLECTIONS.USERS,
         {
@@ -91,76 +125,271 @@ export default function RegisterCampaignPage() {
       );
 
       await refreshUserData();
+      toast({
+        type: "success",
+        title: t("تم تسجيل الحملة بنجاح", "Campaign registered successfully"),
+        description: t("سيقوم فريقنا بمراجعة طلبك", "Our team will review your application"),
+      });
       router.push("/portal/dashboard");
     } catch {
-      setError(
-        t(
-          "تعذر إكمال تسجيل الحملة حالياً. يرجى المحاولة مرة أخرى.",
-          "Unable to complete campaign registration right now. Please try again."
-        )
-      );
+      toast({
+        type: "error",
+        title: t("تعذر إكمال التسجيل", "Registration failed"),
+        description: t("يرجى المحاولة مرة أخرى", "Please try again"),
+      });
     } finally {
       setLoading(false);
     }
   };
 
+  const steps = [
+    {
+      label: t("بيانات المنظمة", "Organization"),
+      content: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 mb-2 text-navy-500">
+            <Building2 className="h-4 w-4" />
+            <span className="text-body-sm font-medium">{t("بيانات المنظمة الأساسية", "Basic organization details")}</span>
+          </div>
+          <Input
+            label={t("اسم الحملة بالعربي", "Campaign Name (Arabic)")}
+            placeholder={t("حملة النور", "Al Noor Campaign")}
+            value={form.nameAr}
+            onChange={(e) => update("nameAr", e.target.value)}
+            required
+          />
+          <Input
+            label={t("اسم الحملة بالإنجليزي", "Campaign Name (English)")}
+            placeholder="Al Noor Campaign"
+            dir="ltr"
+            value={form.name}
+            onChange={(e) => update("name", e.target.value)}
+            required
+          />
+          <Textarea
+            label={t("وصف الحملة بالعربي", "Description (Arabic)")}
+            placeholder={t("نبذة عن الحملة وخدماتها...", "Brief description of your campaign...")}
+            value={form.descriptionAr}
+            onChange={(e) => update("descriptionAr", e.target.value)}
+          />
+          <Textarea
+            label={t("وصف الحملة بالإنجليزي", "Description (English)")}
+            placeholder="Brief description of your campaign and services..."
+            dir="ltr"
+            value={form.description}
+            onChange={(e) => update("description", e.target.value)}
+          />
+        </div>
+      ),
+      isValid: form.nameAr.trim().length > 0 && form.name.trim().length > 0,
+    },
+    {
+      label: t("الوثائق الرسمية", "Legal Documents"),
+      content: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 mb-2 text-navy-500">
+            <FileText className="h-4 w-4" />
+            <span className="text-body-sm font-medium">{t("وثائق الترخيص والتسجيل", "License & registration documents")}</span>
+          </div>
+          <Input
+            label={t("رقم ترخيص وزارة الأوقاف", "Waqf Ministry License Number")}
+            placeholder={t("أدخل رقم الترخيص", "Enter license number")}
+            value={form.licenseNumber}
+            onChange={(e) => update("licenseNumber", e.target.value)}
+            required
+          />
+          <Input
+            label={t("رقم السجل التجاري (اختياري)", "Commercial Registration (Optional)")}
+            placeholder={t("أدخل رقم السجل التجاري", "Enter commercial registration number")}
+            value={form.commercialRegNumber}
+            onChange={(e) => update("commercialRegNumber", e.target.value)}
+          />
+          <FileUpload
+            label={t("صورة الترخيص", "License Image")}
+            accept="image/*,.pdf"
+            maxSize={5}
+            onFilesChange={(files) => update("licenseFile", files[0] || null)}
+            hint={t("صورة أو ملف PDF — الحد الأقصى 5 ميغابايت", "Image or PDF — max 5MB")}
+          />
+        </div>
+      ),
+      isValid: form.licenseNumber.trim().length > 0 && form.licenseFile !== null,
+    },
+    {
+      label: t("التواصل", "Contact"),
+      content: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 mb-2 text-navy-500">
+            <Phone className="h-4 w-4" />
+            <span className="text-body-sm font-medium">{t("بيانات التواصل والحسابات", "Contact info & social media")}</span>
+          </div>
+          <PhoneInput
+            label={t("رقم الهاتف", "Phone Number")}
+            placeholder="9XXXXXXX"
+            value={form.phone}
+            onChange={(e) => update("phone", e.target.value)}
+            required
+          />
+          <Input
+            label={t("البريد الإلكتروني (اختياري)", "Email (Optional)")}
+            type="email"
+            dir="ltr"
+            placeholder="info@campaign.com"
+            value={form.email}
+            onChange={(e) => update("email", e.target.value)}
+          />
+          <Input
+            label={t("الموقع الإلكتروني (اختياري)", "Website (Optional)")}
+            dir="ltr"
+            placeholder="https://campaign.com"
+            value={form.website}
+            onChange={(e) => update("website", e.target.value)}
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Input
+              label={t("انستجرام (اختياري)", "Instagram (Optional)")}
+              dir="ltr"
+              placeholder="@campaign"
+              value={form.instagram}
+              onChange={(e) => update("instagram", e.target.value)}
+            />
+            <Input
+              label={t("واتساب (اختياري)", "WhatsApp (Optional)")}
+              dir="ltr"
+              placeholder="+965XXXXXXXX"
+              value={form.whatsapp}
+              onChange={(e) => update("whatsapp", e.target.value)}
+            />
+          </div>
+        </div>
+      ),
+      isValid: form.phone.trim().length >= 8,
+    },
+    {
+      label: t("المراجعة", "Review"),
+      content: (
+        <div className="space-y-5">
+          <div className="flex items-center gap-2 mb-2 text-navy-500">
+            <ClipboardCheck className="h-4 w-4" />
+            <span className="text-body-sm font-medium">{t("راجع البيانات قبل الإرسال", "Review your details before submitting")}</span>
+          </div>
+
+          <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+            <h3 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
+              <Building2 className="h-4 w-4 text-gold-500" />
+              {t("بيانات المنظمة", "Organization")}
+            </h3>
+            <dl className="space-y-2 text-body-sm">
+              <div className="flex justify-between">
+                <dt className="text-navy-500">{t("الاسم بالعربي", "Name (AR)")}</dt>
+                <dd className="font-medium text-navy-900 dark:text-white">{form.nameAr || "—"}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-navy-500">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
+                <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{form.name || "—"}</dd>
+              </div>
+              {form.descriptionAr && (
+                <div>
+                  <dt className="text-navy-500 mb-1">{t("الوصف", "Description")}</dt>
+                  <dd className="text-navy-700 dark:text-navy-300">{form.descriptionAr}</dd>
+                </div>
+              )}
+            </dl>
+          </div>
+
+          <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+            <h3 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
+              <FileText className="h-4 w-4 text-gold-500" />
+              {t("الوثائق الرسمية", "Legal Documents")}
+            </h3>
+            <dl className="space-y-2 text-body-sm">
+              <div className="flex justify-between">
+                <dt className="text-navy-500">{t("رقم الترخيص", "License No.")}</dt>
+                <dd className="font-medium text-navy-900 dark:text-white">{form.licenseNumber || "—"}</dd>
+              </div>
+              {form.commercialRegNumber && (
+                <div className="flex justify-between">
+                  <dt className="text-navy-500">{t("السجل التجاري", "Comm. Reg.")}</dt>
+                  <dd className="font-medium text-navy-900 dark:text-white">{form.commercialRegNumber}</dd>
+                </div>
+              )}
+              <div className="flex justify-between">
+                <dt className="text-navy-500">{t("صورة الترخيص", "License File")}</dt>
+                <dd className="font-medium text-navy-900 dark:text-white">{form.licenseFile?.name || "—"}</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+            <h3 className="text-body-md font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
+              <Phone className="h-4 w-4 text-gold-500" />
+              {t("بيانات التواصل", "Contact Info")}
+            </h3>
+            <dl className="space-y-2 text-body-sm">
+              <div className="flex justify-between">
+                <dt className="text-navy-500">{t("الهاتف", "Phone")}</dt>
+                <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">+965 {form.phone}</dd>
+              </div>
+              {form.email && (
+                <div className="flex justify-between">
+                  <dt className="text-navy-500">{t("البريد", "Email")}</dt>
+                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{form.email}</dd>
+                </div>
+              )}
+              {form.website && (
+                <div className="flex justify-between">
+                  <dt className="text-navy-500">{t("الموقع", "Website")}</dt>
+                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">{form.website}</dd>
+                </div>
+              )}
+              {(form.instagram || form.whatsapp) && (
+                <div className="flex justify-between">
+                  <dt className="text-navy-500">{t("التواصل الاجتماعي", "Social")}</dt>
+                  <dd className="font-medium text-navy-900 dark:text-white" dir="ltr">
+                    {[form.instagram, form.whatsapp].filter(Boolean).join(" · ")}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </div>
+
+          <p className="text-body-sm text-navy-400 text-center">
+            {t(
+              "بالضغط على إرسال، أنت توافق على شروط وأحكام المنصة",
+              "By submitting, you agree to the platform terms and conditions"
+            )}
+          </p>
+        </div>
+      ),
+      isValid: true,
+    },
+  ];
+
   return (
-    <Card variant="elevated" padding="lg">
-      <div className="text-center mb-8">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gold-500">
-          <Building2 className="h-7 w-7 text-navy-900" />
+    <Card variant="elevated" padding="lg" className="max-w-2xl mx-auto">
+      <div className="text-center mb-6">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-lg">
+          <ShieldCheck className="h-7 w-7 text-white" />
         </div>
         <h1 className="text-heading-lg font-bold text-navy-900 dark:text-white">
           {t("تسجيل حملة جديدة", "Register New Campaign")}
         </h1>
         <p className="mt-2 text-body-md text-navy-500">
-          {t("أدخل بيانات حملتك للبدء", "Provide campaign details to get started")}
+          {t(
+            "أكمل البيانات التالية لتقديم طلب تسجيل حملتك في المنصة",
+            "Complete the following steps to submit your campaign application"
+          )}
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <Input
-          label={t("اسم الحملة بالعربي", "Campaign Name (Arabic)")}
-          placeholder={t("حملة النور", "Al Noor Campaign")}
-          value={form.nameAr}
-          onChange={(e) => updateField("nameAr", e.target.value)}
-          required
-        />
-        <Input
-          label={t("اسم الحملة بالإنجليزي", "Campaign Name (English)")}
-          placeholder="Al Noor Campaign"
-          dir="ltr"
-          value={form.name}
-          onChange={(e) => updateField("name", e.target.value)}
-          required
-        />
-        <Input
-          label={t("رقم الترخيص", "License Number")}
-          placeholder={t("رقم ترخيص وزارة الأوقاف", "Official license number")}
-          value={form.licenseNumber}
-          onChange={(e) => updateField("licenseNumber", e.target.value)}
-          required
-        />
-        <Input
-          label={t("رقم التواصل", "Contact Number")}
-          placeholder={t("9XXXXXXX", "5XXXXXXX")}
-          type="tel"
-          dir="ltr"
-          value={form.contactPhone}
-          onChange={(e) => updateField("contactPhone", e.target.value)}
-          required
-        />
-        <Textarea
-          label={t("وصف الحملة", "Campaign Description")}
-          placeholder={t("نبذة عن الحملة وخدماتها...", "Short description of the campaign and services...")}
-          value={form.descriptionAr}
-          onChange={(e) => updateField("descriptionAr", e.target.value)}
-        />
-        {error && <p className="text-center text-body-sm text-error">{error}</p>}
-        <Button type="submit" fullWidth loading={loading} size="lg">
-          {t("تسجيل الحملة", "Register Campaign")}
-        </Button>
-      </form>
+      <MultiStepForm
+        steps={steps}
+        onComplete={handleComplete}
+        completeLabel={t("إرسال الطلب", "Submit Application")}
+        nextLabel={t("التالي", "Next")}
+        prevLabel={t("السابق", "Back")}
+        loading={loading}
+      />
     </Card>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
 import { StatCard } from "@/components/data-display/StatCard";
@@ -7,13 +8,34 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FAB } from "@/components/ui/FAB";
+import { AlertBanner } from "@/components/feedback/AlertBanner";
 import { useDirection } from "@/providers/DirectionProvider";
+import { useAuth } from "@/hooks/useAuth";
+import { getDocument } from "@/lib/firebase/firestore";
+import { COLLECTIONS } from "@/lib/firebase/collections";
+import type { Campaign } from "@/types/campaign";
+import type { VerificationStatus } from "@/types/common";
 import { Users, Map, Wallet, AlertTriangle, Plus, BookOpen, TrendingUp } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
   const router = useRouter();
   const { t } = useDirection();
+  const { userData } = useAuth();
+
+  const [verificationStatus, setVerificationStatus] = useState<VerificationStatus | null>(null);
+  const [rejectionReason, setRejectionReason] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!userData?.campaignId) return;
+    getDocument<Campaign>(COLLECTIONS.CAMPAIGNS, userData.campaignId).then((campaign) => {
+      if (campaign) {
+        setVerificationStatus(campaign.verificationStatus);
+        setRejectionReason(campaign.rejectionReason ?? null);
+      }
+    });
+  }, [userData?.campaignId]);
+
   return (
     <>
       <AppBar
@@ -34,6 +56,32 @@ export default function DashboardPage() {
       />
 
       <Container className="travel-orbit-bg py-4 sm:py-6 space-y-4 sm:space-y-6">
+        {/* Verification Status Banners */}
+        {verificationStatus === "pending" && (
+          <AlertBanner
+            type="info"
+            title={t("حملتك قيد المراجعة", "Your campaign is under review")}
+            description={t(
+              "يقوم فريقنا بمراجعة وثائقك. سيتم إخطارك فور اكتمال المراجعة.",
+              "Our team is reviewing your documents. You will be notified once the review is complete."
+            )}
+          />
+        )}
+        {verificationStatus === "rejected" && (
+          <AlertBanner
+            type="error"
+            title={t("تم رفض طلب التحقق", "Verification declined")}
+            description={rejectionReason || t("يرجى التواصل مع الدعم لمعرفة التفاصيل", "Please contact support for details")}
+          />
+        )}
+        {verificationStatus === "suspended" && (
+          <AlertBanner
+            type="warning"
+            title={t("حملتك معلقة", "Campaign suspended")}
+            description={t("يرجى التواصل مع الدعم لمعرفة التفاصيل", "Please contact support for details")}
+          />
+        )}
+
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard title={t("الرحلات النشطة", "Active Trips")} value={0} icon={<Map className="h-6 w-6" />} className="animate-stagger-in" hoverable />
           <StatCard title={t("إجمالي المسافرين", "Total Travelers")} value={0} icon={<Users className="h-6 w-6" />} className="animate-stagger-in stagger-delay-1" hoverable />
