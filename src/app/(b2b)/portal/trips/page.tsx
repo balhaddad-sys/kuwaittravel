@@ -29,7 +29,7 @@ export default function TripsPage() {
   const [filter, setFilter] = useState<TripFilter>("all");
   const [trips, setTrips] = useState<Trip[]>([]);
   const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState("");
+  const [loadFailed, setLoadFailed] = useState(false);
 
   useEffect(() => {
     async function fetchTrips() {
@@ -40,7 +40,7 @@ export default function TripsPage() {
       }
 
       setLoading(true);
-      setLoadError("");
+      setLoadFailed(false);
 
       try {
         const campaignTrips = await getDocuments<Trip>(COLLECTIONS.TRIPS, [
@@ -48,7 +48,7 @@ export default function TripsPage() {
         ]);
         setTrips(campaignTrips);
       } catch {
-        setLoadError(t("تعذر تحميل الرحلات حالياً. حاول مرة أخرى.", "Unable to load trips right now. Please try again."));
+        setLoadFailed(true);
       } finally {
         setLoading(false);
       }
@@ -135,8 +135,8 @@ export default function TripsPage() {
           </div>
         )}
 
-        {loadError && (
-          <p className="text-body-sm text-error">{loadError}</p>
+        {loadFailed && (
+          <p className="text-body-sm text-error">{t("تعذر تحميل الرحلات حالياً. حاول مرة أخرى.", "Unable to load trips right now. Please try again.")}</p>
         )}
 
         {/* Trips Grid */}

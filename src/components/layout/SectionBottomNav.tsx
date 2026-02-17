@@ -32,16 +32,20 @@ function SectionBottomNav({
   const pathname = usePathname();
   const [moreOpen, setMoreOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const prevPathnameRef = useRef(pathname);
 
   const hasOverflow = overflowItems && overflowItems.length > 0;
   const isOverflowActive = [...(overflowItems ?? []), ...(switchItems ?? [])].some(
     (item) => pathname === item.href || (pathname ?? "").startsWith(item.href + "/")
   );
 
-  // Close panel on route change
-  useEffect(() => {
-    setMoreOpen(false);
-  }, [pathname]);
+  // Close panel on route change (state reset during render, not in effect)
+  if (prevPathnameRef.current !== pathname) {
+    prevPathnameRef.current = pathname;
+    if (moreOpen) {
+      setMoreOpen(false);
+    }
+  }
 
   // Close panel on outside tap
   useEffect(() => {
