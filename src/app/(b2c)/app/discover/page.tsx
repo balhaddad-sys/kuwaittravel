@@ -227,12 +227,15 @@ export default function DiscoverPage() {
     language === "ar" ? (trip.titleAr || trip.title) : (trip.title || trip.titleAr);
 
   return (
-    <div className="sacred-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
-      {/* Compact Hero */}
-      <section className="sacred-gradient-hero relative border-b border-surface-border/70 px-4 pb-6 pt-6 sm:pb-8 sm:pt-10">
-        <Container>
+    <div className="min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+      {/* Travel Hero */}
+      <section className="relative overflow-hidden border-b border-surface-border/70 px-4 pb-6 pt-6 sm:pb-8 sm:pt-10">
+        {/* Warm gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-teal-50/60 via-white to-white dark:from-teal-950/20 dark:via-surface-dark dark:to-surface-dark" />
+        <div className="absolute right-0 top-0 h-full w-[40%] bg-gradient-to-l from-amber-50/40 to-transparent dark:from-amber-950/8" />
+        <Container className="relative">
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="sacred-title text-xl font-extrabold leading-tight text-stone-900 dark:text-white sm:text-3xl lg:text-4xl">
+            <h1 className="text-xl font-extrabold leading-tight text-stone-900 dark:text-white sm:text-3xl lg:text-4xl" style={{ textWrap: "balance" }}>
               {t("استكشف رحلتك القادمة", "Discover Your Next Journey")}
             </h1>
             <p className="mt-2 text-body-md text-stone-500 dark:text-stone-400 sm:text-body-lg">
