@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="relative mx-auto flex min-h-[94vh] w-full max-w-6xl flex-col">
         <header className="flex items-center justify-between">
           <div className="inline-flex items-center gap-2 rounded-full border border-surface-border/70 bg-white/76 px-3 py-1.5 shadow-card backdrop-blur-sm dark:border-surface-dark-border/70 dark:bg-surface-dark-card/72 sm:gap-3 sm:px-4 sm:py-2">
-            <span className="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-700 shadow-[0_6px_18px_rgba(15,118,110,0.25)]">
+            <span className="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-700 shadow-[0_6px_18px_rgba(30,58,95,0.25)]">
               <Compass className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-white" />
             </span>
             <div>

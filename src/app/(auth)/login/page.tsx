@@ -86,7 +86,7 @@ export default function LoginPage() {
       <div id="recaptcha-container" />
       <Card variant="elevated" padding="lg" className="sacred-pattern overflow-hidden">
         <div className="text-center mb-6 sm:mb-8">
-          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-teal-300/80 bg-teal-700 shadow-[0_0_0_6px_rgba(15,118,110,0.12)]">
+          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-teal-300/80 bg-teal-700 shadow-[0_0_0_6px_rgba(30,58,95,0.12)]">
             <Phone className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
           </div>
           <h1 className="text-heading-lg font-bold text-stone-900 dark:text-white">

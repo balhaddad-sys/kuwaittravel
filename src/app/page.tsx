@@ -55,8 +55,8 @@ export default function HomePage() {
         "Discover and book trips in minutes"
       ),
       icon: <PlaneTakeoff className="h-6 w-6" />,
-      gradient: "from-sky-500 to-blue-600",
-      shadowColor: "shadow-[0_6px_16px_rgba(0,108,228,0.24)]",
+      gradient: "from-teal-500 to-teal-700",
+      shadowColor: "shadow-[0_6px_16px_rgba(30,58,95,0.24)]",
       onClick: () => navigateTo("/app/discover"),
     },
     {
@@ -66,8 +66,8 @@ export default function HomePage() {
         "Manage trips, bookings, and documents"
       ),
       icon: <Building2 className="h-6 w-6" />,
-      gradient: "from-blue-600 to-indigo-600",
-      shadowColor: "shadow-[0_6px_16px_rgba(67,96,229,0.24)]",
+      gradient: "from-amber-500 to-amber-700",
+      shadowColor: "shadow-[0_6px_16px_rgba(197,165,114,0.24)]",
       onClick: () => navigateTo("/portal/dashboard"),
     },
     ...(canSeeAdminEntry
@@ -104,7 +104,7 @@ export default function HomePage() {
         {/* Top Bar */}
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 shadow-[0_4px_12px_rgba(0,108,228,0.2)]">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 shadow-[0_4px_12px_rgba(197,165,114,0.2)]">
               <Compass className="h-5 w-5 text-white" />
             </span>
             <div>
@@ -151,7 +151,7 @@ export default function HomePage() {
           >
             <button
               onClick={() => navigateTo("/login")}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-amber-500 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_6px_16px_rgba(0,108,228,0.25)] transition-all duration-300 hover:bg-amber-600 active:scale-[0.98]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-amber-500 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_6px_16px_rgba(197,165,114,0.25)] transition-all duration-300 hover:bg-amber-600 active:scale-[0.98]"
             >
               <PlaneTakeoff className="h-5 w-5" />
               {t("ابدأ الآن", "Start Now")}

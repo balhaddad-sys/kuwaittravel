@@ -15,8 +15,8 @@ const variantMap = {
   error: "bg-error-light text-red-800 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
   info: "bg-info-light text-sky-800 border border-sky-200 dark:bg-sky-900/30 dark:text-sky-400 dark:border-sky-800/60",
   teal: "bg-teal-50 text-teal-800 border border-teal-200 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-800/60",
-  amber: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(254,243,199,0.8),rgba(255,251,235,0.96),rgba(253,230,138,0.78),rgba(255,251,235,0.96))] dark:bg-[linear-gradient(110deg,rgba(120,53,15,0.34),rgba(146,64,14,0.22),rgba(180,83,9,0.28),rgba(146,64,14,0.22))]",
-  gold: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(254,243,199,0.8),rgba(255,251,235,0.96),rgba(253,230,138,0.78),rgba(255,251,235,0.96))] dark:bg-[linear-gradient(110deg,rgba(120,53,15,0.34),rgba(146,64,14,0.22),rgba(180,83,9,0.28),rgba(146,64,14,0.22))]",
+  amber: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(235,218,184,0.7),rgba(251,247,240,0.95),rgba(212,184,124,0.6),rgba(251,247,240,0.95))] dark:bg-[linear-gradient(110deg,rgba(92,70,38,0.34),rgba(118,91,50,0.22),rgba(147,116,66,0.28),rgba(118,91,50,0.22))]",
+  gold: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(235,218,184,0.7),rgba(251,247,240,0.95),rgba(212,184,124,0.6),rgba(251,247,240,0.95))] dark:bg-[linear-gradient(110deg,rgba(92,70,38,0.34),rgba(118,91,50,0.22),rgba(147,116,66,0.28),rgba(118,91,50,0.22))]",
 };
 
 const sizeMap = {

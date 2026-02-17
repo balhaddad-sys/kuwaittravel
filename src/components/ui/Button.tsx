@@ -34,11 +34,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary:
-        "border-teal-700 bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 text-white shadow-[0_18px_34px_-20px_rgba(37,99,235,0.75)] hover:border-teal-500 hover:from-teal-500 hover:via-teal-600 hover:to-teal-700 hover:shadow-[0_22px_38px_-18px_rgba(37,99,235,0.72)] active:from-teal-700 active:to-teal-900",
+        "border-teal-700 bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 text-white shadow-[0_18px_34px_-20px_rgba(30,58,95,0.7)] hover:border-teal-500 hover:from-teal-500 hover:via-teal-600 hover:to-teal-700 hover:shadow-[0_22px_38px_-18px_rgba(30,58,95,0.65)] active:from-teal-700 active:to-teal-900",
       secondary:
-        "border-surface-border bg-gradient-to-b from-white to-stone-50/70 text-stone-800 shadow-[0_12px_24px_-20px_rgba(15,23,42,0.26)] hover:border-teal-300 hover:from-white hover:to-teal-50/50 dark:border-surface-dark-border dark:bg-gradient-to-b dark:from-surface-dark-card dark:to-surface-dark dark:text-white dark:hover:border-teal-500 dark:hover:from-surface-dark-card dark:hover:to-teal-950/25",
+        "border-surface-border bg-gradient-to-b from-white to-stone-50/70 text-stone-800 shadow-[0_12px_24px_-20px_rgba(26,24,21,0.2)] hover:border-teal-300 hover:from-white hover:to-teal-50/50 dark:border-surface-dark-border dark:bg-gradient-to-b dark:from-surface-dark-card dark:to-surface-dark dark:text-white dark:hover:border-teal-500 dark:hover:from-surface-dark-card dark:hover:to-teal-950/25",
       accent:
-        "border-amber-600 bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white shadow-[0_18px_34px_-20px_rgba(239,78,31,0.74)] hover:border-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 hover:shadow-[0_22px_38px_-18px_rgba(239,78,31,0.72)] active:from-amber-600 active:to-amber-800",
+        "border-amber-600 bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white shadow-[0_18px_34px_-20px_rgba(197,165,114,0.65)] hover:border-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 hover:shadow-[0_22px_38px_-18px_rgba(197,165,114,0.6)] active:from-amber-600 active:to-amber-800",
       outline:
         "border-stone-300/85 bg-white/30 text-stone-700 shadow-none hover:border-teal-400 hover:bg-teal-50/70 hover:text-teal-700 dark:border-stone-600 dark:bg-transparent dark:text-stone-100 dark:hover:border-teal-500 dark:hover:bg-teal-900/24 dark:hover:text-teal-200",
       ghost:
