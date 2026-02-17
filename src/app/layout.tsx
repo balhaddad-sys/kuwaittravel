@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Tajawal, Inter, Amiri } from "next/font/google";
+import { Tajawal, Space_Grotesk, Amiri } from "next/font/google";
 import { Providers } from "@/providers/Providers";
 import "./globals.css";
 
@@ -10,10 +10,10 @@ const tajawal = Tajawal({
   display: "swap",
 });
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-numeric-ui",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -63,8 +63,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0F766E" },
-    { media: "(prefers-color-scheme: dark)", color: "#0C0A09" },
+    { media: "(prefers-color-scheme: light)", color: "#2563EB" },
+    { media: "(prefers-color-scheme: dark)", color: "#070B13" },
   ],
 };
 
@@ -79,7 +79,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: initUiScript }} />
       </head>
       <body
-        className={`${tajawal.variable} ${inter.variable} ${amiri.variable} font-arabic antialiased`}
+        className={`${tajawal.variable} ${spaceGrotesk.variable} ${amiri.variable} font-arabic antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

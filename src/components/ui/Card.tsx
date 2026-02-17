@@ -20,9 +20,9 @@ const paddingMap = {
 const variantMap = {
   elevated: "sacred-panel",
   outlined:
-    "border border-surface-border bg-white dark:border-surface-dark-border dark:bg-surface-dark-card",
+    "border border-surface-border bg-gradient-to-b from-white to-stone-50/70 dark:border-surface-dark-border dark:bg-gradient-to-b dark:from-surface-dark-card dark:to-surface-dark",
   filled:
-    "border border-surface-border bg-surface-muted dark:border-surface-dark-border dark:bg-surface-dark-card",
+    "border border-surface-border bg-gradient-to-b from-surface-muted to-white dark:border-surface-dark-border dark:bg-gradient-to-b dark:from-surface-dark-card dark:to-surface-dark",
   glass: "sacred-glass",
 };
 
@@ -44,7 +44,7 @@ function Card({
         variantMap[variant],
         paddingMap[padding],
         hoverable &&
-          "cursor-pointer will-change-transform hover:-translate-y-0.5 hover:border-amber-200 hover:shadow-card-hover dark:hover:border-amber-700",
+          "cursor-pointer will-change-transform hover:-translate-y-1 hover:border-teal-300 hover:shadow-card-hover dark:hover:border-teal-500",
         isInteractive &&
           "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/35 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
         className
