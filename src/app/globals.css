@@ -32,18 +32,18 @@
   --color-amber-800: #92400E;
   --color-amber-900: #78350F;
 
-  /* === NEUTRALS: Warm Sand Spectrum === */
-  --color-stone-50: #FAFAF9;
-  --color-stone-100: #F5F5F4;
-  --color-stone-200: #E7E5E4;
-  --color-stone-300: #D6D3D1;
-  --color-stone-400: #A8A29E;
-  --color-stone-500: #78716C;
-  --color-stone-600: #57534E;
-  --color-stone-700: #44403C;
-  --color-stone-800: #292524;
-  --color-stone-900: #1C1917;
-  --color-stone-950: #0C0A09;
+  /* === NEUTRALS: Cool Gray Spectrum (bright & clean) === */
+  --color-stone-50: #F8FAFC;
+  --color-stone-100: #F1F5F9;
+  --color-stone-200: #E2E8F0;
+  --color-stone-300: #CBD5E1;
+  --color-stone-400: #94A3B8;
+  --color-stone-500: #64748B;
+  --color-stone-600: #475569;
+  --color-stone-700: #334155;
+  --color-stone-800: #1E293B;
+  --color-stone-900: #0F172A;
+  --color-stone-950: #020617;
 
   /* === LEGACY COLOR ALIASES (navy-* and gold-* used by some components) === */
   --color-navy-50: #EFF6FF;
@@ -69,10 +69,10 @@
   --color-gold-900: #78350F;
 
   /* === SURFACES === */
-  --color-surface-warm: #FEFCF8;
-  --color-surface-light: #FAFAF9;
-  --color-surface-muted: #F5F5F4;
-  --color-surface-border: #E7E5E4;
+  --color-surface-warm: #FFFFFF;
+  --color-surface-light: #FAFAFA;
+  --color-surface-muted: #F8FAFC;
+  --color-surface-border: #E5E7EB;
   --color-surface-dark: #0C1222;
   --color-surface-dark-card: #141C2E;
   --color-surface-dark-border: #1E2D4A;
@@ -126,16 +126,16 @@
   --radius-pill: 999px;
   --radius-fab: 999px;
 
-  /* === SHADOWS (navy-tinged for luxury feel) === */
-  --shadow-card: 0 18px 42px -30px rgba(37, 99, 235, 0.35), 0 2px 8px rgba(26, 24, 21, 0.06);
-  --shadow-card-hover: 0 24px 60px -28px rgba(37, 99, 235, 0.45), 0 12px 26px -20px rgba(245, 158, 11, 0.18);
-  --shadow-elevated: 0 34px 70px -30px rgba(37, 99, 235, 0.4);
-  --shadow-sidebar: 0 30px 60px -44px rgba(37, 99, 235, 0.5);
-  --shadow-topbar: 0 14px 36px -32px rgba(37, 99, 235, 0.4);
-  --shadow-modal: 0 34px 72px -30px rgba(10, 14, 23, 0.65);
-  --shadow-fab: 0 24px 38px -18px rgba(37, 99, 235, 0.48);
-  --shadow-amber-glow: 0 18px 36px -20px rgba(245, 158, 11, 0.4);
-  --shadow-teal-glow: 0 16px 34px -20px rgba(37, 99, 235, 0.4);
+  /* === SHADOWS (light, airy) === */
+  --shadow-card: 0 4px 16px -4px rgba(37, 99, 235, 0.1), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 8px 28px -6px rgba(37, 99, 235, 0.15), 0 4px 12px -4px rgba(245, 158, 11, 0.08);
+  --shadow-elevated: 0 12px 36px -8px rgba(37, 99, 235, 0.12);
+  --shadow-sidebar: 1px 0 8px rgba(0, 0, 0, 0.05);
+  --shadow-topbar: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-modal: 0 20px 50px -12px rgba(0, 0, 0, 0.2);
+  --shadow-fab: 0 8px 20px -4px rgba(37, 99, 235, 0.2);
+  --shadow-amber-glow: 0 8px 20px -6px rgba(245, 158, 11, 0.2);
+  --shadow-teal-glow: 0 8px 20px -6px rgba(37, 99, 235, 0.15);
   --shadow-inner-warm: inset 0 1px 0 rgba(255, 255, 255, 0.72);
 
   /* === Z-INDEX === */
@@ -163,19 +163,19 @@
 /* === BASE STYLES === */
 @layer base {
   :root {
-    --background: #FAFAF9;
+    --background: #FFFFFF;
     --foreground: #1C1917;
-    --muted: #F5F5F4;
-    --border: #E7E5E4;
+    --muted: #F8FAFC;
+    --border: #E5E7EB;
     --clr-primary: #2563EB;
     --clr-primary-light: #3B82F6;
     --clr-accent: #F59E0B;
     --clr-accent-light: #FBBF24;
-    --clr-bg: #FAFAF9;
-    --clr-surface: #FAFAF9;
+    --clr-bg: #FFFFFF;
+    --clr-surface: #FFFFFF;
     --clr-text-main: #1C1917;
-    --clr-text-muted: #78716C;
-    --clr-border: #E7E5E4;
+    --clr-text-muted: #64748B;
+    --clr-border: #E2E8F0;
     --clr-success: #16A34A;
     --clr-error: #DC2626;
   }
@@ -211,9 +211,9 @@
 
   body {
     background:
-      radial-gradient(1200px 560px at -5% -10%, color-mix(in srgb, var(--color-teal-200) 18%, transparent), transparent 58%),
-      radial-gradient(980px 460px at 105% -14%, color-mix(in srgb, var(--color-amber-200) 16%, transparent), transparent 54%),
-      linear-gradient(180deg, #FAFAF9 0%, #FEFCF8 48%, #FAFAF9 100%);
+      radial-gradient(1200px 560px at -5% -10%, color-mix(in srgb, var(--color-teal-200) 25%, transparent), transparent 58%),
+      radial-gradient(980px 460px at 105% -14%, color-mix(in srgb, var(--color-amber-200) 20%, transparent), transparent 54%),
+      linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 48%, #FFFFFF 100%);
     color: var(--foreground);
     font-family: var(--font-arabic);
     -webkit-font-smoothing: antialiased;
@@ -361,7 +361,7 @@
   .sacred-section {
     border: 1px solid color-mix(in srgb, var(--color-surface-border) 86%, white);
     border-radius: var(--radius-2xl);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(250, 248, 244, 0.92));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
     box-shadow: var(--shadow-card);
   }
   .dark .sacred-section {
@@ -376,7 +376,7 @@
   }
 
   .sacred-gradient-subtle {
-    background: linear-gradient(180deg, #F5F5F4 0%, #FFFFFF 54%, #FFFBEB 100%);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 54%, #FFFBEB 100%);
   }
   .dark .sacred-gradient-subtle {
     background: linear-gradient(180deg, #121926 0%, #101828 52%, #0C1222 100%);
@@ -464,7 +464,7 @@
   .travel-section {
     border: 1px solid color-mix(in srgb, var(--color-surface-border) 88%, white);
     border-radius: var(--radius-2xl);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(250, 248, 244, 0.92));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
     box-shadow: var(--shadow-card);
   }
   .dark .travel-section {
@@ -483,9 +483,9 @@
   .sacred-shell-bg,
   .travel-shell-bg {
     background:
-      radial-gradient(140% 130% at -12% -6%, color-mix(in srgb, var(--color-teal-300) 12%, transparent), transparent 54%),
-      radial-gradient(115% 120% at 110% -12%, color-mix(in srgb, var(--color-amber-400) 10%, transparent), transparent 52%),
-      linear-gradient(180deg, #FAFAF9 0%, #FEFCF8 46%, #F5F5F4 100%);
+      radial-gradient(140% 130% at -12% -6%, color-mix(in srgb, var(--color-teal-200) 20%, transparent), transparent 54%),
+      radial-gradient(115% 120% at 110% -12%, color-mix(in srgb, var(--color-amber-300) 15%, transparent), transparent 52%),
+      linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 46%, #FFFFFF 100%);
   }
   .dark .sacred-shell-bg,
   .dark .travel-shell-bg {
