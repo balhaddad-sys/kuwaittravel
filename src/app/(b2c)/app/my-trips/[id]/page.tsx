@@ -11,6 +11,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { useDirection } from "@/providers/DirectionProvider";
 import { getDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
+import { useAuth } from "@/hooks/useAuth";
 import type { Booking } from "@/types";
 import {
   Users,
@@ -63,6 +64,7 @@ export default function BookingDetailPage({
   const { id } = use(params);
   const router = useRouter();
   const { t, language } = useDirection();
+  const { firebaseUser } = useAuth();
   const [booking, setBooking] = useState<Booking | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -70,15 +72,20 @@ export default function BookingDetailPage({
     async function fetchBooking() {
       try {
         const bookingData = await getDocument<Booking>(COLLECTIONS.BOOKINGS, id);
-        setBooking(bookingData);
-      } catch (error) {
-        console.error("Error fetching booking:", error);
+        // Client-side ownership check: only show this booking to its owner
+        if (bookingData && firebaseUser && bookingData.travelerId !== firebaseUser.uid) {
+          setBooking(null);
+        } else {
+          setBooking(bookingData);
+        }
+      } catch {
+        setBooking(null);
       } finally {
         setLoading(false);
       }
     }
     fetchBooking();
-  }, [id]);
+  }, [id, firebaseUser]);
 
   if (loading) {
     return (

@@ -50,7 +50,14 @@ export default function OnboardingPage() {
 
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!firebaseUser || !role) return;
+    if (!role) return;
+    if (!firebaseUser) {
+      setError(t(
+        "انتهت جلستك. يرجى تسجيل الدخول مجدداً.",
+        "Your session has expired. Please sign in again."
+      ));
+      return;
+    }
     setError("");
     setLoading(true);
 
@@ -76,7 +83,6 @@ export default function OnboardingPage() {
       await refreshUserData();
       router.push(ROLE_HOME_ROUTES[role]);
     } catch (err) {
-      console.error("Onboarding error:", err);
       setError(t("حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى.", "Something went wrong while creating your account. Please try again."));
     } finally {
       setLoading(false);

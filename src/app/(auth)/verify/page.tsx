@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
+import { getPendingOTP, clearPendingOTP } from "@/lib/otp-store";
 import { ShieldCheck } from "lucide-react";
-import type { ConfirmationResult } from "firebase/auth";
 
 export default function VerifyPage() {
   const [code, setCode] = useState("");
@@ -21,10 +21,9 @@ export default function VerifyPage() {
   const { t } = useDirection();
 
   useEffect(() => {
-    const stored = sessionStorage.getItem("confirmationResult");
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      setPhone(parsed.phone);
+    const storedPhone = sessionStorage.getItem("otp_phone");
+    if (storedPhone) {
+      setPhone(storedPhone);
     } else {
       router.push("/login");
     }
@@ -36,14 +35,16 @@ export default function VerifyPage() {
     setLoading(true);
 
     try {
-      const confirmationResult = (window as unknown as Record<string, ConfirmationResult>).__confirmationResult;
+      const confirmationResult = getPendingOTP();
       if (!confirmationResult) {
+        // OTP session lost (e.g. page refresh) — send user back to re-request
         router.push("/login");
         return;
       }
 
       const { isNewUser, role } = await confirmOTP(confirmationResult, code);
-      sessionStorage.removeItem("confirmationResult");
+      clearPendingOTP();
+      sessionStorage.removeItem("otp_phone");
 
       if (isNewUser || !role) {
         router.push("/onboarding");
@@ -51,7 +52,10 @@ export default function VerifyPage() {
         router.push(ROLE_HOME_ROUTES[role]);
       }
     } catch {
-      setError(t("رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.", "Invalid verification code. Please try again."));
+      setError(t(
+        "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.",
+        "Invalid verification code. Please try again."
+      ));
     } finally {
       setLoading(false);
     }

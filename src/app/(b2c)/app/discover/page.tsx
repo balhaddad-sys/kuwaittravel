@@ -63,6 +63,7 @@ export default function DiscoverPage() {
   const [filters, setFilters] = useState<TripFilterState>(DEFAULT_FILTERS);
   const [filterSheetOpen, setFilterSheetOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [visibleTripCount, setVisibleTripCount] = useState(12);
 
   useEffect(() => {
     async function fetchDiscoverData() {
@@ -189,6 +190,7 @@ export default function DiscoverPage() {
 
   const handleCategorySelect = useCallback((id: string | null) => {
     setSelectedCategory(id);
+    setVisibleTripCount(12);
   }, []);
 
   const handleSearch = useCallback((query: string) => {
@@ -197,6 +199,7 @@ export default function DiscoverPage() {
 
   const handleFilterApply = useCallback((newFilters: TripFilterState) => {
     setFilters(newFilters);
+    setVisibleTripCount(12);
   }, []);
 
   // Prefetch routes
@@ -413,35 +416,51 @@ export default function DiscoverPage() {
               ))}
             </div>
           ) : filteredTrips.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredTrips.slice(0, 12).map((trip, i) => (
-                <div
-                  key={trip.id}
-                  className="animate-stagger-fade-up"
-                  style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
-                >
-                  <TripCard
-                    title={getTripTitle(trip)}
-                    destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
-                    departureDate={formatTimestamp(trip.departureDate)}
-                    returnDate={formatTimestamp(trip.returnDate)}
-                    price={trip.basePriceKWD}
-                    capacity={trip.totalCapacity}
-                    booked={trip.bookedCount || 0}
-                    remainingCapacity={trip.remainingCapacity}
-                    status={toTripCardStatus(trip.status)}
-                    campaignName={getCampaignName(trip)}
-                    coverImage={trip.coverImageUrl}
-                    galleryUrls={trip.galleryUrls}
-                    tags={trip.tags}
-                    tripId={trip.id}
-                    wishlisted={isWishlisted(trip.id)}
-                    onWishlistToggle={() => toggleWishlist(trip.id)}
-                    onClick={() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)}
-                  />
+            <>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredTrips.slice(0, visibleTripCount).map((trip, i) => (
+                  <div
+                    key={trip.id}
+                    className="animate-stagger-fade-up"
+                    style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
+                  >
+                    <TripCard
+                      title={getTripTitle(trip)}
+                      destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
+                      departureDate={formatTimestamp(trip.departureDate)}
+                      returnDate={formatTimestamp(trip.returnDate)}
+                      price={trip.basePriceKWD}
+                      capacity={trip.totalCapacity}
+                      booked={trip.bookedCount || 0}
+                      remainingCapacity={trip.remainingCapacity}
+                      status={toTripCardStatus(trip.status)}
+                      campaignName={getCampaignName(trip)}
+                      coverImage={trip.coverImageUrl}
+                      galleryUrls={trip.galleryUrls}
+                      tags={trip.tags}
+                      tripId={trip.id}
+                      wishlisted={isWishlisted(trip.id)}
+                      onWishlistToggle={() => toggleWishlist(trip.id)}
+                      onClick={() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)}
+                    />
+                  </div>
+                ))}
+              </div>
+              {visibleTripCount < filteredTrips.length && (
+                <div className="mt-6 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setVisibleTripCount((prev) => prev + 12)}
+                    className="rounded-[var(--radius-pill)] border border-surface-border bg-white px-6 py-2.5 text-body-md font-medium text-stone-700 shadow-sm transition-colors hover:border-amber-400 hover:text-amber-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-stone-300 dark:hover:border-amber-600 dark:hover:text-amber-400"
+                  >
+                    {t(
+                      `عرض المزيد (${filteredTrips.length - visibleTripCount} رحلة)`,
+                      `Load more (${filteredTrips.length - visibleTripCount} trips)`
+                    )}
+                  </button>
                 </div>
-              ))}
-            </div>
+              )}
+            </>
           ) : (
             <EmptyState
               icon={<Flame className="h-12 w-12" />}

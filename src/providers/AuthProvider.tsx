@@ -74,6 +74,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       unsubscribeAuth = onAuthStateChanged(firebaseAuth, (user) => {
         setFirebaseUser(user);
 
+        // Set / clear a lightweight session indicator cookie used by the
+        // Next.js middleware to prevent unauthenticated access to protected
+        // routes on the server side (before React hydrates).
+        if (user) {
+          document.cookie = "__rahal_session=1; path=/; max-age=86400; SameSite=Lax";
+        } else {
+          document.cookie = "__rahal_session=; path=/; max-age=0; SameSite=Lax";
+        }
+
         // Clean up previous user listener
         if (unsubscribeUser) {
           unsubscribeUser();

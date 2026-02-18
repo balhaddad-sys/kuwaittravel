@@ -199,7 +199,6 @@ export default function CreateTripPage() {
       router.push("/portal/trips");
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error("Trip creation error:", error);
       toast({
         type: "error",
         title: t("حدث خطأ أثناء إنشاء الرحلة", "An error occurred while creating the trip"),

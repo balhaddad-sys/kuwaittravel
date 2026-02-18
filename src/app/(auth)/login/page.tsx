@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -8,9 +8,11 @@ import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
 import { ROLE_HOME_ROUTES } from "@/lib/utils/roles";
+import { setPendingOTP } from "@/lib/otp-store";
 import { Phone } from "lucide-react";
-import type { ConfirmationResult } from "firebase/auth";
 import type { User } from "@/types";
+
+const OTP_COOLDOWN_SECONDS = 60;
 
 function GoogleIcon({ className }: { className?: string }) {
   return (
@@ -28,6 +30,8 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
+  const [cooldown, setCooldown] = useState(0);
+  const cooldownTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const router = useRouter();
   const { signInWithPhone, signInWithGoogle } = useAuth();
   const { t } = useDirection();
@@ -37,27 +41,56 @@ export default function LoginPage() {
     router.prefetch("/onboarding");
   }, [router]);
 
+  useEffect(() => {
+    return () => {
+      if (cooldownTimer.current) clearInterval(cooldownTimer.current);
+    };
+  }, []);
+
+  const startCooldown = useCallback(() => {
+    setCooldown(OTP_COOLDOWN_SECONDS);
+    cooldownTimer.current = setInterval(() => {
+      setCooldown((prev) => {
+        if (prev <= 1) {
+          clearInterval(cooldownTimer.current!);
+          cooldownTimer.current = null;
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
+    if (cooldown > 0) return;
+
     // Validate Kuwait phone number: 8 digits, starts with 5, 6, or 9
     const digits = phone.replace(/\D/g, "");
     if (!/^[569]\d{7}$/.test(digits)) {
-      setError(t("يرجى إدخال رقم هاتف كويتي صحيح (8 أرقام).", "Please enter a valid Kuwaiti phone number (8 digits)."));
+      setError(t(
+        "يرجى إدخال رقم هاتف كويتي صحيح (8 أرقام).",
+        "Please enter a valid Kuwaiti phone number (8 digits)."
+      ));
       return;
     }
 
     setLoading(true);
-
     try {
       const formatted = `+965${digits}`;
       const confirmationResult = await signInWithPhone(formatted);
-      sessionStorage.setItem("confirmationResult", JSON.stringify({ phone: formatted }));
-      (window as unknown as Record<string, ConfirmationResult>).__confirmationResult = confirmationResult;
+      // Store in module scope — not on window, not in serialised storage
+      setPendingOTP(confirmationResult);
+      sessionStorage.setItem("otp_phone", formatted);
+      startCooldown();
       router.push("/verify");
     } catch {
-      setError(t("فشل في إرسال رمز التحقق. يرجى المحاولة مرة أخرى.", "Failed to send verification code. Please try again."));
+      setError(t(
+        "فشل في إرسال رمز التحقق. يرجى المحاولة مرة أخرى.",
+        "Failed to send verification code. Please try again."
+      ));
     } finally {
       setLoading(false);
     }
@@ -68,7 +101,6 @@ export default function LoginPage() {
     setGoogleLoading(true);
     try {
       await signInWithGoogle();
-      // After popup closes, check if user has a Firestore profile
       const { getFirebaseAuth } = await import("@/lib/firebase/config");
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
@@ -83,7 +115,10 @@ export default function LoginPage() {
       }
       router.replace("/onboarding");
     } catch {
-      setError(t("فشل تسجيل الدخول بحساب Google. يرجى المحاولة مرة أخرى.", "Google sign-in failed. Please try again."));
+      setError(t(
+        "فشل تسجيل الدخول بحساب Google. يرجى المحاولة مرة أخرى.",
+        "Google sign-in failed. Please try again."
+      ));
     } finally {
       setGoogleLoading(false);
     }
@@ -141,8 +176,16 @@ export default function LoginPage() {
             leftAddon={<span className="text-body-sm font-medium">+965</span>}
             error={error}
           />
-          <Button type="submit" fullWidth loading={loading} size="lg">
-            {t("إرسال رمز التحقق", "Send Verification Code")}
+          <Button
+            type="submit"
+            fullWidth
+            loading={loading}
+            size="lg"
+            disabled={cooldown > 0}
+          >
+            {cooldown > 0
+              ? t(`إعادة الإرسال بعد ${cooldown}ث`, `Resend in ${cooldown}s`)
+              : t("إرسال رمز التحقق", "Send Verification Code")}
           </Button>
         </form>
       </Card>

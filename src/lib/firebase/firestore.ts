@@ -9,6 +9,8 @@ import {
   deleteDoc,
   query,
   onSnapshot,
+  runTransaction,
+  increment,
   type QueryConstraint,
   type DocumentData,
   type Unsubscribe,
@@ -82,6 +84,43 @@ export function onDocumentChange<T>(
     }
     callback({ id: snap.id, ...snap.data() } as T);
   });
+}
+
+/**
+ * Creates a booking document and atomically decrements the trip's
+ * remainingCapacity / increments bookedCount inside a Firestore transaction.
+ *
+ * Throws an Error with code "SOLD_OUT" if there is insufficient capacity at
+ * the moment the transaction executes (protects against race conditions).
+ */
+export async function bookTripTransactional<T extends DocumentData>(
+  tripCollectionName: string,
+  tripId: string,
+  bookingCollectionName: string,
+  bookingData: T,
+  passengerCount: number
+): Promise<string> {
+  const db = getFirebaseDb();
+  const tripRef = doc(db, tripCollectionName, tripId);
+  const bookingRef = doc(collection(db, bookingCollectionName));
+
+  await runTransaction(db, async (tx) => {
+    const tripSnap = await tx.get(tripRef);
+    if (!tripSnap.exists()) throw new Error("TRIP_NOT_FOUND");
+
+    const remaining = (tripSnap.data().remainingCapacity as number) ?? 0;
+    if (remaining < passengerCount) throw new Error("SOLD_OUT");
+
+    const now = serverTimestamp();
+    tx.set(bookingRef, { ...bookingData, createdAt: now, updatedAt: now });
+    tx.update(tripRef, {
+      remainingCapacity: increment(-passengerCount),
+      bookedCount: increment(passengerCount),
+      updatedAt: now,
+    });
+  });
+
+  return bookingRef.id;
 }
 
 export function onCollectionChange<T>(

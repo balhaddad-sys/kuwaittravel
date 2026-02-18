@@ -74,7 +74,6 @@ export default function RegisterCampaignPage() {
           const path = generateStoragePath("licenses", firebaseUser.uid, form.licenseFile.name);
           licenseImageUrl = await uploadFile(path, form.licenseFile);
         } catch (uploadErr) {
-          console.warn("License upload failed, continuing without image:", uploadErr);
         }
       }
 
@@ -152,7 +151,6 @@ export default function RegisterCampaignPage() {
       });
       router.push("/portal/dashboard");
     } catch (err) {
-      console.error("Campaign registration failed:", err);
       const msg = err instanceof Error ? err.message : String(err);
       toast({
         type: "error",

@@ -18,7 +18,7 @@ import { useToast } from "@/components/feedback/ToastProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
 import { useWishlist } from "@/hooks/useWishlist";
-import { createDocument, getDocument, getDocuments } from "@/lib/firebase/firestore";
+import { bookTripTransactional, getDocument, getDocuments } from "@/lib/firebase/firestore";
 import { COLLECTIONS, SUB_COLLECTIONS } from "@/lib/firebase/collections";
 import { formatKWD } from "@/lib/utils/format";
 import { isBookableTrip } from "@/lib/utils/trip";
@@ -107,7 +107,6 @@ export default function TripDetailPage({
         setPricingTiers(tiers);
         if (tiers.length > 0) setSelectedTier(tiers[0].id);
       } catch (error) {
-        console.error("Error fetching trip:", error);
       } finally {
         setLoading(false);
       }
@@ -282,30 +281,48 @@ export default function TripDetailPage({
 
     setBookingLoading(true);
     try {
-      const bookingId = await createDocument(COLLECTIONS.BOOKINGS, {
-        travelerId: firebaseUser.uid,
-        travelerName: userData.displayNameAr || userData.displayName,
-        travelerPhone: userData.phone || firebaseUser.phoneNumber || "",
-        campaignId: trip.campaignId,
-        tripId: trip.id,
-        tripTitle: trip.titleAr || trip.title,
-        numberOfPassengers: passengerCount,
-        subtotalKWD: bookingAmount,
-        discountKWD: 0,
-        totalKWD: bookingAmount,
-        paidKWD: 0,
-        remainingKWD: bookingAmount,
-        status: "pending_payment" as const,
-        ...(activeTier ? { pricingTierId: activeTier.id, pricingTierName: activeTier.name } : {}),
-        paymentSchedule: trip.registrationDeadline
-          ? [{ dueDate: trip.registrationDeadline, amountKWD: bookingAmount, status: "pending" as const }]
-          : [],
-        ...(specialRequests.trim().length > 0 ? { specialRequests: specialRequests.trim() } : {}),
-      });
+      const bookingId = await bookTripTransactional(
+        COLLECTIONS.TRIPS,
+        trip.id,
+        COLLECTIONS.BOOKINGS,
+        {
+          travelerId: firebaseUser.uid,
+          travelerName: userData.displayNameAr || userData.displayName,
+          travelerPhone: userData.phone || firebaseUser.phoneNumber || "",
+          campaignId: trip.campaignId,
+          tripId: trip.id,
+          tripTitle: trip.titleAr || trip.title,
+          numberOfPassengers: passengerCount,
+          subtotalKWD: bookingAmount,
+          discountKWD: 0,
+          totalKWD: bookingAmount,
+          paidKWD: 0,
+          remainingKWD: bookingAmount,
+          status: "pending_payment" as const,
+          ...(activeTier ? { pricingTierId: activeTier.id, pricingTierName: activeTier.name } : {}),
+          paymentSchedule: trip.registrationDeadline
+            ? [{ dueDate: trip.registrationDeadline, amountKWD: bookingAmount, status: "pending" as const }]
+            : [],
+          ...(specialRequests.trim().length > 0 ? { specialRequests: specialRequests.trim() } : {}),
+        },
+        passengerCount
+      );
       toast({ type: "success", title: t("تم إنشاء الحجز بنجاح", "Booking created successfully") });
       router.push(`/app/my-trips/${bookingId}`);
-    } catch {
-      toast({ type: "error", title: t("تعذر إتمام الحجز حالياً", "Unable to complete booking") });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "";
+      if (msg === "SOLD_OUT") {
+        toast({
+          type: "error",
+          title: t("نفدت المقاعد", "Seats sold out"),
+          description: t(
+            "للأسف نفدت المقاعد للتو. يرجى المحاولة برحلة أخرى.",
+            "Seats just sold out. Please try another trip."
+          ),
+        });
+      } else {
+        toast({ type: "error", title: t("تعذر إتمام الحجز حالياً", "Unable to complete booking") });
+      }
     } finally {
       setBookingLoading(false);
     }
