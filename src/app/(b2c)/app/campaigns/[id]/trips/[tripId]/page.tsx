@@ -36,6 +36,7 @@ import {
   ChevronUp,
   Tag,
   Building2,
+  CheckCircle2,
 } from "lucide-react";
 
 const statusLabels: Record<
@@ -117,7 +118,7 @@ export default function TripDetailPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+      <div className="min-h-screen bg-gray-50">
         <Skeleton className="h-64 w-full" />
         <Container className="space-y-4 py-6">
           <Skeleton className="h-8 w-3/4" />
@@ -131,7 +132,7 @@ export default function TripDetailPage({
 
   if (!trip) {
     return (
-      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+      <div className="min-h-screen bg-gray-50">
         <Container className="py-16">
           <EmptyState
             icon={<Plane className="h-16 w-16" />}
@@ -187,10 +188,11 @@ export default function TripDetailPage({
       ? activeTier.nameAr || activeTier.name
       : activeTier.name || activeTier.nameAr
     : t("الباقة الأساسية", "Base Package");
+
   const guidanceItems = [
     {
       key: "booking_window",
-      icon: <Calendar className="h-4 w-4 text-info" />,
+      icon: <Calendar className="h-4 w-4 text-blue-500" />,
       title: t("نافذة الحجز", "Booking Window"),
       description: canBook
         ? t(
@@ -204,7 +206,7 @@ export default function TripDetailPage({
     },
     {
       key: "route",
-      icon: <MapPin className="h-4 w-4 text-amber-600" />,
+      icon: <MapPin className="h-4 w-4 text-amber-500" />,
       title: t("مسار الرحلة", "Route Snapshot"),
       description: t(
         `المغادرة من ${trip.departureCity || "الكويت"} إلى ${destinationLabel} بتاريخ ${departureDateLabel}، والعودة ${returnDateLabel}.`,
@@ -213,7 +215,7 @@ export default function TripDetailPage({
     },
     {
       key: "capacity",
-      icon: <Users className="h-4 w-4 text-success" />,
+      icon: <Users className="h-4 w-4 text-emerald-500" />,
       title: t("توفر المقاعد", "Seat Availability"),
       description: remainingCapacity > 0
         ? t(
@@ -227,7 +229,7 @@ export default function TripDetailPage({
     },
     {
       key: "pricing",
-      icon: <DollarSign className="h-4 w-4 text-stone-500" />,
+      icon: <DollarSign className="h-4 w-4 text-gray-500" />,
       title: t("الميزانية والدفع", "Budget & Payment"),
       description: t(
         `السعر الحالي ${formatKWD(basePrice)} لكل مسافر ضمن "${selectedTierName}". راجع الإجمالي النهائي قبل التأكيد خاصة عند إضافة أكثر من مسافر.`,
@@ -235,6 +237,7 @@ export default function TripDetailPage({
       ),
     },
   ];
+
   const prepChecklist = [
     t(
       "تأكد من مطابقة الأسماء مع الوثائق الرسمية قبل الدفع.",
@@ -315,17 +318,17 @@ export default function TripDetailPage({
     {
       label: t("المغادرة", "Departure"),
       value: formatTripDate(trip.departureDate as unknown as { seconds: number }, language),
-      icon: <Calendar className="h-4 w-4 text-success" />,
+      icon: <Calendar className="h-4 w-4 text-emerald-500" />,
     },
     ...(duration ? [{
       label: t("المدة", "Duration"),
       value: t(`${duration} يوم`, `${duration} days`),
-      icon: <Clock className="h-4 w-4 text-info" />,
+      icon: <Clock className="h-4 w-4 text-blue-500" />,
     }] : []),
     {
       label: t("من", "From"),
       value: trip.departureCity || t("غير محدد", "Not set"),
-      icon: <Plane className="h-4 w-4 text-stone-500" />,
+      icon: <Plane className="h-4 w-4 text-gray-400" />,
     },
     {
       label: t("النوع", "Type"),
@@ -335,7 +338,7 @@ export default function TripDetailPage({
   ];
 
   return (
-    <div className="min-h-screen bg-surface-muted pb-24 dark:bg-surface-dark">
+    <div className="min-h-screen bg-gray-50 pb-28">
       {/* Full-Bleed Image Gallery */}
       <ImageGallery
         images={galleryImages}
@@ -343,15 +346,13 @@ export default function TripDetailPage({
         aspectRatio="16/9"
         overlay={
           <>
-            {/* Back button */}
             <button
               type="button"
               onClick={() => router.back()}
-              className="absolute start-3 top-3 z-10 flex items-center justify-center rounded-full bg-white/90 p-2 shadow-md transition-colors hover:bg-white dark:bg-stone-800/90"
+              className="absolute start-3 top-3 z-10 flex items-center justify-center rounded-full bg-white/95 p-2 shadow-md transition-colors hover:bg-white"
             >
-              <ArrowLeft className="h-5 w-5 text-stone-800 rtl:rotate-180 dark:text-white" />
+              <ArrowLeft className="h-5 w-5 text-gray-800 rtl:rotate-180" />
             </button>
-            {/* Wishlist */}
             <div className="absolute end-3 top-3 z-10">
               <WishlistButton
                 saved={isWishlisted(trip.id)}
@@ -363,15 +364,15 @@ export default function TripDetailPage({
         }
       />
 
-      <Container className="space-y-5 py-5 sm:space-y-6 sm:py-6">
-        {/* Title + Status + Social Proof */}
-        <div>
+      <Container className="space-y-4 py-5 sm:space-y-5 sm:py-6">
+        {/* Title + Status */}
+        <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)]">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0">
-              <h1 className="text-heading-lg font-bold text-stone-900 dark:text-white sm:text-display-md">
+              <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
                 {tripTitle}
               </h1>
-              <div className="mt-1 flex items-center gap-2 text-body-sm text-stone-500">
+              <div className="mt-1.5 flex items-center gap-1.5 text-sm text-gray-500">
                 <Building2 className="h-3.5 w-3.5" />
                 <span>{trip.campaignName}</span>
               </div>
@@ -390,62 +391,64 @@ export default function TripDetailPage({
         </div>
 
         {/* Quick Info Pills */}
-        <div className="flex gap-2 overflow-x-auto scrollbar-hide py-1">
+        <div className="flex gap-2 overflow-x-auto scrollbar-hide py-0.5">
           {quickInfoItems.map((item) => (
             <div
               key={item.label}
-              className="flex shrink-0 items-center gap-2 rounded-[var(--radius-pill)] border border-surface-border bg-white px-3 py-2 dark:border-surface-dark-border dark:bg-surface-dark-card"
+              className="flex shrink-0 items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 shadow-sm"
             >
               {item.icon}
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-stone-400">{item.label}</p>
-                <p className="text-body-sm font-medium text-stone-800 dark:text-white">{item.value}</p>
+                <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400">{item.label}</p>
+                <p className="text-sm font-semibold text-gray-800">{item.value}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Price & Capacity */}
-        <Card variant="elevated" padding="md">
-          <div className="flex items-center justify-between">
+        <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)]">
+          <div className="flex items-end justify-between">
             <div>
-              <p className="text-body-sm text-stone-500">{t("يبدأ من", "Starting from")}</p>
-              <p className="font-numbers text-display-md font-bold text-stone-900 dark:text-white">
+              <p className="text-xs font-medium text-gray-500">{t("يبدأ من", "Starting from")}</p>
+              <p className="mt-0.5 text-3xl font-bold tracking-tight text-gray-900">
                 {formatKWD(basePrice)}
               </p>
+              <p className="text-xs text-gray-400">{t("للمسافر الواحد", "per traveler")}</p>
             </div>
             <div className="text-end">
-              <p className="text-body-sm text-stone-500">{t("المقاعد المتبقية", "Seats remaining")}</p>
-              <p className="font-numbers text-heading-md font-bold text-stone-900 dark:text-white">
-                {remainingCapacity} / {trip.totalCapacity}
+              <p className="text-xs font-medium text-gray-500">{t("المقاعد المتبقية", "Seats remaining")}</p>
+              <p className="mt-0.5 text-2xl font-bold text-gray-900">
+                {remainingCapacity}
+                <span className="text-sm font-normal text-gray-400"> / {trip.totalCapacity}</span>
               </p>
             </div>
           </div>
-          <div className="mt-3">
-            <div className="h-2 overflow-hidden rounded-full bg-surface-muted dark:bg-surface-dark-border">
+          <div className="mt-4">
+            <div className="h-1.5 overflow-hidden rounded-full bg-gray-100">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
-                  fillPercent >= 90 ? "bg-error" : fillPercent >= 70 ? "bg-warning" : "bg-success"
+                  fillPercent >= 90 ? "bg-red-500" : fillPercent >= 70 ? "bg-amber-500" : "bg-emerald-500"
                 }`}
                 style={{ width: `${Math.min(fillPercent, 100)}%` }}
               />
             </div>
           </div>
           {remainingCapacity <= 5 && remainingCapacity > 0 && (
-            <p className="mt-2 text-body-sm font-medium text-error urgency-pulse">
+            <p className="mt-2 text-sm font-semibold text-red-600">
               {t(`${remainingCapacity} مقاعد متبقية فقط!`, `Only ${remainingCapacity} seats left!`)}
             </p>
           )}
-        </Card>
+        </div>
 
-        {/* Description (expandable) */}
+        {/* Description */}
         {tripDescription && (
-          <Card variant="outlined" padding="md">
-            <h3 className="mb-2 text-heading-sm font-bold text-stone-900 dark:text-white">
+          <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+            <h3 className="mb-2 text-base font-bold text-gray-900">
               {t("عن الرحلة", "About This Trip")}
             </h3>
             <div className={descExpanded ? "" : "max-h-24 overflow-hidden"}>
-              <p className="text-body-md leading-relaxed text-stone-600 dark:text-stone-400">
+              <p className="text-sm leading-relaxed text-gray-600">
                 {tripDescription}
               </p>
             </div>
@@ -453,7 +456,7 @@ export default function TripDetailPage({
               <button
                 type="button"
                 onClick={() => setDescExpanded(!descExpanded)}
-                className="mt-2 flex items-center gap-1 text-body-sm font-medium text-amber-600 transition-colors hover:text-amber-700"
+                className="mt-2 flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
               >
                 {descExpanded ? (
                   <>{t("عرض أقل", "Show less")} <ChevronUp className="h-3.5 w-3.5" /></>
@@ -462,33 +465,33 @@ export default function TripDetailPage({
                 )}
               </button>
             )}
-          </Card>
+          </div>
         )}
 
         {/* Itinerary Timeline */}
         {itineraryBlocks.length > 0 && (
-          <Card variant="outlined" padding="md">
-            <h3 className="mb-4 text-heading-sm font-bold text-stone-900 dark:text-white">
+          <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+            <h3 className="mb-4 text-base font-bold text-gray-900">
               {t("برنامج الرحلة", "Trip Itinerary")}
             </h3>
             <ItineraryTimeline blocks={itineraryBlocks} />
-          </Card>
+          </div>
         )}
 
         {/* Smart Guide */}
-        <Card variant="outlined" padding="md">
-          <div className="mb-4 flex items-center gap-2">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-amber-100 dark:bg-amber-900/30">
-              <ShieldCheck className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+        <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+          <div className="mb-4 flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-50">
+              <ShieldCheck className="h-4 w-4 text-amber-600" />
             </div>
             <div>
-              <h3 className="text-heading-sm font-bold text-stone-900 dark:text-white">
+              <h3 className="text-base font-bold text-gray-900">
                 {t("دليل الرحلة الذكي", "Smart Trip Guide")}
               </h3>
-              <p className="text-body-sm text-stone-500 dark:text-stone-400">
+              <p className="text-xs text-gray-500">
                 {t(
-                  "إرشادات عملية مبنية على حالة هذه الرحلة لمساعدتك قبل الدفع وأثناء الاستعداد.",
-                  "Practical guidance based on this trip's live details to help before payment and while preparing."
+                  "إرشادات عملية مبنية على حالة هذه الرحلة.",
+                  "Practical guidance based on this trip's live details."
                 )}
               </p>
             </div>
@@ -498,59 +501,59 @@ export default function TripDetailPage({
             {guidanceItems.map((item) => (
               <div
                 key={item.key}
-                className="rounded-[var(--radius-md)] border border-surface-border bg-surface-muted p-3 dark:border-surface-dark-border dark:bg-surface-dark"
+                className="rounded-xl border border-gray-100 bg-gray-50 p-3"
               >
                 <div className="mb-1.5 flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] bg-white dark:bg-surface-dark-card">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white shadow-sm">
                     {item.icon}
                   </span>
-                  <p className="text-body-md font-semibold text-stone-900 dark:text-white">
+                  <p className="text-sm font-semibold text-gray-900">
                     {item.title}
                   </p>
                 </div>
-                <p className="text-body-sm leading-relaxed text-stone-600 dark:text-stone-400">
+                <p className="text-xs leading-relaxed text-gray-600">
                   {item.description}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-4 rounded-[var(--radius-md)] border border-amber-200/70 bg-amber-50/40 p-3 dark:border-amber-900/40 dark:bg-amber-900/10">
-            <p className="mb-2 text-body-md font-semibold text-stone-900 dark:text-white">
+          <div className="mt-4 rounded-xl border border-amber-100 bg-amber-50/60 p-3">
+            <p className="mb-2 text-sm font-bold text-gray-900">
               {t("قائمة تجهيز سريعة", "Quick Prep Checklist")}
             </p>
             <ul className="space-y-1.5">
               {prepChecklist.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-body-sm text-stone-700 dark:text-stone-200">
-                  <span className="mt-0.5 text-success">✓</span>
+                <li key={item} className="flex items-start gap-2 text-xs text-gray-700">
+                  <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
-        </Card>
+        </div>
 
         {/* Destinations */}
         {trip.destinations && trip.destinations.length > 0 && (
-          <Card variant="outlined" padding="md">
-            <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
+          <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+            <h3 className="mb-3 text-base font-bold text-gray-900">
               {t("الوجهات", "Destinations")}
             </h3>
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               {trip.destinations.map((dest, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 rounded-[var(--radius-md)] bg-surface-muted p-3 dark:bg-surface-dark"
+                  className="flex items-center gap-3 rounded-xl bg-gray-50 p-3"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-100/70 dark:bg-amber-900/30">
-                    <MapPin className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-100">
+                    <MapPin className="h-4 w-4 text-amber-600" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-body-md font-medium text-stone-900 dark:text-white">
+                    <p className="text-sm font-semibold text-gray-900">
                       {dest.city}
                       {dest.country ? `، ${dest.country}` : ""}
                     </p>
-                    <p className="text-body-sm text-stone-500">
+                    <p className="text-xs text-gray-500">
                       {formatTripDate(dest.arrivalDate as unknown as { seconds: number }, language)} -{" "}
                       {formatTripDate(dest.departureDate as unknown as { seconds: number }, language)}
                     </p>
@@ -558,13 +561,13 @@ export default function TripDetailPage({
                 </div>
               ))}
             </div>
-          </Card>
+          </div>
         )}
 
         {/* Pricing Tiers */}
         {pricingTiers.length > 1 && (
-          <Card variant="outlined" padding="md">
-            <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
+          <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+            <h3 className="mb-3 text-base font-bold text-gray-900">
               {t("باقات الأسعار", "Pricing Tiers")}
             </h3>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -576,31 +579,31 @@ export default function TripDetailPage({
                     key={tier.id}
                     type="button"
                     onClick={() => setSelectedTier(tier.id)}
-                    className={`rounded-[var(--radius-md)] border p-4 text-start transition-all ${
+                    className={`rounded-xl border p-4 text-start transition-all ${
                       isSelected
-                        ? "border-amber-500 bg-amber-50 shadow-sm dark:border-amber-600 dark:bg-amber-900/20"
-                        : "border-surface-border bg-white hover:border-stone-400 dark:border-surface-dark-border dark:bg-surface-dark-card dark:hover:border-stone-600"
+                        ? "border-blue-500 bg-blue-50 shadow-sm"
+                        : "border-gray-200 bg-white hover:border-gray-300"
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <p className="text-body-md font-bold text-stone-900 dark:text-white">{tierName}</p>
+                      <p className="text-sm font-bold text-gray-900">{tierName}</p>
                       {isSelected && (
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-white">
-                          <ShieldCheck className="h-3 w-3" />
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-white">
+                          <CheckCircle2 className="h-3 w-3" />
                         </span>
                       )}
                     </div>
-                    <p className="mt-1 font-numbers text-heading-sm font-bold text-amber-600 dark:text-amber-400">
+                    <p className="mt-1 text-lg font-bold text-amber-600">
                       {formatKWD(tier.priceKWD)}
                     </p>
                     {tier.description && (
-                      <p className="mt-1 text-body-sm text-stone-500 dark:text-stone-400">{tier.description}</p>
+                      <p className="mt-1 text-xs text-gray-500">{tier.description}</p>
                     )}
                     {tier.includes && tier.includes.length > 0 && (
                       <ul className="mt-2 space-y-1">
                         {tier.includes.slice(0, 4).map((item, i) => (
-                          <li key={i} className="flex items-center gap-1.5 text-body-sm text-stone-600 dark:text-stone-400">
-                            <span className="text-success">✓</span> {item}
+                          <li key={i} className="flex items-center gap-1.5 text-xs text-gray-600">
+                            <span className="text-emerald-500">✓</span> {item}
                           </li>
                         ))}
                       </ul>
@@ -609,7 +612,7 @@ export default function TripDetailPage({
                 );
               })}
             </div>
-          </Card>
+          </div>
         )}
 
         {/* Tags */}
@@ -618,7 +621,7 @@ export default function TripDetailPage({
             {trip.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-[var(--radius-chip)] border border-surface-border bg-white px-3 py-1.5 text-body-sm font-medium text-stone-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-stone-400"
+                className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600"
               >
                 {tag}
               </span>
@@ -627,26 +630,30 @@ export default function TripDetailPage({
         )}
 
         {/* Campaign Info */}
-        <Card variant="outlined" padding="md" onClick={() => router.push(`/app/campaigns/${id}`)}>
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-amber-100 dark:bg-amber-900/30">
-              <Building2 className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-body-md font-bold text-stone-900 dark:text-white">{trip.campaignName}</p>
-              <p className="text-body-sm text-amber-600 dark:text-amber-400">
-                {t("عرض الحملة", "View Campaign")} →
-              </p>
-            </div>
+        <button
+          type="button"
+          onClick={() => router.push(`/app/campaigns/${id}`)}
+          className="flex w-full items-center gap-3 rounded-2xl border border-gray-200 bg-white p-4 text-start shadow-sm transition-all hover:border-gray-300 hover:shadow-md"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50">
+            <Building2 className="h-5 w-5 text-amber-600" />
           </div>
-        </Card>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-bold text-gray-900">{trip.campaignName}</p>
+            <p className="text-xs font-medium text-blue-600">
+              {t("عرض الحملة", "View Campaign")} →
+            </p>
+          </div>
+        </button>
 
         {/* Booking Form (toggleable) */}
         {showBookingForm && (
-          <Card variant="elevated" padding="md" className="sacred-panel">
-            <div className="mb-3 flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-amber-500" />
-              <h3 className="text-heading-sm font-bold text-stone-900 dark:text-white">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.08)]" id="booking-form">
+            <div className="mb-4 flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
+                <ShieldCheck className="h-4 w-4 text-blue-600" />
+              </div>
+              <h3 className="text-base font-bold text-gray-900">
                 {t("بيانات الحجز", "Booking Details")}
               </h3>
             </div>
@@ -665,11 +672,11 @@ export default function TripDetailPage({
                 onChange={(event) => setSpecialRequests(event.target.value)}
                 placeholder={t("مثال: غرفة قريبة من المصعد", "e.g. Room near the elevator")}
               />
-              <div className="flex items-center justify-between rounded-[var(--radius-md)] bg-surface-muted p-3 dark:bg-surface-dark">
-                <span className="text-body-md text-stone-600 dark:text-stone-400">
+              <div className="flex items-center justify-between rounded-xl bg-gray-50 px-4 py-3">
+                <span className="text-sm text-gray-600">
                   {t("إجمالي الحجز", "Booking Total")}
                 </span>
-                <span className="font-numbers text-heading-sm font-bold text-stone-900 dark:text-white">
+                <span className="text-lg font-bold text-gray-900">
                   {formatKWD(bookingAmount)}
                 </span>
               </div>
@@ -681,21 +688,22 @@ export default function TripDetailPage({
                 disabled={!canBook}
                 onClick={handleBookNow}
               >
-                {t("تأكيد الحجز", "Confirm Booking")} - {formatKWD(bookingAmount)}
+                {t("تأكيد الحجز", "Confirm Booking")} — {formatKWD(bookingAmount)}
               </Button>
             </div>
-          </Card>
+          </div>
         )}
       </Container>
 
       {/* Sticky Booking Bar */}
-      <div className="sticky-booking-bar px-4 py-3">
+      <div className="fixed bottom-0 start-0 end-0 z-40 border-t border-gray-200 bg-white/98 px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] backdrop-blur-xl">
         <Container>
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-body-sm text-stone-500">{t("يبدأ من", "From")}</p>
-              <p className="font-numbers text-heading-md font-bold text-stone-900 dark:text-white">
+              <p className="text-xs font-medium text-gray-500">{t("يبدأ من", "From")}</p>
+              <p className="text-xl font-bold text-gray-900">
                 {formatKWD(basePrice)}
+                <span className="ms-1 text-xs font-normal text-gray-400">/ {t("شخص", "person")}</span>
               </p>
             </div>
             <Button
@@ -708,19 +716,19 @@ export default function TripDetailPage({
                 } else {
                   setShowBookingForm(true);
                   setTimeout(() => {
-                    document.querySelector(".sacred-panel")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    document.getElementById("booking-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
                   }, 100);
                 }
               }}
               loading={bookingLoading}
             >
               {showBookingForm
-                ? `${t("تأكيد الحجز", "Confirm Booking")}`
-                : `${t("احجز الآن", "Book Now")}`}
+                ? t("تأكيد الحجز", "Confirm Booking")
+                : t("احجز الآن", "Book Now")}
             </Button>
           </div>
           {!canBook && (
-            <p className="mt-1 text-body-sm text-error">
+            <p className="mt-1 text-xs text-red-500">
               {t("الحجز متوقف حالياً لهذه الرحلة.", "Booking is currently unavailable for this trip.")}
             </p>
           )}

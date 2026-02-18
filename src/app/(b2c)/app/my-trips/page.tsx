@@ -3,15 +3,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { where } from "firebase/firestore";
 import { Container } from "@/components/layout/Container";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { EmptyState } from "@/components/ui/EmptyState";
 import {
-  Map as MapIcon,
-  Calendar,
   MapPin,
+  Calendar,
   ChevronLeft,
   Plane,
+  Clock,
+  CheckCircle2,
+  XCircle,
+  AlertCircle,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { formatDate, formatKWD, parseTimestamp } from "@/lib/utils/format";
@@ -21,18 +22,46 @@ import { getDocument, getDocuments } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import type { Booking, Trip } from "@/types";
 
-const statusLabels: Record<
+const statusConfig: Record<
   string,
-  { ar: string; en: string; variant: "success" | "warning" | "error" | "info" }
+  { ar: string; en: string; icon: React.ReactNode; color: string; bg: string; dot: string; border: string }
 > = {
-  confirmed: { ar: "مؤكد", en: "Confirmed", variant: "success" },
+  confirmed: {
+    ar: "مؤكد",
+    en: "Confirmed",
+    icon: <CheckCircle2 className="h-4 w-4" />,
+    color: "text-emerald-700 dark:text-emerald-400",
+    bg: "bg-emerald-50 dark:bg-emerald-900/20",
+    dot: "bg-emerald-500",
+    border: "border-emerald-100 dark:border-emerald-900/30",
+  },
   pending_payment: {
     ar: "بانتظار الدفع",
     en: "Pending Payment",
-    variant: "warning",
+    icon: <AlertCircle className="h-4 w-4" />,
+    color: "text-amber-700 dark:text-amber-400",
+    bg: "bg-amber-50 dark:bg-amber-900/20",
+    dot: "bg-amber-500",
+    border: "border-amber-100 dark:border-amber-900/30",
   },
-  completed: { ar: "مكتمل", en: "Completed", variant: "info" },
-  cancelled: { ar: "ملغي", en: "Cancelled", variant: "error" },
+  completed: {
+    ar: "مكتمل",
+    en: "Completed",
+    icon: <CheckCircle2 className="h-4 w-4" />,
+    color: "text-blue-700 dark:text-blue-400",
+    bg: "bg-blue-50 dark:bg-blue-900/20",
+    dot: "bg-blue-500",
+    border: "border-blue-100 dark:border-blue-900/30",
+  },
+  cancelled: {
+    ar: "ملغي",
+    en: "Cancelled",
+    icon: <XCircle className="h-4 w-4" />,
+    color: "text-red-700 dark:text-red-400",
+    bg: "bg-red-50 dark:bg-red-900/20",
+    dot: "bg-red-500",
+    border: "border-red-100 dark:border-red-900/30",
+  },
 };
 
 interface EnrichedBooking extends Booking {
@@ -41,19 +70,19 @@ interface EnrichedBooking extends Booking {
 
 function SkeletonBooking() {
   return (
-    <div className="skeleton-card overflow-hidden p-4">
-      <div className="flex items-center gap-3 sm:gap-4">
-        <div className="hidden h-14 w-14 rounded-[var(--radius-lg)] bg-stone-100/50 dark:bg-stone-800/50 sm:block" />
-        <div className="flex-1 space-y-2">
-          <div className="h-4 w-3/4 rounded-md bg-stone-100/60 dark:bg-stone-800/60" />
-          <div className="flex gap-2">
-            <div className="h-3 w-24 rounded-md bg-stone-100/40 dark:bg-stone-800/40" />
-            <div className="h-5 w-16 rounded-full bg-stone-100/40 dark:bg-stone-800/40" />
+    <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-slate-700/60 dark:bg-slate-800/80">
+      <div className="flex items-center gap-4 p-5">
+        <div className="h-14 w-14 shrink-0 rounded-2xl bg-gray-100 dark:bg-slate-700 animate-pulse" />
+        <div className="flex-1 space-y-2.5">
+          <div className="h-4 w-2/3 rounded-lg bg-gray-100 dark:bg-slate-700 animate-pulse" />
+          <div className="flex items-center gap-2">
+            <div className="h-3.5 w-28 rounded-lg bg-gray-100 dark:bg-slate-700 animate-pulse" />
+            <div className="h-5 w-20 rounded-full bg-gray-100 dark:bg-slate-700 animate-pulse" />
           </div>
         </div>
-        <div className="space-y-2 text-end">
-          <div className="ms-auto h-4 w-16 rounded-md bg-stone-100/60 dark:bg-stone-800/60" />
-          <div className="ms-auto h-4 w-4 rounded bg-stone-100/40 dark:bg-stone-800/40" />
+        <div className="shrink-0 space-y-2 text-end">
+          <div className="h-4 w-16 rounded-lg bg-gray-100 dark:bg-slate-700 animate-pulse ms-auto" />
+          <div className="h-4 w-4 rounded bg-gray-100 dark:bg-slate-700 animate-pulse ms-auto" />
         </div>
       </div>
     </div>
@@ -72,65 +101,41 @@ export default function MyTripsPage() {
   useEffect(() => {
     async function fetchBookings() {
       if (authLoading) return;
-
       if (!userData?.uid) {
         setBookings([]);
         setLoading(false);
         return;
       }
-
       setLoading(true);
       setLoadError("");
-
       try {
         const bookingRows = await getDocuments<Booking>(COLLECTIONS.BOOKINGS, [
           where("travelerId", "==", userData.uid),
         ]);
-
-        const tripIds = [
-          ...new Set(bookingRows.map((booking) => booking.tripId)),
-        ];
+        const tripIds = [...new Set(bookingRows.map((booking) => booking.tripId))];
         const tripResults = await Promise.all(
-          tripIds.map((tripId) =>
-            getDocument<Trip>(COLLECTIONS.TRIPS, tripId)
-          )
+          tripIds.map((tripId) => getDocument<Trip>(COLLECTIONS.TRIPS, tripId))
         );
         const tripById = new globalThis.Map(
           tripIds.map((tripId, index) => [tripId, tripResults[index]])
         );
-
         const enriched = bookingRows
           .map((booking) => ({
             ...booking,
-            tripDepartureDate: parseTimestamp(
-              tripById.get(booking.tripId)?.departureDate
-            ),
+            tripDepartureDate: parseTimestamp(tripById.get(booking.tripId)?.departureDate),
           }))
           .sort((a, b) => {
-            const aTime =
-              a.tripDepartureDate?.getTime() ||
-              parseTimestamp(a.createdAt)?.getTime() ||
-              0;
-            const bTime =
-              b.tripDepartureDate?.getTime() ||
-              parseTimestamp(b.createdAt)?.getTime() ||
-              0;
+            const aTime = a.tripDepartureDate?.getTime() || parseTimestamp(a.createdAt)?.getTime() || 0;
+            const bTime = b.tripDepartureDate?.getTime() || parseTimestamp(b.createdAt)?.getTime() || 0;
             return bTime - aTime;
           });
-
         setBookings(enriched);
       } catch {
-        setLoadError(
-          t(
-            "تعذر تحميل رحلاتك حالياً.",
-            "Unable to load your trips right now."
-          )
-        );
+        setLoadError(t("تعذر تحميل رحلاتك حالياً.", "Unable to load your trips right now."));
       } finally {
         setLoading(false);
       }
     }
-
     fetchBookings();
   }, [authLoading, userData?.uid, t]);
 
@@ -157,64 +162,72 @@ export default function MyTripsPage() {
   const filteredBookings = tab === "upcoming" ? upcomingBookings : pastBookings;
 
   return (
-    <div className="sacred-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
-      {/* Header */}
-      <div className="sacred-pattern border-b border-surface-border bg-white/78 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/74 sm:pt-12">
-        <Container>
-          <div className="flex items-center gap-3">
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-600 to-stone-800 text-white shadow-md sm:h-11 sm:w-11">
-              <Plane className="h-5 w-5" />
+    <div className="min-h-screen bg-[#F5F7FA] dark:bg-slate-900">
+
+      {/* ─── Hero Header ─── */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500">
+        {/* Ambient orbs */}
+        <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-blue-400/20 blur-2xl" />
+        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-amber-400/10 blur-3xl" />
+
+        <Container className="relative pb-16 pt-10 sm:pt-12">
+          <div className="flex items-center gap-3.5">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 shadow-lg backdrop-blur-sm ring-1 ring-white/20">
+              <Plane className="h-5.5 w-5.5 h-[1.375rem] w-[1.375rem] text-white" />
             </div>
             <div>
-              <h1 className="sacred-title text-heading-lg font-bold text-stone-900 dark:text-white sm:text-display-md">
+              <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 {t("رحلاتي", "My Trips")}
               </h1>
               {!loading && bookings.length > 0 && (
-                <p className="text-body-sm text-stone-500 dark:text-stone-400">
-                  {bookings.length}{" "}
-                  {t("حجز إجمالي", "total bookings")}
+                <p className="mt-0.5 text-sm text-blue-100/80">
+                  {bookings.length} {t("حجز إجمالي", "total bookings")}
                 </p>
               )}
             </div>
           </div>
-
-          {/* Tabs */}
-          <div className="mt-4 flex gap-2 sm:mt-5">
-            {(["upcoming", "past"] as const).map((tabKey) => {
-              const count =
-                tabKey === "upcoming"
-                  ? upcomingBookings.length
-                  : pastBookings.length;
-              return (
-                <button
-                  key={tabKey}
-                  onClick={() => setTab(tabKey)}
-                  className={`rounded-full border border-stone-300 bg-white text-stone-600 transition-colors hover:border-teal-300 hover:bg-teal-50 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300 dark:hover:border-teal-600 dark:hover:bg-stone-700 flex items-center gap-1.5 px-4 py-2 text-body-sm font-medium ${
-                    tab === tabKey ? "bg-teal-600 text-white border-teal-600 dark:bg-teal-500 dark:border-teal-500" : ""
-                  }`}
-                >
-                  {tabKey === "upcoming"
-                    ? t("القادمة", "Upcoming")
-                    : t("السابقة", "Past")}
-                  {!loading && count > 0 && (
-                    <span
-                      className={`inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[10px] font-bold ${
-                        tab === tabKey
-                          ? "bg-white/20 text-white"
-                          : "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
-                      }`}
-                    >
-                      {count}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
         </Container>
+
+        {/* ─── Tab bar attached to bottom of hero ─── */}
+        <div className="relative">
+          <Container>
+            <div className="flex gap-1">
+              {(["upcoming", "past"] as const).map((tabKey) => {
+                const count = tabKey === "upcoming" ? upcomingBookings.length : pastBookings.length;
+                const isActive = tab === tabKey;
+                return (
+                  <button
+                    key={tabKey}
+                    onClick={() => setTab(tabKey)}
+                    className={`relative flex items-center gap-2 rounded-t-xl px-5 pb-3.5 pt-2.5 text-[0.9375rem] font-semibold transition-all duration-200 ${
+                      isActive
+                        ? "bg-[#F5F7FA] text-blue-600 dark:bg-slate-900 dark:text-blue-400"
+                        : "text-white/70 hover:text-white"
+                    }`}
+                  >
+                    {tabKey === "upcoming" ? t("القادمة", "Upcoming") : t("السابقة", "Past")}
+                    {!loading && count > 0 && (
+                      <span
+                        className={`inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full px-1.5 text-[10px] font-bold ${
+                          isActive
+                            ? "bg-blue-600 text-white dark:bg-blue-500"
+                            : "bg-white/20 text-white"
+                        }`}
+                      >
+                        {count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </Container>
+        </div>
       </div>
 
-      <Container className="py-6">
+      {/* ─── Content ─── */}
+      <Container className="py-5">
         {loading ? (
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, i) => (
@@ -224,16 +237,7 @@ export default function MyTripsPage() {
         ) : filteredBookings.length > 0 ? (
           <div className="space-y-3">
             {filteredBookings.map((booking, i) => {
-              const statusInfo =
-                statusLabels[booking.status] || statusLabels.confirmed;
-              const accentClass =
-                booking.status === "confirmed"
-                  ? "bg-success/85"
-                  : booking.status === "pending_payment"
-                    ? "bg-warning/85"
-                    : booking.status === "cancelled"
-                      ? "bg-error/85"
-                      : "bg-info/85";
+              const status = statusConfig[booking.status] || statusConfig.confirmed;
               const departureLabel = booking.tripDepartureDate
                 ? formatDate(booking.tripDepartureDate)
                 : t("غير محدد", "Not set");
@@ -242,75 +246,81 @@ export default function MyTripsPage() {
                 <div
                   key={booking.id}
                   className="animate-stagger-fade-up"
-                  style={
-                    {
-                      "--stagger-delay": `${i * 50}ms`,
-                    } as React.CSSProperties
-                  }
+                  style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
                 >
-                  <Card
-                    variant="elevated"
-                    padding="md"
-                    hoverable
-                    onClick={() =>
-                      router.push(`/app/my-trips/${booking.id}`)
-                    }
-                    className="relative overflow-hidden"
+                  <button
+                    type="button"
+                    onClick={() => router.push(`/app/my-trips/${booking.id}`)}
+                    className="group w-full overflow-hidden rounded-2xl border border-gray-100/80 bg-white text-start shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)] hover:-translate-y-0.5 dark:border-slate-700/60 dark:bg-slate-800/90"
                   >
-                    <span
-                      className={`absolute inset-y-2 start-0 w-1 rounded-full ${accentClass}`}
-                    />
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <div className="hidden h-14 w-14 items-center justify-center rounded-[var(--radius-lg)] bg-stone-100 dark:bg-stone-800 sm:flex">
-                        <MapPin className="h-6 w-6 text-stone-500" />
+                    {/* Coloured top accent line */}
+                    <div className={`h-0.5 w-full ${status.dot}`} />
+
+                    <div className="flex items-center gap-4 p-4 sm:p-5">
+                      {/* Status icon bubble */}
+                      <div
+                        className={`hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl sm:flex ${status.bg} ring-1 ${status.border}`}
+                      >
+                        <span className={status.color}>{status.icon}</span>
                       </div>
+
+                      {/* Details */}
                       <div className="min-w-0 flex-1">
-                        <h3 className="truncate text-body-md font-semibold text-stone-900 dark:text-white sm:text-body-lg">
+                        <h3 className="truncate text-[0.9375rem] font-semibold text-gray-900 dark:text-white">
                           {booking.tripTitle}
                         </h3>
-                        <div className="mt-1 flex flex-wrap items-center gap-2 text-body-sm text-stone-500 sm:gap-3">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3.5 w-3.5" />{" "}
+                        <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                          <span className="flex items-center gap-1.5 text-[0.8125rem] text-gray-500 dark:text-slate-400">
+                            <Calendar className="h-3.5 w-3.5 shrink-0" />
                             {departureLabel}
                           </span>
-                          <Badge variant={statusInfo.variant} size="sm">
-                            {language === "ar"
-                              ? statusInfo.ar
-                              : statusInfo.en}
-                          </Badge>
+                          <span
+                            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${status.bg} ${status.color} ring-1 ${status.border}`}
+                          >
+                            <span className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
+                            {language === "ar" ? status.ar : status.en}
+                          </span>
                         </div>
                       </div>
+
+                      {/* Price + chevron */}
                       <div className="shrink-0 text-end">
-                        <p className="text-body-sm font-bold text-stone-900 dark:text-white sm:text-body-md">
+                        <p className="font-numbers text-[0.9375rem] font-bold text-gray-900 dark:text-white">
                           {formatKWD(booking.totalKWD)}
                         </p>
-                        <ChevronLeft className="ms-auto mt-1 h-4 w-4 text-stone-400 rtl:rotate-180" />
+                        <ChevronLeft className="ms-auto mt-2 h-4 w-4 text-gray-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-slate-500" />
                       </div>
                     </div>
-                  </Card>
+                  </button>
                 </div>
               );
             })}
           </div>
         ) : (
-          <EmptyState
-            icon={<MapIcon className="h-16 w-16" />}
-            title={t("لا توجد رحلات", "No Trips Yet")}
-            description={t(
-              "ابدأ بتصفح الرحلات المتاحة واحجز رحلتك القادمة",
-              "Browse available trips and make your first booking"
-            )}
-            action={{
-              label: t("تصفح الرحلات", "Explore Trips"),
-              onClick: () => router.push("/app/discover"),
-            }}
-          />
+          <div className="py-10">
+            <EmptyState
+              icon={<Plane className="h-14 w-14 text-gray-200 dark:text-slate-600" />}
+              title={t("لا توجد رحلات", "No Trips Yet")}
+              description={
+                tab === "upcoming"
+                  ? t(
+                      "احجز رحلتك القادمة وابدأ رحلتك",
+                      "Book your next trip and start your journey"
+                    )
+                  : t("لم تكمل أي رحلات بعد", "You haven't completed any trips yet")
+              }
+              action={{
+                label: t("تصفح الرحلات", "Explore Trips"),
+                onClick: () => router.push("/app/discover"),
+              }}
+            />
+          </div>
         )}
 
         {loadError && (
-          <p className="mt-4 text-center text-body-sm text-error">
-            {loadError}
-          </p>
+          <div className="mt-4 rounded-2xl border border-red-100 bg-red-50 p-4 text-center dark:border-red-900/30 dark:bg-red-900/10">
+            <p className="text-sm text-red-600 dark:text-red-400">{loadError}</p>
+          </div>
         )}
       </Container>
     </div>
