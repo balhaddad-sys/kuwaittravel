@@ -72,6 +72,7 @@ export default function DiscoverPage() {
       try {
         const tripConstraints: QueryConstraint[] = [
           where("status", "in", Array.from(DISCOVERABLE_TRIP_STATUSES)),
+          where("adminApproved", "==", true),
           limit(36),
         ];
         const campaignConstraints: QueryConstraint[] = [
@@ -463,7 +464,11 @@ export default function DiscoverPage() {
                   {t("حملات موثوقة", "Trusted Campaigns")}
                 </h2>
               </div>
-              <button className="flex items-center gap-1 text-body-sm font-medium text-stone-500 transition-colors hover:text-stone-700 dark:hover:text-stone-100">
+              <button
+                type="button"
+                onClick={() => router.push("/app/discover?view=campaigns")}
+                className="flex items-center gap-1 text-body-sm font-medium text-stone-500 transition-colors hover:text-stone-700 dark:hover:text-stone-100"
+              >
                 {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
               </button>
             </div>
