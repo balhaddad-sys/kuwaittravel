@@ -72,27 +72,43 @@ export async function deleteDocument(
 export function onDocumentChange<T>(
   collectionName: string,
   docId: string,
-  callback: (data: T | null) => void
+  callback: (data: T | null) => void,
+  onError?: (error: Error) => void
 ): Unsubscribe {
   const ref = doc(getFirebaseDb(), collectionName, docId);
-  return onSnapshot(ref, (snap) => {
-    if (!snap.exists()) {
-      callback(null);
-      return;
+  return onSnapshot(
+    ref,
+    (snap) => {
+      if (!snap.exists()) {
+        callback(null);
+        return;
+      }
+      callback({ id: snap.id, ...snap.data() } as T);
+    },
+    (err) => {
+      console.error(`[Firestore] ${collectionName}/${docId} listener error:`, err);
+      onError?.(err);
     }
-    callback({ id: snap.id, ...snap.data() } as T);
-  });
+  );
 }
 
 export function onCollectionChange<T>(
   collectionName: string,
   constraints: QueryConstraint[],
-  callback: (data: T[]) => void
+  callback: (data: T[]) => void,
+  onError?: (error: Error) => void
 ): Unsubscribe {
   const ref = collection(getFirebaseDb(), collectionName);
   const q = constraints.length > 0 ? query(ref, ...constraints) : query(ref);
-  return onSnapshot(q, (snap) => {
-    const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as T);
-    callback(items);
-  });
+  return onSnapshot(
+    q,
+    (snap) => {
+      const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as T);
+      callback(items);
+    },
+    (err) => {
+      console.error(`[Firestore] ${collectionName} listener error:`, err);
+      onError?.(err);
+    }
+  );
 }

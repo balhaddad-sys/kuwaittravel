@@ -74,14 +74,25 @@ export default function AdminCampaignsPage() {
   // Action loading
   const [actionLoading, setActionLoading] = useState(false);
 
-  // Real-time subscription
+  // Real-time subscription — wait for auth before subscribing
   useEffect(() => {
-    const unsub = onCollectionChange<Campaign>(COLLECTIONS.CAMPAIGNS, [], (data) => {
-      setCampaigns(data);
-      setLoadingData(false);
-    });
+    if (!firebaseUser) return;
+    setLoadingData(true);
+    const unsub = onCollectionChange<Campaign>(
+      COLLECTIONS.CAMPAIGNS,
+      [],
+      (data) => {
+        setCampaigns(data);
+        setLoadingData(false);
+      },
+      (err) => {
+        console.error("Campaigns listener failed:", err);
+        setLoadingData(false);
+        toast({ type: "error", title: t("تعذر تحميل الحملات", "Failed to load campaigns") });
+      }
+    );
     return unsub;
-  }, []);
+  }, [firebaseUser]);
 
   // Filtered + searched campaigns
   const filtered = useMemo(() => {

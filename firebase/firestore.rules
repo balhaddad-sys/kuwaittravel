@@ -174,10 +174,11 @@ service cloud.firestore {
       }
     }
 
-    // ── Audit Logs (immutable) ────────────────────────────────────────
+    // ── Audit Logs (append-only for admins) ────────────────────────────
     match /audit_logs/{logId} {
       allow read: if isAdmin();
-      allow write: if false;
+      allow create: if isAdmin();
+      allow update, delete: if false;
     }
   }
 }
