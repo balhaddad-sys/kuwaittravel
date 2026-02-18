@@ -57,30 +57,30 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
         aria-labelledby={title ? "modal-title" : undefined}
       >
         {(title || description) && (
-          <div className="shrink-0 flex items-start justify-between p-6 pb-0">
-            <div>
+          <div className="shrink-0 flex items-start justify-between gap-3 px-4 pt-4 sm:px-6 sm:pt-6">
+            <div className="min-w-0">
               {title && (
-                <h2 id="modal-title" className="text-heading-md font-bold text-stone-900 dark:text-white">
+                <h2 id="modal-title" className="text-heading-sm sm:text-heading-md font-bold text-stone-900 dark:text-white truncate">
                   {title}
                 </h2>
               )}
               {description && (
-                <p className="mt-1 text-body-md text-stone-500 dark:text-stone-400">
+                <p className="mt-1 text-body-sm sm:text-body-md text-stone-500 dark:text-stone-400 truncate">
                   {description}
                 </p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-surface-dark-border transition-colors"
+              className="shrink-0 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-surface-dark-border transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
         )}
-        {children !== undefined && children !== null && <div className="overflow-y-auto p-6">{children}</div>}
+        {children !== undefined && children !== null && <div className="overflow-y-auto px-4 py-4 sm:px-6 sm:py-6">{children}</div>}
         {footer && (
-          <div className="shrink-0 flex items-center justify-end gap-2 border-t border-surface-border/85 px-6 py-4 dark:border-surface-dark-border/85">
+          <div className="shrink-0 flex items-center justify-end gap-2 border-t border-surface-border/85 px-4 py-3 sm:px-6 sm:py-4 dark:border-surface-dark-border/85">
             {footer}
           </div>
         )}

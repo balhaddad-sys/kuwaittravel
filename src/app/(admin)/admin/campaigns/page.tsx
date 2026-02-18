@@ -246,7 +246,7 @@ export default function AdminCampaignsPage() {
         ) : filtered.length === 0 ? (
           <Card variant="elevated" padding="none">
             <EmptyState
-              icon={<Building2 className="h-16 w-16" />}
+              icon={<Building2 className="h-10 w-10 sm:h-16 sm:w-16" />}
               title={t("لا توجد حملات", "No campaigns")}
               description={
                 filter !== "all"
@@ -265,27 +265,27 @@ export default function AdminCampaignsPage() {
                 className="cursor-pointer transition-shadow hover:shadow-lg"
                 onClick={() => setSelectedId(campaign.id)}
               >
-                <div className="flex items-center gap-4 p-4">
+                <div className="flex items-start gap-3 p-3 sm:items-center sm:gap-4 sm:p-4">
                   <div className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700">
                     <Building2 className="h-6 w-6 text-stone-600 dark:text-stone-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-body-md font-bold text-stone-900 dark:text-white truncate">
+                    <div className="flex items-start sm:items-center gap-2 flex-wrap">
+                      <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white truncate">
                         {campaign.nameAr}
                       </h3>
                       <VerificationChip status={campaign.verificationStatus} />
                     </div>
-                    <p className="text-body-sm text-stone-500 truncate" dir="ltr">
+                    <p className="text-xs sm:text-body-sm text-stone-500 truncate" dir="ltr">
                       {campaign.name}
                     </p>
-                    <div className="flex items-center gap-3 mt-1 text-body-sm text-stone-400">
+                    <div className="flex items-center gap-2 sm:gap-3 mt-1 text-xs sm:text-body-sm text-stone-400 flex-wrap">
                       <span className="flex items-center gap-1">
-                        <FileText className="h-3.5 w-3.5" />
+                        <FileText className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                         {campaign.licenseNumber}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Phone className="h-3.5 w-3.5" />
+                        <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                         <span dir="ltr">{formatPhone(campaign.contactPhone)}</span>
                       </span>
                       <span className="hidden sm:inline">{getCreatedDate(campaign)}</span>
@@ -337,7 +337,7 @@ export default function AdminCampaignsPage() {
         }
       >
         {selected && (
-          <div className="space-y-5 -mt-2">
+          <div className="space-y-3 sm:space-y-5 -mt-1 sm:-mt-2">
             {/* Status banner */}
             {selected.verificationStatus === "rejected" && selected.rejectionReason && (
               <AlertBanner
@@ -354,29 +354,29 @@ export default function AdminCampaignsPage() {
             )}
 
             {/* Organization */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
-                <Building2 className="h-4 w-4 text-amber-500" />
+            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+                <Building2 className="h-4 w-4 text-amber-500 shrink-0" />
                 {t("بيانات المنظمة", "Organization")}
               </h4>
               <dl className="space-y-2 text-body-sm">
-                <div className="flex justify-between">
-                  <dt className="text-stone-500">{t("الاسم بالعربي", "Name (AR)")}</dt>
+                <div>
+                  <dt className="text-stone-500 text-xs">{t("الاسم بالعربي", "Name (AR)")}</dt>
                   <dd className="font-medium text-stone-900 dark:text-white">{selected.nameAr}</dd>
                 </div>
-                <div className="flex justify-between">
-                  <dt className="text-stone-500">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
+                <div>
+                  <dt className="text-stone-500 text-xs">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
                   <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{selected.name}</dd>
                 </div>
                 {selected.descriptionAr && (
                   <div>
-                    <dt className="text-stone-500 mb-1">{t("الوصف", "Description")}</dt>
+                    <dt className="text-stone-500 text-xs mb-0.5">{t("الوصف", "Description")}</dt>
                     <dd className="text-stone-700 dark:text-stone-400">{selected.descriptionAr}</dd>
                   </div>
                 )}
                 {selected.description && (
                   <div>
-                    <dt className="text-stone-500 mb-1">{t("الوصف بالإنجليزي", "Description (EN)")}</dt>
+                    <dt className="text-stone-500 text-xs mb-0.5">{t("الوصف بالإنجليزي", "Description (EN)")}</dt>
                     <dd className="text-stone-700 dark:text-stone-400" dir="ltr">{selected.description}</dd>
                   </div>
                 )}
@@ -384,25 +384,25 @@ export default function AdminCampaignsPage() {
             </div>
 
             {/* Legal Documents */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
-                <FileText className="h-4 w-4 text-amber-500" />
+            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+                <FileText className="h-4 w-4 text-amber-500 shrink-0" />
                 {t("الوثائق الرسمية", "Legal Documents")}
               </h4>
               <dl className="space-y-2 text-body-sm">
-                <div className="flex justify-between">
-                  <dt className="text-stone-500">{t("رقم الترخيص", "License No.")}</dt>
+                <div>
+                  <dt className="text-stone-500 text-xs">{t("رقم الترخيص", "License No.")}</dt>
                   <dd className="font-medium text-stone-900 dark:text-white">{selected.licenseNumber}</dd>
                 </div>
                 {selected.commercialRegNumber && (
-                  <div className="flex justify-between">
-                    <dt className="text-stone-500">{t("السجل التجاري", "Comm. Reg.")}</dt>
+                  <div>
+                    <dt className="text-stone-500 text-xs">{t("السجل التجاري", "Comm. Reg.")}</dt>
                     <dd className="font-medium text-stone-900 dark:text-white">{selected.commercialRegNumber}</dd>
                   </div>
                 )}
                 {selected.licenseImageUrl && (
-                  <div className="flex justify-between items-center">
-                    <dt className="text-stone-500">{t("صورة الترخيص", "License Image")}</dt>
+                  <div>
+                    <dt className="text-stone-500 text-xs">{t("صورة الترخيص", "License Image")}</dt>
                     <dd>
                       <a
                         href={selected.licenseImageUrl}
@@ -420,32 +420,32 @@ export default function AdminCampaignsPage() {
             </div>
 
             {/* Contact */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
-                <Phone className="h-4 w-4 text-amber-500" />
+            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+                <Phone className="h-4 w-4 text-amber-500 shrink-0" />
                 {t("بيانات التواصل", "Contact Info")}
               </h4>
               <dl className="space-y-2 text-body-sm">
-                <div className="flex justify-between">
-                  <dt className="text-stone-500 flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {t("الهاتف", "Phone")}</dt>
+                <div>
+                  <dt className="text-stone-500 text-xs flex items-center gap-1"><Phone className="h-3 w-3" /> {t("الهاتف", "Phone")}</dt>
                   <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{formatPhone(selected.contactPhone)}</dd>
                 </div>
                 {selected.contactEmail && (
-                  <div className="flex justify-between">
-                    <dt className="text-stone-500 flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {t("البريد", "Email")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{selected.contactEmail}</dd>
+                  <div>
+                    <dt className="text-stone-500 text-xs flex items-center gap-1"><Mail className="h-3 w-3" /> {t("البريد", "Email")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">{selected.contactEmail}</dd>
                   </div>
                 )}
                 {selected.website && (
-                  <div className="flex justify-between">
-                    <dt className="text-stone-500 flex items-center gap-1"><Globe className="h-3.5 w-3.5" /> {t("الموقع", "Website")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{selected.website}</dd>
+                  <div>
+                    <dt className="text-stone-500 text-xs flex items-center gap-1"><Globe className="h-3 w-3" /> {t("الموقع", "Website")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">{selected.website}</dd>
                   </div>
                 )}
                 {(selected.socialMedia?.instagram || selected.socialMedia?.whatsapp) && (
-                  <div className="flex justify-between">
-                    <dt className="text-stone-500">{t("التواصل الاجتماعي", "Social")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">
+                  <div>
+                    <dt className="text-stone-500 text-xs">{t("التواصل الاجتماعي", "Social")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">
                       {[selected.socialMedia.instagram, selected.socialMedia.whatsapp].filter(Boolean).join(" · ")}
                     </dd>
                   </div>
@@ -454,24 +454,24 @@ export default function AdminCampaignsPage() {
             </div>
 
             {/* Status info */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-md font-bold text-stone-900 dark:text-white mb-3 flex items-center gap-2">
-                <ShieldAlert className="h-4 w-4 text-amber-500" />
+            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+                <ShieldAlert className="h-4 w-4 text-amber-500 shrink-0" />
                 {t("حالة التحقق", "Verification Status")}
               </h4>
               <dl className="space-y-2 text-body-sm">
-                <div className="flex justify-between items-center">
-                  <dt className="text-stone-500">{t("الحالة", "Status")}</dt>
-                  <dd><VerificationChip status={selected.verificationStatus} /></dd>
+                <div>
+                  <dt className="text-stone-500 text-xs">{t("الحالة", "Status")}</dt>
+                  <dd className="mt-0.5"><VerificationChip status={selected.verificationStatus} /></dd>
                 </div>
-                <div className="flex justify-between">
-                  <dt className="text-stone-500">{t("تاريخ التسجيل", "Registered")}</dt>
+                <div>
+                  <dt className="text-stone-500 text-xs">{t("تاريخ التسجيل", "Registered")}</dt>
                   <dd className="font-medium text-stone-900 dark:text-white">{getCreatedDate(selected)}</dd>
                 </div>
                 {selected.verifiedBy && (
-                  <div className="flex justify-between">
-                    <dt className="text-stone-500">{t("تم التحقق بواسطة", "Verified By")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white">{selected.verifiedBy}</dd>
+                  <div>
+                    <dt className="text-stone-500 text-xs">{t("تم التحقق بواسطة", "Verified By")}</dt>
+                    <dd className="font-medium text-stone-900 dark:text-white truncate">{selected.verifiedBy}</dd>
                   </div>
                 )}
               </dl>
