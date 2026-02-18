@@ -111,8 +111,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <LanguageToggle />
         </header>
 
-        <main className="flex flex-1 items-center justify-center px-5 py-8 sm:px-8">
-          <div className="w-full max-w-[420px]">
+        <main className="flex flex-1 items-start justify-center px-4 py-6 sm:items-center sm:px-8 sm:py-8">
+          <div className="w-full max-w-[480px]">
             <PageTransition variant="auth">{children}</PageTransition>
           </div>
         </main>
