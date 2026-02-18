@@ -11,7 +11,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="relative min-h-screen overflow-hidden px-4 py-4 sm:px-8 sm:py-6">
       {/* Warm travel background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#FAFAF9] via-[#FEFCF8] to-[#FFFBEB] dark:from-[#0C1222] dark:via-[#101828] dark:to-[#0C1222]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-amber-50/40 dark:from-[#0C1222] dark:via-[#101828] dark:to-[#0C1222]" />
       <div className="absolute left-0 top-0 h-[50%] w-[60%] bg-gradient-to-br from-teal-100/30 to-transparent dark:from-teal-900/10" />
       <div className="absolute bottom-0 right-0 h-[40%] w-[50%] bg-gradient-to-tl from-amber-100/25 to-transparent dark:from-amber-900/8" />
 

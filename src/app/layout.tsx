@@ -32,8 +32,8 @@ const initUiScript = `
     document.documentElement.lang = language;
     document.documentElement.dir = resolvedDir;
 
-    const theme = localStorage.getItem("theme") || "system";
-    const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const theme = localStorage.getItem("theme") || "light";
+    const isDark = theme === "dark";
     document.documentElement.classList.toggle("dark", isDark);
   } catch {
     document.documentElement.lang = "ar";

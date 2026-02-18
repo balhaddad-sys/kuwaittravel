@@ -299,7 +299,7 @@
 
   .sacred-panel {
     border: 1px solid color-mix(in srgb, var(--color-surface-border) 88%, white);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(250, 248, 244, 0.95));
+    background: linear-gradient(180deg, #FFFFFF, #FAFAFA);
     box-shadow: var(--shadow-card);
     border-radius: var(--radius-card);
     backdrop-filter: blur(10px);
@@ -308,12 +308,12 @@
   .dark .sacred-panel {
     border-color: color-mix(in srgb, var(--color-surface-dark-border) 84%, #1E3A8A 16%);
     background: linear-gradient(180deg, rgba(18, 25, 38, 0.95), rgba(10, 14, 23, 0.94));
-    box-shadow: 0 26px 48px -30px rgba(0, 0, 0, 0.82);
+    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.4);
   }
 
   .sacred-card {
     border: 1px solid color-mix(in srgb, var(--color-surface-border) 82%, white);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 248, 244, 0.92));
+    background: linear-gradient(180deg, #FFFFFF, #FAFAFA);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
     transition:
@@ -335,7 +335,7 @@
   }
 
   .sacred-glass {
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(250, 248, 244, 0.72));
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(250, 250, 250, 0.8));
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid color-mix(in srgb, var(--color-surface-border) 55%, white);
