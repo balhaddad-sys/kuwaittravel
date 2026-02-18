@@ -383,7 +383,7 @@
   }
 
   .sacred-gradient-hero {
-    background: linear-gradient(180deg, #2563EB 0%, #3B82F6 60%, #60A5FA 100%);
+    background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 60%, #FFFBEB 100%);
     position: relative;
     overflow: hidden;
   }
@@ -472,7 +472,7 @@
     background: linear-gradient(180deg, rgba(18, 25, 38, 0.96), rgba(10, 14, 23, 0.92));
   }
   .travel-gradient-hero {
-    background: linear-gradient(180deg, #2563EB 0%, #3B82F6 60%, #60A5FA 100%);
+    background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 60%, #FFFBEB 100%);
     position: relative;
     overflow: hidden;
   }

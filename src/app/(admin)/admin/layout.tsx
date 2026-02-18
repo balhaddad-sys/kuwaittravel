@@ -57,22 +57,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-400/30 bg-amber-500 text-sm font-bold text-white shadow-sm">
               <Shield className="h-4 w-4" />
             </div>
-            <span className="text-heading-sm font-bold text-white">
+            <span className="text-heading-sm font-bold text-stone-900 dark:text-white">
               {t("المشرف العام", "Admin Console")}
             </span>
           </div>
         }
         footer={
           <div className="space-y-1.5">
-            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-white/35">
+            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-stone-400 dark:text-stone-500">
               {t("التبديل إلى", "Switch to")}
             </p>
-            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-white/60 transition-colors hover:bg-white/8 hover:text-white/90">
-              <Compass className="h-4 w-4 text-amber-400" />
+            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-stone-500 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200">
+              <Compass className="h-4 w-4 text-blue-600 dark:text-blue-400" />
               {t("المسافرون", "Travelers")}
             </Link>
-            <Link href="/portal/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-white/60 transition-colors hover:bg-white/8 hover:text-white/90">
-              <PlaneTakeoff className="h-4 w-4 text-amber-400" />
+            <Link href="/portal/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-stone-500 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200">
+              <PlaneTakeoff className="h-4 w-4 text-blue-600 dark:text-blue-400" />
               {t("بوابة الحملات", "Campaign Portal")}
             </Link>
           </div>
