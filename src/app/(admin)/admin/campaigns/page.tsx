@@ -201,7 +201,7 @@ export default function AdminCampaignsPage() {
         ]}
       />
 
-      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="sacred-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3">
           <SearchInput
@@ -209,7 +209,7 @@ export default function AdminCampaignsPage() {
             onSearch={setSearch}
             className="flex-1"
           />
-          <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {filterChips.map((f) => (
               <button
                 key={f.value}

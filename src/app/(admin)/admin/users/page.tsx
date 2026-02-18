@@ -16,9 +16,9 @@ export default function UsersPage() {
   return (
     <>
       <AppBar title={t("إدارة المستخدمين", "User Management")} breadcrumbs={[{ label: t("المشرف العام", "Admin"), href: "/admin/dashboard" }, { label: t("المستخدمون", "Users") }]} />
-      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="sacred-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
         <SearchInput placeholder={t("ابحث بالاسم أو رقم الهاتف...", "Search by name or phone number...")} onSearch={() => {}} />
-        <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
             { value: "all", label: t("الكل", "All") },
             { value: "traveler", label: t("مسافر", "Traveler") },

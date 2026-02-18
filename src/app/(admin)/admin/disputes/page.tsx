@@ -15,8 +15,8 @@ export default function DisputesPage() {
   return (
     <>
       <AppBar title={t("إدارة النزاعات", "Manage Disputes")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("النزاعات", "Disputes") }]} />
-      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
-        <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <Container className="sacred-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
+        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
             { value: "all", label: t("الكل", "All") },
             { value: "open", label: t("مفتوحة", "Open") },
