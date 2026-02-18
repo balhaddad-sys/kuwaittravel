@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
@@ -41,7 +40,6 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
-    // Validate Kuwait phone number: 8 digits, starts with 5, 6, or 9
     const digits = phone.replace(/\D/g, "");
     if (!/^[569]\d{7}$/.test(digits)) {
       setError(t("يرجى إدخال رقم هاتف كويتي صحيح (8 أرقام).", "Please enter a valid Kuwaiti phone number (8 digits)."));
@@ -68,7 +66,6 @@ export default function LoginPage() {
     setGoogleLoading(true);
     try {
       await signInWithGoogle();
-      // After popup closes, check if user has a Firestore profile
       const { getFirebaseAuth } = await import("@/lib/firebase/config");
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
@@ -92,19 +89,22 @@ export default function LoginPage() {
   return (
     <>
       <div id="recaptcha-container" />
-      <Card variant="elevated" padding="lg" className="sacred-pattern overflow-hidden">
-        <div className="text-center mb-6 sm:mb-8">
-          <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-blue-200 bg-blue-600 shadow-[0_0_0_6px_rgba(37,99,235,0.1)]">
-            <Phone className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
-          </div>
-          <h1 className="text-heading-lg font-bold text-stone-900 dark:text-white">
-            {t("مرحباً بك", "Welcome")}
-          </h1>
-          <p className="mt-2 text-body-md text-stone-500">
-            {t("سجّل الدخول للمتابعة", "Sign in to continue")}
-          </p>
-        </div>
 
+      {/* Header */}
+      <div className="mb-8">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 shadow-[0_4px_14px_rgba(37,99,235,0.35)]">
+          <Phone className="h-6 w-6 text-white" />
+        </div>
+        <h1 className="text-2xl font-bold text-gray-900">
+          {t("مرحباً بك في رحال", "Welcome to Rahal")}
+        </h1>
+        <p className="mt-1.5 text-sm text-gray-500">
+          {t("سجّل الدخول للوصول إلى رحلاتك", "Sign in to access your trips")}
+        </p>
+      </div>
+
+      {/* Card */}
+      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.06)]">
         {/* Google Sign-In */}
         <Button
           type="button"
@@ -113,39 +113,46 @@ export default function LoginPage() {
           size="lg"
           loading={googleLoading}
           onClick={handleGoogleSignIn}
-          className="mb-4 border-surface-border/90 bg-white/92 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]"
         >
-          <GoogleIcon className="h-5 w-5 me-2" />
-          {t("الدخول بحساب Google", "Continue with Google")}
+          <GoogleIcon className="h-5 w-5" />
+          {t("المتابعة بحساب Google", "Continue with Google")}
         </Button>
 
         {/* Divider */}
-        <div className="relative my-6">
+        <div className="relative my-5">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-stone-200 dark:border-stone-700" />
+            <div className="w-full border-t border-gray-200" />
           </div>
-          <div className="relative flex justify-center text-body-sm">
-            <span className="bg-white dark:bg-stone-800 px-3 text-stone-400">{t("أو", "or")}</span>
+          <div className="relative flex justify-center text-xs">
+            <span className="bg-white px-3 text-gray-400">{t("أو عبر رقم الهاتف", "or via phone number")}</span>
           </div>
         </div>
 
         {/* Phone Sign-In */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            label={t("رقم الهاتف", "Phone Number")}
+            label={t("رقم الهاتف الكويتي", "Kuwait Phone Number")}
             placeholder={t("9XXXXXXX", "5XXXXXXX")}
             type="tel"
             dir="ltr"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            leftAddon={<span className="text-body-sm font-medium">+965</span>}
+            leftAddon={<span className="text-sm font-semibold text-gray-500">+965</span>}
             error={error}
           />
           <Button type="submit" fullWidth loading={loading} size="lg">
             {t("إرسال رمز التحقق", "Send Verification Code")}
           </Button>
         </form>
-      </Card>
+      </div>
+
+      {/* Privacy note */}
+      <p className="mt-5 text-center text-xs text-gray-400">
+        {t(
+          "بالمتابعة، أنت توافق على شروط الاستخدام وسياسة الخصوصية.",
+          "By continuing, you agree to our Terms of Service and Privacy Policy."
+        )}
+      </p>
     </>
   );
 }

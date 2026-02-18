@@ -9,14 +9,14 @@ interface BadgeProps {
 }
 
 const variantMap = {
-  default: "bg-stone-100/75 text-stone-700 border border-stone-200/80 dark:bg-stone-900/45 dark:text-stone-200 dark:border-stone-700/70",
-  success: "bg-success-light text-green-800 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800/60",
-  warning: "bg-warning-light text-orange-800 border border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800/60",
-  error: "bg-error-light text-red-800 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
-  info: "bg-info-light text-sky-800 border border-sky-200 dark:bg-sky-900/30 dark:text-sky-400 dark:border-sky-800/60",
-  teal: "bg-teal-50 text-teal-800 border border-teal-200 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-800/60",
-  amber: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(235,218,184,0.7),rgba(251,247,240,0.95),rgba(212,184,124,0.6),rgba(251,247,240,0.95))] dark:bg-[linear-gradient(110deg,rgba(92,70,38,0.34),rgba(118,91,50,0.22),rgba(147,116,66,0.28),rgba(118,91,50,0.22))]",
-  gold: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60 travel-gold-shimmer bg-[linear-gradient(110deg,rgba(235,218,184,0.7),rgba(251,247,240,0.95),rgba(212,184,124,0.6),rgba(251,247,240,0.95))] dark:bg-[linear-gradient(110deg,rgba(92,70,38,0.34),rgba(118,91,50,0.22),rgba(147,116,66,0.28),rgba(118,91,50,0.22))]",
+  default: "bg-gray-100 text-gray-700 border border-gray-200 dark:bg-slate-700/60 dark:text-slate-200 dark:border-slate-600",
+  success: "bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800/60",
+  warning: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/60",
+  error: "bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
+  info: "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800/60",
+  teal: "bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800/60",
+  amber: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60",
+  gold: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60",
 };
 
 const sizeMap = {

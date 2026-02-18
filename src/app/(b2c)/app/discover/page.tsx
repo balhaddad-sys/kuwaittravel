@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { TripCard } from "@/components/shared/TripCard";
 import { CampaignCard } from "@/components/shared/CampaignCard";
-import { CategoryPills } from "@/components/shared/CategoryPills";
 import { FilterSheet } from "@/components/shared/FilterSheet";
 import { SkeletonCard } from "@/components/ui/SkeletonCard";
 import { SearchInput } from "@/components/forms/SearchInput";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { useDirection } from "@/providers/DirectionProvider";
 import { useWishlist } from "@/hooks/useWishlist";
+import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import {
   Star,
   ArrowLeft,
@@ -21,6 +21,8 @@ import {
   SlidersHorizontal,
   X,
   Sparkles,
+  MapPin,
+  Search,
 } from "lucide-react";
 import { limit, where, type QueryConstraint } from "firebase/firestore";
 import { getDocuments } from "@/lib/firebase/firestore";
@@ -36,12 +38,12 @@ const DISCOVERABLE_TRIP_STATUSES = new Set([
   "in_progress",
 ]);
 
-const TRIP_TYPE_PILLS: { id: string; labelAr: string; labelEn: string; icon: React.ReactNode }[] = [
-  { id: "all", labelAr: "الكل", labelEn: "All", icon: <Compass className="h-3.5 w-3.5" /> },
-  { id: "hajj", labelAr: "حج", labelEn: "Hajj", icon: <Star className="h-3.5 w-3.5" /> },
-  { id: "umrah", labelAr: "عمرة", labelEn: "Umrah", icon: <Sparkles className="h-3.5 w-3.5" /> },
-  { id: "ziyarat", labelAr: "زيارة", labelEn: "Ziyarat", icon: <Globe2 className="h-3.5 w-3.5" /> },
-  { id: "combined", labelAr: "مشترك", labelEn: "Combined", icon: <Flame className="h-3.5 w-3.5" /> },
+const TRIP_TYPE_PILLS: { id: string; labelAr: string; labelEn: string; emoji: string }[] = [
+  { id: "all", labelAr: "الكل", labelEn: "All Trips", emoji: "🧭" },
+  { id: "hajj", labelAr: "حج", labelEn: "Hajj", emoji: "🕋" },
+  { id: "umrah", labelAr: "عمرة", labelEn: "Umrah", emoji: "✨" },
+  { id: "ziyarat", labelAr: "زيارة", labelEn: "Ziyarat", emoji: "🌿" },
+  { id: "combined", labelAr: "مشترك", labelEn: "Combined", emoji: "🌍" },
 ];
 
 const DEFAULT_FILTERS: TripFilterState = {
@@ -50,6 +52,19 @@ const DEFAULT_FILTERS: TripFilterState = {
   priceMax: null,
   destinations: [],
   searchQuery: "",
+};
+
+const DESTINATION_IMAGES: Record<string, string> = {
+  "مكة": "🕋",
+  "Mecca": "🕋",
+  "المدينة": "🌿",
+  "Madinah": "🌿",
+  "كربلاء": "⭐",
+  "Karbala": "⭐",
+  "النجف": "🌟",
+  "Najaf": "🌟",
+  "القدس": "🌙",
+  "Jerusalem": "🌙",
 };
 
 export default function DiscoverPage() {
@@ -68,7 +83,6 @@ export default function DiscoverPage() {
     async function fetchDiscoverData() {
       setLoading(true);
       setLoadError("");
-
       try {
         const tripConstraints: QueryConstraint[] = [
           where("status", "in", Array.from(DISCOVERABLE_TRIP_STATUSES)),
@@ -79,12 +93,10 @@ export default function DiscoverPage() {
           where("isActive", "==", true),
           limit(24),
         ];
-
         const [tripsData, campaignsData] = await Promise.all([
           getDocuments<Trip>(COLLECTIONS.TRIPS, tripConstraints),
           getDocuments<Campaign>(COLLECTIONS.CAMPAIGNS, campaignConstraints),
         ]);
-
         setTrips(tripsData);
         setCampaigns(campaignsData);
       } catch {
@@ -93,7 +105,6 @@ export default function DiscoverPage() {
         setLoading(false);
       }
     }
-
     fetchDiscoverData();
   }, []);
 
@@ -102,7 +113,6 @@ export default function DiscoverPage() {
     [campaigns]
   );
 
-  // Apply all filters (category + advanced + search)
   const filteredTrips = useMemo(() => {
     const normalizedSearch = filters.searchQuery.trim().toLowerCase();
     const activeType = selectedCategory && selectedCategory !== "all" ? selectedCategory as TripType : filters.tripType;
@@ -114,27 +124,19 @@ export default function DiscoverPage() {
         return aDate - bDate;
       })
       .filter((trip) => {
-        // Type filter
         if (activeType && trip.type !== activeType) return false;
-
-        // Price filter
         if (filters.priceMin !== null && trip.basePriceKWD < filters.priceMin) return false;
         if (filters.priceMax !== null && trip.basePriceKWD > filters.priceMax) return false;
-
-        // Destination filter
         if (filters.destinations.length > 0) {
           const tripCity = trip.destinations?.[0]?.city || "";
           if (!filters.destinations.includes(tripCity)) return false;
         }
-
-        // Search filter
         if (normalizedSearch) {
           const destination = trip.destinations?.[0]?.city || "";
           const campaignName =
             campaignMap.get(trip.campaignId)?.nameAr ||
             campaignMap.get(trip.campaignId)?.name ||
             trip.campaignName || "";
-
           return (
             trip.titleAr.toLowerCase().includes(normalizedSearch) ||
             trip.title.toLowerCase().includes(normalizedSearch) ||
@@ -142,12 +144,10 @@ export default function DiscoverPage() {
             campaignName.toLowerCase().includes(normalizedSearch)
           );
         }
-
         return true;
       });
   }, [campaignMap, filters, selectedCategory, trips]);
 
-  // Featured trips
   const featuredTrips = useMemo(
     () => filteredTrips.filter((trip) => trip.featured),
     [filteredTrips]
@@ -175,12 +175,8 @@ export default function DiscoverPage() {
       .slice(0, 8);
   }, [trips]);
 
-  const availableDestinations = useMemo(
-    () => destinations.map((d) => d.city),
-    [destinations]
-  );
+  const availableDestinations = useMemo(() => destinations.map((d) => d.city), [destinations]);
 
-  // Active filter count for the filter button badge
   const activeFilterCount = [
     filters.tripType,
     filters.priceMin !== null || filters.priceMax !== null,
@@ -199,7 +195,6 @@ export default function DiscoverPage() {
     setFilters(newFilters);
   }, []);
 
-  // Prefetch routes
   useEffect(() => {
     filteredTrips.slice(0, 8).forEach((trip) => {
       router.prefetch(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`);
@@ -208,16 +203,6 @@ export default function DiscoverPage() {
       router.prefetch(`/app/campaigns/${campaign.id}`);
     });
   }, [filteredTrips, topCampaigns, router]);
-
-  // Category pills data
-  const categoryItems = useMemo(
-    () => TRIP_TYPE_PILLS.map((pill) => ({
-      id: pill.id,
-      label: t(pill.labelAr, pill.labelEn),
-      icon: pill.icon,
-    })),
-    [t]
-  );
 
   const getCampaignName = (trip: Trip) =>
     language === "ar"
@@ -228,51 +213,119 @@ export default function DiscoverPage() {
     language === "ar" ? (trip.titleAr || trip.title) : (trip.title || trip.titleAr);
 
   return (
-    <div className="min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
-      {/* Travel Hero — navy gradient header */}
-      <section className="relative overflow-hidden px-4 pb-6 pt-6 sm:pb-8 sm:pt-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 via-white to-blue-50/30" />
-        <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-amber-50/40 to-transparent" />
+    <div className="min-h-screen bg-white dark:bg-slate-900">
+
+      {/* ─────────────────────────────────────────────────────────
+          HERO SECTION — Rich blue gradient, search centered
+          ───────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden pb-8 pt-6 sm:pb-12 sm:pt-10">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-600 via-blue-700 to-blue-800" />
+        {/* Decorative orbs */}
+        <div className="absolute -top-20 -start-20 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl" />
+        <div className="absolute -top-10 -end-16 h-56 w-56 rounded-full bg-amber-400/20 blur-3xl" />
+        <div className="absolute bottom-0 start-1/2 h-32 w-96 -translate-x-1/2 rounded-full bg-blue-900/40 blur-2xl" />
+
         <Container className="relative">
+          {/* Top bar within hero */}
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm">
+                <Compass className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-lg font-bold text-white">Rahal</span>
+            </div>
+            <LanguageToggle className="border-white/20 bg-white/10 text-white hover:bg-white/20" />
+          </div>
+
+          {/* Hero headline */}
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-xl font-extrabold leading-tight text-stone-900 dark:text-white sm:text-3xl lg:text-4xl" style={{ textWrap: "balance" }}>
-              {t("استكشف رحلتك القادمة", "Discover Your Next Journey")}
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-blue-100 backdrop-blur-sm">
+              <Sparkles className="h-3.5 w-3.5 text-amber-300" />
+              {t("رحلات الحج والعمرة والزيارات", "Hajj · Umrah · Ziyarat Trips")}
+            </div>
+            <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.2)" }}>
+              {t("ابحث عن رحلتك القادمة", "Find Your Next Sacred Journey")}
             </h1>
-            <p className="mt-2 text-body-md text-stone-600 dark:text-stone-400 sm:text-body-lg">
+            <p className="mt-2 text-sm text-blue-100 sm:text-base">
               {t(
-                "ابحث واحجز رحلات الحج والعمرة والزيارات بسهولة",
-                "Search and book Hajj, Umrah, and Ziyarat trips with ease"
+                "حملات موثقة، حجز سلس، ومتابعة كاملة",
+                "Verified campaigns, seamless booking & full trip support"
               )}
             </p>
-            <div className="mt-4 sm:mt-5">
-              <SearchInput
-                placeholder={t("ابحث عن رحلة أو حملة...", "Search for a trip or campaign...")}
-                onSearch={handleSearch}
-              />
+
+            {/* Search bar */}
+            <div className="mt-5 sm:mt-6">
+              <div className="relative mx-auto max-w-xl">
+                <div className="flex items-center gap-2 overflow-hidden rounded-2xl border border-white/10 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:bg-slate-800">
+                  <div className="flex h-14 items-center ps-4">
+                    <Search className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <SearchInput
+                    placeholder={t("ابحث عن رحلة أو حملة...", "Search trips, destinations...")}
+                    onSearch={handleSearch}
+                    className="flex-1 border-0 bg-transparent py-0 shadow-none focus-within:ring-0"
+                  />
+                </div>
+              </div>
             </div>
+
+            {/* Quick stats */}
+            {!loading && (
+              <div className="mt-4 flex items-center justify-center gap-6 text-xs text-blue-100">
+                <span className="flex items-center gap-1">
+                  <span className="font-bold text-white">{trips.length}+</span>
+                  {t("رحلة متاحة", "trips available")}
+                </span>
+                <span className="h-3 w-px bg-blue-400" />
+                <span className="flex items-center gap-1">
+                  <span className="font-bold text-white">{campaigns.length}+</span>
+                  {t("حملة موثقة", "verified campaigns")}
+                </span>
+              </div>
+            )}
           </div>
         </Container>
       </section>
 
-      {/* Category Pills + Filter Button */}
-      <section className="sticky top-0 z-[var(--z-sticky)] border-b border-surface-border/60 bg-white/95 px-4 py-3 backdrop-blur-md dark:border-surface-dark-border/60 dark:bg-surface-dark/95">
+      {/* ─────────────────────────────────────────────────────────
+          STICKY FILTER BAR
+          ───────────────────────────────────────────────────────── */}
+      <section className="sticky top-0 z-[var(--z-sticky)] border-b border-gray-200/80 bg-white/98 px-4 py-3 backdrop-blur-xl dark:border-slate-700/80 dark:bg-slate-900/98">
         <Container>
           <div className="flex items-center gap-3">
-            <CategoryPills
-              items={categoryItems}
-              selected={selectedCategory}
-              onSelect={handleCategorySelect}
-              className="flex-1"
-            />
+            {/* Category pills */}
+            <div className="flex flex-1 items-center gap-2 overflow-x-auto scrollbar-hide py-0.5">
+              {TRIP_TYPE_PILLS.map((pill) => {
+                const isActive = selectedCategory === pill.id || (pill.id === "all" && !selectedCategory);
+                return (
+                  <button
+                    key={pill.id}
+                    type="button"
+                    onClick={() => handleCategorySelect(isActive && pill.id !== "all" ? null : pill.id)}
+                    className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.8125rem] font-medium transition-all duration-150 ${
+                      isActive
+                        ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
+                        : "border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                    }`}
+                  >
+                    <span>{pill.emoji}</span>
+                    {t(pill.labelAr, pill.labelEn)}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Filter button */}
             <button
               type="button"
               onClick={() => setFilterSheetOpen(true)}
-              className="relative flex shrink-0 items-center gap-1.5 rounded-[var(--radius-pill)] border border-surface-border px-3 py-2 text-body-sm font-medium text-stone-600 transition-colors hover:border-stone-400 hover:bg-stone-50 dark:border-surface-dark-border dark:text-stone-400 dark:hover:border-stone-600 dark:hover:bg-stone-900/40"
+              className="relative flex shrink-0 items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
             >
               <SlidersHorizontal className="h-4 w-4" />
-              {t("فلتر", "Filter")}
+              {t("فلتر", "Filters")}
               {activeFilterCount > 0 && (
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[10px] font-bold text-white">
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[9px] font-bold text-white">
                   {activeFilterCount}
                 </span>
               )}
@@ -283,21 +336,27 @@ export default function DiscoverPage() {
           {activeFilterCount > 0 && (
             <div className="mt-2 flex flex-wrap gap-1.5">
               {filters.tripType && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
                   {TRIP_TYPE_PILLS.find((p) => p.id === filters.tripType)?.[language === "ar" ? "labelAr" : "labelEn"]}
-                  <button type="button" onClick={() => setFilters((prev) => ({ ...prev, tripType: null }))}><X className="h-3 w-3" /></button>
+                  <button type="button" onClick={() => setFilters((prev) => ({ ...prev, tripType: null }))}>
+                    <X className="h-3 w-3" />
+                  </button>
                 </span>
               )}
               {(filters.priceMin !== null || filters.priceMax !== null) && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
-                  {filters.priceMin ?? 0} - {filters.priceMax ?? "∞"} KWD
-                  <button type="button" onClick={() => setFilters((prev) => ({ ...prev, priceMin: null, priceMax: null }))}><X className="h-3 w-3" /></button>
+                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                  {filters.priceMin ?? 0} – {filters.priceMax ?? "∞"} KWD
+                  <button type="button" onClick={() => setFilters((prev) => ({ ...prev, priceMin: null, priceMax: null }))}>
+                    <X className="h-3 w-3" />
+                  </button>
                 </span>
               )}
               {filters.destinations.map((dest) => (
-                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
                   {dest}
-                  <button type="button" onClick={() => setFilters((prev) => ({ ...prev, destinations: prev.destinations.filter((d) => d !== dest) }))}><X className="h-3 w-3" /></button>
+                  <button type="button" onClick={() => setFilters((prev) => ({ ...prev, destinations: prev.destinations.filter((d) => d !== dest) }))}>
+                    <X className="h-3 w-3" />
+                  </button>
                 </span>
               ))}
             </div>
@@ -305,23 +364,32 @@ export default function DiscoverPage() {
         </Container>
       </section>
 
-      <Container className="relative space-y-8 py-6 sm:space-y-10 sm:py-8">
-        {/* Featured Trips Carousel */}
+      {/* ─────────────────────────────────────────────────────────
+          MAIN CONTENT
+          ───────────────────────────────────────────────────────── */}
+      <Container className="space-y-10 py-8">
+
+        {/* Featured Trips */}
         {!loading && featuredTrips.length > 0 && (
           <section>
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Flame className="h-5 w-5 text-amber-500" />
-                <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
-                  {t("رحلات مميزة", "Featured Trips")}
-                </h2>
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <div className="flex items-center gap-2">
+                  <Flame className="h-5 w-5 text-orange-500" />
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {t("رحلات مميزة", "Featured Trips")}
+                  </h2>
+                </div>
+                <p className="mt-0.5 text-sm text-gray-500 dark:text-slate-400">
+                  {t("الأكثر طلباً من المسافرين", "Top picks by travelers")}
+                </p>
               </div>
             </div>
-            <div className="horizontal-scroll-section">
+            <div className="horizontal-scroll-section pb-2">
               {featuredTrips.slice(0, 6).map((trip, i) => (
                 <div
                   key={trip.id}
-                  className="w-[280px] sm:w-[320px] animate-stagger-fade-up"
+                  className="w-[280px] shrink-0 sm:w-[300px] animate-stagger-fade-up"
                   style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
                 >
                   <TripCard
@@ -349,76 +417,92 @@ export default function DiscoverPage() {
           </section>
         )}
 
-        {/* Popular Destinations - Horizontal Scroll */}
+        {/* Popular Destinations */}
         {!loading && destinations.length > 0 && (
           <section>
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-5">
               <div className="flex items-center gap-2">
-                <Globe2 className="h-5 w-5 text-amber-500" />
-                <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
+                <Globe2 className="h-5 w-5 text-blue-600" />
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
                 </h2>
               </div>
+              <p className="mt-0.5 text-sm text-gray-500 dark:text-slate-400">
+                {t("اضغط لتصفية الرحلات", "Tap to filter trips by destination")}
+              </p>
             </div>
-            <div className="horizontal-scroll-section">
-              {destinations.map((dest, i) => (
-                <button
-                  key={dest.id}
-                  onClick={() => {
-                    setFilters((prev) => ({
-                      ...prev,
-                      destinations: prev.destinations.includes(dest.city)
-                        ? prev.destinations.filter((d) => d !== dest.city)
-                        : [...prev.destinations, dest.city],
-                    }));
-                  }}
-                  className="sacred-panel group w-[140px] rounded-2xl p-4 text-start transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200/80 hover:shadow-card-hover dark:hover:border-amber-700/45 animate-stagger-fade-up"
-                  style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
-                >
-                  <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-white shadow-md transition-transform duration-300 group-hover:scale-110">
-                    <Compass className="h-4 w-4" />
-                  </div>
-                  <p className="mt-3 line-clamp-1 text-body-md font-semibold text-stone-800 dark:text-stone-100">
-                    {dest.city}
-                  </p>
-                  <p className="text-[11px] text-stone-500 dark:text-stone-400">
-                    {dest.count} {t("رحلة", "trips")}
-                  </p>
-                </button>
-              ))}
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {destinations.slice(0, 8).map((dest, i) => {
+                const emoji = DESTINATION_IMAGES[dest.city] || "🌍";
+                const isSelected = filters.destinations.includes(dest.city);
+                return (
+                  <button
+                    key={dest.id}
+                    onClick={() => {
+                      setFilters((prev) => ({
+                        ...prev,
+                        destinations: prev.destinations.includes(dest.city)
+                          ? prev.destinations.filter((d) => d !== dest.city)
+                          : [...prev.destinations, dest.city],
+                      }));
+                    }}
+                    className={`group relative overflow-hidden rounded-2xl p-4 text-start transition-all duration-200 animate-stagger-fade-up ${
+                      isSelected
+                        ? "bg-blue-600 text-white shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+                        : "border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+                    }`}
+                    style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
+                  >
+                    <div className="text-2xl mb-2">{emoji}</div>
+                    <p className={`text-[0.875rem] font-semibold ${isSelected ? "text-white" : "text-gray-900 dark:text-white"}`}>
+                      {dest.city}
+                    </p>
+                    <p className={`text-[11px] mt-0.5 ${isSelected ? "text-blue-100" : "text-gray-500 dark:text-slate-400"}`}>
+                      {dest.count} {t("رحلة", "trips")}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
           </section>
         )}
 
-        {/* All Available Trips Grid */}
+        {/* All Trips Grid */}
         <section>
-          <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Compass className="h-5 w-5 text-amber-500" />
-              <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
-                {t("جميع الرحلات", "All Trips")}
-              </h2>
-              {!loading && filteredTrips.length > 0 && (
-                <span className="rounded-full bg-stone-100/80 px-2 py-0.5 text-[11px] font-medium text-stone-600 dark:bg-stone-800/80 dark:text-stone-400">
-                  {filteredTrips.length}
-                </span>
+          <div className="mb-5 flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-2.5">
+                <Compass className="h-5 w-5 text-blue-600" />
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                  {t("جميع الرحلات", "All Trips")}
+                </h2>
+                {!loading && filteredTrips.length > 0 && (
+                  <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-slate-700 dark:text-slate-300">
+                    {filteredTrips.length}
+                  </span>
+                )}
+              </div>
+              {!loading && (
+                <p className="mt-0.5 text-sm text-gray-500 dark:text-slate-400">
+                  {t("مرتبة حسب تاريخ المغادرة", "Sorted by departure date")}
+                </p>
               )}
             </div>
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: 6 }).map((_, i) => (
                 <SkeletonCard key={i} variant="trip" />
               ))}
             </div>
           ) : filteredTrips.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {filteredTrips.slice(0, 12).map((trip, i) => (
                 <div
                   key={trip.id}
                   className="animate-stagger-fade-up"
-                  style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
+                  style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
                 >
                   <TripCard
                     title={getTripTitle(trip)}
@@ -444,52 +528,50 @@ export default function DiscoverPage() {
             </div>
           ) : (
             <EmptyState
-              icon={<Flame className="h-12 w-12" />}
-              title={t("لا توجد رحلات متاحة حالياً", "No trips available at the moment")}
+              icon={<Compass className="h-14 w-14 text-gray-300" />}
+              title={t("لا توجد رحلات متاحة", "No trips found")}
               description={t(
-                "جرّب البحث بكلمات مختلفة أو عد لاحقاً.",
-                "Try a different search term or check back soon."
+                "جرّب البحث بكلمات مختلفة أو عدّل الفلاتر.",
+                "Try a different search or adjust your filters."
               )}
             />
           )}
         </section>
 
-        {/* Trusted Campaigns - Horizontal Carousel */}
+        {/* Trusted Campaigns */}
         {!loading && topCampaigns.length > 0 && (
           <section>
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-amber-500" />
-                <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
-                  {t("حملات موثوقة", "Trusted Campaigns")}
-                </h2>
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <div className="flex items-center gap-2">
+                  <Star className="h-5 w-5 text-amber-500" />
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {t("حملات موثقة", "Trusted Campaigns")}
+                  </h2>
+                </div>
+                <p className="mt-0.5 text-sm text-gray-500 dark:text-slate-400">
+                  {t("منظمو رحلات معتمدون", "Verified trip organizers")}
+                </p>
               </div>
               <button
                 type="button"
                 onClick={() => router.push("/app/discover?view=campaigns")}
-                className="flex items-center gap-1 text-body-sm font-medium text-stone-500 transition-colors hover:text-stone-700 dark:hover:text-stone-100"
+                className="flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
-                {t("عرض الكل", "View all")} <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                {t("عرض الكل", "View all")}
+                <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
               </button>
             </div>
-            <div className="horizontal-scroll-section">
+            <div className="horizontal-scroll-section pb-2">
               {topCampaigns.map((campaign, i) => (
                 <div
                   key={campaign.id}
-                  className="w-[280px] sm:w-[320px] animate-stagger-fade-up"
+                  className="w-[260px] shrink-0 sm:w-[290px] animate-stagger-fade-up"
                   style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
                 >
                   <CampaignCard
-                    name={
-                      language === "ar"
-                        ? campaign.nameAr || campaign.name
-                        : campaign.name || campaign.nameAr
-                    }
-                    description={
-                      language === "ar"
-                        ? campaign.descriptionAr || campaign.description
-                        : campaign.description || campaign.descriptionAr
-                    }
+                    name={language === "ar" ? campaign.nameAr || campaign.name : campaign.name || campaign.nameAr}
+                    description={language === "ar" ? campaign.descriptionAr || campaign.description : campaign.description || campaign.descriptionAr}
                     logoUrl={campaign.logoUrl}
                     coverUrl={campaign.coverImageUrl}
                     rating={campaign.stats?.averageRating || 0}
@@ -506,15 +588,15 @@ export default function DiscoverPage() {
         {/* Loading skeletons for campaigns */}
         {loading && (
           <section>
-            <div className="mb-4 flex items-center gap-2">
+            <div className="mb-5 flex items-center gap-2">
               <Star className="h-5 w-5 text-amber-500" />
-              <h2 className="text-heading-md font-bold text-stone-900 dark:text-white">
-                {t("حملات موثوقة", "Trusted Campaigns")}
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                {t("حملات موثقة", "Trusted Campaigns")}
               </h2>
             </div>
             <div className="horizontal-scroll-section">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="w-[280px] sm:w-[320px]">
+                <div key={i} className="w-[260px] shrink-0 sm:w-[290px]">
                   <SkeletonCard variant="campaign" />
                 </div>
               ))}
@@ -523,15 +605,15 @@ export default function DiscoverPage() {
         )}
 
         {loadError && (
-          <div className="sacred-panel rounded-2xl p-6 text-center">
-            <p className="text-body-md text-error">
-              {t(
-                "تعذر تحميل بيانات الاكتشاف حالياً.",
-                "Unable to load discovery content right now."
-              )}
+          <div className="rounded-2xl border border-red-100 bg-red-50 p-6 text-center dark:border-red-900/30 dark:bg-red-900/10">
+            <p className="text-sm text-red-600 dark:text-red-400">
+              {t("تعذر تحميل البيانات حالياً. يرجى إعادة المحاولة.", "Unable to load content right now. Please try again.")}
             </p>
           </div>
         )}
+
+        {/* Bottom spacing for nav */}
+        <div className="h-4" />
       </Container>
 
       {/* Filter Sheet */}

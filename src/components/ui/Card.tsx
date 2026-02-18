@@ -18,11 +18,11 @@ const paddingMap = {
 };
 
 const variantMap = {
-  elevated: "sacred-panel",
+  elevated: "border border-gray-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] dark:border-slate-700 dark:bg-slate-800 dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
   outlined:
-    "border border-surface-border bg-gradient-to-b from-white to-stone-50/70 dark:border-surface-dark-border dark:bg-gradient-to-b dark:from-surface-dark-card dark:to-surface-dark",
+    "border border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-800",
   filled:
-    "border border-surface-border bg-gradient-to-b from-surface-muted to-white dark:border-surface-dark-border dark:bg-gradient-to-b dark:from-surface-dark-card dark:to-surface-dark",
+    "border border-gray-100 bg-gray-50 dark:border-slate-700 dark:bg-slate-800/60",
   glass: "sacred-glass",
 };
 
@@ -44,9 +44,9 @@ function Card({
         variantMap[variant],
         paddingMap[padding],
         hoverable &&
-          "cursor-pointer will-change-transform hover:-translate-y-1 hover:border-teal-300 hover:shadow-card-hover dark:hover:border-teal-500",
+          "cursor-pointer will-change-transform hover:-translate-y-1 hover:border-gray-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.1)] dark:hover:border-slate-600",
         isInteractive &&
-          "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/35 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+          "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
         className
       )}
       onClick={onClick}
