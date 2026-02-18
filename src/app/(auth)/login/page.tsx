@@ -40,10 +40,18 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    // Validate Kuwait phone number: 8 digits, starts with 5, 6, or 9
+    const digits = phone.replace(/\D/g, "");
+    if (!/^[569]\d{7}$/.test(digits)) {
+      setError(t("يرجى إدخال رقم هاتف كويتي صحيح (8 أرقام).", "Please enter a valid Kuwaiti phone number (8 digits)."));
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const formatted = phone.startsWith("+965") ? phone : `+965${phone}`;
+      const formatted = `+965${digits}`;
       const confirmationResult = await signInWithPhone(formatted);
       sessionStorage.setItem("confirmationResult", JSON.stringify({ phone: formatted }));
       (window as unknown as Record<string, ConfirmationResult>).__confirmationResult = confirmationResult;

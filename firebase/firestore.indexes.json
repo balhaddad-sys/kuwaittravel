@@ -21,6 +21,15 @@
       "collectionGroup": "trips",
       "queryScope": "COLLECTION",
       "fields": [
+        { "fieldPath": "adminApproved", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "departureDate", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "trips",
+      "queryScope": "COLLECTION",
+      "fields": [
         { "fieldPath": "destination", "order": "ASCENDING" },
         { "fieldPath": "departureDate", "order": "ASCENDING" }
       ]
