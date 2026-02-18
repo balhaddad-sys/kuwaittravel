@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -32,7 +31,12 @@ import {
   ExternalLink,
   XCircle,
   Ban,
+  ChevronRight,
+  ArrowLeft,
+  X,
 } from "lucide-react";
+
+/* ── Status color maps ─────────────────────────────────────────────── */
 
 const verificationColors: Record<VerificationStatus, { dot: string; bg: string; text: string; labelAr: string; label: string }> = {
   pending: { dot: "bg-warning", bg: "bg-warning-light dark:bg-amber-900/25", text: "text-amber-800 dark:text-amber-300", labelAr: "قيد المراجعة", label: "Under Review" },
@@ -41,16 +45,50 @@ const verificationColors: Record<VerificationStatus, { dot: string; bg: string; 
   suspended: { dot: "bg-error", bg: "bg-error-light dark:bg-red-900/25", text: "text-red-800 dark:text-red-300", labelAr: "معلق", label: "Suspended" },
 };
 
+const statusBarColor: Record<VerificationStatus, string> = {
+  pending: "bg-amber-400",
+  approved: "bg-emerald-500",
+  rejected: "bg-red-500",
+  suspended: "bg-red-400",
+};
+
+/* ── Helper components ─────────────────────────────────────────────── */
+
 function VerificationChip({ status }: { status: VerificationStatus }) {
   const { language } = useDirection();
   const c = verificationColors[status];
   return (
-    <span className={cn("inline-flex items-center gap-1.5 rounded-[var(--radius-chip)] border px-2.5 py-1 text-body-sm font-medium border-current/15", c.bg, c.text)}>
-      <span className={cn("h-2 w-2 rounded-full", c.dot)} />
+    <span className={cn("inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[11px] font-semibold border-current/15 whitespace-nowrap", c.bg, c.text)}>
+      <span className={cn("h-1.5 w-1.5 rounded-full", c.dot)} />
       {language === "ar" ? c.labelAr : c.label}
     </span>
   );
 }
+
+function DetailSection({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
+  return (
+    <div className="rounded-xl border border-surface-border/70 bg-stone-50/60 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.03]">
+      <h4 className="text-body-sm font-bold text-stone-900 dark:text-white mb-2.5 flex items-center gap-2">
+        <span className="text-amber-500 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>
+        {title}
+      </h4>
+      <dl className="space-y-2 text-body-sm">{children}</dl>
+    </div>
+  );
+}
+
+function DetailRow({ label, value, dir, multiline }: { label: string; value: string; dir?: string; multiline?: boolean }) {
+  return (
+    <div>
+      <dt className="text-xs text-stone-500 dark:text-stone-400">{label}</dt>
+      <dd className={cn("font-medium text-stone-900 dark:text-white", !multiline && "truncate")} dir={dir}>
+        {value}
+      </dd>
+    </div>
+  );
+}
+
+/* ── Main page ─────────────────────────────────────────────────────── */
 
 export default function AdminCampaignsPage() {
   const { t, language } = useDirection();
@@ -62,7 +100,7 @@ export default function AdminCampaignsPage() {
   const [filter, setFilter] = useState<"all" | VerificationStatus>("all");
   const [search, setSearch] = useState("");
 
-  // Detail modal — ID-based so it stays in sync with real-time data
+  // Detail panel — ID-based so it stays in sync with real-time data
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = useMemo(() => campaigns.find((c) => c.id === selectedId) ?? null, [campaigns, selectedId]);
 
@@ -74,7 +112,7 @@ export default function AdminCampaignsPage() {
   // Action loading
   const [actionLoading, setActionLoading] = useState(false);
 
-  // Real-time subscription — wait for auth before subscribing
+  // ── Real-time subscription — wait for auth ──
   useEffect(() => {
     if (!firebaseUser) return;
     setLoadingData(true);
@@ -94,7 +132,28 @@ export default function AdminCampaignsPage() {
     return unsub;
   }, [firebaseUser]);
 
-  // Filtered + searched campaigns
+  // ── Lock body scroll when detail panel is open ──
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [selected]);
+
+  // ── Close detail panel on Escape ──
+  const handleDetailEscape = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") setSelectedId(null);
+  }, []);
+
+  useEffect(() => {
+    if (!selected) return;
+    document.addEventListener("keydown", handleDetailEscape);
+    return () => document.removeEventListener("keydown", handleDetailEscape);
+  }, [selected, handleDetailEscape]);
+
+  // ── Filtered + searched campaigns ──
   const filtered = useMemo(() => {
     let list = campaigns;
     if (filter !== "all") {
@@ -119,6 +178,7 @@ export default function AdminCampaignsPage() {
     return m;
   }, [campaigns]);
 
+  // ── Actions ──
   const logAction = async (action: string, campaignId: string, oldStatus: string, newStatus: string) => {
     if (!firebaseUser || !userData) return;
     await createDocument(COLLECTIONS.AUDIT_LOGS, {
@@ -191,7 +251,7 @@ export default function AdminCampaignsPage() {
 
   const filterChips: { value: "all" | VerificationStatus; label: string }[] = [
     { value: "all", label: t("الكل", "All") },
-    { value: "pending", label: t("قيد المراجعة", "Under Review") },
+    { value: "pending", label: t("قيد المراجعة", "Pending") },
     { value: "approved", label: t("معتمد", "Approved") },
     { value: "rejected", label: t("مرفوض", "Rejected") },
     { value: "suspended", label: t("معلق", "Suspended") },
@@ -201,6 +261,8 @@ export default function AdminCampaignsPage() {
     const d = parseTimestamp(c.createdAt);
     return d ? formatRelativeTime(d, language === "ar" ? "ar-KW" : "en-US") : "—";
   };
+
+  /* ── Render ── */
 
   return (
     <>
@@ -213,196 +275,184 @@ export default function AdminCampaignsPage() {
       />
 
       <Container className="sacred-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
-        {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <SearchInput
-            placeholder={t("ابحث بالاسم أو رقم الترخيص...", "Search by name or license number...")}
-            onSearch={setSearch}
-            className="flex-1"
-          />
-          <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {filterChips.map((f) => (
-              <button
-                key={f.value}
-                onClick={() => setFilter(f.value)}
-                className={`sacred-filter-chip shrink-0 inline-flex items-center gap-2 px-3 sm:px-4 py-2 text-body-sm font-medium ${filter === f.value ? "sacred-filter-chip-active" : ""}`}
-              >
-                <span>{f.label}</span>
-                <Badge variant={filter === f.value ? "default" : "gold"} size="sm">
-                  {counts[f.value] || 0}
-                </Badge>
-              </button>
-            ))}
-          </div>
+        {/* Search */}
+        <SearchInput
+          placeholder={t("ابحث بالاسم أو رقم الترخيص...", "Search by name or license...")}
+          onSearch={setSearch}
+        />
+
+        {/* Filter chips — wrapping grid */}
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          {filterChips.map((f) => (
+            <button
+              key={f.value}
+              onClick={() => setFilter(f.value)}
+              className={cn(
+                "sacred-filter-chip inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs sm:text-body-sm font-medium transition-all",
+                filter === f.value && "sacred-filter-chip-active"
+              )}
+            >
+              {f.label}
+              <Badge variant={filter === f.value ? "default" : "gold"} size="sm">
+                {counts[f.value] || 0}
+              </Badge>
+            </button>
+          ))}
         </div>
 
-        {/* Campaign List */}
+        {/* Campaign list */}
         {loadingData ? (
-          <Card variant="elevated" padding="lg">
-            <div className="flex items-center justify-center py-12">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
-            </div>
-          </Card>
+          <div className="flex items-center justify-center py-16">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
+          </div>
         ) : filtered.length === 0 ? (
-          <Card variant="elevated" padding="none">
-            <EmptyState
-              icon={<Building2 className="h-10 w-10 sm:h-16 sm:w-16" />}
-              title={t("لا توجد حملات", "No campaigns")}
-              description={
-                filter !== "all"
-                  ? t("لا توجد حملات تحت هذا التصنيف", "No campaigns found under this filter")
-                  : t("ستظهر هنا الحملات المسجلة في المنصة", "Registered campaigns will appear here")
-              }
-            />
-          </Card>
+          <EmptyState
+            icon={<Building2 className="h-10 w-10 sm:h-16 sm:w-16" />}
+            title={t("لا توجد حملات", "No campaigns")}
+            description={
+              filter !== "all"
+                ? t("لا توجد حملات تحت هذا التصنيف", "No campaigns found under this filter")
+                : t("ستظهر هنا الحملات المسجلة في المنصة", "Registered campaigns will appear here")
+            }
+          />
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-2">
             {filtered.map((campaign) => (
-              <Card
+              <button
                 key={campaign.id}
-                variant="elevated"
-                padding="none"
-                className="cursor-pointer transition-shadow hover:shadow-lg"
                 onClick={() => setSelectedId(campaign.id)}
+                className="group w-full text-start"
               >
-                <div className="flex items-start gap-3 p-3 sm:items-center sm:gap-4 sm:p-4">
-                  <div className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700">
-                    <Building2 className="h-6 w-6 text-stone-600 dark:text-stone-400" />
+                <div
+                  className={cn(
+                    "flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-slate-700 dark:bg-slate-800",
+                  )}
+                >
+                  {/* Status indicator bar */}
+                  <div className={cn("w-1 self-stretch shrink-0", statusBarColor[campaign.verificationStatus])} />
+
+                  {/* Icon — desktop only */}
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-stone-100 dark:bg-stone-800">
+                    <Building2 className="h-5 w-5 text-stone-500 dark:text-stone-400" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start sm:items-center gap-2 flex-wrap">
-                      <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white truncate">
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0 py-3 pe-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-body-sm font-bold text-stone-900 dark:text-white truncate">
                         {campaign.nameAr}
                       </h3>
                       <VerificationChip status={campaign.verificationStatus} />
                     </div>
-                    <p className="text-xs sm:text-body-sm text-stone-500 truncate" dir="ltr">
+                    <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-0.5" dir="ltr">
                       {campaign.name}
                     </p>
-                    <div className="flex items-center gap-2 sm:gap-3 mt-1 text-xs sm:text-body-sm text-stone-400 flex-wrap">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-stone-400 dark:text-stone-500">
                       <span className="flex items-center gap-1">
-                        <FileText className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                        <FileText className="h-3 w-3" />
                         {campaign.licenseNumber}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                        <Phone className="h-3 w-3" />
                         <span dir="ltr">{formatPhone(campaign.contactPhone)}</span>
                       </span>
                       <span className="hidden sm:inline">{getCreatedDate(campaign)}</span>
                     </div>
                   </div>
+
+                  {/* Chevron */}
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-stone-300 group-hover:text-stone-500 transition-colors dark:text-stone-600 dark:group-hover:text-stone-400 rtl:rotate-180" />
                 </div>
-              </Card>
+              </button>
             ))}
           </div>
         )}
       </Container>
 
-      {/* Campaign Detail Modal */}
-      <Modal
-        open={!!selected}
-        onClose={() => setSelectedId(null)}
-        title={selected?.nameAr || ""}
-        description={selected?.name}
-        size="lg"
-        footer={
-          selected && (
-            <>
-              {selected.verificationStatus === "pending" && (
-                <>
-                  <Button variant="ghost" onClick={() => { setRejectTargetId(selected.id); }} disabled={actionLoading}>
-                    <ShieldX className="h-4 w-4 me-1" />
-                    {t("رفض", "Reject")}
-                  </Button>
-                  <Button variant="primary" onClick={() => handleApprove(selected)} loading={actionLoading}>
-                    <ShieldCheck className="h-4 w-4 me-1" />
-                    {t("موافقة", "Approve")}
-                  </Button>
-                </>
-              )}
-              {selected.verificationStatus === "approved" && (
-                <Button variant="danger" onClick={() => handleSuspend(selected)} loading={actionLoading}>
-                  <Ban className="h-4 w-4 me-1" />
-                  {t("تعليق", "Suspend")}
-                </Button>
-              )}
-              {(selected.verificationStatus === "rejected" || selected.verificationStatus === "suspended") && (
-                <Button variant="primary" onClick={() => handleApprove(selected)} loading={actionLoading}>
-                  <ShieldCheck className="h-4 w-4 me-1" />
-                  {t("إعادة الموافقة", "Re-approve")}
-                </Button>
-              )}
-            </>
-          )
-        }
-      >
-        {selected && (
-          <div className="space-y-3 sm:space-y-5 -mt-1 sm:-mt-2">
-            {/* Status banner */}
-            {selected.verificationStatus === "rejected" && selected.rejectionReason && (
-              <AlertBanner
-                type="error"
-                title={t("سبب الرفض", "Rejection Reason")}
-                description={selected.rejectionReason}
-              />
-            )}
-            {selected.verificationStatus === "suspended" && (
-              <AlertBanner
-                type="warning"
-                title={t("حملة معلقة", "Campaign Suspended")}
-              />
-            )}
+      {/* ── Campaign Detail Panel ──────────────────────────────────── */}
+      {/* Mobile: full-screen slide-up  |  Desktop: centered dialog   */}
+      {selected && (
+        <>
+          {/* Backdrop — desktop only */}
+          <div
+            className="fixed inset-0 z-[var(--z-modal)] hidden bg-black/40 backdrop-blur-sm sm:block animate-fade-in"
+            onClick={() => setSelectedId(null)}
+          />
 
-            {/* Organization */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                <Building2 className="h-4 w-4 text-amber-500 shrink-0" />
-                {t("بيانات المنظمة", "Organization")}
-              </h4>
-              <dl className="space-y-2 text-body-sm">
-                <div>
-                  <dt className="text-stone-500 text-xs">{t("الاسم بالعربي", "Name (AR)")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white">{selected.nameAr}</dd>
-                </div>
-                <div>
-                  <dt className="text-stone-500 text-xs">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{selected.name}</dd>
-                </div>
-                {selected.descriptionAr && (
-                  <div>
-                    <dt className="text-stone-500 text-xs mb-0.5">{t("الوصف", "Description")}</dt>
-                    <dd className="text-stone-700 dark:text-stone-400">{selected.descriptionAr}</dd>
-                  </div>
-                )}
-                {selected.description && (
-                  <div>
-                    <dt className="text-stone-500 text-xs mb-0.5">{t("الوصف بالإنجليزي", "Description (EN)")}</dt>
-                    <dd className="text-stone-700 dark:text-stone-400" dir="ltr">{selected.description}</dd>
-                  </div>
-                )}
-              </dl>
+          <div
+            className={cn(
+              "fixed z-[var(--z-modal)] flex flex-col overflow-hidden bg-white dark:bg-surface-dark-card",
+              // Mobile: full-screen, slide up
+              "inset-0 animate-slide-up",
+              // Desktop: centered dialog
+              "sm:inset-0 sm:m-auto sm:w-full sm:max-w-lg sm:h-fit sm:max-h-[85vh] sm:rounded-[var(--radius-xl)] sm:border sm:border-surface-border sm:shadow-modal sm:dark:border-surface-dark-border sm:animate-scale-in"
+            )}
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* ── Panel header ── */}
+            <div className="shrink-0 flex items-center gap-3 border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
+              {/* Back arrow — mobile */}
+              <button
+                onClick={() => setSelectedId(null)}
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-stone-500 hover:bg-stone-100 transition-colors dark:text-stone-400 dark:hover:bg-surface-dark-border sm:hidden"
+              >
+                <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
+              </button>
+              <div className="flex-1 min-w-0">
+                <h2 className="font-bold text-stone-900 dark:text-white truncate text-body-md">
+                  {selected.nameAr}
+                </h2>
+                <p className="text-xs text-stone-500 truncate" dir="ltr">{selected.name}</p>
+              </div>
+              <VerificationChip status={selected.verificationStatus} />
+              {/* Close X — desktop */}
+              <button
+                onClick={() => setSelectedId(null)}
+                className="hidden sm:flex shrink-0 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 transition-colors dark:hover:bg-surface-dark-border"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
 
-            {/* Legal Documents */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                <FileText className="h-4 w-4 text-amber-500 shrink-0" />
-                {t("الوثائق الرسمية", "Legal Documents")}
-              </h4>
-              <dl className="space-y-2 text-body-sm">
-                <div>
-                  <dt className="text-stone-500 text-xs">{t("رقم الترخيص", "License No.")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white">{selected.licenseNumber}</dd>
-                </div>
+            {/* ── Scrollable content ── */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+              {/* Rejection / Suspension banners */}
+              {selected.verificationStatus === "rejected" && selected.rejectionReason && (
+                <AlertBanner
+                  type="error"
+                  title={t("سبب الرفض", "Rejection Reason")}
+                  description={selected.rejectionReason}
+                />
+              )}
+              {selected.verificationStatus === "suspended" && (
+                <AlertBanner
+                  type="warning"
+                  title={t("حملة معلقة", "Campaign Suspended")}
+                />
+              )}
+
+              {/* Organization */}
+              <DetailSection icon={<Building2 />} title={t("بيانات المنظمة", "Organization")}>
+                <DetailRow label={t("الاسم بالعربي", "Name (AR)")} value={selected.nameAr} />
+                <DetailRow label={t("الاسم بالإنجليزي", "Name (EN)")} value={selected.name} dir="ltr" />
+                {selected.descriptionAr && (
+                  <DetailRow label={t("الوصف", "Description")} value={selected.descriptionAr} multiline />
+                )}
+                {selected.description && (
+                  <DetailRow label={t("الوصف بالإنجليزي", "Description (EN)")} value={selected.description} dir="ltr" multiline />
+                )}
+              </DetailSection>
+
+              {/* Legal Documents */}
+              <DetailSection icon={<FileText />} title={t("الوثائق الرسمية", "Legal Documents")}>
+                <DetailRow label={t("رقم الترخيص", "License No.")} value={selected.licenseNumber} />
                 {selected.commercialRegNumber && (
-                  <div>
-                    <dt className="text-stone-500 text-xs">{t("السجل التجاري", "Comm. Reg.")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white">{selected.commercialRegNumber}</dd>
-                  </div>
+                  <DetailRow label={t("السجل التجاري", "Comm. Reg.")} value={selected.commercialRegNumber} />
                 )}
                 {selected.licenseImageUrl && (
                   <div>
-                    <dt className="text-stone-500 text-xs">{t("صورة الترخيص", "License Image")}</dt>
+                    <dt className="text-xs text-stone-500 dark:text-stone-400">{t("صورة الترخيص", "License Image")}</dt>
                     <dd>
                       <a
                         href={selected.licenseImageUrl}
@@ -410,77 +460,76 @@ export default function AdminCampaignsPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-body-sm font-medium text-amber-600 hover:text-amber-700 transition-colors"
                       >
-                        {t("عرض", "View")}
-                        <ExternalLink className="h-3.5 w-3.5" />
+                        {t("عرض", "View")} <ExternalLink className="h-3.5 w-3.5" />
                       </a>
                     </dd>
                   </div>
                 )}
-              </dl>
-            </div>
+              </DetailSection>
 
-            {/* Contact */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                <Phone className="h-4 w-4 text-amber-500 shrink-0" />
-                {t("بيانات التواصل", "Contact Info")}
-              </h4>
-              <dl className="space-y-2 text-body-sm">
-                <div>
-                  <dt className="text-stone-500 text-xs flex items-center gap-1"><Phone className="h-3 w-3" /> {t("الهاتف", "Phone")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{formatPhone(selected.contactPhone)}</dd>
-                </div>
+              {/* Contact */}
+              <DetailSection icon={<Phone />} title={t("بيانات التواصل", "Contact Info")}>
+                <DetailRow label={t("الهاتف", "Phone")} value={formatPhone(selected.contactPhone)} dir="ltr" />
                 {selected.contactEmail && (
-                  <div>
-                    <dt className="text-stone-500 text-xs flex items-center gap-1"><Mail className="h-3 w-3" /> {t("البريد", "Email")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">{selected.contactEmail}</dd>
-                  </div>
+                  <DetailRow label={t("البريد", "Email")} value={selected.contactEmail} dir="ltr" />
                 )}
                 {selected.website && (
-                  <div>
-                    <dt className="text-stone-500 text-xs flex items-center gap-1"><Globe className="h-3 w-3" /> {t("الموقع", "Website")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">{selected.website}</dd>
-                  </div>
+                  <DetailRow label={t("الموقع", "Website")} value={selected.website} dir="ltr" />
                 )}
                 {(selected.socialMedia?.instagram || selected.socialMedia?.whatsapp) && (
-                  <div>
-                    <dt className="text-stone-500 text-xs">{t("التواصل الاجتماعي", "Social")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">
-                      {[selected.socialMedia.instagram, selected.socialMedia.whatsapp].filter(Boolean).join(" · ")}
-                    </dd>
-                  </div>
+                  <DetailRow
+                    label={t("التواصل الاجتماعي", "Social")}
+                    value={[selected.socialMedia.instagram, selected.socialMedia.whatsapp].filter(Boolean).join(" · ")}
+                    dir="ltr"
+                  />
                 )}
-              </dl>
+              </DetailSection>
+
+              {/* Verification Status */}
+              <DetailSection icon={<ShieldAlert />} title={t("حالة التحقق", "Verification Status")}>
+                <div>
+                  <dt className="text-xs text-stone-500 dark:text-stone-400 mb-1">{t("الحالة", "Status")}</dt>
+                  <dd><VerificationChip status={selected.verificationStatus} /></dd>
+                </div>
+                <DetailRow label={t("تاريخ التسجيل", "Registered")} value={getCreatedDate(selected)} />
+                {selected.verifiedBy && (
+                  <DetailRow label={t("تم التحقق بواسطة", "Verified By")} value={selected.verifiedBy} />
+                )}
+              </DetailSection>
             </div>
 
-            {/* Status info */}
-            <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-              <h4 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                <ShieldAlert className="h-4 w-4 text-amber-500 shrink-0" />
-                {t("حالة التحقق", "Verification Status")}
-              </h4>
-              <dl className="space-y-2 text-body-sm">
-                <div>
-                  <dt className="text-stone-500 text-xs">{t("الحالة", "Status")}</dt>
-                  <dd className="mt-0.5"><VerificationChip status={selected.verificationStatus} /></dd>
-                </div>
-                <div>
-                  <dt className="text-stone-500 text-xs">{t("تاريخ التسجيل", "Registered")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white">{getCreatedDate(selected)}</dd>
-                </div>
-                {selected.verifiedBy && (
-                  <div>
-                    <dt className="text-stone-500 text-xs">{t("تم التحقق بواسطة", "Verified By")}</dt>
-                    <dd className="font-medium text-stone-900 dark:text-white truncate">{selected.verifiedBy}</dd>
-                  </div>
-                )}
-              </dl>
+            {/* ── Footer actions ── */}
+            <div className="shrink-0 flex items-center gap-2 border-t border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+              {selected.verificationStatus === "pending" && (
+                <>
+                  <Button variant="ghost" onClick={() => setRejectTargetId(selected.id)} disabled={actionLoading} className="flex-1 sm:flex-none">
+                    <ShieldX className="h-4 w-4 me-1" />
+                    {t("رفض", "Reject")}
+                  </Button>
+                  <Button variant="primary" onClick={() => handleApprove(selected)} loading={actionLoading} className="flex-1 sm:flex-none">
+                    <ShieldCheck className="h-4 w-4 me-1" />
+                    {t("موافقة", "Approve")}
+                  </Button>
+                </>
+              )}
+              {selected.verificationStatus === "approved" && (
+                <Button variant="danger" onClick={() => handleSuspend(selected)} loading={actionLoading} className="flex-1 sm:flex-none">
+                  <Ban className="h-4 w-4 me-1" />
+                  {t("تعليق", "Suspend")}
+                </Button>
+              )}
+              {(selected.verificationStatus === "rejected" || selected.verificationStatus === "suspended") && (
+                <Button variant="primary" onClick={() => handleApprove(selected)} loading={actionLoading} className="flex-1 sm:flex-none">
+                  <ShieldCheck className="h-4 w-4 me-1" />
+                  {t("إعادة الموافقة", "Re-approve")}
+                </Button>
+              )}
             </div>
           </div>
-        )}
-      </Modal>
+        </>
+      )}
 
-      {/* Reject Reason Modal */}
+      {/* ── Reject Reason Modal ── */}
       <Modal
         open={!!rejectTarget}
         onClose={() => { setRejectTargetId(null); setRejectionReason(""); }}
