@@ -12,21 +12,26 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     <div className="relative min-h-screen overflow-hidden bg-gray-50">
       {/* Full-bleed blue gradient left panel (desktop) */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:start-0 lg:flex lg:w-[52%] lg:flex-col lg:overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-800 via-indigo-700 to-indigo-500" />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700" />
+        {/* Gold radial glow */}
+        <div className="absolute inset-0 opacity-100" style={{background:"radial-gradient(ellipse 70% 50% at 60% 30%, rgba(197,165,114,0.1) 0%, transparent 65%)"}} />
         {/* Decorative orbs */}
-        <div className="absolute -top-32 -start-32 h-80 w-80 rounded-full bg-indigo-400/20 blur-3xl" />
-        <div className="absolute top-1/3 -end-20 h-64 w-64 rounded-full bg-indigo-400/20 blur-3xl" />
-        <div className="absolute bottom-10 start-10 h-48 w-48 rounded-full bg-indigo-300/20 blur-2xl" />
+        <div className="absolute -top-32 -start-32 h-80 w-80 rounded-full bg-orange-400/10 blur-3xl" />
+        <div className="absolute top-1/3 -end-20 h-64 w-64 rounded-full bg-orange-300/8 blur-3xl" />
+        <div className="absolute bottom-10 start-10 h-48 w-48 rounded-full bg-indigo-300/15 blur-2xl" />
 
         <div className="relative flex flex-1 flex-col justify-between p-10 xl:p-14">
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 shadow-inner backdrop-blur-sm">
+            <span
+              className="flex h-10 w-10 items-center justify-center rounded-xl shadow-inner"
+              style={{background:"linear-gradient(135deg, #9A7538, #C5A572)", boxShadow:"0 4px 12px rgba(197,165,114,0.35)"}}
+            >
               <Compass className="h-5 w-5 text-white" />
             </span>
             <div>
               <p className="text-lg font-bold text-white">Rahal</p>
-              <p className="text-xs text-indigo-200">{t("رحلات زيارية", "Pilgrimage Travel")}</p>
+              <p className="text-xs" style={{color:"rgba(197,165,114,0.8)"}}>{t("رحلات زيارية", "Pilgrimage Travel")}</p>
             </div>
           </div>
 
@@ -100,8 +105,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <header className="flex items-center justify-between px-6 py-5 sm:px-8">
           {/* Mobile brand (hidden on desktop — shown on left panel) */}
           <div className="flex items-center gap-2.5 lg:invisible">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600">
-              <Compass className="h-4.5 w-4.5 text-white" />
+            <span
+              className="flex h-9 w-9 items-center justify-center rounded-xl"
+              style={{background:"linear-gradient(135deg, #9A7538, #C5A572)", boxShadow:"0 3px 10px rgba(197,165,114,0.35)"}}
+            >
+              <Compass className="h-4 w-4 text-white" />
             </span>
             <div>
               <p className="text-sm font-bold text-gray-900">Rahal</p>

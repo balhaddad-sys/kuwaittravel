@@ -30,19 +30,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
     ) => {
     const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-semibold border transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none rounded-[var(--radius-btn)]";
+      "inline-flex items-center justify-center gap-2 font-semibold border transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/60 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none rounded-[var(--radius-btn)]";
 
     const variants = {
-      /* Primary — solid Royal Blue, Booking.com style */
+      /* Primary — Deep Ocean Blue */
       primary:
-        "border-indigo-700 bg-indigo-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(37,99,235,0.28)] hover:bg-indigo-700 hover:border-indigo-800 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(37,99,235,0.34)] active:bg-indigo-800 dark:bg-indigo-500 dark:border-indigo-600 dark:hover:bg-indigo-600",
-      /* Secondary — clean white */
+        "border-indigo-700 bg-indigo-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.14),0_4px_12px_rgba(30,58,95,0.32)] hover:bg-indigo-700 hover:border-indigo-800 hover:shadow-[0_2px_4px_rgba(0,0,0,0.14),0_8px_20px_rgba(30,58,95,0.38)] active:bg-indigo-800 dark:bg-indigo-500 dark:border-indigo-600 dark:hover:bg-indigo-600",
+      /* Secondary — warm white */
       secondary:
-        "border-gray-200 bg-white text-gray-800 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.06)] hover:border-gray-300 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-500 dark:hover:bg-gray-700",
-      /* Accent — warm gold */
+        "border-gray-200 bg-white text-gray-800 shadow-[0_1px_2px_rgba(26,18,9,0.06),0_2px_8px_rgba(26,18,9,0.06)] hover:border-gray-300 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-500 dark:hover:bg-gray-700",
+      /* Accent — Rich Gold */
       accent:
-        "border-orange-600 bg-orange-500 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(245,158,11,0.28)] hover:bg-orange-600 hover:border-orange-700 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(245,158,11,0.34)] active:bg-orange-700",
-      /* Outline — transparent with border */
+        "border-orange-600 bg-orange-500 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(197,165,114,0.38)] hover:bg-orange-600 hover:border-orange-700 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(197,165,114,0.48)] active:bg-orange-700",
+      /* Outline — warm border */
       outline:
         "border-gray-300 bg-transparent text-gray-700 hover:border-gray-400 hover:bg-gray-50 hover:text-gray-900 dark:border-gray-600 dark:text-gray-200 dark:hover:border-gray-400 dark:hover:bg-gray-800",
       /* Ghost — minimal */
