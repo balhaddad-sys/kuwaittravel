@@ -86,9 +86,25 @@ export default function AdminLoginPage() {
       if (!currentUser) throw new Error("No authenticated user");
 
       const existingUser = await getDocument<User>(COLLECTIONS.USERS, currentUser.uid);
-      if (isAdminRole(existingUser?.role) || isPrivilegedAdminEmail(currentUser.email)) {
+      if (isAdminRole(existingUser?.role)) {
         router.replace("/admin/dashboard");
         return;
+      }
+
+      if (isPrivilegedAdminEmail(currentUser.email)) {
+        const idToken = await currentUser.getIdToken();
+        const response = await fetch("/api/admin/promote-privileged", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        });
+
+        if (response.ok) {
+          await currentUser.getIdToken(true);
+          router.replace("/admin/dashboard");
+          return;
+        }
       }
 
       await logout();

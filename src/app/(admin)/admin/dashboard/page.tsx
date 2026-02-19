@@ -53,35 +53,35 @@ export default function AdminDashboardPage() {
       onCollectionChange<Campaign>(COLLECTIONS.CAMPAIGNS, [], (data) => {
         setCampaigns(data);
         setLoaded((prev) => ({ ...prev, campaigns: true }));
-      })
+      }, () => setLoaded((prev) => ({ ...prev, campaigns: true })))
     );
 
     unsubs.push(
       onCollectionChange<User>(COLLECTIONS.USERS, [], (data) => {
         setUsers(data);
         setLoaded((prev) => ({ ...prev, users: true }));
-      })
+      }, () => setLoaded((prev) => ({ ...prev, users: true })))
     );
 
     unsubs.push(
       onCollectionChange<Trip>(COLLECTIONS.TRIPS, [], (data) => {
         setTrips(data);
         setLoaded((prev) => ({ ...prev, trips: true }));
-      })
+      }, () => setLoaded((prev) => ({ ...prev, trips: true })))
     );
 
     unsubs.push(
       onCollectionChange<Booking>(COLLECTIONS.BOOKINGS, [], (data) => {
         setBookings(data);
         setLoaded((prev) => ({ ...prev, bookings: true }));
-      })
+      }, () => setLoaded((prev) => ({ ...prev, bookings: true })))
     );
 
     unsubs.push(
       onCollectionChange<Dispute>(COLLECTIONS.DISPUTES, [], (data) => {
         setDisputes(data);
         setLoaded((prev) => ({ ...prev, disputes: true }));
-      })
+      }, () => setLoaded((prev) => ({ ...prev, disputes: true })))
     );
 
     return () => unsubs.forEach((fn) => fn());

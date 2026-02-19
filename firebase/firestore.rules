@@ -13,25 +13,37 @@ service cloud.firestore {
     }
 
     function getUserRole() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        ? get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role
+        : null;
+    }
+
+    function isRoleAdmin(role) {
+      return role is string && role.matches('^\\s*(admin|super_admin)\\s*$');
     }
 
     function isAdmin() {
-      return isAuthenticated() && getUserRole() in ['admin', 'super_admin'];
+      return isAuthenticated() && (
+        request.auth.token.admin == true ||
+        request.auth.token.platformRole in ['admin', 'super_admin'] ||
+        isRoleAdmin(getUserRole())
+      );
     }
 
     function isCampaignOwner(campaignId) {
       return isAuthenticated() &&
+        campaignId is string &&
         get(/databases/$(database)/documents/campaigns/$(campaignId)).data.ownerId == request.auth.uid;
     }
 
     function isCampaignStaff(campaignId) {
       return isAuthenticated() &&
+        campaignId is string &&
         exists(/databases/$(database)/documents/campaigns/$(campaignId)/staff/$(request.auth.uid));
     }
 
     function hasCampaignAccess(campaignId) {
-      return isCampaignOwner(campaignId) || isCampaignStaff(campaignId) || isAdmin();
+      return isAdmin() || isCampaignOwner(campaignId) || isCampaignStaff(campaignId);
     }
 
     // Allowed roles for self-registration (no admin/super_admin)

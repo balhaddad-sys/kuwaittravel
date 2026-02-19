@@ -41,6 +41,7 @@ From `.env.example`:
 - `FIREBASE_PRIVATE_KEY`
 - `ADMIN_SETUP_KEY` (optional)
 - `ADMIN_SETUP_ENABLED` (`false` in production)
+- `ADMIN_EMAILS` (optional server-side allowlist; falls back to `NEXT_PUBLIC_ADMIN_EMAILS`)
 
 ## Production Readiness Commands
 
@@ -60,7 +61,7 @@ npm run grant-admin -- --service-account "C:/path/to/service-account.json" --uid
 
 You can also use `--email` or `--phone` instead of `--uid`.
 
-If an email is listed in `NEXT_PUBLIC_ADMIN_EMAILS`, it can access `/admin-login` and open the admin console entry path directly.
+If an email is listed in `NEXT_PUBLIC_ADMIN_EMAILS`, signing in from `/admin-login` will auto-promote that account to `admin` (user doc + custom claims) on first admin login.
 
 ## Security Notes
 
