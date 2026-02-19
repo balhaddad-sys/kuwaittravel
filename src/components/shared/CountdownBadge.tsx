@@ -23,7 +23,7 @@ function CountdownBadge({ departureDate, className }: CountdownBadgeProps) {
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-bold",
         isUrgent
-          ? "animate-countdown-pulse bg-amber-500 text-white shadow-[0_0_12px_rgba(245,158,11,0.4)]"
+          ? "animate-countdown-pulse bg-coral-500 text-white shadow-[0_0_12px_rgba(244,63,94,0.4)]"
           : "border border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
         className
       )}

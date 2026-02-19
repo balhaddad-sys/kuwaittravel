@@ -242,9 +242,9 @@ export default function DocumentsPage() {
             </Card>
 
             {/* Info note */}
-            <Card variant="outlined" padding="lg" className="border-blue-200/70 dark:border-blue-800/45">
+            <Card variant="outlined" padding="lg" className="border-teal-200/70 dark:border-teal-800/45">
               <div className="flex items-start gap-3">
-                <FileText className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />
+                <FileText className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
                 <div>
                   <p className="text-body-sm text-stone-700 dark:text-stone-300">
                     {t(

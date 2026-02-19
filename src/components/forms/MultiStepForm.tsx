@@ -67,7 +67,7 @@ function MultiStepForm({
                   i < currentStep
                     ? "bg-success text-white cursor-pointer"
                     : i === currentStep
-                    ? "bg-amber-500 text-white"
+                    ? "bg-coral-500 text-white"
                     : "bg-surface-muted text-stone-400 dark:bg-surface-dark-card"
                 )}
               >

@@ -83,12 +83,12 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
               {t("التبديل إلى", "Switch to")}
             </p>
             <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-stone-500 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200">
-              <Compass className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <Compass className="h-4 w-4 text-teal-600 dark:text-teal-400" />
               {t("المسافرون", "Travelers")}
             </Link>
             {isAdmin && (
               <Link href="/admin/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-stone-500 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200">
-                <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <Shield className="h-4 w-4 text-teal-600 dark:text-teal-400" />
                 {t("إدارة المشرفين", "Admin Console")}
               </Link>
             )}

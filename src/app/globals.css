@@ -2,26 +2,39 @@
 
 /* ============================================
    RAHAL — PREMIUM GULF TRAVEL DESIGN SYSTEM
-   Deep Blue + Warm Gold + Clean White
+   Teal + Coral + Warm Slate
    Consumer-ready travel experience
-   Inspired by Airbnb · Booking · Google Travel
+   Inspired by Airbnb · Wise · Booking · Canva
    ============================================ */
 
 @theme inline {
-  /* === PRIMARY: Indigo Blue Spectrum === */
-  --color-teal-50: #EFF6FF;
-  --color-teal-100: #DBEAFE;
-  --color-teal-200: #BFDBFE;
-  --color-teal-300: #93C5FD;
-  --color-teal-400: #60A5FA;
-  --color-teal-500: #3B82F6;
-  --color-teal-600: #2563EB;
-  --color-teal-700: #1D4ED8;
-  --color-teal-800: #1E40AF;
-  --color-teal-900: #1E3A8A;
-  --color-teal-950: #172554;
+  /* === PRIMARY: Teal Spectrum (real teal — ocean, trust, travel) === */
+  --color-teal-50: #F0FDFA;
+  --color-teal-100: #CCFBF1;
+  --color-teal-200: #99F6E4;
+  --color-teal-300: #5EEAD4;
+  --color-teal-400: #2DD4BF;
+  --color-teal-500: #14B8A6;
+  --color-teal-600: #0D9488;
+  --color-teal-700: #0F766E;
+  --color-teal-800: #115E59;
+  --color-teal-900: #134E4A;
+  --color-teal-950: #042F2E;
 
-  /* === ACCENT: Warm Amber/Gold Spectrum === */
+  /* === ACCENT: Coral / Rose Spectrum (Airbnb-inspired warmth) === */
+  --color-coral-50: #FFF1F2;
+  --color-coral-100: #FFE4E6;
+  --color-coral-200: #FECDD3;
+  --color-coral-300: #FDA4AF;
+  --color-coral-400: #FB7185;
+  --color-coral-500: #F43F5E;
+  --color-coral-600: #E11D48;
+  --color-coral-700: #BE123C;
+  --color-coral-800: #9F1239;
+  --color-coral-900: #881337;
+  --color-coral-950: #4C0519;
+
+  /* === AMBER: Warm Gold (reserved for star ratings & warnings) === */
   --color-amber-50: #FFFBEB;
   --color-amber-100: #FEF3C7;
   --color-amber-200: #FDE68A;
@@ -33,47 +46,47 @@
   --color-amber-800: #92400E;
   --color-amber-900: #78350F;
 
-  /* === NEUTRALS: True Gray === */
-  --color-stone-50: #F9FAFB;
-  --color-stone-100: #F3F4F6;
-  --color-stone-200: #E5E7EB;
-  --color-stone-300: #D1D5DB;
-  --color-stone-400: #9CA3AF;
-  --color-stone-500: #6B7280;
-  --color-stone-600: #4B5563;
-  --color-stone-700: #374151;
-  --color-stone-800: #1F2937;
-  --color-stone-900: #111827;
-  --color-stone-950: #030712;
+  /* === NEUTRALS: Warm Slate === */
+  --color-stone-50: #F8FAFC;
+  --color-stone-100: #F1F5F9;
+  --color-stone-200: #E2E8F0;
+  --color-stone-300: #CBD5E1;
+  --color-stone-400: #94A3B8;
+  --color-stone-500: #64748B;
+  --color-stone-600: #475569;
+  --color-stone-700: #334155;
+  --color-stone-800: #1E293B;
+  --color-stone-900: #0F172A;
+  --color-stone-950: #020617;
 
-  /* === LEGACY ALIASES === */
-  --color-navy-50: #EFF6FF;
-  --color-navy-100: #DBEAFE;
-  --color-navy-200: #BFDBFE;
-  --color-navy-300: #93C5FD;
-  --color-navy-400: #60A5FA;
-  --color-navy-500: #3B82F6;
-  --color-navy-600: #2563EB;
-  --color-navy-700: #1D4ED8;
-  --color-navy-800: #1E40AF;
-  --color-navy-900: #1E3A8A;
+  /* === LEGACY ALIASES: Navy → Slate, Gold → Coral === */
+  --color-navy-50: #F8FAFC;
+  --color-navy-100: #F1F5F9;
+  --color-navy-200: #E2E8F0;
+  --color-navy-300: #CBD5E1;
+  --color-navy-400: #94A3B8;
+  --color-navy-500: #64748B;
+  --color-navy-600: #475569;
+  --color-navy-700: #334155;
+  --color-navy-800: #1E293B;
+  --color-navy-900: #0F172A;
 
-  --color-gold-50: #FFFBEB;
-  --color-gold-100: #FEF3C7;
-  --color-gold-200: #FDE68A;
-  --color-gold-300: #FCD34D;
-  --color-gold-400: #FBBF24;
-  --color-gold-500: #F59E0B;
-  --color-gold-600: #D97706;
-  --color-gold-700: #B45309;
-  --color-gold-800: #92400E;
-  --color-gold-900: #78350F;
+  --color-gold-50: #FFF1F2;
+  --color-gold-100: #FFE4E6;
+  --color-gold-200: #FECDD3;
+  --color-gold-300: #FDA4AF;
+  --color-gold-400: #FB7185;
+  --color-gold-500: #F43F5E;
+  --color-gold-600: #E11D48;
+  --color-gold-700: #BE123C;
+  --color-gold-800: #9F1239;
+  --color-gold-900: #881337;
 
   /* === SURFACES === */
   --color-surface-warm: #FFFFFF;
-  --color-surface-light: #F9FAFB;
-  --color-surface-muted: #F3F4F6;
-  --color-surface-border: #E5E7EB;
+  --color-surface-light: #F8FAFC;
+  --color-surface-muted: #F1F5F9;
+  --color-surface-border: #E2E8F0;
   --color-surface-dark: #0F172A;
   --color-surface-dark-card: #1E293B;
   --color-surface-dark-border: #334155;
@@ -85,8 +98,8 @@
   --color-warning-light: #FEF3C7;
   --color-error: #DC2626;
   --color-error-light: #FEE2E2;
-  --color-info: #2563EB;
-  --color-info-light: #DBEAFE;
+  --color-info: #0D9488;
+  --color-info-light: #CCFBF1;
 
   /* === FONTS === */
   --font-arabic: var(--font-arabic-ui), "Tajawal", sans-serif;
@@ -127,7 +140,7 @@
   --radius-pill: 999px;
   --radius-fab: 999px;
 
-  /* === SHADOWS (Airbnb-inspired: clean gray, no color tint) === */
+  /* === SHADOWS === */
   --shadow-card: 0 1px 2px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
   --shadow-card-hover: 0 2px 4px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.1);
   --shadow-elevated: 0 8px 30px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
@@ -135,8 +148,8 @@
   --shadow-topbar: 0 1px 0 rgba(0,0,0,0.08);
   --shadow-modal: 0 24px 64px -12px rgba(0,0,0,0.24), 0 4px 16px rgba(0,0,0,0.08);
   --shadow-fab: 0 8px 24px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.08);
-  --shadow-amber-glow: 0 8px 24px -4px rgba(245, 158, 11, 0.3);
-  --shadow-teal-glow: 0 8px 24px -4px rgba(37, 99, 235, 0.25);
+  --shadow-coral-glow: 0 8px 24px -4px rgba(244, 63, 94, 0.3);
+  --shadow-teal-glow: 0 8px 24px -4px rgba(13, 148, 136, 0.25);
   --shadow-inner-warm: inset 0 1px 0 rgba(255, 255, 255, 0.8);
 
   /* === Z-INDEX === */
@@ -165,18 +178,18 @@
 @layer base {
   :root {
     --background: #FFFFFF;
-    --foreground: #111827;
-    --muted: #F3F4F6;
-    --border: #E5E7EB;
-    --clr-primary: #2563EB;
-    --clr-primary-light: #3B82F6;
-    --clr-accent: #F59E0B;
-    --clr-accent-light: #FBBF24;
+    --foreground: #0F172A;
+    --muted: #F1F5F9;
+    --border: #E2E8F0;
+    --clr-primary: #0D9488;
+    --clr-primary-light: #14B8A6;
+    --clr-accent: #F43F5E;
+    --clr-accent-light: #FB7185;
     --clr-bg: #FFFFFF;
     --clr-surface: #FFFFFF;
-    --clr-text-main: #111827;
-    --clr-text-muted: #6B7280;
-    --clr-border: #E5E7EB;
+    --clr-text-main: #0F172A;
+    --clr-text-muted: #64748B;
+    --clr-border: #E2E8F0;
     --clr-success: #059669;
     --clr-error: #DC2626;
   }
@@ -186,10 +199,10 @@
     --foreground: #F1F5F9;
     --muted: #1E293B;
     --border: #334155;
-    --clr-primary: #60A5FA;
-    --clr-primary-light: #93C5FD;
-    --clr-accent: #FBBF24;
-    --clr-accent-light: #FDE68A;
+    --clr-primary: #2DD4BF;
+    --clr-primary-light: #5EEAD4;
+    --clr-accent: #FB7185;
+    --clr-accent-light: #FDA4AF;
     --clr-bg: #0F172A;
     --clr-surface: #1E293B;
     --clr-text-main: #F1F5F9;
@@ -229,30 +242,30 @@
   }
 
   *:focus-visible {
-    outline: 2px solid #2563EB;
+    outline: 2px solid #0D9488;
     outline-offset: 2px;
     border-radius: var(--radius-sm);
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
   }
 
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: #D1D5DB;
+    background: #CBD5E1;
     border-radius: 3px;
     transition: background 0.2s;
   }
-  ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
+  ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
   .dark ::-webkit-scrollbar-thumb { background: #475569; }
   .dark ::-webkit-scrollbar-thumb:hover { background: #64748B; }
 
   ::selection {
-    background: #DBEAFE;
-    color: #1E3A8A;
+    background: #CCFBF1;
+    color: #134E4A;
   }
   .dark ::selection {
-    background: #1E3A8A;
-    color: #DBEAFE;
+    background: #134E4A;
+    color: #CCFBF1;
   }
 }
 
@@ -263,11 +276,11 @@
 
   /* ============================================
      CORE SURFACE CLASSES
-     Airbnb-style: clean white, crisp shadows
+     Clean white, crisp shadows
      ============================================ */
 
   .sacred-panel {
-    border: 1px solid #E5E7EB;
+    border: 1px solid #E2E8F0;
     background: #FFFFFF;
     box-shadow: var(--shadow-card);
     border-radius: var(--radius-card);
@@ -279,7 +292,7 @@
   }
 
   .sacred-card {
-    border: 1px solid #E5E7EB;
+    border: 1px solid #E2E8F0;
     background: #FFFFFF;
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
@@ -289,7 +302,7 @@
       transform var(--duration-ui) var(--ease-smooth);
   }
   .sacred-card:hover {
-    border-color: #D1D5DB;
+    border-color: #CBD5E1;
     box-shadow: var(--shadow-card-hover);
     transform: translateY(-2px);
   }
@@ -305,7 +318,7 @@
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(229, 231, 235, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.8);
     box-shadow: var(--shadow-card);
   }
   .dark .sacred-glass {
@@ -314,9 +327,9 @@
   }
 
   .sacred-chip {
-    border: 1.5px solid #E5E7EB;
+    border: 1.5px solid #E2E8F0;
     background: #FFFFFF;
-    color: #374151;
+    color: #334155;
     border-radius: var(--radius-chip);
   }
   .dark .sacred-chip {
@@ -326,7 +339,7 @@
   }
 
   .sacred-section {
-    border: 1px solid #E5E7EB;
+    border: 1px solid #E2E8F0;
     border-radius: var(--radius-2xl);
     background: #FFFFFF;
     box-shadow: var(--shadow-card);
@@ -341,7 +354,7 @@
      ============================================ */
 
   .sacred-gradient {
-    background: linear-gradient(135deg, #1E40AF 0%, #2563EB 50%, #3B82F6 100%);
+    background: linear-gradient(135deg, #115E59 0%, #0D9488 50%, #14B8A6 100%);
   }
 
   .sacred-gradient-subtle {
@@ -351,21 +364,21 @@
     background: #0F172A;
   }
 
-  /* Hero gradient — rich deep blue (used on profile, my-trips headers) */
+  /* Hero gradient — rich deep teal */
   .sacred-gradient-hero {
-    background: linear-gradient(160deg, #1E40AF 0%, #1D4ED8 35%, #2563EB 65%, #3B82F6 100%);
+    background: linear-gradient(160deg, #115E59 0%, #0F766E 35%, #0D9488 65%, #14B8A6 100%);
     position: relative;
     overflow: hidden;
   }
   .dark .sacred-gradient-hero {
-    background: linear-gradient(160deg, #0F172A 0%, #1E3A8A 40%, #1D4ED8 100%);
+    background: linear-gradient(160deg, #0F172A 0%, #134E4A 40%, #0F766E 100%);
   }
 
   .sacred-gradient-hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 80% 0%, rgba(251, 191, 36, 0.15) 0%, transparent 60%),
+    background: radial-gradient(ellipse at 80% 0%, rgba(244, 63, 94, 0.15) 0%, transparent 60%),
                 radial-gradient(ellipse at 0% 100%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
     pointer-events: none;
   }
@@ -378,7 +391,7 @@
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, #FBBF24, #D97706);
+    background: linear-gradient(135deg, #FB7185, #E11D48);
     opacity: 0;
     transition: opacity var(--duration-ui) var(--ease-smooth);
     z-index: -1;
@@ -397,18 +410,18 @@
     position: absolute;
     inset: 0;
     opacity: 0.018;
-    background-image: radial-gradient(circle at 1px 1px, #6B7280 0.6px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, #64748B 0.6px, transparent 0);
     background-size: 20px 20px;
     pointer-events: none;
     z-index: 0;
   }
 
   /* ============================================
-     LEGACY ALIASES (same class names, better styles)
+     LEGACY ALIASES (same class names, updated styles)
      ============================================ */
 
   .travel-panel {
-    border: 1px solid #E5E7EB;
+    border: 1px solid #E2E8F0;
     background: #FFFFFF;
     box-shadow: var(--shadow-card);
     border-radius: var(--radius-card);
@@ -419,9 +432,9 @@
   }
 
   .travel-chip {
-    border: 1.5px solid #E5E7EB;
+    border: 1.5px solid #E2E8F0;
     background: #FFFFFF;
-    color: #374151;
+    color: #334155;
     border-radius: var(--radius-chip);
   }
   .dark .travel-chip {
@@ -431,7 +444,7 @@
   }
 
   .travel-section {
-    border: 1px solid #E5E7EB;
+    border: 1px solid #E2E8F0;
     border-radius: var(--radius-2xl);
     background: #FFFFFF;
     box-shadow: var(--shadow-card);
@@ -442,18 +455,18 @@
   }
 
   .travel-gradient-hero {
-    background: linear-gradient(160deg, #1E40AF 0%, #1D4ED8 35%, #2563EB 65%, #3B82F6 100%);
+    background: linear-gradient(160deg, #115E59 0%, #0F766E 35%, #0D9488 65%, #14B8A6 100%);
     position: relative;
     overflow: hidden;
   }
   .dark .travel-gradient-hero {
-    background: linear-gradient(160deg, #0F172A 0%, #1E3A8A 40%, #1D4ED8 100%);
+    background: linear-gradient(160deg, #0F172A 0%, #134E4A 40%, #0F766E 100%);
   }
 
-  /* Main app shell background — clean white */
+  /* Main app shell background */
   .sacred-shell-bg,
   .travel-shell-bg {
-    background-color: #F9FAFB;
+    background-color: #F8FAFC;
   }
   .dark .sacred-shell-bg,
   .dark .travel-shell-bg {
@@ -463,7 +476,7 @@
   .travel-orbit-bg { position: relative; isolation: isolate; overflow: hidden; }
   .travel-orbit-bg::before { content: ""; pointer-events: none; position: absolute; inset: 0; z-index: -1; }
 
-  .travel-divider { height: 1px; background: #E5E7EB; border: none; }
+  .travel-divider { height: 1px; background: #E2E8F0; border: none; }
   .dark .travel-divider { background: #334155; }
 
   .travel-glow { position: relative; }
@@ -494,9 +507,9 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-md);
-    border: 1px solid #E5E7EB;
-    background: #F9FAFB;
-    color: #6B7280;
+    border: 1px solid #E2E8F0;
+    background: #F8FAFC;
+    color: #64748B;
   }
   .dark .sacred-icon-circle,
   .dark .travel-icon-circle {
@@ -509,27 +522,27 @@
   .travel-icon-circle-lg { width: 3rem; height: 3rem; }
 
   .sacred-icon-teal {
-    border-color: #BFDBFE;
-    background: #EFF6FF;
-    color: #1D4ED8;
+    border-color: #99F6E4;
+    background: #F0FDFA;
+    color: #0F766E;
   }
   .dark .sacred-icon-teal {
-    border-color: #1E3A8A;
-    background: rgba(30, 58, 138, 0.2);
-    color: #93C5FD;
+    border-color: #134E4A;
+    background: rgba(19, 78, 74, 0.2);
+    color: #5EEAD4;
   }
 
   .sacred-icon-amber,
   .travel-icon-circle-gold {
-    border-color: #FDE68A;
-    background: #FFFBEB;
-    color: #B45309;
+    border-color: #FECDD3;
+    background: #FFF1F2;
+    color: #BE123C;
   }
   .dark .sacred-icon-amber,
   .dark .travel-icon-circle-gold {
-    border-color: #92400E;
-    background: rgba(120, 53, 15, 0.2);
-    color: #FCD34D;
+    border-color: #9F1239;
+    background: rgba(136, 19, 55, 0.2);
+    color: #FDA4AF;
   }
 
   /* ============================================
@@ -537,10 +550,10 @@
      ============================================ */
 
   .travel-filter-chip {
-    border: 1.5px solid #E5E7EB;
+    border: 1.5px solid #E2E8F0;
     border-radius: var(--radius-chip);
     background: #FFFFFF;
-    color: #374151;
+    color: #334155;
     font-weight: 500;
     transition:
       border-color var(--duration-ui) var(--ease-smooth),
@@ -549,16 +562,16 @@
       box-shadow var(--duration-ui) var(--ease-smooth);
   }
   .travel-filter-chip:hover {
-    border-color: #9CA3AF;
-    background: #F9FAFB;
-    color: #111827;
+    border-color: #94A3B8;
+    background: #F8FAFC;
+    color: #0F172A;
   }
   /* Active chip: solid dark (Airbnb category style) */
   .travel-filter-chip-active {
-    border-color: #111827;
-    background: #111827;
+    border-color: #0F172A;
+    background: #0F172A;
     color: #FFFFFF;
-    box-shadow: 0 2px 8px rgba(17, 24, 39, 0.2);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
   }
   .dark .travel-filter-chip {
     border-color: #475569;
@@ -582,19 +595,19 @@
 
   .inline-input {
     background: #FFFFFF;
-    border: 1.5px solid #E5E7EB;
+    border: 1.5px solid #E2E8F0;
     border-radius: var(--radius-input);
     padding: 12px 16px;
     font-family: var(--font-arabic);
-    color: #111827;
+    color: #0F172A;
     transition:
       border-color var(--transition-fast),
       box-shadow var(--transition-fast);
   }
   .inline-input:focus {
     outline: none;
-    border-color: #2563EB;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    border-color: #0D9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
   }
   .dark .inline-input {
     border-color: #475569;
@@ -602,8 +615,8 @@
     color: #F1F5F9;
   }
   .dark .inline-input:focus {
-    border-color: #60A5FA;
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+    border-color: #2DD4BF;
+    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15);
   }
 
   /* ============================================
@@ -639,7 +652,7 @@
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: #2563EB;
+    background: #0D9488;
     color: white;
     box-shadow: var(--shadow-fab);
   }
@@ -655,7 +668,7 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.96);
-    border-top: 1px solid #E5E7EB;
+    border-top: 1px solid #E2E8F0;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
   }
   .dark .sticky-booking-bar {
@@ -729,7 +742,7 @@
 
   /* Shimmer loading */
   .skeleton {
-    background: linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%);
+    background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
     background-size: 200% 100%;
     animation: shimmer 1.4s ease-in-out infinite;
   }
@@ -737,9 +750,9 @@
   .sacred-shimmer {
     background: linear-gradient(
       110deg,
-      #F3F4F6 0%, #F3F4F6 40%,
-      #FEF3C7 50%,
-      #F3F4F6 60%, #F3F4F6 100%
+      #F1F5F9 0%, #F1F5F9 40%,
+      #FFE4E6 50%,
+      #F1F5F9 60%, #F1F5F9 100%
     );
     background-size: 250% 100%;
     animation: shimmer 1.8s ease-in-out infinite;
@@ -758,9 +771,9 @@
     border-radius: var(--radius-card);
     background: linear-gradient(
       110deg,
-      #F3F4F6 0%, #F3F4F6 40%,
-      #E5E7EB 50%,
-      #F3F4F6 60%, #F3F4F6 100%
+      #F1F5F9 0%, #F1F5F9 40%,
+      #E2E8F0 50%,
+      #F1F5F9 60%, #F1F5F9 100%
     );
     background-size: 250% 100%;
     animation: shimmer 1.8s ease-in-out infinite;
@@ -844,8 +857,8 @@
   .animate-float { animation: float 3s ease-in-out infinite; }
 
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-    50% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.1); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+    50% { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0.1); }
   }
   .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 
@@ -896,14 +909,14 @@
   }
 
   @keyframes fab-idle-pulse {
-    0%, 100% { box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2); }
-    50% { box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3); }
+    0%, 100% { box-shadow: 0 8px 24px rgba(13, 148, 136, 0.2); }
+    50% { box-shadow: 0 12px 32px rgba(13, 148, 136, 0.3); }
   }
   .animate-fab-idle { animation: fab-idle-pulse 3s ease-in-out infinite; }
 
   @keyframes cta-glow {
-    0%, 100% { box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25); }
-    50% { box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4), 0 0 0 6px rgba(245, 158, 11, 0.08); }
+    0%, 100% { box-shadow: 0 4px 14px rgba(244, 63, 94, 0.25); }
+    50% { box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4), 0 0 0 6px rgba(244, 63, 94, 0.08); }
   }
   .animate-cta-glow { animation: cta-glow 3s ease-in-out infinite; }
 
@@ -930,12 +943,12 @@
   }
   .animate-bell-ring { animation: bell-ring 2s ease-in-out; transform-origin: top center; }
 
-  @keyframes amber-shimmer {
+  @keyframes coral-shimmer {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
   }
   .travel-gold-shimmer {
     background-size: 180% 100%;
-    animation: amber-shimmer 2.8s ease-in-out infinite;
+    animation: coral-shimmer 2.8s ease-in-out infinite;
   }
 }

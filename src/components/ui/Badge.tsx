@@ -13,10 +13,10 @@ const variantMap = {
   success: "bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800/60",
   warning: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/60",
   error: "bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
-  info: "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800/60",
-  teal: "bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800/60",
-  amber: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60",
-  gold: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60",
+  info: "bg-teal-50 text-teal-700 border border-teal-200 dark:bg-teal-900/30 dark:text-teal-400 dark:border-teal-800/60",
+  teal: "bg-teal-50 text-teal-800 border border-teal-200 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-800/60",
+  amber: "bg-coral-50 text-coral-800 border border-coral-200 dark:bg-coral-900/30 dark:text-coral-300 dark:border-coral-800/60",
+  gold: "bg-coral-50 text-coral-800 border border-coral-200 dark:bg-coral-900/30 dark:text-coral-300 dark:border-coral-800/60",
 };
 
 const sizeMap = {
@@ -31,8 +31,8 @@ const dotMap: Record<string, string> = {
   error: "bg-error",
   info: "bg-info",
   teal: "bg-teal-600 dark:bg-teal-400",
-  amber: "bg-amber-500 dark:bg-amber-400",
-  gold: "bg-amber-500 dark:bg-amber-400",
+  amber: "bg-coral-500 dark:bg-coral-400",
+  gold: "bg-coral-500 dark:bg-coral-400",
 };
 
 function Badge({ variant = "default", size = "md", children, dot = false, className }: BadgeProps) {

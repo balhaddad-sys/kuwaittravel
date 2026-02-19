@@ -27,7 +27,7 @@ const dealConfig: Record<DealBadgeType, { icon: React.ReactNode; labelAr: string
     icon: <Award className="h-3 w-3" />,
     labelAr: "أفضل قيمة",
     labelEn: "Best Value",
-    color: "bg-amber-500 text-white",
+    color: "bg-coral-500 text-white",
   },
   trending: {
     icon: <TrendingUp className="h-3 w-3" />,

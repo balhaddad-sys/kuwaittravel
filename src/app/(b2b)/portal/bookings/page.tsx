@@ -267,7 +267,7 @@ export default function BookingsPage() {
                         {booking.discountKWD > 0 && (
                           <div className="flex items-center justify-between text-body-sm">
                             <span className="text-stone-500 dark:text-stone-400">{t("الخصم", "Discount")}</span>
-                            <span className="font-semibold text-blue-600 dark:text-blue-400" dir="ltr">-{formatKWD(booking.discountKWD)}</span>
+                            <span className="font-semibold text-teal-600 dark:text-teal-400" dir="ltr">-{formatKWD(booking.discountKWD)}</span>
                           </div>
                         )}
                       </div>

@@ -39,7 +39,7 @@ const roleColors: Record<UserRole, { variant: "default" | "success" | "warning" 
 };
 
 const statusBarColor: Record<UserRole, string> = {
-  traveler: "bg-blue-400",
+  traveler: "bg-teal-400",
   campaign_owner: "bg-amber-500",
   campaign_staff: "bg-teal-500",
   admin: "bg-orange-500",

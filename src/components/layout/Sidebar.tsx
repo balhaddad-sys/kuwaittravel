@@ -65,15 +65,15 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                 className={cn(
                   "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
                   isActive
-                    ? "border border-blue-100 bg-blue-50 font-semibold text-blue-700 dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-300"
+                    ? "border border-teal-100 bg-teal-50 font-semibold text-teal-700 dark:border-teal-900 dark:bg-teal-950/50 dark:text-teal-300"
                     : "border border-transparent text-stone-500 hover:border-stone-100 hover:bg-stone-50 hover:text-stone-700 dark:text-stone-400 dark:hover:border-stone-700 dark:hover:bg-stone-800 dark:hover:text-stone-200"
                 )}
                 title={collapsed ? item.label : undefined}
               >
                 {isActive && (
-                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-blue-600 dark:bg-blue-400" />
+                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-teal-600 dark:bg-teal-400" />
                 )}
-                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-blue-600 dark:text-blue-400")}>
+                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-teal-600 dark:text-teal-400")}>
                   {item.icon}
                 </span>
                 {!collapsed && (
@@ -84,7 +84,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                         className={cn(
                           "flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold",
                           isActive
-                            ? "bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+                            ? "bg-teal-100 text-teal-700 dark:bg-teal-900/50 dark:text-teal-300"
                             : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400"
                         )}
                       >

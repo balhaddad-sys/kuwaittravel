@@ -114,8 +114,8 @@ function TripCard({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 dark:from-slate-700 dark:to-slate-600">
-            <MapPin className="h-10 w-10 text-blue-300 dark:text-slate-400" />
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-teal-50 to-teal-100 dark:from-slate-700 dark:to-slate-600">
+            <MapPin className="h-10 w-10 text-teal-300 dark:text-slate-400" />
           </div>
         )}
 
@@ -209,7 +209,7 @@ function TripCard({
             {tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[10.5px] font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                className="rounded-full bg-teal-50 px-2.5 py-0.5 text-[10.5px] font-medium text-teal-700 dark:bg-teal-900/30 dark:text-teal-300"
               >
                 {tag}
               </span>

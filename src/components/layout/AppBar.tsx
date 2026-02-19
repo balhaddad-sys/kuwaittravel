@@ -49,7 +49,7 @@ function AppBar({
                 <span key={i} className="flex items-center gap-1.5">
                   {i > 0 && <span className="text-gray-300 dark:text-slate-600">/</span>}
                   {crumb.href ? (
-                    <Link href={crumb.href} prefetch className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">
+                    <Link href={crumb.href} prefetch className="transition-colors hover:text-teal-600 dark:hover:text-teal-400">
                       {crumb.label}
                     </Link>
                   ) : (

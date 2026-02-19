@@ -38,7 +38,7 @@ export default function SettingsPage() {
         <Card variant="elevated" padding="lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"><Globe className="h-4 w-4" /></span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-50 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400"><Globe className="h-4 w-4" /></span>
               <div>
                 <p className="text-body-sm sm:text-body-md font-semibold text-stone-900 dark:text-white">{t("اللغة", "Language")}</p>
                 <p className="text-xs text-stone-500">{t("عربي / English", "Arabic / English")}</p>

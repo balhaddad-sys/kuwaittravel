@@ -37,7 +37,7 @@ function Avatar({ src, alt, name, size = "md", ring = false, className }: Avatar
         height={sizePx[size]}
         className={cn(
           "rounded-full object-cover",
-          ring && "ring-2 ring-white/90 ring-offset-2 ring-offset-transparent dark:ring-amber-300/40",
+          ring && "ring-2 ring-white/90 ring-offset-2 ring-offset-transparent dark:ring-coral-300/40",
           sizeMap[size],
           className
         )}
@@ -49,7 +49,7 @@ function Avatar({ src, alt, name, size = "md", ring = false, className }: Avatar
     <div
       className={cn(
         "flex items-center justify-center rounded-full border border-stone-200/85 bg-gradient-to-br from-teal-50 to-teal-100 text-teal-800 dark:border-stone-700 dark:from-teal-900 dark:to-teal-950 dark:text-teal-200",
-        ring && "ring-2 ring-white/90 ring-offset-2 ring-offset-transparent dark:ring-amber-300/40",
+        ring && "ring-2 ring-white/90 ring-offset-2 ring-offset-transparent dark:ring-coral-300/40",
         sizeMap[size],
         className
       )}

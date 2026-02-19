@@ -32,13 +32,13 @@ function BottomNav({ items }: BottomNavProps) {
               className={cn(
                 "group relative flex min-w-[60px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-1.5 transform-gpu transition-all duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.96]",
                 isActive
-                  ? "text-blue-600 dark:text-blue-400"
+                  ? "text-teal-600 dark:text-teal-400"
                   : "text-gray-400 hover:text-gray-600 dark:text-slate-500 dark:hover:text-slate-300"
               )}
             >
               {/* Active indicator pill */}
               {isActive && (
-                <span className="pointer-events-none absolute top-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-blue-600 dark:bg-blue-400" />
+                <span className="pointer-events-none absolute top-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-teal-600 dark:bg-teal-400" />
               )}
               <span className={cn(
                 "relative flex h-6 w-6 items-center justify-center transition-transform duration-[var(--duration-ui)]",
@@ -48,7 +48,7 @@ function BottomNav({ items }: BottomNavProps) {
               </span>
               {/* Notification dot */}
               {item.notification && !isActive && (
-                <span className="absolute end-3 top-2 h-1.5 w-1.5 rounded-full bg-amber-500 ring-2 ring-white dark:ring-slate-900" />
+                <span className="absolute end-3 top-2 h-1.5 w-1.5 rounded-full bg-coral-500 ring-2 ring-white dark:ring-slate-900" />
               )}
               <span className={cn(
                 "text-[10.5px] font-medium leading-none transition-all duration-[var(--duration-ui)]",

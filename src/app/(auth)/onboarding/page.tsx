@@ -86,13 +86,13 @@ export default function OnboardingPage() {
   if (step === "role") {
     return (
       <Card variant="elevated" padding="lg" className="sacred-pattern overflow-hidden">
-        <div className="mb-6 rounded-[var(--radius-lg)] border border-amber-200/70 bg-amber-50/75 px-4 py-3 dark:border-amber-800/45 dark:bg-amber-900/20">
-          <div className="flex items-center justify-between text-body-sm font-medium text-amber-700 dark:text-amber-300">
+        <div className="mb-6 rounded-[var(--radius-lg)] border border-coral-200/70 bg-coral-50/75 px-4 py-3 dark:border-amber-800/45 dark:bg-amber-900/20">
+          <div className="flex items-center justify-between text-body-sm font-medium text-coral-700 dark:text-coral-300">
             <span>{t("الخطوة 1 من 2", "Step 1 of 2")}</span>
             <span>{t("اختيار الدور", "Select Role")}</span>
           </div>
-          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-amber-100/80 dark:bg-amber-900/50">
-            <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-amber-400 to-amber-500" />
+          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-coral-100/80 dark:bg-coral-900/50">
+            <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-coral-400 to-coral-500" />
           </div>
         </div>
         <div className="text-center mb-8">
@@ -120,10 +120,10 @@ export default function OnboardingPage() {
 
           <button
             onClick={() => handleRoleSelect("campaign_owner")}
-            className="sacred-panel animate-stagger-in stagger-delay-2 flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-amber-300/80 hover:bg-amber-50/50 dark:hover:border-amber-700/60 dark:hover:bg-amber-900/20"
+            className="sacred-panel animate-stagger-in stagger-delay-2 flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-coral-300/80 hover:bg-coral-50/50 dark:hover:border-coral-700/60 dark:hover:bg-coral-900/20"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
-              <Building2 className="h-7 w-7 text-amber-600 dark:text-amber-400" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-coral-50 text-coral-600 dark:bg-coral-900/30 dark:text-coral-400">
+              <Building2 className="h-7 w-7 text-coral-600 dark:text-coral-400" />
             </div>
             <div>
               <p className="text-body-lg font-semibold text-stone-900 dark:text-white">{t("مدير حملة", "Campaign Owner")}</p>
@@ -137,13 +137,13 @@ export default function OnboardingPage() {
 
   return (
     <Card variant="elevated" padding="lg" className="sacred-pattern overflow-hidden">
-      <div className="mb-6 rounded-[var(--radius-lg)] border border-amber-200/70 bg-amber-50/75 px-4 py-3 dark:border-amber-800/45 dark:bg-amber-900/20">
-        <div className="flex items-center justify-between text-body-sm font-medium text-amber-700 dark:text-amber-300">
+      <div className="mb-6 rounded-[var(--radius-lg)] border border-coral-200/70 bg-coral-50/75 px-4 py-3 dark:border-amber-800/45 dark:bg-amber-900/20">
+        <div className="flex items-center justify-between text-body-sm font-medium text-coral-700 dark:text-coral-300">
           <span>{t("الخطوة 2 من 2", "Step 2 of 2")}</span>
           <span>{t("بيانات الملف", "Profile Info")}</span>
         </div>
-        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-amber-100/80 dark:bg-amber-900/50">
-          <div className="h-full w-full rounded-full bg-gradient-to-r from-amber-400 to-amber-500" />
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-coral-100/80 dark:bg-coral-900/50">
+          <div className="h-full w-full rounded-full bg-gradient-to-r from-coral-400 to-coral-500" />
         </div>
       </div>
       <div className="text-center mb-8">

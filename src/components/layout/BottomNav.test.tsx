@@ -32,13 +32,13 @@ describe("BottomNav", () => {
     render(<BottomNav items={navItems} />);
 
     const activeLink = screen.getByRole("link", { name: /discover/i });
-    expect(activeLink).toHaveClass("border-blue-100");
+    expect(activeLink).toHaveClass("text-teal-600");
     expect(screen.getByTestId("discover-active-icon")).toBeInTheDocument();
   });
 
   it("renders notification dot for flagged items", () => {
     const { container } = render(<BottomNav items={navItems} />);
-    expect(container.querySelector("span.bg-amber-500")).toBeInTheDocument();
+    expect(container.querySelector("span.bg-coral-500")).toBeInTheDocument();
   });
 
   it("updates active route styles when pathname changes", () => {
@@ -46,6 +46,6 @@ describe("BottomNav", () => {
     render(<BottomNav items={navItems} />);
 
     const alertsLink = screen.getByRole("link", { name: /alerts/i });
-    expect(alertsLink).toHaveClass("border-blue-100");
+    expect(alertsLink).toHaveClass("text-teal-600");
   });
 });

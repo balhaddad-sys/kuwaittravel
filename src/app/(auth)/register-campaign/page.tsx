@@ -310,7 +310,7 @@ export default function RegisterCampaignPage() {
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
             <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-              <Building2 className="h-4 w-4 text-amber-500 shrink-0" />
+              <Building2 className="h-4 w-4 text-coral-500 shrink-0" />
               {t("بيانات المنظمة", "Organization")}
             </h3>
             <dl className="space-y-2 text-body-sm">
@@ -333,7 +333,7 @@ export default function RegisterCampaignPage() {
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
             <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-              <FileText className="h-4 w-4 text-amber-500 shrink-0" />
+              <FileText className="h-4 w-4 text-coral-500 shrink-0" />
               {t("الوثائق الرسمية", "Legal Documents")}
             </h3>
             <dl className="space-y-2 text-body-sm">
@@ -356,7 +356,7 @@ export default function RegisterCampaignPage() {
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
             <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-              <Phone className="h-4 w-4 text-amber-500 shrink-0" />
+              <Phone className="h-4 w-4 text-coral-500 shrink-0" />
               {t("بيانات التواصل", "Contact Info")}
             </h3>
             <dl className="space-y-2 text-body-sm">

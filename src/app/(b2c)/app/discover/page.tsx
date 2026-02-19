@@ -220,11 +220,11 @@ export default function DiscoverPage() {
           ───────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden pb-8 pt-6 sm:pb-12 sm:pt-10">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-600 via-blue-700 to-blue-800" />
+        <div className="absolute inset-0 bg-gradient-to-b from-teal-600 via-teal-700 to-teal-800" />
         {/* Decorative orbs */}
-        <div className="absolute -top-20 -start-20 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl" />
-        <div className="absolute -top-10 -end-16 h-56 w-56 rounded-full bg-amber-400/20 blur-3xl" />
-        <div className="absolute bottom-0 start-1/2 h-32 w-96 -translate-x-1/2 rounded-full bg-blue-900/40 blur-2xl" />
+        <div className="absolute -top-20 -start-20 h-64 w-64 rounded-full bg-teal-500/30 blur-3xl" />
+        <div className="absolute -top-10 -end-16 h-56 w-56 rounded-full bg-coral-400/20 blur-3xl" />
+        <div className="absolute bottom-0 start-1/2 h-32 w-96 -translate-x-1/2 rounded-full bg-teal-900/40 blur-2xl" />
 
         <Container className="relative">
           {/* Top bar within hero */}
@@ -240,14 +240,14 @@ export default function DiscoverPage() {
 
           {/* Hero headline */}
           <div className="mx-auto max-w-2xl text-center">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-blue-100 backdrop-blur-sm">
-              <Sparkles className="h-3.5 w-3.5 text-amber-300" />
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-teal-100 backdrop-blur-sm">
+              <Sparkles className="h-3.5 w-3.5 text-coral-300" />
               {t("رحلات الحج والعمرة والزيارات", "Hajj · Umrah · Ziyarat Trips")}
             </div>
             <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.2)" }}>
               {t("ابحث عن رحلتك القادمة", "Find Your Next Sacred Journey")}
             </h1>
-            <p className="mt-2 text-sm text-blue-100 sm:text-base">
+            <p className="mt-2 text-sm text-teal-100 sm:text-base">
               {t(
                 "حملات موثقة، حجز سلس، ومتابعة كاملة",
                 "Verified campaigns, seamless booking & full trip support"
@@ -272,12 +272,12 @@ export default function DiscoverPage() {
 
             {/* Quick stats */}
             {!loading && (
-              <div className="mt-4 flex items-center justify-center gap-6 text-xs text-blue-100">
+              <div className="mt-4 flex items-center justify-center gap-6 text-xs text-teal-100">
                 <span className="flex items-center gap-1">
                   <span className="font-bold text-white">{trips.length}+</span>
                   {t("رحلة متاحة", "trips available")}
                 </span>
-                <span className="h-3 w-px bg-blue-400" />
+                <span className="h-3 w-px bg-teal-400" />
                 <span className="flex items-center gap-1">
                   <span className="font-bold text-white">{campaigns.length}+</span>
                   {t("حملة موثقة", "verified campaigns")}
@@ -325,7 +325,7 @@ export default function DiscoverPage() {
               <SlidersHorizontal className="h-4 w-4" />
               {t("فلتر", "Filters")}
               {activeFilterCount > 0 && (
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[9px] font-bold text-white">
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal-600 text-[9px] font-bold text-white">
                   {activeFilterCount}
                 </span>
               )}
@@ -336,7 +336,7 @@ export default function DiscoverPage() {
           {activeFilterCount > 0 && (
             <div className="mt-2 flex flex-wrap gap-1.5">
               {filters.tripType && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                <span className="inline-flex items-center gap-1 rounded-full bg-teal-50 px-2.5 py-1 text-[11px] font-medium text-teal-700 dark:bg-teal-900/30 dark:text-teal-300">
                   {TRIP_TYPE_PILLS.find((p) => p.id === filters.tripType)?.[language === "ar" ? "labelAr" : "labelEn"]}
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, tripType: null }))}>
                     <X className="h-3 w-3" />
@@ -344,7 +344,7 @@ export default function DiscoverPage() {
                 </span>
               )}
               {(filters.priceMin !== null || filters.priceMax !== null) && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                <span className="inline-flex items-center gap-1 rounded-full bg-teal-50 px-2.5 py-1 text-[11px] font-medium text-teal-700 dark:bg-teal-900/30 dark:text-teal-300">
                   {filters.priceMin ?? 0} – {filters.priceMax ?? "∞"} KWD
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, priceMin: null, priceMax: null }))}>
                     <X className="h-3 w-3" />
@@ -352,7 +352,7 @@ export default function DiscoverPage() {
                 </span>
               )}
               {filters.destinations.map((dest) => (
-                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-teal-50 px-2.5 py-1 text-[11px] font-medium text-teal-700 dark:bg-teal-900/30 dark:text-teal-300">
                   {dest}
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, destinations: prev.destinations.filter((d) => d !== dest) }))}>
                     <X className="h-3 w-3" />
@@ -422,7 +422,7 @@ export default function DiscoverPage() {
           <section>
             <div className="mb-5">
               <div className="flex items-center gap-2">
-                <Globe2 className="h-5 w-5 text-blue-600" />
+                <Globe2 className="h-5 w-5 text-teal-600" />
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
                 </h2>
@@ -448,7 +448,7 @@ export default function DiscoverPage() {
                     }}
                     className={`group relative overflow-hidden rounded-2xl p-4 text-start transition-all duration-200 animate-stagger-fade-up ${
                       isSelected
-                        ? "bg-blue-600 text-white shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+                        ? "bg-teal-600 text-white shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
                         : "border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
                     }`}
                     style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
@@ -457,7 +457,7 @@ export default function DiscoverPage() {
                     <p className={`text-[0.875rem] font-semibold ${isSelected ? "text-white" : "text-gray-900 dark:text-white"}`}>
                       {dest.city}
                     </p>
-                    <p className={`text-[11px] mt-0.5 ${isSelected ? "text-blue-100" : "text-gray-500 dark:text-slate-400"}`}>
+                    <p className={`text-[11px] mt-0.5 ${isSelected ? "text-teal-100" : "text-gray-500 dark:text-slate-400"}`}>
                       {dest.count} {t("رحلة", "trips")}
                     </p>
                   </button>
@@ -472,7 +472,7 @@ export default function DiscoverPage() {
           <div className="mb-5 flex items-center justify-between">
             <div>
               <div className="flex items-center gap-2.5">
-                <Compass className="h-5 w-5 text-blue-600" />
+                <Compass className="h-5 w-5 text-teal-600" />
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {t("جميع الرحلات", "All Trips")}
                 </h2>
@@ -556,7 +556,7 @@ export default function DiscoverPage() {
               <button
                 type="button"
                 onClick={() => router.push("/app/discover?view=campaigns")}
-                className="flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                className="flex items-center gap-1 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 {t("عرض الكل", "View all")}
                 <ArrowLeft className="h-4 w-4 rtl:rotate-180" />

@@ -47,7 +47,7 @@ const menuItems = [
     descEn: "Password & protection",
     icon: Shield,
     href: "/app/profile/security",
-    iconBg: "bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
+    iconBg: "bg-teal-50 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400",
   },
   {
     labelAr: "الإعدادات",
@@ -90,11 +90,11 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-[#F5F7FA] dark:bg-slate-900">
 
       {/* ─── Hero Header ─── */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 pb-20 pt-10 sm:pb-24 sm:pt-14">
+      <div className="relative overflow-hidden bg-gradient-to-br from-teal-700 via-teal-600 to-teal-500 pb-20 pt-10 sm:pb-24 sm:pt-14">
         {/* Ambient orbs */}
         <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-blue-400/20 blur-2xl" />
-        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-teal-400/20 blur-2xl" />
+        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-coral-400/10 blur-3xl" />
 
         <Container className="relative">
           <div className="flex items-center gap-5">
@@ -106,7 +106,7 @@ export default function ProfilePage() {
                   className="h-20 w-20 rounded-[1.125rem] sm:h-24 sm:w-24"
                 />
               </div>
-              <span className="absolute -bottom-0.5 -end-0.5 h-5 w-5 rounded-full border-[2.5px] border-blue-600 bg-emerald-400 shadow-md" />
+              <span className="absolute -bottom-0.5 -end-0.5 h-5 w-5 rounded-full border-[2.5px] border-teal-600 bg-emerald-400 shadow-md" />
             </div>
 
             {/* Name + info */}
@@ -116,15 +116,15 @@ export default function ProfilePage() {
                   {displayName || t("مسافر", "Traveler")}
                 </h1>
                 {userData?.isVerified && (
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-amber-300 drop-shadow" />
+                  <BadgeCheck className="h-5 w-5 shrink-0 text-coral-300 drop-shadow" />
                 )}
               </div>
-              <p className="mt-1 text-sm text-blue-100/80">
+              <p className="mt-1 text-sm text-teal-100/80">
                 {userData?.phone || userData?.email || ""}
               </p>
               {userData?.isVerified && (
                 <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-sm ring-1 ring-white/20">
-                  <BadgeCheck className="h-3 w-3 text-amber-300" />
+                  <BadgeCheck className="h-3 w-3 text-coral-300" />
                   {t("مسافر موثق", "Verified Traveler")}
                 </span>
               )}
@@ -198,7 +198,7 @@ export default function ProfilePage() {
           <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-slate-700/60 dark:bg-slate-800/90">
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-4">
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400">
                   <Globe className="h-[1.125rem] w-[1.125rem]" />
                 </span>
                 <div>

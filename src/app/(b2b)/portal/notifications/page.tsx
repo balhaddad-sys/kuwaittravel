@@ -337,20 +337,20 @@ export default function NotificationsPage() {
                     className={`flex items-start gap-3 px-4 py-3 transition-colors ${
                       notif.isRead
                         ? ""
-                        : "bg-blue-50/30 dark:bg-blue-900/10"
+                        : "bg-teal-50/30 dark:bg-teal-900/10"
                     }`}
                   >
                     <span
                       className={`travel-icon-circle travel-icon-circle-sm shrink-0 mt-0.5 ${
                         notif.isRead
                           ? ""
-                          : "bg-blue-100 dark:bg-blue-900/30"
+                          : "bg-teal-100 dark:bg-teal-900/30"
                       }`}
                     >
                       {notif.isRead ? (
                         <CheckCircle2 className="h-4 w-4 text-stone-400" />
                       ) : (
-                        <Bell className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                        <Bell className="h-4 w-4 text-teal-600 dark:text-teal-400" />
                       )}
                     </span>
                     <div className="min-w-0 flex-1">

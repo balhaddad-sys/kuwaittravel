@@ -46,7 +46,7 @@ function Card({
         hoverable &&
           "cursor-pointer will-change-transform hover:-translate-y-1 hover:border-gray-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.1)] dark:hover:border-slate-600",
         isInteractive &&
-          "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+          "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
         className
       )}
       onClick={onClick}

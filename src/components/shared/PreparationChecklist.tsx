@@ -26,7 +26,7 @@ const categoryIcon: Record<ChecklistCategory, React.ReactNode> = {
 };
 
 const categoryColor: Record<ChecklistCategory, string> = {
-  document: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/30",
+  document: "text-teal-600 bg-teal-50 dark:text-teal-400 dark:bg-teal-900/30",
   packing: "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-900/30",
   health: "text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-900/30",
   financial: "text-green-600 bg-green-50 dark:text-green-400 dark:bg-green-900/30",

@@ -48,10 +48,10 @@ const statusConfig: Record<
     ar: "مكتمل",
     en: "Completed",
     icon: <CheckCircle2 className="h-4 w-4" />,
-    color: "text-blue-700 dark:text-blue-400",
-    bg: "bg-blue-50 dark:bg-blue-900/20",
-    dot: "bg-blue-500",
-    border: "border-blue-100 dark:border-blue-900/30",
+    color: "text-teal-700 dark:text-teal-400",
+    bg: "bg-teal-50 dark:bg-teal-900/20",
+    dot: "bg-teal-500",
+    border: "border-teal-100 dark:border-teal-900/30",
   },
   cancelled: {
     ar: "ملغي",
@@ -165,11 +165,11 @@ export default function MyTripsPage() {
     <div className="min-h-screen bg-[#F5F7FA] dark:bg-slate-900">
 
       {/* ─── Hero Header ─── */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500">
+      <div className="relative overflow-hidden bg-gradient-to-br from-teal-700 via-teal-600 to-teal-500">
         {/* Ambient orbs */}
         <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-blue-400/20 blur-2xl" />
-        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-teal-400/20 blur-2xl" />
+        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-coral-400/10 blur-3xl" />
 
         <Container className="relative pb-16 pt-10 sm:pt-12">
           <div className="flex items-center gap-3.5">
@@ -181,7 +181,7 @@ export default function MyTripsPage() {
                 {t("رحلاتي", "My Trips")}
               </h1>
               {!loading && bookings.length > 0 && (
-                <p className="mt-0.5 text-sm text-blue-100/80">
+                <p className="mt-0.5 text-sm text-teal-100/80">
                   {bookings.length} {t("حجز إجمالي", "total bookings")}
                 </p>
               )}
@@ -202,7 +202,7 @@ export default function MyTripsPage() {
                     onClick={() => setTab(tabKey)}
                     className={`relative flex items-center gap-2 rounded-t-xl px-5 pb-3.5 pt-2.5 text-[0.9375rem] font-semibold transition-all duration-200 ${
                       isActive
-                        ? "bg-[#F5F7FA] text-blue-600 dark:bg-slate-900 dark:text-blue-400"
+                        ? "bg-[#F5F7FA] text-teal-600 dark:bg-slate-900 dark:text-teal-400"
                         : "text-white/70 hover:text-white"
                     }`}
                   >
@@ -211,7 +211,7 @@ export default function MyTripsPage() {
                       <span
                         className={`inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full px-1.5 text-[10px] font-bold ${
                           isActive
-                            ? "bg-blue-600 text-white dark:bg-blue-500"
+                            ? "bg-teal-600 text-white dark:bg-teal-500"
                             : "bg-white/20 text-white"
                         }`}
                       >

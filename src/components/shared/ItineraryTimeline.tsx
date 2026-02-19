@@ -23,7 +23,7 @@ interface ItineraryTimelineProps {
 const typeConfig: Record<string, { icon: React.ReactNode; color: string }> = {
   flight: {
     icon: <Plane className="h-4 w-4" />,
-    color: "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
+    color: "bg-teal-100 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400",
   },
   hotel_checkin: {
     icon: <Building2 className="h-4 w-4" />,

@@ -30,18 +30,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
     ) => {
     const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-semibold border transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none rounded-[var(--radius-btn)]";
+      "inline-flex items-center justify-center gap-2 font-semibold border transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none rounded-[var(--radius-btn)]";
 
     const variants = {
-      /* Primary — solid Royal Blue, Booking.com style */
+      /* Primary — solid Teal, Wise/Canva style */
       primary:
-        "border-blue-700 bg-blue-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(37,99,235,0.28)] hover:bg-blue-700 hover:border-blue-800 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(37,99,235,0.34)] active:bg-blue-800 dark:bg-blue-500 dark:border-blue-600 dark:hover:bg-blue-600",
+        "border-teal-700 bg-teal-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(13,148,136,0.28)] hover:bg-teal-700 hover:border-teal-800 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(13,148,136,0.34)] active:bg-teal-800 dark:bg-teal-500 dark:border-teal-600 dark:hover:bg-teal-600",
       /* Secondary — clean white */
       secondary:
         "border-gray-200 bg-white text-gray-800 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.06)] hover:border-gray-300 hover:bg-gray-50 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:border-slate-500 dark:hover:bg-slate-700",
-      /* Accent — warm gold */
+      /* Accent — warm coral, Airbnb-inspired */
       accent:
-        "border-amber-600 bg-amber-500 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(245,158,11,0.28)] hover:bg-amber-600 hover:border-amber-700 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(245,158,11,0.34)] active:bg-amber-700",
+        "border-coral-600 bg-coral-500 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(244,63,94,0.28)] hover:bg-coral-600 hover:border-coral-700 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(244,63,94,0.34)] active:bg-coral-700",
       /* Outline — transparent with border */
       outline:
         "border-gray-300 bg-transparent text-gray-700 hover:border-gray-400 hover:bg-gray-50 hover:text-gray-900 dark:border-slate-600 dark:text-slate-200 dark:hover:border-slate-400 dark:hover:bg-slate-800",

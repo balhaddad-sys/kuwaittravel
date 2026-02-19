@@ -39,7 +39,7 @@ function CampaignCard({
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
     >
       {/* Cover image */}
-      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600">
+      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600">
         {coverUrl && (
           <Image
             src={coverUrl}
@@ -63,7 +63,7 @@ function CampaignCard({
             className="border-4 border-white shadow-lg dark:border-slate-800"
           />
           {verified && (
-            <span className="mb-1 flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
+            <span className="mb-1 flex items-center gap-1 rounded-full bg-teal-50 px-2.5 py-1 text-[11px] font-semibold text-teal-700 dark:bg-teal-900/40 dark:text-teal-300">
               <BadgeCheck className="h-3.5 w-3.5" />
               {t("موثق", "Verified")}
             </span>

@@ -54,7 +54,7 @@ export default function HomePage() {
       name: t("مكة المكرمة", "Makkah"),
       subtitle: t("الحج والعمرة", "Hajj & Umrah"),
       icon: <Star className="h-5 w-5" />,
-      gradient: "from-amber-600 to-amber-800",
+      gradient: "from-coral-600 to-coral-800",
     },
     {
       name: t("المدينة المنورة", "Madinah"),
@@ -81,16 +81,16 @@ export default function HomePage() {
       className={`relative min-h-screen overflow-hidden transition-[opacity,transform] duration-[140ms] ease-out ${exiting ? "scale-[0.97] opacity-0" : ""}`}
     >
       {/* Light sky gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 via-white to-amber-50/60" />
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/40 via-transparent to-amber-100/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-teal-50 via-white to-coral-50/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-teal-100/40 via-transparent to-coral-100/30" />
       {/* Warm bottom glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-amber-100/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-coral-100/50 to-transparent" />
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-5 sm:px-8 sm:py-8">
         {/* Top Bar */}
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 shadow-[0_4px_12px_rgba(37,99,235,0.25)]">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-600 shadow-[0_4px_12px_rgba(13,148,136,0.25)]">
               <Compass className="h-5 w-5 text-white" />
             </span>
             <div>
@@ -105,10 +105,10 @@ export default function HomePage() {
         <div className="mt-10 flex flex-1 flex-col items-center justify-center text-center sm:mt-0">
           {/* Badge */}
           <div
-            className="animate-stagger-fade-up inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5"
+            className="animate-stagger-fade-up inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-4 py-1.5"
           >
-            <Globe2 className="h-3.5 w-3.5 text-blue-600" />
-            <span className="text-body-sm font-medium text-blue-700">
+            <Globe2 className="h-3.5 w-3.5 text-teal-600" />
+            <span className="text-body-sm font-medium text-teal-700">
               {t("تجربة سفر فاخرة", "Premium Travel Experience")}
             </span>
           </div>
@@ -139,7 +139,7 @@ export default function HomePage() {
           >
             <button
               onClick={() => navigateTo("/app/discover")}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-blue-600 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-all duration-300 hover:bg-blue-700 hover:shadow-[0_12px_32px_rgba(37,99,235,0.35)] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-teal-600 px-7 py-3.5 text-body-lg font-bold text-white shadow-[0_8px_24px_rgba(13,148,136,0.3)] transition-all duration-300 hover:bg-teal-700 hover:shadow-[0_12px_32px_rgba(13,148,136,0.35)] active:scale-[0.98]"
             >
               <Compass className="h-5 w-5" />
               {t("استكشف الرحلات", "Explore Trips")}
@@ -166,7 +166,7 @@ export default function HomePage() {
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="flex items-center justify-center gap-1.5">
-                  <span className="text-blue-500">{stat.icon}</span>
+                  <span className="text-teal-500">{stat.icon}</span>
                   <p className="font-numbers text-2xl font-black text-stone-900 sm:text-3xl">
                     {stat.value}
                   </p>
@@ -215,7 +215,7 @@ export default function HomePage() {
             style={{ "--stagger-delay": "600ms" } as React.CSSProperties}
           >
             <div className="relative flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-white shadow-[0_6px_16px_rgba(245,158,11,0.25)] transition-transform duration-300 group-hover:scale-110">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-coral-400 to-coral-600 text-white shadow-[0_6px_16px_rgba(244,63,94,0.25)] transition-transform duration-300 group-hover:scale-110">
                 <PlaneTakeoff className="h-6 w-6" />
               </span>
               <div className="min-w-0 flex-1">
@@ -223,7 +223,7 @@ export default function HomePage() {
                   <h3 className="text-body-lg font-bold text-stone-900">
                     {t("المسافرون", "Travelers")}
                   </h3>
-                  <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 transition-all duration-200 group-hover:text-blue-500 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+                  <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 transition-all duration-200 group-hover:text-teal-500 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
                 </div>
                 <p className="mt-1 text-body-sm text-stone-500 group-hover:text-stone-600">
                   {t("اكتشف الرحلات واحجزها خلال دقائق", "Discover and book trips in minutes")}
@@ -239,7 +239,7 @@ export default function HomePage() {
             style={{ "--stagger-delay": "700ms" } as React.CSSProperties}
           >
             <div className="relative flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-[0_6px_16px_rgba(37,99,235,0.25)] transition-transform duration-300 group-hover:scale-110">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-[0_6px_16px_rgba(13,148,136,0.25)] transition-transform duration-300 group-hover:scale-110">
                 <Building2 className="h-6 w-6" />
               </span>
               <div className="min-w-0 flex-1">
@@ -247,7 +247,7 @@ export default function HomePage() {
                   <h3 className="text-body-lg font-bold text-stone-900">
                     {t("بوابة الحملات", "Campaign Portal")}
                   </h3>
-                  <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 transition-all duration-200 group-hover:text-blue-500 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+                  <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 transition-all duration-200 group-hover:text-teal-500 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
                 </div>
                 <p className="mt-1 text-body-sm text-stone-500 group-hover:text-stone-600">
                   {t("إدارة الرحلات والحجوزات والوثائق", "Manage trips, bookings, and documents")}
@@ -272,7 +272,7 @@ export default function HomePage() {
                     <h3 className="text-body-lg font-bold text-stone-900">
                       {t("إدارة المشرفين", "Admin Console")}
                     </h3>
-                    <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 transition-all duration-200 group-hover:text-blue-500 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+                    <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 transition-all duration-200 group-hover:text-teal-500 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
                   </div>
                   <p className="mt-1 text-body-sm text-stone-500 group-hover:text-stone-600">
                     {t("دخول مخصص لفريق الإدارة", "Dedicated entry for administrators")}

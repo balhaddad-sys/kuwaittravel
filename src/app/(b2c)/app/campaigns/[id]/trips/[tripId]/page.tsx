@@ -192,7 +192,7 @@ export default function TripDetailPage({
   const guidanceItems = [
     {
       key: "booking_window",
-      icon: <Calendar className="h-4 w-4 text-blue-500" />,
+      icon: <Calendar className="h-4 w-4 text-teal-500" />,
       title: t("نافذة الحجز", "Booking Window"),
       description: canBook
         ? t(
@@ -323,7 +323,7 @@ export default function TripDetailPage({
     ...(duration ? [{
       label: t("المدة", "Duration"),
       value: t(`${duration} يوم`, `${duration} days`),
-      icon: <Clock className="h-4 w-4 text-blue-500" />,
+      icon: <Clock className="h-4 w-4 text-teal-500" />,
     }] : []),
     {
       label: t("من", "From"),
@@ -456,7 +456,7 @@ export default function TripDetailPage({
               <button
                 type="button"
                 onClick={() => setDescExpanded(!descExpanded)}
-                className="mt-2 flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
+                className="mt-2 flex items-center gap-1 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700"
               >
                 {descExpanded ? (
                   <>{t("عرض أقل", "Show less")} <ChevronUp className="h-3.5 w-3.5" /></>
@@ -581,14 +581,14 @@ export default function TripDetailPage({
                     onClick={() => setSelectedTier(tier.id)}
                     className={`rounded-xl border p-4 text-start transition-all ${
                       isSelected
-                        ? "border-blue-500 bg-blue-50 shadow-sm"
+                        ? "border-teal-500 bg-teal-50 shadow-sm"
                         : "border-gray-200 bg-white hover:border-gray-300"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-bold text-gray-900">{tierName}</p>
                       {isSelected && (
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-white">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-teal-500 text-white">
                           <CheckCircle2 className="h-3 w-3" />
                         </span>
                       )}
@@ -640,7 +640,7 @@ export default function TripDetailPage({
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-sm font-bold text-gray-900">{trip.campaignName}</p>
-            <p className="text-xs font-medium text-blue-600">
+            <p className="text-xs font-medium text-teal-600">
               {t("عرض الحملة", "View Campaign")} →
             </p>
           </div>
@@ -650,8 +650,8 @@ export default function TripDetailPage({
         {showBookingForm && (
           <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.08)]" id="booking-form">
             <div className="mb-4 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-                <ShieldCheck className="h-4 w-4 text-blue-600" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-50">
+                <ShieldCheck className="h-4 w-4 text-teal-600" />
               </div>
               <h3 className="text-base font-bold text-gray-900">
                 {t("بيانات الحجز", "Booking Details")}

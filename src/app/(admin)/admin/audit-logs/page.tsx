@@ -91,7 +91,7 @@ const actionConfigMap: Record<string, ActionConfig> = {
     variant: "info",
     labelAr: "\u062a\u062d\u062f\u064a\u062b \u062d\u062c\u0632",
     label: "Booking Updated",
-    color: "text-blue-600 dark:text-blue-400",
+    color: "text-teal-600 dark:text-teal-400",
   },
   booking_cancelled: {
     icon: <XCircle className="h-4 w-4" />,
@@ -309,7 +309,7 @@ export default function AuditLogsPage() {
                           config.variant === "success" ? "bg-emerald-50 dark:bg-emerald-900/20" :
                           config.variant === "error" ? "bg-red-50 dark:bg-red-900/20" :
                           config.variant === "warning" ? "bg-amber-50 dark:bg-amber-900/20" :
-                          config.variant === "info" ? "bg-blue-50 dark:bg-blue-900/20" :
+                          config.variant === "info" ? "bg-teal-50 dark:bg-teal-900/20" :
                           "bg-stone-100 dark:bg-stone-800"
                         )}>
                           <span className={config.color}>{config.icon}</span>

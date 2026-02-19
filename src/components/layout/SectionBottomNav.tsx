@@ -74,14 +74,14 @@ function SectionBottomNav({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2.5 text-body-md font-medium transition-colors duration-[var(--duration-ui)]",
                   isActive(item.href)
-                    ? "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300"
+                    ? "bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-300"
                     : "text-stone-500 hover:bg-stone-50 hover:text-stone-700 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200"
                 )}
               >
-                <span className={cn("h-5 w-5 shrink-0", isActive(item.href) && "text-blue-600 dark:text-blue-400")}>{item.icon}</span>
+                <span className={cn("h-5 w-5 shrink-0", isActive(item.href) && "text-teal-600 dark:text-teal-400")}>{item.icon}</span>
                 <span>{item.label}</span>
                 {item.notification && (
-                  <span className="ms-auto h-2 w-2 shrink-0 rounded-full bg-amber-500" />
+                  <span className="ms-auto h-2 w-2 shrink-0 rounded-full bg-coral-500" />
                 )}
               </Link>
             ))}
@@ -102,7 +102,7 @@ function SectionBottomNav({
                     onClick={closePanel}
                     className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-body-md font-medium text-stone-500 transition-colors duration-[var(--duration-ui)] hover:bg-stone-50 hover:text-stone-700 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200"
                   >
-                    <span className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400">{item.icon}</span>
+                    <span className="h-5 w-5 shrink-0 text-teal-600 dark:text-teal-400">{item.icon}</span>
                     <span>{item.label}</span>
                   </Link>
                 ))}
@@ -125,18 +125,18 @@ function SectionBottomNav({
               className={cn(
                 "group relative flex flex-1 min-w-0 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
                 active
-                  ? "scale-[1.02] border border-blue-100 bg-blue-50 text-blue-700 shadow-none dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-300"
+                  ? "scale-[1.02] border border-teal-100 bg-teal-50 text-teal-700 shadow-none dark:border-teal-900 dark:bg-teal-950/50 dark:text-teal-300"
                   : "border border-transparent text-stone-400 hover:text-stone-600 dark:text-stone-500 dark:hover:text-stone-300"
               )}
             >
               {active && (
-                <span className="pointer-events-none absolute inset-x-3 top-0 h-0.5 rounded-full bg-blue-600 dark:bg-blue-400" />
+                <span className="pointer-events-none absolute inset-x-3 top-0 h-0.5 rounded-full bg-teal-600 dark:bg-teal-400" />
               )}
-              <span className={cn("h-6 w-6", active && "text-blue-600 dark:text-blue-400")}>
+              <span className={cn("h-6 w-6", active && "text-teal-600 dark:text-teal-400")}>
                 {active && item.activeIcon ? item.activeIcon : item.icon}
               </span>
               {item.notification && (
-                <span className="absolute end-3 top-1.5 h-2 w-2 rounded-full bg-amber-500 ring-2 ring-white dark:ring-stone-900" />
+                <span className="absolute end-3 top-1.5 h-2 w-2 rounded-full bg-coral-500 ring-2 ring-white dark:ring-stone-900" />
               )}
               <span className={cn("text-[10px] truncate max-w-full", active && "font-semibold")}>
                 {item.label}
@@ -153,14 +153,14 @@ function SectionBottomNav({
             className={cn(
               "group relative flex flex-1 min-w-0 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-1.5 transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.98]",
               moreOpen || isOverflowActive
-                ? "scale-[1.02] border border-blue-100 bg-blue-50 text-blue-700 shadow-none dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-300"
+                ? "scale-[1.02] border border-teal-100 bg-teal-50 text-teal-700 shadow-none dark:border-teal-900 dark:bg-teal-950/50 dark:text-teal-300"
                 : "border border-transparent text-stone-400 hover:text-stone-600 dark:text-stone-500 dark:hover:text-stone-300"
             )}
           >
             {(moreOpen || isOverflowActive) && (
-              <span className="pointer-events-none absolute inset-x-3 top-0 h-0.5 rounded-full bg-blue-600 dark:bg-blue-400" />
+              <span className="pointer-events-none absolute inset-x-3 top-0 h-0.5 rounded-full bg-teal-600 dark:bg-teal-400" />
             )}
-            <span className={cn("h-6 w-6 flex items-center justify-center", (moreOpen || isOverflowActive) && "text-blue-600 dark:text-blue-400")}>
+            <span className={cn("h-6 w-6 flex items-center justify-center", (moreOpen || isOverflowActive) && "text-teal-600 dark:text-teal-400")}>
               {moreOpen ? <X className="h-5 w-5" /> : <MoreHorizontal className="h-5 w-5" />}
             </span>
             <span className={cn("text-[10px] truncate max-w-full", (moreOpen || isOverflowActive) && "font-semibold")}>
