@@ -65,36 +65,45 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     let unsubscribeUser: (() => void) | undefined;
 
     (async () => {
-      const { onAuthStateChanged } = await import("firebase/auth");
-      const { getFirebaseAuth } = await import("@/lib/firebase/config");
-      const { onDocumentChange } = await import("@/lib/firebase/firestore");
-      const { COLLECTIONS } = await import("@/lib/firebase/collections");
-      const firebaseAuth = getFirebaseAuth();
+      try {
+        const { onAuthStateChanged } = await import("firebase/auth");
+        const { getFirebaseAuth } = await import("@/lib/firebase/config");
+        const { onDocumentChange } = await import("@/lib/firebase/firestore");
+        const { COLLECTIONS } = await import("@/lib/firebase/collections");
+        const firebaseAuth = getFirebaseAuth();
 
-      unsubscribeAuth = onAuthStateChanged(firebaseAuth, (user) => {
-        setFirebaseUser(user);
+        unsubscribeAuth = onAuthStateChanged(firebaseAuth, (user) => {
+          setFirebaseUser(user);
 
-        // Clean up previous user listener
-        if (unsubscribeUser) {
-          unsubscribeUser();
-          unsubscribeUser = undefined;
-        }
+          // Clean up previous user listener
+          if (unsubscribeUser) {
+            unsubscribeUser();
+            unsubscribeUser = undefined;
+          }
 
-        if (user) {
-          // Listen for real-time changes to the user document
-          unsubscribeUser = onDocumentChange<User>(
-            COLLECTIONS.USERS,
-            user.uid,
-            (data) => {
-              setUserData(normalizeUserData(data));
-              setLoading(false);
-            }
-          );
-        } else {
-          setUserData(null);
-          setLoading(false);
-        }
-      });
+          if (user) {
+            // Listen for real-time changes to the user document
+            unsubscribeUser = onDocumentChange<User>(
+              COLLECTIONS.USERS,
+              user.uid,
+              (data) => {
+                setUserData(normalizeUserData(data));
+                setLoading(false);
+              },
+              () => {
+                // Firestore listener failed — still resolve loading
+                setLoading(false);
+              }
+            );
+          } else {
+            setUserData(null);
+            setLoading(false);
+          }
+        });
+      } catch {
+        // Firebase init failed — resolve loading so the app doesn't hang
+        setLoading(false);
+      }
     })();
 
     return () => {
