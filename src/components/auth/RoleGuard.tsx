@@ -25,24 +25,37 @@ export function RoleGuard({
   const router = useRouter();
   const [isBootstrappingAdmin, setIsBootstrappingAdmin] = useState(false);
   const [bootstrapAttempted, setBootstrapAttempted] = useState(false);
+  const [isRefreshingClaims, setIsRefreshingClaims] = useState(false);
+  const [claimsRefreshAttempted, setClaimsRefreshAttempted] = useState(false);
   const allowedRolesKey = allowedRoles.join("|");
   const allowedRoleSet = useMemo(
     () => new Set(allowedRolesKey.split("|").filter(Boolean) as UserRole[]),
     [allowedRolesKey]
   );
+  const requiresAdminRole =
+    allowedRoleSet.has("admin") || allowedRoleSet.has("super_admin");
+  const hasAdminRole =
+    userData?.role === "admin" || userData?.role === "super_admin";
   const hasRoleAccess = Boolean(userData && allowedRoleSet.has(userData.role));
   const hasPrivilegedAdminEmail =
     allowPrivilegedAdminEmail &&
-    (allowedRoleSet.has("admin") || allowedRoleSet.has("super_admin")) &&
+    requiresAdminRole &&
     isPrivilegedAdminEmail(firebaseUser?.email);
   const needsPrivilegedBootstrap =
     hasPrivilegedAdminEmail && !!firebaseUser && !hasRoleAccess;
   const pendingPrivilegedBootstrap = needsPrivilegedBootstrap && !bootstrapAttempted;
+  const shouldRefreshAdminClaims =
+    requiresAdminRole &&
+    hasAdminRole &&
+    !!firebaseUser &&
+    !claimsRefreshAttempted;
   const hasAccess = hasRoleAccess;
 
   useEffect(() => {
     setBootstrapAttempted(false);
     setIsBootstrappingAdmin(false);
+    setClaimsRefreshAttempted(false);
+    setIsRefreshingClaims(false);
   }, [firebaseUser?.uid]);
 
   useEffect(() => {
@@ -81,7 +94,57 @@ export function RoleGuard({
   }, [firebaseUser, loading, pendingPrivilegedBootstrap, refreshUserData]);
 
   useEffect(() => {
-    if (loading || isBootstrappingAdmin || pendingPrivilegedBootstrap) return;
+    if (
+      loading ||
+      isBootstrappingAdmin ||
+      pendingPrivilegedBootstrap ||
+      !shouldRefreshAdminClaims ||
+      !firebaseUser
+    ) {
+      return;
+    }
+
+    let cancelled = false;
+    setIsRefreshingClaims(true);
+
+    (async () => {
+      try {
+        const idToken = await firebaseUser.getIdToken();
+        await fetch("/api/admin/sync-claims", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        });
+      } catch {
+        // Best effort only.
+      } finally {
+        try {
+          await firebaseUser.getIdToken(true);
+        } catch {
+          // Keep moving even if token refresh fails.
+        }
+
+        if (!cancelled) {
+          setClaimsRefreshAttempted(true);
+          setIsRefreshingClaims(false);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    firebaseUser,
+    isBootstrappingAdmin,
+    loading,
+    pendingPrivilegedBootstrap,
+    shouldRefreshAdminClaims,
+  ]);
+
+  useEffect(() => {
+    if (loading || isBootstrappingAdmin || pendingPrivilegedBootstrap || isRefreshingClaims) return;
 
     if (!userData) {
       router.replace(unauthenticatedRedirect);
@@ -99,13 +162,14 @@ export function RoleGuard({
     unauthenticatedRedirect,
     isBootstrappingAdmin,
     pendingPrivilegedBootstrap,
+    isRefreshingClaims,
   ]);
 
-  if (loading || isBootstrappingAdmin || pendingPrivilegedBootstrap) {
+  if (loading || isBootstrappingAdmin || pendingPrivilegedBootstrap || isRefreshingClaims) {
     return (
       <div className="travel-shell-bg flex min-h-screen items-center justify-center">
         <div className="travel-panel rounded-2xl p-4">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-navy-700 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-700 border-t-transparent" />
         </div>
       </div>
     );

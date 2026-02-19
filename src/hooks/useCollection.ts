@@ -10,12 +10,13 @@ export function useCollection<T>(
 ) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error] = useState<Error | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const initialLoad = useRef(true);
   const constraintsKey = useMemo(() => JSON.stringify(constraints), [constraints]);
 
   const handleItems = useCallback((items: T[]) => {
     setData(items);
+    setError(null);
     if (initialLoad.current) {
       setLoading(false);
       initialLoad.current = false;
@@ -23,7 +24,22 @@ export function useCollection<T>(
   }, []);
 
   useEffect(() => {
-    const unsubscribe = onCollectionChange<T>(collectionName, constraints, handleItems);
+    initialLoad.current = true;
+    setLoading(true);
+    setError(null);
+
+    const unsubscribe = onCollectionChange<T>(
+      collectionName,
+      constraints,
+      handleItems,
+      (listenerError) => {
+        setError(listenerError);
+        if (initialLoad.current) {
+          setLoading(false);
+          initialLoad.current = false;
+        }
+      }
+    );
 
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps

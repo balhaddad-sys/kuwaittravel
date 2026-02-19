@@ -14,12 +14,12 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     return (
       <div className="flex flex-col gap-1.5">
         {label && (
-          <label className="text-label font-medium text-stone-700 dark:text-stone-200">
+          <label className="text-label font-medium text-gray-700 dark:text-gray-200">
             {label}
           </label>
         )}
         <div className="flex" dir="ltr">
-          <span className="flex items-center justify-center rounded-s-[var(--radius-input)] border border-e-0 border-surface-border bg-surface-muted px-3 text-body-md font-medium text-stone-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-stone-300">
+          <span className="flex items-center justify-center rounded-s-[var(--radius-input)] border border-e-0 border-surface-border bg-surface-muted px-3 text-body-md font-medium text-gray-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-gray-300">
             {countryCode}
           </span>
           <input
@@ -30,8 +30,8 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             className={cn(
               "w-full rounded-e-[var(--radius-input)] border bg-white px-4 py-2.5 text-body-md transition-all duration-200",
               "border-surface-border dark:border-surface-dark-border dark:bg-surface-dark-card",
-              "placeholder:text-stone-300",
-              "hover:border-stone-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus:outline-none",
+              "placeholder:text-gray-300",
+              "hover:border-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none",
               error && "border-error focus:border-error focus:ring-error/20",
               className
             )}

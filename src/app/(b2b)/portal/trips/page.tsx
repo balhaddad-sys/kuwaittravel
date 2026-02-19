@@ -124,8 +124,8 @@ export default function TripsPage() {
                   onClick={() => setFilter(f.value as TripFilter)}
                   className={`shrink-0 rounded-full border px-4 py-2 text-body-sm font-medium transition-all ${
                     filter === f.value
-                      ? "border-teal-600 bg-teal-700 text-white"
-                      : "border-stone-200 bg-white/80 text-stone-600 hover:border-stone-300 hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-800/70 dark:text-stone-300 dark:hover:border-stone-600 dark:hover:bg-stone-900/60"
+                      ? "border-indigo-600 bg-indigo-700 text-white"
+                      : "border-gray-200 bg-white/80 text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800/70 dark:text-gray-300 dark:hover:border-gray-600 dark:hover:bg-gray-900/60"
                   }`}
                 >
                   {f.label}
@@ -141,7 +141,7 @@ export default function TripsPage() {
 
         {/* Trips Grid */}
         {loading ? (
-          <p className="text-body-md text-stone-500 text-center py-10">
+          <p className="text-body-md text-gray-500 text-center py-10">
             {t("جاري تحميل الرحلات...", "Loading trips...")}
           </p>
         ) : filteredTrips.length > 0 ? (

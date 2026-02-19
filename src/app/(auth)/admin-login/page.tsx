@@ -121,13 +121,13 @@ export default function AdminLoginPage() {
       <div id="recaptcha-container" />
       <Card variant="elevated" padding="lg">
         <div className="text-center mb-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-teal-600">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-600">
             <Shield className="h-7 w-7 text-white" />
           </div>
-          <h1 className="text-heading-lg font-bold text-stone-900 dark:text-white">
+          <h1 className="text-heading-lg font-bold text-gray-900 dark:text-white">
             {t("دخول المشرفين", "Admin Sign In")}
           </h1>
-          <p className="mt-2 text-body-md text-stone-500">
+          <p className="mt-2 text-body-md text-gray-500">
             {t("هذه البوابة مخصصة للمشرفين فقط", "This gateway is reserved for administrators")}
           </p>
         </div>
@@ -147,10 +147,10 @@ export default function AdminLoginPage() {
 
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-stone-200 dark:border-stone-600" />
+            <div className="w-full border-t border-gray-200 dark:border-gray-600" />
           </div>
           <div className="relative flex justify-center text-body-sm">
-            <span className="bg-white dark:bg-stone-800 px-3 text-stone-400">{t("أو", "or")}</span>
+            <span className="bg-white dark:bg-gray-800 px-3 text-gray-400">{t("أو", "or")}</span>
           </div>
         </div>
 
@@ -176,13 +176,13 @@ export default function AdminLoginPage() {
           >
             {t("العودة لدخول المستخدمين", "Back to User Login")}
           </Button>
-          <p className="text-center text-body-sm text-stone-500">
+          <p className="text-center text-body-sm text-gray-500">
             {t(
               "إذا لم يكن حسابك مُفعلاً كمشرف، استخدم سكربت grant-admin مرة واحدة.",
               "If your account is not promoted yet, run the one-time grant-admin script."
             )}
           </p>
-          <p className="text-center text-body-sm text-stone-500">
+          <p className="text-center text-body-sm text-gray-500">
             {t(
               "يمكن لحسابات Gmail المضافة في NEXT_PUBLIC_ADMIN_EMAILS الدخول مباشرة.",
               "Gmail addresses listed in NEXT_PUBLIC_ADMIN_EMAILS can sign in directly."

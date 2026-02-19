@@ -73,19 +73,19 @@ export default function StaffPage() {
       <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Roles info */}
         <Card variant="elevated" padding="lg">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-4">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4">
             {t("أدوار فريق العمل", "Team Roles")}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="flex items-start gap-3 p-3 rounded-lg border border-surface-border/60 dark:border-surface-dark-border/60">
               <span className="travel-icon-circle travel-icon-circle-sm">
-                <Settings className="h-4 w-4 text-stone-500" />
+                <Settings className="h-4 w-4 text-gray-500" />
               </span>
               <div>
-                <p className="text-body-sm font-semibold text-stone-800 dark:text-white">
+                <p className="text-body-sm font-semibold text-gray-800 dark:text-white">
                   {t("مدير", "Manager")}
                 </p>
-                <p className="text-[11px] text-stone-500 dark:text-stone-400">
+                <p className="text-[11px] text-gray-500 dark:text-gray-400">
                   {t(
                     "إدارة كاملة للرحلات والحجوزات والفريق",
                     "Full access to trips, bookings, and team"
@@ -95,13 +95,13 @@ export default function StaffPage() {
             </div>
             <div className="flex items-start gap-3 p-3 rounded-lg border border-surface-border/60 dark:border-surface-dark-border/60">
               <span className="travel-icon-circle travel-icon-circle-sm">
-                <ShieldCheck className="h-4 w-4 text-stone-500" />
+                <ShieldCheck className="h-4 w-4 text-gray-500" />
               </span>
               <div>
-                <p className="text-body-sm font-semibold text-stone-800 dark:text-white">
+                <p className="text-body-sm font-semibold text-gray-800 dark:text-white">
                   {t("مشغل", "Operator")}
                 </p>
-                <p className="text-[11px] text-stone-500 dark:text-stone-400">
+                <p className="text-[11px] text-gray-500 dark:text-gray-400">
                   {t(
                     "إدارة الرحلات والحجوزات فقط",
                     "Manage trips and bookings only"
@@ -111,13 +111,13 @@ export default function StaffPage() {
             </div>
             <div className="flex items-start gap-3 p-3 rounded-lg border border-surface-border/60 dark:border-surface-dark-border/60">
               <span className="travel-icon-circle travel-icon-circle-sm">
-                <Eye className="h-4 w-4 text-stone-500" />
+                <Eye className="h-4 w-4 text-gray-500" />
               </span>
               <div>
-                <p className="text-body-sm font-semibold text-stone-800 dark:text-white">
+                <p className="text-body-sm font-semibold text-gray-800 dark:text-white">
                   {t("مشاهد", "Viewer")}
                 </p>
-                <p className="text-[11px] text-stone-500 dark:text-stone-400">
+                <p className="text-[11px] text-gray-500 dark:text-gray-400">
                   {t(
                     "عرض البيانات فقط بدون تعديل",
                     "View-only access, no editing"

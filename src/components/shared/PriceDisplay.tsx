@@ -17,11 +17,11 @@ const sizeMap = {
 function PriceDisplay({ amount, originalAmount, size = "md", className }: PriceDisplayProps) {
   return (
     <div className={cn("flex items-baseline gap-2", className)}>
-      <span className={cn(sizeMap[size], "font-bold text-navy-900 dark:text-white")}>
+      <span className={cn(sizeMap[size], "font-bold text-gray-900 dark:text-white")}>
         {formatKWD(amount)}
       </span>
       {originalAmount && originalAmount > amount && (
-        <span className="text-body-sm text-navy-400 line-through">
+        <span className="text-body-sm text-gray-400 line-through">
           {formatKWD(originalAmount)}
         </span>
       )}

@@ -77,9 +77,9 @@ function OTPInput({ length = 6, onComplete, error, className }: OTPInputProps) {
             className={cn(
               "h-14 w-12 rounded-[var(--radius-input)] border bg-white text-center text-xl font-bold transition-all duration-200",
               "border-surface-border dark:border-surface-dark-border dark:bg-surface-dark-card",
-              "focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus:outline-none",
+              "focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none",
               error && "border-error",
-              val && "border-teal-500 bg-teal-50"
+              val && "border-indigo-500 bg-indigo-50"
             )}
           />
         ))}

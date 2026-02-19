@@ -98,42 +98,42 @@ export default function DocumentsPage() {
       <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="h-8 w-8 animate-spin text-stone-400" />
+            <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
           </div>
         ) : (
           <>
             {/* Campaign License Info */}
             {campaign && (
-              <Card variant="outlined" padding="lg" className="border-amber-300/70 dark:border-amber-800/45">
+              <Card variant="outlined" padding="lg" className="border-orange-300/70 dark:border-orange-800/45">
                 <div className="flex items-start gap-3">
                   <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold shrink-0">
                     <Shield className="h-4 w-4" />
                   </span>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-2">
+                    <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-2">
                       {t("معلومات الترخيص", "License Information")}
                     </h3>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-body-sm text-stone-600 dark:text-stone-400">
+                        <span className="text-body-sm text-gray-600 dark:text-gray-400">
                           {t("رقم الترخيص", "License Number")}
                         </span>
-                        <span className="text-body-md font-mono font-semibold text-stone-900 dark:text-white">
+                        <span className="text-body-md font-mono font-semibold text-gray-900 dark:text-white">
                           {campaign.licenseNumber || "—"}
                         </span>
                       </div>
                       {campaign.commercialRegNumber && (
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-body-sm text-stone-600 dark:text-stone-400">
+                          <span className="text-body-sm text-gray-600 dark:text-gray-400">
                             {t("السجل التجاري", "Commercial Reg.")}
                           </span>
-                          <span className="text-body-md font-mono font-semibold text-stone-900 dark:text-white">
+                          <span className="text-body-md font-mono font-semibold text-gray-900 dark:text-white">
                             {campaign.commercialRegNumber}
                           </span>
                         </div>
                       )}
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-body-sm text-stone-600 dark:text-stone-400">
+                        <span className="text-body-sm text-gray-600 dark:text-gray-400">
                           {t("حالة التحقق", "Verification Status")}
                         </span>
                         <Badge
@@ -164,12 +164,12 @@ export default function DocumentsPage() {
 
             {/* Trip Documents */}
             <Card variant="elevated" padding="none" className="overflow-hidden">
-              <div className="px-4 py-3 border-b border-surface-border dark:border-surface-dark-border bg-gradient-to-r from-stone-800 to-stone-900">
+              <div className="px-4 py-3 border-b border-surface-border dark:border-surface-dark-border bg-gradient-to-r from-gray-800 to-gray-900">
                 <h3 className="text-body-lg sm:text-heading-sm font-bold text-white flex items-center gap-2">
                   <ClipboardList className="h-5 w-5" />
                   {t("مستندات الرحلات", "Trip Documents")}
                 </h3>
-                <p className="text-body-sm text-stone-300 mt-0.5">
+                <p className="text-body-sm text-gray-300 mt-0.5">
                   {t(
                     "كشوفات وملخصات تُنشأ تلقائياً لكل رحلة",
                     "Statements and summaries auto-generated per trip"
@@ -192,16 +192,16 @@ export default function DocumentsPage() {
                     return (
                       <div
                         key={trip.id}
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-stone-50 dark:hover:bg-white/5 transition-colors"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                       >
                         <span className="travel-icon-circle travel-icon-circle-sm shrink-0">
-                          <Map className="h-4 w-4 text-stone-500" />
+                          <Map className="h-4 w-4 text-gray-500" />
                         </span>
                         <div className="min-w-0 flex-1">
-                          <p className="text-body-sm font-semibold text-stone-800 dark:text-white truncate">
+                          <p className="text-body-sm font-semibold text-gray-800 dark:text-white truncate">
                             {language === "ar" ? trip.titleAr || trip.title : trip.title}
                           </p>
-                          <div className="flex items-center gap-3 text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">
+                          <div className="flex items-center gap-3 text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
                             {departure && (
                               <span className="flex items-center gap-1">
                                 <Calendar className="h-3 w-3" />
@@ -242,11 +242,11 @@ export default function DocumentsPage() {
             </Card>
 
             {/* Info note */}
-            <Card variant="outlined" padding="lg" className="border-blue-200/70 dark:border-blue-800/45">
+            <Card variant="outlined" padding="lg" className="border-indigo-200/70 dark:border-indigo-800/45">
               <div className="flex items-start gap-3">
-                <FileText className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />
+                <FileText className="h-5 w-5 text-indigo-500 shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-body-sm text-stone-700 dark:text-stone-300">
+                  <p className="text-body-sm text-gray-700 dark:text-gray-300">
                     {t(
                       "يتم إنشاء كشوفات الحجوزات والتقارير المالية تلقائياً عند اكتمال الرحلات. يمكنك تحميلها من صفحة تفاصيل كل رحلة.",
                       "Booking statements and financial reports are auto-generated when trips are completed. You can download them from each trip's detail page."

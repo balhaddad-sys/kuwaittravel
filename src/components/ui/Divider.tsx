@@ -10,7 +10,7 @@ function Divider({ className, label }: DividerProps) {
     return (
       <div className={cn("flex items-center gap-3", className)}>
         <div className="flex-1 h-px bg-surface-border dark:bg-surface-dark-border" />
-        <span className="text-body-sm text-stone-400 shrink-0">{label}</span>
+        <span className="text-body-sm text-gray-400 shrink-0">{label}</span>
         <div className="flex-1 h-px bg-surface-border dark:bg-surface-dark-border" />
       </div>
     );

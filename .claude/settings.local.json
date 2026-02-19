@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next lint:*)",
+      "Bash(cat:*)",
+      "Bash(npx next build:*)",
+      "Bash(ls:*)",
+      "Bash(npx firebase deploy:*)"
+    ]
+  }
+}

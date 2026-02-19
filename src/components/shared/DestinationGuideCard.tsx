@@ -54,14 +54,14 @@ function DestinationGuideCard({
         {highlights.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {highlights.slice(0, 3).map((h, i) => (
-              <span key={i} className="inline-flex items-center gap-1 rounded-full bg-teal-50 px-2 py-0.5 text-[10px] font-medium text-teal-700 dark:bg-teal-900/30 dark:text-teal-300">
+              <span key={i} className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-medium text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300">
                 <span>{h.icon}</span>
                 {language === "ar" ? h.titleAr : h.title}
               </span>
             ))}
           </div>
         )}
-        <div className="mt-2 flex items-center gap-1 text-body-sm font-medium text-teal-600 dark:text-teal-400">
+        <div className="mt-2 flex items-center gap-1 text-body-sm font-medium text-indigo-600 dark:text-indigo-400">
           {t("اكتشف المزيد", "Explore more")}
           <ChevronRight className="h-3.5 w-3.5 rtl:rotate-180" />
         </div>

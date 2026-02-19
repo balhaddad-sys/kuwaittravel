@@ -126,11 +126,11 @@ export default function BookingDetailPage({
         {/* Booking Status */}
         <Card variant="elevated" padding="lg">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
               {statusIcons[booking.status] || <CheckCircle2 className="h-5 w-5" />}
             </div>
             <div>
-              <h2 className="text-heading-lg font-bold text-stone-900 dark:text-white">
+              <h2 className="text-heading-lg font-bold text-gray-900 dark:text-white">
                 {booking.tripTitle}
               </h2>
               <Badge variant={statusInfo.variant} className="mt-1">
@@ -138,9 +138,9 @@ export default function BookingDetailPage({
               </Badge>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-body-sm text-stone-500">
+          <div className="flex items-center gap-2 text-body-sm text-gray-500">
             <span>{t("رقم الحجز:", "Booking ID:")}</span>
-            <span className="font-mono font-medium text-stone-700 dark:text-stone-200">
+            <span className="font-mono font-medium text-gray-700 dark:text-gray-200">
               {booking.id}
             </span>
           </div>
@@ -148,18 +148,18 @@ export default function BookingDetailPage({
 
         {/* Passengers */}
         <Card variant="outlined" padding="md">
-          <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
+          <h3 className="mb-3 text-heading-sm font-bold text-gray-900 dark:text-white">
             {t("المسافرون", "Passengers")}
           </h3>
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-stone-100 dark:bg-stone-800">
-              <Users className="h-5 w-5 text-stone-600 dark:text-stone-400" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-gray-100 dark:bg-gray-800">
+              <Users className="h-5 w-5 text-gray-600 dark:text-gray-400" />
             </div>
             <div>
-              <p className="text-body-md font-medium text-stone-900 dark:text-white">
+              <p className="text-body-md font-medium text-gray-900 dark:text-white">
                 {booking.numberOfPassengers} {t("مسافر", "passengers")}
               </p>
-              <p className="text-body-sm text-stone-500">
+              <p className="text-body-sm text-gray-500">
                 {booking.travelerName}
               </p>
             </div>
@@ -168,33 +168,33 @@ export default function BookingDetailPage({
 
         {/* Payment Info */}
         <Card variant="outlined" padding="md">
-          <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
+          <h3 className="mb-3 text-heading-sm font-bold text-gray-900 dark:text-white">
             {t("تفاصيل الدفع", "Payment Details")}
           </h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between border-b border-surface-border py-2 dark:border-surface-dark-border">
-              <span className="text-body-md text-stone-500">{t("المبلغ الإجمالي", "Total Amount")}</span>
-              <span className="text-body-md font-bold text-stone-900 dark:text-white">
+              <span className="text-body-md text-gray-500">{t("المبلغ الإجمالي", "Total Amount")}</span>
+              <span className="text-body-md font-bold text-gray-900 dark:text-white">
                 {booking.totalKWD} {t("د.ك", "KWD")}
               </span>
             </div>
             {booking.discountKWD > 0 && (
               <div className="flex items-center justify-between border-b border-surface-border py-2 dark:border-surface-dark-border">
-                <span className="text-body-md text-stone-500">{t("الخصم", "Discount")}</span>
+                <span className="text-body-md text-gray-500">{t("الخصم", "Discount")}</span>
                 <span className="text-body-md font-medium text-green-600 dark:text-green-400">
                   -{booking.discountKWD} {t("د.ك", "KWD")}
                 </span>
               </div>
             )}
             <div className="flex items-center justify-between border-b border-surface-border py-2 dark:border-surface-dark-border">
-              <span className="text-body-md text-stone-500">{t("المدفوع", "Paid")}</span>
-              <span className="text-body-md font-medium text-stone-900 dark:text-white">
+              <span className="text-body-md text-gray-500">{t("المدفوع", "Paid")}</span>
+              <span className="text-body-md font-medium text-gray-900 dark:text-white">
                 {booking.paidKWD} {t("د.ك", "KWD")}
               </span>
             </div>
             {booking.remainingKWD > 0 && (
               <div className="flex items-center justify-between py-2">
-                <span className="text-body-md text-stone-500">{t("المتبقي", "Remaining")}</span>
+                <span className="text-body-md text-gray-500">{t("المتبقي", "Remaining")}</span>
                 <span className="text-body-md font-bold text-error">
                   {booking.remainingKWD} {t("د.ك", "KWD")}
                 </span>
@@ -206,7 +206,7 @@ export default function BookingDetailPage({
         {/* Payment Schedule */}
         {booking.paymentSchedule && booking.paymentSchedule.length > 0 && (
           <Card variant="outlined" padding="md">
-            <h3 className="mb-3 text-heading-sm font-bold text-stone-900 dark:text-white">
+            <h3 className="mb-3 text-heading-sm font-bold text-gray-900 dark:text-white">
               {t("جدول الدفع", "Payment Schedule")}
             </h3>
             <div className="space-y-3">
@@ -218,18 +218,18 @@ export default function BookingDetailPage({
                     className="flex items-center justify-between rounded-[var(--radius-md)] bg-surface-muted p-3 dark:bg-surface-dark"
                   >
                     <div className="flex items-center gap-3">
-                      <CreditCard className="h-4 w-4 text-stone-400" />
+                      <CreditCard className="h-4 w-4 text-gray-400" />
                       <div>
-                        <p className="text-body-sm font-medium text-stone-900 dark:text-white">
+                        <p className="text-body-sm font-medium text-gray-900 dark:text-white">
                           {t(`القسط ${index + 1}`, `Installment ${index + 1}`)}
                         </p>
-                        <p className="text-body-sm text-stone-500">
+                        <p className="text-body-sm text-gray-500">
                           {paymentDate}
                         </p>
                       </div>
                     </div>
                     <div className="text-end">
-                      <p className="text-body-sm font-bold text-stone-900 dark:text-white">
+                      <p className="text-body-sm font-bold text-gray-900 dark:text-white">
                         {payment.amountKWD} {t("د.ك", "KWD")}
                       </p>
                       <Badge
@@ -259,10 +259,10 @@ export default function BookingDetailPage({
         {/* Special Requests */}
         {booking.specialRequests && (
           <Card variant="outlined" padding="md">
-            <h3 className="mb-2 text-heading-sm font-bold text-stone-900 dark:text-white">
+            <h3 className="mb-2 text-heading-sm font-bold text-gray-900 dark:text-white">
               {t("طلبات خاصة", "Special Requests")}
             </h3>
-            <p className="text-body-md text-stone-600 dark:text-stone-400">
+            <p className="text-body-md text-gray-600 dark:text-gray-400">
               {booking.specialRequests}
             </p>
           </Card>

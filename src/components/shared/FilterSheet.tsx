@@ -105,7 +105,7 @@ function FilterSheet({ open, onClose, filters, onApply, availableDestinations = 
       <div className="space-y-6">
         {/* Trip Type */}
         <div>
-          <h4 className="mb-2.5 text-body-md font-semibold text-navy-800 dark:text-white">
+          <h4 className="mb-2.5 text-body-md font-semibold text-gray-800 dark:text-white">
             {t("نوع الرحلة", "Trip Type")}
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -129,7 +129,7 @@ function FilterSheet({ open, onClose, filters, onApply, availableDestinations = 
 
         {/* Price Range */}
         <div>
-          <h4 className="mb-2.5 text-body-md font-semibold text-navy-800 dark:text-white">
+          <h4 className="mb-2.5 text-body-md font-semibold text-gray-800 dark:text-white">
             {t("نطاق السعر", "Price Range")}
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -154,7 +154,7 @@ function FilterSheet({ open, onClose, filters, onApply, availableDestinations = 
         {/* Destinations */}
         {availableDestinations.length > 0 && (
           <div>
-            <h4 className="mb-2.5 text-body-md font-semibold text-navy-800 dark:text-white">
+            <h4 className="mb-2.5 text-body-md font-semibold text-gray-800 dark:text-white">
               {t("الوجهات", "Destinations")}
             </h4>
             <div className="flex flex-wrap gap-2">
@@ -183,7 +183,7 @@ function FilterSheet({ open, onClose, filters, onApply, availableDestinations = 
         <button
           type="button"
           onClick={handleReset}
-          className="text-body-sm font-medium text-navy-500 underline underline-offset-2 transition-colors hover:text-navy-700 dark:hover:text-navy-200"
+          className="text-body-sm font-medium text-gray-500 underline underline-offset-2 transition-colors hover:text-gray-700 dark:hover:text-gray-200"
         >
           {t("إعادة تعيين", "Reset All")}
         </button>

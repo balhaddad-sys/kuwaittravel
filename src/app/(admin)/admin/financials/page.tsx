@@ -55,8 +55,7 @@ export default function FinancialsPage() {
         setBookings(data);
         setLoadingData(false);
       },
-      (err) => {
-        console.error("Bookings listener failed:", err);
+      () => {
         setLoadingData(false);
       }
     );
@@ -135,25 +134,25 @@ export default function FinancialsPage() {
           <StatCard
             title={t("GMV \u0627\u0644\u0634\u0647\u0631\u064a", "Monthly GMV")}
             value={loadingData ? "\u2026" : formatKWD(totalGMV)}
-            icon={<Wallet className="h-5 w-5 text-amber-500" />}
+            icon={<Wallet className="h-5 w-5 text-orange-500" />}
             hoverable
           />
           <StatCard
             title={t("\u0639\u0645\u0648\u0644\u0629 \u0627\u0644\u0645\u0646\u0635\u0629", "Platform Commission")}
             value={loadingData ? "\u2026" : formatKWD(platformCommission)}
-            icon={<TrendingUp className="h-5 w-5 text-amber-500" />}
+            icon={<TrendingUp className="h-5 w-5 text-orange-500" />}
             hoverable
           />
           <StatCard
             title={t("\u0627\u0644\u0645\u062f\u0641\u0648\u0639\u0627\u062a \u0627\u0644\u0645\u0639\u0644\u0642\u0629", "Pending Payouts")}
             value={loadingData ? "\u2026" : formatKWD(pendingPayouts)}
-            icon={<ArrowUpRight className="h-5 w-5 text-amber-500" />}
+            icon={<ArrowUpRight className="h-5 w-5 text-orange-500" />}
             hoverable
           />
           <StatCard
             title={t("\u0627\u0644\u0645\u0628\u0627\u0644\u063a \u0627\u0644\u0645\u0633\u062a\u0631\u062f\u0629", "Refunds")}
             value={loadingData ? "\u2026" : formatKWD(refunds)}
-            icon={<Wallet className="h-5 w-5 text-amber-500" />}
+            icon={<Wallet className="h-5 w-5 text-orange-500" />}
             hoverable
           />
         </div>
@@ -161,7 +160,7 @@ export default function FinancialsPage() {
         {/* Bookings / Revenue Table */}
         <Card variant="elevated" padding="lg">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
               {t("\u0625\u064a\u0631\u0627\u062f\u0627\u062a \u0627\u0644\u062d\u0645\u0644\u0627\u062a", "Campaign Revenue")}
             </h3>
             <div className="inline-flex items-center rounded-full border border-surface-border/80 bg-white/72 p-1 dark:border-surface-dark-border/80 dark:bg-surface-dark-card/72">
@@ -176,8 +175,8 @@ export default function FinancialsPage() {
                   onClick={() => setPeriod(item.value)}
                   className={`rounded-full px-2 py-1 text-body-sm transition-colors sm:px-3 ${
                     period === item.value
-                      ? "bg-stone-700 text-white"
-                      : "text-stone-600 dark:text-stone-400"
+                      ? "bg-gray-700 text-white"
+                      : "text-gray-600 dark:text-gray-400"
                   }`}
                 >
                   {item.label}
@@ -188,7 +187,7 @@ export default function FinancialsPage() {
 
           {loadingData ? (
             <div className="flex items-center justify-center py-12">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
             </div>
           ) : recentBookings.length === 0 ? (
             <EmptyState
@@ -202,7 +201,7 @@ export default function FinancialsPage() {
           ) : (
             <div className="space-y-2">
               {/* Header row -- desktop */}
-              <div className="hidden sm:grid sm:grid-cols-[1fr_1fr_auto_auto_auto] gap-3 px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-stone-400 dark:text-stone-500">
+              <div className="hidden sm:grid sm:grid-cols-[1fr_1fr_auto_auto_auto] gap-3 px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                 <span>{t("\u0627\u0644\u0645\u0633\u0627\u0641\u0631", "Traveler")}</span>
                 <span>{t("\u0627\u0644\u0631\u062d\u0644\u0629", "Trip")}</span>
                 <span className="w-24 text-end">{t("\u0627\u0644\u0645\u0628\u0644\u063a", "Amount")}</span>
@@ -215,29 +214,29 @@ export default function FinancialsPage() {
                 return (
                   <div
                     key={booking.id}
-                    className="group rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+                    className="group rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
                   >
                     {/* Mobile layout */}
                     <div className="sm:hidden space-y-2">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 min-w-0">
-                          <User className="h-4 w-4 shrink-0 text-stone-400" />
-                          <span className="text-body-sm font-semibold text-stone-900 dark:text-white truncate">
+                          <User className="h-4 w-4 shrink-0 text-gray-400" />
+                          <span className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
                             {booking.travelerName}
                           </span>
                         </div>
-                        <span className="tabular-nums text-body-sm font-bold text-stone-900 dark:text-white">
+                        <span className="tabular-nums text-body-sm font-bold text-gray-900 dark:text-white">
                           {formatKWD(booking.totalKWD)}
                         </span>
                       </div>
-                      <p className="text-xs text-stone-500 dark:text-stone-400 truncate">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
                         {booking.tripTitle}
                       </p>
                       <div className="flex items-center justify-between">
                         <Badge variant={sc.variant} size="sm" dot>
                           {language === "ar" ? sc.labelAr : sc.label}
                         </Badge>
-                        <span className="text-[11px] text-stone-400 dark:text-stone-500">
+                        <span className="text-[11px] text-gray-400 dark:text-gray-500">
                           {getDate(booking.createdAt)}
                         </span>
                       </div>
@@ -246,15 +245,15 @@ export default function FinancialsPage() {
                     {/* Desktop layout */}
                     <div className="hidden sm:grid sm:grid-cols-[1fr_1fr_auto_auto_auto] gap-3 items-center">
                       <div className="flex items-center gap-2 min-w-0">
-                        <User className="h-4 w-4 shrink-0 text-stone-400" />
-                        <span className="text-body-sm font-semibold text-stone-900 dark:text-white truncate">
+                        <User className="h-4 w-4 shrink-0 text-gray-400" />
+                        <span className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
                           {booking.travelerName}
                         </span>
                       </div>
-                      <span className="text-body-sm text-stone-600 dark:text-stone-300 truncate">
+                      <span className="text-body-sm text-gray-600 dark:text-gray-300 truncate">
                         {booking.tripTitle}
                       </span>
-                      <span className="tabular-nums w-24 text-end text-body-sm font-bold text-stone-900 dark:text-white">
+                      <span className="tabular-nums w-24 text-end text-body-sm font-bold text-gray-900 dark:text-white">
                         {formatKWD(booking.totalKWD)}
                       </span>
                       <div className="w-28 text-center">
@@ -262,7 +261,7 @@ export default function FinancialsPage() {
                           {language === "ar" ? sc.labelAr : sc.label}
                         </Badge>
                       </div>
-                      <span className="w-24 text-end text-[11px] text-stone-400 dark:text-stone-500">
+                      <span className="w-24 text-end text-[11px] text-gray-400 dark:text-gray-500">
                         {getDate(booking.createdAt)}
                       </span>
                     </div>

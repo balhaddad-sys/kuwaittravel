@@ -32,14 +32,14 @@ function CampaignCard({
 
   return (
     <div
-      className={`group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:bg-slate-800 ${className ?? ""}`}
+      className={`group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-trangray-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:bg-gray-800 ${className ?? ""}`}
       onClick={onClick}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
     >
       {/* Cover image */}
-      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600">
+      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-gray-700 dark:to-gray-600">
         {coverUrl && (
           <Image
             src={coverUrl}
@@ -60,10 +60,10 @@ function CampaignCard({
             src={logoUrl}
             alt={name}
             size="xl"
-            className="border-4 border-white shadow-lg dark:border-slate-800"
+            className="border-4 border-white shadow-lg dark:border-gray-800"
           />
           {verified && (
-            <span className="mb-1 flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
+            <span className="mb-1 flex items-center gap-1 rounded-full bg-indigo-50 px-2.5 py-1 text-[11px] font-semibold text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300">
               <BadgeCheck className="h-3.5 w-3.5" />
               {t("موثق", "Verified")}
             </span>
@@ -73,14 +73,14 @@ function CampaignCard({
         <h3 className="text-[0.9375rem] font-bold text-gray-900 dark:text-white">
           {name}
         </h3>
-        <p className="mt-1 line-clamp-2 text-[0.8125rem] text-gray-500 dark:text-slate-400">
+        <p className="mt-1 line-clamp-2 text-[0.8125rem] text-gray-500 dark:text-gray-400">
           {description}
         </p>
 
-        <div className="mt-3 flex items-center gap-4 text-[0.8125rem] text-gray-500 dark:text-slate-400">
+        <div className="mt-3 flex items-center gap-4 text-[0.8125rem] text-gray-500 dark:text-gray-400">
           {rating > 0 && (
-            <span className="flex items-center gap-1 font-medium text-gray-700 dark:text-slate-300">
-              <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+            <span className="flex items-center gap-1 font-medium text-gray-700 dark:text-gray-300">
+              <Star className="h-3.5 w-3.5 fill-orange-400 text-orange-400" />
               <span className="font-numbers">{rating.toFixed(1)}</span>
             </span>
           )}

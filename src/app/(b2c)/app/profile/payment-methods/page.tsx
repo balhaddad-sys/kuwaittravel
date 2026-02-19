@@ -24,18 +24,18 @@ export default function PaymentMethodsPage() {
       />
       <Container size="md" className="py-4 sm:py-6 space-y-4">
         <Card variant="elevated" padding="lg">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-4">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4">
             {t("طرق الدفع المدعومة", "Supported Payment Methods")}
           </h3>
           <div className="space-y-3">
             {methods.map((m, i) => (
               <div key={i} className="flex items-center gap-3 rounded-lg border border-surface-border/70 p-3 dark:border-surface-dark-border/70">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-50 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
                   <m.icon className="h-5 w-5" />
                 </span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-body-sm font-bold text-stone-900 dark:text-white">{t(m.nameAr, m.nameEn)}</p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400">{t(m.descAr, m.descEn)}</p>
+                  <p className="text-body-sm font-bold text-gray-900 dark:text-white">{t(m.nameAr, m.nameEn)}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{t(m.descAr, m.descEn)}</p>
                 </div>
                 <Badge variant="success" size="sm">{t("متاح", "Available")}</Badge>
               </div>
@@ -43,12 +43,12 @@ export default function PaymentMethodsPage() {
           </div>
         </Card>
 
-        <Card variant="outlined" padding="lg" className="border-amber-300/50 dark:border-amber-800/30">
+        <Card variant="outlined" padding="lg" className="border-orange-300/50 dark:border-orange-800/30">
           <div className="flex items-start gap-3">
-            <ShieldCheck className="h-5 w-5 shrink-0 text-amber-500 mt-0.5" />
+            <ShieldCheck className="h-5 w-5 shrink-0 text-orange-500 mt-0.5" />
             <div>
-              <p className="text-body-sm font-bold text-stone-900 dark:text-white mb-1">{t("دفع آمن ومشفر", "Secure & Encrypted")}</p>
-              <p className="text-body-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+              <p className="text-body-sm font-bold text-gray-900 dark:text-white mb-1">{t("دفع آمن ومشفر", "Secure & Encrypted")}</p>
+              <p className="text-body-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 {t(
                   "يتم الدفع مباشرة عند حجز الرحلة عبر بوابة دفع آمنة. لا نقوم بتخزين بيانات بطاقتك — كل عملية دفع تتم عبر بوابة مشفرة.",
                   "Payment is processed at booking time via a secure gateway. We do not store your card details — every transaction goes through an encrypted gateway."

@@ -297,14 +297,14 @@ export default function CreateTripPage() {
             />
           </div>
 
-          <h3 className="text-heading-sm font-semibold text-stone-900 dark:text-white mt-6">
+          <h3 className="text-heading-sm font-semibold text-gray-900 dark:text-white mt-6">
             {t("الغرف المتاحة", "Available Rooms")}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {ROOM_TYPES.filter((r) => r.id !== "single").map((room) => (
               <Card key={room.id} variant="outlined" padding="md">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-body-md font-medium text-stone-700 dark:text-stone-200">{room.nameAr}</span>
+                  <span className="text-body-md font-medium text-gray-700 dark:text-gray-200">{room.nameAr}</span>
                   <Badge variant="default" size="sm">{room.capacity} {t("أشخاص", "persons")}</Badge>
                 </div>
                 <Input
@@ -367,37 +367,37 @@ export default function CreateTripPage() {
       label: t("المراجعة والنشر", "Review & Publish"),
       content: (
         <div className="space-y-4">
-          <h3 className="text-heading-sm font-bold text-stone-900 dark:text-white">
+          <h3 className="text-heading-sm font-bold text-gray-900 dark:text-white">
             {t("مراجعة بيانات الرحلة", "Review Trip Details")}
           </h3>
           <Card variant="filled" padding="md" className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-body-md text-stone-500">{t("العنوان", "Title")}</span>
-              <span className="text-body-md font-medium text-stone-900 dark:text-white">{basics.titleAr || "—"}</span>
+              <span className="text-body-md text-gray-500">{t("العنوان", "Title")}</span>
+              <span className="text-body-md font-medium text-gray-900 dark:text-white">{basics.titleAr || "—"}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-stone-500">{t("النوع", "Type")}</span>
-              <span className="text-body-md font-medium text-stone-900 dark:text-white">
+              <span className="text-body-md text-gray-500">{t("النوع", "Type")}</span>
+              <span className="text-body-md font-medium text-gray-900 dark:text-white">
                 {TRIP_TYPES.find((tp) => tp.id === basics.type)?.nameAr || "—"}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-stone-500">{t("الوجهة", "Destination")}</span>
-              <span className="text-body-md font-medium text-stone-900 dark:text-white">
+              <span className="text-body-md text-gray-500">{t("الوجهة", "Destination")}</span>
+              <span className="text-body-md font-medium text-gray-900 dark:text-white">
                 {DESTINATIONS.find((d) => d.id === basics.destination)?.nameAr || "—"}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-stone-500">{t("السعر", "Price")}</span>
-              <span className="text-body-md font-bold text-stone-900 dark:text-white">{pricing.basePriceKWD ? `${pricing.basePriceKWD} ${t("د.ك", "KWD")}` : "—"}</span>
+              <span className="text-body-md text-gray-500">{t("السعر", "Price")}</span>
+              <span className="text-body-md font-bold text-gray-900 dark:text-white">{pricing.basePriceKWD ? `${pricing.basePriceKWD} ${t("د.ك", "KWD")}` : "—"}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-stone-500">{t("السعة", "Capacity")}</span>
-              <span className="text-body-md font-medium text-stone-900 dark:text-white">{pricing.totalCapacity || "—"} {t("مسافر", "travelers")}</span>
+              <span className="text-body-md text-gray-500">{t("السعة", "Capacity")}</span>
+              <span className="text-body-md font-medium text-gray-900 dark:text-white">{pricing.totalCapacity || "—"} {t("مسافر", "travelers")}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-body-md text-stone-500">{t("تاريخ المغادرة", "Departure Date")}</span>
-              <span className="text-body-md font-medium text-stone-900 dark:text-white">{basics.departureDate || "—"}</span>
+              <span className="text-body-md text-gray-500">{t("تاريخ المغادرة", "Departure Date")}</span>
+              <span className="text-body-md font-medium text-gray-900 dark:text-white">{basics.departureDate || "—"}</span>
             </div>
           </Card>
         </div>

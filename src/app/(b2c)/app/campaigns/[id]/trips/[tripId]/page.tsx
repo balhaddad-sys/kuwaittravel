@@ -191,7 +191,7 @@ export default function TripDetailPage({
   const guidanceItems = [
     {
       key: "booking_window",
-      icon: <Calendar className="h-4 w-4 text-blue-500" />,
+      icon: <Calendar className="h-4 w-4 text-indigo-500" />,
       title: t("نافذة الحجز", "Booking Window"),
       description: canBook
         ? t(
@@ -205,7 +205,7 @@ export default function TripDetailPage({
     },
     {
       key: "route",
-      icon: <MapPin className="h-4 w-4 text-amber-500" />,
+      icon: <MapPin className="h-4 w-4 text-orange-500" />,
       title: t("مسار الرحلة", "Route Snapshot"),
       description: t(
         `المغادرة من ${trip.departureCity || "الكويت"} إلى ${destinationLabel} بتاريخ ${departureDateLabel}، والعودة ${returnDateLabel}.`,
@@ -322,7 +322,7 @@ export default function TripDetailPage({
     ...(duration ? [{
       label: t("المدة", "Duration"),
       value: t(`${duration} يوم`, `${duration} days`),
-      icon: <Clock className="h-4 w-4 text-blue-500" />,
+      icon: <Clock className="h-4 w-4 text-indigo-500" />,
     }] : []),
     {
       label: t("من", "From"),
@@ -332,7 +332,7 @@ export default function TripDetailPage({
     {
       label: t("النوع", "Type"),
       value: tripTypeLabel,
-      icon: <Tag className="h-4 w-4 text-amber-500" />,
+      icon: <Tag className="h-4 w-4 text-orange-500" />,
     },
   ];
 
@@ -427,7 +427,7 @@ export default function TripDetailPage({
             <div className="h-1.5 overflow-hidden rounded-full bg-gray-100">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
-                  fillPercent >= 90 ? "bg-red-500" : fillPercent >= 70 ? "bg-amber-500" : "bg-emerald-500"
+                  fillPercent >= 90 ? "bg-red-500" : fillPercent >= 70 ? "bg-orange-500" : "bg-emerald-500"
                 }`}
                 style={{ width: `${Math.min(fillPercent, 100)}%` }}
               />
@@ -455,7 +455,7 @@ export default function TripDetailPage({
               <button
                 type="button"
                 onClick={() => setDescExpanded(!descExpanded)}
-                className="mt-2 flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
+                className="mt-2 flex items-center gap-1 text-sm font-semibold text-indigo-600 transition-colors hover:text-indigo-700"
               >
                 {descExpanded ? (
                   <>{t("عرض أقل", "Show less")} <ChevronUp className="h-3.5 w-3.5" /></>
@@ -480,8 +480,8 @@ export default function TripDetailPage({
         {/* Smart Guide */}
         <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-50">
-              <ShieldCheck className="h-4 w-4 text-amber-600" />
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-50">
+              <ShieldCheck className="h-4 w-4 text-orange-600" />
             </div>
             <div>
               <h3 className="text-base font-bold text-gray-900">
@@ -517,7 +517,7 @@ export default function TripDetailPage({
             ))}
           </div>
 
-          <div className="mt-4 rounded-xl border border-amber-100 bg-amber-50/60 p-3">
+          <div className="mt-4 rounded-xl border border-orange-100 bg-orange-50/60 p-3">
             <p className="mb-2 text-sm font-bold text-gray-900">
               {t("قائمة تجهيز سريعة", "Quick Prep Checklist")}
             </p>
@@ -544,8 +544,8 @@ export default function TripDetailPage({
                   key={index}
                   className="flex items-center gap-3 rounded-xl bg-gray-50 p-3"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-100">
-                    <MapPin className="h-4 w-4 text-amber-600" />
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-orange-100">
+                    <MapPin className="h-4 w-4 text-orange-600" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-gray-900">
@@ -580,19 +580,19 @@ export default function TripDetailPage({
                     onClick={() => setSelectedTier(tier.id)}
                     className={`rounded-xl border p-4 text-start transition-all ${
                       isSelected
-                        ? "border-blue-500 bg-blue-50 shadow-sm"
+                        ? "border-indigo-500 bg-indigo-50 shadow-sm"
                         : "border-gray-200 bg-white hover:border-gray-300"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-bold text-gray-900">{tierName}</p>
                       {isSelected && (
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-white">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500 text-white">
                           <CheckCircle2 className="h-3 w-3" />
                         </span>
                       )}
                     </div>
-                    <p className="mt-1 text-lg font-bold text-amber-600">
+                    <p className="mt-1 text-lg font-bold text-orange-600">
                       {formatKWD(tier.priceKWD)}
                     </p>
                     {tier.description && (
@@ -634,12 +634,12 @@ export default function TripDetailPage({
           onClick={() => router.push(`/app/campaigns/${id}`)}
           className="flex w-full items-center gap-3 rounded-2xl border border-gray-200 bg-white p-4 text-start shadow-sm transition-all hover:border-gray-300 hover:shadow-md"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50">
-            <Building2 className="h-5 w-5 text-amber-600" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-50">
+            <Building2 className="h-5 w-5 text-orange-600" />
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-sm font-bold text-gray-900">{trip.campaignName}</p>
-            <p className="text-xs font-medium text-blue-600">
+            <p className="text-xs font-medium text-indigo-600">
               {t("عرض الحملة", "View Campaign")} →
             </p>
           </div>
@@ -649,8 +649,8 @@ export default function TripDetailPage({
         {showBookingForm && (
           <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.08)]" id="booking-form">
             <div className="mb-4 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-                <ShieldCheck className="h-4 w-4 text-blue-600" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50">
+                <ShieldCheck className="h-4 w-4 text-indigo-600" />
               </div>
               <h3 className="text-base font-bold text-gray-900">
                 {t("بيانات الحجز", "Booking Details")}

@@ -52,7 +52,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
     <form onSubmit={handleSubmit} className={cn("space-y-4", className)}>
       {/* Star Rating */}
       <div>
-        <label className="text-body-md font-semibold text-stone-800 dark:text-white">
+        <label className="text-body-md font-semibold text-gray-800 dark:text-white">
           {t("تقييمك", "Your Rating")}
         </label>
         <div className="mt-2 flex items-center gap-1">
@@ -69,8 +69,8 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
                 className={cn(
                   "h-7 w-7 transition-colors",
                   (hoverRating || rating) > i
-                    ? "fill-amber-400 text-amber-400"
-                    : "fill-stone-200 text-stone-200 dark:fill-stone-600 dark:text-stone-600"
+                    ? "fill-orange-400 text-orange-400"
+                    : "fill-gray-200 text-gray-200 dark:fill-gray-600 dark:text-gray-600"
                 )}
               />
             </button>
@@ -80,7 +80,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
 
       {/* Title */}
       <div>
-        <label className="text-body-sm font-medium text-stone-600 dark:text-stone-300">
+        <label className="text-body-sm font-medium text-gray-600 dark:text-gray-300">
           {t("العنوان", "Title")}
         </label>
         <input
@@ -88,13 +88,13 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={t("اكتب عنواناً لتقييمك", "Write a title for your review")}
-          className="mt-1 w-full rounded-[var(--radius-md)] border border-stone-200 bg-white px-3 py-2.5 text-body-md text-stone-900 placeholder:text-stone-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 dark:border-stone-700 dark:bg-stone-800 dark:text-white dark:placeholder:text-stone-500"
+          className="mt-1 w-full rounded-[var(--radius-md)] border border-gray-200 bg-white px-3 py-2.5 text-body-md text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500"
         />
       </div>
 
       {/* Body */}
       <div>
-        <label className="text-body-sm font-medium text-stone-600 dark:text-stone-300">
+        <label className="text-body-sm font-medium text-gray-600 dark:text-gray-300">
           {t("التفاصيل", "Details")}
         </label>
         <textarea
@@ -102,18 +102,18 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
           onChange={(e) => setBody(e.target.value)}
           rows={4}
           placeholder={t("شاركنا تجربتك", "Share your experience")}
-          className="mt-1 w-full rounded-[var(--radius-md)] border border-stone-200 bg-white px-3 py-2.5 text-body-md text-stone-900 placeholder:text-stone-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 dark:border-stone-700 dark:bg-stone-800 dark:text-white dark:placeholder:text-stone-500"
+          className="mt-1 w-full rounded-[var(--radius-md)] border border-gray-200 bg-white px-3 py-2.5 text-body-md text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500"
         />
       </div>
 
       {/* Photos */}
       <div>
-        <label className="text-body-sm font-medium text-stone-600 dark:text-stone-300">
+        <label className="text-body-sm font-medium text-gray-600 dark:text-gray-300">
           {t("صور (اختياري)", "Photos (optional)")}
         </label>
         <div className="mt-2 flex flex-wrap gap-2">
           {photoPreviews.map(({ url }, i) => (
-            <div key={i} className="relative h-16 w-16 rounded-lg bg-stone-100 dark:bg-stone-800">
+            <div key={i} className="relative h-16 w-16 rounded-lg bg-gray-100 dark:bg-gray-800">
               <Image
                 src={url}
                 alt={t("صورة مرفقة", "Uploaded photo")}
@@ -132,7 +132,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
             </div>
           ))}
           {photos.length < 5 && (
-            <label className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-stone-300 text-stone-400 transition-colors hover:border-teal-400 hover:text-teal-500 dark:border-stone-600 dark:hover:border-teal-500">
+            <label className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-400 transition-colors hover:border-indigo-400 hover:text-indigo-500 dark:border-gray-600 dark:hover:border-indigo-500">
               <Camera className="h-5 w-5" />
               <input type="file" accept="image/*" onChange={handlePhotoAdd} className="hidden" />
             </label>

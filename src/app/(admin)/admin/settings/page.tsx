@@ -18,7 +18,7 @@ export default function AdminSettingsPage() {
       <AppBar title={t("إعدادات المنصة", "Platform Settings")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("الإعدادات", "Settings") }]} />
       <Container size="md" className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         <Card variant="elevated" padding="lg" className="space-y-4">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white flex items-center gap-2">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
               <Percent className="h-4 w-4" />
             </span>
@@ -44,7 +44,7 @@ export default function AdminSettingsPage() {
         </Card>
 
         <Card variant="elevated" padding="lg" className="space-y-4">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white flex items-center gap-2">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
               <Wallet className="h-4 w-4" />
             </span>

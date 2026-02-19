@@ -11,8 +11,8 @@ interface AlertBannerProps {
 const config = {
   success: { icon: CheckCircle2, bg: "bg-success-light", border: "border-success", text: "text-green-800" },
   error: { icon: XCircle, bg: "bg-error-light", border: "border-error", text: "text-red-800" },
-  warning: { icon: AlertTriangle, bg: "bg-warning-light", border: "border-warning", text: "text-amber-800" },
-  info: { icon: Info, bg: "bg-info-light", border: "border-info", text: "text-blue-800" },
+  warning: { icon: AlertTriangle, bg: "bg-warning-light", border: "border-warning", text: "text-orange-800" },
+  info: { icon: Info, bg: "bg-info-light", border: "border-info", text: "text-indigo-800" },
 };
 
 function AlertBanner({ type, title, description, className }: AlertBannerProps) {

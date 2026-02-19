@@ -47,8 +47,8 @@ export default function DocumentsPage() {
           <Card key={i} variant="elevated" padding="lg">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <FileText className="h-5 w-5 text-stone-500" />
-                <h3 className="text-body-md sm:text-heading-sm font-bold text-stone-900 dark:text-white">{t(doc.titleAr, doc.titleEn)}</h3>
+                <FileText className="h-5 w-5 text-gray-500" />
+                <h3 className="text-body-md sm:text-heading-sm font-bold text-gray-900 dark:text-white">{t(doc.titleAr, doc.titleEn)}</h3>
               </div>
               <Badge variant={doc.hasData ? "success" : "warning"} size="sm">
                 {doc.hasData ? <><CheckCircle2 className="h-3 w-3 me-1" />{t("متوفر", "Available")}</> : <><AlertCircle className="h-3 w-3 me-1" />{t("مطلوب", "Required")}</>}
@@ -56,10 +56,10 @@ export default function DocumentsPage() {
             </div>
             {doc.hasData && doc.details ? (
               <div className="rounded-lg bg-surface-muted p-3 dark:bg-surface-dark-card/50">
-                <p className="text-body-sm font-medium text-stone-900 dark:text-white">{doc.details}</p>
+                <p className="text-body-sm font-medium text-gray-900 dark:text-white">{doc.details}</p>
               </div>
             ) : (
-              <div className="flex items-center gap-2 rounded-lg border-2 border-dashed border-surface-border p-4 text-stone-400 dark:border-surface-dark-border">
+              <div className="flex items-center gap-2 rounded-lg border-2 border-dashed border-surface-border p-4 text-gray-400 dark:border-surface-dark-border">
                 <Upload className="h-5 w-5" />
                 <p className="text-body-sm">{t("أضف هذا المستند من صفحة الحجز أو التعديل", "Add this document from the booking or edit page")}</p>
               </div>
@@ -67,8 +67,8 @@ export default function DocumentsPage() {
           </Card>
         ))}
 
-        <Card variant="outlined" padding="lg" className="border-amber-300/50 dark:border-amber-800/30">
-          <p className="text-body-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+        <Card variant="outlined" padding="lg" className="border-orange-300/50 dark:border-orange-800/30">
+          <p className="text-body-sm text-gray-600 dark:text-gray-400 leading-relaxed">
             {t(
               "يتم تشفير جميع المستندات وتخزينها بشكل آمن. يمكنك تحديث مستنداتك عند إنشاء حجز جديد أو من خلال التواصل مع الحملة.",
               "All documents are encrypted and securely stored. You can update your documents when creating a new booking or by contacting the campaign."

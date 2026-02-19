@@ -52,9 +52,9 @@ function PassengerRow({
     )}>
       <Avatar src={avatarUrl} alt={name} size="md" />
       <div className="flex-1 min-w-0">
-        <p className="text-body-md font-medium text-navy-900 dark:text-white truncate">{name}</p>
+        <p className="text-body-md font-medium text-gray-900 dark:text-white truncate">{name}</p>
         {phone && (
-          <p className="text-body-sm text-navy-400 flex items-center gap-1">
+          <p className="text-body-sm text-gray-400 flex items-center gap-1">
             <Phone className="h-3 w-3" />
             {phone}
           </p>
@@ -72,7 +72,7 @@ function PassengerRow({
         </Badge>
       </div>
       {onAction && (
-        <button onClick={onAction} className="shrink-0 rounded-lg p-1.5 text-navy-400 hover:bg-surface-muted transition-colors">
+        <button onClick={onAction} className="shrink-0 rounded-lg p-1.5 text-gray-400 hover:bg-surface-muted transition-colors">
           <MoreVertical className="h-4 w-4" />
         </button>
       )}

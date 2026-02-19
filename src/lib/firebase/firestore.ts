@@ -16,6 +16,39 @@ import {
 } from "firebase/firestore";
 import { getFirebaseDb } from "./config";
 
+const PERMISSION_DENIED_CODE = "permission-denied";
+
+function normalizeFirestoreError(err: unknown): Error {
+  if (err instanceof Error) return err;
+  return new Error(typeof err === "string" ? err : "Unknown Firestore error");
+}
+
+function getFirestoreErrorCode(err: unknown): string | undefined {
+  if (typeof err !== "object" || err === null || !("code" in err)) return undefined;
+  const code = (err as { code?: unknown }).code;
+  return typeof code === "string" ? code : undefined;
+}
+
+function reportListenerError(
+  context: string,
+  err: unknown,
+  onError?: (error: Error) => void
+): void {
+  const normalizedError = normalizeFirestoreError(err);
+  const code = getFirestoreErrorCode(err);
+
+  if (code === PERMISSION_DENIED_CODE) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(`[Firestore] ${context} permission denied.`);
+    }
+    onError?.(normalizedError);
+    return;
+  }
+
+  console.error(`[Firestore] ${context} listener error:`, err);
+  onError?.(normalizedError);
+}
+
 export async function getDocument<T>(
   collectionName: string,
   docId: string
@@ -86,8 +119,7 @@ export function onDocumentChange<T>(
       callback({ id: snap.id, ...snap.data() } as T);
     },
     (err) => {
-      console.error(`[Firestore] ${collectionName}/${docId} listener error:`, err);
-      onError?.(err);
+      reportListenerError(`${collectionName}/${docId}`, err, onError);
     }
   );
 }
@@ -107,8 +139,7 @@ export function onCollectionChange<T>(
       callback(items);
     },
     (err) => {
-      console.error(`[Firestore] ${collectionName} listener error:`, err);
-      onError?.(err);
+      reportListenerError(collectionName, err, onError);
     }
   );
 }

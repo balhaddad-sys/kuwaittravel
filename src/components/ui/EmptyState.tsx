@@ -23,14 +23,14 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
     >
       {icon && (
         <div className="mx-auto mb-3 h-12 w-12 sm:mb-4 sm:h-16 sm:w-16">
-          <div className="travel-icon-circle mx-auto h-12 w-12 text-stone-500 dark:text-stone-300 sm:h-16 sm:w-16 sm:travel-icon-circle-lg">
+          <div className="travel-icon-circle mx-auto h-12 w-12 text-gray-500 dark:text-gray-300 sm:h-16 sm:w-16 sm:travel-icon-circle-lg">
             {icon}
           </div>
         </div>
       )}
-      <h3 className="text-body-lg font-bold text-stone-800 dark:text-white sm:text-heading-md">{title}</h3>
+      <h3 className="text-body-lg font-bold text-gray-800 dark:text-white sm:text-heading-md">{title}</h3>
       {description && (
-        <p className="mx-auto mt-1.5 max-w-sm text-body-sm text-stone-600 dark:text-stone-200 sm:mt-2 sm:text-body-md">{description}</p>
+        <p className="mx-auto mt-1.5 max-w-sm text-body-sm text-gray-600 dark:text-gray-200 sm:mt-2 sm:text-body-md">{description}</p>
       )}
       {action && (
         <Button

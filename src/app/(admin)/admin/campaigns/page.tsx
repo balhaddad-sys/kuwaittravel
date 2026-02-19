@@ -37,14 +37,14 @@ import {
 /* ── Status color maps ─────────────────────────────────────────────── */
 
 const verificationColors: Record<VerificationStatus, { dot: string; bg: string; text: string; labelAr: string; label: string }> = {
-  pending: { dot: "bg-warning", bg: "bg-warning-light dark:bg-amber-900/25", text: "text-amber-800 dark:text-amber-300", labelAr: "قيد المراجعة", label: "Under Review" },
+  pending: { dot: "bg-warning", bg: "bg-warning-light dark:bg-orange-900/25", text: "text-orange-800 dark:text-orange-300", labelAr: "قيد المراجعة", label: "Under Review" },
   approved: { dot: "bg-success", bg: "bg-success-light dark:bg-green-900/25", text: "text-green-800 dark:text-green-300", labelAr: "معتمد", label: "Approved" },
   rejected: { dot: "bg-error", bg: "bg-error-light dark:bg-red-900/25", text: "text-red-800 dark:text-red-300", labelAr: "مرفوض", label: "Rejected" },
   suspended: { dot: "bg-error", bg: "bg-error-light dark:bg-red-900/25", text: "text-red-800 dark:text-red-300", labelAr: "معلق", label: "Suspended" },
 };
 
 const statusBarColor: Record<VerificationStatus, string> = {
-  pending: "bg-amber-400",
+  pending: "bg-orange-400",
   approved: "bg-emerald-500",
   rejected: "bg-red-500",
   suspended: "bg-red-400",
@@ -65,9 +65,9 @@ function VerificationChip({ status }: { status: VerificationStatus }) {
 
 function DetailSection({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-surface-border/70 bg-stone-50/60 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.03]">
-      <h4 className="text-body-sm font-bold text-stone-900 dark:text-white mb-2.5 flex items-center gap-2">
-        <span className="text-amber-500 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>
+    <div className="rounded-xl border border-surface-border/70 bg-gray-50/60 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.03]">
+      <h4 className="text-body-sm font-bold text-gray-900 dark:text-white mb-2.5 flex items-center gap-2">
+        <span className="text-orange-500 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>
         {title}
       </h4>
       <dl className="space-y-2 text-body-sm">{children}</dl>
@@ -78,8 +78,8 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, dir, multiline }: { label: string; value: string; dir?: string; multiline?: boolean }) {
   return (
     <div>
-      <dt className="text-xs text-stone-500 dark:text-stone-400">{label}</dt>
-      <dd className={cn("font-medium text-stone-900 dark:text-white", !multiline && "truncate")} dir={dir}>
+      <dt className="text-xs text-gray-500 dark:text-gray-400">{label}</dt>
+      <dd className={cn("font-medium text-gray-900 dark:text-white", !multiline && "truncate")} dir={dir}>
         {value}
       </dd>
     </div>
@@ -121,8 +121,7 @@ export default function AdminCampaignsPage() {
         setCampaigns(data);
         setLoadingData(false);
       },
-      (err) => {
-        console.error("Campaigns listener failed:", err);
+      () => {
         setLoadingData(false);
         toast({ type: "error", title: t("تعذر تحميل الحملات", "Failed to load campaigns") });
       }
@@ -301,7 +300,7 @@ export default function AdminCampaignsPage() {
         {/* Campaign list */}
         {loadingData ? (
           <div className="flex items-center justify-center py-16">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
           </div>
         ) : filtered.length === 0 ? (
           <EmptyState
@@ -323,29 +322,29 @@ export default function AdminCampaignsPage() {
               >
                 <div
                   className={cn(
-                    "flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-slate-700 dark:bg-slate-800",
+                    "flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-gray-700 dark:bg-gray-800",
                   )}
                 >
                   {/* Status indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[campaign.verificationStatus])} />
 
                   {/* Icon — desktop only */}
-                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-stone-100 dark:bg-stone-800">
-                    <Building2 className="h-5 w-5 text-stone-500 dark:text-stone-400" />
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
+                    <Building2 className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0 py-3 pe-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-body-sm font-bold text-stone-900 dark:text-white truncate">
+                      <h3 className="text-body-sm font-bold text-gray-900 dark:text-white truncate">
                         {campaign.nameAr}
                       </h3>
                       <VerificationChip status={campaign.verificationStatus} />
                     </div>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-0.5" dir="ltr">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5" dir="ltr">
                       {campaign.name}
                     </p>
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-stone-400 dark:text-stone-500">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-gray-400 dark:text-gray-500">
                       <span className="flex items-center gap-1">
                         <FileText className="h-3 w-3" />
                         {campaign.licenseNumber}
@@ -359,7 +358,7 @@ export default function AdminCampaignsPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-stone-300 group-hover:text-stone-500 transition-colors dark:text-stone-600 dark:group-hover:text-stone-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -393,21 +392,21 @@ export default function AdminCampaignsPage() {
               {/* Back arrow — mobile */}
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-stone-500 hover:bg-stone-100 transition-colors dark:text-stone-400 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-gray-500 hover:bg-gray-100 transition-colors dark:text-gray-400 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
               <div className="flex-1 min-w-0">
-                <h2 className="font-bold text-stone-900 dark:text-white truncate text-body-md">
+                <h2 className="font-bold text-gray-900 dark:text-white truncate text-body-md">
                   {selected.nameAr}
                 </h2>
-                <p className="text-xs text-stone-500 truncate" dir="ltr">{selected.name}</p>
+                <p className="text-xs text-gray-500 truncate" dir="ltr">{selected.name}</p>
               </div>
               <VerificationChip status={selected.verificationStatus} />
               {/* Close X — desktop */}
               <button
                 onClick={() => setSelectedId(null)}
-                className="hidden sm:flex shrink-0 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 transition-colors dark:hover:bg-surface-dark-border"
+                className="hidden sm:flex shrink-0 rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 transition-colors dark:hover:bg-surface-dark-border"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -450,13 +449,13 @@ export default function AdminCampaignsPage() {
                 )}
                 {selected.licenseImageUrl && (
                   <div>
-                    <dt className="text-xs text-stone-500 dark:text-stone-400">{t("صورة الترخيص", "License Image")}</dt>
+                    <dt className="text-xs text-gray-500 dark:text-gray-400">{t("صورة الترخيص", "License Image")}</dt>
                     <dd>
                       <a
                         href={selected.licenseImageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-body-sm font-medium text-amber-600 hover:text-amber-700 transition-colors"
+                        className="inline-flex items-center gap-1 text-body-sm font-medium text-orange-600 hover:text-orange-700 transition-colors"
                       >
                         {t("عرض", "View")} <ExternalLink className="h-3.5 w-3.5" />
                       </a>
@@ -486,7 +485,7 @@ export default function AdminCampaignsPage() {
               {/* Verification Status */}
               <DetailSection icon={<ShieldAlert />} title={t("حالة التحقق", "Verification Status")}>
                 <div>
-                  <dt className="text-xs text-stone-500 dark:text-stone-400 mb-1">{t("الحالة", "Status")}</dt>
+                  <dt className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t("الحالة", "Status")}</dt>
                   <dd><VerificationChip status={selected.verificationStatus} /></dd>
                 </div>
                 <DetailRow label={t("تاريخ التسجيل", "Registered")} value={getCreatedDate(selected)} />

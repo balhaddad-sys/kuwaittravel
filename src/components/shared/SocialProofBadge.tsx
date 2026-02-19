@@ -56,7 +56,7 @@ function SocialProofBadge({
     return (
       <span
         className={cn(
-          "inline-flex items-center gap-1 text-body-sm font-medium text-navy-500 dark:text-navy-300",
+          "inline-flex items-center gap-1 text-body-sm font-medium text-gray-500 dark:text-gray-300",
           variant === "overlay" && "rounded-full bg-black/50 px-2.5 py-1 text-[11px] text-white backdrop-blur-sm",
           className
         )}

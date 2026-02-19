@@ -170,7 +170,7 @@ export default function RegisterCampaignPage() {
       label: t("بيانات المنظمة", "Organization"),
       content: (
         <div className="space-y-4">
-          <div className="flex items-center gap-2 mb-2 text-stone-500">
+          <div className="flex items-center gap-2 mb-2 text-gray-500">
             <Building2 className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("بيانات المنظمة الأساسية", "Basic organization details")}</span>
           </div>
@@ -210,7 +210,7 @@ export default function RegisterCampaignPage() {
       label: t("الوثائق الرسمية", "Legal Documents"),
       content: (
         <div className="space-y-4">
-          <div className="flex items-center gap-2 mb-2 text-stone-500">
+          <div className="flex items-center gap-2 mb-2 text-gray-500">
             <FileText className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("وثائق الترخيص والتسجيل", "License & registration documents")}</span>
           </div>
@@ -253,7 +253,7 @@ export default function RegisterCampaignPage() {
       label: t("التواصل", "Contact"),
       content: (
         <div className="space-y-4">
-          <div className="flex items-center gap-2 mb-2 text-stone-500">
+          <div className="flex items-center gap-2 mb-2 text-gray-500">
             <Phone className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("بيانات التواصل والحسابات", "Contact info & social media")}</span>
           </div>
@@ -303,83 +303,83 @@ export default function RegisterCampaignPage() {
       label: t("المراجعة", "Review"),
       content: (
         <div className="space-y-3 sm:space-y-5">
-          <div className="flex items-center gap-2 mb-1 text-stone-500">
+          <div className="flex items-center gap-2 mb-1 text-gray-500">
             <ClipboardCheck className="h-4 w-4" />
             <span className="text-body-sm font-medium">{t("راجع البيانات قبل الإرسال", "Review your details before submitting")}</span>
           </div>
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-            <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-              <Building2 className="h-4 w-4 text-amber-500 shrink-0" />
+            <h3 className="text-body-sm sm:text-body-md font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+              <Building2 className="h-4 w-4 text-orange-500 shrink-0" />
               {t("بيانات المنظمة", "Organization")}
             </h3>
             <dl className="space-y-2 text-body-sm">
               <div>
-                <dt className="text-stone-500 text-xs">{t("الاسم بالعربي", "Name (AR)")}</dt>
-                <dd className="font-medium text-stone-900 dark:text-white">{form.nameAr || "—"}</dd>
+                <dt className="text-gray-500 text-xs">{t("الاسم بالعربي", "Name (AR)")}</dt>
+                <dd className="font-medium text-gray-900 dark:text-white">{form.nameAr || "—"}</dd>
               </div>
               <div>
-                <dt className="text-stone-500 text-xs">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
-                <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">{form.name || "—"}</dd>
+                <dt className="text-gray-500 text-xs">{t("الاسم بالإنجليزي", "Name (EN)")}</dt>
+                <dd className="font-medium text-gray-900 dark:text-white" dir="ltr">{form.name || "—"}</dd>
               </div>
               {form.descriptionAr && (
                 <div>
-                  <dt className="text-stone-500 text-xs mb-0.5">{t("الوصف", "Description")}</dt>
-                  <dd className="text-stone-700 dark:text-stone-400">{form.descriptionAr}</dd>
+                  <dt className="text-gray-500 text-xs mb-0.5">{t("الوصف", "Description")}</dt>
+                  <dd className="text-gray-700 dark:text-gray-400">{form.descriptionAr}</dd>
                 </div>
               )}
             </dl>
           </div>
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-            <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-              <FileText className="h-4 w-4 text-amber-500 shrink-0" />
+            <h3 className="text-body-sm sm:text-body-md font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+              <FileText className="h-4 w-4 text-orange-500 shrink-0" />
               {t("الوثائق الرسمية", "Legal Documents")}
             </h3>
             <dl className="space-y-2 text-body-sm">
               <div>
-                <dt className="text-stone-500 text-xs">{t("رقم الترخيص", "License No.")}</dt>
-                <dd className="font-medium text-stone-900 dark:text-white">{form.licenseNumber || "—"}</dd>
+                <dt className="text-gray-500 text-xs">{t("رقم الترخيص", "License No.")}</dt>
+                <dd className="font-medium text-gray-900 dark:text-white">{form.licenseNumber || "—"}</dd>
               </div>
               {form.commercialRegNumber && (
                 <div>
-                  <dt className="text-stone-500 text-xs">{t("السجل التجاري", "Comm. Reg.")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white">{form.commercialRegNumber}</dd>
+                  <dt className="text-gray-500 text-xs">{t("السجل التجاري", "Comm. Reg.")}</dt>
+                  <dd className="font-medium text-gray-900 dark:text-white">{form.commercialRegNumber}</dd>
                 </div>
               )}
               <div>
-                <dt className="text-stone-500 text-xs">{t("صورة الترخيص", "License File")}</dt>
-                <dd className="font-medium text-stone-900 dark:text-white truncate">{form.licenseFile?.name || "—"}</dd>
+                <dt className="text-gray-500 text-xs">{t("صورة الترخيص", "License File")}</dt>
+                <dd className="font-medium text-gray-900 dark:text-white truncate">{form.licenseFile?.name || "—"}</dd>
               </div>
             </dl>
           </div>
 
           <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
-            <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-              <Phone className="h-4 w-4 text-amber-500 shrink-0" />
+            <h3 className="text-body-sm sm:text-body-md font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+              <Phone className="h-4 w-4 text-orange-500 shrink-0" />
               {t("بيانات التواصل", "Contact Info")}
             </h3>
             <dl className="space-y-2 text-body-sm">
               <div>
-                <dt className="text-stone-500 text-xs">{t("الهاتف", "Phone")}</dt>
-                <dd className="font-medium text-stone-900 dark:text-white" dir="ltr">+965 {form.phone}</dd>
+                <dt className="text-gray-500 text-xs">{t("الهاتف", "Phone")}</dt>
+                <dd className="font-medium text-gray-900 dark:text-white" dir="ltr">+965 {form.phone}</dd>
               </div>
               {form.email && (
                 <div>
-                  <dt className="text-stone-500 text-xs">{t("البريد", "Email")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">{form.email}</dd>
+                  <dt className="text-gray-500 text-xs">{t("البريد", "Email")}</dt>
+                  <dd className="font-medium text-gray-900 dark:text-white truncate" dir="ltr">{form.email}</dd>
                 </div>
               )}
               {form.website && (
                 <div>
-                  <dt className="text-stone-500 text-xs">{t("الموقع", "Website")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">{form.website}</dd>
+                  <dt className="text-gray-500 text-xs">{t("الموقع", "Website")}</dt>
+                  <dd className="font-medium text-gray-900 dark:text-white truncate" dir="ltr">{form.website}</dd>
                 </div>
               )}
               {(form.instagram || form.whatsapp) && (
                 <div>
-                  <dt className="text-stone-500 text-xs">{t("التواصل الاجتماعي", "Social")}</dt>
-                  <dd className="font-medium text-stone-900 dark:text-white truncate" dir="ltr">
+                  <dt className="text-gray-500 text-xs">{t("التواصل الاجتماعي", "Social")}</dt>
+                  <dd className="font-medium text-gray-900 dark:text-white truncate" dir="ltr">
                     {[form.instagram, form.whatsapp].filter(Boolean).join(" · ")}
                   </dd>
                 </div>
@@ -387,7 +387,7 @@ export default function RegisterCampaignPage() {
             </dl>
           </div>
 
-          <p className="text-body-sm text-stone-400 text-center">
+          <p className="text-body-sm text-gray-400 text-center">
             {t(
               "بالضغط على إرسال، أنت توافق على شروط وأحكام المنصة",
               "By submitting, you agree to the platform terms and conditions"
@@ -402,13 +402,13 @@ export default function RegisterCampaignPage() {
   return (
     <Card variant="elevated" padding="md">
       <div className="text-center mb-4 sm:mb-6">
-        <div className="mx-auto mb-3 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-700 shadow-lg">
+        <div className="mx-auto mb-3 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-lg">
           <ShieldCheck className="h-5 w-5 sm:h-7 sm:w-7 text-white" />
         </div>
-        <h1 className="text-heading-md sm:text-heading-lg font-bold text-stone-900 dark:text-white">
+        <h1 className="text-heading-md sm:text-heading-lg font-bold text-gray-900 dark:text-white">
           {t("تسجيل حملة جديدة", "Register New Campaign")}
         </h1>
-        <p className="mt-1.5 text-body-sm sm:text-body-md text-stone-500">
+        <p className="mt-1.5 text-body-sm sm:text-body-md text-gray-500">
           {t(
             "أكمل البيانات التالية لتقديم طلب تسجيل حملتك في المنصة",
             "Complete the following steps to submit your campaign application"

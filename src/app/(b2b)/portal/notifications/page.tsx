@@ -210,13 +210,13 @@ export default function NotificationsPage() {
       <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Send Notification Form */}
         <Card variant="elevated" padding="lg">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-4">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4">
             {t("إرسال إشعار جديد", "Send New Notification")}
           </h3>
           <div className="space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-label font-medium text-stone-700 dark:text-stone-200 mb-1.5 block">
+                <label className="text-label font-medium text-gray-700 dark:text-gray-200 mb-1.5 block">
                   {t("الرحلة", "Trip")}
                 </label>
                 <select
@@ -237,7 +237,7 @@ export default function NotificationsPage() {
                 </select>
               </div>
               <div>
-                <label className="text-label font-medium text-stone-700 dark:text-stone-200 mb-1.5 block">
+                <label className="text-label font-medium text-gray-700 dark:text-gray-200 mb-1.5 block">
                   {t("المستلمون", "Recipients")}
                 </label>
                 <select
@@ -304,10 +304,10 @@ export default function NotificationsPage() {
         {/* Notification History */}
         <Card variant="elevated" padding="none">
           <div className="border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
               {t("الإشعارات الواردة", "Incoming Notifications")}
             </h3>
-            <p className="text-body-sm text-stone-500 dark:text-stone-400">
+            <p className="text-body-sm text-gray-500 dark:text-gray-400">
               {t(
                 "الإشعارات المرسلة إلى حملتك من النظام",
                 "System notifications sent to your campaign"
@@ -316,7 +316,7 @@ export default function NotificationsPage() {
           </div>
           {loading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-stone-400" />
+              <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
             </div>
           ) : notifications.length === 0 ? (
             <EmptyState
@@ -337,35 +337,35 @@ export default function NotificationsPage() {
                     className={`flex items-start gap-3 px-4 py-3 transition-colors ${
                       notif.isRead
                         ? ""
-                        : "bg-blue-50/30 dark:bg-blue-900/10"
+                        : "bg-indigo-50/30 dark:bg-indigo-900/10"
                     }`}
                   >
                     <span
                       className={`travel-icon-circle travel-icon-circle-sm shrink-0 mt-0.5 ${
                         notif.isRead
                           ? ""
-                          : "bg-blue-100 dark:bg-blue-900/30"
+                          : "bg-indigo-100 dark:bg-indigo-900/30"
                       }`}
                     >
                       {notif.isRead ? (
-                        <CheckCircle2 className="h-4 w-4 text-stone-400" />
+                        <CheckCircle2 className="h-4 w-4 text-gray-400" />
                       ) : (
-                        <Bell className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                        <Bell className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                       )}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="text-body-sm font-semibold text-stone-800 dark:text-white">
+                      <p className="text-body-sm font-semibold text-gray-800 dark:text-white">
                         {language === "ar"
                           ? notif.titleAr || notif.title
                           : notif.title || notif.titleAr}
                       </p>
-                      <p className="text-body-sm text-stone-600 dark:text-stone-400 mt-0.5 line-clamp-2">
+                      <p className="text-body-sm text-gray-600 dark:text-gray-400 mt-0.5 line-clamp-2">
                         {language === "ar"
                           ? notif.bodyAr || notif.body
                           : notif.body || notif.bodyAr}
                       </p>
                       {date && (
-                        <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1 flex items-center gap-1">
+                        <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-1 flex items-center gap-1">
                           <Clock className="h-3 w-3" />
                           {formatRelativeTime(
                             date,

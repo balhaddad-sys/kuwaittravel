@@ -92,7 +92,7 @@ export default function LoginPage() {
 
       {/* Header */}
       <div className="mb-8">
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 shadow-[0_4px_14px_rgba(37,99,235,0.35)]">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 shadow-[0_4px_14px_rgba(37,99,235,0.35)]">
           <Phone className="h-6 w-6 text-white" />
         </div>
         <h1 className="text-2xl font-bold text-gray-900">

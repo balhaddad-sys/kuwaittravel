@@ -85,7 +85,7 @@ function ProgressBarInner() {
       style={{ opacity: active ? 1 : 0, transition: "opacity 300ms ease-out" }}
     >
       <div
-        className="h-full bg-gradient-to-r from-teal-400 via-teal-500 to-teal-400"
+        className="h-full bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-400"
         style={{
           width: `${width}%`,
           transition:

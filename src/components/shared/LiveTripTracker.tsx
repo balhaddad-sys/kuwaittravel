@@ -37,11 +37,11 @@ function LiveTripTracker({ currentPhase, steps, className }: LiveTripTrackerProp
       <div className="mb-3 flex items-center gap-2">
         {currentPhase !== "completed" && currentPhase !== "not_started" && (
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-teal-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-indigo-500" />
           </span>
         )}
-        <span className="text-body-sm font-semibold text-teal-600 dark:text-teal-400">
+        <span className="text-body-sm font-semibold text-indigo-600 dark:text-indigo-400">
           {currentPhase === "not_started" && t("لم تبدأ بعد", "Not Started")}
           {currentPhase === "departing" && t("في طريق المغادرة", "Departing")}
           {currentPhase === "in_destination" && t("في الوجهة", "At Destination")}
@@ -63,22 +63,22 @@ function LiveTripTracker({ currentPhase, steps, className }: LiveTripTrackerProp
                   className={cn(
                     "flex h-8 w-8 items-center justify-center rounded-full border-2 transition-all",
                     isDone
-                      ? "border-teal-500 bg-teal-500 text-white"
-                      : "border-stone-200 bg-white text-stone-400 dark:border-stone-700 dark:bg-stone-800",
-                    isCurrent && "ring-4 ring-teal-500/20"
+                      ? "border-indigo-500 bg-indigo-500 text-white"
+                      : "border-gray-200 bg-white text-gray-400 dark:border-gray-700 dark:bg-gray-800",
+                    isCurrent && "ring-4 ring-indigo-500/20"
                   )}
                 >
                   {isDone ? <CheckCircle2 className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
                 </div>
-                <p className={cn("mt-1.5 text-center text-[11px] font-medium", isDone ? "text-teal-600 dark:text-teal-400" : "text-stone-400")}>
+                <p className={cn("mt-1.5 text-center text-[11px] font-medium", isDone ? "text-indigo-600 dark:text-indigo-400" : "text-gray-400")}>
                   {t(step.labelAr, step.labelEn)}
                 </p>
                 {step.date && (
-                  <p className="text-[10px] text-stone-400">{step.date}</p>
+                  <p className="text-[10px] text-gray-400">{step.date}</p>
                 )}
               </div>
               {i < steps.length - 1 && (
-                <div className={cn("mx-1 h-0.5 flex-1", isDone ? "bg-teal-500" : "bg-stone-200 dark:bg-stone-700")} />
+                <div className={cn("mx-1 h-0.5 flex-1", isDone ? "bg-indigo-500" : "bg-gray-200 dark:bg-gray-700")} />
               )}
             </div>
           );

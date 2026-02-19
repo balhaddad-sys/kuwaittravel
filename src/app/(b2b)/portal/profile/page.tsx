@@ -118,7 +118,7 @@ export default function ProfilePage() {
         />
         <Container size="md" className="sacred-pattern py-3 sm:py-6">
           <div className="flex items-center justify-center py-20">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
           </div>
         </Container>
       </>
@@ -156,7 +156,7 @@ export default function ProfilePage() {
       <Container size="md" className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Cover + Avatar */}
         <Card variant="elevated" padding="none">
-          <div className="travel-cover-pattern relative h-32 sm:h-48 rounded-t-[var(--radius-card)] bg-gradient-to-l from-stone-700 via-stone-800 to-stone-900">
+          <div className="travel-cover-pattern relative h-32 sm:h-48 rounded-t-[var(--radius-card)] bg-gradient-to-l from-gray-700 via-gray-800 to-gray-900">
             {editing && (
               <button className="absolute top-4 end-4 flex items-center gap-1.5 rounded-lg bg-black/40 px-3 py-1.5 text-body-sm text-white hover:bg-black/60 transition-colors">
                 <Camera className="h-4 w-4" /> {t("تغيير الغلاف", "Change Cover")}
@@ -173,14 +173,14 @@ export default function ProfilePage() {
                   src={campaign?.logoUrl}
                 />
                 {editing && (
-                  <button className="absolute bottom-0 end-0 flex h-8 w-8 items-center justify-center rounded-full bg-stone-700 text-white hover:bg-stone-600">
+                  <button className="absolute bottom-0 end-0 flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600">
                     <Camera className="h-4 w-4" />
                   </button>
                 )}
               </div>
               <div className="flex-1 pb-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-heading-md sm:text-heading-lg font-bold text-stone-900 dark:text-white truncate">
+                  <h2 className="text-heading-md sm:text-heading-lg font-bold text-gray-900 dark:text-white truncate">
                     {profile.nameAr || t("اسم الحملة", "Campaign Name")}
                   </h2>
                   {campaign?.verificationStatus && (
@@ -195,7 +195,7 @@ export default function ProfilePage() {
                     </Badge>
                   )}
                 </div>
-                <p className="text-body-sm sm:text-body-md text-stone-500 truncate">{profile.name || "Campaign Name"}</p>
+                <p className="text-body-sm sm:text-body-md text-gray-500 truncate">{profile.name || "Campaign Name"}</p>
               </div>
             </div>
           </div>
@@ -203,7 +203,7 @@ export default function ProfilePage() {
 
         {/* Info */}
         <Card variant="elevated" padding="lg" className="space-y-4">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white">{t("معلومات الحملة", "Campaign Info")}</h3>
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">{t("معلومات الحملة", "Campaign Info")}</h3>
           {editing ? (
             <div className="space-y-4">
               <Input
@@ -249,25 +249,25 @@ export default function ProfilePage() {
             </div>
           ) : (
             <div className="space-y-4">
-              <p className="text-body-md sm:text-body-lg text-stone-700 dark:text-stone-200">
+              <p className="text-body-md sm:text-body-lg text-gray-700 dark:text-gray-200">
                 {profile.descriptionAr || t("لم يتم إضافة وصف بعد", "No description added yet")}
               </p>
               {profile.description && (
-                <p className="text-body-sm text-stone-500 dark:text-stone-400" dir="ltr">
+                <p className="text-body-sm text-gray-500 dark:text-gray-400" dir="ltr">
                   {profile.description}
                 </p>
               )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-stone-600 dark:text-stone-400">
-                  <span className="travel-icon-circle travel-icon-circle-sm"><Phone className="h-3.5 w-3.5 text-stone-500 shrink-0" /></span>
+                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-gray-600 dark:text-gray-400">
+                  <span className="travel-icon-circle travel-icon-circle-sm"><Phone className="h-3.5 w-3.5 text-gray-500 shrink-0" /></span>
                   <span className="truncate" dir="ltr">{profile.contactPhone || "---"}</span>
                 </div>
-                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-stone-600 dark:text-stone-400">
-                  <span className="travel-icon-circle travel-icon-circle-sm"><Mail className="h-3.5 w-3.5 text-stone-500 shrink-0" /></span>
+                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-gray-600 dark:text-gray-400">
+                  <span className="travel-icon-circle travel-icon-circle-sm"><Mail className="h-3.5 w-3.5 text-gray-500 shrink-0" /></span>
                   <span className="truncate" dir="ltr">{profile.contactEmail || "---"}</span>
                 </div>
-                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-stone-600 dark:text-stone-400">
-                  <span className="travel-icon-circle travel-icon-circle-sm"><Globe className="h-3.5 w-3.5 text-stone-500 shrink-0" /></span>
+                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-gray-600 dark:text-gray-400">
+                  <span className="travel-icon-circle travel-icon-circle-sm"><Globe className="h-3.5 w-3.5 text-gray-500 shrink-0" /></span>
                   <span className="truncate" dir="ltr">{profile.website || "---"}</span>
                 </div>
               </div>
@@ -276,18 +276,18 @@ export default function ProfilePage() {
         </Card>
 
         {/* License */}
-        <Card variant="outlined" padding="lg" className="border-amber-300/70 dark:border-amber-800/45">
+        <Card variant="outlined" padding="lg" className="border-orange-300/70 dark:border-orange-800/45">
           <div className="flex items-center gap-2 mb-2">
-            <Shield className="h-5 w-5 text-amber-500" />
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white">{t("رقم الترخيص", "License Number")}</h3>
+            <Shield className="h-5 w-5 text-orange-500" />
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">{t("رقم الترخيص", "License Number")}</h3>
           </div>
-          <p className="text-body-md sm:text-body-lg font-mono text-stone-600 dark:text-stone-400">
+          <p className="text-body-md sm:text-body-lg font-mono text-gray-600 dark:text-gray-400">
             {profile.licenseNumber || "---"}
           </p>
           {campaign?.commercialRegNumber && (
-            <div className="mt-3 pt-3 border-t border-amber-200/50 dark:border-amber-800/30">
-              <p className="text-xs text-stone-500 dark:text-stone-400 mb-0.5">{t("السجل التجاري", "Commercial Registration")}</p>
-              <p className="text-body-sm font-mono text-stone-600 dark:text-stone-400">{campaign.commercialRegNumber}</p>
+            <div className="mt-3 pt-3 border-t border-orange-200/50 dark:border-orange-800/30">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">{t("السجل التجاري", "Commercial Registration")}</p>
+              <p className="text-body-sm font-mono text-gray-600 dark:text-gray-400">{campaign.commercialRegNumber}</p>
             </div>
           )}
         </Card>
@@ -295,25 +295,25 @@ export default function ProfilePage() {
         {/* Social Media */}
         {campaign?.socialMedia && (campaign.socialMedia.instagram || campaign.socialMedia.twitter || campaign.socialMedia.whatsapp) && (
           <Card variant="elevated" padding="lg">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-3">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-3">
               {t("وسائل التواصل", "Social Media")}
             </h3>
             <div className="space-y-2">
               {campaign.socialMedia.instagram && (
-                <div className="flex items-center gap-2 text-body-sm text-stone-600 dark:text-stone-400">
-                  <span className="font-medium text-stone-500">Instagram</span>
+                <div className="flex items-center gap-2 text-body-sm text-gray-600 dark:text-gray-400">
+                  <span className="font-medium text-gray-500">Instagram</span>
                   <span className="truncate" dir="ltr">{campaign.socialMedia.instagram}</span>
                 </div>
               )}
               {campaign.socialMedia.twitter && (
-                <div className="flex items-center gap-2 text-body-sm text-stone-600 dark:text-stone-400">
-                  <span className="font-medium text-stone-500">Twitter</span>
+                <div className="flex items-center gap-2 text-body-sm text-gray-600 dark:text-gray-400">
+                  <span className="font-medium text-gray-500">Twitter</span>
                   <span className="truncate" dir="ltr">{campaign.socialMedia.twitter}</span>
                 </div>
               )}
               {campaign.socialMedia.whatsapp && (
-                <div className="flex items-center gap-2 text-body-sm text-stone-600 dark:text-stone-400">
-                  <span className="font-medium text-stone-500">WhatsApp</span>
+                <div className="flex items-center gap-2 text-body-sm text-gray-600 dark:text-gray-400">
+                  <span className="font-medium text-gray-500">WhatsApp</span>
                   <span className="truncate" dir="ltr">{campaign.socialMedia.whatsapp}</span>
                 </div>
               )}
@@ -324,21 +324,21 @@ export default function ProfilePage() {
         {/* Campaign Stats */}
         {campaign?.stats && (
           <Card variant="elevated" padding="lg">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-stone-900 dark:text-white mb-3">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-3">
               {t("إحصائيات الحملة", "Campaign Stats")}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <div className="rounded-lg border border-gray-100 bg-stone-50/50 p-3 text-center dark:border-slate-700 dark:bg-slate-800/50">
-                <p className="text-heading-md font-bold text-stone-900 dark:text-white">{campaign.stats.totalTrips}</p>
-                <p className="text-xs text-stone-500 dark:text-stone-400">{t("إجمالي الرحلات", "Total Trips")}</p>
+              <div className="rounded-lg border border-gray-100 bg-gray-50/50 p-3 text-center dark:border-gray-700 dark:bg-gray-800/50">
+                <p className="text-heading-md font-bold text-gray-900 dark:text-white">{campaign.stats.totalTrips}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t("إجمالي الرحلات", "Total Trips")}</p>
               </div>
-              <div className="rounded-lg border border-gray-100 bg-stone-50/50 p-3 text-center dark:border-slate-700 dark:bg-slate-800/50">
-                <p className="text-heading-md font-bold text-stone-900 dark:text-white">{campaign.stats.totalBookings}</p>
-                <p className="text-xs text-stone-500 dark:text-stone-400">{t("إجمالي الحجوزات", "Total Bookings")}</p>
+              <div className="rounded-lg border border-gray-100 bg-gray-50/50 p-3 text-center dark:border-gray-700 dark:bg-gray-800/50">
+                <p className="text-heading-md font-bold text-gray-900 dark:text-white">{campaign.stats.totalBookings}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t("إجمالي الحجوزات", "Total Bookings")}</p>
               </div>
-              <div className="rounded-lg border border-gray-100 bg-stone-50/50 p-3 text-center dark:border-slate-700 dark:bg-slate-800/50">
-                <p className="text-heading-md font-bold text-amber-600 dark:text-amber-400">{campaign.stats.averageRating > 0 ? campaign.stats.averageRating.toFixed(1) : "---"}</p>
-                <p className="text-xs text-stone-500 dark:text-stone-400">{t("التقييم", "Rating")} ({campaign.stats.totalReviews})</p>
+              <div className="rounded-lg border border-gray-100 bg-gray-50/50 p-3 text-center dark:border-gray-700 dark:bg-gray-800/50">
+                <p className="text-heading-md font-bold text-orange-600 dark:text-orange-400">{campaign.stats.averageRating > 0 ? campaign.stats.averageRating.toFixed(1) : "---"}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t("التقييم", "Rating")} ({campaign.stats.totalReviews})</p>
               </div>
             </div>
           </Card>

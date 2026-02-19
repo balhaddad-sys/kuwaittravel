@@ -9,14 +9,14 @@ interface BadgeProps {
 }
 
 const variantMap = {
-  default: "bg-gray-100 text-gray-700 border border-gray-200 dark:bg-slate-700/60 dark:text-slate-200 dark:border-slate-600",
+  default: "bg-gray-100 text-gray-700 border border-gray-200 dark:bg-gray-700/60 dark:text-gray-200 dark:border-gray-600",
   success: "bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800/60",
-  warning: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/60",
+  warning: "bg-orange-50 text-orange-800 border border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800/60",
   error: "bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",
-  info: "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800/60",
-  teal: "bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800/60",
-  amber: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60",
-  gold: "bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/60",
+  info: "bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:border-indigo-800/60",
+  teal: "bg-indigo-50 text-indigo-800 border border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800/60",
+  amber: "bg-orange-50 text-orange-800 border border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800/60",
+  gold: "bg-orange-50 text-orange-800 border border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800/60",
 };
 
 const sizeMap = {
@@ -25,14 +25,14 @@ const sizeMap = {
 };
 
 const dotMap: Record<string, string> = {
-  default: "bg-stone-500 dark:bg-stone-300",
+  default: "bg-gray-500 dark:bg-gray-300",
   success: "bg-success",
   warning: "bg-warning",
   error: "bg-error",
   info: "bg-info",
-  teal: "bg-teal-600 dark:bg-teal-400",
-  amber: "bg-amber-500 dark:bg-amber-400",
-  gold: "bg-amber-500 dark:bg-amber-400",
+  teal: "bg-indigo-600 dark:bg-indigo-400",
+  amber: "bg-orange-500 dark:bg-orange-400",
+  gold: "bg-orange-500 dark:bg-orange-400",
 };
 
 function Badge({ variant = "default", size = "md", children, dot = false, className }: BadgeProps) {
