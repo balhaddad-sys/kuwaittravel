@@ -1,32 +1,45 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { AppBar } from "@/components/layout/AppBar";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { useDirection } from "@/providers/DirectionProvider";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useTheme } from "@/providers/ThemeProvider";
-import { Globe, Moon, Bell } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { Globe, Moon, Bell, LogOut, LogIn } from "lucide-react";
 
 function Toggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
   return (
     <button
+      type="button"
+      role="switch"
+      aria-checked={on}
       onClick={onToggle}
-      className={`relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors ${on ? "bg-amber-500" : "bg-stone-300 dark:bg-slate-600"}`}
+      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ${on ? "bg-amber-500" : "bg-stone-300 dark:bg-slate-600"}`}
     >
-      <span className={`inline-block h-5 w-5 rounded-full bg-white shadow-md transition-transform ${on ? "translate-x-6 rtl:-translate-x-6" : "translate-x-1 rtl:-translate-x-1"}`} />
+      <span className={`inline-block h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-200 ${on ? "translate-x-6 rtl:-translate-x-6" : "translate-x-1 rtl:-translate-x-1"}`} />
     </button>
   );
 }
 
 export default function SettingsPage() {
+  const router = useRouter();
   const { t } = useDirection();
   const { resolvedTheme, setTheme } = useTheme();
+  const { firebaseUser, logout } = useAuth();
   const isDark = resolvedTheme === "dark";
   const [tripReminders, setTripReminders] = useState(true);
   const [paymentAlerts, setPaymentAlerts] = useState(true);
   const [promotions, setPromotions] = useState(false);
+
+  const handleLogout = async () => {
+    await logout();
+    router.push("/login");
+  };
 
   return (
     <div className="bg-surface-muted dark:bg-surface-dark min-h-screen">
@@ -35,6 +48,7 @@ export default function SettingsPage() {
         breadcrumbs={[{ label: t("الملف الشخصي", "Profile"), href: "/app/profile" }, { label: t("الإعدادات", "Settings") }]}
       />
       <Container size="md" className="py-4 sm:py-6 space-y-4">
+        {/* Language */}
         <Card variant="elevated" padding="lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -48,6 +62,7 @@ export default function SettingsPage() {
           </div>
         </Card>
 
+        {/* Dark Mode */}
         <Card variant="elevated" padding="lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -61,6 +76,7 @@ export default function SettingsPage() {
           </div>
         </Card>
 
+        {/* Notifications */}
         <Card variant="elevated" padding="lg">
           <h3 className="text-body-sm sm:text-body-md font-bold text-stone-900 dark:text-white mb-4 flex items-center gap-2">
             <Bell className="h-4 w-4 text-amber-500" />
@@ -77,6 +93,29 @@ export default function SettingsPage() {
             </div>
           ))}
         </Card>
+
+        {/* Sign Out / Sign In */}
+        {firebaseUser ? (
+          <Button
+            variant="ghost"
+            fullWidth
+            className="h-12 rounded-2xl border border-red-100/80 bg-white text-red-500 shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-slate-800/90 dark:text-red-400 dark:hover:bg-red-900/10"
+            leftIcon={<LogOut className="h-[1.125rem] w-[1.125rem]" />}
+            onClick={handleLogout}
+          >
+            {t("تسجيل الخروج", "Sign Out")}
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            fullWidth
+            className="h-12 rounded-2xl"
+            leftIcon={<LogIn className="h-[1.125rem] w-[1.125rem]" />}
+            onClick={() => router.push("/login")}
+          >
+            {t("تسجيل الدخول", "Sign In")}
+          </Button>
+        )}
       </Container>
     </div>
   );

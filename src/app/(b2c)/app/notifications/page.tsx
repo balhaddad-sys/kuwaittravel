@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Button } from "@/components/ui/Button";
@@ -12,7 +13,7 @@ import { where } from "firebase/firestore";
 import { cn } from "@/lib/utils/cn";
 import { parseTimestamp, formatRelativeTime } from "@/lib/utils/format";
 import type { Notification } from "@/types/notification";
-import { Bell, BellRing, CheckCheck, BookOpen, CreditCard, AlertTriangle, Megaphone, Info } from "lucide-react";
+import { Bell, BellRing, CheckCheck, BookOpen, CreditCard, AlertTriangle, Megaphone, Info, LogIn } from "lucide-react";
 
 const typeIcons: Record<string, React.ReactNode> = {
   booking_confirmed: <BookOpen className="h-4 w-4" />,
@@ -24,13 +25,15 @@ const typeIcons: Record<string, React.ReactNode> = {
 };
 
 export default function NotificationsPage() {
+  const router = useRouter();
   const { t, language } = useDirection();
-  const { firebaseUser } = useAuth();
+  const { firebaseUser, loading: authLoading } = useAuth();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!firebaseUser) return;
+    if (authLoading) return;
+    if (!firebaseUser) { setLoading(false); return; }
     const unsub = onCollectionChange<Notification>(
       COLLECTIONS.NOTIFICATIONS,
       [where("recipientId", "==", firebaseUser.uid)],
@@ -88,7 +91,16 @@ export default function NotificationsPage() {
       </div>
 
       <Container className="py-4 sm:py-6 space-y-2">
-        {loading ? (
+        {!firebaseUser && !authLoading ? (
+          <div className="py-10">
+            <EmptyState
+              icon={<LogIn className="h-14 w-14" />}
+              title={t("سجّل دخولك", "Sign in required")}
+              description={t("سجّل دخولك لعرض إشعاراتك", "Sign in to view your notifications")}
+              action={{ label: t("تسجيل الدخول", "Sign In"), onClick: () => router.push("/login") }}
+            />
+          </div>
+        ) : loading ? (
           <div className="flex justify-center py-16">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent" />
           </div>

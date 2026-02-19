@@ -14,11 +14,13 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  LogIn,
   ChevronLeft,
   Shield,
   Globe,
   Sparkles,
   BadgeCheck,
+  User,
 } from "lucide-react";
 
 const menuItems = [
@@ -72,7 +74,7 @@ const menuItems = [
 export default function ProfilePage() {
   const router = useRouter();
   const { t, language } = useDirection();
-  const { userData, firebaseUser, logout } = useAuth();
+  const { userData, firebaseUser, logout, loading: authLoading } = useAuth();
   const hasAdminRole = userData?.role === "admin" || userData?.role === "super_admin";
   const showAdminShortcut = hasAdminRole || isPrivilegedAdminEmail(firebaseUser?.email);
 
@@ -85,6 +87,76 @@ export default function ProfilePage() {
     language === "ar"
       ? userData?.displayNameAr || userData?.displayName || ""
       : userData?.displayName || userData?.displayNameAr || "";
+
+  /* ─── Guest view ─── */
+  if (!firebaseUser && !authLoading) {
+    return (
+      <div className="min-h-screen bg-[#F5F7FA] dark:bg-slate-900">
+        <div className="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 pb-20 pt-10 sm:pb-24 sm:pt-14">
+          <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
+          <Container className="relative">
+            <div className="flex items-center gap-5">
+              <div className="flex h-20 w-20 items-center justify-center rounded-[1.125rem] bg-white/15 ring-2 ring-white/30 sm:h-24 sm:w-24">
+                <User className="h-10 w-10 text-white/60" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">{t("مرحباً بك", "Welcome")}</h1>
+                <p className="mt-1 text-sm text-blue-100/80">{t("سجّل دخولك للوصول لحسابك", "Sign in to access your account")}</p>
+              </div>
+            </div>
+          </Container>
+        </div>
+        <div className="-mt-10">
+          <Container className="space-y-3 pb-6">
+            <Button
+              variant="primary"
+              fullWidth
+              className="h-14 rounded-2xl text-base font-bold shadow-lg"
+              leftIcon={<LogIn className="h-5 w-5" />}
+              onClick={() => router.push("/login")}
+            >
+              {t("تسجيل الدخول", "Sign In")}
+            </Button>
+            {/* Settings still accessible for guests (language, dark mode) */}
+            <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)] dark:border-slate-700/60 dark:bg-slate-800/90">
+              <button
+                onClick={() => router.push("/app/profile/settings")}
+                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-slate-700/40 border-b border-gray-100 dark:border-slate-700/50"
+              >
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-gray-600 dark:bg-slate-700 dark:text-slate-300"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">{t("الإعدادات", "Settings")}</p>
+                  <p className="text-[0.75rem] text-gray-400 dark:text-slate-500">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
+                </div>
+                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 rtl:rotate-180 dark:text-slate-600" />
+              </button>
+              <button
+                onClick={() => router.push("/app/help")}
+                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-slate-700/40"
+              >
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400"><HelpCircle className="h-[1.125rem] w-[1.125rem]" /></span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">{t("المساعدة والدعم", "Help & Support")}</p>
+                  <p className="text-[0.75rem] text-gray-400 dark:text-slate-500">{t("الأسئلة الشائعة", "FAQs & contact")}</p>
+                </div>
+                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 rtl:rotate-180 dark:text-slate-600" />
+              </button>
+            </div>
+            {/* Language toggle */}
+            <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-slate-700/60 dark:bg-slate-800/90">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"><Globe className="h-[1.125rem] w-[1.125rem]" /></span>
+                  <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">{t("اللغة", "Language")}</p>
+                </div>
+                <LanguageToggle />
+              </div>
+            </div>
+          </Container>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F5F7FA] dark:bg-slate-900">

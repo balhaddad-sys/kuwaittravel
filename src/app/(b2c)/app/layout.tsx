@@ -2,7 +2,6 @@
 
 import { BottomNav } from "@/components/layout/BottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useAuth } from "@/hooks/useAuth";
 import { isPrivilegedAdminEmail } from "@/lib/utils/roles";
 import { useDirection } from "@/providers/DirectionProvider";
@@ -25,11 +24,9 @@ export default function B2CLayout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <RoleGuard allowedRoles={["traveler", "campaign_owner", "campaign_staff", "admin", "super_admin"]}>
-      <div className="travel-shell-bg min-h-screen pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
-        <PageTransition variant="app">{children}</PageTransition>
-        <BottomNav items={navItems} />
-      </div>
-    </RoleGuard>
+    <div className="travel-shell-bg min-h-screen pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
+      <PageTransition variant="app">{children}</PageTransition>
+      <BottomNav items={navItems} />
+    </div>
   );
 }

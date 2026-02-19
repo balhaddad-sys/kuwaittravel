@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
+  LogIn,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { formatDate, formatKWD, parseTimestamp } from "@/lib/utils/format";
@@ -226,7 +227,16 @@ export default function MyTripsPage() {
 
       {/* ─── Content ─── */}
       <Container className="py-5">
-        {loading ? (
+        {!userData && !authLoading ? (
+          <div className="py-10">
+            <EmptyState
+              icon={<LogIn className="h-14 w-14 text-gray-200 dark:text-slate-600" />}
+              title={t("سجّل دخولك", "Sign in required")}
+              description={t("سجّل دخولك لعرض رحلاتك وحجوزاتك", "Sign in to view your trips and bookings")}
+              action={{ label: t("تسجيل الدخول", "Sign In"), onClick: () => router.push("/login") }}
+            />
+          </div>
+        ) : loading ? (
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, i) => (
               <SkeletonBooking key={i} />
