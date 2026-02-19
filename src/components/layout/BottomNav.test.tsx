@@ -32,7 +32,7 @@ describe("BottomNav", () => {
     render(<BottomNav items={navItems} />);
 
     const activeLink = screen.getByRole("link", { name: /discover/i });
-    expect(activeLink).toHaveClass("border-blue-100");
+    expect(activeLink).toHaveClass("text-blue-600");
     expect(screen.getByTestId("discover-active-icon")).toBeInTheDocument();
   });
 
@@ -46,6 +46,6 @@ describe("BottomNav", () => {
     render(<BottomNav items={navItems} />);
 
     const alertsLink = screen.getByRole("link", { name: /alerts/i });
-    expect(alertsLink).toHaveClass("border-blue-100");
+    expect(alertsLink).toHaveClass("text-blue-600");
   });
 });

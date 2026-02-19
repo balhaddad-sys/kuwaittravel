@@ -63,7 +63,6 @@ export default function DashboardPage() {
   // Real-time trips listener
   useEffect(() => {
     if (!firebaseUser || !userData?.campaignId) return;
-    setLoadingTrips(true);
     const unsub = onCollectionChange<Trip>(
       COLLECTIONS.TRIPS,
       [where("campaignId", "==", userData.campaignId)],
@@ -79,7 +78,6 @@ export default function DashboardPage() {
   // Real-time bookings listener
   useEffect(() => {
     if (!firebaseUser || !userData?.campaignId) return;
-    setLoadingBookings(true);
     const unsub = onCollectionChange<Booking>(
       COLLECTIONS.BOOKINGS,
       [where("campaignId", "==", userData.campaignId)],

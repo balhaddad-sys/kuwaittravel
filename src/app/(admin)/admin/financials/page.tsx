@@ -12,17 +12,13 @@ import { useAuth } from "@/hooks/useAuth";
 import { onCollectionChange } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { formatKWD, parseTimestamp, formatRelativeTime } from "@/lib/utils/format";
-import { cn } from "@/lib/utils/cn";
 import type { Booking } from "@/types/booking";
-import type { BookingStatus } from "@/types/common";
 import {
   Wallet,
   TrendingUp,
   ArrowUpRight,
   Building2,
-  CreditCard,
   User,
-  Calendar,
 } from "lucide-react";
 
 /* -- Booking status display -- */
@@ -52,7 +48,6 @@ export default function FinancialsPage() {
   // Real-time subscription
   useEffect(() => {
     if (!firebaseUser) return;
-    setLoadingData(true);
     const unsub = onCollectionChange<Booking>(
       COLLECTIONS.BOOKINGS,
       [],

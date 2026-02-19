@@ -39,10 +39,10 @@ export default function AdminDashboardPage() {
   const [trips, setTrips] = useState<Trip[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [disputes, setDisputes] = useState<Dispute[]>([]);
-  const [loading, setLoading] = useState(true);
 
   // Track which collections have loaded
   const [loaded, setLoaded] = useState({ campaigns: false, users: false, trips: false, bookings: false, disputes: false });
+  const loading = !(loaded.campaigns && loaded.users && loaded.trips && loaded.bookings && loaded.disputes);
 
   useEffect(() => {
     if (!firebaseUser) return;
@@ -86,13 +86,6 @@ export default function AdminDashboardPage() {
 
     return () => unsubs.forEach((fn) => fn());
   }, [firebaseUser]);
-
-  // Mark loading complete when all collections are loaded
-  useEffect(() => {
-    if (loaded.campaigns && loaded.users && loaded.trips && loaded.bookings && loaded.disputes) {
-      setLoading(false);
-    }
-  }, [loaded]);
 
   // Computed stats
   const totalGMV = useMemo(() => bookings.reduce((sum, b) => sum + (b.totalKWD || 0), 0), [bookings]);

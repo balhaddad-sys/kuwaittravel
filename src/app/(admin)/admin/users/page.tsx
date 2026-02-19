@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
+import Image from "next/image";
 import { AppBar } from "@/components/layout/AppBar";
 import { Container } from "@/components/layout/Container";
 import { Badge } from "@/components/ui/Badge";
@@ -19,7 +20,6 @@ import {
   Users,
   User as UserIcon,
   ShieldCheck,
-  ShieldAlert,
   Phone,
   Mail,
   Calendar,
@@ -115,7 +115,6 @@ export default function UsersPage() {
   // Real-time subscription
   useEffect(() => {
     if (!firebaseUser) return;
-    setLoadingData(true);
     const unsub = onCollectionChange<User>(
       COLLECTIONS.USERS,
       [],
@@ -255,13 +254,20 @@ export default function UsersPage() {
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[user.role] || "bg-gray-400")} />
 
                   {/* Avatar */}
-                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
-                    {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
-                    ) : (
-                      <UserIcon className="h-5 w-5 text-stone-500 dark:text-stone-400" />
-                    )}
-                  </div>
+                    <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+                      {user.avatarUrl ? (
+                        <Image
+                          src={user.avatarUrl}
+                          alt=""
+                          width={40}
+                          height={40}
+                          unoptimized
+                          className="h-10 w-10 rounded-full object-cover"
+                        />
+                      ) : (
+                        <UserIcon className="h-5 w-5 text-stone-500 dark:text-stone-400" />
+                      )}
+                    </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0 py-3 pe-1">

@@ -24,7 +24,6 @@ import {
   Edit,
   Trash2,
   Eye,
-  AlertTriangle,
   ArrowUpCircle,
   CheckCircle,
   XCircle,
@@ -191,7 +190,6 @@ export default function AuditLogsPage() {
   // Real-time subscription
   useEffect(() => {
     if (!firebaseUser) return;
-    setLoadingData(true);
     const unsub = onCollectionChange<AuditLog>(
       COLLECTIONS.AUDIT_LOGS,
       [],

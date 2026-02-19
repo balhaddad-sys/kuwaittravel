@@ -25,8 +25,6 @@ import {
   ShieldX,
   ShieldAlert,
   Phone,
-  Mail,
-  Globe,
   FileText,
   ExternalLink,
   XCircle,
@@ -130,7 +128,7 @@ export default function AdminCampaignsPage() {
       }
     );
     return unsub;
-  }, [firebaseUser]);
+  }, [firebaseUser, t, toast]);
 
   // ── Lock body scroll when detail panel is open ──
   useEffect(() => {

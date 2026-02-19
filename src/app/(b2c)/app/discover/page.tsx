@@ -21,7 +21,6 @@ import {
   SlidersHorizontal,
   X,
   Sparkles,
-  MapPin,
   Search,
 } from "lucide-react";
 import { limit, where, type QueryConstraint } from "firebase/firestore";

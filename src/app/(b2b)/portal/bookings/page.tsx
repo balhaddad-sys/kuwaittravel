@@ -63,7 +63,6 @@ export default function BookingsPage() {
   // Real-time bookings listener
   useEffect(() => {
     if (!firebaseUser || !userData?.campaignId) return;
-    setLoading(true);
     const unsub = onCollectionChange<Booking>(
       COLLECTIONS.BOOKINGS,
       [where("campaignId", "==", userData.campaignId)],

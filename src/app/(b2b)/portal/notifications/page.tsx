@@ -15,7 +15,7 @@ import { useDirection } from "@/providers/DirectionProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { getDocuments, createDocument } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
-import { where, orderBy } from "firebase/firestore";
+import { where } from "firebase/firestore";
 import { parseTimestamp, formatRelativeTime } from "@/lib/utils/format";
 import type { Trip } from "@/types/trip";
 import type { Notification } from "@/types/notification";

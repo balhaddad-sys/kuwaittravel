@@ -258,7 +258,7 @@ describe("DiscoverPage", () => {
     await screen.findByText("Amazing Trip to Paris");
 
     fireEvent.change(
-      screen.getByPlaceholderText("Search for a trip or campaign..."),
+      screen.getByPlaceholderText("Search trips, destinations..."),
       {
         target: { value: "Paris" },
       }
@@ -277,13 +277,13 @@ describe("DiscoverPage", () => {
     await screen.findByText("Amazing Trip to Paris");
 
     fireEvent.change(
-      screen.getByPlaceholderText("Search for a trip or campaign..."),
+      screen.getByPlaceholderText("Search trips, destinations..."),
       {
         target: { value: "NotARealDestination" },
       }
     );
 
-    expect(screen.getByText("No trips available at the moment")).toBeInTheDocument();
+    expect(screen.getByText("No trips found")).toBeInTheDocument();
   });
 
   it("navigates to trip details when a trip card is clicked", async () => {
@@ -303,7 +303,7 @@ describe("DiscoverPage", () => {
     render(<DiscoverPage />);
 
     expect(
-      await screen.findByText("Unable to load discovery content right now.")
+      await screen.findByText("Unable to load content right now. Please try again.")
     ).toBeInTheDocument();
   });
 });

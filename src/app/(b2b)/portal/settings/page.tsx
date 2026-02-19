@@ -33,19 +33,19 @@ export default function SettingsPage() {
   const [notifPayments, setNotifPayments] = useState(true);
   const [notifDocuments, setNotifDocuments] = useState(true);
   const [notifWeekly, setNotifWeekly] = useState(false);
+  const campaignId = userData?.campaignId;
 
   useEffect(() => {
-    if (!userData?.campaignId) {
+    const currentCampaignId = campaignId;
+    if (!currentCampaignId) {
       setLoading(false);
       return;
     }
+    const resolvedCampaignId = currentCampaignId;
 
     async function fetchCampaign() {
       try {
-        const campaign = await getDocument<Campaign>(
-          COLLECTIONS.CAMPAIGNS,
-          userData!.campaignId!
-        );
+        const campaign = await getDocument<Campaign>(COLLECTIONS.CAMPAIGNS, resolvedCampaignId);
         if (campaign?.bankDetails) {
           setBankName(campaign.bankDetails.bankName || "");
           setIban(campaign.bankDetails.iban || "");
@@ -59,7 +59,7 @@ export default function SettingsPage() {
     }
 
     fetchCampaign();
-  }, [userData?.campaignId]);
+  }, [campaignId]);
 
   const handleSaveBankDetails = async () => {
     if (!userData?.campaignId) return;

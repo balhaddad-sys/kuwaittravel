@@ -5,11 +5,9 @@ import { where } from "firebase/firestore";
 import { Container } from "@/components/layout/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
 import {
-  MapPin,
   Calendar,
   ChevronLeft,
   Plane,
-  Clock,
   CheckCircle2,
   XCircle,
   AlertCircle,
