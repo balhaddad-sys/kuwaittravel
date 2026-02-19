@@ -29,11 +29,11 @@ export default function NotificationsPage() {
   const { t, language } = useDirection();
   const { firebaseUser, loading: authLoading } = useAuth();
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [loading, setLoading] = useState(true);
+  const notReady = authLoading || !firebaseUser;
+  const [loading, setLoading] = useState(!notReady);
 
   useEffect(() => {
-    if (authLoading) return;
-    if (!firebaseUser) { setLoading(false); return; }
+    if (notReady) return;
     const unsub = onCollectionChange<Notification>(
       COLLECTIONS.NOTIFICATIONS,
       [where("recipientId", "==", firebaseUser.uid)],
@@ -49,7 +49,7 @@ export default function NotificationsPage() {
       () => setLoading(false)
     );
     return unsub;
-  }, [firebaseUser]);
+  }, [firebaseUser, notReady]);
 
   const markAsRead = async (id: string) => {
     await updateDocument(COLLECTIONS.NOTIFICATIONS, id, { isRead: true });
