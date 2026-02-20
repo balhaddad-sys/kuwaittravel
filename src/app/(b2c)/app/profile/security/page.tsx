@@ -33,7 +33,7 @@ export default function SecurityPage() {
           <div className="space-y-3">
             <div className="flex items-center justify-between gap-3 rounded-lg border border-surface-border/70 p-3 dark:border-surface-dark-border/70">
               <div className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700"><Phone className="h-4 w-4 text-gray-500" /></span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-700/50"><Phone className="h-4 w-4 text-gray-500" /></span>
                 <div>
                   <p className="text-body-sm font-medium text-gray-900 dark:text-white">{t("رقم الهاتف", "Phone Number")}</p>
                   {phone ? <p className="text-xs text-gray-500" dir="ltr">{formatPhone(phone)}</p> : <p className="text-xs text-gray-400">{t("غير مرتبط", "Not linked")}</p>}
@@ -43,7 +43,7 @@ export default function SecurityPage() {
             </div>
             <div className="flex items-center justify-between gap-3 rounded-lg border border-surface-border/70 p-3 dark:border-surface-dark-border/70">
               <div className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700"><Mail className="h-4 w-4 text-gray-500" /></span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-700/50"><Mail className="h-4 w-4 text-gray-500" /></span>
                 <div>
                   <p className="text-body-sm font-medium text-gray-900 dark:text-white">{hasGoogle ? "Google" : t("البريد الإلكتروني", "Email")}</p>
                   {email ? <p className="text-xs text-gray-500" dir="ltr">{email}</p> : <p className="text-xs text-gray-400">{t("غير مرتبط", "Not linked")}</p>}

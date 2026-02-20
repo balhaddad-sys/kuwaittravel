@@ -78,7 +78,7 @@ function LiveTripTracker({ currentPhase, steps, className }: LiveTripTrackerProp
                 )}
               </div>
               {i < steps.length - 1 && (
-                <div className={cn("mx-1 h-0.5 flex-1", isDone ? "bg-indigo-500" : "bg-gray-200 dark:bg-gray-700")} />
+                <div className={cn("mx-1 h-0.5 flex-1", isDone ? "bg-indigo-500" : "bg-gray-200 dark:bg-indigo-700/40")} />
               )}
             </div>
           );

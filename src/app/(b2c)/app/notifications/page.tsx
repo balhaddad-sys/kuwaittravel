@@ -127,7 +127,7 @@ export default function NotificationsPage() {
                 <div className="flex items-start gap-3">
                   <div className={cn(
                     "shrink-0 mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg",
-                    n.isRead ? "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-indigo-300/45" : "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400"
+                    n.isRead ? "bg-gray-100 text-gray-400 dark:bg-indigo-700/40 dark:text-indigo-300/45" : "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400"
                   )}>
                     {typeIcons[n.type] || <Bell className="h-4 w-4" />}
                   </div>

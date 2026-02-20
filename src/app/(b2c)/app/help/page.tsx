@@ -57,7 +57,7 @@ export default function HelpPage() {
               { icon: MessageCircle, labelAr: "واتساب", labelEn: "WhatsApp", value: "+965 9999 0000" },
             ].map((c, i) => (
               <div key={i} className="flex items-center gap-3 text-body-sm text-gray-700 dark:text-indigo-200">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700"><c.icon className="h-4 w-4 text-gray-500" /></span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-700/50"><c.icon className="h-4 w-4 text-gray-500" /></span>
                 <div>
                   <p className="font-medium">{t(c.labelAr, c.labelEn)}</p>
                   <p className="text-gray-500" dir="ltr">{c.value}</p>

@@ -125,7 +125,7 @@ export default function TripsPage() {
                   className={`shrink-0 rounded-full border px-4 py-2 text-body-sm font-medium transition-all ${
                     filter === f.value
                       ? "border-indigo-600 bg-indigo-700 text-white"
-                      : "border-gray-200 bg-white/80 text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800/70 dark:text-indigo-200 dark:hover:border-indigo-600/50 dark:hover:bg-gray-900/60"
+                      : "border-gray-200 bg-white/80 text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800/70 dark:text-indigo-200 dark:hover:border-indigo-600/50 dark:hover:bg-indigo-900/60"
                   }`}
                 >
                   {f.label}

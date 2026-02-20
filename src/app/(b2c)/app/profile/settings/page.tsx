@@ -19,7 +19,7 @@ function Toggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
       role="switch"
       aria-checked={on}
       onClick={onToggle}
-      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ${on ? "bg-orange-500" : "bg-gray-300 dark:bg-gray-600"}`}
+      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ${on ? "bg-orange-500" : "bg-gray-300 dark:bg-indigo-700/50"}`}
     >
       <span className={`inline-block h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-200 ${on ? "translate-x-6 rtl:-translate-x-6" : "translate-x-1 rtl:-translate-x-1"}`} />
     </button>
@@ -66,7 +66,7 @@ export default function SettingsPage() {
         <Card variant="elevated" padding="lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-indigo-200"><Moon className="h-4 w-4" /></span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-gray-600 dark:bg-indigo-700/50 dark:text-indigo-200"><Moon className="h-4 w-4" /></span>
               <div>
                 <p className="text-body-sm sm:text-body-md font-semibold text-gray-900 dark:text-white">{t("الوضع الداكن", "Dark Mode")}</p>
                 <p className="text-xs text-gray-500">{isDark ? t("مفعّل", "Enabled") : t("معطّل", "Disabled")}</p>

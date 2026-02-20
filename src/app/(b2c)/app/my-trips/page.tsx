@@ -71,17 +71,17 @@ function SkeletonBooking() {
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-[#1A2D48]/60 dark:bg-indigo-800/80">
       <div className="flex items-center gap-4 p-5">
-        <div className="h-14 w-14 shrink-0 rounded-2xl bg-gray-100 dark:bg-gray-700 animate-pulse" />
+        <div className="h-14 w-14 shrink-0 rounded-2xl bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
         <div className="flex-1 space-y-2.5">
-          <div className="h-4 w-2/3 rounded-lg bg-gray-100 dark:bg-gray-700 animate-pulse" />
+          <div className="h-4 w-2/3 rounded-lg bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
           <div className="flex items-center gap-2">
-            <div className="h-3.5 w-28 rounded-lg bg-gray-100 dark:bg-gray-700 animate-pulse" />
-            <div className="h-5 w-20 rounded-full bg-gray-100 dark:bg-gray-700 animate-pulse" />
+            <div className="h-3.5 w-28 rounded-lg bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
+            <div className="h-5 w-20 rounded-full bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
           </div>
         </div>
         <div className="shrink-0 space-y-2 text-end">
-          <div className="h-4 w-16 rounded-lg bg-gray-100 dark:bg-gray-700 animate-pulse ms-auto" />
-          <div className="h-4 w-4 rounded bg-gray-100 dark:bg-gray-700 animate-pulse ms-auto" />
+          <div className="h-4 w-16 rounded-lg bg-gray-100 dark:bg-indigo-700/40 animate-pulse ms-auto" />
+          <div className="h-4 w-4 rounded bg-gray-100 dark:bg-indigo-700/40 animate-pulse ms-auto" />
         </div>
       </div>
     </div>

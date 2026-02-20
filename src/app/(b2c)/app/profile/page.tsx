@@ -31,7 +31,7 @@ const menuItems = [
     descEn: "ID, passport, visa",
     icon: FileText,
     href: "/app/profile/documents",
-    iconBg: "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-indigo-200",
+    iconBg: "bg-gray-100 text-gray-600 dark:bg-indigo-700/50 dark:text-indigo-200",
   },
   {
     labelAr: "طرق الدفع",
@@ -58,7 +58,7 @@ const menuItems = [
     descEn: "Preferences & notifications",
     icon: Settings,
     href: "/app/profile/settings",
-    iconBg: "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-indigo-200",
+    iconBg: "bg-gray-100 text-gray-600 dark:bg-indigo-700/50 dark:text-indigo-200",
   },
   {
     labelAr: "المساعدة والدعم",
@@ -123,7 +123,7 @@ export default function ProfilePage() {
                 onClick={() => router.push("/app/profile/settings")}
                 className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-indigo-700/40 border-b border-gray-100 dark:border-[#1A2D48]/50"
               >
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-indigo-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-gray-600 dark:bg-indigo-700/50 dark:text-indigo-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
                 <div className="min-w-0 flex-1">
                   <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">{t("الإعدادات", "Settings")}</p>
                   <p className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
@@ -250,7 +250,7 @@ export default function ProfilePage() {
                 onClick={() => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login")}
                 className="group flex w-full items-center gap-4 px-4 py-4 text-start transition-colors hover:bg-orange-50/60 dark:hover:bg-orange-900/10"
               >
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gray-900 text-orange-400 shadow-md dark:bg-gray-700">
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-900 text-orange-400 shadow-md dark:bg-indigo-700/50">
                   <Sparkles className="h-5 w-5" />
                 </span>
                 <div className="min-w-0 flex-1">
