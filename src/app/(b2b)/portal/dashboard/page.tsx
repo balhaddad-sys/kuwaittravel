@@ -245,16 +245,16 @@ export default function DashboardPage() {
                     <button
                       key={trip.id}
                       onClick={() => router.push(`/portal/trips/${trip.id}`)}
-                      className="group w-full text-start flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-gray-700 dark:bg-gray-800"
+                      className="group w-full text-start flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#1A2D48] dark:bg-indigo-800"
                     >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-                        <Map className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-800">
+                        <Map className="h-5 w-5 text-gray-500 dark:text-indigo-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-body-sm font-bold text-gray-900 dark:text-white truncate">
                           {language === "ar" ? trip.titleAr : trip.title}
                         </h3>
-                        <div className="flex items-center gap-3 mt-1 text-[11px] text-gray-400 dark:text-gray-500">
+                        <div className="flex items-center gap-3 mt-1 text-[11px] text-gray-400 dark:text-indigo-300/45">
                           <span className="flex items-center gap-1">
                             <Users className="h-3 w-3" />
                             {trip.bookedCount}/{trip.totalCapacity}
@@ -276,7 +276,7 @@ export default function DashboardPage() {
                               ? t("تسجيل مغلق", "Closed")
                               : t("منشورة", "Published")}
                       </Badge>
-                      <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-gray-600 rtl:rotate-180" />
+                      <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-indigo-400/50 rtl:rotate-180" />
                     </button>
                   );
                 })}
@@ -321,16 +321,16 @@ export default function DashboardPage() {
                   return (
                     <div
                       key={booking.id}
-                      className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50/50 p-2.5 dark:border-gray-700 dark:bg-gray-800/50"
+                      className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50/50 p-2.5 dark:border-[#1A2D48] dark:bg-indigo-800/50"
                     >
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700">
-                        <BookOpen className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                        <BookOpen className="h-4 w-4 text-gray-500 dark:text-indigo-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
                           {booking.travelerName}
                         </p>
-                        <p className="text-[11px] text-gray-400 dark:text-gray-500 truncate">
+                        <p className="text-[11px] text-gray-400 dark:text-indigo-300/45 truncate">
                           {booking.tripTitle} &middot; {formatKWD(booking.totalKWD)}
                         </p>
                       </div>
@@ -372,32 +372,32 @@ export default function DashboardPage() {
               />
             ) : (
               <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-700 dark:bg-gray-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
+                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                     {t("متوسط قيمة الحجز", "Avg. Booking Value")}
                   </span>
                   <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums" dir="ltr">
                     {formatKWD(performanceStats.avgBookingValue)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-700 dark:bg-gray-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
+                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                     {t("نسبة الإشغال", "Occupancy Rate")}
                   </span>
                   <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums">
                     {performanceStats.occupancyRate.toFixed(0)}%
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-700 dark:bg-gray-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
+                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                     {t("الحجوزات المكتملة", "Completed Bookings")}
                   </span>
                   <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums">
                     {performanceStats.completedCount}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-700 dark:bg-gray-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
+                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                     {t("إجمالي الحجوزات", "Total Bookings")}
                   </span>
                   <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums">

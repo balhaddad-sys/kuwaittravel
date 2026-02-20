@@ -85,7 +85,7 @@ export default function StaffPage() {
                 <p className="text-body-sm font-semibold text-gray-800 dark:text-white">
                   {t("مدير", "Manager")}
                 </p>
-                <p className="text-[11px] text-gray-500 dark:text-gray-400">
+                <p className="text-[11px] text-gray-500 dark:text-indigo-300/60">
                   {t(
                     "إدارة كاملة للرحلات والحجوزات والفريق",
                     "Full access to trips, bookings, and team"
@@ -101,7 +101,7 @@ export default function StaffPage() {
                 <p className="text-body-sm font-semibold text-gray-800 dark:text-white">
                   {t("مشغل", "Operator")}
                 </p>
-                <p className="text-[11px] text-gray-500 dark:text-gray-400">
+                <p className="text-[11px] text-gray-500 dark:text-indigo-300/60">
                   {t(
                     "إدارة الرحلات والحجوزات فقط",
                     "Manage trips and bookings only"
@@ -117,7 +117,7 @@ export default function StaffPage() {
                 <p className="text-body-sm font-semibold text-gray-800 dark:text-white">
                   {t("مشاهد", "Viewer")}
                 </p>
-                <p className="text-[11px] text-gray-500 dark:text-gray-400">
+                <p className="text-[11px] text-gray-500 dark:text-indigo-300/60">
                   {t(
                     "عرض البيانات فقط بدون تعديل",
                     "View-only access, no editing"

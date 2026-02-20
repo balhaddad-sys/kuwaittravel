@@ -115,7 +115,7 @@ export default function DocumentsPage() {
                     </h3>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-body-sm text-gray-600 dark:text-gray-400">
+                        <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                           {t("رقم الترخيص", "License Number")}
                         </span>
                         <span className="text-body-md font-mono font-semibold text-gray-900 dark:text-white">
@@ -124,7 +124,7 @@ export default function DocumentsPage() {
                       </div>
                       {campaign.commercialRegNumber && (
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-body-sm text-gray-600 dark:text-gray-400">
+                          <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                             {t("السجل التجاري", "Commercial Reg.")}
                           </span>
                           <span className="text-body-md font-mono font-semibold text-gray-900 dark:text-white">
@@ -133,7 +133,7 @@ export default function DocumentsPage() {
                         </div>
                       )}
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-body-sm text-gray-600 dark:text-gray-400">
+                        <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                           {t("حالة التحقق", "Verification Status")}
                         </span>
                         <Badge
@@ -201,7 +201,7 @@ export default function DocumentsPage() {
                           <p className="text-body-sm font-semibold text-gray-800 dark:text-white truncate">
                             {language === "ar" ? trip.titleAr || trip.title : trip.title}
                           </p>
-                          <div className="flex items-center gap-3 text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
+                          <div className="flex items-center gap-3 text-[11px] text-gray-500 dark:text-indigo-300/60 mt-0.5">
                             {departure && (
                               <span className="flex items-center gap-1">
                                 <Calendar className="h-3 w-3" />
@@ -246,7 +246,7 @@ export default function DocumentsPage() {
               <div className="flex items-start gap-3">
                 <FileText className="h-5 w-5 text-indigo-500 shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-body-sm text-gray-700 dark:text-gray-300">
+                  <p className="text-body-sm text-gray-700 dark:text-indigo-200">
                     {t(
                       "يتم إنشاء كشوفات الحجوزات والتقارير المالية تلقائياً عند اكتمال الرحلات. يمكنك تحميلها من صفحة تفاصيل كل رحلة.",
                       "Booking statements and financial reports are auto-generated when trips are completed. You can download them from each trip's detail page."

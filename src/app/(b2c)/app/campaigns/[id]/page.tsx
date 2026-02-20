@@ -140,7 +140,7 @@ export default function CampaignDetailPage({
                   </Badge>
                 )}
               </div>
-              <p className="mt-2 text-body-md leading-relaxed text-gray-600 dark:text-gray-400">
+              <p className="mt-2 text-body-md leading-relaxed text-gray-600 dark:text-indigo-300/60">
                 {getDescription(campaign)}
               </p>
               {campaign.stats && (
@@ -171,31 +171,31 @@ export default function CampaignDetailPage({
             </h3>
             <div className="space-y-2.5">
               {campaign.contactPhone && (
-                <div className="flex items-center gap-2.5 text-body-md text-gray-600 dark:text-gray-400">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100/70 dark:bg-gray-800/70">
+                <div className="flex items-center gap-2.5 text-body-md text-gray-600 dark:text-indigo-300/60">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100/70 dark:bg-indigo-800/70">
                     <Phone className="h-4 w-4 text-gray-500" />
                   </div>
                   <span dir="ltr">{campaign.contactPhone}</span>
                 </div>
               )}
               {campaign.contactEmail && (
-                <div className="flex items-center gap-2.5 text-body-md text-gray-600 dark:text-gray-400">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100/70 dark:bg-gray-800/70">
+                <div className="flex items-center gap-2.5 text-body-md text-gray-600 dark:text-indigo-300/60">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100/70 dark:bg-indigo-800/70">
                     <Mail className="h-4 w-4 text-gray-500" />
                   </div>
                   <span className="truncate">{campaign.contactEmail}</span>
                 </div>
               )}
               {campaign.website && (
-                <div className="flex items-center gap-2.5 text-body-md text-gray-600 dark:text-gray-400">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100/70 dark:bg-gray-800/70">
+                <div className="flex items-center gap-2.5 text-body-md text-gray-600 dark:text-indigo-300/60">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100/70 dark:bg-indigo-800/70">
                     <Globe className="h-4 w-4 text-gray-500" />
                   </div>
                   <a
                     href={campaign.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="truncate text-gray-700 underline dark:text-gray-200"
+                    className="truncate text-gray-700 underline dark:text-indigo-100"
                   >
                     {campaign.website}
                   </a>
@@ -213,7 +213,7 @@ export default function CampaignDetailPage({
               {t("الرحلات المتاحة", "Available Trips")}
             </h3>
             {trips.length > 0 && (
-              <span className="rounded-full bg-gray-100/80 px-2 py-0.5 text-[11px] font-medium text-gray-600 dark:bg-gray-800/80 dark:text-gray-400">
+              <span className="rounded-full bg-gray-100/80 px-2 py-0.5 text-[11px] font-medium text-gray-600 dark:bg-indigo-800/80 dark:text-indigo-300/60">
                 {trips.length}
               </span>
             )}

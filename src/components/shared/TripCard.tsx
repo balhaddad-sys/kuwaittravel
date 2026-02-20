@@ -76,8 +76,8 @@ function TripCard({
     <div
       className={cn(
         "group cursor-pointer overflow-hidden rounded-2xl bg-white transition-all duration-200",
-        "hover:-trangray-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]",
-        "dark:bg-gray-800",
+        "hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]",
+        "dark:bg-indigo-800",
         className
       )}
       onClick={onClick}
@@ -86,7 +86,7 @@ function TripCard({
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
     >
       {/* ─── Image Section ─── */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 dark:bg-gray-700">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 dark:bg-indigo-700/50">
         {images.length > 1 ? (
           <div
             ref={scrollRef}
@@ -114,8 +114,8 @@ function TripCard({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-gray-700 dark:to-gray-600">
-            <MapPin className="h-10 w-10 text-indigo-300 dark:text-gray-400" />
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-700 dark:to-indigo-600">
+            <MapPin className="h-10 w-10 text-indigo-300 dark:text-indigo-300/60" />
           </div>
         )}
 
@@ -151,7 +151,7 @@ function TripCard({
 
         {/* Gallery dots */}
         {images.length > 1 && (
-          <div className="absolute bottom-3 start-1/2 z-10 flex -trangray-x-1/2 items-center gap-1">
+          <div className="absolute bottom-3 start-1/2 z-10 flex -translate-x-1/2 items-center gap-1">
             {images.slice(0, 5).map((_, i) => (
               <span
                 key={i}
@@ -178,12 +178,12 @@ function TripCard({
       <div className="p-3 sm:p-4">
         {/* Destination + Rating */}
         <div className="flex items-start justify-between gap-2">
-          <div className="flex items-center gap-1 text-[0.8125rem] font-semibold text-gray-800 dark:text-gray-200">
-            <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-500 dark:text-gray-400" />
+          <div className="flex items-center gap-1 text-[0.8125rem] font-semibold text-gray-800 dark:text-indigo-100">
+            <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-500 dark:text-indigo-300/60" />
             <span className="truncate">{destination}</span>
           </div>
           {booked > 10 && (
-            <span className="flex shrink-0 items-center gap-1 text-[0.75rem] font-medium text-gray-600 dark:text-gray-400">
+            <span className="flex shrink-0 items-center gap-1 text-[0.75rem] font-medium text-gray-600 dark:text-indigo-300/60">
               <Star className="h-3 w-3 fill-orange-400 text-orange-400" />
               <span className="font-numbers">{(4.3 + (booked % 10) * 0.06).toFixed(1)}</span>
             </span>
@@ -191,15 +191,15 @@ function TripCard({
         </div>
 
         {/* Trip Title */}
-        <h3 className="mt-1 line-clamp-1 text-[0.9375rem] font-semibold text-gray-900 dark:text-white">
+        <h3 className="mt-1 line-clamp-1 text-[0.9375rem] font-semibold text-gray-900 dark:text-indigo-50">
           {title}
         </h3>
 
         {/* Dates */}
-        <p className="mt-1 flex items-center gap-1.5 text-[0.8125rem] text-gray-500 dark:text-gray-400">
+        <p className="mt-1 flex items-center gap-1.5 text-[0.8125rem] text-gray-500 dark:text-indigo-300/55">
           <Calendar className="h-3.5 w-3.5" />
           {departureDate}
-          <span className="text-gray-300 dark:text-gray-600">—</span>
+          <span className="text-gray-300 dark:text-indigo-700/60">—</span>
           {returnDate}
         </p>
 
@@ -209,7 +209,7 @@ function TripCard({
             {tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[10.5px] font-medium text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300"
+                className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[10.5px] font-medium text-indigo-700 dark:bg-indigo-700/25 dark:text-indigo-300"
               >
                 {tag}
               </span>
@@ -219,7 +219,7 @@ function TripCard({
 
         {/* Capacity Bar */}
         <div className="mt-3">
-          <div className="h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+          <div className="h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-indigo-700/40">
             <div
               className={cn(
                 "h-full rounded-full transition-all duration-500",
@@ -228,12 +228,12 @@ function TripCard({
               style={{ width: `${Math.min(fillPercent, 100)}%` }}
             />
           </div>
-          <div className="mt-1 flex items-center justify-between text-[10.5px] text-gray-500 dark:text-gray-400">
+          <div className="mt-1 flex items-center justify-between text-[10.5px] text-gray-500 dark:text-indigo-300/55">
             <span className="flex items-center gap-1">
               <Users className="h-3 w-3" />
               {booked}/{capacity}
             </span>
-            <span className={cn("font-medium", remaining <= 5 && remaining > 0 ? "text-red-600 dark:text-red-400" : "")}>
+            <span className={cn("font-medium", remaining <= 5 && remaining > 0 ? "text-red-600 dark:text-red-400" : "dark:text-indigo-300/55")}>
               {remaining > 0
                 ? t(`${remaining} مقعد متبقي`, `${remaining} seats left`)
                 : t("مكتمل", "Full")}
@@ -242,15 +242,15 @@ function TripCard({
         </div>
 
         {/* Price */}
-        <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3 dark:border-gray-700">
-          <span className="text-[0.8125rem] text-gray-500 dark:text-gray-400">
+        <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3 dark:border-[#1A2D48]">
+          <span className="text-[0.8125rem] text-gray-500 dark:text-indigo-300/55">
             {t("يبدأ من", "From")}
           </span>
           <div className="text-end">
-            <span className="font-numbers text-[1.125rem] font-bold text-gray-900 dark:text-white">
+            <span className="font-numbers text-[1.125rem] font-bold text-gray-900 dark:text-indigo-50">
               {formatKWD(price)}
             </span>
-            <span className="text-[0.75rem] text-gray-400 dark:text-gray-500">
+            <span className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">
               {" "}/{t("شخص", "person")}
             </span>
           </div>

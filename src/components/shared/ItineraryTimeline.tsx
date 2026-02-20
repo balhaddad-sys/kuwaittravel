@@ -51,7 +51,7 @@ const typeConfig: Record<string, { icon: React.ReactNode; color: string }> = {
   },
   free_time: {
     icon: <Clock className="h-4 w-4" />,
-    color: "bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-300",
+    color: "bg-gray-100 text-gray-500 dark:bg-indigo-800 dark:text-indigo-200",
   },
 };
 
@@ -202,14 +202,14 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
               <h4 className="truncate text-body-md font-bold text-gray-900 dark:text-white">
                 {dayMeta.title}
               </h4>
-              <p className="text-body-sm text-gray-500 dark:text-gray-400">
+              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
                 {dayMeta.subtitle}
               </p>
             </div>
           </div>
 
           {/* Timeline blocks */}
-          <div className="relative ms-3.5 border-s-2 border-gray-200 ps-5 dark:border-gray-700">
+          <div className="relative ms-3.5 border-s-2 border-gray-200 ps-5 dark:border-[#1A2D48]">
             {dayBlocks.map((block, i) => {
               const config = typeConfig[block.type] || typeConfig.activity;
               const title = language === "ar" ? (block.titleAr || block.title) : (block.title || block.titleAr);
@@ -235,19 +235,19 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
                           {title}
                         </p>
                         {block.startTime && (
-                          <span className="text-[11px] text-gray-400 dark:text-gray-500">
+                          <span className="text-[11px] text-gray-400 dark:text-indigo-300/45">
                             {block.startTime}
                             {block.endTime && ` - ${block.endTime}`}
                           </span>
                         )}
                       </div>
                       {desc && (
-                        <p className="mt-0.5 text-body-sm text-gray-500 dark:text-gray-400">
+                        <p className="mt-0.5 text-body-sm text-gray-500 dark:text-indigo-300/60">
                           {desc}
                         </p>
                       )}
                       {block.location && (
-                        <p className="mt-0.5 text-[11px] text-gray-400 dark:text-gray-500">
+                        <p className="mt-0.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
                           {block.location}
                         </p>
                       )}

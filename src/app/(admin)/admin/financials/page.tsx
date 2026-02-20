@@ -176,7 +176,7 @@ export default function FinancialsPage() {
                   className={`rounded-full px-2 py-1 text-body-sm transition-colors sm:px-3 ${
                     period === item.value
                       ? "bg-gray-700 text-white"
-                      : "text-gray-600 dark:text-gray-400"
+                      : "text-gray-600 dark:text-indigo-300/60"
                   }`}
                 >
                   {item.label}
@@ -201,7 +201,7 @@ export default function FinancialsPage() {
           ) : (
             <div className="space-y-2">
               {/* Header row -- desktop */}
-              <div className="hidden sm:grid sm:grid-cols-[1fr_1fr_auto_auto_auto] gap-3 px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
+              <div className="hidden sm:grid sm:grid-cols-[1fr_1fr_auto_auto_auto] gap-3 px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-indigo-300/45">
                 <span>{t("\u0627\u0644\u0645\u0633\u0627\u0641\u0631", "Traveler")}</span>
                 <span>{t("\u0627\u0644\u0631\u062d\u0644\u0629", "Trip")}</span>
                 <span className="w-24 text-end">{t("\u0627\u0644\u0645\u0628\u0644\u063a", "Amount")}</span>
@@ -214,7 +214,7 @@ export default function FinancialsPage() {
                 return (
                   <div
                     key={booking.id}
-                    className="group rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+                    className="group rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-[#1A2D48] dark:bg-indigo-800"
                   >
                     {/* Mobile layout */}
                     <div className="sm:hidden space-y-2">
@@ -229,14 +229,14 @@ export default function FinancialsPage() {
                           {formatKWD(booking.totalKWD)}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                      <p className="text-xs text-gray-500 dark:text-indigo-300/60 truncate">
                         {booking.tripTitle}
                       </p>
                       <div className="flex items-center justify-between">
                         <Badge variant={sc.variant} size="sm" dot>
                           {language === "ar" ? sc.labelAr : sc.label}
                         </Badge>
-                        <span className="text-[11px] text-gray-400 dark:text-gray-500">
+                        <span className="text-[11px] text-gray-400 dark:text-indigo-300/45">
                           {getDate(booking.createdAt)}
                         </span>
                       </div>
@@ -250,7 +250,7 @@ export default function FinancialsPage() {
                           {booking.travelerName}
                         </span>
                       </div>
-                      <span className="text-body-sm text-gray-600 dark:text-gray-300 truncate">
+                      <span className="text-body-sm text-gray-600 dark:text-indigo-200 truncate">
                         {booking.tripTitle}
                       </span>
                       <span className="tabular-nums w-24 text-end text-body-sm font-bold text-gray-900 dark:text-white">
@@ -261,7 +261,7 @@ export default function FinancialsPage() {
                           {language === "ar" ? sc.labelAr : sc.label}
                         </Badge>
                       </div>
-                      <span className="w-24 text-end text-[11px] text-gray-400 dark:text-gray-500">
+                      <span className="w-24 text-end text-[11px] text-gray-400 dark:text-indigo-300/45">
                         {getDate(booking.createdAt)}
                       </span>
                     </div>

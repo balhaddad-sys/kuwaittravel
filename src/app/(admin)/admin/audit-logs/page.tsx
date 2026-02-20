@@ -125,7 +125,7 @@ const actionConfigMap: Record<string, ActionConfig> = {
     variant: "default",
     labelAr: "\u0625\u063a\u0644\u0627\u0642 \u0646\u0632\u0627\u0639",
     label: "Dispute Closed",
-    color: "text-gray-600 dark:text-gray-400",
+    color: "text-gray-600 dark:text-indigo-300/60",
   },
   trip_published: {
     icon: <Activity className="h-4 w-4" />,
@@ -155,7 +155,7 @@ const defaultActionConfig: ActionConfig = {
   variant: "default",
   labelAr: "\u0625\u062c\u0631\u0627\u0621",
   label: "Action",
-  color: "text-gray-600 dark:text-gray-400",
+  color: "text-gray-600 dark:text-indigo-300/60",
 };
 
 function getActionConfig(action: string): ActionConfig {
@@ -258,7 +258,7 @@ export default function AuditLogsPage() {
             placeholder={t("\u0627\u0628\u062d\u062b \u0628\u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0623\u0648 \u0646\u0648\u0639 \u0627\u0644\u0639\u0645\u0644\u064a\u0629...", "Search by user or action type...")}
             onSearch={setSearch}
           />
-          <div className="rounded-[var(--radius-input)] border border-surface-border/90 bg-white/80 px-4 py-2.5 text-body-sm text-gray-500 backdrop-blur-sm dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80 dark:text-gray-400 flex items-center gap-2">
+          <div className="rounded-[var(--radius-input)] border border-surface-border/90 bg-white/80 px-4 py-2.5 text-body-sm text-gray-500 backdrop-blur-sm dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80 dark:text-indigo-300/60 flex items-center gap-2">
             <ScrollText className="h-4 w-4" />
             {loadingData ? "\u2026" : `${filtered.length} ${t("\u0633\u062c\u0644", "entries")}`}
           </div>
@@ -307,7 +307,7 @@ export default function AuditLogsPage() {
                           config.variant === "error" ? "bg-red-50 dark:bg-red-900/20" :
                           config.variant === "warning" ? "bg-orange-50 dark:bg-orange-900/20" :
                           config.variant === "info" ? "bg-indigo-50 dark:bg-indigo-900/20" :
-                          "bg-gray-100 dark:bg-gray-800"
+                          "bg-gray-100 dark:bg-indigo-800"
                         )}>
                           <span className={config.color}>{config.icon}</span>
                         </div>
@@ -318,7 +318,7 @@ export default function AuditLogsPage() {
                             <Badge variant={config.variant} size="sm">
                               {language === "ar" ? config.labelAr : config.label}
                             </Badge>
-                            <span className="text-[11px] text-gray-400 dark:text-gray-500">
+                            <span className="text-[11px] text-gray-400 dark:text-indigo-300/45">
                               {log.action}
                             </span>
                           </div>
@@ -332,7 +332,7 @@ export default function AuditLogsPage() {
                             </Badge>
                           </div>
 
-                          <div className="flex items-center gap-3 mt-1 text-[11px] text-gray-400 dark:text-gray-500">
+                          <div className="flex items-center gap-3 mt-1 text-[11px] text-gray-400 dark:text-indigo-300/45">
                             <span>
                               {t("\u0627\u0644\u0643\u064a\u0627\u0646", "Entity")}: {log.entityType}
                             </span>
@@ -360,13 +360,13 @@ export default function AuditLogsPage() {
                     {isExpanded && hasChanges && (
                       <div className="px-4 pb-3 ps-[3.25rem]">
                         <div className="rounded-lg border border-surface-border/70 bg-gray-50/80 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.02]">
-                          <h5 className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500 mb-2">
+                          <h5 className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-indigo-300/45 mb-2">
                             {t("\u0627\u0644\u062a\u063a\u064a\u064a\u0631\u0627\u062a", "Changes")}
                           </h5>
                           <div className="space-y-2">
                             {log.changes!.map((change, idx) => (
                               <div key={idx} className="text-body-sm">
-                                <span className="font-medium text-gray-700 dark:text-gray-300">
+                                <span className="font-medium text-gray-700 dark:text-indigo-200">
                                   {change.field}
                                 </span>
                                 <div className="flex items-center gap-2 mt-0.5 text-xs">

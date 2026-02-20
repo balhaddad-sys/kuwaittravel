@@ -9,7 +9,7 @@ interface BadgeProps {
 }
 
 const variantMap = {
-  default: "bg-gray-100 text-gray-700 border border-gray-200 dark:bg-gray-700/60 dark:text-gray-200 dark:border-gray-600",
+  default: "bg-gray-100 text-gray-700 border border-gray-200 dark:bg-gray-700/60 dark:text-indigo-100 dark:border-gray-600",
   success: "bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800/60",
   warning: "bg-orange-50 text-orange-800 border border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800/60",
   error: "bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/60",

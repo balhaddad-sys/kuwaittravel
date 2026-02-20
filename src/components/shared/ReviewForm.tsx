@@ -70,7 +70,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
                   "h-7 w-7 transition-colors",
                   (hoverRating || rating) > i
                     ? "fill-orange-400 text-orange-400"
-                    : "fill-gray-200 text-gray-200 dark:fill-gray-600 dark:text-gray-600"
+                    : "fill-gray-200 text-gray-200 dark:fill-gray-600 dark:text-indigo-400/50"
                 )}
               />
             </button>
@@ -80,7 +80,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
 
       {/* Title */}
       <div>
-        <label className="text-body-sm font-medium text-gray-600 dark:text-gray-300">
+        <label className="text-body-sm font-medium text-gray-600 dark:text-indigo-200">
           {t("العنوان", "Title")}
         </label>
         <input
@@ -88,13 +88,13 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={t("اكتب عنواناً لتقييمك", "Write a title for your review")}
-          className="mt-1 w-full rounded-[var(--radius-md)] border border-gray-200 bg-white px-3 py-2.5 text-body-md text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500"
+          className="mt-1 w-full rounded-[var(--radius-md)] border border-gray-200 bg-white px-3 py-2.5 text-body-md text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-white dark:placeholder:text-indigo-300/40"
         />
       </div>
 
       {/* Body */}
       <div>
-        <label className="text-body-sm font-medium text-gray-600 dark:text-gray-300">
+        <label className="text-body-sm font-medium text-gray-600 dark:text-indigo-200">
           {t("التفاصيل", "Details")}
         </label>
         <textarea
@@ -102,18 +102,18 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
           onChange={(e) => setBody(e.target.value)}
           rows={4}
           placeholder={t("شاركنا تجربتك", "Share your experience")}
-          className="mt-1 w-full rounded-[var(--radius-md)] border border-gray-200 bg-white px-3 py-2.5 text-body-md text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500"
+          className="mt-1 w-full rounded-[var(--radius-md)] border border-gray-200 bg-white px-3 py-2.5 text-body-md text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-white dark:placeholder:text-indigo-300/40"
         />
       </div>
 
       {/* Photos */}
       <div>
-        <label className="text-body-sm font-medium text-gray-600 dark:text-gray-300">
+        <label className="text-body-sm font-medium text-gray-600 dark:text-indigo-200">
           {t("صور (اختياري)", "Photos (optional)")}
         </label>
         <div className="mt-2 flex flex-wrap gap-2">
           {photoPreviews.map(({ url }, i) => (
-            <div key={i} className="relative h-16 w-16 rounded-lg bg-gray-100 dark:bg-gray-800">
+            <div key={i} className="relative h-16 w-16 rounded-lg bg-gray-100 dark:bg-indigo-800">
               <Image
                 src={url}
                 alt={t("صورة مرفقة", "Uploaded photo")}

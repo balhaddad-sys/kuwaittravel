@@ -17,7 +17,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     return (
       <div className="flex flex-col gap-1.5">
         {label && (
-          <label htmlFor={inputId} className="text-label font-medium text-gray-700 dark:text-gray-200">
+          <label htmlFor={inputId} className="text-label font-medium text-gray-700 dark:text-indigo-100">
             {label}
           </label>
         )}
@@ -35,7 +35,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             )}
             {...props}
           />
-          <Calendar className="pointer-events-none absolute end-3 top-1/2 h-4 w-4 -trangray-y-1/2 text-gray-400" />
+          <Calendar className="pointer-events-none absolute end-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
         </div>
         {error && <p className="text-body-sm text-error">{error}</p>}
         {hint && !error && <p className="text-body-sm text-gray-400">{hint}</p>}

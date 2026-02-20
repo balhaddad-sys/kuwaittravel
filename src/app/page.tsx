@@ -121,7 +121,7 @@ export default function HomePage() {
 
   return (
     <div
-      className={`min-h-screen transition-[opacity,transform] duration-[140ms] ease-out ${
+      className={`min-h-screen bg-[#FDFBF7] dark:bg-[#080F1C] transition-[opacity,transform] duration-[140ms] ease-out ${
         exiting ? "scale-[0.97] opacity-0" : ""
       }`}
     >
@@ -273,7 +273,7 @@ export default function HomePage() {
 
           {/* Stats */}
           <div
-            className="animate-stagger-fade-up mt-12 flex items-center gap-10 sm:mt-14 sm:gap-14"
+            className="animate-stagger-fade-up mt-12 flex items-center gap-6 sm:mt-14 sm:gap-10 lg:gap-14"
             style={{ "--stagger-delay": "450ms" } as React.CSSProperties}
           >
             {[
@@ -316,8 +316,7 @@ export default function HomePage() {
           <svg
             viewBox="0 0 1440 40"
             preserveAspectRatio="none"
-            className="absolute inset-0 h-full w-full"
-            fill="#FDFBF7"
+            className="absolute inset-0 h-full w-full fill-[#FDFBF7] dark:fill-[#080F1C]"
           >
             <path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z" />
           </svg>
@@ -328,8 +327,7 @@ export default function HomePage() {
           WARM CONTENT SECTION
           ══════════════════════════════════════════ */}
       <div
-        className="mx-auto w-full max-w-6xl px-5 py-8 sm:px-8 sm:py-10"
-        style={{ background: "#FDFBF7" }}
+        className="mx-auto w-full max-w-6xl bg-[#FDFBF7] px-5 py-8 sm:px-8 sm:py-10 dark:bg-[#080F1C]"
       >
         {/* ── Popular Destinations ─────────────── */}
         <div
@@ -341,7 +339,7 @@ export default function HomePage() {
               className="h-px flex-1"
               style={{ background: "linear-gradient(to right, #D5CAB9, transparent)" }}
             />
-            <p className="text-body-sm font-semibold uppercase tracking-widest" style={{ color: "#B5A894", fontSize: "0.65rem" }}>
+            <p className="text-body-sm font-semibold uppercase tracking-widest text-[#B5A894] dark:text-indigo-300/50" style={{ fontSize: "0.65rem" }}>
               {t("وجهات شائعة", "Popular Destinations")}
             </p>
             <div
@@ -350,26 +348,12 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="flex justify-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="horizontal-scroll-section justify-center pb-2">
             {destinations.map((dest) => (
               <button
                 key={dest.name}
                 onClick={() => navigateTo("/app/discover")}
-                className="group flex shrink-0 items-center gap-3 rounded-2xl bg-white px-4 py-3 transition-all duration-300 active:scale-[0.97]"
-                style={{
-                  border: "1px solid #D5CAB9",
-                  boxShadow: "0 1px 3px rgba(26,18,9,0.05), 0 4px 12px rgba(26,18,9,0.05)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 4px 20px rgba(26,18,9,0.12)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#B5A894";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 1px 3px rgba(26,18,9,0.05), 0 4px 12px rgba(26,18,9,0.05)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#D5CAB9";
-                }}
+                className="group flex shrink-0 items-center gap-3 rounded-2xl border border-[#D5CAB9] bg-white px-4 py-3 shadow-[0_1px_3px_rgba(26,18,9,0.05),0_4px_12px_rgba(26,18,9,0.05)] transition-all duration-300 active:scale-[0.97] hover:border-[#B5A894] hover:shadow-[0_4px_20px_rgba(26,18,9,0.12)] dark:border-[#1A2D48] dark:bg-indigo-800 dark:hover:border-indigo-600/50 dark:shadow-none"
               >
                 <span
                   className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white"
@@ -381,10 +365,10 @@ export default function HomePage() {
                   {dest.icon}
                 </span>
                 <div className="text-start">
-                  <p className="text-body-md font-bold" style={{ color: "#1A1209" }}>
+                  <p className="text-body-md font-bold text-[#1A1209] dark:text-indigo-50">
                     {dest.name}
                   </p>
-                  <p className="text-[11px]" style={{ color: "#8F8070" }}>
+                  <p className="text-[11px] text-[#8F8070] dark:text-indigo-300/55">
                     {dest.subtitle}
                   </p>
                 </div>
@@ -406,21 +390,7 @@ export default function HomePage() {
             <button
               key={card.href}
               onClick={() => navigateTo(card.href)}
-              className="group relative overflow-hidden rounded-2xl bg-white p-5 text-start transition-all duration-300 active:scale-[0.98] sm:rounded-3xl sm:p-6"
-              style={{
-                border: "1px solid #D5CAB9",
-                boxShadow: "0 1px 3px rgba(26,18,9,0.05), 0 4px 16px rgba(26,18,9,0.06)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 4px 24px rgba(26,18,9,0.12)";
-                (e.currentTarget as HTMLElement).style.borderColor = "#B5A894";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 1px 3px rgba(26,18,9,0.05), 0 4px 16px rgba(26,18,9,0.06)";
-                (e.currentTarget as HTMLElement).style.borderColor = "#D5CAB9";
-              }}
+              className="group relative overflow-hidden rounded-2xl border border-[#D5CAB9] bg-white p-5 text-start shadow-[0_1px_3px_rgba(26,18,9,0.05),0_4px_16px_rgba(26,18,9,0.06)] transition-all duration-300 active:scale-[0.98] hover:border-[#B5A894] hover:shadow-[0_4px_24px_rgba(26,18,9,0.12)] sm:rounded-3xl sm:p-6 dark:border-[#1A2D48] dark:bg-indigo-800 dark:hover:border-indigo-600/50 dark:shadow-none"
             >
               {/* Subtle gold top accent */}
               <div
@@ -439,15 +409,14 @@ export default function HomePage() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-body-lg font-bold" style={{ color: "#1A1209" }}>
+                    <h3 className="text-body-lg font-bold text-[#1A1209] dark:text-indigo-50">
                       {card.title}
                     </h3>
                     <ChevronRight
-                      className="h-5 w-5 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
-                      style={{ color: "#B5A894" }}
+                      className="h-5 w-5 shrink-0 text-[#B5A894] transition-all duration-200 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-indigo-400/50"
                     />
                   </div>
-                  <p className="mt-1 text-body-sm" style={{ color: "#8F8070" }}>
+                  <p className="mt-1 text-body-sm text-[#8F8070] dark:text-indigo-300/55">
                     {card.desc}
                   </p>
                 </div>
@@ -461,11 +430,7 @@ export default function HomePage() {
               onClick={() =>
                 navigateTo(hasAdminRole ? "/admin/dashboard" : "/admin-login")
               }
-              className="group relative overflow-hidden rounded-2xl bg-white p-5 text-start transition-all duration-300 active:scale-[0.98] sm:rounded-3xl sm:p-6"
-              style={{
-                border: "1px solid #D5CAB9",
-                boxShadow: "0 1px 3px rgba(26,18,9,0.05), 0 4px 16px rgba(26,18,9,0.06)",
-              }}
+              className="group relative overflow-hidden rounded-2xl border border-[#D5CAB9] bg-white p-5 text-start shadow-[0_1px_3px_rgba(26,18,9,0.05),0_4px_16px_rgba(26,18,9,0.06)] transition-all duration-300 active:scale-[0.98] hover:border-[#B5A894] hover:shadow-[0_4px_24px_rgba(26,18,9,0.12)] sm:rounded-3xl sm:p-6 dark:border-[#1A2D48] dark:bg-indigo-800 dark:hover:border-indigo-600/50 dark:shadow-none"
             >
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-0.5 rounded-t-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -483,15 +448,14 @@ export default function HomePage() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-body-lg font-bold" style={{ color: "#1A1209" }}>
+                    <h3 className="text-body-lg font-bold text-[#1A1209] dark:text-indigo-50">
                       {t("إدارة المشرفين", "Admin Console")}
                     </h3>
                     <ChevronRight
-                      className="h-5 w-5 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
-                      style={{ color: "#B5A894" }}
+                      className="h-5 w-5 shrink-0 text-[#B5A894] transition-all duration-200 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-indigo-400/50"
                     />
                   </div>
-                  <p className="mt-1 text-body-sm" style={{ color: "#8F8070" }}>
+                  <p className="mt-1 text-body-sm text-[#8F8070] dark:text-indigo-300/55">
                     {t("دخول مخصص لفريق الإدارة", "Dedicated entry for administrators")}
                   </p>
                 </div>
@@ -501,10 +465,8 @@ export default function HomePage() {
         </div>
 
         {/* ── Trust Badges ─────────────────────── */}
-        <div className="animate-stagger-fade-up mt-8 mb-4 flex items-center justify-center gap-4 text-[11px]"
-          style={
-            { "--stagger-delay": "750ms", color: "#B5A894" } as React.CSSProperties
-          }
+        <div className="animate-stagger-fade-up mt-8 mb-4 flex flex-wrap items-center justify-center gap-3 text-[11px] text-[#B5A894] dark:text-indigo-300/50 sm:gap-4"
+          style={{ "--stagger-delay": "750ms" } as React.CSSProperties}
         >
           <span className="flex items-center gap-1.5">
             <Users className="h-3 w-3" style={{ color: "#C5A572" }} />

@@ -75,7 +75,7 @@ export default function NotificationsPage() {
                 <h1 className="text-heading-lg font-bold text-gray-900 dark:text-white sm:text-display-md">
                   {t("الإشعارات", "Notifications")}
                 </h1>
-                <p className="text-body-sm text-gray-500 dark:text-gray-400">
+                <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
                   {t("تحديثات وتنبيهات الرحلات", "Trip updates and alerts")}
                 </p>
               </div>
@@ -120,25 +120,25 @@ export default function NotificationsPage() {
                 className={cn(
                   "w-full text-start rounded-xl border p-3 sm:p-4 transition-all",
                   n.isRead
-                    ? "border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
+                    ? "border-gray-200 bg-white dark:border-[#1A2D48] dark:bg-indigo-800"
                     : "border-orange-200 bg-orange-50/50 dark:border-orange-900/40 dark:bg-orange-900/10"
                 )}
               >
                 <div className="flex items-start gap-3">
                   <div className={cn(
                     "shrink-0 mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg",
-                    n.isRead ? "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500" : "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400"
+                    n.isRead ? "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-indigo-300/45" : "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400"
                   )}>
                     {typeIcons[n.type] || <Bell className="h-4 w-4" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-gray-700 dark:text-gray-300" : "text-gray-900 dark:text-white")}>
+                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-gray-700 dark:text-indigo-200" : "text-gray-900 dark:text-white")}>
                         {language === "ar" ? n.titleAr : n.title}
                       </p>
                       {!n.isRead && <span className="h-2 w-2 shrink-0 rounded-full bg-orange-500" />}
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-2">
+                    <p className="text-xs text-gray-500 dark:text-indigo-300/60 mt-0.5 line-clamp-2">
                       {language === "ar" ? n.bodyAr : n.body}
                     </p>
                     {date && (

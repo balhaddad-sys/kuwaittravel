@@ -13,7 +13,7 @@ interface FABProps {
 const positionMap = {
   "bottom-right": "fixed bottom-6 end-6",
   "bottom-left": "fixed bottom-6 start-6",
-  "bottom-center": "fixed bottom-6 start-1/2 -trangray-x-1/2",
+  "bottom-center": "fixed bottom-6 start-1/2 -translate-x-1/2",
   "bottom-right-nav": "fixed bottom-24 end-6 lg:bottom-6",
 };
 

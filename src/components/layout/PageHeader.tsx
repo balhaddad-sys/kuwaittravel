@@ -16,7 +16,7 @@ function PageHeader({ title, description, actions, className }: PageHeaderProps)
         </span>
         <h1 className="text-display-md font-bold text-gray-900 dark:text-white">{title}</h1>
         {description && (
-          <p className="mt-1 text-body-lg text-gray-500 dark:text-gray-400">{description}</p>
+          <p className="mt-1 text-body-lg text-gray-500 dark:text-indigo-300/60">{description}</p>
         )}
       </div>
       {actions && <div className="flex items-center gap-2 mt-3 sm:mt-0">{actions}</div>}

@@ -200,7 +200,7 @@ export default function AdminDashboardPage() {
                       <p className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
                         {language === "ar" ? campaign.nameAr : campaign.name}
                       </p>
-                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-400 dark:text-gray-500">
+                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
                         <span className="flex items-center gap-1">
                           <FileText className="h-3 w-3" />
                           {campaign.licenseNumber}
@@ -211,10 +211,10 @@ export default function AdminDashboardPage() {
                         </span>
                       </div>
                     </div>
-                    <div className="shrink-0 text-[11px] text-gray-400 dark:text-gray-500 hidden sm:block">
+                    <div className="shrink-0 text-[11px] text-gray-400 dark:text-indigo-300/45 hidden sm:block">
                       {getCreatedDate(campaign.createdAt)}
                     </div>
-                    <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-orange-500 transition-colors dark:text-gray-600 rtl:rotate-180" />
+                    <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-orange-500 transition-colors dark:text-indigo-400/50 rtl:rotate-180" />
                   </a>
                 ))}
               </div>
@@ -295,10 +295,10 @@ export default function AdminDashboardPage() {
                         </Badge>
                       </div>
                     </div>
-                    <div className="shrink-0 text-[11px] text-gray-400 dark:text-gray-500 hidden sm:block">
+                    <div className="shrink-0 text-[11px] text-gray-400 dark:text-indigo-300/45 hidden sm:block">
                       {getCreatedDate(dispute.createdAt)}
                     </div>
-                    <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-red-500 transition-colors dark:text-gray-600 rtl:rotate-180" />
+                    <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-red-500 transition-colors dark:text-indigo-400/50 rtl:rotate-180" />
                   </a>
                 ))}
               </div>

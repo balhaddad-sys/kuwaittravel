@@ -30,7 +30,7 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
     >
       <Search
         className={cn(
-          "pointer-events-none absolute start-3 top-1/2 h-4 w-4 -trangray-y-1/2 transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)]",
+          "pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)]",
           isFocused ? "text-indigo-600 dark:text-indigo-300" : "text-gray-400"
         )}
       />
@@ -41,13 +41,13 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={placeholder}
-        className="w-full rounded-[var(--radius-pill)] border border-surface-border bg-white py-2.5 ps-10 pe-10 text-body-md text-gray-800 transform-gpu shadow-[0_2px_8px_rgba(15,17,22,0.05)] transition-[border-color,box-shadow,background-color,width] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-gray-300 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-300/25 focus:outline-none dark:border-surface-dark-border dark:bg-surface-dark-card/88 dark:text-gray-100 dark:hover:border-gray-500 dark:focus:border-indigo-500 dark:focus:ring-indigo-500/25"
+        className="w-full rounded-[var(--radius-pill)] border border-surface-border bg-white py-2.5 ps-10 pe-10 text-body-md text-gray-800 transform-gpu shadow-[0_2px_8px_rgba(15,17,22,0.05)] transition-[border-color,box-shadow,background-color,width] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-gray-300 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-300/25 focus:outline-none dark:border-surface-dark-border dark:bg-surface-dark-card/88 dark:text-gray-100 dark:hover:border-indigo-600/40 dark:focus:border-indigo-500 dark:focus:ring-indigo-500/25"
       />
       {value && (
         <button
           type="button"
           onClick={() => setValue("")}
-          className="absolute end-3 top-1/2 -trangray-y-1/2 rounded p-0.5 text-gray-400 transition-[color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-indigo-600 active:scale-[0.92]"
+          className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-gray-400 transition-[color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-indigo-600 active:scale-[0.92]"
         >
           <X className="h-4 w-4" />
         </button>
