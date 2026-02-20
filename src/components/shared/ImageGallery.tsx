@@ -49,7 +49,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
 
   return (
     <>
-      <div className={cn("relative overflow-hidden bg-gray-100 dark:bg-gray-800", aspectClass, className)}>
+      <div className={cn("relative overflow-hidden bg-gray-100 dark:bg-indigo-800", aspectClass, className)}>
         {/* Scrollable image strip */}
         <div
           ref={scrollRef}
@@ -88,7 +88,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
               type="button"
               onClick={(e) => { e.stopPropagation(); scrollToIndex(Math.max(0, activeIndex - 1)); }}
               className={cn(
-                "absolute start-3 top-1/2 z-10 hidden -trangray-y-1/2 items-center justify-center rounded-full bg-white/90 p-1.5 shadow-md transition-opacity hover:bg-white sm:flex",
+                "absolute start-3 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white/90 p-1.5 shadow-md transition-opacity hover:bg-white sm:flex",
                 activeIndex === 0 && "pointer-events-none opacity-0"
               )}
             >
@@ -98,7 +98,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
               type="button"
               onClick={(e) => { e.stopPropagation(); scrollToIndex(Math.min(images.length - 1, activeIndex + 1)); }}
               className={cn(
-                "absolute end-3 top-1/2 z-10 hidden -trangray-y-1/2 items-center justify-center rounded-full bg-white/90 p-1.5 shadow-md transition-opacity hover:bg-white sm:flex",
+                "absolute end-3 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white/90 p-1.5 shadow-md transition-opacity hover:bg-white sm:flex",
                 activeIndex === images.length - 1 && "pointer-events-none opacity-0"
               )}
             >
@@ -116,7 +116,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
 
         {/* Dot indicators */}
         {images.length > 1 && images.length <= 8 && (
-          <div className="absolute bottom-3 start-1/2 z-10 flex -trangray-x-1/2 items-center gap-1.5">
+          <div className="absolute bottom-3 start-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
             {images.map((_, i) => (
               <button
                 key={i}

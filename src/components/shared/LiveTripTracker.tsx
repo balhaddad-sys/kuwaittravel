@@ -64,7 +64,7 @@ function LiveTripTracker({ currentPhase, steps, className }: LiveTripTrackerProp
                     "flex h-8 w-8 items-center justify-center rounded-full border-2 transition-all",
                     isDone
                       ? "border-indigo-500 bg-indigo-500 text-white"
-                      : "border-gray-200 bg-white text-gray-400 dark:border-gray-700 dark:bg-gray-800",
+                      : "border-gray-200 bg-white text-gray-400 dark:border-[#1A2D48] dark:bg-indigo-800",
                     isCurrent && "ring-4 ring-indigo-500/20"
                   )}
                 >

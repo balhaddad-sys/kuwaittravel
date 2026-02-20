@@ -48,7 +48,7 @@ function ChecklistItem({ id, title, titleAr, description, descriptionAr, categor
       onClick={() => onToggle(id, nextStatus())}
       className={cn(
         "flex w-full items-start gap-3 rounded-[var(--radius-md)] p-3 text-start transition-colors",
-        status === "completed" ? "bg-indigo-50/50 dark:bg-indigo-900/10" : "hover:bg-gray-50 dark:hover:bg-gray-800/50"
+        status === "completed" ? "bg-indigo-50/50 dark:bg-indigo-900/10" : "hover:bg-gray-50 dark:hover:bg-indigo-800/50"
       )}
     >
       <div className="mt-0.5 shrink-0">
@@ -57,7 +57,7 @@ function ChecklistItem({ id, title, titleAr, description, descriptionAr, categor
         ) : status === "skipped" ? (
           <SkipForward className="h-5 w-5 text-gray-400" />
         ) : (
-          <Circle className="h-5 w-5 text-gray-300 dark:text-gray-600" />
+          <Circle className="h-5 w-5 text-gray-300 dark:text-indigo-400/50" />
         )}
       </div>
       <div className="flex-1 min-w-0">
@@ -66,7 +66,7 @@ function ChecklistItem({ id, title, titleAr, description, descriptionAr, categor
           {required && <span className="ms-1 text-orange-500">*</span>}
         </p>
         {(description || descriptionAr) && (
-          <p className="mt-0.5 text-body-sm text-gray-500 dark:text-gray-400">
+          <p className="mt-0.5 text-body-sm text-gray-500 dark:text-indigo-300/60">
             {language === "ar" ? descriptionAr || description : description || descriptionAr}
           </p>
         )}
@@ -104,14 +104,14 @@ function PreparationChecklist({ items, onToggle, className }: PreparationCheckli
       {/* Progress */}
       <div>
         <div className="mb-2 flex items-center justify-between text-body-sm">
-          <span className="font-medium text-gray-700 dark:text-gray-200">
+          <span className="font-medium text-gray-700 dark:text-indigo-100">
             {t("التحضيرات", "Preparation")}
           </span>
           <span className="font-medium text-indigo-600 dark:text-indigo-400">
             {completed}/{total}
           </span>
         </div>
-        <div className="h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
+        <div className="h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-indigo-800">
           <div
             className="h-full rounded-full bg-indigo-500 transition-all duration-500"
             style={{ width: `${progress}%` }}

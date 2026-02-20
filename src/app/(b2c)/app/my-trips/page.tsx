@@ -69,7 +69,7 @@ interface EnrichedBooking extends Booking {
 
 function SkeletonBooking() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-gray-700/60 dark:bg-gray-800/80">
+    <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-[#1A2D48]/60 dark:bg-indigo-800/80">
       <div className="flex items-center gap-4 p-5">
         <div className="h-14 w-14 shrink-0 rounded-2xl bg-gray-100 dark:bg-gray-700 animate-pulse" />
         <div className="flex-1 space-y-2.5">
@@ -161,7 +161,7 @@ export default function MyTripsPage() {
   const filteredBookings = tab === "upcoming" ? upcomingBookings : pastBookings;
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] dark:bg-gray-900">
+    <div className="min-h-screen bg-[#F5F7FA] dark:bg-indigo-900">
 
       {/* ─── Hero Header ─── */}
       <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-500">
@@ -201,7 +201,7 @@ export default function MyTripsPage() {
                     onClick={() => setTab(tabKey)}
                     className={`relative flex items-center gap-2 rounded-t-xl px-5 pb-3.5 pt-2.5 text-[0.9375rem] font-semibold transition-all duration-200 ${
                       isActive
-                        ? "bg-[#F5F7FA] text-indigo-600 dark:bg-gray-900 dark:text-indigo-400"
+                        ? "bg-[#F5F7FA] text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400"
                         : "text-white/70 hover:text-white"
                     }`}
                   >
@@ -230,7 +230,7 @@ export default function MyTripsPage() {
         {!userData && !authLoading ? (
           <div className="py-10">
             <EmptyState
-              icon={<LogIn className="h-14 w-14 text-gray-200 dark:text-gray-600" />}
+              icon={<LogIn className="h-14 w-14 text-gray-200 dark:text-indigo-400/50" />}
               title={t("سجّل دخولك", "Sign in required")}
               description={t("سجّل دخولك لعرض رحلاتك وحجوزاتك", "Sign in to view your trips and bookings")}
               action={{ label: t("تسجيل الدخول", "Sign In"), onClick: () => router.push("/login") }}
@@ -259,7 +259,7 @@ export default function MyTripsPage() {
                   <button
                     type="button"
                     onClick={() => router.push(`/app/my-trips/${booking.id}`)}
-                    className="group w-full overflow-hidden rounded-2xl border border-gray-100/80 bg-white text-start shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)] hover:-trangray-y-0.5 dark:border-gray-700/60 dark:bg-gray-800/90"
+                    className="group w-full overflow-hidden rounded-2xl border border-gray-100/80 bg-white text-start shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)] hover:-translate-y-0.5 dark:border-[#1A2D48]/60 dark:bg-indigo-800/90"
                   >
                     {/* Coloured top accent line */}
                     <div className={`h-0.5 w-full ${status.dot}`} />
@@ -278,7 +278,7 @@ export default function MyTripsPage() {
                           {booking.tripTitle}
                         </h3>
                         <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                          <span className="flex items-center gap-1.5 text-[0.8125rem] text-gray-500 dark:text-gray-400">
+                          <span className="flex items-center gap-1.5 text-[0.8125rem] text-gray-500 dark:text-indigo-300/60">
                             <Calendar className="h-3.5 w-3.5 shrink-0" />
                             {departureLabel}
                           </span>
@@ -296,7 +296,7 @@ export default function MyTripsPage() {
                         <p className="font-numbers text-[0.9375rem] font-bold text-gray-900 dark:text-white">
                           {formatKWD(booking.totalKWD)}
                         </p>
-                        <ChevronLeft className="ms-auto mt-2 h-4 w-4 text-gray-300 transition-transform group-hover:trangray-x-0.5 rtl:rotate-180 rtl:group-hover:-trangray-x-0.5 dark:text-gray-500" />
+                        <ChevronLeft className="ms-auto mt-2 h-4 w-4 text-gray-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-indigo-300/45" />
                       </div>
                     </div>
                   </button>
@@ -307,7 +307,7 @@ export default function MyTripsPage() {
         ) : (
           <div className="py-10">
             <EmptyState
-              icon={<Plane className="h-14 w-14 text-gray-200 dark:text-gray-600" />}
+              icon={<Plane className="h-14 w-14 text-gray-200 dark:text-indigo-400/50" />}
               title={t("لا توجد رحلات", "No Trips Yet")}
               description={
                 tab === "upcoming"

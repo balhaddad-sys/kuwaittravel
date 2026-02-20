@@ -31,7 +31,7 @@ const menuItems = [
     descEn: "ID, passport, visa",
     icon: FileText,
     href: "/app/profile/documents",
-    iconBg: "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300",
+    iconBg: "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-indigo-200",
   },
   {
     labelAr: "طرق الدفع",
@@ -58,7 +58,7 @@ const menuItems = [
     descEn: "Preferences & notifications",
     icon: Settings,
     href: "/app/profile/settings",
-    iconBg: "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300",
+    iconBg: "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-indigo-200",
   },
   {
     labelAr: "المساعدة والدعم",
@@ -91,7 +91,7 @@ export default function ProfilePage() {
   /* ─── Guest view ─── */
   if (!firebaseUser && !authLoading) {
     return (
-      <div className="min-h-screen bg-[#F5F7FA] dark:bg-gray-900">
+      <div className="min-h-screen bg-[#F5F7FA] dark:bg-indigo-900">
         <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-500 pb-20 pt-10 sm:pb-24 sm:pt-14">
           <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
           <Container className="relative">
@@ -118,32 +118,32 @@ export default function ProfilePage() {
               {t("تسجيل الدخول", "Sign In")}
             </Button>
             {/* Settings still accessible for guests (language, dark mode) */}
-            <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)] dark:border-gray-700/60 dark:bg-gray-800/90">
+            <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)] dark:border-[#1A2D48]/60 dark:bg-indigo-800/90">
               <button
                 onClick={() => router.push("/app/profile/settings")}
-                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-gray-700/40 border-b border-gray-100 dark:border-gray-700/50"
+                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-indigo-700/40 border-b border-gray-100 dark:border-[#1A2D48]/50"
               >
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-indigo-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
                 <div className="min-w-0 flex-1">
                   <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">{t("الإعدادات", "Settings")}</p>
-                  <p className="text-[0.75rem] text-gray-400 dark:text-gray-500">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
+                  <p className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
                 </div>
-                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 rtl:rotate-180 dark:text-gray-600" />
+                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 rtl:rotate-180 dark:text-indigo-400/50" />
               </button>
               <button
                 onClick={() => router.push("/app/help")}
-                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-gray-700/40"
+                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-indigo-700/40"
               >
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400"><HelpCircle className="h-[1.125rem] w-[1.125rem]" /></span>
                 <div className="min-w-0 flex-1">
                   <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">{t("المساعدة والدعم", "Help & Support")}</p>
-                  <p className="text-[0.75rem] text-gray-400 dark:text-gray-500">{t("الأسئلة الشائعة", "FAQs & contact")}</p>
+                  <p className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">{t("الأسئلة الشائعة", "FAQs & contact")}</p>
                 </div>
-                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 rtl:rotate-180 dark:text-gray-600" />
+                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 rtl:rotate-180 dark:text-indigo-400/50" />
               </button>
             </div>
             {/* Language toggle */}
-            <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-gray-700/60 dark:bg-gray-800/90">
+            <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-[#1A2D48]/60 dark:bg-indigo-800/90">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-4">
                   <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400"><Globe className="h-[1.125rem] w-[1.125rem]" /></span>
@@ -159,7 +159,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] dark:bg-gray-900">
+    <div className="min-h-screen bg-[#F5F7FA] dark:bg-indigo-900">
 
       {/* ─── Hero Header ─── */}
       <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-500 pb-20 pt-10 sm:pb-24 sm:pt-14">
@@ -210,14 +210,14 @@ export default function ProfilePage() {
         <Container className="space-y-3 pb-6">
 
           {/* ─── Menu Card ─── */}
-          <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)] dark:border-gray-700/60 dark:bg-gray-800/90">
+          <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)] dark:border-[#1A2D48]/60 dark:bg-indigo-800/90">
             {menuItems.map((item, i) => (
               <button
                 key={i}
                 onClick={() => router.push(item.href)}
-                className={`group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-gray-700/40 ${
+                className={`group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-gray-50/80 dark:hover:bg-indigo-700/40 ${
                   i < menuItems.length - 1
-                    ? "border-b border-gray-100 dark:border-gray-700/50"
+                    ? "border-b border-gray-100 dark:border-[#1A2D48]/50"
                     : ""
                 }`}
               >
@@ -233,19 +233,19 @@ export default function ProfilePage() {
                   <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">
                     {t(item.labelAr, item.labelEn)}
                   </p>
-                  <p className="text-[0.75rem] text-gray-400 dark:text-gray-500">
+                  <p className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">
                     {t(item.descAr, item.descEn)}
                   </p>
                 </div>
 
-                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 transition-transform group-hover:trangray-x-0.5 rtl:rotate-180 rtl:group-hover:-trangray-x-0.5 dark:text-gray-600" />
+                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-indigo-400/50" />
               </button>
             ))}
           </div>
 
           {/* ─── Admin Shortcut ─── */}
           {showAdminShortcut && (
-            <div className="overflow-hidden rounded-2xl border border-orange-200/70 bg-white shadow-[0_2px_12px_rgba(251,191,36,0.10)] dark:border-orange-700/30 dark:bg-gray-800/90">
+            <div className="overflow-hidden rounded-2xl border border-orange-200/70 bg-white shadow-[0_2px_12px_rgba(251,191,36,0.10)] dark:border-orange-700/30 dark:bg-indigo-800/90">
               <button
                 onClick={() => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login")}
                 className="group flex w-full items-center gap-4 px-4 py-4 text-start transition-colors hover:bg-orange-50/60 dark:hover:bg-orange-900/10"
@@ -257,17 +257,17 @@ export default function ProfilePage() {
                   <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">
                     {t("وضع الإدارة", "Admin Mode")}
                   </p>
-                  <p className="text-[0.75rem] text-gray-400 dark:text-gray-500">
+                  <p className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">
                     {t("إدارة الحملات والمستخدمين", "Manage campaigns and platform users")}
                   </p>
                 </div>
-                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 transition-transform group-hover:trangray-x-0.5 rtl:rotate-180 rtl:group-hover:-trangray-x-0.5 dark:text-gray-600" />
+                <ChevronLeft className="h-4 w-4 shrink-0 text-gray-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-indigo-400/50" />
               </button>
             </div>
           )}
 
           {/* ─── Language ─── */}
-          <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-gray-700/60 dark:bg-gray-800/90">
+          <div className="overflow-hidden rounded-2xl border border-gray-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-[#1A2D48]/60 dark:bg-indigo-800/90">
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-4">
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400">
@@ -277,7 +277,7 @@ export default function ProfilePage() {
                   <p className="text-[0.9375rem] font-semibold text-gray-900 dark:text-white">
                     {t("اللغة", "Language")}
                   </p>
-                  <p className="text-[0.75rem] text-gray-400 dark:text-gray-500">
+                  <p className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">
                     {t("عربي / English", "Arabic / English")}
                   </p>
                 </div>
@@ -290,7 +290,7 @@ export default function ProfilePage() {
           <Button
             variant="ghost"
             fullWidth
-            className="h-12 rounded-2xl border border-red-100/80 bg-white text-red-500 shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-gray-800/90 dark:text-red-400 dark:hover:bg-red-900/10"
+            className="h-12 rounded-2xl border border-red-100/80 bg-white text-red-500 shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-indigo-800/90 dark:text-red-400 dark:hover:bg-red-900/10"
             leftIcon={<LogOut className="h-[1.125rem] w-[1.125rem]" />}
             onClick={handleLogout}
           >

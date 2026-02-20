@@ -212,7 +212,7 @@ export default function DiscoverPage() {
     language === "ar" ? (trip.titleAr || trip.title) : (trip.title || trip.titleAr);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-indigo-900">
 
       {/* ─────────────────────────────────────────────────────────
           HERO SECTION — Rich blue gradient, search centered
@@ -223,7 +223,7 @@ export default function DiscoverPage() {
         {/* Decorative orbs */}
         <div className="absolute -top-20 -start-20 h-64 w-64 rounded-full bg-indigo-500/30 blur-3xl" />
         <div className="absolute -top-10 -end-16 h-56 w-56 rounded-full bg-orange-400/20 blur-3xl" />
-        <div className="absolute bottom-0 start-1/2 h-32 w-96 -trangray-x-1/2 rounded-full bg-indigo-900/40 blur-2xl" />
+        <div className="absolute bottom-0 start-1/2 h-32 w-96 -translate-x-1/2 rounded-full bg-indigo-900/40 blur-2xl" />
 
         <Container className="relative">
           {/* Top bar within hero */}
@@ -256,7 +256,7 @@ export default function DiscoverPage() {
             {/* Search bar */}
             <div className="mt-5 sm:mt-6">
               <div className="relative mx-auto max-w-xl">
-                <div className="flex items-center gap-2 overflow-hidden rounded-2xl border border-white/10 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:bg-gray-800">
+                <div className="flex items-center gap-2 overflow-hidden rounded-2xl border border-white/10 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:bg-indigo-800">
                   <div className="flex h-14 items-center ps-4">
                     <Search className="h-5 w-5 text-gray-400" />
                   </div>
@@ -290,7 +290,7 @@ export default function DiscoverPage() {
       {/* ─────────────────────────────────────────────────────────
           STICKY FILTER BAR
           ───────────────────────────────────────────────────────── */}
-      <section className="sticky top-0 z-[var(--z-sticky)] border-b border-gray-200/80 bg-white/98 px-4 py-3 backdrop-blur-xl dark:border-gray-700/80 dark:bg-gray-900/98">
+      <section className="sticky top-0 z-[var(--z-sticky)] border-b border-gray-200/80 bg-white/98 px-4 py-3 backdrop-blur-xl dark:border-[#1A2D48] dark:bg-indigo-900/98">
         <Container>
           <div className="flex items-center gap-3">
             {/* Category pills */}
@@ -305,7 +305,7 @@ export default function DiscoverPage() {
                     className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.8125rem] font-medium transition-all duration-150 ${
                       isActive
                         ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
-                        : "border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                        : "border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-200"
                     }`}
                   >
                     <span>{pill.emoji}</span>
@@ -319,7 +319,7 @@ export default function DiscoverPage() {
             <button
               type="button"
               onClick={() => setFilterSheetOpen(true)}
-              className="relative flex shrink-0 items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+              className="relative flex shrink-0 items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-200"
             >
               <SlidersHorizontal className="h-4 w-4" />
               {t("فلتر", "Filters")}
@@ -375,11 +375,11 @@ export default function DiscoverPage() {
               <div>
                 <div className="flex items-center gap-2">
                   <Flame className="h-5 w-5 text-orange-500" />
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-indigo-50">
                     {t("رحلات مميزة", "Featured Trips")}
                   </h2>
                 </div>
-                <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mt-0.5 text-sm text-gray-500 dark:text-indigo-300/60">
                   {t("الأكثر طلباً من المسافرين", "Top picks by travelers")}
                 </p>
               </div>
@@ -422,11 +422,11 @@ export default function DiscoverPage() {
             <div className="mb-5">
               <div className="flex items-center gap-2">
                 <Globe2 className="h-5 w-5 text-indigo-600" />
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-indigo-50">
                   {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
                 </h2>
               </div>
-              <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
+              <p className="mt-0.5 text-sm text-gray-500 dark:text-indigo-300/60">
                 {t("اضغط لتصفية الرحلات", "Tap to filter trips by destination")}
               </p>
             </div>
@@ -448,15 +448,15 @@ export default function DiscoverPage() {
                     className={`group relative overflow-hidden rounded-2xl p-4 text-start transition-all duration-200 animate-stagger-fade-up ${
                       isSelected
                         ? "bg-indigo-600 text-white shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
-                        : "border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+                        : "border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md dark:border-[#1A2D48] dark:bg-indigo-800"
                     }`}
                     style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
                   >
                     <div className="text-2xl mb-2">{emoji}</div>
-                    <p className={`text-[0.875rem] font-semibold ${isSelected ? "text-white" : "text-gray-900 dark:text-white"}`}>
+                    <p className={`text-[0.875rem] font-semibold ${isSelected ? "text-white" : "text-gray-900 dark:text-indigo-50"}`}>
                       {dest.city}
                     </p>
-                    <p className={`text-[11px] mt-0.5 ${isSelected ? "text-indigo-100" : "text-gray-500 dark:text-gray-400"}`}>
+                    <p className={`text-[11px] mt-0.5 ${isSelected ? "text-indigo-100" : "text-gray-500 dark:text-indigo-300/55"}`}>
                       {dest.count} {t("رحلة", "trips")}
                     </p>
                   </button>
@@ -472,17 +472,17 @@ export default function DiscoverPage() {
             <div>
               <div className="flex items-center gap-2.5">
                 <Compass className="h-5 w-5 text-indigo-600" />
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-indigo-50">
                   {t("جميع الرحلات", "All Trips")}
                 </h2>
                 {!loading && filteredTrips.length > 0 && (
-                  <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                  <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-indigo-700/40 dark:text-indigo-200">
                     {filteredTrips.length}
                   </span>
                 )}
               </div>
               {!loading && (
-                <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mt-0.5 text-sm text-gray-500 dark:text-indigo-300/60">
                   {t("مرتبة حسب تاريخ المغادرة", "Sorted by departure date")}
                 </p>
               )}
@@ -544,11 +544,11 @@ export default function DiscoverPage() {
               <div>
                 <div className="flex items-center gap-2">
                   <Star className="h-5 w-5 text-orange-500" />
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-indigo-50">
                     {t("حملات موثقة", "Trusted Campaigns")}
                   </h2>
                 </div>
-                <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mt-0.5 text-sm text-gray-500 dark:text-indigo-300/60">
                   {t("منظمو رحلات معتمدون", "Verified trip organizers")}
                 </p>
               </div>
@@ -589,7 +589,7 @@ export default function DiscoverPage() {
           <section>
             <div className="mb-5 flex items-center gap-2">
               <Star className="h-5 w-5 text-orange-500" />
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-indigo-50">
                 {t("حملات موثقة", "Trusted Campaigns")}
               </h2>
             </div>

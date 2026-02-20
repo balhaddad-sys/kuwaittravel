@@ -32,7 +32,7 @@ function CampaignCard({
 
   return (
     <div
-      className={`group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-trangray-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:bg-gray-800 ${className ?? ""}`}
+      className={`group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:bg-indigo-800 ${className ?? ""}`}
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -73,13 +73,13 @@ function CampaignCard({
         <h3 className="text-[0.9375rem] font-bold text-gray-900 dark:text-white">
           {name}
         </h3>
-        <p className="mt-1 line-clamp-2 text-[0.8125rem] text-gray-500 dark:text-gray-400">
+        <p className="mt-1 line-clamp-2 text-[0.8125rem] text-gray-500 dark:text-indigo-300/60">
           {description}
         </p>
 
-        <div className="mt-3 flex items-center gap-4 text-[0.8125rem] text-gray-500 dark:text-gray-400">
+        <div className="mt-3 flex items-center gap-4 text-[0.8125rem] text-gray-500 dark:text-indigo-300/60">
           {rating > 0 && (
-            <span className="flex items-center gap-1 font-medium text-gray-700 dark:text-gray-300">
+            <span className="flex items-center gap-1 font-medium text-gray-700 dark:text-indigo-200">
               <Star className="h-3.5 w-3.5 fill-orange-400 text-orange-400" />
               <span className="font-numbers">{rating.toFixed(1)}</span>
             </span>

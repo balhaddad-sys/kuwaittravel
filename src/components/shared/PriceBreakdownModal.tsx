@@ -30,7 +30,7 @@ function PriceBreakdownModal({ open, onClose, items, total }: PriceBreakdownModa
           <div key={i} className="flex items-center justify-between">
             <span className={cn(
               "text-body-md",
-              item.type === "discount" ? "text-indigo-600 dark:text-indigo-400" : "text-gray-600 dark:text-gray-300"
+              item.type === "discount" ? "text-indigo-600 dark:text-indigo-400" : "text-gray-600 dark:text-indigo-200"
             )}>
               {t(item.labelAr, item.labelEn)}
             </span>
@@ -42,7 +42,7 @@ function PriceBreakdownModal({ open, onClose, items, total }: PriceBreakdownModa
             </span>
           </div>
         ))}
-        <div className="border-t-2 border-gray-200 pt-3 dark:border-gray-700">
+        <div className="border-t-2 border-gray-200 pt-3 dark:border-[#1A2D48]">
           <div className="flex items-center justify-between">
             <span className="text-body-lg font-bold text-gray-900 dark:text-white">
               {t("الإجمالي", "Total")}

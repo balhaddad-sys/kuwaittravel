@@ -94,7 +94,7 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, multiline }: { label: string; value: string; multiline?: boolean }) {
   return (
     <div>
-      <dt className="text-xs text-gray-500 dark:text-gray-400">{label}</dt>
+      <dt className="text-xs text-gray-500 dark:text-indigo-300/60">{label}</dt>
       <dd className={cn("font-medium text-gray-900 dark:text-white", !multiline && "truncate")}>
         {value}
       </dd>
@@ -297,7 +297,7 @@ export default function DisputesPage() {
                 onClick={() => setSelectedId(dispute.id)}
                 className="group w-full text-start"
               >
-                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-gray-700 dark:bg-gray-800">
+                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#1A2D48] dark:bg-indigo-800">
                   {/* Status indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[dispute.status])} />
 
@@ -306,13 +306,13 @@ export default function DisputesPage() {
                     "hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg",
                     dispute.type === "fraud" ? "bg-red-50 dark:bg-red-900/20" :
                     dispute.type === "refund" ? "bg-orange-50 dark:bg-orange-900/20" :
-                    "bg-gray-100 dark:bg-gray-800"
+                    "bg-gray-100 dark:bg-indigo-800"
                   )}>
                     <AlertTriangle className={cn(
                       "h-5 w-5",
                       dispute.type === "fraud" ? "text-red-500 dark:text-red-400" :
                       dispute.type === "refund" ? "text-orange-500 dark:text-orange-400" :
-                      "text-gray-500 dark:text-gray-400"
+                      "text-gray-500 dark:text-indigo-300/60"
                     )} />
                   </div>
 
@@ -327,7 +327,7 @@ export default function DisputesPage() {
                       <StatusBadge status={dispute.status} />
                       <TypeBadge type={dispute.type} />
                     </div>
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-gray-400 dark:text-gray-500">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
                       <span className="flex items-center gap-1">
                         <MessageSquare className="h-3 w-3" />
                         {dispute.filedByRole === "traveler"
@@ -335,7 +335,7 @@ export default function DisputesPage() {
                           : t("\u0635\u0627\u062d\u0628 \u062d\u0645\u0644\u0629", "Campaign Owner")}
                       </span>
                       {dispute.amountDisputedKWD != null && dispute.amountDisputedKWD > 0 && (
-                        <span className="font-semibold text-gray-600 dark:text-gray-300">
+                        <span className="font-semibold text-gray-600 dark:text-indigo-200">
                           {dispute.amountDisputedKWD.toFixed(3)} KWD
                         </span>
                       )}
@@ -344,7 +344,7 @@ export default function DisputesPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-indigo-400/50 dark:group-hover:text-gray-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -373,7 +373,7 @@ export default function DisputesPage() {
             <div className="shrink-0 flex items-center gap-3 border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-gray-500 hover:bg-gray-100 transition-colors dark:text-gray-400 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-gray-500 hover:bg-gray-100 transition-colors dark:text-indigo-300/60 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
@@ -560,7 +560,7 @@ export default function DisputesPage() {
       >
         {/* Status selector */}
         <div className="space-y-2 mb-4">
-          <label className="text-body-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-body-sm font-medium text-gray-700 dark:text-indigo-200">
             {t("\u0627\u0644\u062d\u0627\u0644\u0629 \u0627\u0644\u062c\u062f\u064a\u062f\u0629", "New Status")}
           </label>
           <div className="flex flex-wrap gap-2">
@@ -575,7 +575,7 @@ export default function DisputesPage() {
                     "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-sm font-medium border transition-all",
                     newStatus === opt.value
                       ? "border-orange-400 bg-orange-50 text-orange-800 dark:border-orange-600 dark:bg-orange-900/20 dark:text-orange-300"
-                      : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                      : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-300/60"
                   )}
                 >
                   {opt.icon}

@@ -23,7 +23,7 @@ function StatCard({ title, value, change, icon, hoverable = false, className }: 
     >
       <div className="flex items-start justify-between gap-2 sm:gap-3">
         <div className="min-w-0">
-          <p className="truncate text-body-sm text-gray-500 dark:text-gray-300">{title}</p>
+          <p className="truncate text-body-sm text-gray-500 dark:text-indigo-200">{title}</p>
           <p className="tabular-nums mt-1 text-heading-sm font-bold text-gray-900 dark:text-white sm:text-heading-lg lg:text-display-md">
             {value}
           </p>
@@ -39,7 +39,7 @@ function StatCard({ title, value, change, icon, hoverable = false, className }: 
                 {isPositive ? "+" : ""}
                 {change.value}%
               </span>
-              <span className="text-gray-500 dark:text-gray-300">{change.label}</span>
+              <span className="text-gray-500 dark:text-indigo-200">{change.label}</span>
             </p>
           )}
         </div>

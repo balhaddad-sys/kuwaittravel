@@ -35,7 +35,7 @@ export default function PaymentMethodsPage() {
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="text-body-sm font-bold text-gray-900 dark:text-white">{t(m.nameAr, m.nameEn)}</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">{t(m.descAr, m.descEn)}</p>
+                  <p className="text-xs text-gray-500 dark:text-indigo-300/60">{t(m.descAr, m.descEn)}</p>
                 </div>
                 <Badge variant="success" size="sm">{t("متاح", "Available")}</Badge>
               </div>
@@ -48,7 +48,7 @@ export default function PaymentMethodsPage() {
             <ShieldCheck className="h-5 w-5 shrink-0 text-orange-500 mt-0.5" />
             <div>
               <p className="text-body-sm font-bold text-gray-900 dark:text-white mb-1">{t("دفع آمن ومشفر", "Secure & Encrypted")}</p>
-              <p className="text-body-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-body-sm text-gray-600 dark:text-indigo-300/60 leading-relaxed">
                 {t(
                   "يتم الدفع مباشرة عند حجز الرحلة عبر بوابة دفع آمنة. لا نقوم بتخزين بيانات بطاقتك — كل عملية دفع تتم عبر بوابة مشفرة.",
                   "Payment is processed at booking time via a secure gateway. We do not store your card details — every transaction goes through an encrypted gateway."

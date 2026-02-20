@@ -216,7 +216,7 @@ export default function NotificationsPage() {
           <div className="space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-label font-medium text-gray-700 dark:text-gray-200 mb-1.5 block">
+                <label className="text-label font-medium text-gray-700 dark:text-indigo-100 mb-1.5 block">
                   {t("الرحلة", "Trip")}
                 </label>
                 <select
@@ -237,7 +237,7 @@ export default function NotificationsPage() {
                 </select>
               </div>
               <div>
-                <label className="text-label font-medium text-gray-700 dark:text-gray-200 mb-1.5 block">
+                <label className="text-label font-medium text-gray-700 dark:text-indigo-100 mb-1.5 block">
                   {t("المستلمون", "Recipients")}
                 </label>
                 <select
@@ -307,7 +307,7 @@ export default function NotificationsPage() {
             <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
               {t("الإشعارات الواردة", "Incoming Notifications")}
             </h3>
-            <p className="text-body-sm text-gray-500 dark:text-gray-400">
+            <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
               {t(
                 "الإشعارات المرسلة إلى حملتك من النظام",
                 "System notifications sent to your campaign"
@@ -359,13 +359,13 @@ export default function NotificationsPage() {
                           ? notif.titleAr || notif.title
                           : notif.title || notif.titleAr}
                       </p>
-                      <p className="text-body-sm text-gray-600 dark:text-gray-400 mt-0.5 line-clamp-2">
+                      <p className="text-body-sm text-gray-600 dark:text-indigo-300/60 mt-0.5 line-clamp-2">
                         {language === "ar"
                           ? notif.bodyAr || notif.body
                           : notif.body || notif.bodyAr}
                       </p>
                       {date && (
-                        <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-1 flex items-center gap-1">
+                        <p className="text-[11px] text-gray-400 dark:text-indigo-300/45 mt-1 flex items-center gap-1">
                           <Clock className="h-3 w-3" />
                           {formatRelativeTime(
                             date,

@@ -107,14 +107,14 @@ export default function OnboardingPage() {
         <div className="space-y-3">
           <button
             onClick={() => handleRoleSelect("traveler")}
-            className="sacred-panel animate-stagger-in flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-gray-300 hover:bg-gray-50/40 dark:hover:border-gray-600"
+            className="sacred-panel animate-stagger-in flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-gray-300 hover:bg-gray-50/40 dark:hover:border-indigo-600/50"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-900/30">
               <UserCircle className="h-7 w-7 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div>
               <p className="text-body-lg font-semibold text-gray-900 dark:text-white">{t("مسافر", "Traveler")}</p>
-              <p className="text-body-sm text-gray-500 dark:text-gray-400">{t("ابحث واحجز رحلاتك الزيارية", "Find and book pilgrimage trips")}</p>
+              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">{t("ابحث واحجز رحلاتك الزيارية", "Find and book pilgrimage trips")}</p>
             </div>
           </button>
 
@@ -127,7 +127,7 @@ export default function OnboardingPage() {
             </div>
             <div>
               <p className="text-body-lg font-semibold text-gray-900 dark:text-white">{t("مدير حملة", "Campaign Owner")}</p>
-              <p className="text-body-sm text-gray-500 dark:text-gray-400">{t("أدر حملتك وأنشئ رحلات جديدة", "Manage your campaign and launch new trips")}</p>
+              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">{t("أدر حملتك وأنشئ رحلات جديدة", "Manage your campaign and launch new trips")}</p>
             </div>
           </button>
         </div>

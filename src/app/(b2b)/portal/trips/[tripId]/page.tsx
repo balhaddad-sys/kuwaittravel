@@ -51,7 +51,7 @@ const STATUS_BADGE_CLASS: Record<string, string> = {
   in_transit: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300",
   completed: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
   cancelled: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300",
-  refunded: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+  refunded: "bg-gray-100 text-gray-700 dark:bg-indigo-800 dark:text-indigo-200",
 };
 
 function toCsvCell(value: string | number): string {
@@ -307,14 +307,14 @@ export default function TripDetailPage() {
                   return (
                     <div
                       key={booking.id}
-                      className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                      className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm dark:border-[#1A2D48] dark:bg-indigo-800"
                     >
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-0">
                           <p className="truncate text-body-sm font-bold text-gray-900 dark:text-white">
                             {booking.travelerName}
                           </p>
-                          <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-gray-500 dark:text-gray-400">
+                          <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-gray-500 dark:text-indigo-300/60">
                             <span className="inline-flex items-center gap-1" dir="ltr">
                               <Hash className="h-3 w-3" />
                               {booking.id}
@@ -367,7 +367,7 @@ export default function TripDetailPage() {
                 <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
                   البرنامج التفصيلي
                 </h3>
-                <p className="text-body-sm leading-7 text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                <p className="text-body-sm leading-7 text-gray-700 dark:text-indigo-200 whitespace-pre-line">
                   {trip.descriptionAr || trip.description}
                 </p>
               </div>
@@ -398,7 +398,7 @@ export default function TripDetailPage() {
               </Button>
             </div>
 
-            <div className="rounded-lg border border-dashed border-surface-border p-4 text-body-sm text-gray-600 dark:border-surface-dark-border dark:text-gray-300">
+            <div className="rounded-lg border border-dashed border-surface-border p-4 text-body-sm text-gray-600 dark:border-surface-dark-border dark:text-indigo-200">
               يتم حالياً توفير كشف المسافرين بصيغة CSV. يمكن استخدامه للطباعة أو للمشاركة مع فرق التشغيل.
             </div>
 
@@ -476,7 +476,7 @@ export default function TripDetailPage() {
                           })}
                         </span>
                       </div>
-                      <p className="mt-1 text-body-sm text-gray-600 dark:text-gray-300">
+                      <p className="mt-1 text-body-sm text-gray-600 dark:text-indigo-200">
                         {announcement.body}
                       </p>
                     </div>

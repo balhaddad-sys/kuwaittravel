@@ -130,21 +130,21 @@ export default function WalletPage() {
               <div className="h-6 w-6 animate-spin rounded-full border-3 border-orange-500 border-t-transparent" />
             </div>
           ) : bookings.length === 0 ? (
-            <p className="text-body-sm text-gray-500 dark:text-gray-400 text-center py-4">
+            <p className="text-body-sm text-gray-500 dark:text-indigo-300/60 text-center py-4">
               {t("لا توجد بيانات إيرادات بعد", "No revenue data yet")}
             </p>
           ) : (
             <div className="space-y-3">
-              <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-700 dark:bg-gray-800/50">
-                <span className="text-body-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
+                <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                   {t("إجمالي المحصّل", "Total Collected")}
                 </span>
                 <span className="text-body-sm font-bold text-emerald-600 dark:text-emerald-400 tabular-nums" dir="ltr">
                   {formatKWD(bookings.filter((b) => b.status !== "cancelled" && b.status !== "refunded").reduce((s, b) => s + b.paidKWD, 0))}
                 </span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-700 dark:bg-gray-800/50">
-                <span className="text-body-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
+                <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
                   {t("رسوم المنصة (2%)", "Platform Fee (2%)")}
                 </span>
                 <span className="text-body-sm font-bold text-red-500 dark:text-red-400 tabular-nums" dir="ltr">
@@ -152,7 +152,7 @@ export default function WalletPage() {
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg border border-orange-200 bg-orange-50/50 p-3 dark:border-orange-900/40 dark:bg-orange-900/10">
-                <span className="text-body-sm font-semibold text-gray-700 dark:text-gray-300">
+                <span className="text-body-sm font-semibold text-gray-700 dark:text-indigo-200">
                   {t("صافي الإيرادات", "Net Revenue")}
                 </span>
                 <span className="text-body-md font-bold text-gray-900 dark:text-white tabular-nums" dir="ltr">
@@ -169,7 +169,7 @@ export default function WalletPage() {
             <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
               {t("سجل المعاملات", "Transaction History")}
             </h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+            <p className="text-xs text-gray-500 dark:text-indigo-300/60 mt-0.5">
               {t("المدفوعات المستلمة من حجوزات المسافرين", "Payments received from traveler bookings")}
             </p>
           </div>
@@ -206,7 +206,7 @@ export default function WalletPage() {
                       <p className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
                         {booking.travelerName}
                       </p>
-                      <p className="text-[11px] text-gray-400 dark:text-gray-500 truncate">
+                      <p className="text-[11px] text-gray-400 dark:text-indigo-300/45 truncate">
                         {booking.tripTitle}
                       </p>
                     </div>

@@ -79,15 +79,15 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
         }
         footer={
           <div className="space-y-1.5">
-            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">
+            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-gray-400 dark:text-indigo-300/45">
               {t("التبديل إلى", "Switch to")}
             </p>
-            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200">
+            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 dark:text-indigo-300/60 dark:hover:bg-indigo-800/60 dark:hover:text-gray-200">
               <Compass className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               {t("المسافرون", "Travelers")}
             </Link>
             {isAdmin && (
-              <Link href="/admin/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200">
+              <Link href="/admin/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 dark:text-indigo-300/60 dark:hover:bg-indigo-800/60 dark:hover:text-gray-200">
                 <Shield className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                 {t("إدارة المشرفين", "Admin Console")}
               </Link>

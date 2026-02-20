@@ -14,12 +14,12 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     return (
       <div className="flex flex-col gap-1.5">
         {label && (
-          <label className="text-label font-medium text-gray-700 dark:text-gray-200">
+          <label className="text-label font-medium text-gray-700 dark:text-indigo-100">
             {label}
           </label>
         )}
         <div className="flex" dir="ltr">
-          <span className="flex items-center justify-center rounded-s-[var(--radius-input)] border border-e-0 border-surface-border bg-surface-muted px-3 text-body-md font-medium text-gray-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-gray-300">
+          <span className="flex items-center justify-center rounded-s-[var(--radius-input)] border border-e-0 border-surface-border bg-surface-muted px-3 text-body-md font-medium text-gray-600 dark:border-surface-dark-border dark:bg-surface-dark-card dark:text-indigo-200">
             {countryCode}
           </span>
           <input

@@ -325,7 +325,7 @@ export default function RegisterCampaignPage() {
               {form.descriptionAr && (
                 <div>
                   <dt className="text-gray-500 text-xs mb-0.5">{t("الوصف", "Description")}</dt>
-                  <dd className="text-gray-700 dark:text-gray-400">{form.descriptionAr}</dd>
+                  <dd className="text-gray-700 dark:text-indigo-300/60">{form.descriptionAr}</dd>
                 </div>
               )}
             </dl>

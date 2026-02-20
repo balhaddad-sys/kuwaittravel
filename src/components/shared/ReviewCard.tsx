@@ -57,7 +57,7 @@ function ReviewCard({
                   key={i}
                   className={cn(
                     "h-3.5 w-3.5",
-                    i < rating ? "fill-orange-400 text-orange-400" : "fill-gray-200 text-gray-200 dark:fill-gray-600 dark:text-gray-600"
+                    i < rating ? "fill-orange-400 text-orange-400" : "fill-gray-200 text-gray-200 dark:fill-gray-600 dark:text-indigo-400/50"
                   )}
                 />
               ))}
@@ -70,7 +70,7 @@ function ReviewCard({
       {/* Content */}
       <div className="mt-3">
         <p className="text-body-md font-semibold text-gray-800 dark:text-white">{title}</p>
-        <p className={cn("mt-1 text-body-sm text-gray-600 dark:text-gray-300", !expanded && isLong && "line-clamp-3")}>
+        <p className={cn("mt-1 text-body-sm text-gray-600 dark:text-indigo-200", !expanded && isLong && "line-clamp-3")}>
           {body}
         </p>
         {isLong && (
@@ -99,7 +99,7 @@ function ReviewCard({
         <div className="mt-3 border-t border-surface-border pt-3 dark:border-surface-dark-border">
           <button
             onClick={onHelpful}
-            className="flex items-center gap-1.5 text-body-sm text-gray-500 transition-colors hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
+            className="flex items-center gap-1.5 text-body-sm text-gray-500 transition-colors hover:text-indigo-600 dark:text-indigo-300/60 dark:hover:text-indigo-400"
           >
             <ThumbsUp className="h-3.5 w-3.5" />
             {t("مفيد", "Helpful")} ({helpful})

@@ -18,11 +18,11 @@ const paddingMap = {
 };
 
 const variantMap = {
-  elevated: "border border-gray-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] dark:border-gray-700 dark:bg-gray-800 dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
+  elevated: "border border-gray-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] dark:border-[#1A2D48] dark:bg-indigo-800 dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
   outlined:
-    "border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800",
+    "border border-gray-200 bg-white dark:border-[#1A2D48] dark:bg-indigo-800",
   filled:
-    "border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/60",
+    "border border-gray-100 bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800/60",
   glass: "sacred-glass",
 };
 
@@ -44,9 +44,9 @@ function Card({
         variantMap[variant],
         paddingMap[padding],
         hoverable &&
-          "cursor-pointer will-change-transform hover:-trangray-y-1 hover:border-gray-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.1)] dark:hover:border-gray-600",
+          "cursor-pointer will-change-transform hover:-translate-y-1 hover:border-gray-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.08),0_12px_32px_rgba(0,0,0,0.1)] dark:hover:border-indigo-600/50",
         isInteractive &&
-          "cursor-pointer will-change-transform hover:-trangray-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+          "cursor-pointer will-change-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
         className
       )}
       onClick={onClick}

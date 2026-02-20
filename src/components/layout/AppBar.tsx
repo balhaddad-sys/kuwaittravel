@@ -28,7 +28,7 @@ function AppBar({
   return (
     <header
       className={cn(
-        "sticky top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-gray-200/80 bg-white/98 px-4 backdrop-blur-xl sm:h-16 sm:gap-4 sm:px-6 lg:px-8 dark:border-gray-700/80 dark:bg-gray-900/98",
+        "sticky top-0 z-[var(--z-topbar)] flex h-14 items-center justify-between gap-3 border-b border-gray-200/80 bg-white/98 px-4 backdrop-blur-xl sm:h-16 sm:gap-4 sm:px-6 lg:px-8 dark:border-[#1A2D48] dark:bg-indigo-900/98",
         "shadow-[0_1px_0_rgba(0,0,0,0.06)]",
         className
       )}
@@ -37,17 +37,17 @@ function AppBar({
         {onMenuToggle && (
           <button
             onClick={onMenuToggle}
-            className="shrink-0 rounded-xl border border-transparent p-2 text-gray-400 transition-all duration-[var(--duration-ui)] hover:border-gray-200 hover:bg-gray-50 hover:text-gray-700 active:scale-95 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-200 lg:hidden"
+            className="shrink-0 rounded-xl border border-transparent p-2 text-gray-500 transition-all duration-[var(--duration-ui)] hover:border-gray-200 hover:bg-gray-50 hover:text-gray-700 active:scale-95 dark:text-indigo-300/60 dark:hover:border-indigo-700/40 dark:hover:bg-indigo-800/60 dark:hover:text-indigo-100 lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
         )}
         <div className="min-w-0">
           {breadcrumbs && breadcrumbs.length > 0 && (
-            <nav className="hidden items-center gap-1.5 text-sm text-gray-400 dark:text-gray-500 sm:flex">
+            <nav className="hidden items-center gap-1.5 text-sm text-gray-500 dark:text-indigo-300/50 sm:flex">
               {breadcrumbs.map((crumb, i) => (
                 <span key={i} className="flex items-center gap-1.5">
-                  {i > 0 && <span className="text-gray-300 dark:text-gray-600">/</span>}
+                  {i > 0 && <span className="text-gray-300 dark:text-indigo-700/60">/</span>}
                   {crumb.href ? (
                     <Link href={crumb.href} prefetch className="transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">
                       {crumb.label}

@@ -42,7 +42,7 @@ export default function HelpPage() {
                   <span className="text-body-sm sm:text-body-md font-semibold text-gray-900 dark:text-white">{t(faq.qAr, faq.qEn)}</span>
                   <ChevronDown className={cn("h-4 w-4 shrink-0 text-gray-400 transition-transform", openIdx === i && "rotate-180")} />
                 </button>
-                {openIdx === i && <p className="pb-3.5 text-body-sm text-gray-600 dark:text-gray-400 leading-relaxed">{t(faq.aAr, faq.aEn)}</p>}
+                {openIdx === i && <p className="pb-3.5 text-body-sm text-gray-600 dark:text-indigo-300/60 leading-relaxed">{t(faq.aAr, faq.aEn)}</p>}
               </div>
             ))}
           </div>
@@ -56,7 +56,7 @@ export default function HelpPage() {
               { icon: Mail, labelAr: "البريد الإلكتروني", labelEn: "Email", value: "support@rahal.kw" },
               { icon: MessageCircle, labelAr: "واتساب", labelEn: "WhatsApp", value: "+965 9999 0000" },
             ].map((c, i) => (
-              <div key={i} className="flex items-center gap-3 text-body-sm text-gray-700 dark:text-gray-300">
+              <div key={i} className="flex items-center gap-3 text-body-sm text-gray-700 dark:text-indigo-200">
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700"><c.icon className="h-4 w-4 text-gray-500" /></span>
                 <div>
                   <p className="font-medium">{t(c.labelAr, c.labelEn)}</p>

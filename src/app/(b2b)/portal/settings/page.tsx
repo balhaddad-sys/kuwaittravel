@@ -150,7 +150,7 @@ export default function SettingsPage() {
                   {t("البيانات البنكية", "Bank Details")}
                 </h3>
               </div>
-              <p className="text-body-sm text-gray-500 dark:text-gray-400">
+              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
                 {t(
                   "تُستخدم لتحويل الأرباح إلى حسابك البنكي.",
                   "Used for transferring earnings to your bank account."
@@ -204,7 +204,7 @@ export default function SettingsPage() {
               <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
                 {t("إعدادات الإشعارات", "Notification Settings")}
               </h3>
-              <p className="text-body-sm text-gray-500 dark:text-gray-400">
+              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
                 {t(
                   "تحكم في أنواع الإشعارات التي تريد استقبالها.",
                   "Control which types of notifications you want to receive."
@@ -212,7 +212,7 @@ export default function SettingsPage() {
               </p>
               <div className="space-y-3">
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-gray-200">
+                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
                     {t(
                       "إشعارات الحجوزات الجديدة",
                       "New booking notifications"
@@ -226,7 +226,7 @@ export default function SettingsPage() {
                   />
                 </label>
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-gray-200">
+                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
                     {t("إشعارات المدفوعات", "Payment notifications")}
                   </span>
                   <input
@@ -237,7 +237,7 @@ export default function SettingsPage() {
                   />
                 </label>
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-gray-200">
+                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
                     {t(
                       "تنبيهات المستندات الناقصة",
                       "Missing document alerts"
@@ -251,7 +251,7 @@ export default function SettingsPage() {
                   />
                 </label>
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-gray-200">
+                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
                     {t("تقارير أسبوعية", "Weekly reports")}
                   </span>
                   <input
@@ -262,7 +262,7 @@ export default function SettingsPage() {
                   />
                 </label>
               </div>
-              <p className="text-[11px] text-gray-400 dark:text-gray-500">
+              <p className="text-[11px] text-gray-400 dark:text-indigo-300/45">
                 {t(
                   "إعدادات الإشعارات محفوظة محلياً. سيتم تفعيل الحفظ السحابي قريباً.",
                   "Notification settings are saved locally. Cloud sync will be available soon."

@@ -53,7 +53,7 @@ function FileUpload({
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       {label && (
-        <label className="text-label font-medium text-gray-700 dark:text-gray-200">
+        <label className="text-label font-medium text-gray-700 dark:text-indigo-100">
           {label}
         </label>
       )}
@@ -71,7 +71,7 @@ function FileUpload({
         )}
       >
         <Upload className="h-8 w-8 text-gray-400" />
-        <p className="text-body-md text-gray-600 dark:text-gray-300">
+        <p className="text-body-md text-gray-600 dark:text-indigo-200">
           {t("اسحب الملفات هنا أو اضغط للاختيار", "Drag files here or click to choose")}
         </p>
         <p className="text-body-sm text-gray-400">
@@ -95,7 +95,7 @@ function FileUpload({
               className="flex items-center gap-2 rounded-[var(--radius-md)] bg-surface-muted dark:bg-surface-dark-card p-2"
             >
               <FileText className="h-4 w-4 text-gray-500 shrink-0" />
-              <span className="text-body-sm text-gray-700 dark:text-gray-200 flex-1 truncate">
+              <span className="text-body-sm text-gray-700 dark:text-indigo-100 flex-1 truncate">
                 {file.name}
               </span>
               <span className="text-body-sm text-gray-400 shrink-0">

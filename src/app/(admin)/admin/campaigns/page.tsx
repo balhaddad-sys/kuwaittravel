@@ -78,7 +78,7 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, dir, multiline }: { label: string; value: string; dir?: string; multiline?: boolean }) {
   return (
     <div>
-      <dt className="text-xs text-gray-500 dark:text-gray-400">{label}</dt>
+      <dt className="text-xs text-gray-500 dark:text-indigo-300/60">{label}</dt>
       <dd className={cn("font-medium text-gray-900 dark:text-white", !multiline && "truncate")} dir={dir}>
         {value}
       </dd>
@@ -322,15 +322,15 @@ export default function AdminCampaignsPage() {
               >
                 <div
                   className={cn(
-                    "flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-gray-700 dark:bg-gray-800",
+                    "flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#1A2D48] dark:bg-indigo-800",
                   )}
                 >
                   {/* Status indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[campaign.verificationStatus])} />
 
                   {/* Icon — desktop only */}
-                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-                    <Building2 className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-800">
+                    <Building2 className="h-5 w-5 text-gray-500 dark:text-indigo-300/60" />
                   </div>
 
                   {/* Content */}
@@ -341,10 +341,10 @@ export default function AdminCampaignsPage() {
                       </h3>
                       <VerificationChip status={campaign.verificationStatus} />
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5" dir="ltr">
+                    <p className="text-xs text-gray-500 dark:text-indigo-300/60 truncate mt-0.5" dir="ltr">
                       {campaign.name}
                     </p>
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-gray-400 dark:text-gray-500">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
                       <span className="flex items-center gap-1">
                         <FileText className="h-3 w-3" />
                         {campaign.licenseNumber}
@@ -358,7 +358,7 @@ export default function AdminCampaignsPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-indigo-400/50 dark:group-hover:text-gray-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -392,7 +392,7 @@ export default function AdminCampaignsPage() {
               {/* Back arrow — mobile */}
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-gray-500 hover:bg-gray-100 transition-colors dark:text-gray-400 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-gray-500 hover:bg-gray-100 transition-colors dark:text-indigo-300/60 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
@@ -449,7 +449,7 @@ export default function AdminCampaignsPage() {
                 )}
                 {selected.licenseImageUrl && (
                   <div>
-                    <dt className="text-xs text-gray-500 dark:text-gray-400">{t("صورة الترخيص", "License Image")}</dt>
+                    <dt className="text-xs text-gray-500 dark:text-indigo-300/60">{t("صورة الترخيص", "License Image")}</dt>
                     <dd>
                       <a
                         href={selected.licenseImageUrl}
@@ -485,7 +485,7 @@ export default function AdminCampaignsPage() {
               {/* Verification Status */}
               <DetailSection icon={<ShieldAlert />} title={t("حالة التحقق", "Verification Status")}>
                 <div>
-                  <dt className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t("الحالة", "Status")}</dt>
+                  <dt className="text-xs text-gray-500 dark:text-indigo-300/60 mb-1">{t("الحالة", "Status")}</dt>
                   <dd><VerificationChip status={selected.verificationStatus} /></dd>
                 </div>
                 <DetailRow label={t("تاريخ التسجيل", "Registered")} value={getCreatedDate(selected)} />
