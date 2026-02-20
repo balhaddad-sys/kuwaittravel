@@ -308,7 +308,7 @@ export default function AdminDashboardPage() {
 
         {/* Revenue Summary */}
         <Card variant="elevated" padding="lg" className="overflow-hidden">
-          <div className="-mx-4 -mt-4 mb-4 border-b border-surface-border/80 bg-gradient-to-r from-gray-700 to-gray-900 px-4 py-3 text-white dark:border-surface-dark-border/80 sm:-mx-6 sm:-mt-6 sm:px-6">
+          <div className="-mx-4 -mt-4 mb-4 border-b border-surface-border/80 bg-gradient-to-r from-indigo-800 to-indigo-900 px-4 py-3 text-white dark:border-surface-dark-border/80 sm:-mx-6 sm:-mt-6 sm:px-6">
             <h3 className="text-body-lg sm:text-heading-sm font-bold flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-orange-300" /> {t("\u0645\u0644\u062e\u0635 \u0627\u0644\u0625\u064a\u0631\u0627\u062f\u0627\u062a", "Revenue Summary")}
             </h3>

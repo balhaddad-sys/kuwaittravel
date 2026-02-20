@@ -125,7 +125,7 @@ export default function CampaignDetailPage({
                 className="h-16 w-16 rounded-[var(--radius-lg)] object-cover shadow-md"
               />
             ) : (
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-indigo-800 dark:to-indigo-700">
                 <Building2 className="h-8 w-8 text-gray-500" />
               </div>
             )}
@@ -245,7 +245,7 @@ export default function CampaignDetailPage({
                       }
                     >
                       <div className="flex items-center gap-3 sm:gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 sm:h-14 sm:w-14">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-indigo-800 dark:to-indigo-700 sm:h-14 sm:w-14">
                           <Calendar className="h-5 w-5 text-gray-500 sm:h-6 sm:w-6" />
                         </div>
                         <div className="min-w-0 flex-1">

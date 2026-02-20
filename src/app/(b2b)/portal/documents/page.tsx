@@ -164,7 +164,7 @@ export default function DocumentsPage() {
 
             {/* Trip Documents */}
             <Card variant="elevated" padding="none" className="overflow-hidden">
-              <div className="px-4 py-3 border-b border-surface-border dark:border-surface-dark-border bg-gradient-to-r from-gray-800 to-gray-900">
+              <div className="px-4 py-3 border-b border-surface-border dark:border-surface-dark-border bg-gradient-to-r from-indigo-800 to-indigo-900">
                 <h3 className="text-body-lg sm:text-heading-sm font-bold text-white flex items-center gap-2">
                   <ClipboardList className="h-5 w-5" />
                   {t("مستندات الرحلات", "Trip Documents")}

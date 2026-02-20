@@ -39,7 +39,7 @@ function CampaignCard({
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
     >
       {/* Cover image */}
-      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-gray-700 dark:to-gray-600">
+      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-800 dark:to-indigo-700">
         {coverUrl && (
           <Image
             src={coverUrl}

@@ -156,7 +156,7 @@ export default function ProfilePage() {
       <Container size="md" className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Cover + Avatar */}
         <Card variant="elevated" padding="none">
-          <div className="travel-cover-pattern relative h-32 sm:h-48 rounded-t-[var(--radius-card)] bg-gradient-to-l from-gray-700 via-gray-800 to-gray-900">
+          <div className="travel-cover-pattern relative h-32 sm:h-48 rounded-t-[var(--radius-card)] bg-gradient-to-l from-indigo-700 via-indigo-800 to-indigo-900">
             {editing && (
               <button className="absolute top-4 end-4 flex items-center gap-1.5 rounded-lg bg-black/40 px-3 py-1.5 text-body-sm text-white hover:bg-black/60 transition-colors">
                 <Camera className="h-4 w-4" /> {t("تغيير الغلاف", "Change Cover")}
