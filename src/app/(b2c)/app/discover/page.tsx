@@ -447,7 +447,7 @@ export default function DiscoverPage() {
                     }}
                     className={`group relative overflow-hidden rounded-2xl p-4 text-start transition-all duration-200 animate-stagger-fade-up ${
                       isSelected
-                        ? "bg-indigo-600 text-white shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+                        ? "bg-indigo-600 text-white shadow-[0_4px_20px_rgba(30,58,95,0.3)]"
                         : "border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md dark:border-[#1A2D48] dark:bg-indigo-800"
                     }`}
                     style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}

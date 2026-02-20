@@ -217,7 +217,7 @@ export default function DashboardPage() {
 
         {/* Active Trips Section */}
         <Card variant="elevated" padding="none" className="overflow-hidden">
-          <div className="flex items-center justify-between border-b border-surface-border/85 bg-gradient-to-r from-gray-800 to-gray-900 px-4 py-3 dark:border-surface-dark-border/85">
+          <div className="flex items-center justify-between border-b border-surface-border/85 bg-gradient-to-r from-indigo-800 to-indigo-900 px-4 py-3 dark:border-surface-dark-border/85">
             <h2 className="text-body-lg sm:text-heading-md font-bold text-white">
               {t("الرحلات النشطة", "Active Trips")}
             </h2>
@@ -323,7 +323,7 @@ export default function DashboardPage() {
                       key={booking.id}
                       className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50/50 p-2.5 dark:border-[#1A2D48] dark:bg-indigo-800/50"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-700">
                         <BookOpen className="h-4 w-4 text-gray-500 dark:text-indigo-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
