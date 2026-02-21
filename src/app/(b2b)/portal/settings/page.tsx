@@ -110,7 +110,7 @@ export default function SettingsPage() {
             { label: t("الإعدادات", "Settings") },
           ]}
         />
-        <Container size="md" className="sacred-pattern py-3 sm:py-6">
+        <Container size="md" className="eo-pattern py-3 sm:py-6">
           <AlertBanner
             type="warning"
             title={t("لا توجد حملة مرتبطة", "No campaign linked")}
@@ -133,24 +133,24 @@ export default function SettingsPage() {
           { label: t("الإعدادات", "Settings") },
         ]}
       />
-      <Container size="md" className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container size="md" className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+            <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
           </div>
         ) : (
           <>
             {/* Bank Details */}
             <Card variant="elevated" padding="lg" className="space-y-4">
               <div className="flex items-center gap-2">
-                <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
+                <span className="eo-icon-circle eo-icon-circle-sm eo-icon-circle-accent">
                   <Landmark className="h-4 w-4" />
                 </span>
-                <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
+                <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">
                   {t("البيانات البنكية", "Bank Details")}
                 </h3>
               </div>
-              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
+              <p className="text-body-sm text-slate-500 dark:text-slate-300/60">
                 {t(
                   "تُستخدم لتحويل الأرباح إلى حسابك البنكي.",
                   "Used for transferring earnings to your bank account."
@@ -201,10 +201,10 @@ export default function SettingsPage() {
 
             {/* Notification Settings */}
             <Card variant="elevated" padding="lg" className="space-y-4">
-              <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
+              <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">
                 {t("إعدادات الإشعارات", "Notification Settings")}
               </h3>
-              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
+              <p className="text-body-sm text-slate-500 dark:text-slate-300/60">
                 {t(
                   "تحكم في أنواع الإشعارات التي تريد استقبالها.",
                   "Control which types of notifications you want to receive."
@@ -212,7 +212,7 @@ export default function SettingsPage() {
               </p>
               <div className="space-y-3">
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
+                  <span className="text-body-sm sm:text-body-md text-slate-700 dark:text-slate-100">
                     {t(
                       "إشعارات الحجوزات الجديدة",
                       "New booking notifications"
@@ -222,22 +222,22 @@ export default function SettingsPage() {
                     type="checkbox"
                     checked={notifBookings}
                     onChange={(e) => setNotifBookings(e.target.checked)}
-                    className="h-5 w-5 shrink-0 rounded border-gray-400 text-gray-700"
+                    className="h-5 w-5 shrink-0 rounded border-slate-400 text-slate-700"
                   />
                 </label>
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
+                  <span className="text-body-sm sm:text-body-md text-slate-700 dark:text-slate-100">
                     {t("إشعارات المدفوعات", "Payment notifications")}
                   </span>
                   <input
                     type="checkbox"
                     checked={notifPayments}
                     onChange={(e) => setNotifPayments(e.target.checked)}
-                    className="h-5 w-5 shrink-0 rounded border-gray-400 text-gray-700"
+                    className="h-5 w-5 shrink-0 rounded border-slate-400 text-slate-700"
                   />
                 </label>
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
+                  <span className="text-body-sm sm:text-body-md text-slate-700 dark:text-slate-100">
                     {t(
                       "تنبيهات المستندات الناقصة",
                       "Missing document alerts"
@@ -247,22 +247,22 @@ export default function SettingsPage() {
                     type="checkbox"
                     checked={notifDocuments}
                     onChange={(e) => setNotifDocuments(e.target.checked)}
-                    className="h-5 w-5 shrink-0 rounded border-gray-400 text-gray-700"
+                    className="h-5 w-5 shrink-0 rounded border-slate-400 text-slate-700"
                   />
                 </label>
                 <label className="flex items-center justify-between gap-3 py-2.5 cursor-pointer">
-                  <span className="text-body-sm sm:text-body-md text-gray-700 dark:text-indigo-100">
+                  <span className="text-body-sm sm:text-body-md text-slate-700 dark:text-slate-100">
                     {t("تقارير أسبوعية", "Weekly reports")}
                   </span>
                   <input
                     type="checkbox"
                     checked={notifWeekly}
                     onChange={(e) => setNotifWeekly(e.target.checked)}
-                    className="h-5 w-5 shrink-0 rounded border-gray-400 text-gray-700"
+                    className="h-5 w-5 shrink-0 rounded border-slate-400 text-slate-700"
                   />
                 </label>
               </div>
-              <p className="text-[11px] text-gray-400 dark:text-indigo-300/45">
+              <p className="text-[11px] text-slate-400 dark:text-slate-400/45">
                 {t(
                   "إعدادات الإشعارات محفوظة محلياً. سيتم تفعيل الحفظ السحابي قريباً.",
                   "Notification settings are saved locally. Cloud sync will be available soon."

@@ -54,7 +54,7 @@ const statusBarColor: Record<DisputeStatus, string> = {
   under_review: "bg-orange-400",
   resolved: "bg-emerald-500",
   escalated: "bg-red-600",
-  closed: "bg-gray-400",
+  closed: "bg-slate-400",
 };
 
 /* -- Helper components -- */
@@ -81,9 +81,9 @@ function TypeBadge({ type }: { type: DisputeType }) {
 
 function DetailSection({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-surface-border/70 bg-gray-50/60 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.03]">
-      <h4 className="text-body-sm font-bold text-gray-900 dark:text-white mb-2.5 flex items-center gap-2">
-        <span className="text-orange-500 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>
+    <div className="rounded-xl border border-surface-border/70 bg-slate-50/60 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.03]">
+      <h4 className="text-body-sm font-bold text-slate-900 dark:text-white mb-2.5 flex items-center gap-2">
+        <span className="text-sky-500 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>
         {title}
       </h4>
       <dl className="space-y-2 text-body-sm">{children}</dl>
@@ -94,8 +94,8 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, multiline }: { label: string; value: string; multiline?: boolean }) {
   return (
     <div>
-      <dt className="text-xs text-gray-500 dark:text-indigo-300/60">{label}</dt>
-      <dd className={cn("font-medium text-gray-900 dark:text-white", !multiline && "truncate")}>
+      <dt className="text-xs text-slate-500 dark:text-slate-400/70">{label}</dt>
+      <dd className={cn("font-medium text-slate-900 dark:text-white", !multiline && "truncate")}>
         {value}
       </dd>
     </div>
@@ -253,7 +253,7 @@ export default function DisputesPage() {
         ]}
       />
 
-      <Container className="sacred-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="eo-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Filter chips */}
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {filterChips.map((f) => (
@@ -262,8 +262,8 @@ export default function DisputesPage() {
               type="button"
               onClick={() => setFilter(f.value)}
               className={cn(
-                "sacred-filter-chip inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs sm:text-body-sm font-medium transition-all",
-                filter === f.value && "sacred-filter-chip-active"
+                "eo-filter-chip inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs sm:text-body-sm font-medium transition-all",
+                filter === f.value && "eo-filter-chip-active"
               )}
             >
               {f.label}
@@ -277,7 +277,7 @@ export default function DisputesPage() {
         {/* Disputes list */}
         {loadingData ? (
           <div className="flex items-center justify-center py-16">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
           </div>
         ) : sorted.length === 0 ? (
           <EmptyState
@@ -297,7 +297,7 @@ export default function DisputesPage() {
                 onClick={() => setSelectedId(dispute.id)}
                 className="group w-full text-start"
               >
-                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#1A2D48] dark:bg-indigo-800">
+                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#2D3B4F] dark:bg-[#1E293B]">
                   {/* Status indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[dispute.status])} />
 
@@ -306,20 +306,20 @@ export default function DisputesPage() {
                     "hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg",
                     dispute.type === "fraud" ? "bg-red-50 dark:bg-red-900/20" :
                     dispute.type === "refund" ? "bg-orange-50 dark:bg-orange-900/20" :
-                    "bg-gray-100 dark:bg-indigo-800"
+                    "bg-slate-100 dark:bg-[#1E293B]"
                   )}>
                     <AlertTriangle className={cn(
                       "h-5 w-5",
                       dispute.type === "fraud" ? "text-red-500 dark:text-red-400" :
                       dispute.type === "refund" ? "text-orange-500 dark:text-orange-400" :
-                      "text-gray-500 dark:text-indigo-300/60"
+                      "text-slate-500 dark:text-slate-400/70"
                     )} />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0 py-3 pe-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-body-sm font-bold text-gray-900 dark:text-white truncate">
+                      <h3 className="text-body-sm font-bold text-slate-900 dark:text-white truncate">
                         {dispute.subject}
                       </h3>
                     </div>
@@ -327,7 +327,7 @@ export default function DisputesPage() {
                       <StatusBadge status={dispute.status} />
                       <TypeBadge type={dispute.type} />
                     </div>
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-slate-400/60">
                       <span className="flex items-center gap-1">
                         <MessageSquare className="h-3 w-3" />
                         {dispute.filedByRole === "traveler"
@@ -335,7 +335,7 @@ export default function DisputesPage() {
                           : t("\u0635\u0627\u062d\u0628 \u062d\u0645\u0644\u0629", "Campaign Owner")}
                       </span>
                       {dispute.amountDisputedKWD != null && dispute.amountDisputedKWD > 0 && (
-                        <span className="font-semibold text-gray-600 dark:text-indigo-200">
+                        <span className="font-semibold text-slate-600 dark:text-slate-300">
                           {dispute.amountDisputedKWD.toFixed(3)} KWD
                         </span>
                       )}
@@ -344,7 +344,7 @@ export default function DisputesPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-indigo-400/50 dark:group-hover:text-gray-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-slate-500 dark:group-hover:text-slate-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -373,12 +373,12 @@ export default function DisputesPage() {
             <div className="shrink-0 flex items-center gap-3 border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-gray-500 hover:bg-gray-100 transition-colors dark:text-indigo-300/60 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-slate-400/70 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
               <div className="flex-1 min-w-0">
-                <h2 className="font-bold text-gray-900 dark:text-white truncate text-body-md">
+                <h2 className="font-bold text-slate-900 dark:text-white truncate text-body-md">
                   {selected.subject}
                 </h2>
                 <div className="flex items-center gap-1.5 mt-0.5">
@@ -388,7 +388,7 @@ export default function DisputesPage() {
               </div>
               <button
                 onClick={() => setSelectedId(null)}
-                className="hidden sm:flex shrink-0 rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 transition-colors dark:hover:bg-surface-dark-border"
+                className="hidden sm:flex shrink-0 rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 transition-colors dark:hover:bg-surface-dark-border"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -467,7 +467,7 @@ export default function DisputesPage() {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block text-body-sm font-medium text-orange-600 hover:text-orange-700 transition-colors truncate"
+                        className="block text-body-sm font-medium text-sky-600 hover:text-sky-700 transition-colors truncate"
                       >
                         {t("\u0645\u0631\u0641\u0642", "Attachment")} {i + 1}
                       </a>
@@ -560,7 +560,7 @@ export default function DisputesPage() {
       >
         {/* Status selector */}
         <div className="space-y-2 mb-4">
-          <label className="text-body-sm font-medium text-gray-700 dark:text-indigo-200">
+          <label className="text-body-sm font-medium text-slate-700 dark:text-slate-300">
             {t("\u0627\u0644\u062d\u0627\u0644\u0629 \u0627\u0644\u062c\u062f\u064a\u062f\u0629", "New Status")}
           </label>
           <div className="flex flex-wrap gap-2">
@@ -574,8 +574,8 @@ export default function DisputesPage() {
                   className={cn(
                     "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-sm font-medium border transition-all",
                     newStatus === opt.value
-                      ? "border-orange-400 bg-orange-50 text-orange-800 dark:border-orange-600 dark:bg-orange-900/20 dark:text-orange-300"
-                      : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-300/60"
+                      ? "border-sky-400 bg-sky-50 text-sky-800 dark:border-sky-600 dark:bg-sky-900/20 dark:text-sky-300"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-400/70"
                   )}
                 >
                   {opt.icon}

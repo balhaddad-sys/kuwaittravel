@@ -156,7 +156,7 @@ export default function DashboardPage() {
         }
       />
 
-      <Container className="sacred-pattern py-4 sm:py-6 space-y-4 sm:space-y-6">
+      <Container className="eo-pattern py-4 sm:py-6 space-y-4 sm:space-y-6">
         {/* Verification Status Banners */}
         {verificationStatus === "pending" && (
           <AlertBanner
@@ -217,7 +217,7 @@ export default function DashboardPage() {
 
         {/* Active Trips Section */}
         <Card variant="elevated" padding="none" className="overflow-hidden">
-          <div className="flex items-center justify-between border-b border-surface-border/85 bg-gradient-to-r from-indigo-800 to-indigo-900 px-4 py-3 dark:border-surface-dark-border/85">
+          <div className="flex items-center justify-between border-b border-surface-border/85 bg-gradient-to-r from-[#082F49] to-[#2E1065] px-4 py-3 dark:border-surface-dark-border/85">
             <h2 className="text-body-lg sm:text-heading-md font-bold text-white">
               {t("الرحلات النشطة", "Active Trips")}
             </h2>
@@ -228,7 +228,7 @@ export default function DashboardPage() {
           <div className="p-4">
             {loading ? (
               <div className="flex justify-center py-8">
-                <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
               </div>
             ) : activeTrips.length === 0 ? (
               <EmptyState
@@ -245,16 +245,16 @@ export default function DashboardPage() {
                     <button
                       key={trip.id}
                       onClick={() => router.push(`/portal/trips/${trip.id}`)}
-                      className="group w-full text-start flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#1A2D48] dark:bg-indigo-800"
+                      className="group w-full text-start flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#2D3B4F] dark:bg-[#1E293B]"
                     >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-800">
-                        <Map className="h-5 w-5 text-gray-500 dark:text-indigo-300/60" />
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#1E293B]">
+                        <Map className="h-5 w-5 text-slate-500 dark:text-slate-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-body-sm font-bold text-gray-900 dark:text-white truncate">
+                        <h3 className="text-body-sm font-bold text-slate-900 dark:text-white truncate">
                           {language === "ar" ? trip.titleAr : trip.title}
                         </h3>
-                        <div className="flex items-center gap-3 mt-1 text-[11px] text-gray-400 dark:text-indigo-300/45">
+                        <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-400 dark:text-slate-400/45">
                           <span className="flex items-center gap-1">
                             <Users className="h-3 w-3" />
                             {trip.bookedCount}/{trip.totalCapacity}
@@ -276,7 +276,7 @@ export default function DashboardPage() {
                               ? t("تسجيل مغلق", "Closed")
                               : t("منشورة", "Published")}
                       </Badge>
-                      <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-indigo-400/50 rtl:rotate-180" />
+                      <ChevronRight className="h-4 w-4 shrink-0 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-sky-400/50 rtl:rotate-180" />
                     </button>
                   );
                 })}
@@ -290,8 +290,8 @@ export default function DashboardPage() {
           {/* Recent Bookings */}
           <Card variant="elevated" padding="lg">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
+              <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="eo-icon-circle eo-icon-circle-sm eo-icon-circle-accent">
                   <BookOpen className="h-4 w-4" />
                 </span>
                 {t("آخر الحجوزات", "Recent Bookings")}
@@ -304,7 +304,7 @@ export default function DashboardPage() {
             </div>
             {loading ? (
               <div className="flex justify-center py-8">
-                <div className="h-6 w-6 animate-spin rounded-full border-3 border-orange-500 border-t-transparent" />
+                <div className="h-6 w-6 animate-spin rounded-full border-3 border-sky-500 border-t-transparent" />
               </div>
             ) : recentBookings.length === 0 ? (
               <EmptyState
@@ -321,16 +321,16 @@ export default function DashboardPage() {
                   return (
                     <div
                       key={booking.id}
-                      className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50/50 p-2.5 dark:border-[#1A2D48] dark:bg-indigo-800/50"
+                      className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50/50 p-2.5 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-700">
-                        <BookOpen className="h-4 w-4 text-gray-500 dark:text-indigo-300/60" />
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#111827]">
+                        <BookOpen className="h-4 w-4 text-slate-500 dark:text-slate-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
+                        <p className="text-body-sm font-semibold text-slate-900 dark:text-white truncate">
                           {booking.travelerName}
                         </p>
-                        <p className="text-[11px] text-gray-400 dark:text-indigo-300/45 truncate">
+                        <p className="text-[11px] text-slate-400 dark:text-slate-400/45 truncate">
                           {booking.tripTitle} &middot; {formatKWD(booking.totalKWD)}
                         </p>
                       </div>
@@ -339,7 +339,7 @@ export default function DashboardPage() {
                           {language === "ar" ? badge.labelAr : badge.label}
                         </Badge>
                         {date && (
-                          <p className="text-[10px] text-gray-400 mt-0.5">
+                          <p className="text-[10px] text-slate-400 mt-0.5">
                             {formatRelativeTime(date, language === "ar" ? "ar-KW" : "en-US")}
                           </p>
                         )}
@@ -353,15 +353,15 @@ export default function DashboardPage() {
 
           {/* Performance Summary */}
           <Card variant="elevated" padding="lg">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <span className="eo-icon-circle eo-icon-circle-sm eo-icon-circle-accent">
                 <TrendingUp className="h-4 w-4" />
               </span>
               {t("ملخص الأداء", "Performance Summary")}
             </h3>
             {loading ? (
               <div className="flex justify-center py-8">
-                <div className="h-6 w-6 animate-spin rounded-full border-3 border-orange-500 border-t-transparent" />
+                <div className="h-6 w-6 animate-spin rounded-full border-3 border-sky-500 border-t-transparent" />
               </div>
             ) : bookings.length === 0 ? (
               <EmptyState
@@ -372,35 +372,35 @@ export default function DashboardPage() {
               />
             ) : (
               <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("متوسط قيمة الحجز", "Avg. Booking Value")}
                   </span>
-                  <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums" dir="ltr">
+                  <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums" dir="ltr">
                     {formatKWD(performanceStats.avgBookingValue)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("نسبة الإشغال", "Occupancy Rate")}
                   </span>
-                  <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums">
+                  <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums">
                     {performanceStats.occupancyRate.toFixed(0)}%
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("الحجوزات المكتملة", "Completed Bookings")}
                   </span>
-                  <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums">
+                  <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums">
                     {performanceStats.completedCount}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
-                  <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("إجمالي الحجوزات", "Total Bookings")}
                   </span>
-                  <span className="text-body-sm font-bold text-gray-900 dark:text-white tabular-nums">
+                  <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums">
                     {bookings.length}
                   </span>
                 </div>

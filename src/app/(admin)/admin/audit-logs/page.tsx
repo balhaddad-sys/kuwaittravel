@@ -90,7 +90,7 @@ const actionConfigMap: Record<string, ActionConfig> = {
     variant: "info",
     labelAr: "\u062a\u062d\u062f\u064a\u062b \u062d\u062c\u0632",
     label: "Booking Updated",
-    color: "text-indigo-600 dark:text-indigo-400",
+    color: "text-sky-600 dark:text-sky-400",
   },
   booking_cancelled: {
     icon: <XCircle className="h-4 w-4" />,
@@ -125,7 +125,7 @@ const actionConfigMap: Record<string, ActionConfig> = {
     variant: "default",
     labelAr: "\u0625\u063a\u0644\u0627\u0642 \u0646\u0632\u0627\u0639",
     label: "Dispute Closed",
-    color: "text-gray-600 dark:text-indigo-300/60",
+    color: "text-slate-600 dark:text-slate-400/70",
   },
   trip_published: {
     icon: <Activity className="h-4 w-4" />,
@@ -155,7 +155,7 @@ const defaultActionConfig: ActionConfig = {
   variant: "default",
   labelAr: "\u0625\u062c\u0631\u0627\u0621",
   label: "Action",
-  color: "text-gray-600 dark:text-indigo-300/60",
+  color: "text-slate-600 dark:text-slate-400/70",
 };
 
 function getActionConfig(action: string): ActionConfig {
@@ -251,14 +251,14 @@ export default function AuditLogsPage() {
           { label: t("\u0633\u062c\u0644 \u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a", "Audit Logs") },
         ]}
       />
-      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Search + Badge */}
         <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
           <SearchInput
             placeholder={t("\u0627\u0628\u062d\u062b \u0628\u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0623\u0648 \u0646\u0648\u0639 \u0627\u0644\u0639\u0645\u0644\u064a\u0629...", "Search by user or action type...")}
             onSearch={setSearch}
           />
-          <div className="rounded-[var(--radius-input)] border border-surface-border/90 bg-white/80 px-4 py-2.5 text-body-sm text-gray-500 backdrop-blur-sm dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80 dark:text-indigo-300/60 flex items-center gap-2">
+          <div className="rounded-[var(--radius-input)] border border-surface-border/90 bg-white/80 px-4 py-2.5 text-body-sm text-slate-500 backdrop-blur-sm dark:border-surface-dark-border/90 dark:bg-surface-dark-card/80 dark:text-slate-400/70 flex items-center gap-2">
             <ScrollText className="h-4 w-4" />
             {loadingData ? "\u2026" : `${filtered.length} ${t("\u0633\u062c\u0644", "entries")}`}
           </div>
@@ -267,14 +267,14 @@ export default function AuditLogsPage() {
         {/* Log entries */}
         <Card variant="elevated" padding="none">
           <div className="border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
-            <h3 className="text-body-md font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-body-md font-semibold text-slate-900 dark:text-white">
               {t("\u0633\u062c\u0644 \u0627\u0644\u0646\u0634\u0627\u0637 \u0648\u0627\u0644\u062a\u062f\u0642\u064a\u0642", "Activity & Audit Log")}
             </h3>
           </div>
 
           {loadingData ? (
             <div className="flex items-center justify-center py-16">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
             </div>
           ) : filtered.length === 0 ? (
             <EmptyState
@@ -296,7 +296,7 @@ export default function AuditLogsPage() {
                 return (
                   <div key={log.id} className="group">
                     <button
-                      className="w-full text-start px-4 py-3 transition-colors hover:bg-gray-50/60 dark:hover:bg-white/[0.02]"
+                      className="w-full text-start px-4 py-3 transition-colors hover:bg-slate-50/60 dark:hover:bg-white/[0.02]"
                       onClick={() => hasChanges ? setExpandedId(isExpanded ? null : log.id) : undefined}
                     >
                       <div className="flex items-start gap-3">
@@ -306,8 +306,8 @@ export default function AuditLogsPage() {
                           config.variant === "success" ? "bg-emerald-50 dark:bg-emerald-900/20" :
                           config.variant === "error" ? "bg-red-50 dark:bg-red-900/20" :
                           config.variant === "warning" ? "bg-orange-50 dark:bg-orange-900/20" :
-                          config.variant === "info" ? "bg-indigo-50 dark:bg-indigo-900/20" :
-                          "bg-gray-100 dark:bg-indigo-800"
+                          config.variant === "info" ? "bg-sky-50 dark:bg-sky-900/20" :
+                          "bg-slate-100 dark:bg-[#1E293B]"
                         )}>
                           <span className={config.color}>{config.icon}</span>
                         </div>
@@ -318,13 +318,13 @@ export default function AuditLogsPage() {
                             <Badge variant={config.variant} size="sm">
                               {language === "ar" ? config.labelAr : config.label}
                             </Badge>
-                            <span className="text-[11px] text-gray-400 dark:text-indigo-300/45">
+                            <span className="text-[11px] text-slate-400 dark:text-slate-400/60">
                               {log.action}
                             </span>
                           </div>
 
                           <div className="flex items-center gap-2 mt-1 text-body-sm">
-                            <span className="font-semibold text-gray-900 dark:text-white">
+                            <span className="font-semibold text-slate-900 dark:text-white">
                               {log.actorName}
                             </span>
                             <Badge variant="default" size="sm">
@@ -332,7 +332,7 @@ export default function AuditLogsPage() {
                             </Badge>
                           </div>
 
-                          <div className="flex items-center gap-3 mt-1 text-[11px] text-gray-400 dark:text-indigo-300/45">
+                          <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-400 dark:text-slate-400/60">
                             <span>
                               {t("\u0627\u0644\u0643\u064a\u0627\u0646", "Entity")}: {log.entityType}
                             </span>
@@ -347,9 +347,9 @@ export default function AuditLogsPage() {
                         {hasChanges && (
                           <div className="shrink-0 mt-1">
                             {isExpanded ? (
-                              <ChevronUp className="h-4 w-4 text-gray-400" />
+                              <ChevronUp className="h-4 w-4 text-slate-400" />
                             ) : (
-                              <ChevronDown className="h-4 w-4 text-gray-400" />
+                              <ChevronDown className="h-4 w-4 text-slate-400" />
                             )}
                           </div>
                         )}
@@ -359,21 +359,21 @@ export default function AuditLogsPage() {
                     {/* Expanded changes */}
                     {isExpanded && hasChanges && (
                       <div className="px-4 pb-3 ps-[3.25rem]">
-                        <div className="rounded-lg border border-surface-border/70 bg-gray-50/80 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.02]">
-                          <h5 className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-indigo-300/45 mb-2">
+                        <div className="rounded-lg border border-surface-border/70 bg-slate-50/80 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.02]">
+                          <h5 className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-400/60 mb-2">
                             {t("\u0627\u0644\u062a\u063a\u064a\u064a\u0631\u0627\u062a", "Changes")}
                           </h5>
                           <div className="space-y-2">
                             {log.changes!.map((change, idx) => (
                               <div key={idx} className="text-body-sm">
-                                <span className="font-medium text-gray-700 dark:text-indigo-200">
+                                <span className="font-medium text-slate-700 dark:text-slate-300">
                                   {change.field}
                                 </span>
                                 <div className="flex items-center gap-2 mt-0.5 text-xs">
                                   <span className="inline-flex items-center gap-1 rounded bg-red-50 px-1.5 py-0.5 text-red-700 dark:bg-red-900/20 dark:text-red-400 line-through">
                                     {String(change.oldValue ?? "\u2014")}
                                   </span>
-                                  <span className="text-gray-400">{"\u2192"}</span>
+                                  <span className="text-slate-400">{"\u2192"}</span>
                                   <span className="inline-flex items-center gap-1 rounded bg-emerald-50 px-1.5 py-0.5 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400">
                                     {String(change.newValue ?? "\u2014")}
                                   </span>

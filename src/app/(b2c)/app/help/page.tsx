@@ -32,35 +32,35 @@ export default function HelpPage() {
       <Container size="md" className="py-4 sm:py-6 space-y-4">
         <Card variant="elevated" padding="lg">
           <div className="flex items-center gap-2 mb-4">
-            <HelpCircle className="h-5 w-5 text-orange-500" />
-            <h2 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">{t("الأسئلة الشائعة", "FAQ")}</h2>
+            <HelpCircle className="h-5 w-5 text-violet-500" />
+            <h2 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">{t("الأسئلة الشائعة", "FAQ")}</h2>
           </div>
           <div>
             {faqs.map((faq, i) => (
               <div key={i} className="border-b border-surface-border/60 last:border-0 dark:border-surface-dark-border/60">
                 <button onClick={() => setOpenIdx(openIdx === i ? null : i)} className="flex w-full items-center justify-between gap-3 py-3.5 text-start">
-                  <span className="text-body-sm sm:text-body-md font-semibold text-gray-900 dark:text-white">{t(faq.qAr, faq.qEn)}</span>
-                  <ChevronDown className={cn("h-4 w-4 shrink-0 text-gray-400 transition-transform", openIdx === i && "rotate-180")} />
+                  <span className="text-body-sm sm:text-body-md font-semibold text-slate-900 dark:text-white">{t(faq.qAr, faq.qEn)}</span>
+                  <ChevronDown className={cn("h-4 w-4 shrink-0 text-slate-400 transition-transform", openIdx === i && "rotate-180")} />
                 </button>
-                {openIdx === i && <p className="pb-3.5 text-body-sm text-gray-600 dark:text-indigo-300/60 leading-relaxed">{t(faq.aAr, faq.aEn)}</p>}
+                {openIdx === i && <p className="pb-3.5 text-body-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(faq.aAr, faq.aEn)}</p>}
               </div>
             ))}
           </div>
         </Card>
 
         <Card variant="elevated" padding="lg">
-          <h2 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4">{t("تواصل معنا", "Contact Us")}</h2>
+          <h2 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white mb-4">{t("تواصل معنا", "Contact Us")}</h2>
           <div className="space-y-3">
             {[
               { icon: Phone, labelAr: "هاتف الدعم", labelEn: "Support Phone", value: "+965 2222 0000" },
               { icon: Mail, labelAr: "البريد الإلكتروني", labelEn: "Email", value: "support@rahal.kw" },
               { icon: MessageCircle, labelAr: "واتساب", labelEn: "WhatsApp", value: "+965 9999 0000" },
             ].map((c, i) => (
-              <div key={i} className="flex items-center gap-3 text-body-sm text-gray-700 dark:text-indigo-200">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-700/50"><c.icon className="h-4 w-4 text-gray-500" /></span>
+              <div key={i} className="flex items-center gap-3 text-body-sm text-slate-700 dark:text-slate-200">
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700/50"><c.icon className="h-4 w-4 text-slate-500" /></span>
                 <div>
                   <p className="font-medium">{t(c.labelAr, c.labelEn)}</p>
-                  <p className="text-gray-500" dir="ltr">{c.value}</p>
+                  <p className="text-slate-500" dir="ltr">{c.value}</p>
                 </div>
               </div>
             ))}

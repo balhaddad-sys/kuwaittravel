@@ -49,7 +49,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
 
   return (
     <>
-      <div className={cn("relative overflow-hidden bg-gray-100 dark:bg-indigo-800", aspectClass, className)}>
+      <div className={cn("relative overflow-hidden bg-slate-100 dark:bg-[#1E293B]", aspectClass, className)}>
         {/* Scrollable image strip */}
         <div
           ref={scrollRef}
@@ -92,7 +92,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
                 activeIndex === 0 && "pointer-events-none opacity-0"
               )}
             >
-              <ChevronLeft className="h-4 w-4 text-gray-800 rtl:rotate-180" />
+              <ChevronLeft className="h-4 w-4 text-slate-800 rtl:rotate-180" />
             </button>
             <button
               type="button"
@@ -102,7 +102,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
                 activeIndex === images.length - 1 && "pointer-events-none opacity-0"
               )}
             >
-              <ChevronRight className="h-4 w-4 text-gray-800 rtl:rotate-180" />
+              <ChevronRight className="h-4 w-4 text-slate-800 rtl:rotate-180" />
             </button>
           </>
         )}

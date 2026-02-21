@@ -24,7 +24,7 @@ export default function B2CLayout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="travel-shell-bg min-h-screen pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
+    <div className="eo-shell-bg min-h-screen pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
       <PageTransition variant="app">{children}</PageTransition>
       <BottomNav items={navItems} />
     </div>

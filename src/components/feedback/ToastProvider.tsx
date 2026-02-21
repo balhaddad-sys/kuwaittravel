@@ -56,20 +56,20 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           <div
             key={t.id}
             className={cn(
-              "travel-panel animate-slide-up relative flex items-start gap-3 overflow-hidden rounded-[var(--radius-lg)] p-4"
+              "eo-panel animate-slide-up relative flex items-start gap-3 overflow-hidden rounded-[var(--radius-lg)] p-4"
             )}
           >
-            <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-orange-300/60 to-transparent" />
+            <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-sky-300/60 to-transparent" />
             {icons[t.type]}
             <div className="flex-1 min-w-0">
-              <p className="text-body-md font-medium text-gray-900 dark:text-white">{t.title}</p>
+              <p className="text-body-md font-medium text-slate-900 dark:text-white">{t.title}</p>
               {t.description && (
-                <p className="mt-0.5 text-body-sm text-gray-500">{t.description}</p>
+                <p className="mt-0.5 text-body-sm text-slate-500">{t.description}</p>
               )}
             </div>
             <button
               onClick={() => removeToast(t.id)}
-              className="shrink-0 rounded p-0.5 text-gray-400 hover:text-gray-600 transition-colors"
+              className="shrink-0 rounded p-0.5 text-slate-400 hover:text-slate-600 transition-colors"
             >
               <X className="h-4 w-4" />
             </button>

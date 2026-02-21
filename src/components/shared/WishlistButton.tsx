@@ -31,8 +31,8 @@ function WishlistButton({ saved, onToggle, size = "md", variant = "overlay", cla
       onClick={handleClick}
       className={cn(
         "flex items-center justify-center transition-transform duration-200",
-        variant === "overlay" && "rounded-full bg-white/90 p-2 shadow-md hover:bg-white dark:bg-indigo-800/90 dark:hover:bg-indigo-800/60",
-        variant === "inline" && "rounded-full p-1.5 hover:bg-gray-100 dark:hover:bg-indigo-800/60",
+        variant === "overlay" && "rounded-full bg-white/90 p-2 shadow-md hover:bg-white dark:bg-[#1E293B]/90 dark:hover:bg-[#1E293B]/60",
+        variant === "inline" && "rounded-full p-1.5 hover:bg-slate-100 dark:hover:bg-[#1E293B]/60",
         animating && "scale-125",
         className
       )}
@@ -42,7 +42,7 @@ function WishlistButton({ saved, onToggle, size = "md", variant = "overlay", cla
         className={cn(
           sizeClass,
           "transition-colors duration-200",
-          saved ? "fill-red-500 text-red-500" : "fill-transparent text-gray-600 dark:text-indigo-200"
+          saved ? "fill-red-500 text-red-500" : "fill-transparent text-slate-600 dark:text-sky-200"
         )}
       />
     </button>

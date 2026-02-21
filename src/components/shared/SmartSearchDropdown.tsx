@@ -23,21 +23,21 @@ function SmartSearchDropdown({
 
   return (
     <div className={cn(
-      "sacred-panel absolute start-0 top-full z-20 mt-1 w-full overflow-hidden rounded-[var(--radius-lg)] shadow-xl",
+      "eo-panel absolute start-0 top-full z-20 mt-1 w-full overflow-hidden rounded-[var(--radius-lg)] shadow-xl",
       className
     )}>
       {/* Recent Searches */}
       {recentSearches.length > 0 && (
         <div className="p-3">
           <div className="mb-2 flex items-center justify-between">
-            <span className="flex items-center gap-1.5 text-body-sm font-medium text-gray-500 dark:text-indigo-300/60">
+            <span className="flex items-center gap-1.5 text-body-sm font-medium text-slate-500 dark:text-slate-300/60">
               <Clock className="h-3.5 w-3.5" />
               {t("بحث سابق", "Recent")}
             </span>
             {onClearRecent && (
               <button
                 onClick={onClearRecent}
-                className="text-[11px] text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                className="text-[11px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
               >
                 {t("مسح", "Clear")}
               </button>
@@ -48,9 +48,9 @@ function SmartSearchDropdown({
               <button
                 key={query}
                 onClick={() => onSelect(query)}
-                className="flex w-full items-center gap-2 rounded-[var(--radius-md)] px-2 py-2 text-start text-body-sm text-gray-700 transition-colors hover:bg-gray-50 dark:text-indigo-100 dark:hover:bg-indigo-800/50"
+                className="flex w-full items-center gap-2 rounded-[var(--radius-md)] px-2 py-2 text-start text-body-sm text-slate-700 transition-colors hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-[#1E293B]/50"
               >
-                <Search className="h-3.5 w-3.5 text-gray-400" />
+                <Search className="h-3.5 w-3.5 text-slate-400" />
                 {query}
               </button>
             ))}
@@ -61,7 +61,7 @@ function SmartSearchDropdown({
       {/* Popular Destinations */}
       {popularDestinations.length > 0 && (
         <div className="border-t border-surface-border p-3 dark:border-surface-dark-border">
-          <span className="mb-2 flex items-center gap-1.5 text-body-sm font-medium text-gray-500 dark:text-indigo-300/60">
+          <span className="mb-2 flex items-center gap-1.5 text-body-sm font-medium text-slate-500 dark:text-slate-300/60">
             <TrendingUp className="h-3.5 w-3.5" />
             {t("وجهات رائجة", "Popular")}
           </span>
@@ -70,7 +70,7 @@ function SmartSearchDropdown({
               <button
                 key={dest}
                 onClick={() => onSelect(dest)}
-                className="rounded-full border border-gray-200 bg-white px-3 py-1 text-body-sm text-gray-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-200 dark:hover:border-indigo-600 dark:hover:bg-indigo-900/20"
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-body-sm text-slate-600 transition-colors hover:border-sky-300 hover:bg-sky-50 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-sky-200 dark:hover:border-sky-600 dark:hover:bg-[#111827]/20"
               >
                 {dest}
               </button>

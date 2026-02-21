@@ -22,14 +22,14 @@ function TripCompareBar({ count, maxCount = 3, onCompare, onClear, className }: 
     <div
       className={cn(
         "fixed bottom-20 start-1/2 z-[var(--z-fab)] -translate-x-1/2 lg:bottom-6",
-        "flex items-center gap-3 rounded-[var(--radius-pill)] border border-indigo-200 bg-white px-4 py-3 shadow-xl backdrop-blur-sm dark:border-indigo-800 dark:bg-indigo-900",
+        "flex items-center gap-3 rounded-[var(--radius-pill)] border border-sky-200 bg-white px-4 py-3 shadow-xl backdrop-blur-sm dark:border-sky-800 dark:bg-[#111827]",
         "animate-slide-up",
         className
       )}
     >
       <div className="flex items-center gap-2">
-        <ArrowLeftRight className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
-        <span className="text-body-sm font-medium text-gray-700 dark:text-indigo-100">
+        <ArrowLeftRight className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+        <span className="text-body-sm font-medium text-slate-700 dark:text-slate-100">
           {t(`${count} من ${maxCount} رحلات`, `${count} of ${maxCount} trips`)}
         </span>
       </div>
@@ -43,7 +43,7 @@ function TripCompareBar({ count, maxCount = 3, onCompare, onClear, className }: 
       </Button>
       <button
         onClick={onClear}
-        className="rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-indigo-800/60 dark:hover:text-gray-300"
+        className="rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-[#1E293B]/60 dark:hover:text-slate-300"
       >
         <X className="h-4 w-4" />
       </button>

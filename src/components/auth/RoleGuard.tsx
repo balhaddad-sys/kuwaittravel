@@ -167,9 +167,9 @@ export function RoleGuard({
 
   if (loading || isBootstrappingAdmin || pendingPrivilegedBootstrap || isRefreshingClaims) {
     return (
-      <div className="travel-shell-bg flex min-h-screen items-center justify-center">
-        <div className="travel-panel rounded-2xl p-4">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-700 border-t-transparent" />
+      <div className="eo-shell-bg flex min-h-screen items-center justify-center">
+        <div className="eo-panel rounded-2xl p-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-700 border-t-transparent" />
         </div>
       </div>
     );

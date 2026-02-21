@@ -30,24 +30,24 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
     ) => {
     const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-semibold border transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/60 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none rounded-[var(--radius-btn)]";
+      "inline-flex items-center justify-center gap-2 font-semibold border transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-spring)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none rounded-[var(--radius-btn)]";
 
     const variants = {
-      /* Primary — Deep Ocean Blue */
+      /* Primary — Electric Sky */
       primary:
-        "border-indigo-700 bg-indigo-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.14),0_4px_12px_rgba(30,58,95,0.32)] hover:bg-indigo-700 hover:border-indigo-800 hover:shadow-[0_2px_4px_rgba(0,0,0,0.14),0_8px_20px_rgba(30,58,95,0.38)] active:bg-indigo-800 dark:bg-indigo-500 dark:border-indigo-600 dark:hover:bg-indigo-600",
-      /* Secondary — warm white */
+        "border-sky-700 bg-sky-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.14),0_4px_12px_rgba(14,165,233,0.32)] hover:bg-sky-700 hover:border-sky-800 hover:shadow-[0_2px_4px_rgba(0,0,0,0.14),0_8px_20px_rgba(14,165,233,0.38)] active:bg-sky-800 dark:bg-sky-500 dark:border-sky-600 dark:hover:bg-sky-600",
+      /* Secondary — cool white */
       secondary:
-        "border-gray-200 bg-white text-gray-800 shadow-[0_1px_2px_rgba(26,18,9,0.06),0_2px_8px_rgba(26,18,9,0.06)] hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-100 dark:hover:border-indigo-600/50 dark:hover:bg-indigo-700",
-      /* Accent — Rich Gold */
+        "border-slate-200 bg-white text-slate-800 shadow-[0_1px_2px_rgba(2,6,23,0.06),0_2px_8px_rgba(2,6,23,0.06)] hover:border-slate-300 hover:bg-slate-50 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-200 dark:hover:border-sky-600/50 dark:hover:bg-slate-700",
+      /* Accent — Violet */
       accent:
-        "border-orange-600 bg-orange-500 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(197,165,114,0.38)] hover:bg-orange-600 hover:border-orange-700 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(197,165,114,0.48)] active:bg-orange-700",
-      /* Outline — warm border */
+        "border-orange-600 bg-orange-500 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(139,92,246,0.38)] hover:bg-orange-600 hover:border-orange-700 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(139,92,246,0.48)] active:bg-orange-700",
+      /* Outline — cool border */
       outline:
-        "border-gray-300 bg-transparent text-gray-700 hover:border-gray-400 hover:bg-gray-50 hover:text-gray-900 dark:border-[#1A2D48] dark:text-indigo-100 dark:hover:border-indigo-500/60 dark:hover:bg-indigo-800/50",
+        "border-slate-300 bg-transparent text-slate-700 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 dark:border-[#2D3B4F] dark:text-slate-200 dark:hover:border-sky-500/60 dark:hover:bg-slate-800/50",
       /* Ghost — minimal */
       ghost:
-        "border-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-indigo-200/80 dark:hover:bg-indigo-800/50 dark:hover:text-indigo-50",
+        "border-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-slate-100",
       /* Danger */
       danger:
         "border-red-600 bg-red-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(220,38,38,0.28)] hover:bg-red-700 hover:border-red-800",

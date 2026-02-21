@@ -68,7 +68,7 @@ function MultiStepForm({
                     ? "bg-success text-white cursor-pointer"
                     : i === currentStep
                     ? "bg-orange-500 text-white"
-                    : "bg-surface-muted text-gray-400 dark:bg-surface-dark-card"
+                    : "bg-surface-muted text-slate-400 dark:bg-surface-dark-card"
                 )}
               >
                 {i < currentStep ? <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> : i + 1}
@@ -86,10 +86,10 @@ function MultiStepForm({
         </div>
         {/* Current step label (mobile), all labels (desktop) */}
         <div className="mt-3 sm:hidden text-center">
-          <span className="text-body-sm font-medium text-gray-700 dark:text-white">
+          <span className="text-body-sm font-medium text-slate-700 dark:text-white">
             {steps[currentStep].label}
           </span>
-          <span className="text-body-sm text-gray-400 ms-1.5">
+          <span className="text-body-sm text-slate-400 ms-1.5">
             ({currentStep + 1}/{steps.length})
           </span>
         </div>
@@ -99,7 +99,7 @@ function MultiStepForm({
               key={i}
               className={cn(
                 "text-body-sm text-center flex-1",
-                i === currentStep ? "text-gray-700 dark:text-white font-medium" : "text-gray-400"
+                i === currentStep ? "text-slate-700 dark:text-white font-medium" : "text-slate-400"
               )}
             >
               {step.label}

@@ -17,20 +17,20 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
   return (
     <div
       className={cn(
-        "travel-panel relative rounded-[var(--radius-card)] px-4 py-8 text-center sm:px-6 sm:py-12",
+        "eo-panel relative rounded-[var(--radius-card)] px-4 py-8 text-center sm:px-6 sm:py-12",
         className
       )}
     >
       {icon && (
         <div className="mx-auto mb-3 h-12 w-12 sm:mb-4 sm:h-16 sm:w-16">
-          <div className="travel-icon-circle mx-auto h-12 w-12 text-gray-500 dark:text-indigo-200 sm:h-16 sm:w-16 sm:travel-icon-circle-lg">
+          <div className="eo-icon-circle mx-auto h-12 w-12 text-slate-500 dark:text-slate-300 sm:h-16 sm:w-16">
             {icon}
           </div>
         </div>
       )}
-      <h3 className="text-body-lg font-bold text-gray-800 dark:text-white sm:text-heading-md">{title}</h3>
+      <h3 className="text-body-lg font-bold text-slate-800 dark:text-white sm:text-heading-md">{title}</h3>
       {description && (
-        <p className="mx-auto mt-1.5 max-w-sm text-body-sm text-gray-600 dark:text-indigo-100 sm:mt-2 sm:text-body-md">{description}</p>
+        <p className="mx-auto mt-1.5 max-w-sm text-body-sm text-slate-500 dark:text-slate-400 sm:mt-2 sm:text-body-md">{description}</p>
       )}
       {action && (
         <Button

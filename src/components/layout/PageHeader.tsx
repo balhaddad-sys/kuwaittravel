@@ -14,9 +14,9 @@ function PageHeader({ title, description, actions, className }: PageHeaderProps)
         <span className="travel-chip inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide">
           Rahal
         </span>
-        <h1 className="text-display-md font-bold text-gray-900 dark:text-white">{title}</h1>
+        <h1 className="text-display-md font-bold text-slate-900 dark:text-white">{title}</h1>
         {description && (
-          <p className="mt-1 text-body-lg text-gray-500 dark:text-indigo-300/60">{description}</p>
+          <p className="mt-1 text-body-lg text-slate-500 dark:text-slate-300/60">{description}</p>
         )}
       </div>
       {actions && <div className="flex items-center gap-2 mt-3 sm:mt-0">{actions}</div>}

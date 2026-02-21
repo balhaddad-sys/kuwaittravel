@@ -45,13 +45,13 @@ const BOOKING_STATUS_LABELS: Record<string, string> = {
 const STATUS_BADGE_CLASS: Record<string, string> = {
   pending_payment: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
   confirmed: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
-  partially_paid: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300",
+  partially_paid: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300",
   fully_paid: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
-  checked_in: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300",
-  in_transit: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300",
+  checked_in: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300",
+  in_transit: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300",
   completed: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
   cancelled: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300",
-  refunded: "bg-gray-100 text-gray-700 dark:bg-indigo-800 dark:text-indigo-200",
+  refunded: "bg-slate-100 text-slate-700 dark:bg-[#1E293B] dark:text-slate-200",
 };
 
 function toCsvCell(value: string | number): string {
@@ -233,7 +233,7 @@ export default function TripDetailPage() {
         ]}
       />
 
-      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
             title="المسافرون"
@@ -257,14 +257,14 @@ export default function TripDetailPage() {
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
               className={`relative flex shrink-0 items-center gap-2 px-3 sm:px-4 py-3 text-body-sm sm:text-body-md font-medium border-b-2 transition-all ${
                 activeTab === tab.id
-                  ? "border-gray-700 text-gray-700 dark:text-white"
-                  : "border-transparent text-gray-400 hover:text-gray-600"
+                  ? "border-sky-600 text-sky-700 dark:text-white"
+                  : "border-transparent text-slate-400 hover:text-slate-600"
               }`}
             >
               {tab.icon}
               {tab.label}
               {activeTab === tab.id && (
-                <span className="pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-transparent via-orange-300 to-transparent" />
+                <span className="pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-transparent via-sky-400 to-transparent" />
               )}
             </button>
           ))}
@@ -289,7 +289,7 @@ export default function TripDetailPage() {
 
             {bookingsLoading ? (
               <div className="flex items-center justify-center py-12">
-                <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
               </div>
             ) : filteredBookings.length === 0 ? (
               <EmptyState
@@ -307,14 +307,14 @@ export default function TripDetailPage() {
                   return (
                     <div
                       key={booking.id}
-                      className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm dark:border-[#1A2D48] dark:bg-indigo-800"
+                      className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-[#2D3B4F] dark:bg-[#1E293B]"
                     >
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-0">
-                          <p className="truncate text-body-sm font-bold text-gray-900 dark:text-white">
+                          <p className="truncate text-body-sm font-bold text-slate-900 dark:text-white">
                             {booking.travelerName}
                           </p>
-                          <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-gray-500 dark:text-indigo-300/60">
+                          <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-slate-500 dark:text-slate-300/60">
                             <span className="inline-flex items-center gap-1" dir="ltr">
                               <Hash className="h-3 w-3" />
                               {booking.id}
@@ -343,7 +343,7 @@ export default function TripDetailPage() {
                           <span className={`inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold ${statusClass}`}>
                             {statusLabel}
                           </span>
-                          <span className="text-body-sm font-bold text-gray-900 dark:text-white" dir="ltr">
+                          <span className="text-body-sm font-bold text-slate-900 dark:text-white" dir="ltr">
                             {formatKWD(booking.totalKWD)}
                           </span>
                         </div>
@@ -360,14 +360,14 @@ export default function TripDetailPage() {
           <Card variant="elevated" padding="lg">
             {tripLoading ? (
               <div className="flex items-center justify-center py-12">
-                <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
               </div>
             ) : trip?.descriptionAr || trip?.description ? (
               <div className="space-y-3">
-                <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
+                <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">
                   البرنامج التفصيلي
                 </h3>
-                <p className="text-body-sm leading-7 text-gray-700 dark:text-indigo-200 whitespace-pre-line">
+                <p className="text-body-sm leading-7 text-slate-700 dark:text-slate-200 whitespace-pre-line">
                   {trip.descriptionAr || trip.description}
                 </p>
               </div>
@@ -384,7 +384,7 @@ export default function TripDetailPage() {
         {activeTab === "documents" && (
           <Card variant="elevated" padding="lg" className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
+              <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">
                 كشوفات الرحلة
               </h3>
               <Button
@@ -398,7 +398,7 @@ export default function TripDetailPage() {
               </Button>
             </div>
 
-            <div className="rounded-lg border border-dashed border-surface-border p-4 text-body-sm text-gray-600 dark:border-surface-dark-border dark:text-indigo-200">
+            <div className="rounded-lg border border-dashed border-surface-border p-4 text-body-sm text-slate-600 dark:border-surface-dark-border dark:text-slate-200">
               يتم حالياً توفير كشف المسافرين بصيغة CSV. يمكن استخدامه للطباعة أو للمشاركة مع فرق التشغيل.
             </div>
 
@@ -415,7 +415,7 @@ export default function TripDetailPage() {
         {activeTab === "announcements" && (
           <div className="space-y-4">
             <Card variant="elevated" padding="lg">
-              <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white mb-4">
                 إرسال إعلان جديد
               </h3>
               <div className="space-y-3">
@@ -449,7 +449,7 @@ export default function TripDetailPage() {
             </Card>
 
             <Card variant="elevated" padding="lg">
-              <h4 className="text-body-md font-bold text-gray-900 dark:text-white mb-3">
+              <h4 className="text-body-md font-bold text-slate-900 dark:text-white mb-3">
                 آخر الإعلانات
               </h4>
               {announcements.length === 0 ? (
@@ -466,17 +466,17 @@ export default function TripDetailPage() {
                       className="rounded-lg border border-surface-border bg-white p-3 dark:border-surface-dark-border dark:bg-surface-dark-card"
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-body-sm font-semibold text-gray-900 dark:text-white">
+                        <p className="text-body-sm font-semibold text-slate-900 dark:text-white">
                           {announcement.title}
                         </p>
-                        <span className="text-[11px] text-gray-400">
+                        <span className="text-[11px] text-slate-400">
                           {announcement.sentAt.toLocaleTimeString("ar-KW", {
                             hour: "2-digit",
                             minute: "2-digit",
                           })}
                         </span>
                       </div>
-                      <p className="mt-1 text-body-sm text-gray-600 dark:text-indigo-200">
+                      <p className="mt-1 text-body-sm text-slate-600 dark:text-slate-200">
                         {announcement.body}
                       </p>
                     </div>

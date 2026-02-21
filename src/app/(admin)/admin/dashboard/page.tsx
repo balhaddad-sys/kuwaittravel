@@ -127,7 +127,7 @@ export default function AdminDashboardPage() {
         title={t("\u0644\u0648\u062d\u0629 \u062a\u062d\u0643\u0645 \u0627\u0644\u0645\u0634\u0631\u0641", "Admin Dashboard")}
         breadcrumbs={[{ label: t("\u0627\u0644\u0645\u0634\u0631\u0641 \u0627\u0644\u0639\u0627\u0645", "Admin Console") }, { label: t("\u0644\u0648\u062d\u0629 \u0627\u0644\u062a\u062d\u0643\u0645", "Dashboard") }]}
       />
-      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Stat Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
@@ -163,9 +163,9 @@ export default function AdminDashboardPage() {
         {/* Two-column: Pending Campaigns + Open Disputes */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
           {/* Pending Campaigns */}
-          <Card variant="elevated" padding="lg" className="sacred-glow">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="travel-icon-circle travel-icon-circle-sm travel-icon-circle-gold">
+          <Card variant="elevated" padding="lg" className="eo-glow">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <span className="eo-icon-circle eo-icon-circle-sm eo-icon-circle-violet">
                 <Building2 className="h-4 w-4" />
               </span>
               {t("\u062d\u0645\u0644\u0627\u062a \u0628\u0627\u0646\u062a\u0638\u0627\u0631 \u0627\u0644\u062a\u062d\u0642\u0642", "Campaigns Pending Verification")}
@@ -177,7 +177,7 @@ export default function AdminDashboardPage() {
             </h3>
             {loading ? (
               <div className="flex items-center justify-center py-8">
-                <div className="h-6 w-6 animate-spin rounded-full border-3 border-orange-500 border-t-transparent" />
+                <div className="h-6 w-6 animate-spin rounded-full border-3 border-sky-500 border-t-transparent" />
               </div>
             ) : pendingCampaigns.length === 0 ? (
               <EmptyState
@@ -192,16 +192,16 @@ export default function AdminDashboardPage() {
                   <a
                     key={campaign.id}
                     href="/admin/campaigns"
-                    className="group flex items-center gap-3 rounded-lg border border-surface-border/60 bg-white/60 p-3 transition-all hover:bg-orange-50/40 hover:shadow-sm dark:border-surface-dark-border/60 dark:bg-white/[0.02] dark:hover:bg-orange-900/10"
+                    className="group flex items-center gap-3 rounded-lg border border-surface-border/60 bg-white/60 p-3 transition-all hover:bg-sky-50/40 hover:shadow-sm dark:border-surface-dark-border/60 dark:bg-white/[0.02] dark:hover:bg-sky-900/10"
                   >
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-orange-50 dark:bg-orange-900/20">
-                      <Building2 className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-violet-50 dark:bg-violet-900/20">
+                      <Building2 className="h-4 w-4 text-violet-600 dark:text-violet-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
+                      <p className="text-body-sm font-semibold text-slate-900 dark:text-white truncate">
                         {language === "ar" ? campaign.nameAr : campaign.name}
                       </p>
-                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
+                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-slate-400 dark:text-slate-400/60">
                         <span className="flex items-center gap-1">
                           <FileText className="h-3 w-3" />
                           {campaign.licenseNumber}
@@ -212,10 +212,10 @@ export default function AdminDashboardPage() {
                         </span>
                       </div>
                     </div>
-                    <div className="shrink-0 text-[11px] text-gray-400 dark:text-indigo-300/45 hidden sm:block">
+                    <div className="shrink-0 text-[11px] text-slate-400 dark:text-slate-400/60 hidden sm:block">
                       {getCreatedDate(campaign.createdAt)}
                     </div>
-                    <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-orange-500 transition-colors dark:text-indigo-400/50 rtl:rotate-180" />
+                    <ChevronRight className="h-4 w-4 shrink-0 text-slate-300 group-hover:text-sky-500 transition-colors dark:text-slate-500 rtl:rotate-180" />
                   </a>
                 ))}
               </div>
@@ -223,9 +223,9 @@ export default function AdminDashboardPage() {
           </Card>
 
           {/* Open Disputes */}
-          <Card variant="elevated" padding="lg" className="sacred-glow">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="travel-icon-circle travel-icon-circle-sm border-error/30 text-error dark:border-error/40">
+          <Card variant="elevated" padding="lg" className="eo-glow">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <span className="eo-icon-circle eo-icon-circle-sm border-error/30 text-error dark:border-error/40">
                 <AlertTriangle className="h-4 w-4" />
               </span>
               {t("\u0646\u0632\u0627\u0639\u0627\u062a \u0645\u0641\u062a\u0648\u062d\u0629", "Open Disputes")}
@@ -268,7 +268,7 @@ export default function AdminDashboardPage() {
                       )} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
+                      <p className="text-body-sm font-semibold text-slate-900 dark:text-white truncate">
                         {dispute.subject}
                       </p>
                       <div className="flex items-center gap-2 mt-0.5">
@@ -296,10 +296,10 @@ export default function AdminDashboardPage() {
                         </Badge>
                       </div>
                     </div>
-                    <div className="shrink-0 text-[11px] text-gray-400 dark:text-indigo-300/45 hidden sm:block">
+                    <div className="shrink-0 text-[11px] text-slate-400 dark:text-slate-400/60 hidden sm:block">
                       {getCreatedDate(dispute.createdAt)}
                     </div>
-                    <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 group-hover:text-red-500 transition-colors dark:text-indigo-400/50 rtl:rotate-180" />
+                    <ChevronRight className="h-4 w-4 shrink-0 text-slate-300 group-hover:text-red-500 transition-colors dark:text-slate-500 rtl:rotate-180" />
                   </a>
                 ))}
               </div>
@@ -309,28 +309,28 @@ export default function AdminDashboardPage() {
 
         {/* Revenue Summary */}
         <Card variant="elevated" padding="lg" className="overflow-hidden">
-          <div className="-mx-4 -mt-4 mb-4 border-b border-surface-border/80 bg-gradient-to-r from-indigo-800 to-indigo-900 px-4 py-3 text-white dark:border-surface-dark-border/80 sm:-mx-6 sm:-mt-6 sm:px-6">
+          <div className="-mx-4 -mt-4 mb-4 border-b border-surface-border/80 bg-gradient-to-r from-[#082F49] to-[#2E1065] px-4 py-3 text-white dark:border-surface-dark-border/80 sm:-mx-6 sm:-mt-6 sm:px-6">
             <h3 className="text-body-lg sm:text-heading-sm font-bold flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-orange-300" /> {t("\u0645\u0644\u062e\u0635 \u0627\u0644\u0625\u064a\u0631\u0627\u062f\u0627\u062a", "Revenue Summary")}
+              <TrendingUp className="h-5 w-5 text-sky-300" /> {t("\u0645\u0644\u062e\u0635 \u0627\u0644\u0625\u064a\u0631\u0627\u062f\u0627\u062a", "Revenue Summary")}
             </h3>
           </div>
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="h-6 w-6 animate-spin rounded-full border-3 border-orange-500 border-t-transparent" />
+              <div className="h-6 w-6 animate-spin rounded-full border-3 border-sky-500 border-t-transparent" />
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <div>
-                <p className="text-body-sm text-gray-500">{t("\u0625\u062c\u0645\u0627\u0644\u064a GMV", "Total GMV")}</p>
-                <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-gray-900 dark:text-white">{formatKWD(totalGMV)}</p>
+                <p className="text-body-sm text-slate-500">{t("\u0625\u062c\u0645\u0627\u0644\u064a GMV", "Total GMV")}</p>
+                <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-slate-900 dark:text-white">{formatKWD(totalGMV)}</p>
               </div>
               <div>
-                <p className="text-body-sm text-gray-500">{t("\u0639\u0645\u0648\u0644\u0629 \u0627\u0644\u0645\u0646\u0635\u0629 (2%)", "Platform Fee (2%)")}</p>
+                <p className="text-body-sm text-slate-500">{t("\u0639\u0645\u0648\u0644\u0629 \u0627\u0644\u0645\u0646\u0635\u0629 (2%)", "Platform Fee (2%)")}</p>
                 <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-success">{formatKWD(platformFee)}</p>
               </div>
               <div>
-                <p className="text-body-sm text-gray-500">{t("\u0627\u0644\u0645\u062f\u0641\u0648\u0639\u0627\u062a \u0644\u0644\u062d\u0645\u0644\u0627\u062a", "Campaign Payouts")}</p>
-                <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-gray-900 dark:text-white">{formatKWD(campaignPayouts)}</p>
+                <p className="text-body-sm text-slate-500">{t("\u0627\u0644\u0645\u062f\u0641\u0648\u0639\u0627\u062a \u0644\u0644\u062d\u0645\u0644\u0627\u062a", "Campaign Payouts")}</p>
+                <p className="tabular-nums text-body-lg sm:text-heading-md font-bold text-slate-900 dark:text-white">{formatKWD(campaignPayouts)}</p>
               </div>
             </div>
           )}

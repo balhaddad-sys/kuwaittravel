@@ -15,7 +15,7 @@ const dealConfig: Record<DealBadgeType, { icon: React.ReactNode; labelAr: string
     icon: <Clock className="h-3 w-3" />,
     labelAr: "حجز مبكر",
     labelEn: "Early Bird",
-    color: "bg-indigo-500 text-white",
+    color: "bg-sky-500 text-white",
   },
   last_minute: {
     icon: <Flame className="h-3 w-3" />,

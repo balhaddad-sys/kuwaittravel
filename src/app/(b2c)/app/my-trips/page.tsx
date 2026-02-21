@@ -47,10 +47,10 @@ const statusConfig: Record<
     ar: "مكتمل",
     en: "Completed",
     icon: <CheckCircle2 className="h-4 w-4" />,
-    color: "text-indigo-700 dark:text-indigo-400",
-    bg: "bg-indigo-50 dark:bg-indigo-900/20",
-    dot: "bg-indigo-500",
-    border: "border-indigo-100 dark:border-indigo-900/30",
+    color: "text-sky-700 dark:text-sky-400",
+    bg: "bg-sky-50 dark:bg-sky-900/20",
+    dot: "bg-sky-500",
+    border: "border-sky-100 dark:border-sky-900/30",
   },
   cancelled: {
     ar: "ملغي",
@@ -69,19 +69,19 @@ interface EnrichedBooking extends Booking {
 
 function SkeletonBooking() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-[#1A2D48]/60 dark:bg-indigo-800/80">
+    <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/80">
       <div className="flex items-center gap-4 p-5">
-        <div className="h-14 w-14 shrink-0 rounded-2xl bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
+        <div className="h-14 w-14 shrink-0 rounded-2xl bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
         <div className="flex-1 space-y-2.5">
-          <div className="h-4 w-2/3 rounded-lg bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
+          <div className="h-4 w-2/3 rounded-lg bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
           <div className="flex items-center gap-2">
-            <div className="h-3.5 w-28 rounded-lg bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
-            <div className="h-5 w-20 rounded-full bg-gray-100 dark:bg-indigo-700/40 animate-pulse" />
+            <div className="h-3.5 w-28 rounded-lg bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
+            <div className="h-5 w-20 rounded-full bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
           </div>
         </div>
         <div className="shrink-0 space-y-2 text-end">
-          <div className="h-4 w-16 rounded-lg bg-gray-100 dark:bg-indigo-700/40 animate-pulse ms-auto" />
-          <div className="h-4 w-4 rounded bg-gray-100 dark:bg-indigo-700/40 animate-pulse ms-auto" />
+          <div className="h-4 w-16 rounded-lg bg-slate-100 dark:bg-slate-700/40 animate-pulse ms-auto" />
+          <div className="h-4 w-4 rounded bg-slate-100 dark:bg-slate-700/40 animate-pulse ms-auto" />
         </div>
       </div>
     </div>
@@ -174,14 +174,14 @@ export default function MyTripsPage() {
   const filteredBookings = tab === "upcoming" ? upcomingBookings : pastBookings;
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] dark:bg-indigo-900">
+    <div className="min-h-screen bg-[#F5F7FA] dark:bg-[#0B1120]">
 
       {/* ─── Hero Header ─── */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-500">
+      <div className="relative overflow-hidden bg-gradient-to-br from-[#082F49] via-[#0C4A6E] to-[#2E1065]">
         {/* Ambient orbs */}
         <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-indigo-400/20 blur-2xl" />
-        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-orange-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-sky-400/20 blur-2xl" />
+        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-violet-400/10 blur-3xl" />
 
         <Container className="relative pb-16 pt-10 sm:pt-12">
           <div className="flex items-center gap-3.5">
@@ -193,7 +193,7 @@ export default function MyTripsPage() {
                 {t("رحلاتي", "My Trips")}
               </h1>
               {!loading && bookings.length > 0 && (
-                <p className="mt-0.5 text-sm text-indigo-100/80">
+                <p className="mt-0.5 text-sm text-sky-100/80">
                   {bookings.length} {t("حجز إجمالي", "total bookings")}
                 </p>
               )}
@@ -214,7 +214,7 @@ export default function MyTripsPage() {
                     onClick={() => setTab(tabKey)}
                     className={`relative flex items-center gap-2 rounded-t-xl px-5 pb-3.5 pt-2.5 text-[0.9375rem] font-semibold transition-all duration-200 ${
                       isActive
-                        ? "bg-[#F5F7FA] text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400"
+                        ? "bg-[#F5F7FA] text-sky-600 dark:bg-[#0B1120] dark:text-sky-400"
                         : "text-white/70 hover:text-white"
                     }`}
                   >
@@ -223,7 +223,7 @@ export default function MyTripsPage() {
                       <span
                         className={`inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full px-1.5 text-[10px] font-bold ${
                           isActive
-                            ? "bg-indigo-600 text-white dark:bg-indigo-500"
+                            ? "bg-sky-600 text-white dark:bg-sky-500"
                             : "bg-white/20 text-white"
                         }`}
                       >
@@ -243,7 +243,7 @@ export default function MyTripsPage() {
         {!userData && !authLoading ? (
           <div className="py-10">
             <EmptyState
-              icon={<LogIn className="h-14 w-14 text-gray-200 dark:text-indigo-400/50" />}
+              icon={<LogIn className="h-14 w-14 text-slate-200 dark:text-sky-400/50" />}
               title={t("سجّل دخولك", "Sign in required")}
               description={t("سجّل دخولك لعرض رحلاتك وحجوزاتك", "Sign in to view your trips and bookings")}
               action={{ label: t("تسجيل الدخول", "Sign In"), onClick: () => router.push("/login") }}
@@ -272,7 +272,7 @@ export default function MyTripsPage() {
                   <button
                     type="button"
                     onClick={() => router.push(`/app/my-trips/${booking.id}`)}
-                    className="group w-full overflow-hidden rounded-2xl border border-gray-100/80 bg-white text-start shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)] hover:-translate-y-0.5 dark:border-[#1A2D48]/60 dark:bg-indigo-800/90"
+                    className="group w-full overflow-hidden rounded-2xl border border-slate-100/80 bg-white text-start shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)] hover:-translate-y-0.5 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90"
                   >
                     {/* Coloured top accent line */}
                     <div className={`h-0.5 w-full ${status.dot}`} />
@@ -287,11 +287,11 @@ export default function MyTripsPage() {
 
                       {/* Details */}
                       <div className="min-w-0 flex-1">
-                        <h3 className="truncate text-[0.9375rem] font-semibold text-gray-900 dark:text-white">
+                        <h3 className="truncate text-[0.9375rem] font-semibold text-slate-900 dark:text-white">
                           {booking.tripTitle}
                         </h3>
                         <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                          <span className="flex items-center gap-1.5 text-[0.8125rem] text-gray-500 dark:text-indigo-300/60">
+                          <span className="flex items-center gap-1.5 text-[0.8125rem] text-slate-500 dark:text-slate-400">
                             <Calendar className="h-3.5 w-3.5 shrink-0" />
                             {departureLabel}
                           </span>
@@ -306,10 +306,10 @@ export default function MyTripsPage() {
 
                       {/* Price + chevron */}
                       <div className="shrink-0 text-end">
-                        <p className="font-numbers text-[0.9375rem] font-bold text-gray-900 dark:text-white">
+                        <p className="font-numbers text-[0.9375rem] font-bold text-slate-900 dark:text-white">
                           {formatKWD(booking.totalKWD)}
                         </p>
-                        <ChevronLeft className="ms-auto mt-2 h-4 w-4 text-gray-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-indigo-300/45" />
+                        <ChevronLeft className="ms-auto mt-2 h-4 w-4 text-slate-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-slate-400/60" />
                       </div>
                     </div>
                   </button>
@@ -320,7 +320,7 @@ export default function MyTripsPage() {
         ) : (
           <div className="py-10">
             <EmptyState
-              icon={<Plane className="h-14 w-14 text-gray-200 dark:text-indigo-400/50" />}
+              icon={<Plane className="h-14 w-14 text-slate-200 dark:text-sky-400/50" />}
               title={t("لا توجد رحلات", "No Trips Yet")}
               description={
                 tab === "upcoming"

@@ -45,9 +45,9 @@ function ReviewCard({
         <Avatar src={travelerAvatar} alt={travelerName} size="md" />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <p className="text-body-md font-semibold text-gray-900 dark:text-white">{travelerName}</p>
+            <p className="text-body-md font-semibold text-slate-900 dark:text-white">{travelerName}</p>
             {verified && (
-              <CheckCircle2 className="h-4 w-4 text-indigo-500" />
+              <CheckCircle2 className="h-4 w-4 text-sky-500" />
             )}
           </div>
           <div className="mt-0.5 flex items-center gap-2">
@@ -57,26 +57,26 @@ function ReviewCard({
                   key={i}
                   className={cn(
                     "h-3.5 w-3.5",
-                    i < rating ? "fill-orange-400 text-orange-400" : "fill-gray-200 text-gray-200 dark:fill-gray-600 dark:text-indigo-400/50"
+                    i < rating ? "fill-orange-400 text-orange-400" : "fill-slate-200 text-slate-200 dark:fill-slate-600 dark:text-sky-400/50"
                   )}
                 />
               ))}
             </div>
-            <span className="text-[11px] text-gray-400">{createdAt}</span>
+            <span className="text-[11px] text-slate-400">{createdAt}</span>
           </div>
         </div>
       </div>
 
       {/* Content */}
       <div className="mt-3">
-        <p className="text-body-md font-semibold text-gray-800 dark:text-white">{title}</p>
-        <p className={cn("mt-1 text-body-sm text-gray-600 dark:text-indigo-200", !expanded && isLong && "line-clamp-3")}>
+        <p className="text-body-md font-semibold text-slate-800 dark:text-white">{title}</p>
+        <p className={cn("mt-1 text-body-sm text-slate-600 dark:text-sky-200", !expanded && isLong && "line-clamp-3")}>
           {body}
         </p>
         {isLong && (
           <button
             onClick={() => setExpanded(!expanded)}
-            className="mt-1 text-body-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400"
+            className="mt-1 text-body-sm font-medium text-sky-600 hover:text-sky-700 dark:text-sky-400"
           >
             {expanded ? t("أقل", "Show less") : t("المزيد", "Read more")}
           </button>
@@ -99,7 +99,7 @@ function ReviewCard({
         <div className="mt-3 border-t border-surface-border pt-3 dark:border-surface-dark-border">
           <button
             onClick={onHelpful}
-            className="flex items-center gap-1.5 text-body-sm text-gray-500 transition-colors hover:text-indigo-600 dark:text-indigo-300/60 dark:hover:text-indigo-400"
+            className="flex items-center gap-1.5 text-body-sm text-slate-500 transition-colors hover:text-sky-600 dark:text-slate-300/60 dark:hover:text-sky-400"
           >
             <ThumbsUp className="h-3.5 w-3.5" />
             {t("مفيد", "Helpful")} ({helpful})

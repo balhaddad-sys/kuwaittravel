@@ -26,7 +26,7 @@ const categoryIcon: Record<ChecklistCategory, React.ReactNode> = {
 };
 
 const categoryColor: Record<ChecklistCategory, string> = {
-  document: "text-indigo-600 bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-900/30",
+  document: "text-sky-600 bg-sky-50 dark:text-sky-400 dark:bg-sky-900/30",
   packing: "text-orange-600 bg-orange-50 dark:text-orange-400 dark:bg-orange-900/30",
   health: "text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-900/30",
   financial: "text-green-600 bg-green-50 dark:text-green-400 dark:bg-green-900/30",
@@ -48,25 +48,25 @@ function ChecklistItem({ id, title, titleAr, description, descriptionAr, categor
       onClick={() => onToggle(id, nextStatus())}
       className={cn(
         "flex w-full items-start gap-3 rounded-[var(--radius-md)] p-3 text-start transition-colors",
-        status === "completed" ? "bg-indigo-50/50 dark:bg-indigo-900/10" : "hover:bg-gray-50 dark:hover:bg-indigo-800/50"
+        status === "completed" ? "bg-sky-50/50 dark:bg-sky-900/10" : "hover:bg-slate-50 dark:hover:bg-[#1E293B]/50"
       )}
     >
       <div className="mt-0.5 shrink-0">
         {status === "completed" ? (
-          <CheckCircle2 className="h-5 w-5 text-indigo-500" />
+          <CheckCircle2 className="h-5 w-5 text-sky-500" />
         ) : status === "skipped" ? (
-          <SkipForward className="h-5 w-5 text-gray-400" />
+          <SkipForward className="h-5 w-5 text-slate-400" />
         ) : (
-          <Circle className="h-5 w-5 text-gray-300 dark:text-indigo-400/50" />
+          <Circle className="h-5 w-5 text-slate-300 dark:text-sky-400/50" />
         )}
       </div>
       <div className="flex-1 min-w-0">
-        <p className={cn("text-body-md font-medium", status === "completed" ? "text-gray-400 line-through" : "text-gray-800 dark:text-white")}>
+        <p className={cn("text-body-md font-medium", status === "completed" ? "text-slate-400 line-through" : "text-slate-800 dark:text-white")}>
           {language === "ar" ? titleAr : title}
           {required && <span className="ms-1 text-orange-500">*</span>}
         </p>
         {(description || descriptionAr) && (
-          <p className="mt-0.5 text-body-sm text-gray-500 dark:text-indigo-300/60">
+          <p className="mt-0.5 text-body-sm text-slate-500 dark:text-slate-300/60">
             {language === "ar" ? descriptionAr || description : description || descriptionAr}
           </p>
         )}
@@ -104,16 +104,16 @@ function PreparationChecklist({ items, onToggle, className }: PreparationCheckli
       {/* Progress */}
       <div>
         <div className="mb-2 flex items-center justify-between text-body-sm">
-          <span className="font-medium text-gray-700 dark:text-indigo-100">
+          <span className="font-medium text-slate-700 dark:text-slate-100">
             {t("التحضيرات", "Preparation")}
           </span>
-          <span className="font-medium text-indigo-600 dark:text-indigo-400">
+          <span className="font-medium text-sky-600 dark:text-sky-400">
             {completed}/{total}
           </span>
         </div>
-        <div className="h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-indigo-800">
+        <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-[#1E293B]">
           <div
-            className="h-full rounded-full bg-indigo-500 transition-all duration-500"
+            className="h-full rounded-full bg-sky-500 transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>

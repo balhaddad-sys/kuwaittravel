@@ -20,14 +20,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-label font-medium text-[var(--clr-text-main)] transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-focus-within:text-[var(--clr-primary)]"
+            className="text-label font-medium text-[var(--clr-text-main)] transition-colors duration-[var(--duration-ui)] ease-[var(--ease-spring)] group-focus-within:text-[var(--clr-primary)]"
           >
             {label}
           </label>
         )}
         <div className="relative flex items-center">
           {leftAddon && (
-            <span className="absolute start-3 flex items-center text-[var(--clr-text-muted)] transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-focus-within:text-[var(--clr-primary)]">
+            <span className="absolute start-3 flex items-center text-[var(--clr-text-muted)] transition-colors duration-[var(--duration-ui)] ease-[var(--ease-spring)] group-focus-within:text-[var(--clr-primary)]">
               {leftAddon}
             </span>
           )}
@@ -46,7 +46,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {rightAddon && (
-            <span className="absolute end-3 flex items-center text-[var(--clr-text-muted)] transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-focus-within:text-[var(--clr-primary)]">
+            <span className="absolute end-3 flex items-center text-[var(--clr-text-muted)] transition-colors duration-[var(--duration-ui)] ease-[var(--ease-spring)] group-focus-within:text-[var(--clr-primary)]">
               {rightAddon}
             </span>
           )}

@@ -65,9 +65,9 @@ function VerificationChip({ status }: { status: VerificationStatus }) {
 
 function DetailSection({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-surface-border/70 bg-gray-50/60 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.03]">
-      <h4 className="text-body-sm font-bold text-gray-900 dark:text-white mb-2.5 flex items-center gap-2">
-        <span className="text-orange-500 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>
+    <div className="rounded-xl border border-surface-border/70 bg-slate-50/60 p-3 dark:border-surface-dark-border/70 dark:bg-white/[0.03]">
+      <h4 className="text-body-sm font-bold text-slate-900 dark:text-white mb-2.5 flex items-center gap-2">
+        <span className="text-sky-500 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>
         {title}
       </h4>
       <dl className="space-y-2 text-body-sm">{children}</dl>
@@ -78,8 +78,8 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, dir, multiline }: { label: string; value: string; dir?: string; multiline?: boolean }) {
   return (
     <div>
-      <dt className="text-xs text-gray-500 dark:text-indigo-300/60">{label}</dt>
-      <dd className={cn("font-medium text-gray-900 dark:text-white", !multiline && "truncate")} dir={dir}>
+      <dt className="text-xs text-slate-500 dark:text-slate-400/70">{label}</dt>
+      <dd className={cn("font-medium text-slate-900 dark:text-white", !multiline && "truncate")} dir={dir}>
         {value}
       </dd>
     </div>
@@ -271,7 +271,7 @@ export default function AdminCampaignsPage() {
         ]}
       />
 
-      <Container className="sacred-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="eo-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Search */}
         <SearchInput
           placeholder={t("ابحث بالاسم أو رقم الترخيص...", "Search by name or license...")}
@@ -285,8 +285,8 @@ export default function AdminCampaignsPage() {
               key={f.value}
               onClick={() => setFilter(f.value)}
               className={cn(
-                "sacred-filter-chip inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs sm:text-body-sm font-medium transition-all",
-                filter === f.value && "sacred-filter-chip-active"
+                "eo-filter-chip inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs sm:text-body-sm font-medium transition-all",
+                filter === f.value && "eo-filter-chip-active"
               )}
             >
               {f.label}
@@ -300,7 +300,7 @@ export default function AdminCampaignsPage() {
         {/* Campaign list */}
         {loadingData ? (
           <div className="flex items-center justify-center py-16">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
           </div>
         ) : filtered.length === 0 ? (
           <EmptyState
@@ -322,29 +322,29 @@ export default function AdminCampaignsPage() {
               >
                 <div
                   className={cn(
-                    "flex items-center gap-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#1A2D48] dark:bg-indigo-800",
+                    "flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#2D3B4F] dark:bg-[#1E293B]",
                   )}
                 >
                   {/* Status indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[campaign.verificationStatus])} />
 
                   {/* Icon — desktop only */}
-                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-indigo-800">
-                    <Building2 className="h-5 w-5 text-gray-500 dark:text-indigo-300/60" />
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#1E293B]">
+                    <Building2 className="h-5 w-5 text-slate-500 dark:text-slate-400/70" />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0 py-3 pe-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-body-sm font-bold text-gray-900 dark:text-white truncate">
+                      <h3 className="text-body-sm font-bold text-slate-900 dark:text-white truncate">
                         {campaign.nameAr}
                       </h3>
                       <VerificationChip status={campaign.verificationStatus} />
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-indigo-300/60 truncate mt-0.5" dir="ltr">
+                    <p className="text-xs text-slate-500 dark:text-slate-400/70 truncate mt-0.5" dir="ltr">
                       {campaign.name}
                     </p>
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-slate-400/60">
                       <span className="flex items-center gap-1">
                         <FileText className="h-3 w-3" />
                         {campaign.licenseNumber}
@@ -358,7 +358,7 @@ export default function AdminCampaignsPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-gray-300 group-hover:text-gray-500 transition-colors dark:text-indigo-400/50 dark:group-hover:text-gray-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-slate-500 dark:group-hover:text-slate-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -392,21 +392,21 @@ export default function AdminCampaignsPage() {
               {/* Back arrow — mobile */}
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-gray-500 hover:bg-gray-100 transition-colors dark:text-indigo-300/60 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-slate-400/70 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
               <div className="flex-1 min-w-0">
-                <h2 className="font-bold text-gray-900 dark:text-white truncate text-body-md">
+                <h2 className="font-bold text-slate-900 dark:text-white truncate text-body-md">
                   {selected.nameAr}
                 </h2>
-                <p className="text-xs text-gray-500 truncate" dir="ltr">{selected.name}</p>
+                <p className="text-xs text-slate-500 truncate" dir="ltr">{selected.name}</p>
               </div>
               <VerificationChip status={selected.verificationStatus} />
               {/* Close X — desktop */}
               <button
                 onClick={() => setSelectedId(null)}
-                className="hidden sm:flex shrink-0 rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 transition-colors dark:hover:bg-surface-dark-border"
+                className="hidden sm:flex shrink-0 rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 transition-colors dark:hover:bg-surface-dark-border"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -449,13 +449,13 @@ export default function AdminCampaignsPage() {
                 )}
                 {selected.licenseImageUrl && (
                   <div>
-                    <dt className="text-xs text-gray-500 dark:text-indigo-300/60">{t("صورة الترخيص", "License Image")}</dt>
+                    <dt className="text-xs text-slate-500 dark:text-slate-400/70">{t("صورة الترخيص", "License Image")}</dt>
                     <dd>
                       <a
                         href={selected.licenseImageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-body-sm font-medium text-orange-600 hover:text-orange-700 transition-colors"
+                        className="inline-flex items-center gap-1 text-body-sm font-medium text-sky-600 hover:text-sky-700 transition-colors"
                       >
                         {t("عرض", "View")} <ExternalLink className="h-3.5 w-3.5" />
                       </a>
@@ -485,7 +485,7 @@ export default function AdminCampaignsPage() {
               {/* Verification Status */}
               <DetailSection icon={<ShieldAlert />} title={t("حالة التحقق", "Verification Status")}>
                 <div>
-                  <dt className="text-xs text-gray-500 dark:text-indigo-300/60 mb-1">{t("الحالة", "Status")}</dt>
+                  <dt className="text-xs text-slate-500 dark:text-slate-400/70 mb-1">{t("الحالة", "Status")}</dt>
                   <dd><VerificationChip status={selected.verificationStatus} /></dd>
                 </div>
                 <DetailRow label={t("تاريخ التسجيل", "Registered")} value={getCreatedDate(selected)} />

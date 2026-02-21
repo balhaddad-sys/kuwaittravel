@@ -92,19 +92,19 @@ export default function LoginPage() {
 
       {/* Header */}
       <div className="mb-8">
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 shadow-[0_4px_14px_rgba(30,58,95,0.35)]">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600 shadow-[0_4px_14px_rgba(14,165,233,0.35)]">
           <Phone className="h-6 w-6 text-white" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-bold text-slate-900">
           {t("مرحباً بك في رحال", "Welcome to Rahal")}
         </h1>
-        <p className="mt-1.5 text-sm text-gray-500">
+        <p className="mt-1.5 text-sm text-slate-500">
           {t("سجّل الدخول للوصول إلى رحلاتك", "Sign in to access your trips")}
         </p>
       </div>
 
       {/* Card */}
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.06)]">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.06)]">
         {/* Google Sign-In */}
         <Button
           type="button"
@@ -121,10 +121,10 @@ export default function LoginPage() {
         {/* Divider */}
         <div className="relative my-5">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200" />
+            <div className="w-full border-t border-slate-200" />
           </div>
           <div className="relative flex justify-center text-xs">
-            <span className="bg-white px-3 text-gray-400">{t("أو عبر رقم الهاتف", "or via phone number")}</span>
+            <span className="bg-white px-3 text-slate-400">{t("أو عبر رقم الهاتف", "or via phone number")}</span>
           </div>
         </div>
 
@@ -137,7 +137,7 @@ export default function LoginPage() {
             dir="ltr"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            leftAddon={<span className="text-sm font-semibold text-gray-500">+965</span>}
+            leftAddon={<span className="text-sm font-semibold text-slate-500">+965</span>}
             error={error}
           />
           <Button type="submit" fullWidth loading={loading} size="lg">
@@ -147,7 +147,7 @@ export default function LoginPage() {
       </div>
 
       {/* Privacy note */}
-      <p className="mt-5 text-center text-xs text-gray-400">
+      <p className="mt-5 text-center text-xs text-slate-400">
         {t(
           "بالمتابعة، أنت توافق على شروط الاستخدام وسياسة الخصوصية.",
           "By continuing, you agree to our Terms of Service and Privacy Policy."

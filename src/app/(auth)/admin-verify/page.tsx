@@ -75,13 +75,13 @@ export default function AdminVerifyPage() {
   return (
     <Card variant="elevated" padding="lg">
       <div className="text-center mb-8">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-600">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-sky-600">
           <ShieldCheck className="h-7 w-7 text-white" />
         </div>
-        <h1 className="text-heading-lg font-bold text-gray-900 dark:text-white">
+        <h1 className="text-heading-lg font-bold text-slate-900 dark:text-white">
           {t("تحقق دخول المشرف", "Admin Verification")}
         </h1>
-        <p className="mt-2 text-body-md text-gray-500">
+        <p className="mt-2 text-body-md text-slate-500">
           {t(`أدخل الرمز المرسل إلى ${phone}`, `Enter the code sent to ${phone}`)}
         </p>
       </div>

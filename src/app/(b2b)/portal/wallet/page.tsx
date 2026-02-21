@@ -91,7 +91,7 @@ export default function WalletPage() {
         title={t("المحفظة", "Wallet")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("المحفظة", "Wallet") }]}
       />
-      <Container className="sacred-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Stat cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
@@ -122,40 +122,40 @@ export default function WalletPage() {
 
         {/* Revenue summary card */}
         <Card variant="elevated" padding="lg">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white mb-4">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white mb-4">
             {t("ملخص الإيرادات", "Revenue Summary")}
           </h3>
           {loading ? (
             <div className="flex justify-center py-8">
-              <div className="h-6 w-6 animate-spin rounded-full border-3 border-orange-500 border-t-transparent" />
+              <div className="h-6 w-6 animate-spin rounded-full border-3 border-sky-500 border-t-transparent" />
             </div>
           ) : bookings.length === 0 ? (
-            <p className="text-body-sm text-gray-500 dark:text-indigo-300/60 text-center py-4">
+            <p className="text-body-sm text-slate-500 dark:text-slate-300/60 text-center py-4">
               {t("لا توجد بيانات إيرادات بعد", "No revenue data yet")}
             </p>
           ) : (
             <div className="space-y-3">
-              <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
-                <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
+              <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                   {t("إجمالي المحصّل", "Total Collected")}
                 </span>
                 <span className="text-body-sm font-bold text-emerald-600 dark:text-emerald-400 tabular-nums" dir="ltr">
                   {formatKWD(bookings.filter((b) => b.status !== "cancelled" && b.status !== "refunded").reduce((s, b) => s + b.paidKWD, 0))}
                 </span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-3 dark:border-[#1A2D48] dark:bg-indigo-800/50">
-                <span className="text-body-sm text-gray-600 dark:text-indigo-300/60">
+              <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                   {t("رسوم المنصة (2%)", "Platform Fee (2%)")}
                 </span>
                 <span className="text-body-sm font-bold text-red-500 dark:text-red-400 tabular-nums" dir="ltr">
                   -{formatKWD(totalFees)}
                 </span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-orange-200 bg-orange-50/50 p-3 dark:border-orange-900/40 dark:bg-orange-900/10">
-                <span className="text-body-sm font-semibold text-gray-700 dark:text-indigo-200">
+              <div className="flex items-center justify-between rounded-lg border border-violet-200 bg-violet-50/50 p-3 dark:border-violet-900/40 dark:bg-violet-900/10">
+                <span className="text-body-sm font-semibold text-slate-700 dark:text-slate-200">
                   {t("صافي الإيرادات", "Net Revenue")}
                 </span>
-                <span className="text-body-md font-bold text-gray-900 dark:text-white tabular-nums" dir="ltr">
+                <span className="text-body-md font-bold text-slate-900 dark:text-white tabular-nums" dir="ltr">
                   {formatKWD(availableBalance)}
                 </span>
               </div>
@@ -166,17 +166,17 @@ export default function WalletPage() {
         {/* Transaction history */}
         <Card variant="elevated" padding="none">
           <div className="px-4 py-3 border-b border-surface-border dark:border-surface-dark-border">
-            <h3 className="text-body-lg sm:text-heading-sm font-bold text-gray-900 dark:text-white">
+            <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">
               {t("سجل المعاملات", "Transaction History")}
             </h3>
-            <p className="text-xs text-gray-500 dark:text-indigo-300/60 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-300/60 mt-0.5">
               {t("المدفوعات المستلمة من حجوزات المسافرين", "Payments received from traveler bookings")}
             </p>
           </div>
 
           {loading ? (
             <div className="flex justify-center py-12">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
             </div>
           ) : recentTransactions.length === 0 ? (
             <EmptyState
@@ -190,7 +190,7 @@ export default function WalletPage() {
                 const date = parseTimestamp(booking.createdAt);
                 const isCompleted = booking.status === "completed" || booking.status === "fully_paid";
                 return (
-                  <div key={booking.id} className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50/50 dark:hover:bg-white/[0.02] transition-colors">
+                  <div key={booking.id} className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50/50 dark:hover:bg-white/[0.02] transition-colors">
                     <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
                       isCompleted
                         ? "bg-emerald-100 dark:bg-emerald-900/30"
@@ -203,10 +203,10 @@ export default function WalletPage() {
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-body-sm font-semibold text-gray-900 dark:text-white truncate">
+                      <p className="text-body-sm font-semibold text-slate-900 dark:text-white truncate">
                         {booking.travelerName}
                       </p>
-                      <p className="text-[11px] text-gray-400 dark:text-indigo-300/45 truncate">
+                      <p className="text-[11px] text-slate-400 dark:text-slate-400/45 truncate">
                         {booking.tripTitle}
                       </p>
                     </div>
@@ -215,7 +215,7 @@ export default function WalletPage() {
                         +{formatKWD(booking.paidKWD)}
                       </p>
                       {date && (
-                        <p className="text-[10px] text-gray-400 mt-0.5">
+                        <p className="text-[10px] text-slate-400 mt-0.5">
                           {formatRelativeTime(date, language === "ar" ? "ar-KW" : "en-US")}
                         </p>
                       )}

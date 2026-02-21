@@ -91,9 +91,9 @@ export default function TripsPage() {
         }
       />
 
-      <Container className="sacred-pattern py-6 space-y-6">
+      <Container className="eo-pattern py-6 space-y-6">
         {!userData?.campaignId && !loading && (
-          <div className="sacred-section p-4">
+          <div className="eo-section p-4">
             <EmptyState
               icon={<Map className="h-16 w-16" />}
               title={t("لا توجد حملة مرتبطة بالحساب", "No campaign linked to this account")}
@@ -124,8 +124,8 @@ export default function TripsPage() {
                   onClick={() => setFilter(f.value as TripFilter)}
                   className={`shrink-0 rounded-full border px-4 py-2 text-body-sm font-medium transition-all ${
                     filter === f.value
-                      ? "border-indigo-600 bg-indigo-700 text-white"
-                      : "border-gray-200 bg-white/80 text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800/70 dark:text-indigo-200 dark:hover:border-indigo-600/50 dark:hover:bg-indigo-900/60"
+                      ? "border-sky-600 bg-sky-700 text-white"
+                      : "border-slate-200 bg-white/80 text-slate-600 hover:border-slate-300 hover:bg-slate-50 dark:border-[#2D3B4F] dark:bg-[#1E293B]/70 dark:text-slate-200 dark:hover:border-sky-600/50 dark:hover:bg-[#111827]/60"
                   }`}
                 >
                   {f.label}
@@ -141,7 +141,7 @@ export default function TripsPage() {
 
         {/* Trips Grid */}
         {loading ? (
-          <p className="text-body-md text-gray-500 text-center py-10">
+          <p className="text-body-md text-slate-500 text-center py-10">
             {t("جاري تحميل الرحلات...", "Loading trips...")}
           </p>
         ) : filteredTrips.length > 0 ? (
@@ -163,7 +163,7 @@ export default function TripsPage() {
             ))}
           </div>
         ) : (
-          <div className="sacred-section p-4">
+          <div className="eo-section p-4">
             <EmptyState
               icon={<Map className="h-16 w-16" />}
               title={t("لا توجد رحلات", "No trips found")}

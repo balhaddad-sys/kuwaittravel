@@ -32,19 +32,19 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-gray-200 bg-white shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] dark:border-[#1A2D48] dark:bg-indigo-900 lg:flex",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-slate-200 bg-white shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-spring)] dark:border-[#2D3B4F] dark:bg-[#111827] lg:flex",
         collapsed ? "w-[84px]" : "w-[286px]"
       )}
     >
       {/* Header */}
-      <div className="relative flex items-center justify-between border-b border-gray-200 p-4 dark:border-[#1A2D48]">
+      <div className="relative flex items-center justify-between border-b border-slate-200 p-4 dark:border-[#2D3B4F]">
         {!collapsed && (
           <div className="max-w-[190px] truncate">{header}</div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-gray-400 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:border-gray-200 hover:bg-gray-50 hover:text-gray-600 active:scale-[0.97] dark:text-indigo-300/50 dark:hover:border-indigo-700/40 dark:hover:bg-indigo-800/50 dark:hover:text-indigo-100"
+          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-slate-400 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-spring)] hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600 active:scale-[0.97] dark:text-slate-400 dark:hover:border-sky-700/40 dark:hover:bg-slate-800 dark:hover:text-slate-100"
         >
           {collapsed ? <PanelLeft className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
         </button>
@@ -57,23 +57,23 @@ function Sidebar({ items, header, footer }: SidebarProps) {
           return (
             <div key={item.href}>
               {dividerIndices.has(index) && (
-                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent dark:via-[#1A2D48]" />
+                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-[#2D3B4F]" />
               )}
               <Link
                 href={item.href}
                 prefetch
                 className={cn(
-                  "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.985]",
+                  "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-spring)] active:scale-[0.985]",
                   isActive
-                    ? "border border-indigo-100 bg-indigo-50 font-semibold text-indigo-700 dark:border-indigo-700/30 dark:bg-indigo-800/60 dark:text-indigo-300"
-                    : "border border-transparent text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700 dark:text-indigo-300/55 dark:hover:border-[#1A2D48] dark:hover:bg-indigo-800/50 dark:hover:text-indigo-100"
+                    ? "border border-sky-100 bg-sky-50 font-semibold text-sky-700 dark:border-sky-700/30 dark:bg-sky-800/60 dark:text-sky-300"
+                    : "border border-transparent text-slate-500 hover:border-slate-100 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:border-[#2D3B4F] dark:hover:bg-slate-800 dark:hover:text-slate-100"
                 )}
                 title={collapsed ? item.label : undefined}
               >
                 {isActive && (
-                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-indigo-600 dark:bg-indigo-400" />
+                  <span className="pointer-events-none absolute inset-y-2 start-0 w-0.5 rounded-full bg-gradient-to-b from-sky-400 to-violet-500 dark:from-sky-400 dark:to-violet-500" />
                 )}
-                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-smooth)] group-hover:scale-105", isActive && "text-indigo-600 dark:text-indigo-400")}>
+                <span className={cn("relative shrink-0 transition-transform duration-[var(--duration-ui)] ease-[var(--ease-spring)] group-hover:scale-105", isActive && "text-sky-600 dark:text-sky-400")}>
                   {item.icon}
                 </span>
                 {!collapsed && (
@@ -84,8 +84,8 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                         className={cn(
                           "flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold",
                           isActive
-                            ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-700/30 dark:text-indigo-300"
-                            : "bg-gray-100 text-gray-500 dark:bg-indigo-800/60 dark:text-indigo-300/60"
+                            ? "bg-sky-100 text-sky-700 dark:bg-sky-700/30 dark:text-sky-300"
+                            : "bg-slate-100 text-slate-500 dark:bg-slate-800/60 dark:text-slate-300/60"
                         )}
                       >
                         {item.badge}
@@ -101,7 +101,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
 
       {/* Footer */}
       {footer && !collapsed && (
-        <div className="relative border-t border-gray-200 p-4 dark:border-[#1A2D48]">
+        <div className="relative border-t border-slate-200 p-4 dark:border-[#2D3B4F]">
           {footer}
         </div>
       )}

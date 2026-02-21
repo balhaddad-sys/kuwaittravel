@@ -71,8 +71,8 @@ function TripCard({
 
   const statusConfig = {
     active: { label: t("متاح", "Available"), bg: "bg-emerald-500" },
-    draft: { label: t("قريباً", "Coming Soon"), bg: "bg-gray-500" },
-    completed: { label: t("مكتمل", "Completed"), bg: "bg-gray-400" },
+    draft: { label: t("قريباً", "Coming Soon"), bg: "bg-slate-500" },
+    completed: { label: t("مكتمل", "Completed"), bg: "bg-slate-400" },
     cancelled: { label: t("ملغي", "Cancelled"), bg: "bg-red-500" },
   };
   const statusDisplay = statusConfig[status] || statusConfig.active;
@@ -82,7 +82,7 @@ function TripCard({
       className={cn(
         "group cursor-pointer overflow-hidden rounded-2xl bg-white transition-all duration-200",
         "hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]",
-        "dark:bg-indigo-800",
+        "dark:bg-[#1E293B]",
         className
       )}
       onClick={onClick}
@@ -91,7 +91,7 @@ function TripCard({
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
     >
       {/* ─── Image Section ─── */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 dark:bg-indigo-700/50">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 dark:bg-sky-700/50">
         {images.length > 1 ? (
           <div
             ref={scrollRef}
@@ -101,8 +101,8 @@ function TripCard({
             {images.slice(0, 5).map((src, i) => (
               <div key={i} className="relative h-full w-full flex-shrink-0 snap-start">
                 {failedImages.has(i) ? (
-                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-700 dark:to-indigo-600">
-                    <MapPin className="h-10 w-10 text-indigo-300 dark:text-indigo-300/60" />
+                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-sky-50 to-sky-100 dark:from-sky-700 dark:to-sky-600">
+                    <MapPin className="h-10 w-10 text-sky-300 dark:text-sky-300/60" />
                   </div>
                 ) : (
                   <Image
@@ -119,8 +119,8 @@ function TripCard({
           </div>
         ) : images.length === 1 ? (
           failedImages.has(0) ? (
-            <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-700 dark:to-indigo-600">
-              <MapPin className="h-10 w-10 text-indigo-300 dark:text-indigo-300/60" />
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-sky-50 to-sky-100 dark:from-sky-700 dark:to-sky-600">
+              <MapPin className="h-10 w-10 text-sky-300 dark:text-sky-300/60" />
             </div>
           ) : (
             <Image
@@ -133,8 +133,8 @@ function TripCard({
             />
           )
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-700 dark:to-indigo-600">
-            <MapPin className="h-10 w-10 text-indigo-300 dark:text-indigo-300/60" />
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-sky-50 to-sky-100 dark:from-sky-700 dark:to-sky-600">
+            <MapPin className="h-10 w-10 text-sky-300 dark:text-sky-300/60" />
           </div>
         )}
 
@@ -197,23 +197,23 @@ function TripCard({
       <div className="p-3 sm:p-4">
         {/* Destination + Rating */}
         <div className="flex items-start justify-between gap-2">
-          <div className="flex items-center gap-1 text-[0.8125rem] font-semibold text-gray-800 dark:text-indigo-100">
-            <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-500 dark:text-indigo-300/60" />
+          <div className="flex items-center gap-1 text-[0.8125rem] font-semibold text-slate-800 dark:text-slate-100">
+            <MapPin className="h-3.5 w-3.5 shrink-0 text-slate-500 dark:text-slate-300/60" />
             <span className="truncate">{destination}</span>
           </div>
           {/* Rating removed — only show when backed by real review data */}
         </div>
 
         {/* Trip Title */}
-        <h3 className="mt-1 line-clamp-1 text-[0.9375rem] font-semibold text-gray-900 dark:text-indigo-50">
+        <h3 className="mt-1 line-clamp-1 text-[0.9375rem] font-semibold text-slate-900 dark:text-slate-50">
           {title}
         </h3>
 
         {/* Dates */}
-        <p className="mt-1 flex items-center gap-1.5 text-[0.8125rem] text-gray-500 dark:text-indigo-300/55">
+        <p className="mt-1 flex items-center gap-1.5 text-[0.8125rem] text-slate-500 dark:text-slate-300/55">
           <Calendar className="h-3.5 w-3.5" />
           {departureDate}
-          <span className="text-gray-300 dark:text-indigo-700/60">—</span>
+          <span className="text-slate-300 dark:text-sky-700/60">—</span>
           {returnDate}
         </p>
 
@@ -223,7 +223,7 @@ function TripCard({
             {tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[10.5px] font-medium text-indigo-700 dark:bg-indigo-700/25 dark:text-indigo-300"
+                className="rounded-full bg-sky-50 px-2.5 py-0.5 text-[10.5px] font-medium text-sky-700 dark:bg-sky-700/25 dark:text-sky-300"
               >
                 {tag}
               </span>
@@ -233,7 +233,7 @@ function TripCard({
 
         {/* Capacity Bar */}
         <div className="mt-3">
-          <div className="h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-indigo-700/40">
+          <div className="h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-sky-700/40">
             <div
               className={cn(
                 "h-full rounded-full transition-all duration-500",
@@ -242,12 +242,12 @@ function TripCard({
               style={{ width: `${Math.min(fillPercent, 100)}%` }}
             />
           </div>
-          <div className="mt-1 flex items-center justify-between text-[10.5px] text-gray-500 dark:text-indigo-300/55">
+          <div className="mt-1 flex items-center justify-between text-[10.5px] text-slate-500 dark:text-slate-300/55">
             <span className="flex items-center gap-1">
               <Users className="h-3 w-3" />
               {booked}/{capacity}
             </span>
-            <span className={cn("font-medium", remaining <= 5 && remaining > 0 ? "text-red-600 dark:text-red-400" : "dark:text-indigo-300/55")}>
+            <span className={cn("font-medium", remaining <= 5 && remaining > 0 ? "text-red-600 dark:text-red-400" : "dark:text-slate-300/55")}>
               {remaining > 0
                 ? t(`${remaining} مقعد متبقي`, `${remaining} seats left`)
                 : t("مكتمل", "Full")}
@@ -256,15 +256,15 @@ function TripCard({
         </div>
 
         {/* Price */}
-        <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3 dark:border-[#1A2D48]">
-          <span className="text-[0.8125rem] text-gray-500 dark:text-indigo-300/55">
+        <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-[#2D3B4F]">
+          <span className="text-[0.8125rem] text-slate-500 dark:text-slate-300/55">
             {t("يبدأ من", "From")}
           </span>
           <div className="text-end">
-            <span className="font-numbers text-[1.125rem] font-bold text-gray-900 dark:text-indigo-50">
+            <span className="font-numbers text-[1.125rem] font-bold text-slate-900 dark:text-slate-50">
               {formatKWD(price)}
             </span>
-            <span className="text-[0.75rem] text-gray-400 dark:text-indigo-300/45">
+            <span className="text-[0.75rem] text-slate-400 dark:text-slate-300/45">
               {" "}/{t("شخص", "person")}
             </span>
           </div>

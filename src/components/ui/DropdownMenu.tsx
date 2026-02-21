@@ -37,7 +37,7 @@ function DropdownMenu({ trigger, items, align = "end", className }: DropdownMenu
       {open && (
         <div
           className={cn(
-            "travel-panel absolute top-full z-[var(--z-dropdown)] mt-1 min-w-[180px] animate-scale-in rounded-[var(--radius-lg)] py-1",
+            "eo-panel absolute top-full z-[var(--z-dropdown)] mt-1 min-w-[180px] animate-scale-in rounded-[var(--radius-lg)] py-1",
             align === "end" ? "end-0" : "start-0"
           )}
         >
@@ -48,7 +48,7 @@ function DropdownMenu({ trigger, items, align = "end", className }: DropdownMenu
                 "flex w-full items-center gap-2 px-4 py-2.5 text-body-md transition-colors text-start",
                 item.danger
                   ? "text-error hover:bg-error-light"
-                  : "text-gray-700 dark:text-indigo-100 hover:bg-surface-muted dark:hover:bg-surface-dark-border"
+                  : "text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-[#2D3B4F]"
               )}
               onClick={() => {
                 item.onClick();

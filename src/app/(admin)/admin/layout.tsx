@@ -54,31 +54,31 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         items={sidebarItems}
         header={
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-orange-400/30 bg-orange-500 text-sm font-bold text-white shadow-sm">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-violet-500 text-sm font-bold text-white shadow-sm">
               <Shield className="h-4 w-4" />
             </div>
-            <span className="text-heading-sm font-bold text-gray-900 dark:text-white">
+            <span className="text-heading-sm font-bold text-slate-900 dark:text-white">
               {t("المشرف العام", "Admin Console")}
             </span>
           </div>
         }
         footer={
           <div className="space-y-1.5">
-            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-gray-400 dark:text-indigo-300/45">
+            <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-slate-400 dark:text-slate-400/60">
               {t("التبديل إلى", "Switch to")}
             </p>
-            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 dark:text-indigo-300/60 dark:hover:bg-indigo-800/60 dark:hover:text-gray-200">
-              <Compass className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+            <Link href="/app/discover" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400/70 dark:hover:bg-[#1E293B] dark:hover:text-slate-200">
+              <Compass className="h-4 w-4 text-sky-600 dark:text-sky-400" />
               {t("المسافرون", "Travelers")}
             </Link>
-            <Link href="/portal/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 dark:text-indigo-300/60 dark:hover:bg-indigo-800/60 dark:hover:text-gray-200">
-              <PlaneTakeoff className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+            <Link href="/portal/dashboard" className="flex items-center gap-2.5 rounded-[var(--radius-lg)] px-2.5 py-2 text-body-sm text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400/70 dark:hover:bg-[#1E293B] dark:hover:text-slate-200">
+              <PlaneTakeoff className="h-4 w-4 text-sky-600 dark:text-sky-400" />
               {t("بوابة الحملات", "Campaign Portal")}
             </Link>
           </div>
         }
       />
-      <main className="sacred-shell-bg flex flex-1 flex-col ms-0 lg:ms-[286px] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] lg:pb-0 transition-all duration-300">
+      <main className="eo-shell-bg flex flex-1 flex-col ms-0 lg:ms-[286px] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] lg:pb-0 transition-all duration-300">
         <PageTransition className="flex-1" variant="admin">{children}</PageTransition>
       </main>
       <SectionBottomNav

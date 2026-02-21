@@ -23,7 +23,7 @@ interface ItineraryTimelineProps {
 const typeConfig: Record<string, { icon: React.ReactNode; color: string }> = {
   flight: {
     icon: <Plane className="h-4 w-4" />,
-    color: "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400",
+    color: "bg-sky-100 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400",
   },
   hotel_checkin: {
     icon: <Building2 className="h-4 w-4" />,
@@ -47,11 +47,11 @@ const typeConfig: Record<string, { icon: React.ReactNode; color: string }> = {
   },
   transport: {
     icon: <Bus className="h-4 w-4" />,
-    color: "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400",
+    color: "bg-sky-100 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400",
   },
   free_time: {
     icon: <Clock className="h-4 w-4" />,
-    color: "bg-gray-100 text-gray-500 dark:bg-indigo-800 dark:text-indigo-200",
+    color: "bg-slate-100 text-slate-500 dark:bg-[#1E293B] dark:text-sky-200",
   },
 };
 
@@ -195,21 +195,21 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
         <div key={dayNumber}>
           {/* Day header */}
           <div className="mb-3 flex items-start gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-[11px] font-bold text-white">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-[11px] font-bold text-white">
               {dayNumber}
             </span>
             <div className="min-w-0">
-              <h4 className="truncate text-body-md font-bold text-gray-900 dark:text-white">
+              <h4 className="truncate text-body-md font-bold text-slate-900 dark:text-white">
                 {dayMeta.title}
               </h4>
-              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
+              <p className="text-body-sm text-slate-500 dark:text-slate-300/60">
                 {dayMeta.subtitle}
               </p>
             </div>
           </div>
 
           {/* Timeline blocks */}
-          <div className="relative ms-3.5 border-s-2 border-gray-200 ps-5 dark:border-[#1A2D48]">
+          <div className="relative ms-3.5 border-s-2 border-slate-200 ps-5 dark:border-[#2D3B4F]">
             {dayBlocks.map((block, i) => {
               const config = typeConfig[block.type] || typeConfig.activity;
               const title = language === "ar" ? (block.titleAr || block.title) : (block.title || block.titleAr);
@@ -221,7 +221,7 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
                   className={cn("relative pb-5", i === dayBlocks.length - 1 && "pb-0")}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute -start-[1.625rem] top-1 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white bg-orange-400 dark:border-gray-900" />
+                  <div className="absolute -start-[1.625rem] top-1 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white bg-orange-400 dark:border-slate-900" />
 
                   <div className="flex items-start gap-3">
                     {/* Type icon */}
@@ -231,23 +231,23 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <p className="text-body-md font-semibold text-gray-800 dark:text-white">
+                        <p className="text-body-md font-semibold text-slate-800 dark:text-white">
                           {title}
                         </p>
                         {block.startTime && (
-                          <span className="text-[11px] text-gray-400 dark:text-indigo-300/45">
+                          <span className="text-[11px] text-slate-400 dark:text-slate-300/45">
                             {block.startTime}
                             {block.endTime && ` - ${block.endTime}`}
                           </span>
                         )}
                       </div>
                       {desc && (
-                        <p className="mt-0.5 text-body-sm text-gray-500 dark:text-indigo-300/60">
+                        <p className="mt-0.5 text-body-sm text-slate-500 dark:text-slate-300/60">
                           {desc}
                         </p>
                       )}
                       {block.location && (
-                        <p className="mt-0.5 text-[11px] text-gray-400 dark:text-indigo-300/45">
+                        <p className="mt-0.5 text-[11px] text-slate-400 dark:text-slate-300/45">
                           {block.location}
                         </p>
                       )}

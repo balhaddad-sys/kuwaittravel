@@ -22,7 +22,7 @@ function FAB({ icon, label, onClick, position = "bottom-right", className }: FAB
     <button
       onClick={onClick}
       className={cn(
-        "fab-button animate-fab-enter z-[var(--z-fab)] flex items-center justify-center gap-2 border border-indigo-700 bg-indigo-700 text-white shadow-fab transition-[transform,box-shadow,background-color] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:bg-indigo-800 active:scale-95",
+        "fab-button animate-fab-enter z-[var(--z-fab)] flex items-center justify-center gap-2 border border-sky-600 bg-gradient-to-br from-sky-500 to-violet-500 text-white shadow-fab transition-[transform,box-shadow,background-color] duration-[var(--duration-ui)] ease-[var(--ease-spring)] hover:from-sky-600 hover:to-violet-600 active:scale-95",
         label ? "!w-auto h-16 !rounded-[var(--radius-pill)] px-6" : "",
         positionMap[position],
         className

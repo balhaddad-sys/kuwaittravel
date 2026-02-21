@@ -9,29 +9,29 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   const { t } = useDirection();
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gray-50">
-      {/* Full-bleed blue gradient left panel (desktop) */}
+    <div className="relative min-h-screen overflow-hidden bg-slate-50">
+      {/* Full-bleed gradient left panel (desktop) */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:start-0 lg:flex lg:w-[52%] lg:flex-col lg:overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700" />
-        {/* Gold radial glow */}
-        <div className="absolute inset-0 opacity-100" style={{background:"radial-gradient(ellipse 70% 50% at 60% 30%, rgba(197,165,114,0.1) 0%, transparent 65%)"}} />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#0C4A6E] to-[#4C1D95]" />
+        {/* Violet radial glow */}
+        <div className="absolute inset-0 opacity-100" style={{background:"radial-gradient(ellipse 70% 50% at 60% 30%, rgba(139,92,246,0.1) 0%, transparent 65%)"}} />
         {/* Decorative orbs */}
-        <div className="absolute -top-32 -start-32 h-80 w-80 rounded-full bg-orange-400/10 blur-3xl" />
-        <div className="absolute top-1/3 -end-20 h-64 w-64 rounded-full bg-orange-300/8 blur-3xl" />
-        <div className="absolute bottom-10 start-10 h-48 w-48 rounded-full bg-indigo-300/15 blur-2xl" />
+        <div className="absolute -top-32 -start-32 h-80 w-80 rounded-full bg-sky-400/10 blur-3xl" />
+        <div className="absolute top-1/3 -end-20 h-64 w-64 rounded-full bg-violet-400/12 blur-3xl" />
+        <div className="absolute bottom-10 start-10 h-48 w-48 rounded-full bg-sky-300/15 blur-2xl" />
 
         <div className="relative flex flex-1 flex-col justify-between p-10 xl:p-14">
           {/* Brand */}
           <div className="flex items-center gap-3">
             <span
               className="flex h-10 w-10 items-center justify-center rounded-xl shadow-inner"
-              style={{background:"linear-gradient(135deg, #9A7538, #C5A572)", boxShadow:"0 4px 12px rgba(197,165,114,0.35)"}}
+              style={{background:"linear-gradient(135deg, #0EA5E9, #8B5CF6)", boxShadow:"0 4px 12px rgba(139,92,246,0.35)"}}
             >
               <Compass className="h-5 w-5 text-white" />
             </span>
             <div>
               <p className="text-lg font-bold text-white">Rahal</p>
-              <p className="text-xs" style={{color:"rgba(197,165,114,0.8)"}}>{t("رحلات زيارية", "Pilgrimage Travel")}</p>
+              <p className="text-xs" style={{color:"rgba(139,92,246,0.8)"}}>{t("رحلات زيارية", "Pilgrimage Travel")}</p>
             </div>
           </div>
 
@@ -56,7 +56,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <h1 className="text-4xl font-extrabold leading-tight text-white xl:text-5xl">
               {t("سفرك الزياري\nيبدأ هنا", "Your Pilgrimage\nJourney Starts Here")}
             </h1>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-indigo-100">
+            <p className="mt-4 max-w-md text-base leading-relaxed text-sky-100">
               {t(
                 "اكتشف واحجز رحلات الحج والعمرة والزيارات من حملات موثوقة — تجربة حجز سهلة ومضمونة.",
                 "Discover and book Hajj, Umrah & Ziyarat trips from verified campaigns — seamless, trusted, bilingual."
@@ -65,14 +65,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
             {/* Trust indicators */}
             <div className="mt-8 flex items-center gap-5">
-              <div className="flex items-center gap-2 text-sm text-indigo-100">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-orange-400/20">
-                  <BadgeCheck className="h-3.5 w-3.5 text-orange-300" />
+              <div className="flex items-center gap-2 text-sm text-sky-100">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-sky-400/20">
+                  <BadgeCheck className="h-3.5 w-3.5 text-sky-300" />
                 </span>
                 {t("20+ حملة موثقة", "20+ verified campaigns")}
               </div>
               <span className="h-4 w-px bg-white/20" />
-              <div className="flex items-center gap-2 text-sm text-indigo-100">
+              <div className="flex items-center gap-2 text-sm text-sky-100">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15">
                   <PlaneTakeoff className="h-3.5 w-3.5 text-white" />
                 </span>
@@ -93,7 +93,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-xs font-bold text-white">م</span>
               <div>
                 <p className="text-xs font-semibold text-white">{t("محمد الكويتي", "Mohammed Al-Kuwaiti")}</p>
-                <p className="text-[11px] text-indigo-200">{t("مسافر موثق", "Verified traveler")}</p>
+                <p className="text-[11px] text-sky-200">{t("مسافر موثق", "Verified traveler")}</p>
               </div>
             </footer>
           </blockquote>
@@ -107,13 +107,13 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <div className="flex items-center gap-2.5 lg:invisible">
             <span
               className="flex h-9 w-9 items-center justify-center rounded-xl"
-              style={{background:"linear-gradient(135deg, #9A7538, #C5A572)", boxShadow:"0 3px 10px rgba(197,165,114,0.35)"}}
+              style={{background:"linear-gradient(135deg, #0EA5E9, #8B5CF6)", boxShadow:"0 3px 10px rgba(139,92,246,0.35)"}}
             >
               <Compass className="h-4 w-4 text-white" />
             </span>
             <div>
-              <p className="text-sm font-bold text-gray-900">Rahal</p>
-              <p className="text-[11px] text-gray-500">{t("رحلات زيارية", "Pilgrimage Travel")}</p>
+              <p className="text-sm font-bold text-slate-900">Rahal</p>
+              <p className="text-[11px] text-slate-500">{t("رحلات زيارية", "Pilgrimage Travel")}</p>
             </div>
           </div>
           <LanguageToggle />
@@ -126,7 +126,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <footer className="pb-6 text-center">
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-slate-400">
             {t("© 2025 رحال للسفر الزياري. جميع الحقوق محفوظة.", "© 2025 Rahal Travel. All rights reserved.")}
           </p>
         </footer>

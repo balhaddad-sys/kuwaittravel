@@ -1,58 +1,71 @@
 @import "tailwindcss";
 
 /* ============================================
-   RAHAL — SACRED HORIZON DESIGN SYSTEM
-   Deep Ocean Blue · Rich Gold · Warm Sand
-   Premium Pilgrimage Travel Experience
+   RAHAL — ELECTRIC OASIS DESIGN SYSTEM
+   Sky Blue · Electric Violet · Sunset Orange
+   Bold Editorial Travel Experience
    ============================================ */
 
 @theme inline {
-  /* === PRIMARY: Deep Ocean Blue === */
-  --color-indigo-50:  #EDF2F7;
-  --color-indigo-100: #D2DFED;
-  --color-indigo-200: #A4BEDB;
-  --color-indigo-300: #6D99C2;
-  --color-indigo-400: #3D78A8;
-  --color-indigo-500: #235A8C;
-  --color-indigo-600: #1E3A5F;
-  --color-indigo-700: #162B48;
-  --color-indigo-800: #0E1D31;
-  --color-indigo-900: #080F1C;
-  --color-indigo-950: #030710;
+  /* === PRIMARY: Sky Blue === */
+  --color-sky-50:  #F0F9FF;
+  --color-sky-100: #E0F2FE;
+  --color-sky-200: #BAE6FD;
+  --color-sky-300: #7DD3FC;
+  --color-sky-400: #38BDF8;
+  --color-sky-500: #0EA5E9;
+  --color-sky-600: #0284C7;
+  --color-sky-700: #0369A1;
+  --color-sky-800: #075985;
+  --color-sky-900: #0C4A6E;
+  --color-sky-950: #082F49;
 
-  /* === ACCENT: Rich Gold === */
-  --color-orange-50:  #FCF8F0;
-  --color-orange-100: #F5EACF;
-  --color-orange-200: #EDD69E;
-  --color-orange-300: #E0BF6F;
-  --color-orange-400: #D4AB50;
-  --color-orange-500: #C5A572;
-  --color-orange-600: #B89050;
-  --color-orange-700: #9A7538;
-  --color-orange-800: #7A5C28;
-  --color-orange-900: #5C431C;
+  /* === ACCENT: Electric Violet === */
+  --color-violet-50:  #F5F3FF;
+  --color-violet-100: #EDE9FE;
+  --color-violet-200: #DDD6FE;
+  --color-violet-300: #C4B5FD;
+  --color-violet-400: #A78BFA;
+  --color-violet-500: #8B5CF6;
+  --color-violet-600: #7C3AED;
+  --color-violet-700: #6D28D9;
+  --color-violet-800: #5B21B6;
+  --color-violet-900: #4C1D95;
+  --color-violet-950: #2E1065;
 
-  /* === NEUTRALS: Warm Sandy (corrected — no override bug) === */
-  --color-gray-50:  #FDFBF7;
-  --color-gray-100: #F5F0E8;
-  --color-gray-200: #EAE2D5;
-  --color-gray-300: #D5CAB9;
-  --color-gray-400: #B5A894;
-  --color-gray-500: #8F8070;
-  --color-gray-600: #6B5E4E;
-  --color-gray-700: #4A3F32;
-  --color-gray-800: #2E2618;
-  --color-gray-900: #1A1209;
-  --color-gray-950: #0D0906;
+  /* === CTA: Sunset Orange === */
+  --color-orange-50:  #FFF7ED;
+  --color-orange-100: #FFEDD5;
+  --color-orange-200: #FED7AA;
+  --color-orange-300: #FDBA74;
+  --color-orange-400: #FB923C;
+  --color-orange-500: #F97316;
+  --color-orange-600: #EA580C;
+  --color-orange-700: #C2410C;
+  --color-orange-800: #9A3412;
+  --color-orange-900: #7C2D12;
+  --color-orange-950: #431407;
+
+  /* === NEUTRALS: Cool Slate === */
+  --color-slate-50:  #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --color-slate-500: #64748B;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1E293B;
+  --color-slate-900: #0F172A;
+  --color-slate-950: #020617;
 
   /* === SURFACES === */
-  --color-surface-warm:        #FDFBF7;
-  --color-surface-light:       #F5F0E8;
-  --color-surface-muted:       #EAE2D5;
-  --color-surface-border:      #D5CAB9;
-  --color-surface-dark:        #080F1C;
-  --color-surface-dark-card:   #0E1D31;
-  --color-surface-dark-border: #1A2D48;
+  --color-surface-light:       #F8FAFC;
+  --color-surface-muted:       #F1F5F9;
+  --color-surface-border:      #E2E8F0;
+  --color-surface-dark:        #0B1120;
+  --color-surface-dark-card:   #111827;
+  --color-surface-dark-border: #2D3B4F;
 
   /* === SEMANTIC === */
   --color-success:       #059669;
@@ -61,8 +74,8 @@
   --color-warning-light: #FEF3C7;
   --color-error:         #DC2626;
   --color-error-light:   #FEE2E2;
-  --color-info:          #1E3A5F;
-  --color-info-light:    #D2DFED;
+  --color-info:          #0EA5E9;
+  --color-info-light:    #E0F2FE;
 
   /* === FONTS === */
   --font-arabic:  var(--font-arabic-ui),  "Tajawal",       sans-serif;
@@ -70,25 +83,27 @@
   --font-display: var(--font-display-ui), "Amiri",         serif;
   --font-numbers: var(--font-numeric-ui), "Inter", "SF Pro Display", sans-serif;
 
-  /* === FONT SIZES === */
-  --text-display-lg: 2.5rem;
-  --text-display-lg--line-height: 3rem;
-  --text-display-md: 2rem;
-  --text-display-md--line-height: 2.5rem;
+  /* === FONT SIZES — fluid editorial scale === */
+  --text-display-xl: clamp(2.5rem, 5vw, 4.5rem);
+  --text-display-xl--line-height: 1.1;
+  --text-display-lg: clamp(2rem, 4vw, 3.5rem);
+  --text-display-lg--line-height: 1.15;
+  --text-display-md: clamp(1.5rem, 3vw, 2.5rem);
+  --text-display-md--line-height: 1.2;
   --text-heading-lg: 1.5rem;
-  --text-heading-lg--line-height: 2rem;
+  --text-heading-lg--line-height: 1.33;
   --text-heading-md: 1.25rem;
-  --text-heading-md--line-height: 1.75rem;
+  --text-heading-md--line-height: 1.4;
   --text-heading-sm: 1.0625rem;
-  --text-heading-sm--line-height: 1.5rem;
-  --text-body-lg: 1rem;
-  --text-body-lg--line-height: 1.5rem;
-  --text-body-md: 0.875rem;
-  --text-body-md--line-height: 1.375rem;
-  --text-body-sm: 0.75rem;
-  --text-body-sm--line-height: 1.125rem;
+  --text-heading-sm--line-height: 1.5;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.6;
+  --text-body-md: 0.9375rem;
+  --text-body-md--line-height: 1.55;
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.5;
   --text-label: 0.8125rem;
-  --text-label--line-height: 1.125rem;
+  --text-label--line-height: 1.4;
 
   /* === BORDER RADIUS === */
   --radius-sm:    8px;
@@ -96,27 +111,25 @@
   --radius-lg:    16px;
   --radius-xl:    20px;
   --radius-2xl:   24px;
-  --radius-card:  16px;
+  --radius-card:  20px;
   --radius-btn:   12px;
   --radius-input: 12px;
   --radius-chip:  999px;
   --radius-pill:  999px;
   --radius-fab:   999px;
 
-  /* === SHADOWS — warm-toned === */
-  --shadow-card:        0 1px 3px rgba(26,18,9,0.05), 0 4px 16px rgba(26,18,9,0.07);
-  --shadow-card-hover:  0 2px 6px rgba(26,18,9,0.08), 0 12px 32px rgba(26,18,9,0.12);
-  --shadow-elevated:    0 8px 30px rgba(26,18,9,0.1),  0 2px 8px rgba(26,18,9,0.05);
-  --shadow-sidebar:     2px 0 12px rgba(26,18,9,0.08);
-  --shadow-topbar:      0 1px 0 rgba(26,18,9,0.08);
-  --shadow-modal:       0 24px 64px -12px rgba(26,18,9,0.28), 0 4px 16px rgba(26,18,9,0.1);
-  --shadow-fab:         0 8px 24px rgba(26,18,9,0.18), 0 2px 8px rgba(26,18,9,0.1);
-  --shadow-gold-glow:   0 8px 24px -4px rgba(197,165,114,0.45);
-  --shadow-navy-glow:   0 8px 24px -4px rgba(30,58,95,0.4);
-  --shadow-inner-warm:  inset 0 1px 0 rgba(255,255,255,0.7);
-  /* kept for compat */
-  --shadow-orange-glow: 0 8px 24px -4px rgba(197,165,114,0.35);
-  --shadow-indigo-glow: 0 8px 24px -4px rgba(30,58,95,0.35);
+  /* === SHADOWS — cool-tinted === */
+  --shadow-card:        0 1px 3px rgba(2,6,23,0.06), 0 4px 16px rgba(2,6,23,0.08);
+  --shadow-card-hover:  0 4px 12px rgba(2,6,23,0.1), 0 16px 40px rgba(2,6,23,0.14);
+  --shadow-elevated:    0 8px 30px rgba(2,6,23,0.12), 0 2px 8px rgba(2,6,23,0.06);
+  --shadow-sidebar:     2px 0 12px rgba(2,6,23,0.08);
+  --shadow-topbar:      0 1px 0 rgba(2,6,23,0.06);
+  --shadow-modal:       0 24px 64px -12px rgba(2,6,23,0.30), 0 4px 16px rgba(2,6,23,0.12);
+  --shadow-fab:         0 8px 24px rgba(2,6,23,0.18), 0 2px 8px rgba(2,6,23,0.1);
+  --shadow-blue-glow:   0 8px 24px -4px rgba(14,165,233,0.40);
+  --shadow-violet-glow: 0 8px 24px -4px rgba(139,92,246,0.35);
+  --shadow-orange-glow: 0 8px 24px -4px rgba(249,115,22,0.40);
+  --shadow-inner-light: inset 0 1px 0 rgba(255,255,255,0.7);
 
   /* === Z-INDEX === */
   --z-dropdown: 50;
@@ -129,51 +142,56 @@
 
   /* === TRANSITIONS === */
   --ease-default:    cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-smooth:     cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-emphasized: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-travel:     cubic-bezier(0.2, 0.8, 0.2, 1);
-  --duration-micro:  120ms;
+  --ease-spring:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-editorial:  cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-micro:  100ms;
+  --duration-fast:   150ms;
   --duration-ui:     200ms;
-  --duration-fast:   100ms;
-  --duration-normal: 200ms;
-  --duration-slow:   300ms;
+  --duration-normal: 250ms;
+  --duration-slow:   400ms;
+  --duration-page:   500ms;
   --transition-fast: 0.18s ease-in-out;
 }
 
 /* === BASE STYLES === */
 @layer base {
   :root {
-    --background:           #FDFBF7;
-    --foreground:           #1A1209;
-    --muted:                #EAE2D5;
-    --border:               #D5CAB9;
-    --clr-primary:          #1E3A5F;
-    --clr-primary-light:    #3D78A8;
-    --clr-accent:           #C5A572;
-    --clr-accent-light:     #D4AB50;
-    --clr-bg:               #FDFBF7;
-    --clr-surface:          #FFFFFF;
-    --clr-text-main:        #1A1209;
-    --clr-text-muted:       #8F8070;
-    --clr-border:           #D5CAB9;
-    --clr-success:          #059669;
-    --clr-error:            #DC2626;
+    --background:        #F8FAFC;
+    --foreground:        #0F172A;
+    --muted:             #F1F5F9;
+    --border:            #E2E8F0;
+    --clr-primary:       #0EA5E9;
+    --clr-primary-light: #38BDF8;
+    --clr-accent:        #8B5CF6;
+    --clr-accent-light:  #A78BFA;
+    --clr-cta:           #F97316;
+    --clr-cta-light:     #FB923C;
+    --clr-bg:            #F8FAFC;
+    --clr-surface:       #FFFFFF;
+    --clr-text-main:     #0F172A;
+    --clr-text-muted:    #64748B;
+    --clr-border:        #E2E8F0;
+    --clr-success:       #059669;
+    --clr-error:         #DC2626;
   }
 
   .dark {
-    --background:        #080F1C;
-    --foreground:        #F0EAE0;
-    --muted:             #0E1D31;
-    --border:            #1A2D48;
-    --clr-primary:       #6D99C2;
-    --clr-primary-light: #A4BEDB;
-    --clr-accent:        #C5A572;
-    --clr-accent-light:  #E0BF6F;
-    --clr-bg:            #080F1C;
-    --clr-surface:       #0E1D31;
-    --clr-text-main:     #F0EAE0;
-    --clr-text-muted:    #8F9BAD;
-    --clr-border:        #1A2D48;
+    --background:        #0B1120;
+    --foreground:        #F1F5F9;
+    --muted:             #111827;
+    --border:            #2D3B4F;
+    --clr-primary:       #38BDF8;
+    --clr-primary-light: #7DD3FC;
+    --clr-accent:        #A78BFA;
+    --clr-accent-light:  #C4B5FD;
+    --clr-cta:           #FB923C;
+    --clr-cta-light:     #FDBA74;
+    --clr-bg:            #0B1120;
+    --clr-surface:       #111827;
+    --clr-text-main:     #F1F5F9;
+    --clr-text-muted:    #94A3B8;
+    --clr-border:        #2D3B4F;
   }
 
   html {
@@ -186,7 +204,7 @@
   }
 
   body {
-    background-color: #FDFBF7;
+    background-color: #F8FAFC;
     color: var(--foreground);
     font-family: var(--font-arabic);
     -webkit-font-smoothing: antialiased;
@@ -195,7 +213,7 @@
   }
 
   .dark body {
-    background-color: #080F1C;
+    background-color: #0B1120;
   }
 
   html[lang="en"] body {
@@ -205,33 +223,34 @@
 
   html[lang="ar"] body {
     letter-spacing: 0;
+    font-size: 1.125rem;
   }
 
   *:focus-visible {
-    outline: 2px solid #C5A572;
+    outline: 2px solid #0EA5E9;
     outline-offset: 2px;
     border-radius: var(--radius-sm);
-    box-shadow: 0 0 0 4px rgba(197, 165, 114, 0.18);
+    box-shadow: 0 0 0 4px rgba(14,165,233,0.18);
   }
 
   ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: #D5CAB9;
+    background: #CBD5E1;
     border-radius: 3px;
     transition: background 0.2s;
   }
-  ::-webkit-scrollbar-thumb:hover { background: #B5A894; }
-  .dark ::-webkit-scrollbar-thumb { background: #1A2D48; }
-  .dark ::-webkit-scrollbar-thumb:hover { background: #2A3D58; }
+  ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+  .dark ::-webkit-scrollbar-thumb { background: #2D3B4F; }
+  .dark ::-webkit-scrollbar-thumb:hover { background: #3B4F6B; }
 
   ::selection {
-    background: rgba(197,165,114,0.25);
-    color: #1A1209;
+    background: rgba(14,165,233,0.2);
+    color: #0F172A;
   }
   .dark ::selection {
-    background: rgba(197,165,114,0.3);
-    color: #F0EAE0;
+    background: rgba(139,92,246,0.25);
+    color: #F1F5F9;
   }
 }
 
@@ -241,111 +260,273 @@
   .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
   /* ============================================
-     CORE SURFACE CLASSES
+     CORE SURFACE CLASSES — Electric Oasis
      ============================================ */
 
-  .sacred-panel {
-    border: 1px solid #D5CAB9;
+  .eo-panel {
+    border: 1px solid #E2E8F0;
     background: #FFFFFF;
     box-shadow: var(--shadow-card);
     border-radius: var(--radius-card);
   }
-  .dark .sacred-panel {
-    border-color: #1A2D48;
-    background: #0E1D31;
+  .dark .eo-panel {
+    border-color: #2D3B4F;
+    background: #111827;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
 
-  .sacred-card {
-    border: 1px solid #D5CAB9;
+  .eo-card {
+    border: 1px solid #E2E8F0;
     background: #FFFFFF;
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
     transition:
-      border-color  var(--duration-ui) var(--ease-smooth),
-      box-shadow    var(--duration-ui) var(--ease-smooth),
-      transform     var(--duration-ui) var(--ease-smooth);
+      border-color  var(--duration-ui) var(--ease-spring),
+      box-shadow    var(--duration-ui) var(--ease-spring),
+      transform     var(--duration-ui) var(--ease-spring);
   }
-  .sacred-card:hover {
-    border-color: #B5A894;
+  .eo-card:hover {
+    border-color: #BAE6FD;
     box-shadow: var(--shadow-card-hover);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
-  .dark .sacred-card {
-    border-color: #1A2D48;
-    background: #0E1D31;
+  .dark .eo-card {
+    border-color: #2D3B4F;
+    background: #111827;
   }
-  .dark .sacred-card:hover {
-    border-color: #2A3D58;
+  .dark .eo-card:hover {
+    border-color: #38BDF8;
+    box-shadow: 0 4px 20px rgba(14,165,233,0.15);
   }
 
-  .sacred-glass {
-    background: rgba(253,251,247,0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(213,202,185,0.7);
+  .eo-glass {
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.4);
     box-shadow: var(--shadow-card);
   }
-  .dark .sacred-glass {
-    background: rgba(14,29,49,0.88);
-    border-color: rgba(26,45,72,0.8);
+  .dark .eo-glass {
+    background: rgba(17,24,39,0.85);
+    border-color: rgba(45,59,79,0.6);
   }
 
-  .sacred-chip {
-    border: 1.5px solid #D5CAB9;
+  .eo-chip {
+    border: 1.5px solid #E2E8F0;
     background: #FFFFFF;
-    color: #4A3F32;
+    color: #334155;
     border-radius: var(--radius-chip);
   }
-  .dark .sacred-chip {
-    border-color: #1A2D48;
-    background: #0E1D31;
-    color: #D5CAB9;
+  .dark .eo-chip {
+    border-color: #2D3B4F;
+    background: #111827;
+    color: #CBD5E1;
   }
 
-  .sacred-section {
-    border: 1px solid #D5CAB9;
+  .eo-section {
+    border: 1px solid #E2E8F0;
     border-radius: var(--radius-2xl);
     background: #FFFFFF;
     box-shadow: var(--shadow-card);
   }
-  .dark .sacred-section {
-    border-color: #1A2D48;
-    background: #0E1D31;
+  .dark .eo-section {
+    border-color: #2D3B4F;
+    background: #111827;
   }
 
   /* ============================================
-     GRADIENTS
+     GRADIENTS — Electric Oasis
      ============================================ */
 
-  .sacred-gradient {
-    background: linear-gradient(135deg, #0E1D31 0%, #1E3A5F 50%, #235A8C 100%);
+  .eo-gradient-primary {
+    background: linear-gradient(135deg, #0EA5E9 0%, #8B5CF6 100%);
   }
 
-  .sacred-gradient-subtle {
-    background: #FDFBF7;
+  .eo-gradient-subtle {
+    background: #F8FAFC;
   }
-  .dark .sacred-gradient-subtle {
-    background: #080F1C;
+  .dark .eo-gradient-subtle {
+    background: #0B1120;
   }
 
-  /* Hero gradient — deep ocean navy */
-  .sacred-gradient-hero {
-    background: linear-gradient(160deg, #080F1C 0%, #0E1D31 35%, #162B48 65%, #1E3A5F 100%);
+  /* Hero gradient — deep sky → violet editorial */
+  .eo-gradient-hero {
+    background: linear-gradient(160deg, #020617 0%, #0C4A6E 40%, #4C1D95 70%, #2E1065 100%);
     position: relative;
     overflow: hidden;
   }
-  .dark .sacred-gradient-hero {
-    background: linear-gradient(160deg, #040710 0%, #080F1C 40%, #0E1D31 100%);
+  .dark .eo-gradient-hero {
+    background: linear-gradient(160deg, #020617 0%, #082F49 40%, #2E1065 100%);
   }
 
-  .sacred-gradient-hero::before {
+  .eo-gradient-hero::before {
     content: "";
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 60% 20%, rgba(197,165,114,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse at 10% 80%, rgba(197,165,114,0.06) 0%, transparent 45%);
+      radial-gradient(ellipse at 30% 20%, rgba(14,165,233,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 80%, rgba(139,92,246,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .eo-gradient-cta {
+    background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+  }
+
+  .eo-gradient-editorial {
+    background: linear-gradient(160deg, #020617 0%, #0C4A6E 50%, #4C1D95 100%);
+  }
+
+  .eo-glow-blue {
+    position: relative;
+  }
+  .eo-glow-blue::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #0EA5E9, #8B5CF6);
+    opacity: 0;
+    transition: opacity var(--duration-ui) var(--ease-spring);
+    z-index: -1;
+    filter: blur(12px);
+  }
+  .eo-glow-blue:hover::after { opacity: 0.3; }
+
+  /* Geometric dot pattern — sky-blue tinted */
+  .eo-pattern {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .eo-pattern::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 1px 1px, #0EA5E9 0.8px, transparent 0);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Gradient text utility */
+  .eo-text-gradient {
+    background: linear-gradient(135deg, #38BDF8, #A78BFA, #FB923C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ============================================
+     LEGACY ALIASES → Electric Oasis
+     ============================================ */
+
+  .sacred-panel,
+  .travel-panel {
+    border: 1px solid #E2E8F0;
+    background: #FFFFFF;
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-card);
+  }
+  .dark .sacred-panel,
+  .dark .travel-panel {
+    border-color: #2D3B4F;
+    background: #111827;
+  }
+
+  .sacred-card {
+    border: 1px solid #E2E8F0;
+    background: #FFFFFF;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition:
+      border-color  var(--duration-ui) var(--ease-spring),
+      box-shadow    var(--duration-ui) var(--ease-spring),
+      transform     var(--duration-ui) var(--ease-spring);
+  }
+  .sacred-card:hover {
+    border-color: #BAE6FD;
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+  .dark .sacred-card {
+    border-color: #2D3B4F;
+    background: #111827;
+  }
+  .dark .sacred-card:hover {
+    border-color: #38BDF8;
+  }
+
+  .sacred-glass {
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: var(--shadow-card);
+  }
+  .dark .sacred-glass {
+    background: rgba(17,24,39,0.85);
+    border-color: rgba(45,59,79,0.6);
+  }
+
+  .sacred-chip,
+  .travel-chip {
+    border: 1.5px solid #E2E8F0;
+    background: #FFFFFF;
+    color: #334155;
+    border-radius: var(--radius-chip);
+  }
+  .dark .sacred-chip,
+  .dark .travel-chip {
+    border-color: #2D3B4F;
+    background: #111827;
+    color: #CBD5E1;
+  }
+
+  .sacred-section,
+  .travel-section {
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius-2xl);
+    background: #FFFFFF;
+    box-shadow: var(--shadow-card);
+  }
+  .dark .sacred-section,
+  .dark .travel-section {
+    border-color: #2D3B4F;
+    background: #111827;
+  }
+
+  .sacred-gradient {
+    background: linear-gradient(135deg, #082F49 0%, #0EA5E9 50%, #8B5CF6 100%);
+  }
+
+  .sacred-gradient-subtle {
+    background: #F8FAFC;
+  }
+  .dark .sacred-gradient-subtle {
+    background: #0B1120;
+  }
+
+  .sacred-gradient-hero,
+  .travel-gradient-hero {
+    background: linear-gradient(160deg, #020617 0%, #0C4A6E 40%, #4C1D95 70%, #2E1065 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .dark .sacred-gradient-hero,
+  .dark .travel-gradient-hero {
+    background: linear-gradient(160deg, #020617 0%, #082F49 40%, #2E1065 100%);
+  }
+
+  .sacred-gradient-hero::before,
+  .travel-gradient-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(14,165,233,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 80%, rgba(139,92,246,0.12) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -357,15 +538,14 @@
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, #C5A572, #9A7538);
+    background: linear-gradient(135deg, #0EA5E9, #8B5CF6);
     opacity: 0;
-    transition: opacity var(--duration-ui) var(--ease-smooth);
+    transition: opacity var(--duration-ui) var(--ease-spring);
     z-index: -1;
     filter: blur(10px);
   }
   .sacred-orange-glow:hover::after { opacity: 0.25; }
 
-  /* Subtle Islamic dot pattern */
   .sacred-pattern {
     position: relative;
     overflow: hidden;
@@ -375,75 +555,30 @@
     content: "";
     position: absolute;
     inset: 0;
-    opacity: 0.025;
-    background-image: radial-gradient(circle at 1px 1px, #C5A572 0.8px, transparent 0);
-    background-size: 18px 18px;
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 1px 1px, #0EA5E9 0.8px, transparent 0);
+    background-size: 20px 20px;
     pointer-events: none;
     z-index: 0;
   }
 
-  /* ============================================
-     LEGACY ALIASES (same class names, new palette)
-     ============================================ */
-
-  .travel-panel {
-    border: 1px solid #D5CAB9;
-    background: #FFFFFF;
-    box-shadow: var(--shadow-card);
-    border-radius: var(--radius-card);
-  }
-  .dark .travel-panel {
-    border-color: #1A2D48;
-    background: #0E1D31;
-  }
-
-  .travel-chip {
-    border: 1.5px solid #D5CAB9;
-    background: #FFFFFF;
-    color: #4A3F32;
-    border-radius: var(--radius-chip);
-  }
-  .dark .travel-chip {
-    border-color: #1A2D48;
-    background: #0E1D31;
-    color: #D5CAB9;
-  }
-
-  .travel-section {
-    border: 1px solid #D5CAB9;
-    border-radius: var(--radius-2xl);
-    background: #FFFFFF;
-    box-shadow: var(--shadow-card);
-  }
-  .dark .travel-section {
-    border-color: #1A2D48;
-    background: #0E1D31;
-  }
-
-  .travel-gradient-hero {
-    background: linear-gradient(160deg, #080F1C 0%, #0E1D31 35%, #1E3A5F 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .dark .travel-gradient-hero {
-    background: linear-gradient(160deg, #040710 0%, #080F1C 40%, #0E1D31 100%);
-  }
-
-  /* App shell background — warm ivory */
+  /* App shell background */
+  .eo-shell-bg,
   .sacred-shell-bg,
   .travel-shell-bg {
-    background-color: #FDFBF7;
+    background-color: #F8FAFC;
   }
+  .dark .eo-shell-bg,
   .dark .sacred-shell-bg,
   .dark .travel-shell-bg {
-    background-color: #080F1C;
+    background-color: #0B1120;
   }
 
   .travel-orbit-bg { position: relative; isolation: isolate; overflow: hidden; }
   .travel-orbit-bg::before { content: ""; pointer-events: none; position: absolute; inset: 0; z-index: -1; }
 
-  .travel-divider { height: 1px; background: #D5CAB9; border: none; }
-  .dark .travel-divider { background: #1A2D48; }
+  .travel-divider { height: 1px; background: #E2E8F0; border: none; }
+  .dark .travel-divider { background: #2D3B4F; }
 
   .travel-glow { position: relative; }
   .travel-glow::after { content: none; }
@@ -459,128 +594,145 @@
   .travel-stat-accent::before { content: none; }
 
   /* ============================================
-     ICON CONTAINERS
+     ICON CONTAINERS — Electric Oasis
      ============================================ */
 
+  .eo-icon-circle,
   .sacred-icon-circle,
   .travel-icon-circle {
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-md);
-    border: 1px solid #D5CAB9;
-    background: #F5F0E8;
-    color: #8F8070;
+    border: 1px solid #E2E8F0;
+    background: #F1F5F9;
+    color: #64748B;
   }
+  .dark .eo-icon-circle,
   .dark .sacred-icon-circle,
   .dark .travel-icon-circle {
-    border-color: #1A2D48;
-    background: #0E1D31;
+    border-color: #2D3B4F;
+    background: #111827;
   }
 
   .travel-icon-circle-sm { width: 2rem;   height: 2rem; }
   .travel-icon-circle-md { width: 2.5rem; height: 2.5rem; }
   .travel-icon-circle-lg { width: 3rem;   height: 3rem; }
 
+  .eo-icon-sky,
   .sacred-icon-teal {
-    border-color: #A4BEDB;
-    background: #EDF2F7;
-    color: #1E3A5F;
+    border-color: #BAE6FD;
+    background: #F0F9FF;
+    color: #0284C7;
   }
+  .dark .eo-icon-sky,
   .dark .sacred-icon-teal {
-    border-color: #1A2D48;
-    background: rgba(30,58,95,0.25);
-    color: #A4BEDB;
+    border-color: #075985;
+    background: rgba(14,165,233,0.12);
+    color: #7DD3FC;
   }
 
+  .eo-icon-violet,
   .sacred-icon-amber,
   .travel-icon-circle-gold {
-    border-color: #EDD69E;
-    background: #FCF8F0;
-    color: #9A7538;
+    border-color: #DDD6FE;
+    background: #F5F3FF;
+    color: #7C3AED;
   }
+  .dark .eo-icon-violet,
   .dark .sacred-icon-amber,
   .dark .travel-icon-circle-gold {
-    border-color: #7A5C28;
-    background: rgba(122,92,40,0.2);
-    color: #E0BF6F;
+    border-color: #5B21B6;
+    background: rgba(139,92,246,0.12);
+    color: #C4B5FD;
+  }
+
+  .eo-icon-orange {
+    border-color: #FED7AA;
+    background: #FFF7ED;
+    color: #EA580C;
+  }
+  .dark .eo-icon-orange {
+    border-color: #9A3412;
+    background: rgba(249,115,22,0.12);
+    color: #FDBA74;
   }
 
   /* ============================================
-     FILTER CHIPS
+     FILTER CHIPS — Electric Oasis
      ============================================ */
 
   .travel-filter-chip {
-    border: 1.5px solid #D5CAB9;
+    border: 1.5px solid #E2E8F0;
     border-radius: var(--radius-chip);
     background: #FFFFFF;
-    color: #4A3F32;
+    color: #334155;
     font-weight: 500;
     transition:
-      border-color      var(--duration-ui) var(--ease-smooth),
-      background-color  var(--duration-ui) var(--ease-smooth),
-      color             var(--duration-ui) var(--ease-smooth),
-      box-shadow        var(--duration-ui) var(--ease-smooth);
+      border-color      var(--duration-ui) var(--ease-spring),
+      background-color  var(--duration-ui) var(--ease-spring),
+      color             var(--duration-ui) var(--ease-spring),
+      box-shadow        var(--duration-ui) var(--ease-spring);
   }
   .travel-filter-chip:hover {
-    border-color: #B5A894;
-    background: #F5F0E8;
-    color: #1A1209;
+    border-color: #BAE6FD;
+    background: #F0F9FF;
+    color: #0F172A;
   }
   .travel-filter-chip-active {
-    border-color: #1E3A5F;
-    background: #1E3A5F;
+    border-color: #0EA5E9;
+    background: #0EA5E9;
     color: #FFFFFF;
-    box-shadow: 0 2px 8px rgba(30,58,95,0.25);
+    box-shadow: 0 2px 8px rgba(14,165,233,0.25);
   }
   .dark .travel-filter-chip {
-    border-color: #1A2D48;
-    background: #0E1D31;
-    color: #D5CAB9;
+    border-color: #2D3B4F;
+    background: #111827;
+    color: #CBD5E1;
   }
   .dark .travel-filter-chip:hover {
-    border-color: #2A3D58;
-    background: #162B48;
-    color: #F0EAE0;
+    border-color: #38BDF8;
+    background: #1E293B;
+    color: #F1F5F9;
   }
   .dark .travel-filter-chip-active {
-    border-color: #C5A572;
-    background: rgba(197,165,114,0.15);
-    color: #C5A572;
+    border-color: #38BDF8;
+    background: rgba(14,165,233,0.18);
+    color: #38BDF8;
   }
 
   /* ============================================
-     FORM INPUTS
+     FORM INPUTS — Electric Oasis
      ============================================ */
 
   .inline-input {
     background: #FFFFFF;
-    border: 1.5px solid #D5CAB9;
+    border: 1.5px solid #E2E8F0;
     border-radius: var(--radius-input);
     padding: 12px 16px;
     font-family: var(--font-arabic);
-    color: #1A1209;
+    color: #0F172A;
     transition:
       border-color var(--transition-fast),
       box-shadow   var(--transition-fast);
   }
   .inline-input:focus {
     outline: none;
-    border-color: #1E3A5F;
-    box-shadow: 0 0 0 3px rgba(30,58,95,0.12);
+    border-color: #0EA5E9;
+    box-shadow: 0 0 0 3px rgba(14,165,233,0.12);
   }
   .dark .inline-input {
-    border-color: #1A2D48;
-    background: #0E1D31;
-    color: #F0EAE0;
+    border-color: #2D3B4F;
+    background: #111827;
+    color: #F1F5F9;
   }
   .dark .inline-input:focus {
-    border-color: #C5A572;
-    box-shadow: 0 0 0 3px rgba(197,165,114,0.15);
+    border-color: #38BDF8;
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
   }
 
   /* ============================================
-     TRIP CARD
+     TRIP CARD — Electric Oasis
      ============================================ */
 
   .trip-card {
@@ -590,35 +742,35 @@
     box-shadow: none;
     overflow: hidden;
     transition:
-      transform    var(--duration-ui) var(--ease-smooth),
-      box-shadow   var(--duration-ui) var(--ease-smooth);
+      transform    var(--duration-ui) var(--ease-spring),
+      box-shadow   var(--duration-ui) var(--ease-spring);
   }
   .trip-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(26,18,9,0.14);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(2,6,23,0.14);
   }
   .dark .trip-card {
-    background: #0E1D31;
+    background: #111827;
   }
   .dark .trip-card:hover {
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
 
   /* ============================================
-     FAB
+     FAB — Electric Oasis gradient
      ============================================ */
 
   .fab-button {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: #1E3A5F;
+    background: linear-gradient(135deg, #0EA5E9, #8B5CF6);
     color: white;
     box-shadow: var(--shadow-fab);
   }
 
   /* ============================================
-     STICKY BOOKING BAR
+     STICKY BOOKING BAR — Electric Oasis
      ============================================ */
 
   .sticky-booking-bar {
@@ -627,18 +779,18 @@
     z-index: var(--z-sticky);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    background: rgba(253,251,247,0.96);
-    border-top: 1px solid #D5CAB9;
-    box-shadow: 0 -4px 20px rgba(26,18,9,0.08);
+    background: rgba(248,250,252,0.96);
+    border-top: 1px solid #E2E8F0;
+    box-shadow: 0 -4px 20px rgba(2,6,23,0.08);
   }
   .dark .sticky-booking-bar {
-    background: rgba(8,15,28,0.96);
-    border-top-color: #1A2D48;
+    background: rgba(11,17,32,0.96);
+    border-top-color: #2D3B4F;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.35);
   }
 
   /* ============================================
-     TYPOGRAPHY
+     TYPOGRAPHY — Electric Oasis
      ============================================ */
 
   .font-numbers {
@@ -651,13 +803,36 @@
   }
   .font-display { font-family: var(--font-display); }
 
+  .eo-editorial-heading,
   .travel-title,
   .sacred-title {
     text-wrap: balance;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
   .text-balance { text-wrap: balance; }
+
+  /* ============================================
+     BENTO GRID — Editorial layout
+     ============================================ */
+
+  .eo-bento-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    .eo-bento-grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+    }
+  }
+
+  .eo-bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
 
   /* ============================================
      SCROLL
@@ -693,31 +868,33 @@
   .tap-target::after { content: ""; position: absolute; inset: -8px; }
 
   /* ============================================
-     ANIMATIONS
+     ANIMATIONS — Electric Oasis
      ============================================ */
 
   .skeleton {
-    background: linear-gradient(90deg, #F5F0E8 25%, #EAE2D5 50%, #F5F0E8 75%);
+    background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
     background-size: 200% 100%;
     animation: shimmer 1.4s ease-in-out infinite;
   }
 
+  .eo-shimmer,
   .sacred-shimmer {
     background: linear-gradient(
       110deg,
-      #F5F0E8 0%, #F5F0E8 40%,
-      #FCF8F0 50%,
-      #F5F0E8 60%, #F5F0E8 100%
+      #F1F5F9 0%, #F1F5F9 40%,
+      #F8FAFC 50%,
+      #F1F5F9 60%, #F1F5F9 100%
     );
     background-size: 250% 100%;
     animation: shimmer 1.8s ease-in-out infinite;
   }
+  .dark .eo-shimmer,
   .dark .sacred-shimmer {
     background: linear-gradient(
       110deg,
-      #0E1D31 0%, #0E1D31 40%,
-      #162B48 50%,
-      #0E1D31 60%, #0E1D31 100%
+      #111827 0%, #111827 40%,
+      #1E293B 50%,
+      #111827 60%, #111827 100%
     );
     background-size: 250% 100%;
   }
@@ -726,9 +903,9 @@
     border-radius: var(--radius-card);
     background: linear-gradient(
       110deg,
-      #F5F0E8 0%, #F5F0E8 40%,
-      #EAE2D5 50%,
-      #F5F0E8 60%, #F5F0E8 100%
+      #F1F5F9 0%, #F1F5F9 40%,
+      #E2E8F0 50%,
+      #F1F5F9 60%, #F1F5F9 100%
     );
     background-size: 250% 100%;
     animation: shimmer 1.8s ease-in-out infinite;
@@ -736,9 +913,9 @@
   .dark .skeleton-card {
     background: linear-gradient(
       110deg,
-      #0E1D31 0%, #0E1D31 40%,
-      #162B48 50%,
-      #0E1D31 60%, #0E1D31 100%
+      #111827 0%, #111827 40%,
+      #1E293B 50%,
+      #111827 60%, #111827 100%
     );
     background-size: 250% 100%;
   }
@@ -761,22 +938,22 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    --page-transition-duration: 280ms;
-    --page-transition-y: 8px;
+    --page-transition-duration: 300ms;
+    --page-transition-y: 10px;
     --page-transition-scale: 0.998;
     animation-duration: var(--page-transition-duration);
     animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-timing-function: var(--ease-editorial);
     animation-name: page-enter-a;
     transform-origin: 50% 0%;
     will-change: transform, opacity;
     backface-visibility: hidden;
     transform: translateZ(0);
   }
-  .page-transition-content--app    { --page-transition-duration: 260ms; --page-transition-y: 10px; --page-transition-scale: 0.997; }
-  .page-transition-content--portal { --page-transition-duration: 280ms; --page-transition-y: 8px;  --page-transition-scale: 0.998; }
-  .page-transition-content--admin  { --page-transition-duration: 220ms; --page-transition-y: 5px;  --page-transition-scale: 0.999; }
-  .page-transition-content--auth   { --page-transition-duration: 300ms; --page-transition-y: 12px; --page-transition-scale: 0.996; }
+  .page-transition-content--app    { --page-transition-duration: 280ms; --page-transition-y: 12px; --page-transition-scale: 0.997; }
+  .page-transition-content--portal { --page-transition-duration: 300ms; --page-transition-y: 8px;  --page-transition-scale: 0.998; }
+  .page-transition-content--admin  { --page-transition-duration: 240ms; --page-transition-y: 6px;  --page-transition-scale: 0.999; }
+  .page-transition-content--auth   { --page-transition-duration: 350ms; --page-transition-y: 14px; --page-transition-scale: 0.996; }
 
   @keyframes page-enter-a {
     0%   { opacity: 0; transform: translate3d(0, var(--page-transition-y), 0) scale(var(--page-transition-scale)); }
@@ -797,7 +974,7 @@
     from { transform: translateY(100%); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }
   }
-  .animate-slide-up { animation: slide-up 0.28s var(--ease-smooth); }
+  .animate-slide-up { animation: slide-up 0.28s var(--ease-spring); }
 
   @keyframes fade-in {
     from { opacity: 0; }
@@ -809,7 +986,7 @@
     from { transform: scale(0.96); opacity: 0; }
     to   { transform: scale(1);    opacity: 1; }
   }
-  .animate-scale-in { animation: scale-in 0.2s var(--ease-smooth); }
+  .animate-scale-in { animation: scale-in 0.2s var(--ease-spring); }
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -817,11 +994,12 @@
   }
   .animate-float { animation: float 3s ease-in-out infinite; }
 
-  @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(197,165,114,0); }
-    50%       { box-shadow: 0 0 0 8px rgba(197,165,114,0.12); }
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(14,165,233,0); }
+    50%       { box-shadow: 0 0 0 8px rgba(14,165,233,0.12); }
   }
-  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+  .animate-glow-pulse,
+  .animate-pulse-glow { animation: glow-pulse 3s ease-in-out infinite; }
 
   @keyframes countdown-pulse {
     0%, 100% { opacity: 1; }
@@ -839,13 +1017,13 @@
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .animate-count-up { animation: count-up 0.5s var(--ease-smooth) both; }
+  .animate-count-up { animation: count-up 0.5s var(--ease-spring) both; }
 
   @keyframes stagger-in {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .animate-stagger-in { animation: stagger-in 0.35s var(--ease-smooth) both; }
+  .animate-stagger-in { animation: stagger-in 0.35s var(--ease-spring) both; }
   .stagger-delay-1 { animation-delay: 50ms; }
   .stagger-delay-2 { animation-delay: 100ms; }
   .stagger-delay-3 { animation-delay: 150ms; }
@@ -856,7 +1034,7 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   .animate-stagger-fade-up {
-    animation: stagger-fade-up 0.45s var(--ease-smooth) both;
+    animation: stagger-fade-up 0.45s var(--ease-spring) both;
     animation-delay: var(--stagger-delay, 0ms);
   }
 
@@ -865,19 +1043,19 @@
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
   .animate-fab-enter {
-    animation: fab-enter 0.4s var(--ease-emphasized) both;
+    animation: fab-enter 0.4s var(--ease-bounce) both;
     animation-delay: 250ms;
   }
 
   @keyframes fab-idle-pulse {
-    0%, 100% { box-shadow: 0 8px 24px rgba(30,58,95,0.25); }
-    50%       { box-shadow: 0 12px 32px rgba(30,58,95,0.38); }
+    0%, 100% { box-shadow: 0 8px 24px rgba(14,165,233,0.25); }
+    50%       { box-shadow: 0 12px 32px rgba(139,92,246,0.38); }
   }
   .animate-fab-idle { animation: fab-idle-pulse 3s ease-in-out infinite; }
 
   @keyframes cta-glow {
-    0%, 100% { box-shadow: 0 4px 14px rgba(197,165,114,0.3); }
-    50%       { box-shadow: 0 6px 20px rgba(197,165,114,0.5), 0 0 0 6px rgba(197,165,114,0.08); }
+    0%, 100% { box-shadow: 0 4px 14px rgba(249,115,22,0.3); }
+    50%       { box-shadow: 0 6px 20px rgba(249,115,22,0.5), 0 0 0 6px rgba(249,115,22,0.08); }
   }
   .animate-cta-glow { animation: cta-glow 3s ease-in-out infinite; }
 
@@ -904,12 +1082,45 @@
   }
   .animate-bell-ring { animation: bell-ring 2s ease-in-out; transform-origin: top center; }
 
-  @keyframes gold-shimmer {
+  @keyframes gradient-shift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+
+  @keyframes headline-reveal {
+    from { clip-path: inset(0 100% 0 0); opacity: 0; }
+    to   { clip-path: inset(0 0 0 0); opacity: 1; }
+  }
+  .animate-headline-reveal {
+    animation: headline-reveal 0.8s var(--ease-editorial) both;
+  }
+
+  @keyframes card-enter {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .animate-card-enter {
+    animation: card-enter 0.5s var(--ease-spring) both;
+    animation-delay: var(--stagger-delay, 0ms);
+  }
+
+  @keyframes electric-shimmer {
     0%   { background-position:  200% 0; }
     100% { background-position: -200% 0; }
   }
-  .travel-orange-shimmer {
-    background-size: 180% 100%;
-    animation: gold-shimmer 2.8s ease-in-out infinite;
+  .eo-electric-shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 0%, transparent 40%,
+      rgba(14,165,233,0.08) 50%,
+      transparent 60%, transparent 100%
+    );
+    background-size: 250% 100%;
+    animation: electric-shimmer 2.8s ease-in-out infinite;
   }
 }

@@ -53,7 +53,7 @@ function FileUpload({
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       {label && (
-        <label className="text-label font-medium text-gray-700 dark:text-indigo-100">
+        <label className="text-label font-medium text-slate-700 dark:text-sky-100">
           {label}
         </label>
       )}
@@ -65,16 +65,16 @@ function FileUpload({
         className={cn(
           "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-[var(--radius-lg)] border-2 border-dashed p-8 transition-all duration-200",
           dragActive
-            ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
-            : "border-surface-border dark:border-surface-dark-border hover:border-gray-400 hover:bg-surface-muted dark:hover:bg-surface-dark-card",
+            ? "border-sky-500 bg-sky-50 dark:bg-sky-900/20"
+            : "border-surface-border dark:border-surface-dark-border hover:border-slate-400 hover:bg-surface-muted dark:hover:bg-surface-dark-card",
           error && "border-error"
         )}
       >
-        <Upload className="h-8 w-8 text-gray-400" />
-        <p className="text-body-md text-gray-600 dark:text-indigo-200">
+        <Upload className="h-8 w-8 text-slate-400" />
+        <p className="text-body-md text-slate-600 dark:text-sky-200">
           {t("اسحب الملفات هنا أو اضغط للاختيار", "Drag files here or click to choose")}
         </p>
-        <p className="text-body-sm text-gray-400">
+        <p className="text-body-sm text-slate-400">
           {t(`الحد الأقصى ${maxSize} ميغابايت`, `Max ${maxSize} MB`)}
         </p>
         <input
@@ -94,16 +94,16 @@ function FileUpload({
               key={i}
               className="flex items-center gap-2 rounded-[var(--radius-md)] bg-surface-muted dark:bg-surface-dark-card p-2"
             >
-              <FileText className="h-4 w-4 text-gray-500 shrink-0" />
-              <span className="text-body-sm text-gray-700 dark:text-indigo-100 flex-1 truncate">
+              <FileText className="h-4 w-4 text-slate-500 shrink-0" />
+              <span className="text-body-sm text-slate-700 dark:text-sky-100 flex-1 truncate">
                 {file.name}
               </span>
-              <span className="text-body-sm text-gray-400 shrink-0">
+              <span className="text-body-sm text-slate-400 shrink-0">
                 {(file.size / 1024 / 1024).toFixed(1)} MB
               </span>
               <button
                 onClick={(e) => { e.stopPropagation(); removeFile(i); }}
-                className="shrink-0 rounded p-1 text-gray-400 hover:text-error transition-colors"
+                className="shrink-0 rounded p-1 text-slate-400 hover:text-error transition-colors"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -113,7 +113,7 @@ function FileUpload({
       )}
 
       {error && <p className="text-body-sm text-error">{error}</p>}
-      {hint && !error && <p className="text-body-sm text-gray-400">{hint}</p>}
+      {hint && !error && <p className="text-body-sm text-slate-400">{hint}</p>}
     </div>
   );
 }

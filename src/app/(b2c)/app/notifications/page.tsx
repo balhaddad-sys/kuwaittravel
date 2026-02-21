@@ -63,19 +63,19 @@ export default function NotificationsPage() {
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   return (
-    <div className="sacred-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+    <div className="eo-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
       <div className="border-b border-surface-border bg-white/82 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/80 sm:pt-12">
         <Container>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-md sm:h-11 sm:w-11">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white shadow-md sm:h-11 sm:w-11">
                 <BellRing className="h-5 w-5" />
               </div>
               <div>
-                <h1 className="text-heading-lg font-bold text-gray-900 dark:text-white sm:text-display-md">
+                <h1 className="text-heading-lg font-bold text-slate-900 dark:text-white sm:text-display-md">
                   {t("الإشعارات", "Notifications")}
                 </h1>
-                <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">
+                <p className="text-body-sm text-slate-500 dark:text-slate-400">
                   {t("تحديثات وتنبيهات الرحلات", "Trip updates and alerts")}
                 </p>
               </div>
@@ -102,7 +102,7 @@ export default function NotificationsPage() {
           </div>
         ) : loading ? (
           <div className="flex justify-center py-16">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
           </div>
         ) : notifications.length === 0 ? (
           <EmptyState
@@ -120,29 +120,29 @@ export default function NotificationsPage() {
                 className={cn(
                   "w-full text-start rounded-xl border p-3 sm:p-4 transition-all",
                   n.isRead
-                    ? "border-gray-200 bg-white dark:border-[#1A2D48] dark:bg-indigo-800"
+                    ? "border-slate-200 bg-white dark:border-[#2D3B4F] dark:bg-[#1E293B]"
                     : "border-orange-200 bg-orange-50/50 dark:border-orange-900/40 dark:bg-orange-900/10"
                 )}
               >
                 <div className="flex items-start gap-3">
                   <div className={cn(
                     "shrink-0 mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg",
-                    n.isRead ? "bg-gray-100 text-gray-400 dark:bg-indigo-700/40 dark:text-indigo-300/45" : "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400"
+                    n.isRead ? "bg-slate-100 text-slate-400 dark:bg-slate-700/40 dark:text-slate-400/60" : "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400"
                   )}>
                     {typeIcons[n.type] || <Bell className="h-4 w-4" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-gray-700 dark:text-indigo-200" : "text-gray-900 dark:text-white")}>
+                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-slate-700 dark:text-slate-200" : "text-slate-900 dark:text-white")}>
                         {language === "ar" ? n.titleAr : n.title}
                       </p>
                       {!n.isRead && <span className="h-2 w-2 shrink-0 rounded-full bg-orange-500" />}
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-indigo-300/60 mt-0.5 line-clamp-2">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">
                       {language === "ar" ? n.bodyAr : n.body}
                     </p>
                     {date && (
-                      <p className="text-[11px] text-gray-400 mt-1">
+                      <p className="text-[11px] text-slate-400 mt-1">
                         {formatRelativeTime(date, language === "ar" ? "ar-KW" : "en-US")}
                       </p>
                     )}

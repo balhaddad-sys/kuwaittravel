@@ -85,21 +85,21 @@ export default function OnboardingPage() {
 
   if (step === "role") {
     return (
-      <Card variant="elevated" padding="lg" className="sacred-pattern overflow-hidden">
-        <div className="mb-6 rounded-[var(--radius-lg)] border border-orange-200/70 bg-orange-50/75 px-4 py-3 dark:border-orange-800/45 dark:bg-orange-900/20">
-          <div className="flex items-center justify-between text-body-sm font-medium text-orange-700 dark:text-orange-300">
+      <Card variant="elevated" padding="lg" className="eo-pattern overflow-hidden">
+        <div className="mb-6 rounded-[var(--radius-lg)] border border-sky-200/70 bg-sky-50/75 px-4 py-3 dark:border-sky-800/45 dark:bg-sky-900/20">
+          <div className="flex items-center justify-between text-body-sm font-medium text-sky-700 dark:text-sky-300">
             <span>{t("الخطوة 1 من 2", "Step 1 of 2")}</span>
             <span>{t("اختيار الدور", "Select Role")}</span>
           </div>
-          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-orange-100/80 dark:bg-orange-900/50">
-            <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-orange-400 to-orange-500" />
+          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sky-100/80 dark:bg-sky-900/50">
+            <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-sky-400 to-sky-500" />
           </div>
         </div>
         <div className="text-center mb-8">
-          <h1 className="text-heading-lg font-bold text-gray-900 dark:text-white">
+          <h1 className="text-heading-lg font-bold text-slate-900 dark:text-white">
             {t("أهلاً وسهلاً", "Welcome")}
           </h1>
-          <p className="mt-2 text-body-md text-gray-500">
+          <p className="mt-2 text-body-md text-slate-500">
             {t("كيف تريد استخدام المنصة؟", "How would you like to use the platform?")}
           </p>
         </div>
@@ -107,27 +107,27 @@ export default function OnboardingPage() {
         <div className="space-y-3">
           <button
             onClick={() => handleRoleSelect("traveler")}
-            className="sacred-panel animate-stagger-in flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-gray-300 hover:bg-gray-50/40 dark:hover:border-indigo-600/50"
+            className="eo-panel animate-stagger-in flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-slate-300 hover:bg-slate-50/40 dark:hover:border-sky-600/50"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-900/30">
-              <UserCircle className="h-7 w-7 text-indigo-600 dark:text-indigo-400" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 dark:bg-sky-900/30">
+              <UserCircle className="h-7 w-7 text-sky-600 dark:text-sky-400" />
             </div>
             <div>
-              <p className="text-body-lg font-semibold text-gray-900 dark:text-white">{t("مسافر", "Traveler")}</p>
-              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">{t("ابحث واحجز رحلاتك الزيارية", "Find and book pilgrimage trips")}</p>
+              <p className="text-body-lg font-semibold text-slate-900 dark:text-white">{t("مسافر", "Traveler")}</p>
+              <p className="text-body-sm text-slate-500 dark:text-sky-300/60">{t("ابحث واحجز رحلاتك الزيارية", "Find and book pilgrimage trips")}</p>
             </div>
           </button>
 
           <button
             onClick={() => handleRoleSelect("campaign_owner")}
-            className="sacred-panel animate-stagger-in stagger-delay-2 flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-orange-300/80 hover:bg-orange-50/50 dark:hover:border-orange-700/60 dark:hover:bg-orange-900/20"
+            className="eo-panel animate-stagger-in stagger-delay-2 flex w-full items-center gap-4 rounded-[var(--radius-card)] p-4 text-start transition-all hover:border-violet-300/80 hover:bg-violet-50/50 dark:hover:border-violet-700/60 dark:hover:bg-violet-900/20"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400">
-              <Building2 className="h-7 w-7 text-orange-600 dark:text-orange-400" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400">
+              <Building2 className="h-7 w-7 text-violet-600 dark:text-violet-400" />
             </div>
             <div>
-              <p className="text-body-lg font-semibold text-gray-900 dark:text-white">{t("مدير حملة", "Campaign Owner")}</p>
-              <p className="text-body-sm text-gray-500 dark:text-indigo-300/60">{t("أدر حملتك وأنشئ رحلات جديدة", "Manage your campaign and launch new trips")}</p>
+              <p className="text-body-lg font-semibold text-slate-900 dark:text-white">{t("مدير حملة", "Campaign Owner")}</p>
+              <p className="text-body-sm text-slate-500 dark:text-sky-300/60">{t("أدر حملتك وأنشئ رحلات جديدة", "Manage your campaign and launch new trips")}</p>
             </div>
           </button>
         </div>
@@ -136,21 +136,21 @@ export default function OnboardingPage() {
   }
 
   return (
-    <Card variant="elevated" padding="lg" className="sacred-pattern overflow-hidden">
-      <div className="mb-6 rounded-[var(--radius-lg)] border border-orange-200/70 bg-orange-50/75 px-4 py-3 dark:border-orange-800/45 dark:bg-orange-900/20">
-        <div className="flex items-center justify-between text-body-sm font-medium text-orange-700 dark:text-orange-300">
+    <Card variant="elevated" padding="lg" className="eo-pattern overflow-hidden">
+      <div className="mb-6 rounded-[var(--radius-lg)] border border-sky-200/70 bg-sky-50/75 px-4 py-3 dark:border-sky-800/45 dark:bg-sky-900/20">
+        <div className="flex items-center justify-between text-body-sm font-medium text-sky-700 dark:text-sky-300">
           <span>{t("الخطوة 2 من 2", "Step 2 of 2")}</span>
           <span>{t("بيانات الملف", "Profile Info")}</span>
         </div>
-        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-orange-100/80 dark:bg-orange-900/50">
-          <div className="h-full w-full rounded-full bg-gradient-to-r from-orange-400 to-orange-500" />
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sky-100/80 dark:bg-sky-900/50">
+          <div className="h-full w-full rounded-full bg-gradient-to-r from-sky-400 to-sky-500" />
         </div>
       </div>
       <div className="text-center mb-8">
-        <h1 className="text-heading-lg font-bold text-gray-900 dark:text-white">
+        <h1 className="text-heading-lg font-bold text-slate-900 dark:text-white">
           {t("أكمل ملفك الشخصي", "Complete Your Profile")}
         </h1>
-        <p className="mt-2 text-body-md text-gray-500">
+        <p className="mt-2 text-body-md text-slate-500">
           {t("أدخل اسمك للمتابعة", "Enter your name to continue")}
         </p>
       </div>
