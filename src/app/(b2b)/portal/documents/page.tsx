@@ -64,7 +64,7 @@ export default function DocumentsPage() {
 
   if (!userData?.campaignId) {
     return (
-      <>
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar
           title={t("المستندات والكشوفات", "Documents & Statements")}
           breadcrumbs={[
@@ -72,7 +72,7 @@ export default function DocumentsPage() {
             { label: t("المستندات", "Documents") },
           ]}
         />
-        <Container className="eo-pattern py-3 sm:py-6">
+        <Container className="py-3 sm:py-6">
           <AlertBanner
             type="warning"
             title={t("لا توجد حملة مرتبطة", "No campaign linked")}
@@ -82,12 +82,12 @@ export default function DocumentsPage() {
             )}
           />
         </Container>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("المستندات والكشوفات", "Documents & Statements")}
         breadcrumbs={[
@@ -95,7 +95,7 @@ export default function DocumentsPage() {
           { label: t("المستندات", "Documents") },
         ]}
       />
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
@@ -258,6 +258,6 @@ export default function DocumentsPage() {
           </>
         )}
       </Container>
-    </>
+    </div>
   );
 }

@@ -63,7 +63,7 @@ export default function NotificationsPage() {
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   return (
-    <div className="eo-pattern min-h-screen bg-surface-muted/45 dark:bg-surface-dark">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <div className="border-b border-surface-border bg-white/82 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/80 sm:pt-12">
         <Container>
           <div className="flex items-center justify-between">

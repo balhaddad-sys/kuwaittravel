@@ -262,7 +262,7 @@ export default function AdminCampaignsPage() {
   /* ── Render ── */
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("إدارة الحملات", "Campaign Management")}
         breadcrumbs={[
@@ -271,7 +271,7 @@ export default function AdminCampaignsPage() {
         ]}
       />
 
-      <Container className="eo-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Search */}
         <SearchInput
           placeholder={t("ابحث بالاسم أو رقم الترخيص...", "Search by name or license...")}
@@ -558,6 +558,6 @@ export default function AdminCampaignsPage() {
           required
         />
       </Modal>
-    </>
+    </div>
   );
 }

@@ -86,12 +86,12 @@ export default function WalletPage() {
   }, [bookings]);
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("المحفظة", "Wallet")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("المحفظة", "Wallet") }]}
       />
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Stat cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
@@ -237,6 +237,6 @@ export default function WalletPage() {
           )}
         </Card>
       </Container>
-    </>
+    </div>
   );
 }

@@ -176,7 +176,7 @@ export default function NotificationsPage() {
 
   if (!userData?.campaignId) {
     return (
-      <>
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar
           title={t("الإشعارات", "Notifications")}
           breadcrumbs={[
@@ -184,7 +184,7 @@ export default function NotificationsPage() {
             { label: t("الإشعارات", "Notifications") },
           ]}
         />
-        <Container className="eo-pattern py-3 sm:py-6">
+        <Container className="py-3 sm:py-6">
           <AlertBanner
             type="warning"
             title={t("لا توجد حملة مرتبطة", "No campaign linked")}
@@ -194,12 +194,12 @@ export default function NotificationsPage() {
             )}
           />
         </Container>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("الإشعارات", "Notifications")}
         breadcrumbs={[
@@ -207,7 +207,7 @@ export default function NotificationsPage() {
           { label: t("الإشعارات", "Notifications") },
         ]}
       />
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Send Notification Form */}
         <Card variant="elevated" padding="lg">
           <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white mb-4">
@@ -386,6 +386,6 @@ export default function NotificationsPage() {
           )}
         </Card>
       </Container>
-    </>
+    </div>
   );
 }

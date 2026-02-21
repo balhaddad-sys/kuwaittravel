@@ -138,7 +138,7 @@ export default function DashboardPage() {
   const loading = loadingTrips || loadingBookings;
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("لوحة التحكم", "Dashboard")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal") }, { label: t("لوحة التحكم", "Dashboard") }]}
@@ -156,7 +156,7 @@ export default function DashboardPage() {
         }
       />
 
-      <Container className="eo-pattern py-4 sm:py-6 space-y-4 sm:space-y-6">
+      <Container className="py-4 sm:py-6 space-y-4 sm:space-y-6">
         {/* Verification Status Banners */}
         {verificationStatus === "pending" && (
           <AlertBanner
@@ -415,6 +415,6 @@ export default function DashboardPage() {
         onClick={() => router.push("/portal/trips/create")}
         position="bottom-right-nav"
       />
-    </>
+    </div>
   );
 }

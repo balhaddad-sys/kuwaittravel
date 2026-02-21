@@ -406,7 +406,7 @@ export default function CreateTripPage() {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("إنشاء رحلة جديدة", "Create New Trip")}
         breadcrumbs={[
@@ -416,7 +416,7 @@ export default function CreateTripPage() {
         ]}
       />
 
-      <Container size="md" className="eo-pattern py-6">
+      <Container size="md" className="py-6">
         <Card variant="elevated" padding="lg">
           <MultiStepForm
             steps={steps}
@@ -426,6 +426,6 @@ export default function CreateTripPage() {
           />
         </Card>
       </Container>
-    </>
+    </div>
   );
 }

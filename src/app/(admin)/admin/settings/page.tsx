@@ -14,9 +14,9 @@ export default function AdminSettingsPage() {
   const [savingSection, setSavingSection] = useState<"commission" | "payments" | null>(null);
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar title={t("إعدادات المنصة", "Platform Settings")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("الإعدادات", "Settings") }]} />
-      <Container size="md" className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container size="md" className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         <Card variant="elevated" padding="lg" className="space-y-4">
           <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span className="eo-icon-circle eo-icon-circle-sm eo-icon-circle-sky">
@@ -69,6 +69,6 @@ export default function AdminSettingsPage() {
           </Button>
         </Card>
       </Container>
-    </>
+    </div>
   );
 }

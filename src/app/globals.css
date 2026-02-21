@@ -410,6 +410,28 @@
     z-index: 0;
   }
 
+  /* Filter chips — admin/portal list filters */
+  .eo-filter-chip {
+    border: 1px solid #E2E8F0;
+    background-color: #FFFFFF;
+    color: #475569;
+  }
+  .eo-filter-chip-active {
+    border-color: #0EA5E9;
+    background-color: #F0F9FF;
+    color: #0284C7;
+  }
+  .dark .eo-filter-chip {
+    border-color: #2D3B4F;
+    background-color: #1E293B;
+    color: #94A3B8;
+  }
+  .dark .eo-filter-chip-active {
+    border-color: #0EA5E9;
+    background-color: rgba(14,165,233,0.12);
+    color: #38BDF8;
+  }
+
   /* Gradient text utility */
   .eo-text-gradient {
     background: linear-gradient(135deg, #38BDF8, #A78BFA, #FB923C);

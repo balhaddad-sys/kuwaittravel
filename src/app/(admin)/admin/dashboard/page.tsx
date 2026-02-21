@@ -122,12 +122,12 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("\u0644\u0648\u062d\u0629 \u062a\u062d\u0643\u0645 \u0627\u0644\u0645\u0634\u0631\u0641", "Admin Dashboard")}
         breadcrumbs={[{ label: t("\u0627\u0644\u0645\u0634\u0631\u0641 \u0627\u0644\u0639\u0627\u0645", "Admin Console") }, { label: t("\u0644\u0648\u062d\u0629 \u0627\u0644\u062a\u062d\u0643\u0645", "Dashboard") }]}
       />
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Stat Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
@@ -336,6 +336,6 @@ export default function AdminDashboardPage() {
           )}
         </Card>
       </Container>
-    </>
+    </div>
   );
 }

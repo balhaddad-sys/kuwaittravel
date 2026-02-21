@@ -189,7 +189,7 @@ export default function UsersPage() {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645\u064a\u0646", "User Management")}
         breadcrumbs={[
@@ -198,7 +198,7 @@ export default function UsersPage() {
         ]}
       />
 
-      <Container className="eo-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Search */}
         <SearchInput
           placeholder={t("\u0627\u0628\u062d\u062b \u0628\u0627\u0644\u0627\u0633\u0645 \u0623\u0648 \u0631\u0642\u0645 \u0627\u0644\u0647\u0627\u062a\u0641...", "Search by name or phone number...")}
@@ -435,6 +435,6 @@ export default function UsersPage() {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }

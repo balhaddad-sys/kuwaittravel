@@ -69,7 +69,7 @@ export default function CampaignDetailPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar title={t("جاري التحميل...", "Loading...")} />
         <Container className="space-y-4 py-6">
           <Skeleton className="h-32 w-full" />
@@ -82,7 +82,7 @@ export default function CampaignDetailPage({
 
   if (!campaign) {
     return (
-      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar title={t("الحملة", "Campaign")} />
         <Container className="py-6">
           <EmptyState
@@ -103,7 +103,7 @@ export default function CampaignDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={getName(campaign)}
         breadcrumbs={[

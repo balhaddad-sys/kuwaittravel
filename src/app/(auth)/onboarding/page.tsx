@@ -85,7 +85,7 @@ export default function OnboardingPage() {
 
   if (step === "role") {
     return (
-      <Card variant="elevated" padding="lg" className="eo-pattern overflow-hidden">
+      <Card variant="elevated" padding="lg" className="overflow-hidden">
         <div className="mb-6 rounded-[var(--radius-lg)] border border-sky-200/70 bg-sky-50/75 px-4 py-3 dark:border-sky-800/45 dark:bg-sky-900/20">
           <div className="flex items-center justify-between text-body-sm font-medium text-sky-700 dark:text-sky-300">
             <span>{t("الخطوة 1 من 2", "Step 1 of 2")}</span>
@@ -136,7 +136,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <Card variant="elevated" padding="lg" className="eo-pattern overflow-hidden">
+    <Card variant="elevated" padding="lg" className="overflow-hidden">
       <div className="mb-6 rounded-[var(--radius-lg)] border border-sky-200/70 bg-sky-50/75 px-4 py-3 dark:border-sky-800/45 dark:bg-sky-900/20">
         <div className="flex items-center justify-between text-body-sm font-medium text-sky-700 dark:text-sky-300">
           <span>{t("الخطوة 2 من 2", "Step 2 of 2")}</span>

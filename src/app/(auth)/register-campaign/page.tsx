@@ -308,7 +308,7 @@ export default function RegisterCampaignPage() {
             <span className="text-body-sm font-medium">{t("راجع البيانات قبل الإرسال", "Review your details before submitting")}</span>
           </div>
 
-          <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+          <div className="rounded-[var(--radius-lg)] border border-slate-200 bg-slate-50/75 p-3 sm:p-4 dark:border-slate-700 dark:bg-slate-900/50">
             <h3 className="text-body-sm sm:text-body-md font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
               <Building2 className="h-4 w-4 text-sky-500 shrink-0" />
               {t("بيانات المنظمة", "Organization")}
@@ -331,7 +331,7 @@ export default function RegisterCampaignPage() {
             </dl>
           </div>
 
-          <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+          <div className="rounded-[var(--radius-lg)] border border-slate-200 bg-slate-50/75 p-3 sm:p-4 dark:border-slate-700 dark:bg-slate-900/50">
             <h3 className="text-body-sm sm:text-body-md font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
               <FileText className="h-4 w-4 text-sky-500 shrink-0" />
               {t("الوثائق الرسمية", "Legal Documents")}
@@ -354,7 +354,7 @@ export default function RegisterCampaignPage() {
             </dl>
           </div>
 
-          <div className="rounded-[var(--radius-lg)] border border-surface-border bg-surface-muted/50 p-3 sm:p-4 dark:border-surface-dark-border dark:bg-surface-dark-card/50">
+          <div className="rounded-[var(--radius-lg)] border border-slate-200 bg-slate-50/75 p-3 sm:p-4 dark:border-slate-700 dark:bg-slate-900/50">
             <h3 className="text-body-sm sm:text-body-md font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
               <Phone className="h-4 w-4 text-sky-500 shrink-0" />
               {t("بيانات التواصل", "Contact Info")}

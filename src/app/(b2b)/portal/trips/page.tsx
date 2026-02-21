@@ -80,7 +80,7 @@ export default function TripsPage() {
   }, [filter, searchQuery, trips]);
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("الرحلات", "Trips")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الرحلات", "Trips") }]}
@@ -91,7 +91,7 @@ export default function TripsPage() {
         }
       />
 
-      <Container className="eo-pattern py-6 space-y-6">
+      <Container className="py-6 space-y-6">
         {!userData?.campaignId && !loading && (
           <div className="eo-section p-4">
             <EmptyState
@@ -175,6 +175,6 @@ export default function TripsPage() {
       </Container>
 
       <FAB icon={<Plus className="h-6 w-6" />} onClick={() => router.push("/portal/trips/create")} position="bottom-right-nav" />
-    </>
+    </div>
   );
 }

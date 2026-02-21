@@ -111,22 +111,22 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <>
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar
           title={t("الملف التعريفي", "Profile")}
           breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الملف التعريفي", "Profile") }]}
         />
-        <Container size="md" className="eo-pattern py-3 sm:py-6">
+        <Container size="md" className="py-3 sm:py-6">
           <div className="flex items-center justify-center py-20">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
           </div>
         </Container>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("الملف التعريفي", "Profile")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الملف التعريفي", "Profile") }]}
@@ -153,7 +153,7 @@ export default function ProfilePage() {
           )
         }
       />
-      <Container size="md" className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container size="md" className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Cover + Avatar */}
         <Card variant="elevated" padding="none">
           <div className="eo-cover-pattern relative h-32 sm:h-48 rounded-t-[var(--radius-card)] bg-gradient-to-l from-[#0369A1] via-[#082F49] to-[#2E1065]">
@@ -344,6 +344,6 @@ export default function ProfilePage() {
           </Card>
         )}
       </Container>
-    </>
+    </div>
   );
 }

@@ -120,7 +120,7 @@ export default function FinancialsPage() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("\u0627\u0644\u0645\u0627\u0644\u064a\u0629", "Financials")}
         breadcrumbs={[
@@ -128,7 +128,7 @@ export default function FinancialsPage() {
           { label: t("\u0627\u0644\u0645\u0627\u0644\u064a\u0629", "Financials") },
         ]}
       />
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         {/* Stat Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
@@ -272,6 +272,6 @@ export default function FinancialsPage() {
           )}
         </Card>
       </Container>
-    </>
+    </div>
   );
 }

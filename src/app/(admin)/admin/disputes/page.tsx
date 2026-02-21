@@ -244,7 +244,7 @@ export default function DisputesPage() {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0646\u0632\u0627\u0639\u0627\u062a", "Manage Disputes")}
         breadcrumbs={[
@@ -253,7 +253,7 @@ export default function DisputesPage() {
         ]}
       />
 
-      <Container className="eo-pattern overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="overflow-visible py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Filter chips */}
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {filterChips.map((f) => (
@@ -596,6 +596,6 @@ export default function DisputesPage() {
           />
         )}
       </Modal>
-    </>
+    </div>
   );
 }

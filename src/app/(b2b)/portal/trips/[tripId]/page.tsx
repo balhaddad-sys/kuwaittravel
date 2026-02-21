@@ -223,7 +223,7 @@ export default function TripDetailPage() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={tripLoading ? "تفاصيل الرحلة" : tripTitle}
         breadcrumbs={[
@@ -233,7 +233,7 @@ export default function TripDetailPage() {
         ]}
       />
 
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatCard
             title="المسافرون"
@@ -487,6 +487,6 @@ export default function TripDetailPage() {
           </div>
         )}
       </Container>
-    </>
+    </div>
   );
 }

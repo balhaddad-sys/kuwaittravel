@@ -213,7 +213,7 @@ export default function DiscoverPage() {
     language === "ar" ? (trip.titleAr || trip.title) : (trip.title || trip.titleAr);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
 
       {/* ─────────────────────────────────────────────────────────
           HERO SECTION — Rich blue gradient, search centered

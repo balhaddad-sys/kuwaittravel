@@ -159,7 +159,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
 
       {/* ─── Hero Header ─── */}
       <div className="relative overflow-hidden bg-gradient-to-br from-[#082F49] via-[#0C4A6E] to-[#2E1065] pb-20 pt-10 sm:pb-24 sm:pt-14">

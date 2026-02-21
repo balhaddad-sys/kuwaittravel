@@ -243,7 +243,7 @@ export default function AuditLogsPage() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("\u0633\u062c\u0644 \u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a", "Audit Logs")}
         breadcrumbs={[
@@ -251,7 +251,7 @@ export default function AuditLogsPage() {
           { label: t("\u0633\u062c\u0644 \u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a", "Audit Logs") },
         ]}
       />
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Search + Badge */}
         <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
           <SearchInput
@@ -391,6 +391,6 @@ export default function AuditLogsPage() {
           )}
         </Card>
       </Container>
-    </>
+    </div>
   );
 }

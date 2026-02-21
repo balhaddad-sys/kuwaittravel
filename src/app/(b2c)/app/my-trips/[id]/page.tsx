@@ -82,7 +82,7 @@ export default function BookingDetailPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar title={t("جاري التحميل...", "Loading...")} />
         <Container className="space-y-4 py-6">
           <Skeleton className="h-32 w-full" />
@@ -95,7 +95,7 @@ export default function BookingDetailPage({
 
   if (!booking) {
     return (
-      <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar title={t("الحجز", "Booking")} />
         <EmptyState
           icon={<Receipt className="h-16 w-16" />}
@@ -113,7 +113,7 @@ export default function BookingDetailPage({
   const statusInfo = statusLabels[booking.status] || statusLabels.confirmed;
 
   return (
-    <div className="min-h-screen bg-surface-muted dark:bg-surface-dark">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("تفاصيل الحجز", "Booking Details")}
         breadcrumbs={[

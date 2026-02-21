@@ -118,7 +118,7 @@ export default function TripDetailPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <Skeleton className="h-64 w-full" />
         <Container className="space-y-4 py-6">
           <Skeleton className="h-8 w-3/4" />
@@ -132,7 +132,7 @@ export default function TripDetailPage({
 
   if (!trip) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <Container className="py-16">
           <EmptyState
             icon={<Plane className="h-16 w-16" />}
@@ -369,7 +369,7 @@ export default function TripDetailPage({
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-28">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120] pb-28">
       {/* Full-Bleed Image Gallery */}
       <ImageGallery
         images={galleryImages}

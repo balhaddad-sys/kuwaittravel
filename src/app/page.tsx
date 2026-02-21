@@ -6,7 +6,19 @@ import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useDirection } from "@/providers/DirectionProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { isPrivilegedAdminEmail } from "@/lib/utils/roles";
-import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { motion, useInView } from "motion/react";
+
+/* ── Mobile detection hook ─────────────────────── */
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
 import {
   PlaneTakeoff,
   Building2,
@@ -29,7 +41,7 @@ import {
 /* ── Animated Counter ──────────────────────────── */
 function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "-10px" });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -64,13 +76,31 @@ function GlowOrb({
   x,
   y,
   delay = 0,
+  staticMode = false,
 }: {
   color: string;
   size: string;
   x: string;
   y: string;
   delay?: number;
+  staticMode?: boolean;
 }) {
+  // On mobile: render static, smaller orb (no animation, reduced blur)
+  if (staticMode) {
+    return (
+      <div
+        className="pointer-events-none absolute rounded-full blur-2xl"
+        style={{
+          background: color,
+          width: `calc(${size} * 0.5)`,
+          height: `calc(${size} * 0.5)`,
+          left: x,
+          top: y,
+        }}
+      />
+    );
+  }
+
   return (
     <motion.div
       className="pointer-events-none absolute rounded-full blur-3xl"
@@ -116,17 +146,11 @@ const fadeScale = {
 
 export default function HomePage() {
   const router = useRouter();
-  const { t, language } = useDirection();
+  const { t } = useDirection();
   const { userData, firebaseUser } = useAuth();
   const [exiting, setExiting] = useState(false);
 
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const isMobile = useIsMobile();
 
   const navigateTo = useCallback(
     (url: string) => {
@@ -238,7 +262,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           HERO SECTION — Full Viewport
           ══════════════════════════════════════════ */}
-      <div ref={heroRef} className="relative min-h-screen overflow-hidden">
+      <div className="relative min-h-screen overflow-hidden">
         {/* Editorial gradient background */}
         <div
           className="absolute inset-0"
@@ -248,11 +272,11 @@ export default function HomePage() {
           }}
         />
 
-        {/* Animated gradient orbs */}
-        <GlowOrb color="rgba(14,165,233,0.15)" size="600px" x="10%" y="-10%" delay={0} />
-        <GlowOrb color="rgba(139,92,246,0.12)" size="500px" x="60%" y="20%" delay={2} />
-        <GlowOrb color="rgba(249,115,22,0.08)" size="400px" x="80%" y="60%" delay={4} />
-        <GlowOrb color="rgba(14,165,233,0.06)" size="350px" x="-5%" y="70%" delay={6} />
+        {/* Animated gradient orbs (static on mobile for performance) */}
+        <GlowOrb color="rgba(14,165,233,0.15)" size="600px" x="10%" y="-10%" delay={0} staticMode={isMobile} />
+        <GlowOrb color="rgba(139,92,246,0.12)" size="500px" x="60%" y="20%" delay={2} staticMode={isMobile} />
+        <GlowOrb color="rgba(249,115,22,0.08)" size="400px" x="80%" y="60%" delay={4} staticMode={isMobile} />
+        <GlowOrb color="rgba(14,165,233,0.06)" size="350px" x="-5%" y="70%" delay={6} staticMode={isMobile} />
 
         {/* Geometric pattern overlay */}
         <div
@@ -264,11 +288,8 @@ export default function HomePage() {
           }}
         />
 
-        {/* Content wrapper with parallax */}
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
-          className="relative z-10 flex min-h-screen flex-col"
-        >
+        {/* Content wrapper */}
+        <div className="relative z-10 flex min-h-screen flex-col">
           {/* ── Top Nav ───────────────────────────── */}
           <div className="mx-auto w-full max-w-6xl px-5 pt-6 sm:px-8 sm:pt-8">
             <header className="flex items-center justify-between">
@@ -392,7 +413,7 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Wave transition */}
         <div className="absolute inset-x-0 bottom-0 z-20 h-[60px] overflow-hidden">
@@ -471,7 +492,7 @@ export default function HomePage() {
 
 function StatsSection({ t }: { t: (ar: string, en: string) => string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
 
   const stats = [
     { value: 10, suffix: "+", label: t("وجهة", "Destinations"), icon: <Globe2 className="h-5 w-5" /> },
@@ -525,7 +546,7 @@ function DestinationsSection({
   t: (ar: string, en: string) => string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
 
   return (
     <section className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
@@ -607,7 +628,7 @@ function HowItWorksSection({
   t: (ar: string, en: string) => string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
 
   return (
     <section
@@ -710,7 +731,7 @@ function EntryPointsSection({
   t: (ar: string, en: string) => string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
 
   return (
     <section className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
@@ -818,7 +839,7 @@ function CTASection({
   t: (ar: string, en: string) => string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
 
   return (
     <section

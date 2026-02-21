@@ -119,12 +119,12 @@ export default function BookingsPage() {
   }, [bookings]);
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("الحجوزات", "Bookings")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الحجوزات", "Bookings") }]}
       />
-      <Container className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-4">
+      <Container className="py-3 sm:py-6 space-y-3 sm:space-y-4">
         {/* Search */}
         <SearchInput
           placeholder={t("ابحث برقم الحجز أو اسم المسافر...", "Search by booking ID or traveler name...")}
@@ -306,6 +306,6 @@ export default function BookingsPage() {
           </div>
         )}
       </Container>
-    </>
+    </div>
   );
 }

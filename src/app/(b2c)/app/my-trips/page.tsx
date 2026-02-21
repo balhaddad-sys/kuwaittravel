@@ -174,7 +174,7 @@ export default function MyTripsPage() {
   const filteredBookings = tab === "upcoming" ? upcomingBookings : pastBookings;
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
 
       {/* ─── Hero Header ─── */}
       <div className="relative overflow-hidden bg-gradient-to-br from-[#082F49] via-[#0C4A6E] to-[#2E1065]">
@@ -214,7 +214,7 @@ export default function MyTripsPage() {
                     onClick={() => setTab(tabKey)}
                     className={`relative flex items-center gap-2 rounded-t-xl px-5 pb-3.5 pt-2.5 text-[0.9375rem] font-semibold transition-all duration-200 ${
                       isActive
-                        ? "bg-[#F5F7FA] text-sky-600 dark:bg-[#0B1120] dark:text-sky-400"
+                        ? "bg-slate-50 text-sky-600 dark:bg-[#0B1120] dark:text-sky-400"
                         : "text-white/70 hover:text-white"
                     }`}
                   >

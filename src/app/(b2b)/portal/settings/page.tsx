@@ -102,7 +102,7 @@ export default function SettingsPage() {
 
   if (!userData?.campaignId) {
     return (
-      <>
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
         <AppBar
           title={t("الإعدادات", "Settings")}
           breadcrumbs={[
@@ -110,7 +110,7 @@ export default function SettingsPage() {
             { label: t("الإعدادات", "Settings") },
           ]}
         />
-        <Container size="md" className="eo-pattern py-3 sm:py-6">
+        <Container size="md" className="py-3 sm:py-6">
           <AlertBanner
             type="warning"
             title={t("لا توجد حملة مرتبطة", "No campaign linked")}
@@ -120,12 +120,12 @@ export default function SettingsPage() {
             )}
           />
         </Container>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
       <AppBar
         title={t("الإعدادات", "Settings")}
         breadcrumbs={[
@@ -133,7 +133,7 @@ export default function SettingsPage() {
           { label: t("الإعدادات", "Settings") },
         ]}
       />
-      <Container size="md" className="eo-pattern py-3 sm:py-6 space-y-3 sm:space-y-6">
+      <Container size="md" className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
@@ -272,6 +272,6 @@ export default function SettingsPage() {
           </>
         )}
       </Container>
-    </>
+    </div>
   );
 }
