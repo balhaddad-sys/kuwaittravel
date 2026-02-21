@@ -77,6 +77,7 @@ export default function DiscoverPage() {
   const [filters, setFilters] = useState<TripFilterState>(DEFAULT_FILTERS);
   const [filterSheetOpen, setFilterSheetOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
     async function fetchDiscoverData() {
@@ -496,35 +497,48 @@ export default function DiscoverPage() {
               ))}
             </div>
           ) : filteredTrips.length > 0 ? (
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredTrips.slice(0, 12).map((trip, i) => (
-                <div
-                  key={trip.id}
-                  className="animate-stagger-fade-up"
-                  style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
-                >
-                  <TripCard
-                    title={getTripTitle(trip)}
-                    destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
-                    departureDate={formatTimestamp(trip.departureDate)}
-                    returnDate={formatTimestamp(trip.returnDate)}
-                    price={trip.basePriceKWD}
-                    capacity={trip.totalCapacity}
-                    booked={trip.bookedCount || 0}
-                    remainingCapacity={trip.remainingCapacity}
-                    status={toTripCardStatus(trip.status)}
-                    campaignName={getCampaignName(trip)}
-                    coverImage={trip.coverImageUrl}
-                    galleryUrls={trip.galleryUrls}
-                    tags={trip.tags}
-                    tripId={trip.id}
-                    wishlisted={isWishlisted(trip.id)}
-                    onWishlistToggle={() => toggleWishlist(trip.id)}
-                    onClick={() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)}
-                  />
+            <>
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredTrips.slice(0, visibleCount).map((trip, i) => (
+                  <div
+                    key={trip.id}
+                    className="animate-stagger-fade-up"
+                    style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
+                  >
+                    <TripCard
+                      title={getTripTitle(trip)}
+                      destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
+                      departureDate={formatTimestamp(trip.departureDate)}
+                      returnDate={formatTimestamp(trip.returnDate)}
+                      price={trip.basePriceKWD}
+                      capacity={trip.totalCapacity}
+                      booked={trip.bookedCount || 0}
+                      remainingCapacity={trip.remainingCapacity}
+                      status={toTripCardStatus(trip.status)}
+                      campaignName={getCampaignName(trip)}
+                      coverImage={trip.coverImageUrl}
+                      galleryUrls={trip.galleryUrls}
+                      tags={trip.tags}
+                      tripId={trip.id}
+                      wishlisted={isWishlisted(trip.id)}
+                      onWishlistToggle={() => toggleWishlist(trip.id)}
+                      onClick={() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)}
+                    />
+                  </div>
+                ))}
+              </div>
+              {visibleCount < filteredTrips.length && (
+                <div className="mt-6 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setVisibleCount((prev) => prev + 12)}
+                    className="rounded-xl border border-gray-200 bg-white px-6 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-200 dark:hover:bg-indigo-700"
+                  >
+                    {t("عرض المزيد", "Load More")} ({filteredTrips.length - visibleCount} {t("متبقي", "remaining")})
+                  </button>
                 </div>
-              ))}
-            </div>
+              )}
+            </>
           ) : (
             <EmptyState
               icon={<Compass className="h-14 w-14 text-gray-300" />}

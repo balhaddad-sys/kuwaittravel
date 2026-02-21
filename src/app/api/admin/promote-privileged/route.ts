@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { FieldValue } from "firebase-admin/firestore";
 import { getAdminAuth, getAdminDb } from "@/lib/firebase/admin";
 import { COLLECTIONS } from "@/lib/firebase/collections";
+import { createRateLimiter } from "@/lib/utils/rate-limit";
+
+const limiter = createRateLimiter({ maxRequests: 5, windowMs: 60_000 });
 
 function normalize(value: string | null | undefined): string {
   return (value || "").trim().toLowerCase();
@@ -17,6 +20,11 @@ function getAllowedAdminEmails(): string[] {
 }
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (limiter.isLimited(ip)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   const authHeader = request.headers.get("authorization") || "";
   const tokenMatch = authHeader.match(/^Bearer\s+(.+)$/i);
 
@@ -90,7 +98,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, role });
   } catch (error) {
-    console.error("Privileged admin promotion failed:", error);
+    if (process.env.NODE_ENV !== "production") console.error("Privileged admin promotion failed:", error);
     return NextResponse.json(
       { error: "Failed to promote privileged admin" },
       { status: 500 }

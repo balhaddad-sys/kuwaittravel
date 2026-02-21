@@ -13,7 +13,7 @@ import {
   AlertCircle,
   LogIn,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { formatDate, formatKWD, parseTimestamp } from "@/lib/utils/format";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
@@ -90,9 +90,22 @@ function SkeletonBooking() {
 
 export default function MyTripsPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t, language } = useDirection();
   const { userData, loading: authLoading } = useAuth();
-  const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
+  const tabParam = searchParams.get("tab");
+  const [tab, setTabState] = useState<"upcoming" | "past">(tabParam === "past" ? "past" : "upcoming");
+
+  const setTab = (newTab: "upcoming" | "past") => {
+    setTabState(newTab);
+    const params = new URLSearchParams(searchParams.toString());
+    if (newTab === "past") {
+      params.set("tab", "past");
+    } else {
+      params.delete("tab");
+    }
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
   const [bookings, setBookings] = useState<EnrichedBooking[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
@@ -173,7 +186,7 @@ export default function MyTripsPage() {
         <Container className="relative pb-16 pt-10 sm:pt-12">
           <div className="flex items-center gap-3.5">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 shadow-lg backdrop-blur-sm ring-1 ring-white/20">
-              <Plane className="h-5.5 w-5.5 h-[1.375rem] w-[1.375rem] text-white" />
+              <Plane className="h-[1.375rem] w-[1.375rem] text-white" />
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">

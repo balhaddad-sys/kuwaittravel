@@ -132,7 +132,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label={t("رقم الهاتف الكويتي", "Kuwait Phone Number")}
-            placeholder={t("9XXXXXXX", "5XXXXXXX")}
+            placeholder="5XXXXXXX / 6XXXXXXX / 9XXXXXXX"
             type="tel"
             dir="ltr"
             value={phone}

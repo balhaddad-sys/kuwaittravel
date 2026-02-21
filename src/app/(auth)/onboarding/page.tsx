@@ -61,8 +61,8 @@ export default function OnboardingPage() {
           uid: firebaseUser.uid,
           email: firebaseUser.email || "",
           phone: firebaseUser.phoneNumber || "",
-          displayName: name,
-          displayNameAr: nameAr,
+          displayName: name.replace(/<[^>]*>/g, "").trim(),
+          displayNameAr: nameAr.replace(/<[^>]*>/g, "").trim(),
           photoURL: firebaseUser.photoURL || "",
           role,
           preferredLanguage: "ar" as const,
@@ -76,7 +76,7 @@ export default function OnboardingPage() {
       await refreshUserData();
       router.push(ROLE_HOME_ROUTES[role]);
     } catch (err) {
-      console.error("Onboarding error:", err);
+      if (process.env.NODE_ENV !== "production") console.error("Onboarding error:", err);
       setError(t("حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى.", "Something went wrong while creating your account. Please try again."));
     } finally {
       setLoading(false);

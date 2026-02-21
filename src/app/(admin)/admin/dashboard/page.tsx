@@ -9,8 +9,9 @@ import { Badge } from "@/components/ui/Badge";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { useDirection } from "@/providers/DirectionProvider";
 import { useAuth } from "@/hooks/useAuth";
-import { onCollectionChange } from "@/lib/firebase/firestore";
+import { onCollectionChange, getDocuments } from "@/lib/firebase/firestore";
 import { COLLECTIONS } from "@/lib/firebase/collections";
+import { limit, orderBy } from "firebase/firestore";
 import { cn } from "@/lib/utils/cn";
 import { formatKWD, parseTimestamp, formatRelativeTime, formatPhone } from "@/lib/utils/format";
 import type { Campaign } from "@/types/campaign";
@@ -57,21 +58,21 @@ export default function AdminDashboardPage() {
     );
 
     unsubs.push(
-      onCollectionChange<User>(COLLECTIONS.USERS, [], (data) => {
+      onCollectionChange<User>(COLLECTIONS.USERS, [limit(500)], (data) => {
         setUsers(data);
         setLoaded((prev) => ({ ...prev, users: true }));
       }, () => setLoaded((prev) => ({ ...prev, users: true })))
     );
 
     unsubs.push(
-      onCollectionChange<Trip>(COLLECTIONS.TRIPS, [], (data) => {
+      onCollectionChange<Trip>(COLLECTIONS.TRIPS, [limit(200)], (data) => {
         setTrips(data);
         setLoaded((prev) => ({ ...prev, trips: true }));
       }, () => setLoaded((prev) => ({ ...prev, trips: true })))
     );
 
     unsubs.push(
-      onCollectionChange<Booking>(COLLECTIONS.BOOKINGS, [], (data) => {
+      onCollectionChange<Booking>(COLLECTIONS.BOOKINGS, [orderBy("createdAt", "desc"), limit(500)], (data) => {
         setBookings(data);
         setLoaded((prev) => ({ ...prev, bookings: true }));
       }, () => setLoaded((prev) => ({ ...prev, bookings: true })))

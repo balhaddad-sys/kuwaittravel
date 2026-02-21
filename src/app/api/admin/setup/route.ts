@@ -2,8 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebase/admin";
 import { COLLECTIONS } from "@/lib/firebase/collections";
 import { FieldValue } from "firebase-admin/firestore";
+import { createRateLimiter } from "@/lib/utils/rate-limit";
+
+const limiter = createRateLimiter({ maxRequests: 3, windowMs: 60_000 });
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (limiter.isLimited(ip)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   const setupEnabled = process.env.ADMIN_SETUP_ENABLED === "true";
   const setupKey = process.env.ADMIN_SETUP_KEY;
 
@@ -14,7 +22,7 @@ export async function POST(request: NextRequest) {
 
   if (!setupKey) {
     return NextResponse.json(
-      { error: "ADMIN_SETUP_KEY is not configured" },
+      { error: "Server configuration error" },
       { status: 500 }
     );
   }

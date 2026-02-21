@@ -68,7 +68,7 @@ export default function NotificationsPage() {
         });
         setNotifications(sorted);
       } catch (err) {
-        console.error("Notifications fetch error:", err);
+        if (process.env.NODE_ENV !== "production") console.error("Notifications fetch error:", err);
       } finally {
         setLoading(false);
       }
@@ -164,7 +164,7 @@ export default function NotificationsPage() {
       setNotifBodyAr("");
       setSelectedTripId("");
     } catch (err) {
-      console.error("Send notification error:", err);
+      if (process.env.NODE_ENV !== "production") console.error("Send notification error:", err);
       toast({
         type: "error",
         title: t("فشل إرسال الإشعار", "Failed to send notification"),

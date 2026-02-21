@@ -45,7 +45,9 @@ function reportListenerError(
     return;
   }
 
-  console.error(`[Firestore] ${context} listener error:`, err);
+  if (process.env.NODE_ENV !== "production") {
+    console.error(`[Firestore] ${context} listener error:`, err);
+  }
   onError?.(normalizedError);
 }
 

@@ -53,7 +53,7 @@ export default function DocumentsPage() {
         setCampaign(campaignData);
         setTrips(tripsData);
       } catch (err) {
-        console.error("Documents fetch error:", err);
+        if (process.env.NODE_ENV !== "production") console.error("Documents fetch error:", err);
       } finally {
         setLoading(false);
       }
