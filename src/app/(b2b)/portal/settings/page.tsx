@@ -52,7 +52,7 @@ export default function SettingsPage() {
           setAccountHolder(campaign.bankDetails.accountHolder || "");
         }
       } catch (err) {
-        console.error("Settings fetch error:", err);
+        if (process.env.NODE_ENV !== "production") console.error("Settings fetch error:", err);
       } finally {
         setLoading(false);
       }
@@ -90,7 +90,7 @@ export default function SettingsPage() {
         title: t("تم حفظ البيانات البنكية", "Bank details saved"),
       });
     } catch (err) {
-      console.error("Save bank details error:", err);
+      if (process.env.NODE_ENV !== "production") console.error("Save bank details error:", err);
       toast({
         type: "error",
         title: t("فشل حفظ البيانات البنكية", "Failed to save bank details"),

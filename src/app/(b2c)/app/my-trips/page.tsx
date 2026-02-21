@@ -13,7 +13,7 @@ import {
   AlertCircle,
   LogIn,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { formatDate, formatKWD, parseTimestamp } from "@/lib/utils/format";
 import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
@@ -90,9 +90,22 @@ function SkeletonBooking() {
 
 export default function MyTripsPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t, language } = useDirection();
   const { userData, loading: authLoading } = useAuth();
-  const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
+  const tabParam = searchParams.get("tab");
+  const [tab, setTabState] = useState<"upcoming" | "past">(tabParam === "past" ? "past" : "upcoming");
+
+  const setTab = (newTab: "upcoming" | "past") => {
+    setTabState(newTab);
+    const params = new URLSearchParams(searchParams.toString());
+    if (newTab === "past") {
+      params.set("tab", "past");
+    } else {
+      params.delete("tab");
+    }
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
   const [bookings, setBookings] = useState<EnrichedBooking[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");

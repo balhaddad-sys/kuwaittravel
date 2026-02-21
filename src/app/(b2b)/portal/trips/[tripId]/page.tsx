@@ -91,7 +91,7 @@ export default function TripDetailPage() {
         setTrip(data);
       })
       .catch((error) => {
-        console.error("Trip lookup failed:", error);
+        if (process.env.NODE_ENV !== "production") console.error("Trip lookup failed:", error);
       })
       .finally(() => {
         if (mounted) setTripResolved(true);

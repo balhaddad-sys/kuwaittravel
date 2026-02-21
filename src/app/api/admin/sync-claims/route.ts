@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminAuth, getAdminDb } from "@/lib/firebase/admin";
 import { COLLECTIONS } from "@/lib/firebase/collections";
+import { createRateLimiter } from "@/lib/utils/rate-limit";
+
+const limiter = createRateLimiter({ maxRequests: 10, windowMs: 60_000 });
 
 function normalizeRole(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
@@ -11,6 +14,11 @@ function isAdminRole(role: string): role is "admin" | "super_admin" {
 }
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (limiter.isLimited(ip)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   const authHeader = request.headers.get("authorization") || "";
   const tokenMatch = authHeader.match(/^Bearer\s+(.+)$/i);
 
@@ -45,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, role: userRole });
   } catch (error) {
-    console.error("Admin claim sync failed:", error);
+    if (process.env.NODE_ENV !== "production") console.error("Admin claim sync failed:", error);
     return NextResponse.json({ error: "Failed to sync admin claims" }, { status: 500 });
   }
 }

@@ -18,6 +18,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useDirection } from "@/providers/DirectionProvider";
 import { useWishlist } from "@/hooks/useWishlist";
 import { createDocument, getDocument, getDocuments } from "@/lib/firebase/firestore";
+import { where } from "firebase/firestore";
 import { COLLECTIONS, SUB_COLLECTIONS } from "@/lib/firebase/collections";
 import { formatKWD } from "@/lib/utils/format";
 import { isBookableTrip } from "@/lib/utils/trip";
@@ -284,6 +285,37 @@ export default function TripDetailPage({
 
     setBookingLoading(true);
     try {
+      // Duplicate booking prevention
+      const existingBookings = await getDocuments<{ id: string; status: string }>(COLLECTIONS.BOOKINGS, [
+        where("travelerId", "==", firebaseUser.uid),
+        where("tripId", "==", trip.id),
+      ]);
+      const activeBooking = existingBookings.find((b) => b.status !== "cancelled");
+      if (activeBooking) {
+        toast({
+          type: "warning",
+          title: t("لديك حجز مسبق لهذه الرحلة", "You already have a booking for this trip"),
+        });
+        setBookingLoading(false);
+        return;
+      }
+
+      // Re-fetch trip to verify remaining capacity (prevents overbooking race condition)
+      const freshTrip = await getDocument<Trip>(COLLECTIONS.TRIPS, trip.id);
+      const freshRemaining = freshTrip?.remainingCapacity ?? (freshTrip ? freshTrip.totalCapacity - (freshTrip.bookedCount || 0) : 0);
+      if (!freshTrip || freshRemaining < passengerCount) {
+        toast({
+          type: "error",
+          title: t("لا تتوفر مقاعد كافية", "Not enough seats available"),
+          description: t(
+            `المقاعد المتبقية: ${freshRemaining}`,
+            `Remaining seats: ${freshRemaining}`
+          ),
+        });
+        setBookingLoading(false);
+        return;
+      }
+
       const bookingId = await createDocument(COLLECTIONS.BOOKINGS, {
         travelerId: firebaseUser.uid,
         travelerName: userData.displayNameAr || userData.displayName,
