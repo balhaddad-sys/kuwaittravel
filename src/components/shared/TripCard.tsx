@@ -5,7 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { WishlistButton } from "@/components/shared/WishlistButton";
 import { useDirection } from "@/providers/DirectionProvider";
-import { MapPin, Calendar, Users, Star } from "lucide-react";
+import { MapPin, Calendar, Users } from "lucide-react";
 import { formatKWD } from "@/lib/utils/format";
 
 interface TripCardProps {
@@ -55,7 +55,12 @@ function TripCard({
 
   const images = galleryUrls && galleryUrls.length > 0 ? galleryUrls : coverImage ? [coverImage] : [];
   const [activeImg, setActiveImg] = useState(0);
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleImageError = useCallback((index: number) => {
+    setFailedImages((prev) => new Set(prev).add(index));
+  }, []);
 
   const handleScroll = useCallback(() => {
     const el = scrollRef.current;
@@ -95,24 +100,38 @@ function TripCard({
           >
             {images.slice(0, 5).map((src, i) => (
               <div key={i} className="relative h-full w-full flex-shrink-0 snap-start">
-                <Image
-                  src={src}
-                  alt={`${title} ${i + 1}`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+                {failedImages.has(i) ? (
+                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-700 dark:to-indigo-600">
+                    <MapPin className="h-10 w-10 text-indigo-300 dark:text-indigo-300/60" />
+                  </div>
+                ) : (
+                  <Image
+                    src={src}
+                    alt={`${title} ${i + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    onError={() => handleImageError(i)}
+                  />
+                )}
               </div>
             ))}
           </div>
         ) : images.length === 1 ? (
-          <Image
-            src={images[0]}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
+          failedImages.has(0) ? (
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-700 dark:to-indigo-600">
+              <MapPin className="h-10 w-10 text-indigo-300 dark:text-indigo-300/60" />
+            </div>
+          ) : (
+            <Image
+              src={images[0]}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              onError={() => handleImageError(0)}
+            />
+          )
         ) : (
           <div className="flex h-full items-center justify-center bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-700 dark:to-indigo-600">
             <MapPin className="h-10 w-10 text-indigo-300 dark:text-indigo-300/60" />
@@ -182,12 +201,7 @@ function TripCard({
             <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-500 dark:text-indigo-300/60" />
             <span className="truncate">{destination}</span>
           </div>
-          {booked > 10 && (
-            <span className="flex shrink-0 items-center gap-1 text-[0.75rem] font-medium text-gray-600 dark:text-indigo-300/60">
-              <Star className="h-3 w-3 fill-orange-400 text-orange-400" />
-              <span className="font-numbers">{(4.3 + (booked % 10) * 0.06).toFixed(1)}</span>
-            </span>
-          )}
+          {/* Rating removed — only show when backed by real review data */}
         </div>
 
         {/* Trip Title */}

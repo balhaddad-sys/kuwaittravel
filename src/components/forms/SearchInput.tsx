@@ -29,6 +29,7 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
       )}
     >
       <Search
+        aria-hidden="true"
         className={cn(
           "pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-[var(--duration-ui)] ease-[var(--ease-smooth)]",
           isFocused ? "text-indigo-600 dark:text-indigo-300" : "text-gray-400"
@@ -47,6 +48,7 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
         <button
           type="button"
           onClick={() => setValue("")}
+          aria-label="Clear search"
           className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-gray-400 transition-[color,transform] duration-[var(--duration-ui)] ease-[var(--ease-smooth)] hover:text-indigo-600 active:scale-[0.92]"
         >
           <X className="h-4 w-4" />

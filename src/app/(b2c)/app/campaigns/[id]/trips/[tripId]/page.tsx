@@ -107,7 +107,7 @@ export default function TripDetailPage({
         setPricingTiers(tiers);
         if (tiers.length > 0) setSelectedTier(tiers[0].id);
       } catch (error) {
-        console.error("Error fetching trip:", error);
+        if (process.env.NODE_ENV !== "production") console.error("Error fetching trip:", error);
       } finally {
         setLoading(false);
       }

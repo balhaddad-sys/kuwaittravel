@@ -173,7 +173,7 @@ export default function MyTripsPage() {
         <Container className="relative pb-16 pt-10 sm:pt-12">
           <div className="flex items-center gap-3.5">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 shadow-lg backdrop-blur-sm ring-1 ring-white/20">
-              <Plane className="h-5.5 w-5.5 h-[1.375rem] w-[1.375rem] text-white" />
+              <Plane className="h-[1.375rem] w-[1.375rem] text-white" />
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">

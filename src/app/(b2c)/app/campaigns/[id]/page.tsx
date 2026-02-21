@@ -51,7 +51,7 @@ export default function CampaignDetailPage({
         setCampaign(campaignData);
         setTrips(tripsData.filter((trip) => trip.status !== "draft"));
       } catch (error) {
-        console.error("Error fetching campaign data:", error);
+        if (process.env.NODE_ENV !== "production") console.error("Error fetching campaign data:", error);
       } finally {
         setLoading(false);
       }

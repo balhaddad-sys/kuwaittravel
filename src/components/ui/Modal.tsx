@@ -55,6 +55,7 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? "modal-title" : undefined}
+        aria-describedby={description ? "modal-description" : undefined}
       >
         {(title || description) && (
           <div className="shrink-0 flex items-start justify-between gap-3 px-4 pt-4 sm:px-6 sm:pt-6">
@@ -65,13 +66,14 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
                 </h2>
               )}
               {description && (
-                <p className="mt-1 text-body-sm sm:text-body-md text-gray-500 dark:text-indigo-300/60 truncate">
+                <p id="modal-description" className="mt-1 text-body-sm sm:text-body-md text-gray-500 dark:text-indigo-300/60 truncate">
                   {description}
                 </p>
               )}
             </div>
             <button
               onClick={onClose}
+              aria-label="Close dialog"
               className="shrink-0 rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 dark:hover:bg-surface-dark-border transition-colors"
             >
               <X className="h-5 w-5" />

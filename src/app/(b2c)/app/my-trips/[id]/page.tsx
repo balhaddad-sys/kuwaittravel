@@ -72,7 +72,7 @@ export default function BookingDetailPage({
         const bookingData = await getDocument<Booking>(COLLECTIONS.BOOKINGS, id);
         setBooking(bookingData);
       } catch (error) {
-        console.error("Error fetching booking:", error);
+        if (process.env.NODE_ENV !== "production") console.error("Error fetching booking:", error);
       } finally {
         setLoading(false);
       }
