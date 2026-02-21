@@ -305,7 +305,7 @@ export default function DiscoverPage() {
                     onClick={() => handleCategorySelect(isActive && pill.id !== "all" ? null : pill.id)}
                     className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.8125rem] font-medium transition-all duration-150 ${
                       isActive
-                        ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
+                        ? "bg-indigo-900 text-white dark:bg-indigo-50 dark:text-indigo-900"
                         : "border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 dark:border-[#1A2D48] dark:bg-indigo-800 dark:text-indigo-200"
                     }`}
                   >
@@ -422,7 +422,7 @@ export default function DiscoverPage() {
           <section>
             <div className="mb-5">
               <div className="flex items-center gap-2">
-                <Globe2 className="h-5 w-5 text-indigo-600" />
+                <Globe2 className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                 <h2 className="text-xl font-bold text-gray-900 dark:text-indigo-50">
                   {t("الوجهات الأكثر طلبًا", "Popular Destinations")}
                 </h2>
@@ -472,7 +472,7 @@ export default function DiscoverPage() {
           <div className="mb-5 flex items-center justify-between">
             <div>
               <div className="flex items-center gap-2.5">
-                <Compass className="h-5 w-5 text-indigo-600" />
+                <Compass className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                 <h2 className="text-xl font-bold text-gray-900 dark:text-indigo-50">
                   {t("جميع الرحلات", "All Trips")}
                 </h2>

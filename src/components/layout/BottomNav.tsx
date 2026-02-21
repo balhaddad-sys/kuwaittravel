@@ -29,6 +29,7 @@ function BottomNav({ items }: BottomNavProps) {
               key={item.href}
               href={item.href}
               prefetch
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "group relative flex min-w-[60px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-1.5 transform-gpu transition-all duration-[var(--duration-ui)] ease-[var(--ease-smooth)] active:scale-[0.96]",
                 isActive
@@ -48,7 +49,7 @@ function BottomNav({ items }: BottomNavProps) {
               </span>
               {/* Notification dot */}
               {item.notification && !isActive && (
-                <span className="absolute end-3 top-2 h-1.5 w-1.5 rounded-full bg-orange-500 ring-2 ring-white dark:ring-indigo-900" />
+                <span className="absolute end-3 top-2 h-1.5 w-1.5 rounded-full bg-orange-500 ring-2 ring-white dark:ring-indigo-900" aria-label="New notification" role="status" />
               )}
               <span className={cn(
                 "text-[10.5px] font-medium leading-none transition-all duration-[var(--duration-ui)]",

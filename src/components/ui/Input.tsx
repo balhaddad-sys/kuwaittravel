@@ -51,7 +51,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             </span>
           )}
         </div>
-        {error && <p className="text-body-sm text-error">{error}</p>}
+        {error && <p className="text-body-sm text-error" role="alert">{error}</p>}
         {hint && !error && <p className="text-body-sm text-[var(--clr-text-muted)]">{hint}</p>}
       </div>
     );

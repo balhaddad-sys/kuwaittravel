@@ -91,7 +91,7 @@ export default function ProfilePage() {
   /* ─── Guest view ─── */
   if (!firebaseUser && !authLoading) {
     return (
-      <div className="min-h-screen bg-[#F5F7FA] dark:bg-indigo-900">
+      <div className="min-h-screen bg-gray-50 dark:bg-indigo-900">
         <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-500 pb-20 pt-10 sm:pb-24 sm:pt-14">
           <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
           <Container className="relative">
@@ -178,7 +178,7 @@ export default function ProfilePage() {
                   className="h-20 w-20 rounded-[1.125rem] sm:h-24 sm:w-24"
                 />
               </div>
-              <span className="absolute -bottom-0.5 -end-0.5 h-5 w-5 rounded-full border-[2.5px] border-indigo-600 bg-emerald-400 shadow-md" />
+              <span className="absolute -bottom-0.5 -end-0.5 h-5 w-5 rounded-full border-[2.5px] border-indigo-600 bg-orange-400 shadow-md" />
             </div>
 
             {/* Name + info */}
@@ -290,7 +290,7 @@ export default function ProfilePage() {
           <Button
             variant="ghost"
             fullWidth
-            className="h-12 rounded-2xl border border-red-100/80 bg-white text-red-500 shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-indigo-800/90 dark:text-red-400 dark:hover:bg-red-900/10"
+            className="h-12 rounded-2xl border border-red-100/80 bg-white text-red-500 shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/20"
             leftIcon={<LogOut className="h-[1.125rem] w-[1.125rem]" />}
             onClick={handleLogout}
           >

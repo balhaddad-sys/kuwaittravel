@@ -336,15 +336,13 @@ export default function HomePage() {
         >
           <div className="mb-4 flex items-center gap-3">
             <div
-              className="h-px flex-1"
-              style={{ background: "linear-gradient(to right, #D5CAB9, transparent)" }}
+              className="h-px flex-1 bg-gradient-to-r from-[#D5CAB9] to-transparent dark:from-indigo-600/40 dark:to-transparent"
             />
             <p className="text-body-sm font-semibold uppercase tracking-widest text-[#B5A894] dark:text-indigo-300/50" style={{ fontSize: "0.65rem" }}>
               {t("وجهات شائعة", "Popular Destinations")}
             </p>
             <div
-              className="h-px flex-1"
-              style={{ background: "linear-gradient(to left, #D5CAB9, transparent)" }}
+              className="h-px flex-1 bg-gradient-to-l from-[#D5CAB9] to-transparent dark:from-indigo-600/40 dark:to-transparent"
             />
           </div>
 
@@ -359,7 +357,7 @@ export default function HomePage() {
                   className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white"
                   style={{
                     background: `linear-gradient(135deg, ${dest.from}, ${dest.to})`,
-                    boxShadow: "0 4px 12px rgba(26,18,9,0.2)",
+                    boxShadow: "0 4px 12px rgba(26,18,9,0.1)",
                   }}
                 >
                   {dest.icon}
@@ -380,11 +378,7 @@ export default function HomePage() {
         {/* ── Entry Cards ──────────────────────── */}
         <div
           className="animate-stagger-fade-up grid gap-3 sm:grid-cols-2 sm:gap-4"
-          style={
-            {
-              "--stagger-delay": canSeeAdminEntry ? "600ms" : "600ms",
-            } as React.CSSProperties
-          }
+          style={{ "--stagger-delay": "600ms" } as React.CSSProperties}
         >
           {entryCards.map((card) => (
             <button
