@@ -4,6 +4,7 @@ import { Sidebar, type SidebarItem } from "@/components/layout/Sidebar";
 import { SectionBottomNav, type SectionBottomNavItem } from "@/components/layout/SectionBottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
+import { useRoutePrefetch } from "@/hooks/useRoutePrefetch";
 import { useDirection } from "@/providers/DirectionProvider";
 import Link from "next/link";
 import {
@@ -13,6 +14,17 @@ import {
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { t } = useDirection();
+  useRoutePrefetch([
+    "/admin/dashboard",
+    "/admin/campaigns",
+    "/admin/users",
+    "/admin/financials",
+    "/admin/disputes",
+    "/admin/audit-logs",
+    "/admin/settings",
+    "/app/discover",
+    "/portal/dashboard",
+  ]);
 
   const sidebarItems: SidebarItem[] = [
     { label: t("لوحة التحكم", "Dashboard"), href: "/admin/dashboard", icon: <LayoutDashboard className="h-5 w-5" /> },

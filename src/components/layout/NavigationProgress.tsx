@@ -15,13 +15,13 @@ function ProgressBarInner() {
     clearTimeout(hide.current);
     clearInterval(trickle.current);
     setActive(true);
-    setWidth(20);
+    setWidth(12);
     trickle.current = setInterval(() => {
       setWidth((w) => {
         if (w >= 80) return w;
         return w + (85 - w) * 0.1;
       });
-    }, 200);
+    }, 120);
   }, []);
 
   const complete = useCallback(() => {
@@ -30,7 +30,7 @@ function ProgressBarInner() {
     hide.current = setTimeout(() => {
       setActive(false);
       setWidth(0);
-    }, 300);
+    }, 140);
   }, []);
 
   // Complete when pathname changes (route loaded)
@@ -90,8 +90,8 @@ function ProgressBarInner() {
           width: `${width}%`,
           transition:
             width === 100
-              ? "width 200ms ease-out"
-              : "width 400ms cubic-bezier(0.4, 0, 0.2, 1)",
+              ? "width 150ms ease-out"
+              : "width 260ms cubic-bezier(0.4, 0, 0.2, 1)",
           boxShadow:
             "0 0 10px rgba(14, 165, 233, 0.6), 0 0 3px rgba(14, 165, 233, 0.35)",
           borderRadius: "0 2px 2px 0",

@@ -5,8 +5,10 @@ import { SectionBottomNav, type SectionBottomNavItem } from "@/components/layout
 import { PageTransition } from "@/components/layout/PageTransition";
 import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useAuth } from "@/hooks/useAuth";
+import { useRoutePrefetch } from "@/hooks/useRoutePrefetch";
 import { useDirection } from "@/providers/DirectionProvider";
 import Link from "next/link";
+import { useMemo } from "react";
 import {
   LayoutDashboard,
   Map,
@@ -26,6 +28,23 @@ export default function B2BLayout({ children }: { children: React.ReactNode }) {
   const { t } = useDirection();
   const { userData } = useAuth();
   const isAdmin = userData?.role === "admin" || userData?.role === "super_admin";
+  const prefetchedRoutes = useMemo(
+    () => [
+      "/portal/dashboard",
+      "/portal/trips",
+      "/portal/bookings",
+      "/portal/documents",
+      "/portal/notifications",
+      "/portal/wallet",
+      "/portal/staff",
+      "/portal/profile",
+      "/portal/settings",
+      "/app/discover",
+      ...(isAdmin ? ["/admin/dashboard"] : []),
+    ],
+    [isAdmin]
+  );
+  useRoutePrefetch(prefetchedRoutes);
 
   const sidebarItems: SidebarItem[] = [
     { label: t("لوحة التحكم", "Dashboard"), href: "/portal/dashboard", icon: <LayoutDashboard className="h-5 w-5" /> },

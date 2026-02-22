@@ -3,15 +3,28 @@
 import { BottomNav } from "@/components/layout/BottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { useAuth } from "@/hooks/useAuth";
+import { useRoutePrefetch } from "@/hooks/useRoutePrefetch";
 import { isPrivilegedAdminEmail } from "@/lib/utils/roles";
 import { useDirection } from "@/providers/DirectionProvider";
 import { Compass, Map, Bell, User, Shield } from "lucide-react";
+import { useMemo } from "react";
 
 export default function B2CLayout({ children }: { children: React.ReactNode }) {
   const { t } = useDirection();
   const { userData, firebaseUser } = useAuth();
   const hasAdminRole = userData?.role === "admin" || userData?.role === "super_admin";
   const showAdminShortcut = hasAdminRole || isPrivilegedAdminEmail(firebaseUser?.email);
+  const prefetchedRoutes = useMemo(
+    () => [
+      "/app/discover",
+      "/app/my-trips",
+      "/app/notifications",
+      "/app/profile",
+      hasAdminRole ? "/admin/dashboard" : "/admin-login",
+    ],
+    [hasAdminRole]
+  );
+  useRoutePrefetch(prefetchedRoutes);
 
   const navItems = [
     { label: t("اكتشف", "Discover"), href: "/app/discover", icon: <Compass className="h-6 w-6" /> },
