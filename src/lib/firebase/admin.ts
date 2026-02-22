@@ -7,13 +7,24 @@ function getAdminApp(): App {
     return getApps()[0];
   }
 
-  return initializeApp({
-    credential: cert({
-      projectId: process.env.FB_ADMIN_PROJECT_ID,
-      clientEmail: process.env.FB_ADMIN_CLIENT_EMAIL,
-      privateKey: process.env.FB_ADMIN_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    }),
-  });
+  const hasExplicitCreds =
+    process.env.FB_ADMIN_PROJECT_ID &&
+    process.env.FB_ADMIN_CLIENT_EMAIL &&
+    process.env.FB_ADMIN_PRIVATE_KEY;
+
+  // Local dev: use explicit service account credentials
+  if (hasExplicitCreds) {
+    return initializeApp({
+      credential: cert({
+        projectId: process.env.FB_ADMIN_PROJECT_ID,
+        clientEmail: process.env.FB_ADMIN_CLIENT_EMAIL,
+        privateKey: process.env.FB_ADMIN_PRIVATE_KEY!.replace(/\\n/g, "\n"),
+      }),
+    });
+  }
+
+  // Production (Cloud Functions / Cloud Run): use default credentials
+  return initializeApp();
 }
 
 export function getAdminDb(): Firestore {
