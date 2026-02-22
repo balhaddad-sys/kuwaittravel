@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
 
 interface PageTransitionProps {
@@ -21,12 +20,9 @@ export function PageTransition({
   className,
   variant = "app",
 }: PageTransitionProps) {
-  const pathname = usePathname();
-
   return (
     <div className={cn("page-transition-shell", className)}>
       <div
-        key={pathname}
         className={cn(
           "page-transition-content motion-reduce:!animate-none",
           variantClassMap[variant]

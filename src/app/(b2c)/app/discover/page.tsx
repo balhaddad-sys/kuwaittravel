@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, startTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { TripCard } from "@/components/shared/TripCard";
 import { CampaignCard } from "@/components/shared/CampaignCard";
 import { FilterSheet } from "@/components/shared/FilterSheet";
+import { Skeleton } from "@/components/ui/Skeleton";
 import { SkeletonCard } from "@/components/ui/SkeletonCard";
 import { SearchInput } from "@/components/forms/SearchInput";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -370,7 +371,7 @@ export default function DiscoverPage() {
       <Container className="space-y-10 py-8">
 
         {/* Featured Trips */}
-        {!loading && featuredTrips.length > 0 && (
+        {(loading || featuredTrips.length > 0) && (
           <section>
             <div className="mb-5 flex items-center justify-between">
               <div>
@@ -386,39 +387,45 @@ export default function DiscoverPage() {
               </div>
             </div>
             <div className="horizontal-scroll-section pb-2">
-              {featuredTrips.slice(0, 6).map((trip, i) => (
-                <div
-                  key={trip.id}
-                  className="w-[280px] shrink-0 sm:w-[300px] animate-stagger-fade-up"
-                  style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
-                >
-                  <TripCard
-                    title={getTripTitle(trip)}
-                    destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
-                    departureDate={formatTimestamp(trip.departureDate)}
-                    returnDate={formatTimestamp(trip.returnDate)}
-                    price={trip.basePriceKWD}
-                    capacity={trip.totalCapacity}
-                    booked={trip.bookedCount || 0}
-                    remainingCapacity={trip.remainingCapacity}
-                    status={toTripCardStatus(trip.status)}
-                    campaignName={getCampaignName(trip)}
-                    coverImage={trip.coverImageUrl}
-                    galleryUrls={trip.galleryUrls}
-                    tags={trip.tags}
-                    tripId={trip.id}
-                    wishlisted={isWishlisted(trip.id)}
-                    onWishlistToggle={() => toggleWishlist(trip.id)}
-                    onClick={() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)}
-                  />
-                </div>
-              ))}
+              {loading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="w-[280px] shrink-0 sm:w-[300px]">
+                      <SkeletonCard variant="trip" />
+                    </div>
+                  ))
+                : featuredTrips.slice(0, 6).map((trip, i) => (
+                    <div
+                      key={trip.id}
+                      className="w-[280px] shrink-0 sm:w-[300px] animate-stagger-fade-up"
+                      style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
+                    >
+                      <TripCard
+                        title={getTripTitle(trip)}
+                        destination={trip.destinations?.[0]?.city || t("غير محدد", "Not set")}
+                        departureDate={formatTimestamp(trip.departureDate)}
+                        returnDate={formatTimestamp(trip.returnDate)}
+                        price={trip.basePriceKWD}
+                        capacity={trip.totalCapacity}
+                        booked={trip.bookedCount || 0}
+                        remainingCapacity={trip.remainingCapacity}
+                        status={toTripCardStatus(trip.status)}
+                        campaignName={getCampaignName(trip)}
+                        coverImage={trip.coverImageUrl}
+                        galleryUrls={trip.galleryUrls}
+                        tags={trip.tags}
+                        tripId={trip.id}
+                        wishlisted={isWishlisted(trip.id)}
+                        onWishlistToggle={() => toggleWishlist(trip.id)}
+                        onClick={() => startTransition(() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`))}
+                      />
+                    </div>
+                  ))}
             </div>
           </section>
         )}
 
         {/* Popular Destinations */}
-        {!loading && destinations.length > 0 && (
+        {(loading || destinations.length > 0) && (
           <section>
             <div className="mb-5">
               <div className="flex items-center gap-2">
@@ -432,37 +439,45 @@ export default function DiscoverPage() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {destinations.slice(0, 8).map((dest, i) => {
-                const emoji = DESTINATION_IMAGES[dest.city] || "🌍";
-                const isSelected = filters.destinations.includes(dest.city);
-                return (
-                  <button
-                    key={dest.id}
-                    onClick={() => {
-                      setFilters((prev) => ({
-                        ...prev,
-                        destinations: prev.destinations.includes(dest.city)
-                          ? prev.destinations.filter((d) => d !== dest.city)
-                          : [...prev.destinations, dest.city],
-                      }));
-                    }}
-                    className={`group relative overflow-hidden rounded-2xl p-4 text-start transition-all duration-200 animate-stagger-fade-up ${
-                      isSelected
-                        ? "bg-sky-600 text-white shadow-[0_4px_20px_rgba(2,6,23,0.3)]"
-                        : "border border-slate-200 bg-white hover:border-slate-300 hover:shadow-md dark:border-[#2D3B4F] dark:bg-[#1E293B]"
-                    }`}
-                    style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
-                  >
-                    <div className="text-2xl mb-2">{emoji}</div>
-                    <p className={`text-[0.875rem] font-semibold ${isSelected ? "text-white" : "text-slate-900 dark:text-white"}`}>
-                      {dest.city}
-                    </p>
-                    <p className={`text-[11px] mt-0.5 ${isSelected ? "text-sky-100" : "text-slate-500 dark:text-slate-400/70"}`}>
-                      {dest.count} {t("رحلة", "trips")}
-                    </p>
-                  </button>
-                );
-              })}
+              {loading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-[#2D3B4F] dark:bg-[#1E293B]">
+                      <Skeleton className="mb-2 h-8 w-8 rounded" />
+                      <Skeleton className="h-4 w-20 rounded" />
+                      <Skeleton className="mt-1 h-3 w-12 rounded" />
+                    </div>
+                  ))
+                : destinations.slice(0, 8).map((dest, i) => {
+                    const emoji = DESTINATION_IMAGES[dest.city] || "🌍";
+                    const isSelected = filters.destinations.includes(dest.city);
+                    return (
+                      <button
+                        key={dest.id}
+                        onClick={() => {
+                          setFilters((prev) => ({
+                            ...prev,
+                            destinations: prev.destinations.includes(dest.city)
+                              ? prev.destinations.filter((d) => d !== dest.city)
+                              : [...prev.destinations, dest.city],
+                          }));
+                        }}
+                        className={`group relative overflow-hidden rounded-2xl p-4 text-start transition-all duration-200 animate-stagger-fade-up ${
+                          isSelected
+                            ? "bg-sky-600 text-white shadow-[0_4px_20px_rgba(2,6,23,0.3)]"
+                            : "border border-slate-200 bg-white hover:border-slate-300 hover:shadow-md dark:border-[#2D3B4F] dark:bg-[#1E293B]"
+                        }`}
+                        style={{ "--stagger-delay": `${i * 50}ms` } as React.CSSProperties}
+                      >
+                        <div className="text-2xl mb-2">{emoji}</div>
+                        <p className={`text-[0.875rem] font-semibold ${isSelected ? "text-white" : "text-slate-900 dark:text-white"}`}>
+                          {dest.city}
+                        </p>
+                        <p className={`text-[11px] mt-0.5 ${isSelected ? "text-sky-100" : "text-slate-500 dark:text-slate-400/70"}`}>
+                          {dest.count} {t("رحلة", "trips")}
+                        </p>
+                      </button>
+                    );
+                  })}
             </div>
           </section>
         )}
@@ -522,7 +537,7 @@ export default function DiscoverPage() {
                       tripId={trip.id}
                       wishlisted={isWishlisted(trip.id)}
                       onWishlistToggle={() => toggleWishlist(trip.id)}
-                      onClick={() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`)}
+                      onClick={() => startTransition(() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`))}
                     />
                   </div>
                 ))}
@@ -552,7 +567,7 @@ export default function DiscoverPage() {
         </section>
 
         {/* Trusted Campaigns */}
-        {!loading && topCampaigns.length > 0 && (
+        {(loading || topCampaigns.length > 0) && (
           <section>
             <div className="mb-5 flex items-center justify-between">
               <div>
@@ -566,53 +581,42 @@ export default function DiscoverPage() {
                   {t("منظمو رحلات معتمدون", "Verified trip organizers")}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => router.push("/app/discover?view=campaigns")}
-                className="flex items-center gap-1 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
-              >
-                {t("عرض الكل", "View all")}
-                <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
-              </button>
+              {!loading && (
+                <button
+                  type="button"
+                  onClick={() => startTransition(() => router.push("/app/discover?view=campaigns"))}
+                  className="flex items-center gap-1 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
+                >
+                  {t("عرض الكل", "View all")}
+                  <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                </button>
+              )}
             </div>
             <div className="horizontal-scroll-section pb-2">
-              {topCampaigns.map((campaign, i) => (
-                <div
-                  key={campaign.id}
-                  className="w-[260px] shrink-0 sm:w-[290px] animate-stagger-fade-up"
-                  style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
-                >
-                  <CampaignCard
-                    name={language === "ar" ? campaign.nameAr || campaign.name : campaign.name || campaign.nameAr}
-                    description={language === "ar" ? campaign.descriptionAr || campaign.description : campaign.description || campaign.descriptionAr}
-                    logoUrl={campaign.logoUrl}
-                    coverUrl={campaign.coverImageUrl}
-                    rating={campaign.stats?.averageRating || 0}
-                    totalTrips={campaign.stats?.totalTrips || 0}
-                    verified={campaign.verificationStatus === "approved"}
-                    onClick={() => router.push(`/app/campaigns/${campaign.id}`)}
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Loading skeletons for campaigns */}
-        {loading && (
-          <section>
-            <div className="mb-5 flex items-center gap-2">
-              <Star className="h-5 w-5 text-orange-500" />
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-                {t("حملات موثقة", "Trusted Campaigns")}
-              </h2>
-            </div>
-            <div className="horizontal-scroll-section">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="w-[260px] shrink-0 sm:w-[290px]">
-                  <SkeletonCard variant="campaign" />
-                </div>
-              ))}
+              {loading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="w-[260px] shrink-0 sm:w-[290px]">
+                      <SkeletonCard variant="campaign" />
+                    </div>
+                  ))
+                : topCampaigns.map((campaign, i) => (
+                    <div
+                      key={campaign.id}
+                      className="w-[260px] shrink-0 sm:w-[290px] animate-stagger-fade-up"
+                      style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}
+                    >
+                      <CampaignCard
+                        name={language === "ar" ? campaign.nameAr || campaign.name : campaign.name || campaign.nameAr}
+                        description={language === "ar" ? campaign.descriptionAr || campaign.description : campaign.description || campaign.descriptionAr}
+                        logoUrl={campaign.logoUrl}
+                        coverUrl={campaign.coverImageUrl}
+                        rating={campaign.stats?.averageRating || 0}
+                        totalTrips={campaign.stats?.totalTrips || 0}
+                        verified={campaign.verificationStatus === "approved"}
+                        onClick={() => startTransition(() => router.push(`/app/campaigns/${campaign.id}`))}
+                      />
+                    </div>
+                  ))}
             </div>
           </section>
         )}
