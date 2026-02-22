@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils/cn";
 import { WishlistButton } from "@/components/shared/WishlistButton";
 import { useDirection } from "@/providers/DirectionProvider";
@@ -19,6 +20,7 @@ interface TripCardProps {
   status: "draft" | "active" | "completed" | "cancelled";
   coverImage?: string;
   campaignName?: string;
+  href?: string;
   onClick?: () => void;
   className?: string;
   galleryUrls?: string[];
@@ -40,6 +42,7 @@ function TripCard({
   status,
   coverImage,
   campaignName,
+  href,
   onClick,
   className,
   galleryUrls,
@@ -77,19 +80,15 @@ function TripCard({
   };
   const statusDisplay = statusConfig[status] || statusConfig.active;
 
-  return (
-    <div
-      className={cn(
-        "group cursor-pointer overflow-hidden rounded-2xl bg-white transition-all duration-200",
-        "hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]",
-        "dark:bg-[#1E293B]",
-        className
-      )}
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
-    >
+  const cardClasses = cn(
+    "group block cursor-pointer overflow-hidden rounded-2xl bg-white transition-all duration-200",
+    "hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]",
+    "dark:bg-[#1E293B]",
+    className
+  );
+
+  const cardContent = (
+    <>
       {/* ─── Image Section ─── */}
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 dark:bg-sky-700/50">
         {images.length > 1 ? (
@@ -270,6 +269,22 @@ function TripCard({
           </div>
         </div>
       </div>
+    </>
+  );
+
+  if (href) {
+    return <Link href={href} className={cardClasses} prefetch={true}>{cardContent}</Link>;
+  }
+
+  return (
+    <div
+      className={cardClasses}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
+    >
+      {cardContent}
     </div>
   );
 }

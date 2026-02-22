@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback, startTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState, useCallback } from "react";
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { TripCard } from "@/components/shared/TripCard";
 import { CampaignCard } from "@/components/shared/CampaignCard";
@@ -68,7 +68,6 @@ const DESTINATION_IMAGES: Record<string, string> = {
 };
 
 export default function DiscoverPage() {
-  const router = useRouter();
   const { t, language } = useDirection();
   const { isWishlisted, toggle: toggleWishlist } = useWishlist();
   const [trips, setTrips] = useState<Trip[]>([]);
@@ -195,15 +194,6 @@ export default function DiscoverPage() {
   const handleFilterApply = useCallback((newFilters: TripFilterState) => {
     setFilters(newFilters);
   }, []);
-
-  useEffect(() => {
-    filteredTrips.slice(0, 8).forEach((trip) => {
-      router.prefetch(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`);
-    });
-    topCampaigns.slice(0, 4).forEach((campaign) => {
-      router.prefetch(`/app/campaigns/${campaign.id}`);
-    });
-  }, [filteredTrips, topCampaigns, router]);
 
   const getCampaignName = (trip: Trip) =>
     language === "ar"
@@ -416,7 +406,7 @@ export default function DiscoverPage() {
                         tripId={trip.id}
                         wishlisted={isWishlisted(trip.id)}
                         onWishlistToggle={() => toggleWishlist(trip.id)}
-                        onClick={() => startTransition(() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`))}
+                        href={`/app/campaigns/${trip.campaignId}/trips/${trip.id}`}
                       />
                     </div>
                   ))}
@@ -537,7 +527,7 @@ export default function DiscoverPage() {
                       tripId={trip.id}
                       wishlisted={isWishlisted(trip.id)}
                       onWishlistToggle={() => toggleWishlist(trip.id)}
-                      onClick={() => startTransition(() => router.push(`/app/campaigns/${trip.campaignId}/trips/${trip.id}`))}
+                      href={`/app/campaigns/${trip.campaignId}/trips/${trip.id}`}
                     />
                   </div>
                 ))}
@@ -582,14 +572,13 @@ export default function DiscoverPage() {
                 </p>
               </div>
               {!loading && (
-                <button
-                  type="button"
-                  onClick={() => startTransition(() => router.push("/app/discover?view=campaigns"))}
+                <Link
+                  href="/app/discover?view=campaigns"
                   className="flex items-center gap-1 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
                 >
                   {t("عرض الكل", "View all")}
                   <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
-                </button>
+                </Link>
               )}
             </div>
             <div className="horizontal-scroll-section pb-2">
@@ -613,7 +602,7 @@ export default function DiscoverPage() {
                         rating={campaign.stats?.averageRating || 0}
                         totalTrips={campaign.stats?.totalTrips || 0}
                         verified={campaign.verificationStatus === "approved"}
-                        onClick={() => startTransition(() => router.push(`/app/campaigns/${campaign.id}`))}
+                        href={`/app/campaigns/${campaign.id}`}
                       />
                     </div>
                   ))}

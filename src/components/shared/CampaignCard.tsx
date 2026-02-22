@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Avatar } from "@/components/ui/Avatar";
 import { useDirection } from "@/providers/DirectionProvider";
 import { Star, MapPin, BadgeCheck } from "lucide-react";
@@ -13,6 +14,7 @@ interface CampaignCardProps {
   rating: number;
   totalTrips: number;
   verified: boolean;
+  href?: string;
   onClick?: () => void;
   className?: string;
 }
@@ -25,19 +27,16 @@ function CampaignCard({
   rating,
   totalTrips,
   verified,
+  href,
   onClick,
   className,
 }: CampaignCardProps) {
   const { t } = useDirection();
 
-  return (
-    <div
-      className={`group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:bg-[#1E293B] ${className ?? ""}`}
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
-    >
+  const cardClasses = `group block cursor-pointer overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:bg-[#1E293B] ${className ?? ""}`;
+
+  const cardContent = (
+    <>
       {/* Cover image */}
       <div className="relative h-32 overflow-hidden bg-gradient-to-br from-sky-100 to-sky-200 dark:from-[#1E293B] dark:to-sky-700">
         {coverUrl && (
@@ -90,6 +89,22 @@ function CampaignCard({
           </span>
         </div>
       </div>
+    </>
+  );
+
+  if (href) {
+    return <Link href={href} className={cardClasses} prefetch={true}>{cardContent}</Link>;
+  }
+
+  return (
+    <div
+      className={cardClasses}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
+    >
+      {cardContent}
     </div>
   );
 }

@@ -955,35 +955,15 @@
     display: flex;
     flex-direction: column;
   }
+  /* ViewTransition API handles crossfade natively — no CSS animation needed */
   .page-transition-content {
     position: relative;
     display: flex;
     flex-direction: column;
     flex: 1;
-    --page-transition-duration: 150ms;
-    --page-transition-y: 4px;
-    --page-transition-scale: 0.999;
-    animation-duration: var(--page-transition-duration);
-    animation-fill-mode: both;
-    animation-timing-function: var(--ease-default);
-    animation-name: page-enter-a;
-    transform-origin: 50% 0%;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-  .page-transition-content--app    { --page-transition-duration: 140ms; --page-transition-y: 4px; --page-transition-scale: 0.999; }
-  .page-transition-content--portal { --page-transition-duration: 130ms; --page-transition-y: 3px; --page-transition-scale: 1; }
-  .page-transition-content--admin  { --page-transition-duration: 120ms; --page-transition-y: 2px; --page-transition-scale: 1; }
-  .page-transition-content--auth   { --page-transition-duration: 160ms; --page-transition-y: 5px; --page-transition-scale: 0.999; }
-
-  @keyframes page-enter-a {
-    0%   { opacity: 0.78; transform: translate3d(0, var(--page-transition-y), 0) scale(var(--page-transition-scale)); }
-    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .page-transition-content { animation: none; transform: none; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
