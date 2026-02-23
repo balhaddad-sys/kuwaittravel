@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { TripCard } from "@/components/shared/TripCard";
@@ -14,32 +15,19 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useDirection } from "@/providers/DirectionProvider";
-import { motion, useInView } from "motion/react";
+import { formatKWD } from "@/lib/utils/format";
+import { motion, useInView, AnimatePresence } from "motion/react";
 import type { ItineraryBlock } from "@/types";
 import {
-  PlaneTakeoff,
-  Building2,
-  Shield,
-  Compass,
-  MapPin,
-  Star,
-  Users,
-  Globe2,
-  Wallet,
-  Map,
-  BookOpen,
-  AlertTriangle,
-  ChevronDown,
-  CheckCircle2,
-  XCircle,
-  Languages,
-  Radio,
-  Search,
-  CreditCard,
-  BarChart3,
-  HeadphonesIcon,
-  Sparkles,
+  PlaneTakeoff, Building2, Shield, Compass, MapPin, Star, Users, Globe2,
+  Wallet, Map, BookOpen, AlertTriangle, ChevronDown, CheckCircle2, XCircle,
+  Languages, Radio, Search, CreditCard, BarChart3, HeadphonesIcon, Sparkles,
+  Moon, Sun, X, Calendar,
 } from "lucide-react";
+
+/* ── Pexels CDN Helper ──────────────────────────── */
+const px = (id: number, w = 800) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 
 /* ── Framer Motion Variants ──────────────────────── */
 const staggerContainer = {
@@ -144,8 +132,26 @@ function AnimatedSection({ children, className = "", id }: { children: React.Rea
    MAIN DEMO PAGE
    ═══════════════════════════════════════════════════ */
 export default function DemoPage() {
-  const { t, language } = useDirection();
+  const { t } = useDirection();
   const isMobile = useIsMobile();
+
+  /* ── Dark Mode ──────────────────────────────── */
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    setDarkMode(document.documentElement.classList.contains("dark"));
+  }, []);
+  const toggleDarkMode = useCallback(() => {
+    document.documentElement.classList.toggle("dark");
+    setDarkMode((d) => !d);
+  }, []);
+
+  /* ── Toast Notification ─────────────────────── */
+  const [toast, setToast] = useState<{ message: string; id: number } | null>(null);
+  const showToast = useCallback((message: string) => {
+    const id = Date.now();
+    setToast({ message, id });
+    globalThis.setTimeout(() => setToast((prev) => (prev?.id === id ? null : prev)), 2500);
+  }, []);
 
   /* ── Interactive State ─────────────────────────── */
   const [activeFilter, setActiveFilter] = useState("all");
@@ -154,14 +160,17 @@ export default function DemoPage() {
   const [helpfulCounts, setHelpfulCounts] = useState<Record<number, number>>({ 0: 24, 1: 12 });
   const [verificationStatuses, setVerificationStatuses] = useState<Record<string, "pending" | "approved" | "rejected">>({ "1": "pending", "2": "pending", "3": "pending" });
   const [bookingFilter, setBookingFilter] = useState("all");
+  const [selectedTripId, setSelectedTripId] = useState<string | null>(null);
 
   const toggleWishlist = useCallback((id: string) => {
     setWishlistedIds((prev) => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      const was = next.has(id);
+      was ? next.delete(id) : next.add(id);
+      showToast(was ? t("تمت الإزالة من المفضلة", "Removed from wishlist") : t("تمت الإضافة للمفضلة ❤️", "Added to wishlist ❤️"));
       return next;
     });
-  }, []);
+  }, [showToast, t]);
 
   const scrollTo = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -169,10 +178,10 @@ export default function DemoPage() {
 
   /* ── Mock Data ─────────────────────────────────── */
   const mockTrips = [
-    { id: "trip-1", title: t("رحلة العمرة الذهبية", "Golden Umrah Package"), destination: t("مكة المكرمة", "Makkah"), departureDate: "Mar 15, 2026", returnDate: "Mar 25, 2026", price: 450, capacity: 50, booked: 42, campaignName: t("حملة النور", "Al Noor Campaign"), tags: [t("عمرة", "Umrah"), t("5 نجوم", "5 Star"), t("VIP", "VIP")], tripType: "umrah" },
-    { id: "trip-2", title: t("زيارة كربلاء المقدسة", "Holy Karbala Pilgrimage"), destination: t("كربلاء", "Karbala"), departureDate: "Apr 5, 2026", returnDate: "Apr 12, 2026", price: 280, capacity: 40, booked: 35, campaignName: t("حملة الإمام", "Al Imam Campaign"), tags: [t("زيارة", "Ziyarat"), t("أربعين", "Arbaeen")], tripType: "ziyarat" },
-    { id: "trip-3", title: t("رحلة الحج المباركة", "Blessed Hajj Journey"), destination: t("مكة والمدينة", "Makkah & Madinah"), departureDate: "Jun 1, 2026", returnDate: "Jun 20, 2026", price: 1200, capacity: 60, booked: 55, campaignName: t("حملة الصفا", "Al Safa Campaign"), tags: [t("حج", "Hajj"), t("شامل", "All Inclusive")], tripType: "hajj" },
-    { id: "trip-4", title: t("زيارة النجف الأشرف", "Holy Najaf Visit"), destination: t("النجف", "Najaf"), departureDate: "May 10, 2026", returnDate: "May 15, 2026", price: 195, capacity: 30, booked: 12, campaignName: t("حملة المسار", "Al Masar Campaign"), tags: [t("زيارة", "Ziyarat"), t("اقتصادي", "Economy")], tripType: "ziyarat" },
+    { id: "trip-1", title: t("رحلة العمرة الذهبية", "Golden Umrah Package"), destination: t("مكة المكرمة", "Makkah"), departureDate: "Mar 15, 2026", returnDate: "Mar 25, 2026", price: 450, capacity: 50, booked: 42, campaignName: t("حملة النور", "Al Noor Campaign"), tags: [t("عمرة", "Umrah"), t("5 نجوم", "5 Star"), t("VIP", "VIP")], tripType: "umrah", coverImage: px(18274181), galleryUrls: [px(18274181), px(3742589), px(30273249)] },
+    { id: "trip-2", title: t("زيارة كربلاء المقدسة", "Holy Karbala Pilgrimage"), destination: t("كربلاء", "Karbala"), departureDate: "Apr 5, 2026", returnDate: "Apr 12, 2026", price: 280, capacity: 40, booked: 35, campaignName: t("حملة الإمام", "Al Imam Campaign"), tags: [t("زيارة", "Ziyarat"), t("أربعين", "Arbaeen")], tripType: "ziyarat", coverImage: px(30812218), galleryUrls: [px(30812218)] },
+    { id: "trip-3", title: t("رحلة الحج المباركة", "Blessed Hajj Journey"), destination: t("مكة والمدينة", "Makkah & Madinah"), departureDate: "Jun 1, 2026", returnDate: "Jun 20, 2026", price: 1200, capacity: 60, booked: 55, campaignName: t("حملة الصفا", "Al Safa Campaign"), tags: [t("حج", "Hajj"), t("شامل", "All Inclusive")], tripType: "hajj", coverImage: px(30273249), galleryUrls: [px(30273249), px(29533623), px(35017416)] },
+    { id: "trip-4", title: t("زيارة النجف الأشرف", "Holy Najaf Visit"), destination: t("النجف", "Najaf"), departureDate: "May 10, 2026", returnDate: "May 15, 2026", price: 195, capacity: 30, booked: 12, campaignName: t("حملة المسار", "Al Masar Campaign"), tags: [t("زيارة", "Ziyarat"), t("اقتصادي", "Economy")], tripType: "ziyarat", coverImage: px(21759300), galleryUrls: [px(21759300)] },
   ];
 
   const filterPills = [
@@ -193,12 +202,12 @@ export default function DemoPage() {
 
   const mockReviews = [
     { travelerName: t("أحمد الكندري", "Ahmed Al-Kandari"), rating: 5, title: t("رحلة لا تُنسى", "An Unforgettable Journey"), body: t("تجربة رائعة من البداية إلى النهاية. التنظيم كان ممتازاً والفندق قريب جداً من الحرم. أنصح الجميع بهذه الحملة. الخدمة كانت فوق التوقعات والمرشدين كانوا على دراية كاملة بجميع المناسك.", "A wonderful experience from start to finish. The organization was excellent and the hotel was very close to the Haram. I recommend this campaign to everyone. The service exceeded expectations and guides were fully knowledgeable about all rituals."), helpful: 24, verified: true, createdAt: t("قبل ٣ أيام", "3 days ago") },
-    { travelerName: t("فاطمة العلي", "Fatima Al-Ali"), rating: 4, title: t("تجربة مميزة", "A Special Experience"), body: t("رحلة جميلة وتنظيم جيد. كنت أتمنى لو كانت الإقامة أطول قليلاً لكن بشكل عام كانت تجربة رائعة .", "Beautiful trip and good organization. I wished the stay was a bit longer but overall it was a great experience."), helpful: 12, verified: true, createdAt: t("قبل أسبوع", "1 week ago") },
+    { travelerName: t("فاطمة العلي", "Fatima Al-Ali"), rating: 4, title: t("تجربة مميزة", "A Special Experience"), body: t("رحلة جميلة وتنظيم جيد. كنت أتمنى لو كانت الإقامة أطول قليلاً لكن بشكل عام كانت تجربة رائعة.", "Beautiful trip and good organization. I wished the stay was a bit longer but overall it was a great experience."), helpful: 12, verified: true, createdAt: t("قبل أسبوع", "1 week ago") },
   ];
 
   const mockCampaigns = [
-    { name: t("حملة النور للحج والعمرة", "Al Noor Hajj & Umrah"), description: t("حملة رائدة في تنظيم رحلات الحج والعمرة منذ أكثر من ١٥ عام", "A leading campaign organizing Hajj & Umrah trips for over 15 years"), rating: 4.8, totalTrips: 24, verified: true },
-    { name: t("حملة المسار", "Al Masar Campaign"), description: t("متخصصون في الزيارات الدينية إلى العراق وإيران", "Specialists in religious visits to Iraq and Iran"), rating: 4.6, totalTrips: 18, verified: true },
+    { name: t("حملة النور للحج والعمرة", "Al Noor Hajj & Umrah"), description: t("حملة رائدة في تنظيم رحلات الحج والعمرة منذ أكثر من ١٥ عام", "A leading campaign organizing Hajj & Umrah trips for over 15 years"), rating: 4.8, totalTrips: 24, verified: true, coverUrl: px(32822914) },
+    { name: t("حملة المسار", "Al Masar Campaign"), description: t("متخصصون في الزيارات الدينية إلى العراق وإيران", "Specialists in religious visits to Iraq and Iran"), rating: 4.6, totalTrips: 18, verified: true, coverUrl: px(30429165) },
   ];
 
   const mockBookings = [
@@ -226,6 +235,7 @@ export default function DemoPage() {
 
   const filteredBookings = bookingFilter === "all" ? mockBookings : mockBookings.filter((b) => b.status === bookingFilter);
   const statusVariantMap: Record<string, "success" | "warning" | "info"> = { confirmed: "success", pending: "warning", paid: "info" };
+  const selectedTrip = selectedTripId ? mockTrips.find((trip) => trip.id === selectedTripId) ?? null : null;
 
   const features = [
     { icon: <Languages className="h-6 w-6" />, title: t("منصة ثنائية اللغة", "Bilingual Platform"), desc: t("عربي وإنجليزي مع دعم كامل للكتابة من اليمين لليسار", "Arabic & English with full RTL support"), large: true },
@@ -249,7 +259,16 @@ export default function DemoPage() {
               <span className="text-lg font-bold text-slate-900 dark:text-white">Rahal</span>
               <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-bold text-sky-700 dark:bg-sky-900/30 dark:text-sky-300">DEMO</span>
             </div>
-            <LanguageToggle />
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleDarkMode}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:bg-slate-100 dark:border-[#2D3B4F] dark:text-slate-300 dark:hover:bg-slate-700"
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+              <LanguageToggle />
+            </div>
           </div>
         </Container>
       </nav>
@@ -269,7 +288,7 @@ export default function DemoPage() {
               {t("عرض تفاعلي للمنصة", "Interactive Platform Demo")}
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="eo-text-gradient text-6xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl" style={{ lineHeight: 1.1 }}>
+            <motion.h1 variants={fadeUp} className="text-6xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl" style={{ lineHeight: 1.1, background: "linear-gradient(160deg, #F0F9FF 0%, #7DD3FC 30%, #A78BFA 60%, #FB923C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Rahal
             </motion.h1>
 
@@ -381,12 +400,14 @@ export default function DemoPage() {
                   capacity={trip.capacity}
                   booked={trip.booked}
                   status="active"
+                  coverImage={trip.coverImage}
+                  galleryUrls={trip.galleryUrls}
                   campaignName={trip.campaignName}
                   tags={trip.tags}
                   tripId={trip.id}
                   wishlisted={wishlistedIds.has(trip.id)}
                   onWishlistToggle={() => toggleWishlist(trip.id)}
-                  onClick={() => {}}
+                  onClick={() => setSelectedTripId(trip.id)}
                 />
               </motion.div>
             ))}
@@ -404,7 +425,7 @@ export default function DemoPage() {
                 {(["not_started", "departing", "in_destination", "returning", "completed"] as const).map((phase) => (
                   <button
                     key={phase}
-                    onClick={() => setCurrentPhase(phase)}
+                    onClick={() => { setCurrentPhase(phase); showToast(t("تم تحديث حالة الرحلة", "Trip status updated")); }}
                     className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
                       currentPhase === phase
                         ? "bg-sky-500 text-white"
@@ -439,13 +460,24 @@ export default function DemoPage() {
                   helpful={helpfulCounts[i] ?? review.helpful}
                   verified={review.verified}
                   createdAt={review.createdAt}
-                  onHelpful={() => setHelpfulCounts((prev) => ({ ...prev, [i]: (prev[i] ?? review.helpful) + 1 }))}
+                  onHelpful={() => {
+                    setHelpfulCounts((prev) => ({ ...prev, [i]: (prev[i] ?? review.helpful) + 1 }));
+                    showToast(t("شكراً لملاحظتك!", "Thanks for your feedback!"));
+                  }}
                 />
               ))}
             </div>
           </motion.div>
         </Container>
       </AnimatedSection>
+
+      {/* ═══ Wave: Light → Dark ════════════════════════ */}
+      <div className="relative h-16 -mt-px overflow-hidden">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="h-full w-full" style={{ display: "block" }}>
+          <path d="M0,30 C360,55 720,5 1080,30 C1260,45 1380,10 1440,25 L1440,60 L0,60 Z" className="fill-slate-50 dark:fill-[#0B1120]" />
+        </svg>
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(160deg, #020617, #0C4A6E, #4C1D95)" }} />
+      </div>
 
       {/* ═══ CAMPAIGN PORTAL SHOWCASE ═════════════════ */}
       <AnimatedSection id="campaign" className="relative overflow-hidden py-20">
@@ -471,7 +503,16 @@ export default function DemoPage() {
           {/* Campaign Cards */}
           <motion.div variants={fadeUp} className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mx-auto lg:max-w-2xl">
             {mockCampaigns.map((campaign, i) => (
-              <CampaignCard key={i} name={campaign.name} description={campaign.description} rating={campaign.rating} totalTrips={campaign.totalTrips} verified={campaign.verified} onClick={() => {}} />
+              <CampaignCard
+                key={i}
+                name={campaign.name}
+                description={campaign.description}
+                rating={campaign.rating}
+                totalTrips={campaign.totalTrips}
+                verified={campaign.verified}
+                coverUrl={campaign.coverUrl}
+                onClick={() => showToast(t("عرض تفاصيل الحملة", "Viewing campaign details"))}
+              />
             ))}
           </motion.div>
 
@@ -523,6 +564,13 @@ export default function DemoPage() {
           </motion.div>
         </Container>
       </AnimatedSection>
+
+      {/* ═══ Wave: Dark → Light ════════════════════════ */}
+      <div className="relative h-16 -mt-px overflow-hidden" style={{ background: "linear-gradient(160deg, #020617, #0C4A6E, #4C1D95)" }}>
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="h-full w-full" style={{ display: "block" }}>
+          <path d="M0,0 L1440,0 L1440,30 C1200,55 960,5 720,30 C480,55 240,5 0,30 Z" className="fill-slate-50 dark:fill-[#0B1120]" />
+        </svg>
+      </div>
 
       {/* ═══ ADMIN CONSOLE SHOWCASE ═══════════════════ */}
       <AnimatedSection id="admin" className="relative py-20">
@@ -583,10 +631,16 @@ export default function DemoPage() {
                         </span>
                       ) : (
                         <>
-                          <Button size="sm" variant="primary" onClick={() => setVerificationStatuses((prev) => ({ ...prev, [item.id]: "approved" }))}>
+                          <Button size="sm" variant="primary" onClick={() => {
+                            setVerificationStatuses((prev) => ({ ...prev, [item.id]: "approved" }));
+                            showToast(t("تمت الموافقة على الحملة ✓", "Campaign approved ✓"));
+                          }}>
                             <CheckCircle2 className="h-3.5 w-3.5" /> {t("موافقة", "Approve")}
                           </Button>
-                          <Button size="sm" variant="ghost" onClick={() => setVerificationStatuses((prev) => ({ ...prev, [item.id]: "rejected" }))}>
+                          <Button size="sm" variant="ghost" onClick={() => {
+                            setVerificationStatuses((prev) => ({ ...prev, [item.id]: "rejected" }));
+                            showToast(t("تم رفض الحملة", "Campaign rejected"));
+                          }}>
                             <XCircle className="h-3.5 w-3.5" /> {t("رفض", "Reject")}
                           </Button>
                         </>
@@ -657,7 +711,7 @@ export default function DemoPage() {
         <GlowOrb color="rgba(14,165,233,0.12)" size="250px" x="75%" y="50%" delay={2} staticMode={isMobile} />
 
         <Container className="relative text-center">
-          <h2 className="eo-text-gradient text-3xl font-extrabold sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-extrabold sm:text-4xl lg:text-5xl" style={{ background: "linear-gradient(135deg, #38BDF8, #A78BFA, #FB923C)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
             {t("مستعد لتحويل تجربة سفرك؟", "Ready to Transform Your Travel?")}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sky-200/60">
@@ -702,6 +756,143 @@ export default function DemoPage() {
           </div>
         </Container>
       </footer>
+
+      {/* ═══ TOAST NOTIFICATION ═══════════════════════ */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            key={toast.id}
+            initial={{ y: 20, opacity: 0, scale: 0.95 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 20, opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", damping: 25, stiffness: 400 }}
+            className="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2"
+          >
+            <div className="flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white shadow-2xl dark:bg-white dark:text-slate-900">
+              <CheckCircle2 className="h-4 w-4 text-emerald-400 dark:text-emerald-600" />
+              {toast.message}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ═══ TRIP DETAIL MODAL ════════════════════════ */}
+      <AnimatePresence>
+        {selectedTrip && (
+          <motion.div
+            key="trip-modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
+            onClick={() => setSelectedTripId(null)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative mx-4 max-h-[85vh] w-full max-w-lg overflow-auto rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl dark:bg-[#1E293B]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Cover image */}
+              <div className="relative aspect-[16/10] overflow-hidden sm:rounded-t-3xl">
+                <Image
+                  src={selectedTrip.coverImage}
+                  alt={selectedTrip.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 512px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <button
+                  onClick={() => setSelectedTripId(null)}
+                  className="absolute end-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-colors hover:bg-black/60"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+                <div className="absolute bottom-3 start-4 end-4">
+                  {selectedTrip.campaignName && (
+                    <span className="mb-2 inline-block rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+                      {selectedTrip.campaignName}
+                    </span>
+                  )}
+                  <h3 className="text-xl font-bold text-white drop-shadow-sm">{selectedTrip.title}</h3>
+                  <p className="mt-0.5 flex items-center gap-1 text-sm text-white/80">
+                    <MapPin className="h-3.5 w-3.5" /> {selectedTrip.destination}
+                  </p>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5">
+                <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+                  <Calendar className="h-4 w-4" />
+                  <span>{selectedTrip.departureDate}</span>
+                  <span className="text-slate-300 dark:text-slate-600">—</span>
+                  <span>{selectedTrip.returnDate}</span>
+                </div>
+
+                {selectedTrip.tags.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {selectedTrip.tags.map((tag) => (
+                      <span key={tag} className="rounded-full bg-sky-50 px-2.5 py-0.5 text-xs font-medium text-sky-700 dark:bg-sky-900/30 dark:text-sky-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Capacity bar */}
+                {(() => {
+                  const remaining = selectedTrip.capacity - selectedTrip.booked;
+                  const fillPct = selectedTrip.capacity > 0 ? (selectedTrip.booked / selectedTrip.capacity) * 100 : 0;
+                  return (
+                    <div className="mt-4">
+                      <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-sky-900/40">
+                        <div
+                          className={`h-full rounded-full transition-all ${fillPct >= 90 ? "bg-red-500" : fillPct >= 70 ? "bg-orange-500" : "bg-emerald-500"}`}
+                          style={{ width: `${Math.min(fillPct, 100)}%` }}
+                        />
+                      </div>
+                      <div className="mt-1.5 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                        <span className="flex items-center gap-1">
+                          <Users className="h-3 w-3" />
+                          {selectedTrip.booked}/{selectedTrip.capacity} {t("محجوز", "booked")}
+                        </span>
+                        <span className={remaining <= 5 && remaining > 0 ? "font-semibold text-red-600 dark:text-red-400" : ""}>
+                          {remaining > 0 ? `${remaining} ${t("مقعد متبقي", "seats left")}` : t("مكتمل", "Full")}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                {/* Price + CTA */}
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-[#2D3B4F]">
+                  <div>
+                    <span className="text-xs text-slate-400 dark:text-slate-500">{t("يبدأ من", "From")}</span>
+                    <p className="font-numbers text-2xl font-bold text-slate-900 dark:text-white">
+                      {formatKWD(selectedTrip.price)}
+                      <span className="text-sm font-normal text-slate-400"> /{t("شخص", "person")}</span>
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      showToast(t("تم تأكيد الحجز! 🎉", "Booking confirmed! 🎉"));
+                      setSelectedTripId(null);
+                    }}
+                    className="rounded-xl bg-gradient-to-r from-sky-500 to-sky-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-xl hover:shadow-sky-500/30"
+                  >
+                    {t("احجز الآن", "Book Now")}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
