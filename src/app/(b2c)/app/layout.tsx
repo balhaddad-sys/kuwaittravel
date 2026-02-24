@@ -2,12 +2,14 @@
 
 import { BottomNav } from "@/components/layout/BottomNav";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { RoleGuard } from "@/components/auth/RoleGuard";
 import { useAuth } from "@/hooks/useAuth";
 import { useRoutePrefetch } from "@/hooks/useRoutePrefetch";
 import { isPrivilegedAdminEmail } from "@/lib/utils/roles";
 import { useDirection } from "@/providers/DirectionProvider";
 import { Compass, Map, Bell, User, Shield } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { registerBackButtonHandler } from "@/lib/capacitor/backButton";
 
 export default function B2CLayout({ children }: { children: React.ReactNode }) {
   const { t } = useDirection();
@@ -26,6 +28,10 @@ export default function B2CLayout({ children }: { children: React.ReactNode }) {
   );
   useRoutePrefetch(prefetchedRoutes);
 
+  useEffect(() => {
+    registerBackButtonHandler();
+  }, []);
+
   const navItems = [
     { label: t("اكتشف", "Discover"), href: "/app/discover", icon: <Compass className="h-6 w-6" /> },
     { label: t("رحلاتي", "My Trips"), href: "/app/my-trips", icon: <Map className="h-6 w-6" /> },
@@ -37,9 +43,11 @@ export default function B2CLayout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="eo-shell-bg min-h-screen pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
-      <PageTransition variant="app">{children}</PageTransition>
-      <BottomNav items={navItems} />
-    </div>
+    <RoleGuard allowedRoles={["traveler", "campaign_owner", "campaign_staff", "admin", "super_admin"]}>
+      <div className="eo-shell-bg min-h-screen pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
+        <PageTransition variant="app">{children}</PageTransition>
+        <BottomNav items={navItems} />
+      </div>
+    </RoleGuard>
   );
 }

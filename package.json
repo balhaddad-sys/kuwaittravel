@@ -13,9 +13,18 @@
     "test:report": "vitest run --reporter=default --reporter=json --outputFile=vitest-report.json",
     "validate-env": "node scripts/validate-env.mjs",
     "check": "npm run validate-env && npm run lint && npm run build",
-    "grant-admin": "node scripts/grant-admin.mjs"
+    "grant-admin": "node scripts/grant-admin.mjs",
+    "cap:sync": "npx cap sync android",
+    "cap:open": "npx cap open android",
+    "cap:run": "npx cap run android"
   },
   "dependencies": {
+    "@capacitor/android": "^8.1.0",
+    "@capacitor/app": "^8.0.1",
+    "@capacitor/cli": "^8.1.0",
+    "@capacitor/core": "^8.1.0",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.1",
     "@hookform/resolvers": "^5.2.2",
     "clsx": "^2.1.1",
     "firebase": "^12.9.0",
@@ -30,6 +39,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",

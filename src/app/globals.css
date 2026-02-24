@@ -972,6 +972,22 @@
     }
   }
 
+  /* Native app feel — prevent webview bounce & browser behaviors */
+  html, body {
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: pan-x pan-y;
+  }
+  /* Allow text selection only in inputs & text areas */
+  input, textarea, [contenteditable="true"], pre, code {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
   @keyframes slide-up {
     from { transform: translateY(100%); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }

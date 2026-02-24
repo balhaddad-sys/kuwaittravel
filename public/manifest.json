@@ -4,8 +4,8 @@
   "description": "رحال — منصة حجز الرحلات الزيارية الأولى في الكويت",
   "start_url": "/app/discover",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#1B2A4A",
+  "background_color": "#020617",
+  "theme_color": "#020617",
   "orientation": "portrait",
   "dir": "rtl",
   "lang": "ar",
@@ -13,12 +13,14 @@
     {
       "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

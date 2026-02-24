@@ -45,4 +45,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# android signing
+*.keystore
+*.jks
+local.properties
