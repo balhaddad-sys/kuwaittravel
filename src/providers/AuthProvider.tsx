@@ -16,7 +16,7 @@ interface AuthContextValue {
   error: Error | null;
   signInWithPhone: (phoneNumber: string) => Promise<ConfirmationResult>;
   confirmOTP: (confirmationResult: ConfirmationResult, code: string) => Promise<OTPResult>;
-  signInWithGoogle: () => Promise<void>;
+  signInWithGoogle: () => Promise<boolean>;
   logout: () => Promise<void>;
   refreshUserData: () => Promise<void>;
 }
@@ -142,13 +142,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const signInWithGoogle = async (): Promise<void> => {
+  const signInWithGoogle = async (): Promise<boolean> => {
     setError(null);
     try {
       const { signInWithGoogle: googleSignIn } = await import("@/lib/firebase/auth");
       const result = await googleSignIn();
+      if (!result) return false; // redirect mode — page will reload
       setFirebaseUser(result.user);
       await fetchUserData(result.user.uid);
+      return true;
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Google sign-in failed"));
       throw err;

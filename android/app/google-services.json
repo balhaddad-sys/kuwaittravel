@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "960621946307",
+    "project_id": "rahal-kwt",
+    "storage_bucket": "rahal-kwt.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960621946307:android:300ea535f7eed959a80976",
+        "android_client_info": {
+          "package_name": "com.rahal.kwt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960621946307-2r92rlifmjq5q6up5ov4k7vstv31pr8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rahal.kwt",
+            "certificate_hash": "8a420f87c63fefa67809bd6314a4815c01484415"
+          }
+        },
+        {
+          "client_id": "960621946307-jm9ppsofqhtt4jjvldhrill5mkjb83hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDffS3CIpqTtfhgL1MP7yduVbGAzSdNsI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960621946307-12v884s9trcuhf56tautklk6efv6jgs5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

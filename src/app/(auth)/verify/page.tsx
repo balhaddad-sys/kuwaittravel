@@ -60,7 +60,7 @@ export default function VerifyPage() {
   return (
     <Card variant="elevated" padding="lg">
       <div className="text-center mb-8">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-sky-600">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full" style={{ background: "linear-gradient(135deg, #0EA5E9, #8B5CF6)" }}>
           <ShieldCheck className="h-7 w-7 text-white" />
         </div>
         <h1 className="text-heading-lg font-bold text-slate-900 dark:text-white">

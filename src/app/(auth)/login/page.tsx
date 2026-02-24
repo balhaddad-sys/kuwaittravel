@@ -65,7 +65,8 @@ export default function LoginPage() {
     setError("");
     setGoogleLoading(true);
     try {
-      await signInWithGoogle();
+      const success = await signInWithGoogle();
+      if (!success) return; // redirect mode — page will reload
       const { getFirebaseAuth } = await import("@/lib/firebase/config");
       const { getDocument } = await import("@/lib/firebase/firestore");
       const { COLLECTIONS } = await import("@/lib/firebase/collections");
@@ -92,19 +93,22 @@ export default function LoginPage() {
 
       {/* Header */}
       <div className="mb-8">
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600 shadow-[0_4px_14px_rgba(14,165,233,0.35)]">
+        <div
+          className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-[0_4px_14px_rgba(14,165,233,0.35)]"
+          style={{ background: "linear-gradient(135deg, #0EA5E9, #8B5CF6)" }}
+        >
           <Phone className="h-6 w-6 text-white" />
         </div>
-        <h1 className="text-2xl font-bold text-slate-900">
+        <h1 className="text-2xl font-bold text-white">
           {t("مرحباً بك في رحال", "Welcome to Rahal")}
         </h1>
-        <p className="mt-1.5 text-sm text-slate-500">
+        <p className="mt-1.5 text-sm text-slate-400">
           {t("سجّل الدخول للوصول إلى رحلاتك", "Sign in to access your trips")}
         </p>
       </div>
 
       {/* Card */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.06)]">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm">
         {/* Google Sign-In */}
         <Button
           type="button"
@@ -119,13 +123,10 @@ export default function LoginPage() {
         </Button>
 
         {/* Divider */}
-        <div className="relative my-5">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-slate-200" />
-          </div>
-          <div className="relative flex justify-center text-xs">
-            <span className="bg-white px-3 text-slate-400">{t("أو عبر رقم الهاتف", "or via phone number")}</span>
-          </div>
+        <div className="my-5 flex items-center gap-3">
+          <div className="flex-1 border-t border-white/10" />
+          <span className="text-xs text-white/40">{t("أو عبر رقم الهاتف", "or via phone number")}</span>
+          <div className="flex-1 border-t border-white/10" />
         </div>
 
         {/* Phone Sign-In */}
@@ -147,7 +148,7 @@ export default function LoginPage() {
       </div>
 
       {/* Privacy note */}
-      <p className="mt-5 text-center text-xs text-slate-400">
+      <p className="mt-5 text-center text-xs text-white/30">
         {t(
           "بالمتابعة، أنت توافق على شروط الاستخدام وسياسة الخصوصية.",
           "By continuing, you agree to our Terms of Service and Privacy Policy."
