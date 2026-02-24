@@ -17,7 +17,6 @@ import {
   Compass,
   SlidersHorizontal,
   X,
-  Search,
   Bell,
 } from "lucide-react";
 import { limit, where, type QueryConstraint } from "firebase/firestore";
@@ -204,14 +203,10 @@ export default function DiscoverPage() {
 
         {/* Search pill */}
         <div className="px-4 pb-3">
-          <div className="eo-search-pill flex items-center gap-2 px-4 py-3">
-            <Search className="h-4 w-4 shrink-0 text-[#717171]" />
-            <SearchInput
-              placeholder={t("ابحث عن رحلة...", "Search trips...")}
-              onSearch={handleSearch}
-              className="flex-1 border-0 bg-transparent py-0 shadow-none focus-within:ring-0 text-sm"
-            />
-          </div>
+          <SearchInput
+            placeholder={t("ابحث عن رحلة...", "Search trips...")}
+            onSearch={handleSearch}
+          />
         </div>
 
         {/* Filter bar */}

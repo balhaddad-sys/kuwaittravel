@@ -24,15 +24,15 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
   return (
     <div
       className={cn(
-        "relative transform-gpu transition-transform duration-[var(--duration-ui)] ease-[var(--ease-spring)] sm:focus-within:scale-[1.01]",
+        "relative",
         className
       )}
     >
       <Search
         aria-hidden="true"
         className={cn(
-          "pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-[var(--duration-ui)] ease-[var(--ease-spring)]",
-          isFocused ? "text-sky-600 dark:text-sky-300" : "text-slate-400"
+          "pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-200",
+          isFocused ? "text-[#222222] dark:text-sky-300" : "text-[#717171]"
         )}
       />
       <input
@@ -42,7 +42,7 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={placeholder}
-        className="w-full rounded-[var(--radius-pill)] border border-surface-border bg-white py-2.5 ps-10 pe-10 text-body-md text-slate-800 transform-gpu shadow-[0_2px_8px_rgba(15,17,22,0.05)] transition-[border-color,box-shadow,background-color,width] duration-[var(--duration-ui)] ease-[var(--ease-spring)] hover:border-slate-300 focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-300/25 focus:outline-none dark:border-surface-dark-border dark:bg-surface-dark-card/88 dark:text-slate-100 dark:hover:border-sky-600/40 dark:focus:border-sky-500 dark:focus:ring-sky-500/25"
+        className="w-full rounded-full border border-[#EBEBEB] bg-white py-2.5 ps-10 pe-10 text-sm text-[#222222] shadow-[0_2px_8px_rgba(34,34,34,0.08),0_0_0_1px_rgba(34,34,34,0.04)] transition-[border-color,box-shadow,background-color] duration-200 ease-out placeholder:text-[#717171] hover:shadow-[0_2px_12px_rgba(34,34,34,0.14),0_0_0_1px_rgba(34,34,34,0.06)] focus:border-[#222222] focus:shadow-[0_2px_12px_rgba(34,34,34,0.14),0_0_0_1px_rgba(34,34,34,0.06)] focus:outline-none dark:border-[#2D3B4F] dark:bg-[#1E293B]/90 dark:text-slate-100 dark:placeholder:text-slate-400 dark:hover:border-sky-600/40 dark:focus:border-sky-500 dark:focus:ring-2 dark:focus:ring-sky-500/25"
       />
       {value && (
         <button
