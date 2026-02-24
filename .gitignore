@@ -45,9 +45,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# android signing & binaries
+# android signing, secrets & binaries
 *.keystore
 *.jks
 local.properties
+google-services.json
 *.apk
 public/downloads/
