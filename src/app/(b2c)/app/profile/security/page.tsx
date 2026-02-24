@@ -19,7 +19,7 @@ export default function SecurityPage() {
   const hasPhone = providers.includes("phone");
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen">
       <AppBar
         title={t("الأمان والخصوصية", "Security & Privacy")}
         breadcrumbs={[{ label: t("الملف الشخصي", "Profile"), href: "/app/profile" }, { label: t("الأمان", "Security") }]}

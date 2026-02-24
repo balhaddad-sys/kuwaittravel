@@ -37,7 +37,7 @@ export default function DocumentsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen">
       <AppBar
         title={t("المستندات والجوازات", "Documents & Passports")}
         breadcrumbs={[{ label: t("الملف الشخصي", "Profile"), href: "/app/profile" }, { label: t("المستندات", "Documents") }]}

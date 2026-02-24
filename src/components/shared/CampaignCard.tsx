@@ -38,7 +38,7 @@ function CampaignCard({
   const cardContent = (
     <>
       {/* Cover image */}
-      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-sky-100 to-sky-200 dark:from-[#1E293B] dark:to-sky-700">
+      <div className="relative h-32 overflow-hidden bg-slate-100 dark:bg-[#1E293B]">
         {coverUrl && (
           <Image
             src={coverUrl}
@@ -69,16 +69,16 @@ function CampaignCard({
           )}
         </div>
 
-        <h3 className="text-[0.9375rem] font-bold text-slate-900 dark:text-white">
+        <h3 className="text-[0.9375rem] font-bold text-[#222222] dark:text-white">
           {name}
         </h3>
-        <p className="mt-1 line-clamp-2 text-[0.8125rem] text-slate-500 dark:text-slate-300/60">
+        <p className="mt-1 line-clamp-2 text-[0.8125rem] text-[#717171] dark:text-slate-300/60">
           {description}
         </p>
 
-        <div className="mt-3 flex items-center gap-4 text-[0.8125rem] text-slate-500 dark:text-slate-300/60">
+        <div className="mt-3 flex items-center gap-4 text-[0.8125rem] text-[#717171] dark:text-slate-300/60">
           {rating > 0 && (
-            <span className="flex items-center gap-1 font-medium text-slate-700 dark:text-sky-200">
+            <span className="flex items-center gap-1 font-medium text-[#222222] dark:text-sky-200">
               <Star className="h-3.5 w-3.5 fill-orange-400 text-orange-400" />
               <span className="font-numbers">{rating.toFixed(1)}</span>
             </span>

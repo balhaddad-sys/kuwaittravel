@@ -33,24 +33,24 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       "inline-flex items-center justify-center gap-2 font-semibold border transform-gpu transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-[var(--duration-ui)] ease-[var(--ease-spring)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none rounded-[var(--radius-btn)]";
 
     const variants = {
-      /* Primary — Electric Sky */
+      /* Primary — Dark charcoal (Airbnb style) */
       primary:
-        "border-sky-700 bg-sky-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.14),0_4px_12px_rgba(14,165,233,0.32)] hover:bg-sky-700 hover:border-sky-800 hover:shadow-[0_2px_4px_rgba(0,0,0,0.14),0_8px_20px_rgba(14,165,233,0.38)] active:bg-sky-800 dark:bg-sky-500 dark:border-sky-600 dark:hover:bg-sky-600",
-      /* Secondary — cool white */
+        "border-[#222222] bg-[#222222] text-white hover:bg-[#000000] hover:border-[#000000] active:bg-[#333333] dark:border-sky-600 dark:bg-sky-500 dark:hover:bg-sky-600 dark:hover:border-sky-700",
+      /* Secondary — clean white */
       secondary:
-        "border-slate-200 bg-white text-slate-800 shadow-[0_1px_2px_rgba(2,6,23,0.06),0_2px_8px_rgba(2,6,23,0.06)] hover:border-slate-300 hover:bg-slate-50 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-200 dark:hover:border-sky-600/50 dark:hover:bg-slate-700",
-      /* Accent — Violet */
+        "border-[#EBEBEB] bg-white text-[#222222] hover:border-[#DDDDDD] hover:bg-[#F7F7F7] dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-200 dark:hover:border-sky-600/50 dark:hover:bg-slate-700",
+      /* Accent — CTA orange */
       accent:
-        "border-orange-600 bg-orange-500 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(139,92,246,0.38)] hover:bg-orange-600 hover:border-orange-700 hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_8px_20px_rgba(139,92,246,0.48)] active:bg-orange-700",
-      /* Outline — cool border */
+        "border-orange-600 bg-orange-500 text-white hover:bg-orange-600 hover:border-orange-700 active:bg-orange-700",
+      /* Outline — clean border */
       outline:
-        "border-slate-300 bg-transparent text-slate-700 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 dark:border-[#2D3B4F] dark:text-slate-200 dark:hover:border-sky-500/60 dark:hover:bg-slate-800/50",
+        "border-[#DDDDDD] bg-transparent text-[#222222] hover:border-[#222222] hover:bg-[#F7F7F7] dark:border-[#2D3B4F] dark:text-slate-200 dark:hover:border-sky-500/60 dark:hover:bg-slate-800/50",
       /* Ghost — minimal */
       ghost:
-        "border-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-slate-100",
+        "border-transparent text-[#717171] hover:bg-[#F7F7F7] hover:text-[#222222] dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-slate-100",
       /* Danger */
       danger:
-        "border-red-600 bg-red-600 text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(220,38,38,0.28)] hover:bg-red-700 hover:border-red-800",
+        "border-red-600 bg-red-600 text-white hover:bg-red-700 hover:border-red-800",
     };
 
     const sizes = {
