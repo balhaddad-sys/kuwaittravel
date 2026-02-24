@@ -247,7 +247,7 @@ export default function DemoPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen overflow-x-hidden bg-slate-50 dark:bg-[#0B1120]">
       {/* ═══ STICKY NAV ═══════════════════════════════ */}
       <nav className="sticky top-0 z-[var(--z-topbar)] border-b border-white/10 bg-white/80 backdrop-blur-xl dark:bg-[#0B1120]/80">
         <Container>
@@ -274,7 +274,7 @@ export default function DemoPage() {
       </nav>
 
       {/* ═══ HERO ═════════════════════════════════════ */}
-      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden sm:min-h-[90vh]">
         <div className="eo-gradient-hero absolute inset-0" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
         <GlowOrb color="rgba(14,165,233,0.15)" size="400px" x="10%" y="20%" delay={0} staticMode={isMobile} />
@@ -288,7 +288,7 @@ export default function DemoPage() {
               {t("عرض تفاعلي للمنصة", "Interactive Platform Demo")}
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="text-6xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl" style={{ lineHeight: 1.1, background: "linear-gradient(160deg, #F0F9FF 0%, #7DD3FC 30%, #A78BFA 60%, #FB923C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            <motion.h1 variants={fadeUp} className="text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl" style={{ lineHeight: 1.1, background: "linear-gradient(160deg, #F0F9FF 0%, #7DD3FC 30%, #A78BFA 60%, #FB923C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Rahal
             </motion.h1>
 
@@ -303,7 +303,7 @@ export default function DemoPage() {
               )}
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <motion.div variants={fadeUp} className="mt-6 flex flex-col items-center gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
               <button onClick={() => scrollTo("traveler")} className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-xl hover:shadow-sky-500/30">
                 <PlaneTakeoff className="h-4 w-4" />
                 {t("تطبيق المسافر", "Traveler App")}
@@ -354,7 +354,7 @@ export default function DemoPage() {
       </AnimatedSection>
 
       {/* ═══ TRAVELER APP SHOWCASE ════════════════════ */}
-      <AnimatedSection id="traveler" className="py-20">
+      <AnimatedSection id="traveler" className="py-12 sm:py-20">
         <Container>
           <motion.div variants={fadeUp} className="mb-12 text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-700 dark:bg-sky-900/30 dark:text-sky-300">
@@ -388,7 +388,7 @@ export default function DemoPage() {
           </motion.div>
 
           {/* Trip cards grid */}
-          <motion.div variants={fadeUp} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {filteredTrips.map((trip, i) => (
               <motion.div key={trip.id} variants={fadeScale} className="animate-stagger-fade-up" style={{ "--stagger-delay": `${i * 60}ms` } as React.CSSProperties}>
                 <TripCard
@@ -421,7 +421,7 @@ export default function DemoPage() {
             </h3>
             <div className="mx-auto max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-[#2D3B4F] dark:bg-[#1E293B]">
               <LiveTripTracker currentPhase={currentPhase} steps={trackerSteps} />
-              <div className="mt-6 flex flex-wrap justify-center gap-2">
+              <div className="mt-6 flex justify-start gap-2 overflow-x-auto pb-2 sm:justify-center sm:overflow-visible sm:pb-0">
                 {(["not_started", "departing", "in_destination", "returning", "completed"] as const).map((phase) => (
                   <button
                     key={phase}
@@ -480,7 +480,7 @@ export default function DemoPage() {
       </div>
 
       {/* ═══ CAMPAIGN PORTAL SHOWCASE ═════════════════ */}
-      <AnimatedSection id="campaign" className="relative overflow-hidden py-20">
+      <AnimatedSection id="campaign" className="relative overflow-hidden py-12 sm:py-20">
         <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, #020617, #0C4A6E, #4C1D95)" }} />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
         <GlowOrb color="rgba(139,92,246,0.12)" size="300px" x="80%" y="10%" delay={1} staticMode={isMobile} />
@@ -526,9 +526,9 @@ export default function DemoPage() {
 
           {/* Booking Table */}
           <motion.div variants={fadeUp} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="text-lg font-bold text-white">{t("الحجوزات الأخيرة", "Recent Bookings")}</h3>
-              <div className="flex gap-2">
+              <div className="flex gap-2 overflow-x-auto pb-1 sm:overflow-visible sm:pb-0">
                 {[
                   { id: "all", label: t("الكل", "All") },
                   { id: "confirmed", label: t("مؤكد", "Confirmed") },
@@ -544,15 +544,15 @@ export default function DemoPage() {
             </div>
             <div className="space-y-2">
               {filteredBookings.map((booking) => (
-                <div key={booking.id} className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3">
+                <div key={booking.id} className="flex flex-col gap-2 rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
                     <Avatar alt={booking.traveler} size="sm" />
-                    <div>
-                      <p className="text-sm font-medium text-white">{booking.traveler}</p>
-                      <p className="text-xs text-sky-200/50">{booking.trip}</p>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium text-white">{booking.traveler}</p>
+                      <p className="truncate text-xs text-sky-200/50">{booking.trip}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 ps-11 sm:ps-0">
                     <Badge variant={statusVariantMap[booking.status] ?? "default"} size="sm">
                       {booking.status === "confirmed" ? t("مؤكد", "Confirmed") : booking.status === "pending" ? t("بانتظار", "Pending") : t("مدفوع", "Paid")}
                     </Badge>
@@ -573,7 +573,7 @@ export default function DemoPage() {
       </div>
 
       {/* ═══ ADMIN CONSOLE SHOWCASE ═══════════════════ */}
-      <AnimatedSection id="admin" className="relative py-20">
+      <AnimatedSection id="admin" className="relative py-12 sm:py-20">
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.4) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
         <Container className="relative">
           <motion.div variants={fadeUp} className="mb-12 text-center">
@@ -655,7 +655,7 @@ export default function DemoPage() {
       </AnimatedSection>
 
       {/* ═══ FEATURE BENTO GRID ═══════════════════════ */}
-      <AnimatedSection className="relative overflow-hidden py-20">
+      <AnimatedSection className="relative overflow-hidden py-12 sm:py-20">
         <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, #020617, #0C4A6E, #4C1D95)" }} />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
         <Container className="relative">
@@ -684,7 +684,7 @@ export default function DemoPage() {
       </AnimatedSection>
 
       {/* ═══ ITINERARY PREVIEW ════════════════════════ */}
-      <AnimatedSection className="py-20">
+      <AnimatedSection className="py-12 sm:py-20">
         <Container>
           <motion.div variants={fadeUp} className="mb-12 text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-700 dark:bg-sky-900/30 dark:text-sky-300">
@@ -705,7 +705,7 @@ export default function DemoPage() {
       </AnimatedSection>
 
       {/* ═══ CTA SECTION ══════════════════════════════ */}
-      <section className="relative overflow-hidden py-24">
+      <section className="relative overflow-hidden py-14 sm:py-24">
         <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, #020617, #0C4A6E, #4C1D95)" }} />
         <GlowOrb color="rgba(139,92,246,0.15)" size="300px" x="20%" y="30%" delay={0} staticMode={isMobile} />
         <GlowOrb color="rgba(14,165,233,0.12)" size="250px" x="75%" y="50%" delay={2} staticMode={isMobile} />
