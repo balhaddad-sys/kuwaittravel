@@ -60,7 +60,7 @@
   --color-slate-950: #020617;
 
   /* === SURFACES === */
-  --color-surface-light:       #F8FAFC;
+  --color-surface-light:       #F7F7F7;
   --color-surface-muted:       #F1F5F9;
   --color-surface-border:      #E2E8F0;
   --color-surface-dark:        #0B1120;
@@ -157,21 +157,21 @@
 /* === BASE STYLES === */
 @layer base {
   :root {
-    --background:        #F8FAFC;
-    --foreground:        #0F172A;
+    --background:        #F7F7F7;
+    --foreground:        #222222;
     --muted:             #F1F5F9;
-    --border:            #E2E8F0;
+    --border:            #EBEBEB;
     --clr-primary:       #0EA5E9;
     --clr-primary-light: #38BDF8;
     --clr-accent:        #8B5CF6;
     --clr-accent-light:  #A78BFA;
     --clr-cta:           #F97316;
     --clr-cta-light:     #FB923C;
-    --clr-bg:            #F8FAFC;
+    --clr-bg:            #F7F7F7;
     --clr-surface:       #FFFFFF;
-    --clr-text-main:     #0F172A;
-    --clr-text-muted:    #64748B;
-    --clr-border:        #E2E8F0;
+    --clr-text-main:     #222222;
+    --clr-text-muted:    #717171;
+    --clr-border:        #EBEBEB;
     --clr-success:       #059669;
     --clr-error:         #DC2626;
   }
@@ -204,7 +204,7 @@
   }
 
   body {
-    background-color: #F8FAFC;
+    background-color: #F7F7F7;
     color: var(--foreground);
     font-family: var(--font-arabic);
     -webkit-font-smoothing: antialiased;
@@ -264,34 +264,32 @@
      ============================================ */
 
   .eo-panel {
-    border: 1px solid #E2E8F0;
+    border: none;
     background: #FFFFFF;
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
     border-radius: var(--radius-card);
   }
   .dark .eo-panel {
-    border-color: #2D3B4F;
+    border: 1px solid #2D3B4F;
     background: #111827;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
 
   .eo-card {
-    border: 1px solid #E2E8F0;
+    border: none;
     background: #FFFFFF;
     border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
     transition:
-      border-color  var(--duration-ui) var(--ease-spring),
       box-shadow    var(--duration-ui) var(--ease-spring),
       transform     var(--duration-ui) var(--ease-spring);
   }
   .eo-card:hover {
-    border-color: #BAE6FD;
-    box-shadow: var(--shadow-card-hover);
-    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(34,34,34,0.10);
+    transform: translateY(-2px);
   }
   .dark .eo-card {
-    border-color: #2D3B4F;
+    border: 1px solid #2D3B4F;
     background: #111827;
   }
   .dark .eo-card:hover {
@@ -446,34 +444,32 @@
 
   .sacred-panel,
   .travel-panel {
-    border: 1px solid #E2E8F0;
+    border: none;
     background: #FFFFFF;
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
     border-radius: var(--radius-card);
   }
   .dark .sacred-panel,
   .dark .travel-panel {
-    border-color: #2D3B4F;
+    border: 1px solid #2D3B4F;
     background: #111827;
   }
 
   .sacred-card {
-    border: 1px solid #E2E8F0;
+    border: none;
     background: #FFFFFF;
     border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
     transition:
-      border-color  var(--duration-ui) var(--ease-spring),
       box-shadow    var(--duration-ui) var(--ease-spring),
       transform     var(--duration-ui) var(--ease-spring);
   }
   .sacred-card:hover {
-    border-color: #BAE6FD;
-    box-shadow: var(--shadow-card-hover);
+    box-shadow: 0 4px 20px rgba(34,34,34,0.10);
     transform: translateY(-2px);
   }
   .dark .sacred-card {
-    border-color: #2D3B4F;
+    border: 1px solid #2D3B4F;
     background: #111827;
   }
   .dark .sacred-card:hover {
@@ -588,12 +584,35 @@
   .eo-shell-bg,
   .sacred-shell-bg,
   .travel-shell-bg {
-    background-color: #F8FAFC;
+    background-color: #F7F7F7;
   }
   .dark .eo-shell-bg,
   .dark .sacred-shell-bg,
   .dark .travel-shell-bg {
     background-color: #0B1120;
+  }
+
+  /* Bottom nav — flush, no pill */
+  .eo-bottom-nav {
+    background: #FFFFFF;
+    border-top: 1px solid #EBEBEB;
+    box-shadow: none;
+  }
+  .dark .eo-bottom-nav {
+    background: #111827;
+    border-top-color: #2D3B4F;
+  }
+
+  /* Pill search bar */
+  .eo-search-pill {
+    background: #FFFFFF;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(34,34,34,0.12), 0 0 0 1px rgba(34,34,34,0.04);
+    border: none;
+  }
+  .dark .eo-search-pill {
+    background: #1E293B;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
   }
 
   .travel-orbit-bg { position: relative; isolation: isolate; overflow: hidden; }
@@ -702,10 +721,10 @@
     color: #0F172A;
   }
   .travel-filter-chip-active {
-    border-color: #0EA5E9;
-    background: #0EA5E9;
+    border-color: #222222;
+    background: #222222;
     color: #FFFFFF;
-    box-shadow: 0 2px 8px rgba(14,165,233,0.25);
+    box-shadow: none;
   }
   .dark .travel-filter-chip {
     border-color: #2D3B4F;

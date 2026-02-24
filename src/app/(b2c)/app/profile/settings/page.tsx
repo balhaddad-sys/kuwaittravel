@@ -79,7 +79,7 @@ export default function SettingsPage() {
         {/* Notifications */}
         <Card variant="elevated" padding="lg">
           <h3 className="text-body-sm sm:text-body-md font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-            <Bell className="h-4 w-4 text-violet-500" />
+            <Bell className="h-4 w-4 text-[#717171]" />
             {t("إعدادات الإشعارات", "Notification Preferences")}
           </h3>
           {[
@@ -99,7 +99,7 @@ export default function SettingsPage() {
           <Button
             variant="ghost"
             fullWidth
-            className="h-12 rounded-2xl border border-red-100/80 bg-white text-red-500 shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-[#1E293B]/90 dark:text-red-400 dark:hover:bg-red-900/10"
+            className="h-12 rounded-xl border border-red-100 bg-white text-red-500 hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-[#1E293B]/90 dark:text-red-400 dark:hover:bg-red-900/10"
             leftIcon={<LogOut className="h-[1.125rem] w-[1.125rem]" />}
             onClick={handleLogout}
           >

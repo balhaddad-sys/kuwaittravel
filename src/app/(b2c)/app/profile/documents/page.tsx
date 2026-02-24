@@ -67,7 +67,7 @@ export default function DocumentsPage() {
           </Card>
         ))}
 
-        <Card variant="outlined" padding="lg" className="border-violet-300/50 dark:border-violet-800/30">
+        <Card variant="outlined" padding="lg" className="border-[#EBEBEB] dark:border-[#2D3B4F]/60">
           <p className="text-body-sm text-slate-600 dark:text-slate-400 leading-relaxed">
             {t(
               "يتم تشفير جميع المستندات وتخزينها بشكل آمن. يمكنك تحديث مستنداتك عند إنشاء حجز جديد أو من خلال التواصل مع الحملة.",

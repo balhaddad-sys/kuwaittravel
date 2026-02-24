@@ -32,7 +32,7 @@ export default function HelpPage() {
       <Container size="md" className="py-4 sm:py-6 space-y-4">
         <Card variant="elevated" padding="lg">
           <div className="flex items-center gap-2 mb-4">
-            <HelpCircle className="h-5 w-5 text-violet-500" />
+            <HelpCircle className="h-5 w-5 text-[#717171]" />
             <h2 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">{t("الأسئلة الشائعة", "FAQ")}</h2>
           </div>
           <div>

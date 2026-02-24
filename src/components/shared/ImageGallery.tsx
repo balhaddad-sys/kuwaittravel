@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 interface ImageGalleryProps {
   images: string[];
   alt: string;
-  aspectRatio?: "16/9" | "4/3" | "1/1";
+  aspectRatio?: "16/9" | "4/3" | "3/2" | "1/1";
   className?: string;
   overlay?: React.ReactNode;
 }
@@ -45,6 +45,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
   const aspectClass =
     aspectRatio === "16/9" ? "aspect-[16/9]" :
     aspectRatio === "4/3" ? "aspect-[4/3]" :
+    aspectRatio === "3/2" ? "aspect-[3/2]" :
     "aspect-square";
 
   return (
@@ -74,9 +75,6 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
             </button>
           ))}
         </div>
-
-        {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
         {/* Overlay content (back button, wishlist, etc.) */}
         {overlay}

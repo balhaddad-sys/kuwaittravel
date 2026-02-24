@@ -63,23 +63,18 @@ export default function NotificationsPage() {
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
-      <div className="border-b border-surface-border bg-white/82 px-4 pb-4 pt-8 backdrop-blur-sm dark:border-surface-dark-border dark:bg-surface-dark-card/80 sm:pt-12">
+    <div className="min-h-screen">
+      <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pt-10 pb-4">
         <Container>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white shadow-md sm:h-11 sm:w-11">
-                <BellRing className="h-5 w-5" />
-              </div>
-              <div>
-                <h1 className="text-heading-lg font-bold text-slate-900 dark:text-white sm:text-display-md">
-                  {t("الإشعارات", "Notifications")}
-                </h1>
-                <p className="text-body-sm text-slate-500 dark:text-slate-400">
-                  {t("تحديثات وتنبيهات الرحلات", "Trip updates and alerts")}
-                </p>
-              </div>
-            </div>
+            <h1 className="text-xl font-bold text-[#222222] dark:text-white">
+              {t("الإشعارات", "Notifications")}
+              {unreadCount > 0 && (
+                <span className="ms-2 inline-flex items-center justify-center rounded-full bg-sky-500 px-2 py-0.5 text-[11px] font-bold text-white">
+                  {unreadCount}
+                </span>
+              )}
+            </h1>
             {unreadCount > 0 && (
               <Button variant="ghost" size="sm" onClick={markAllRead}>
                 <CheckCheck className="h-4 w-4 me-1" />
@@ -118,25 +113,25 @@ export default function NotificationsPage() {
                 key={n.id}
                 onClick={() => !n.isRead && markAsRead(n.id)}
                 className={cn(
-                  "w-full text-start rounded-xl border p-3 sm:p-4 transition-all",
+                  "w-full text-start rounded-xl border p-3 sm:p-4 transition-colors",
                   n.isRead
-                    ? "border-slate-200 bg-white dark:border-[#2D3B4F] dark:bg-[#1E293B]"
-                    : "border-orange-200 bg-orange-50/50 dark:border-orange-900/40 dark:bg-orange-900/10"
+                    ? "border-[#EBEBEB] bg-white dark:border-[#2D3B4F] dark:bg-[#1E293B]"
+                    : "border-sky-200 bg-sky-50/50 dark:border-sky-900/40 dark:bg-sky-900/10"
                 )}
               >
                 <div className="flex items-start gap-3">
                   <div className={cn(
                     "shrink-0 mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg",
-                    n.isRead ? "bg-slate-100 text-slate-400 dark:bg-slate-700/40 dark:text-slate-400/60" : "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400"
+                    n.isRead ? "bg-slate-100 text-slate-400 dark:bg-slate-700/40 dark:text-slate-400/60" : "bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400"
                   )}>
                     {typeIcons[n.type] || <Bell className="h-4 w-4" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-slate-700 dark:text-slate-200" : "text-slate-900 dark:text-white")}>
+                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-[#717171] dark:text-slate-200" : "text-[#222222] dark:text-white")}>
                         {language === "ar" ? n.titleAr : n.title}
                       </p>
-                      {!n.isRead && <span className="h-2 w-2 shrink-0 rounded-full bg-orange-500" />}
+                      {!n.isRead && <span className="h-2 w-2 shrink-0 rounded-full bg-sky-500" />}
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">
                       {language === "ar" ? n.bodyAr : n.body}

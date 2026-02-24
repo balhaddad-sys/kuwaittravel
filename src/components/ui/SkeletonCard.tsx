@@ -35,15 +35,12 @@ function SkeletonCard({ variant = "trip", className }: SkeletonCardProps) {
   // Default: trip
   return (
     <div className={cn("skeleton-card overflow-hidden", className)}>
-      <div className="h-40 bg-slate-200/50 dark:bg-slate-700/50" />
-      <div className="space-y-3 p-4">
+      <div className="aspect-[3/2] bg-slate-200/50 dark:bg-slate-700/50 rounded-xl" />
+      <div className="space-y-2 pt-2.5">
+        <div className="h-3 w-24 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
         <div className="h-4 w-3/4 rounded-md bg-slate-200/60 dark:bg-slate-700/60" />
         <div className="h-3 w-1/2 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
-        <div className="h-2 w-full rounded-full bg-slate-200/30 dark:bg-slate-700/30" />
-        <div className="flex justify-between pt-2">
-          <div className="h-3 w-16 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
-          <div className="h-4 w-20 rounded-md bg-slate-200/60 dark:bg-slate-700/60" />
-        </div>
+        <div className="h-4 w-20 rounded-md bg-slate-200/60 dark:bg-slate-700/60" />
       </div>
     </div>
   );

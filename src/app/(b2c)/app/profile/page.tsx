@@ -91,215 +91,198 @@ export default function ProfilePage() {
   /* ─── Guest view ─── */
   if (!firebaseUser && !authLoading) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
-        <div className="relative overflow-hidden bg-gradient-to-br from-[#082F49] via-[#0C4A6E] to-[#2E1065] pb-20 pt-10 sm:pb-24 sm:pt-14">
-          <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-          <Container className="relative">
-            <div className="flex items-center gap-5">
-              <div className="flex h-20 w-20 items-center justify-center rounded-[1.125rem] bg-white/15 ring-2 ring-white/30 sm:h-24 sm:w-24">
-                <User className="h-10 w-10 text-white/60" />
+      <div className="min-h-screen">
+        {/* Clean header */}
+        <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pt-10 pb-6">
+          <Container>
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 dark:bg-slate-700/50">
+                <User className="h-8 w-8 text-slate-400 dark:text-slate-500" />
               </div>
               <div>
-                <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">{t("مرحباً بك", "Welcome")}</h1>
-                <p className="mt-1 text-sm text-sky-100/80">{t("سجّل دخولك للوصول لحسابك", "Sign in to access your account")}</p>
+                <h1 className="text-xl font-bold text-[#222222] dark:text-white">{t("مرحباً بك", "Welcome")}</h1>
+                <p className="mt-0.5 text-sm text-[#717171] dark:text-slate-400">{t("سجّل دخولك للوصول لحسابك", "Sign in to access your account")}</p>
               </div>
             </div>
           </Container>
         </div>
-        <div className="-mt-10">
-          <Container className="space-y-3 pb-6">
-            <Button
-              variant="primary"
-              fullWidth
-              className="h-14 rounded-2xl text-base font-bold shadow-lg"
-              leftIcon={<LogIn className="h-5 w-5" />}
-              onClick={() => router.push("/login")}
+
+        <Container className="space-y-3 py-5">
+          <Button
+            variant="primary"
+            fullWidth
+            className="h-12 rounded-xl text-base font-bold"
+            leftIcon={<LogIn className="h-5 w-5" />}
+            onClick={() => router.push("/login")}
+          >
+            {t("تسجيل الدخول", "Sign In")}
+          </Button>
+          {/* Settings still accessible for guests */}
+          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+            <button
+              onClick={() => router.push("/app/profile/settings")}
+              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40 border-b border-[#EBEBEB] dark:border-[#2D3B4F]/50"
             >
-              {t("تسجيل الدخول", "Sign In")}
-            </Button>
-            {/* Settings still accessible for guests (language, dark mode) */}
-            <div className="overflow-hidden rounded-2xl border border-slate-100/80 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)] dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
-              <button
-                onClick={() => router.push("/app/profile/settings")}
-                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-700/40 border-b border-slate-100 dark:border-[#2D3B4F]/50"
-              >
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[0.9375rem] font-semibold text-slate-900 dark:text-white">{t("الإعدادات", "Settings")}</p>
-                  <p className="text-[0.75rem] text-slate-400 dark:text-slate-400/60">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
-                </div>
-                <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-sky-400/50" />
-              </button>
-              <button
-                onClick={() => router.push("/app/help")}
-                className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-700/40"
-              >
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400"><HelpCircle className="h-[1.125rem] w-[1.125rem]" /></span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[0.9375rem] font-semibold text-slate-900 dark:text-white">{t("المساعدة والدعم", "Help & Support")}</p>
-                  <p className="text-[0.75rem] text-slate-400 dark:text-slate-400/60">{t("الأسئلة الشائعة", "FAQs & contact")}</p>
-                </div>
-                <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-sky-400/50" />
-              </button>
-            </div>
-            {/* Language toggle */}
-            <div className="overflow-hidden rounded-2xl border border-slate-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-4">
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400"><Globe className="h-[1.125rem] w-[1.125rem]" /></span>
-                  <p className="text-[0.9375rem] font-semibold text-slate-900 dark:text-white">{t("اللغة", "Language")}</p>
-                </div>
-                <LanguageToggle />
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">{t("الإعدادات", "Settings")}</p>
+                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
               </div>
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+            </button>
+            <button
+              onClick={() => router.push("/app/help")}
+              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40"
+            >
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400"><HelpCircle className="h-[1.125rem] w-[1.125rem]" /></span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">{t("المساعدة والدعم", "Help & Support")}</p>
+                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">{t("الأسئلة الشائعة", "FAQs & contact")}</p>
+              </div>
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+            </button>
+          </div>
+          {/* Language toggle */}
+          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white px-4 py-3.5 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-4">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400"><Globe className="h-[1.125rem] w-[1.125rem]" /></span>
+                <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">{t("اللغة", "Language")}</p>
+              </div>
+              <LanguageToggle />
             </div>
-          </Container>
-        </div>
+          </div>
+        </Container>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen">
 
-      {/* ─── Hero Header ─── */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-[#082F49] via-[#0C4A6E] to-[#2E1065] pb-20 pt-10 sm:pb-24 sm:pt-14">
-        {/* Ambient orbs */}
-        <div className="pointer-events-none absolute -top-20 -end-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-12 -start-12 h-48 w-48 rounded-full bg-sky-400/20 blur-2xl" />
-        <div className="pointer-events-none absolute top-0 start-1/3 h-32 w-64 rounded-full bg-violet-400/10 blur-3xl" />
-
-        <Container className="relative">
-          <div className="flex items-center gap-5">
-            {/* Avatar with online dot */}
+      {/* ─── Clean Header ─── */}
+      <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pt-10 pb-6">
+        <Container>
+          <div className="flex items-center gap-4">
+            {/* Avatar */}
             <div className="relative shrink-0">
-              <div className="rounded-[1.25rem] p-0.5 ring-2 ring-white/30 shadow-xl">
-                <Avatar
-                  size="xl"
-                  className="h-20 w-20 rounded-[1.125rem] sm:h-24 sm:w-24"
-                />
-              </div>
-              <span className="absolute -bottom-0.5 -end-0.5 h-5 w-5 rounded-full border-[2.5px] border-sky-600 bg-violet-400 shadow-md" />
+              <Avatar
+                size="xl"
+                className="h-16 w-16 rounded-2xl"
+              />
             </div>
 
             {/* Name + info */}
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="truncate text-xl font-bold tracking-tight text-white sm:text-2xl">
+                <h1 className="truncate text-xl font-bold text-[#222222] dark:text-white">
                   {displayName || t("مسافر", "Traveler")}
                 </h1>
                 {userData?.isVerified && (
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-violet-300 drop-shadow" />
+                  <BadgeCheck className="h-5 w-5 shrink-0 text-sky-500" />
                 )}
               </div>
-              <p className="mt-1 text-sm text-sky-100/80">
+              <p className="mt-0.5 text-sm text-[#717171] dark:text-slate-400">
                 {userData?.phone || userData?.email || ""}
               </p>
-              {userData?.isVerified && (
-                <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-sm ring-1 ring-white/20">
-                  <BadgeCheck className="h-3 w-3 text-violet-300" />
-                  {t("مسافر موثق", "Verified Traveler")}
-                </span>
-              )}
             </div>
           </div>
         </Container>
       </div>
 
-      {/* ─── Card sheet overlapping hero ─── */}
-      <div className="-mt-10">
-        <Container className="space-y-3 pb-6">
+      {/* ─── Content ─── */}
+      <Container className="space-y-3 py-5">
 
-          {/* ─── Menu Card ─── */}
-          <div className="overflow-hidden rounded-2xl border border-slate-100/80 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)] dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
-            {menuItems.map((item, i) => (
-              <button
-                key={i}
-                onClick={() => router.push(item.href)}
-                className={`group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-700/40 ${
-                  i < menuItems.length - 1
-                    ? "border-b border-slate-100 dark:border-[#2D3B4F]/50"
-                    : ""
-                }`}
+        {/* ─── Menu Card ─── */}
+        <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+          {menuItems.map((item, i) => (
+            <button
+              key={i}
+              onClick={() => router.push(item.href)}
+              className={`group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40 ${
+                i < menuItems.length - 1
+                  ? "border-b border-[#EBEBEB] dark:border-[#2D3B4F]/50"
+                  : ""
+              }`}
+            >
+              {/* Icon */}
+              <span
+                className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
               >
-                {/* Icon */}
-                <span
-                  className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
-                >
-                  <item.icon className="h-[1.125rem] w-[1.125rem]" />
-                </span>
+                <item.icon className="h-[1.125rem] w-[1.125rem]" />
+              </span>
 
-                {/* Label */}
-                <div className="min-w-0 flex-1">
-                  <p className="text-[0.9375rem] font-semibold text-slate-900 dark:text-white">
-                    {t(item.labelAr, item.labelEn)}
-                  </p>
-                  <p className="text-[0.75rem] text-slate-400 dark:text-slate-400/60">
-                    {t(item.descAr, item.descEn)}
-                  </p>
-                </div>
-
-                <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-sky-400/50" />
-              </button>
-            ))}
-          </div>
-
-          {/* ─── Admin Shortcut ─── */}
-          {showAdminShortcut && (
-            <div className="overflow-hidden rounded-2xl border border-violet-200/70 bg-white shadow-[0_2px_12px_rgba(139,92,246,0.10)] dark:border-violet-700/30 dark:bg-[#1E293B]/90">
-              <button
-                onClick={() => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login")}
-                className="group flex w-full items-center gap-4 px-4 py-4 text-start transition-colors hover:bg-violet-50/60 dark:hover:bg-violet-900/10"
-              >
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-900 text-violet-400 shadow-md dark:bg-slate-700/50">
-                  <Sparkles className="h-5 w-5" />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[0.9375rem] font-semibold text-slate-900 dark:text-white">
-                    {t("وضع الإدارة", "Admin Mode")}
-                  </p>
-                  <p className="text-[0.75rem] text-slate-400 dark:text-slate-400/60">
-                    {t("إدارة الحملات والمستخدمين", "Manage campaigns and platform users")}
-                  </p>
-                </div>
-                <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 dark:text-sky-400/50" />
-              </button>
-            </div>
-          )}
-
-          {/* ─── Language ─── */}
-          <div className="overflow-hidden rounded-2xl border border-slate-100/80 bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-4">
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400">
-                  <Globe className="h-[1.125rem] w-[1.125rem]" />
-                </span>
-                <div>
-                  <p className="text-[0.9375rem] font-semibold text-slate-900 dark:text-white">
-                    {t("اللغة", "Language")}
-                  </p>
-                  <p className="text-[0.75rem] text-slate-400 dark:text-slate-400/60">
-                    {t("عربي / English", "Arabic / English")}
-                  </p>
-                </div>
+              {/* Label */}
+              <div className="min-w-0 flex-1">
+                <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">
+                  {t(item.labelAr, item.labelEn)}
+                </p>
+                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">
+                  {t(item.descAr, item.descEn)}
+                </p>
               </div>
-              <LanguageToggle />
-            </div>
+
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+            </button>
+          ))}
+        </div>
+
+        {/* ─── Admin Shortcut ─── */}
+        {showAdminShortcut && (
+          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+            <button
+              onClick={() => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login")}
+              className="group flex w-full items-center gap-4 px-4 py-4 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40"
+            >
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200">
+                <Sparkles className="h-[1.125rem] w-[1.125rem]" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">
+                  {t("وضع الإدارة", "Admin Mode")}
+                </p>
+                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">
+                  {t("إدارة الحملات والمستخدمين", "Manage campaigns and platform users")}
+                </p>
+              </div>
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+            </button>
           </div>
+        )}
 
-          {/* ─── Sign Out ─── */}
-          <Button
-            variant="ghost"
-            fullWidth
-            className="h-12 rounded-2xl border border-red-100/80 bg-white text-red-500 shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/20"
-            leftIcon={<LogOut className="h-[1.125rem] w-[1.125rem]" />}
-            onClick={handleLogout}
-          >
-            {t("تسجيل الخروج", "Sign Out")}
-          </Button>
+        {/* ─── Language ─── */}
+        <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white px-4 py-3.5 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-4">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400">
+                <Globe className="h-[1.125rem] w-[1.125rem]" />
+              </span>
+              <div>
+                <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">
+                  {t("اللغة", "Language")}
+                </p>
+                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">
+                  {t("عربي / English", "Arabic / English")}
+                </p>
+              </div>
+            </div>
+            <LanguageToggle />
+          </div>
+        </div>
 
-          <div className="h-4" />
-        </Container>
-      </div>
+        {/* ─── Sign Out ─── */}
+        <Button
+          variant="ghost"
+          fullWidth
+          className="h-12 rounded-xl border border-red-100 bg-white text-red-500 hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/20"
+          leftIcon={<LogOut className="h-[1.125rem] w-[1.125rem]" />}
+          onClick={handleLogout}
+        >
+          {t("تسجيل الخروج", "Sign Out")}
+        </Button>
+
+        <div className="h-4" />
+      </Container>
     </div>
   );
 }

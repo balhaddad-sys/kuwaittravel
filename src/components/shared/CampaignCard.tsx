@@ -33,7 +33,7 @@ function CampaignCard({
 }: CampaignCardProps) {
   const { t } = useDirection();
 
-  const cardClasses = `group block cursor-pointer overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:bg-[#1E293B] ${className ?? ""}`;
+  const cardClasses = `group block cursor-pointer overflow-hidden rounded-xl bg-white border border-[#EBEBEB] transition-colors hover:bg-slate-50 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B] dark:hover:bg-[#1E293B] ${className ?? ""}`;
 
   const cardContent = (
     <>
@@ -48,7 +48,7 @@ function CampaignCard({
             sizes="(max-width: 640px) 100vw, 320px"
           />
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+        {/* No gradient overlay — clean image */}
       </div>
 
       {/* Content */}

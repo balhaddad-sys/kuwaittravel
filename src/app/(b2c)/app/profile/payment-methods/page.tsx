@@ -30,7 +30,7 @@ export default function PaymentMethodsPage() {
           <div className="space-y-3">
             {methods.map((m, i) => (
               <div key={i} className="flex items-center gap-3 rounded-lg border border-surface-border/70 p-3 dark:border-surface-dark-border/70">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-700/40 dark:text-slate-300">
                   <m.icon className="h-5 w-5" />
                 </span>
                 <div className="flex-1 min-w-0">
@@ -43,9 +43,9 @@ export default function PaymentMethodsPage() {
           </div>
         </Card>
 
-        <Card variant="outlined" padding="lg" className="border-violet-300/50 dark:border-violet-800/30">
+        <Card variant="outlined" padding="lg" className="border-[#EBEBEB] dark:border-[#2D3B4F]/60">
           <div className="flex items-start gap-3">
-            <ShieldCheck className="h-5 w-5 shrink-0 text-violet-500 mt-0.5" />
+            <ShieldCheck className="h-5 w-5 shrink-0 text-sky-500 mt-0.5" />
             <div>
               <p className="text-body-sm font-bold text-slate-900 dark:text-white mb-1">{t("دفع آمن ومشفر", "Secure & Encrypted")}</p>
               <p className="text-body-sm text-slate-600 dark:text-slate-400 leading-relaxed">

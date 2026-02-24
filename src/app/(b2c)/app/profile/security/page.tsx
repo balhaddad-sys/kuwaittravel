@@ -27,7 +27,7 @@ export default function SecurityPage() {
       <Container size="md" className="py-4 sm:py-6 space-y-4">
         <Card variant="elevated" padding="lg">
           <h3 className="text-body-sm sm:text-body-md font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-            <KeyRound className="h-4 w-4 text-violet-500" />
+            <KeyRound className="h-4 w-4 text-[#717171]" />
             {t("طرق تسجيل الدخول", "Sign-in Methods")}
           </h3>
           <div className="space-y-3">
@@ -56,7 +56,7 @@ export default function SecurityPage() {
 
         <Card variant="elevated" padding="lg">
           <h3 className="text-body-sm sm:text-body-md font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-violet-500" />
+            <ShieldCheck className="h-4 w-4 text-[#717171]" />
             {t("حالة الحساب", "Account Status")}
           </h3>
           <div className="space-y-3">
@@ -68,7 +68,7 @@ export default function SecurityPage() {
 
         <Card variant="elevated" padding="lg">
           <h3 className="text-body-sm sm:text-body-md font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-            <Fingerprint className="h-4 w-4 text-violet-500" />
+            <Fingerprint className="h-4 w-4 text-[#717171]" />
             {t("الخصوصية", "Privacy")}
           </h3>
           <p className="text-body-sm text-slate-600 dark:text-slate-400 leading-relaxed">

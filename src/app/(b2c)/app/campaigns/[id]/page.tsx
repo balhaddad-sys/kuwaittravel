@@ -122,11 +122,11 @@ export default function CampaignDetailPage({
                 alt={getName(campaign)}
                 width={64}
                 height={64}
-                className="h-16 w-16 rounded-[var(--radius-lg)] object-cover shadow-md"
+                className="h-16 w-16 rounded-xl object-cover"
               />
             ) : (
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E293B] dark:to-slate-700">
-                <Building2 className="h-8 w-8 text-slate-500" />
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-700/50">
+                <Building2 className="h-8 w-8 text-[#717171]" />
               </div>
             )}
             <div className="min-w-0 flex-1">
@@ -208,7 +208,6 @@ export default function CampaignDetailPage({
         {/* Trips */}
         <section>
           <div className="mb-4 flex items-center gap-2">
-            <Calendar className="h-5 w-5 text-violet-500" />
             <h3 className="text-heading-md font-bold text-slate-900 dark:text-white">
               {t("الرحلات المتاحة", "Available Trips")}
             </h3>
@@ -227,15 +226,7 @@ export default function CampaignDetailPage({
                     : trip.title || trip.titleAr;
 
                 return (
-                  <div
-                    key={trip.id}
-                    className="animate-stagger-fade-up"
-                    style={
-                      {
-                        "--stagger-delay": `${i * 60}ms`,
-                      } as React.CSSProperties
-                    }
-                  >
+                  <div key={trip.id}>
                     <Card
                       variant="elevated"
                       padding="md"
@@ -245,8 +236,8 @@ export default function CampaignDetailPage({
                       }
                     >
                       <div className="flex items-center gap-3 sm:gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E293B] dark:to-slate-700 sm:h-14 sm:w-14">
-                          <Calendar className="h-5 w-5 text-slate-500 sm:h-6 sm:w-6" />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-700/50 sm:h-14 sm:w-14">
+                          <Calendar className="h-5 w-5 text-[#717171] sm:h-6 sm:w-6" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <h4 className="truncate text-body-md font-semibold text-slate-900 dark:text-white sm:text-body-lg">
