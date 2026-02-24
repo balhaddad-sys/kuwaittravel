@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 
 export default function PortalLoading() {
   return (
-    <Container className="animate-fade-in py-6 space-y-4">
+    <Container className="py-6 space-y-4">
       <Skeleton className="h-7 w-56" />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Skeleton className="h-24 w-full" />

@@ -3,6 +3,12 @@
 import { useEffect, useRef, useState, useCallback, Suspense } from "react";
 import { usePathname } from "next/navigation";
 
+function isCapacitorNative(): boolean {
+  if (typeof window === "undefined") return false;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (window as any).Capacitor?.isNativePlatform?.() === true;
+}
+
 function ProgressBarInner() {
   const pathname = usePathname();
   const prevPath = useRef(pathname);
@@ -10,6 +16,11 @@ function ProgressBarInner() {
   const [width, setWidth] = useState(0);
   const trickle = useRef<ReturnType<typeof setInterval>>(undefined);
   const hide = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const [isNative, setIsNative] = useState(false);
+
+  useEffect(() => {
+    setIsNative(isCapacitorNative());
+  }, []);
 
   const start = useCallback(() => {
     clearTimeout(hide.current);
@@ -77,6 +88,9 @@ function ProgressBarInner() {
       clearTimeout(hide.current);
     };
   }, [pathname, start]);
+
+  // Hide progress bar in native Capacitor shell — native apps don't show loading bars
+  if (isNative) return null;
 
   return (
     <div

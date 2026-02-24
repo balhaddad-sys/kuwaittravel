@@ -32,7 +32,8 @@ const initUiScript = `
     document.documentElement.lang = language;
     document.documentElement.dir = resolvedDir;
 
-    const theme = localStorage.getItem("theme") || "light";
+    var isNative = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform();
+    const theme = localStorage.getItem("theme") || (isNative ? "dark" : "light");
     const isDark = theme === "dark";
     document.documentElement.classList.toggle("dark", isDark);
   } catch {
