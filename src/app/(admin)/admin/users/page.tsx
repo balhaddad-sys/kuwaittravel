@@ -189,7 +189,7 @@ export default function UsersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645\u064a\u0646", "User Management")}
         breadcrumbs={[
@@ -248,12 +248,12 @@ export default function UsersPage() {
                 onClick={() => setSelectedId(user.uid)}
                 className="group w-full text-start"
               >
-                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#2D3B4F] dark:bg-[#1E293B]">
+                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#383838] dark:bg-[#262626]">
                   {/* Role indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[user.role] || "bg-slate-400")} />
 
                   {/* Avatar */}
-                    <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-[#1E293B]">
+                    <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-[#262626]">
                       {user.avatarUrl ? (
                         <Image
                           src={user.avatarUrl}

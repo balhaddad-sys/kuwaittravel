@@ -20,7 +20,7 @@ function LanguageToggle({ className }: LanguageToggleProps) {
         className
       )}
     >
-      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 dark:bg-[#111827]/45">
+      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 dark:bg-[#1A1A1A]/45">
         <Languages className="h-3.5 w-3.5" />
       </span>
       <span className="font-semibold tracking-wide">

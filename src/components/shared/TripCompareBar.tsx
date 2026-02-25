@@ -22,7 +22,7 @@ function TripCompareBar({ count, maxCount = 3, onCompare, onClear, className }: 
     <div
       className={cn(
         "fixed bottom-20 start-1/2 z-[var(--z-fab)] -translate-x-1/2 lg:bottom-6",
-        "flex items-center gap-3 rounded-[var(--radius-pill)] border border-sky-200 bg-white px-4 py-3 shadow-xl backdrop-blur-sm dark:border-sky-800 dark:bg-[#111827]",
+        "flex items-center gap-3 rounded-[var(--radius-pill)] border border-sky-200 bg-white px-4 py-3 shadow-xl backdrop-blur-sm dark:border-sky-800 dark:bg-[#1A1A1A]",
         "animate-slide-up",
         className
       )}
@@ -43,7 +43,7 @@ function TripCompareBar({ count, maxCount = 3, onCompare, onClear, className }: 
       </Button>
       <button
         onClick={onClear}
-        className="rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-[#1E293B]/60 dark:hover:text-slate-300"
+        className="rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-[#262626]/60 dark:hover:text-slate-300"
       >
         <X className="h-4 w-4" />
       </button>

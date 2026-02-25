@@ -62,7 +62,7 @@ function SectionBottomNav({
       {hasOverflow && moreOpen && (
         <div
           ref={panelRef}
-          className="mx-auto mb-2 w-full max-w-xl animate-in fade-in slide-in-from-bottom-2 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-card backdrop-blur-md dark:border-[#2D3B4F] dark:bg-[#111827]/95"
+          className="mx-auto mb-2 w-full max-w-xl animate-in fade-in slide-in-from-bottom-2 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-card backdrop-blur-md dark:border-[#383838] dark:bg-[#1A1A1A]/95"
         >
           <div className="space-y-0.5">
             {overflowItems.map((item) => (
@@ -89,7 +89,7 @@ function SectionBottomNav({
 
           {switchItems && switchItems.length > 0 && (
             <>
-              <div className="my-1.5 border-t border-slate-200 dark:border-[#2D3B4F]" />
+              <div className="my-1.5 border-t border-slate-200 dark:border-[#383838]" />
               <p className="px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-slate-400 dark:text-slate-400/45">
                 {switchLabel}
               </p>
@@ -113,7 +113,7 @@ function SectionBottomNav({
       )}
 
       {/* Bottom bar */}
-      <div className="relative mx-auto flex h-[66px] w-full max-w-xl items-center justify-around rounded-[22px] border border-slate-200 bg-white/95 px-2 shadow-card backdrop-blur-md dark:border-[#2D3B4F] dark:bg-[#111827]/95">
+      <div className="relative mx-auto flex h-[66px] w-full max-w-xl items-center justify-around rounded-[22px] border border-slate-200 bg-white/95 px-2 shadow-card backdrop-blur-md dark:border-[#383838] dark:bg-[#1A1A1A]/95">
         {primaryItems.map((item) => {
           const active = isActive(item.href);
           return (

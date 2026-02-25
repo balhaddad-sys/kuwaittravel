@@ -111,7 +111,7 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
         <AppBar
           title={t("الملف التعريفي", "Profile")}
           breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الملف التعريفي", "Profile") }]}
@@ -126,7 +126,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("الملف التعريفي", "Profile")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الملف التعريفي", "Profile") }]}
@@ -328,15 +328,15 @@ export default function ProfilePage() {
               {t("إحصائيات الحملة", "Campaign Stats")}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#383838] dark:bg-[#262626]/50">
                 <p className="text-heading-md font-bold text-slate-900 dark:text-white">{campaign.stats.totalTrips}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-300/60">{t("إجمالي الرحلات", "Total Trips")}</p>
               </div>
-              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#383838] dark:bg-[#262626]/50">
                 <p className="text-heading-md font-bold text-slate-900 dark:text-white">{campaign.stats.totalBookings}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-300/60">{t("إجمالي الحجوزات", "Total Bookings")}</p>
               </div>
-              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#383838] dark:bg-[#262626]/50">
                 <p className="text-heading-md font-bold text-violet-600 dark:text-violet-400">{campaign.stats.averageRating > 0 ? campaign.stats.averageRating.toFixed(1) : "---"}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-300/60">{t("التقييم", "Rating")} ({campaign.stats.totalReviews})</p>
               </div>

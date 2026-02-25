@@ -33,12 +33,12 @@ function CampaignCard({
 }: CampaignCardProps) {
   const { t } = useDirection();
 
-  const cardClasses = `group block cursor-pointer overflow-hidden rounded-xl bg-white border border-[#EBEBEB] transition-colors hover:bg-slate-50 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B] dark:hover:bg-[#1E293B] ${className ?? ""}`;
+  const cardClasses = `group block cursor-pointer overflow-hidden rounded-xl bg-white border border-[#EBEBEB] transition-colors hover:bg-slate-50 dark:border-[#383838]/60 dark:bg-[#262626] dark:hover:bg-[#262626] ${className ?? ""}`;
 
   const cardContent = (
     <>
       {/* Cover image */}
-      <div className="relative h-32 overflow-hidden bg-slate-100 dark:bg-[#1E293B]">
+      <div className="relative h-32 overflow-hidden bg-slate-100 dark:bg-[#262626]">
         {coverUrl && (
           <Image
             src={coverUrl}
@@ -62,7 +62,7 @@ function CampaignCard({
             className="border-4 border-white shadow-lg dark:border-slate-800"
           />
           {verified && (
-            <span className="mb-1 flex items-center gap-1 rounded-full bg-sky-50 px-2.5 py-1 text-[11px] font-semibold text-sky-700 dark:bg-[#111827]/40 dark:text-sky-300">
+            <span className="mb-1 flex items-center gap-1 rounded-full bg-sky-50 px-2.5 py-1 text-[11px] font-semibold text-sky-700 dark:bg-[#1A1A1A]/40 dark:text-sky-300">
               <BadgeCheck className="h-3.5 w-3.5" />
               {t("موثق", "Verified")}
             </span>

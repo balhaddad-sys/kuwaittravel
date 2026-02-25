@@ -243,7 +243,7 @@ export default function AuditLogsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("\u0633\u062c\u0644 \u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a", "Audit Logs")}
         breadcrumbs={[
@@ -307,7 +307,7 @@ export default function AuditLogsPage() {
                           config.variant === "error" ? "bg-red-50 dark:bg-red-900/20" :
                           config.variant === "warning" ? "bg-orange-50 dark:bg-orange-900/20" :
                           config.variant === "info" ? "bg-sky-50 dark:bg-sky-900/20" :
-                          "bg-slate-100 dark:bg-[#1E293B]"
+                          "bg-slate-100 dark:bg-[#262626]"
                         )}>
                           <span className={config.color}>{config.icon}</span>
                         </div>

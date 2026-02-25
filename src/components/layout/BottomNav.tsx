@@ -49,7 +49,7 @@ function BottomNav({ items }: BottomNavProps) {
               </span>
               {/* Notification dot */}
               {item.notification && !isActive && (
-                <span className="absolute end-3 top-1 h-1.5 w-1.5 rounded-full bg-sky-500 ring-2 ring-white dark:ring-[#111827]" aria-label="New notification" role="status" />
+                <span className="absolute end-3 top-1 h-1.5 w-1.5 rounded-full bg-sky-500 ring-2 ring-white dark:ring-[#1A1A1A]" aria-label="New notification" role="status" />
               )}
               <span className={cn(
                 "text-[10px] font-medium leading-none",

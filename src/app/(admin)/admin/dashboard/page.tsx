@@ -122,7 +122,7 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("\u0644\u0648\u062d\u0629 \u062a\u062d\u0643\u0645 \u0627\u0644\u0645\u0634\u0631\u0641", "Admin Dashboard")}
         breadcrumbs={[{ label: t("\u0627\u0644\u0645\u0634\u0631\u0641 \u0627\u0644\u0639\u0627\u0645", "Admin Console") }, { label: t("\u0644\u0648\u062d\u0629 \u0627\u0644\u062a\u062d\u0643\u0645", "Dashboard") }]}

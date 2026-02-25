@@ -102,7 +102,7 @@ export default function SettingsPage() {
 
   if (!userData?.campaignId) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
         <AppBar
           title={t("الإعدادات", "Settings")}
           breadcrumbs={[
@@ -125,7 +125,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("الإعدادات", "Settings")}
         breadcrumbs={[

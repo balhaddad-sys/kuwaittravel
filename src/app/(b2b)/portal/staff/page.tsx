@@ -29,7 +29,7 @@ export default function StaffPage() {
 
   if (!userData?.campaignId) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
         <AppBar
           title={t("فريق العمل", "Team")}
           breadcrumbs={[
@@ -52,7 +52,7 @@ export default function StaffPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("فريق العمل", "Team")}
         breadcrumbs={[

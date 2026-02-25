@@ -22,7 +22,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className="peer sr-only"
             {...props}
           />
-          <div className="h-5 w-5 rounded-md border-2 border-slate-300 transition-all peer-checked:border-sky-500 peer-checked:bg-sky-500 peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400/20 dark:border-[#2D3B4F] dark:peer-checked:border-sky-500 dark:peer-checked:bg-sky-500">
+          <div className="h-5 w-5 rounded-md border-2 border-slate-300 transition-all peer-checked:border-sky-500 peer-checked:bg-sky-500 peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400/20 dark:border-[#383838] dark:peer-checked:border-sky-500 dark:peer-checked:bg-sky-500">
             <Check className="h-full w-full text-white opacity-0 peer-checked:opacity-100 transition-opacity p-0.5" />
           </div>
         </div>

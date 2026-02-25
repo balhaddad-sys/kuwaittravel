@@ -50,7 +50,7 @@ function ImageGallery({ images, alt, aspectRatio = "16/9", className, overlay }:
 
   return (
     <>
-      <div className={cn("relative overflow-hidden bg-slate-100 dark:bg-[#1E293B]", aspectClass, className)}>
+      <div className={cn("relative overflow-hidden bg-slate-100 dark:bg-[#262626]", aspectClass, className)}>
         {/* Scrollable image strip */}
         <div
           ref={scrollRef}

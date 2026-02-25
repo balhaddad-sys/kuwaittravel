@@ -80,7 +80,7 @@ export default function TripsPage() {
   }, [filter, searchQuery, trips]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("الرحلات", "Trips")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("الرحلات", "Trips") }]}
@@ -125,7 +125,7 @@ export default function TripsPage() {
                   className={`shrink-0 rounded-full border px-4 py-2 text-body-sm font-medium transition-all ${
                     filter === f.value
                       ? "border-sky-600 bg-sky-700 text-white"
-                      : "border-slate-200 bg-white/80 text-slate-600 hover:border-slate-300 hover:bg-slate-50 dark:border-[#2D3B4F] dark:bg-[#1E293B]/70 dark:text-slate-200 dark:hover:border-sky-600/50 dark:hover:bg-[#111827]/60"
+                      : "border-slate-200 bg-white/80 text-slate-600 hover:border-slate-300 hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626]/70 dark:text-slate-200 dark:hover:border-sky-600/50 dark:hover:bg-[#1A1A1A]/60"
                   }`}
                 >
                   {f.label}

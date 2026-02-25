@@ -43,7 +43,7 @@ export default function PaymentMethodsPage() {
           </div>
         </Card>
 
-        <Card variant="outlined" padding="lg" className="border-[#EBEBEB] dark:border-[#2D3B4F]/60">
+        <Card variant="outlined" padding="lg" className="border-[#EBEBEB] dark:border-[#383838]/60">
           <div className="flex items-start gap-3">
             <ShieldCheck className="h-5 w-5 shrink-0 text-sky-500 mt-0.5" />
             <div>

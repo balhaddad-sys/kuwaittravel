@@ -18,11 +18,11 @@ const paddingMap = {
 };
 
 const variantMap = {
-  elevated: "bg-white dark:border dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
+  elevated: "bg-white dark:border dark:border-[#383838] dark:bg-[#262626] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
   outlined:
-    "border border-[#EBEBEB] bg-white dark:border-[#2D3B4F] dark:bg-[#1E293B]",
+    "border border-[#EBEBEB] bg-white dark:border-[#383838] dark:bg-[#262626]",
   filled:
-    "bg-[#F7F7F7] dark:border dark:border-[#2D3B4F] dark:bg-slate-800/60",
+    "bg-[#F7F7F7] dark:border dark:border-[#383838] dark:bg-slate-800/60",
   glass: "eo-glass",
 };
 

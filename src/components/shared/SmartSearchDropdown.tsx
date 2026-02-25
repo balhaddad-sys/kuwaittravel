@@ -48,7 +48,7 @@ function SmartSearchDropdown({
               <button
                 key={query}
                 onClick={() => onSelect(query)}
-                className="flex w-full items-center gap-2 rounded-[var(--radius-md)] px-2 py-2 text-start text-body-sm text-slate-700 transition-colors hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-[#1E293B]/50"
+                className="flex w-full items-center gap-2 rounded-[var(--radius-md)] px-2 py-2 text-start text-body-sm text-slate-700 transition-colors hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-[#262626]/50"
               >
                 <Search className="h-3.5 w-3.5 text-slate-400" />
                 {query}
@@ -70,7 +70,7 @@ function SmartSearchDropdown({
               <button
                 key={dest}
                 onClick={() => onSelect(dest)}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-body-sm text-slate-600 transition-colors hover:border-sky-300 hover:bg-sky-50 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-sky-200 dark:hover:border-sky-600 dark:hover:bg-[#111827]/20"
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-body-sm text-slate-600 transition-colors hover:border-sky-300 hover:bg-sky-50 dark:border-[#383838] dark:bg-[#262626] dark:text-sky-200 dark:hover:border-sky-600 dark:hover:bg-[#1A1A1A]/20"
               >
                 {dest}
               </button>

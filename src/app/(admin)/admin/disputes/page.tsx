@@ -244,7 +244,7 @@ export default function DisputesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0646\u0632\u0627\u0639\u0627\u062a", "Manage Disputes")}
         breadcrumbs={[
@@ -297,7 +297,7 @@ export default function DisputesPage() {
                 onClick={() => setSelectedId(dispute.id)}
                 className="group w-full text-start"
               >
-                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#2D3B4F] dark:bg-[#1E293B]">
+                <div className="flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#383838] dark:bg-[#262626]">
                   {/* Status indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[dispute.status])} />
 
@@ -306,7 +306,7 @@ export default function DisputesPage() {
                     "hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg",
                     dispute.type === "fraud" ? "bg-red-50 dark:bg-red-900/20" :
                     dispute.type === "refund" ? "bg-orange-50 dark:bg-orange-900/20" :
-                    "bg-slate-100 dark:bg-[#1E293B]"
+                    "bg-slate-100 dark:bg-[#262626]"
                   )}>
                     <AlertTriangle className={cn(
                       "h-5 w-5",
@@ -575,7 +575,7 @@ export default function DisputesPage() {
                     "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-sm font-medium border transition-all",
                     newStatus === opt.value
                       ? "border-sky-400 bg-sky-50 text-sky-800 dark:border-sky-600 dark:bg-sky-900/20 dark:text-sky-300"
-                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-400/70"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-400/70"
                   )}
                 >
                   {opt.icon}

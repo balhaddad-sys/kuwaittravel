@@ -120,7 +120,7 @@ export default function FinancialsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("\u0627\u0644\u0645\u0627\u0644\u064a\u0629", "Financials")}
         breadcrumbs={[
@@ -214,7 +214,7 @@ export default function FinancialsPage() {
                 return (
                   <div
                     key={booking.id}
-                    className="group rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-[#2D3B4F] dark:bg-[#1E293B]"
+                    className="group rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-[#383838] dark:bg-[#262626]"
                   >
                     {/* Mobile layout */}
                     <div className="sm:hidden space-y-2">

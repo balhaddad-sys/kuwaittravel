@@ -86,7 +86,7 @@ export default function WalletPage() {
   }, [bookings]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("المحفظة", "Wallet")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal"), href: "/portal/dashboard" }, { label: t("المحفظة", "Wallet") }]}
@@ -135,7 +135,7 @@ export default function WalletPage() {
             </p>
           ) : (
             <div className="space-y-3">
-              <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+              <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
                 <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                   {t("إجمالي المحصّل", "Total Collected")}
                 </span>
@@ -143,7 +143,7 @@ export default function WalletPage() {
                   {formatKWD(bookings.filter((b) => b.status !== "cancelled" && b.status !== "refunded").reduce((s, b) => s + b.paidKWD, 0))}
                 </span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+              <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
                 <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                   {t("رسوم المنصة (2%)", "Platform Fee (2%)")}
                 </span>

@@ -42,7 +42,7 @@ function PriceBreakdownModal({ open, onClose, items, total }: PriceBreakdownModa
             </span>
           </div>
         ))}
-        <div className="border-t-2 border-slate-200 pt-3 dark:border-[#2D3B4F]">
+        <div className="border-t-2 border-slate-200 pt-3 dark:border-[#383838]">
           <div className="flex items-center justify-between">
             <span className="text-body-lg font-bold text-slate-900 dark:text-white">
               {t("الإجمالي", "Total")}

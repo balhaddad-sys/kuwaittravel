@@ -88,7 +88,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={t("اكتب عنواناً لتقييمك", "Write a title for your review")}
-          className="mt-1 w-full rounded-[var(--radius-md)] border border-slate-200 bg-white px-3 py-2.5 text-body-md text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-white dark:placeholder:text-slate-300/40"
+          className="mt-1 w-full rounded-[var(--radius-md)] border border-slate-200 bg-white px-3 py-2.5 text-body-md text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-[#383838] dark:bg-[#262626] dark:text-white dark:placeholder:text-slate-300/40"
         />
       </div>
 
@@ -102,7 +102,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
           onChange={(e) => setBody(e.target.value)}
           rows={4}
           placeholder={t("شاركنا تجربتك", "Share your experience")}
-          className="mt-1 w-full rounded-[var(--radius-md)] border border-slate-200 bg-white px-3 py-2.5 text-body-md text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-white dark:placeholder:text-slate-300/40"
+          className="mt-1 w-full rounded-[var(--radius-md)] border border-slate-200 bg-white px-3 py-2.5 text-body-md text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-[#383838] dark:bg-[#262626] dark:text-white dark:placeholder:text-slate-300/40"
         />
       </div>
 
@@ -113,7 +113,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
         </label>
         <div className="mt-2 flex flex-wrap gap-2">
           {photoPreviews.map(({ url }, i) => (
-            <div key={i} className="relative h-16 w-16 rounded-lg bg-slate-100 dark:bg-[#1E293B]">
+            <div key={i} className="relative h-16 w-16 rounded-lg bg-slate-100 dark:bg-[#262626]">
               <Image
                 src={url}
                 alt={t("صورة مرفقة", "Uploaded photo")}

@@ -262,7 +262,7 @@ export default function AdminCampaignsPage() {
   /* ── Render ── */
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("إدارة الحملات", "Campaign Management")}
         breadcrumbs={[
@@ -322,14 +322,14 @@ export default function AdminCampaignsPage() {
               >
                 <div
                   className={cn(
-                    "flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#2D3B4F] dark:bg-[#1E293B]",
+                    "flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#383838] dark:bg-[#262626]",
                   )}
                 >
                   {/* Status indicator bar */}
                   <div className={cn("w-1 self-stretch shrink-0", statusBarColor[campaign.verificationStatus])} />
 
                   {/* Icon — desktop only */}
-                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#1E293B]">
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#262626]">
                     <Building2 className="h-5 w-5 text-slate-500 dark:text-slate-400/70" />
                   </div>
 

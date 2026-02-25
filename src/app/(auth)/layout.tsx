@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   const { t } = useDirection();
 
   return (
-    <div className="dark relative min-h-screen overflow-hidden bg-[#0B1120]">
+    <div className="dark relative min-h-screen overflow-hidden bg-[#1A1A1A]">
       {/* Mobile gradient background */}
       <div className="fixed inset-0 bg-gradient-to-br from-[#020617] via-[#0C4A6E]/40 to-[#4C1D95]/30 lg:hidden" />
       <div

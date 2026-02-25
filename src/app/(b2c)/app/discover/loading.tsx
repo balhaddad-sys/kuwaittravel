@@ -6,7 +6,7 @@ export default function DiscoverLoading() {
   return (
     <div className="min-h-screen">
       {/* Top bar skeleton */}
-      <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F]">
+      <div className="bg-white dark:bg-[#1A1A1A] border-b border-[#EBEBEB] dark:border-[#383838]">
         <div className="flex h-14 items-center justify-between px-4">
           <Skeleton className="h-5 w-16 rounded" />
           <div className="flex items-center gap-2">
@@ -19,7 +19,7 @@ export default function DiscoverLoading() {
           <Skeleton className="h-11 w-full rounded-full" />
         </div>
         {/* Filter chips skeleton */}
-        <div className="border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pb-3">
+        <div className="border-b border-[#EBEBEB] dark:border-[#383838] px-4 pb-3">
           <div className="flex items-center gap-2">
             {Array.from({ length: 5 }).map((_, i) => (
               <Skeleton key={i} className="h-8 w-20 shrink-0 rounded-full" />

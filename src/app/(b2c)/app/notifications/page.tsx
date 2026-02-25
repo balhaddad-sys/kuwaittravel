@@ -64,7 +64,7 @@ export default function NotificationsPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pt-10 pb-4">
+      <div className="bg-white dark:bg-[#1A1A1A] border-b border-[#EBEBEB] dark:border-[#383838] px-4 pt-10 pb-4">
         <Container>
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-bold text-[#222222] dark:text-white">
@@ -115,7 +115,7 @@ export default function NotificationsPage() {
                 className={cn(
                   "w-full text-start rounded-xl border p-3 sm:p-4 transition-colors",
                   n.isRead
-                    ? "border-[#EBEBEB] bg-white dark:border-[#2D3B4F] dark:bg-[#1E293B]"
+                    ? "border-[#EBEBEB] bg-white dark:border-[#383838] dark:bg-[#262626]"
                     : "border-sky-200 bg-sky-50/50 dark:border-sky-900/40 dark:bg-sky-900/10"
                 )}
               >

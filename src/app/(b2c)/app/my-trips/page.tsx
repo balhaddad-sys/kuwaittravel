@@ -69,7 +69,7 @@ interface EnrichedBooking extends Booking {
 
 function SkeletonBooking() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/80">
+    <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white dark:border-[#383838]/60 dark:bg-[#262626]/80">
       <div className="flex items-center gap-4 p-5">
         <div className="h-14 w-14 shrink-0 rounded-2xl bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
         <div className="flex-1 space-y-2.5">
@@ -177,7 +177,7 @@ export default function MyTripsPage() {
     <div className="min-h-screen">
 
       {/* ─── Clean Header ─── */}
-      <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pt-10 pb-0">
+      <div className="bg-white dark:bg-[#1A1A1A] border-b border-[#EBEBEB] dark:border-[#383838] px-4 pt-10 pb-0">
         <Container>
           <h1 className="text-xl font-bold text-[#222222] dark:text-white pb-4">
             {t("رحلاتي", "My Trips")}
@@ -251,7 +251,7 @@ export default function MyTripsPage() {
                   key={booking.id}
                   type="button"
                   onClick={() => router.push(`/app/my-trips/${booking.id}`)}
-                  className="group w-full overflow-hidden rounded-xl border border-[#EBEBEB] bg-white text-start transition-colors hover:bg-slate-50 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90 dark:hover:bg-[#1E293B]"
+                  className="group w-full overflow-hidden rounded-xl border border-[#EBEBEB] bg-white text-start transition-colors hover:bg-slate-50 dark:border-[#383838]/60 dark:bg-[#262626]/90 dark:hover:bg-[#262626]"
                 >
                   <div className="flex items-center gap-4 p-4">
                     {/* Status icon bubble */}

@@ -48,7 +48,7 @@ function ChecklistItem({ id, title, titleAr, description, descriptionAr, categor
       onClick={() => onToggle(id, nextStatus())}
       className={cn(
         "flex w-full items-start gap-3 rounded-[var(--radius-md)] p-3 text-start transition-colors",
-        status === "completed" ? "bg-sky-50/50 dark:bg-sky-900/10" : "hover:bg-slate-50 dark:hover:bg-[#1E293B]/50"
+        status === "completed" ? "bg-sky-50/50 dark:bg-sky-900/10" : "hover:bg-slate-50 dark:hover:bg-[#262626]/50"
       )}
     >
       <div className="mt-0.5 shrink-0">
@@ -111,7 +111,7 @@ function PreparationChecklist({ items, onToggle, className }: PreparationCheckli
             {completed}/{total}
           </span>
         </div>
-        <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-[#1E293B]">
+        <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-[#262626]">
           <div
             className="h-full rounded-full bg-sky-500 transition-all duration-500"
             style={{ width: `${progress}%` }}

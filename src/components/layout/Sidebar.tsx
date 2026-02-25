@@ -32,12 +32,12 @@ function Sidebar({ items, header, footer }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-slate-200 bg-white shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-spring)] dark:border-[#2D3B4F] dark:bg-[#111827] lg:flex",
+        "fixed top-0 start-0 z-[var(--z-sidebar)] hidden h-screen flex-col border-e border-slate-200 bg-white shadow-sidebar transition-[width,background-color,border-color] duration-[var(--duration-ui)] ease-[var(--ease-spring)] dark:border-[#383838] dark:bg-[#1A1A1A] lg:flex",
         collapsed ? "w-[84px]" : "w-[286px]"
       )}
     >
       {/* Header */}
-      <div className="relative flex items-center justify-between border-b border-slate-200 p-4 dark:border-[#2D3B4F]">
+      <div className="relative flex items-center justify-between border-b border-slate-200 p-4 dark:border-[#383838]">
         {!collapsed && (
           <div className="max-w-[190px] truncate">{header}</div>
         )}
@@ -57,7 +57,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
           return (
             <div key={item.href}>
               {dividerIndices.has(index) && (
-                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-[#2D3B4F]" />
+                <div className="mx-2 my-2 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-[#383838]" />
               )}
               <Link
                 href={item.href}
@@ -66,7 +66,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                   "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-spring)] active:scale-[0.985]",
                   isActive
                     ? "border border-sky-100 bg-sky-50 font-semibold text-sky-700 dark:border-sky-700/30 dark:bg-sky-800/60 dark:text-sky-300"
-                    : "border border-transparent text-slate-500 hover:border-slate-100 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:border-[#2D3B4F] dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                    : "border border-transparent text-slate-500 hover:border-slate-100 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:border-[#383838] dark:hover:bg-slate-800 dark:hover:text-slate-100"
                 )}
                 title={collapsed ? item.label : undefined}
               >
@@ -101,7 +101,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
 
       {/* Footer */}
       {footer && !collapsed && (
-        <div className="relative border-t border-slate-200 p-4 dark:border-[#2D3B4F]">
+        <div className="relative border-t border-slate-200 p-4 dark:border-[#383838]">
           {footer}
         </div>
       )}

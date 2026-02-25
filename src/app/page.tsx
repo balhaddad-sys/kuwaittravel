@@ -255,7 +255,7 @@ export default function HomePage() {
 
   return (
     <div
-      className={`min-h-screen bg-slate-50 dark:bg-[#0B1120] transition-[opacity,transform] duration-[140ms] ease-out ${
+      className={`min-h-screen bg-slate-50 dark:bg-[#1A1A1A] transition-[opacity,transform] duration-[140ms] ease-out ${
         exiting ? "scale-[0.97] opacity-0" : ""
       }`}
     >
@@ -420,7 +420,7 @@ export default function HomePage() {
           <svg
             viewBox="0 0 1440 60"
             preserveAspectRatio="none"
-            className="absolute inset-0 h-full w-full fill-slate-50 dark:fill-[#0B1120]"
+            className="absolute inset-0 h-full w-full fill-slate-50 dark:fill-[#1A1A1A]"
           >
             <path d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60 Z" />
           </svg>
@@ -461,7 +461,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           FOOTER
           ══════════════════════════════════════════ */}
-      <footer className="border-t border-slate-200 bg-slate-50 px-5 py-8 text-center dark:border-[#2D3B4F] dark:bg-[#0B1120]">
+      <footer className="border-t border-slate-200 bg-slate-50 px-5 py-8 text-center dark:border-[#383838] dark:bg-[#1A1A1A]">
         <div className="mx-auto max-w-6xl">
           <div className="flex items-center justify-center gap-3">
             <span
@@ -508,7 +508,7 @@ function StatsSection({ t }: { t: (ar: string, en: string) => string }) {
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto max-w-4xl rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-[0_4px_24px_rgba(2,6,23,0.06),0_1px_3px_rgba(2,6,23,0.04)] backdrop-blur-xl sm:p-8 dark:border-[#2D3B4F] dark:bg-[#111827]/90"
+        className="mx-auto max-w-4xl rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-[0_4px_24px_rgba(2,6,23,0.06),0_1px_3px_rgba(2,6,23,0.04)] backdrop-blur-xl sm:p-8 dark:border-[#383838] dark:bg-[#1A1A1A]/90"
       >
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
           {stats.map((stat) => (
@@ -579,7 +579,7 @@ function DestinationsSection({
               whileHover={{ y: -4, transition: { type: "spring", stiffness: 400 } }}
               whileTap={{ scale: 0.97 }}
               onClick={() => navigateTo("/app/discover")}
-              className={`group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-sky-200 sm:rounded-3xl sm:p-6 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:hover:border-sky-700/40 ${
+              className={`group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-sky-200 sm:rounded-3xl sm:p-6 dark:border-[#383838] dark:bg-[#262626] dark:hover:border-sky-700/40 ${
                 i === 0 ? "col-span-2 row-span-2" : ""
               }`}
             >
@@ -763,7 +763,7 @@ function EntryPointsSection({
               whileHover={{ y: -6, transition: { type: "spring", stiffness: 400 } }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigateTo(card.href)}
-              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-sky-200 sm:rounded-3xl sm:p-7 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:hover:border-sky-700/40"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-sky-200 sm:rounded-3xl sm:p-7 dark:border-[#383838] dark:bg-[#262626] dark:hover:border-sky-700/40"
             >
               {/* Hover gradient border */}
               <div
@@ -800,7 +800,7 @@ function EntryPointsSection({
               onClick={() =>
                 navigateTo(hasAdminRole ? "/admin/dashboard" : "/admin-login")
               }
-              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-slate-300 sm:rounded-3xl sm:p-7 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:hover:border-slate-600"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-slate-300 sm:rounded-3xl sm:p-7 dark:border-[#383838] dark:bg-[#262626] dark:hover:border-slate-600"
             >
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"

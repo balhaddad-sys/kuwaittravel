@@ -189,7 +189,7 @@ export default function DiscoverPage() {
     <div className="min-h-screen">
 
       {/* ─── Sticky Top Bar ─── */}
-      <div className="sticky top-0 z-[var(--z-topbar)] bg-white dark:bg-[#111827]">
+      <div className="sticky top-0 z-[var(--z-topbar)] bg-white dark:bg-[#1A1A1A]">
         {/* Brand row */}
         <div className="flex h-14 items-center justify-between px-4">
           <span className="text-lg font-bold text-[#222222] dark:text-white">Rahal</span>
@@ -210,7 +210,7 @@ export default function DiscoverPage() {
         </div>
 
         {/* Filter bar */}
-        <div className="border-b border-[#EBEBEB] px-4 pb-3 dark:border-[#2D3B4F]">
+        <div className="border-b border-[#EBEBEB] px-4 pb-3 dark:border-[#383838]">
           <div className="flex items-center gap-3">
             <div className="flex flex-1 items-center gap-2 overflow-x-auto scrollbar-hide py-0.5">
               {TRIP_TYPE_PILLS.map((pill) => {
@@ -223,7 +223,7 @@ export default function DiscoverPage() {
                     className={`shrink-0 rounded-full px-4 py-1.5 text-[0.8125rem] font-medium transition-all duration-150 ${
                       isActive
                         ? "bg-[#222222] text-white dark:bg-sky-500 dark:text-white"
-                        : "border border-[#EBEBEB] bg-white text-[#222222] hover:bg-slate-50 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-200"
+                        : "border border-[#EBEBEB] bg-white text-[#222222] hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200"
                     }`}
                   >
                     {t(pill.labelAr, pill.labelEn)}
@@ -235,7 +235,7 @@ export default function DiscoverPage() {
             <button
               type="button"
               onClick={() => setFilterSheetOpen(true)}
-              className="relative flex shrink-0 items-center gap-1.5 rounded-full border border-[#EBEBEB] bg-white px-3.5 py-1.5 text-[0.8125rem] font-medium text-[#222222] transition-all hover:bg-slate-50 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-200"
+              className="relative flex shrink-0 items-center gap-1.5 rounded-full border border-[#EBEBEB] bg-white px-3.5 py-1.5 text-[0.8125rem] font-medium text-[#222222] transition-all hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200"
             >
               <SlidersHorizontal className="h-4 w-4" />
               {t("فلتر", "Filters")}
@@ -369,7 +369,7 @@ export default function DiscoverPage() {
                   <button
                     type="button"
                     onClick={() => setVisibleCount((prev) => prev + 12)}
-                    className="w-full rounded-xl border border-[#EBEBEB] bg-white py-3 text-sm font-semibold text-[#222222] transition-all hover:bg-slate-50 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-200"
+                    className="w-full rounded-xl border border-[#EBEBEB] bg-white py-3 text-sm font-semibold text-[#222222] transition-all hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200"
                   >
                     {t("عرض المزيد", "Show more")}
                   </button>

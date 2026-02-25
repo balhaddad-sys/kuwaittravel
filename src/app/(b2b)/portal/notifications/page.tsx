@@ -176,7 +176,7 @@ export default function NotificationsPage() {
 
   if (!userData?.campaignId) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
         <AppBar
           title={t("الإشعارات", "Notifications")}
           breadcrumbs={[
@@ -199,7 +199,7 @@ export default function NotificationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("الإشعارات", "Notifications")}
         breadcrumbs={[

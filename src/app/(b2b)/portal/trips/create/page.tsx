@@ -406,7 +406,7 @@ export default function CreateTripPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("إنشاء رحلة جديدة", "Create New Trip")}
         breadcrumbs={[

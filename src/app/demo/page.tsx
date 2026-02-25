@@ -247,9 +247,9 @@ export default function DemoPage() {
   ];
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen overflow-x-hidden bg-slate-50 dark:bg-[#1A1A1A]">
       {/* ═══ STICKY NAV ═══════════════════════════════ */}
-      <nav className="sticky top-0 z-[var(--z-topbar)] border-b border-white/10 bg-white/80 backdrop-blur-xl dark:bg-[#0B1120]/80">
+      <nav className="sticky top-0 z-[var(--z-topbar)] border-b border-white/10 bg-white/80 backdrop-blur-xl dark:bg-[#1A1A1A]/80">
         <Container>
           <div className="flex h-14 items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -262,7 +262,7 @@ export default function DemoPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={toggleDarkMode}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:bg-slate-100 dark:border-[#2D3B4F] dark:text-slate-300 dark:hover:bg-slate-700"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:bg-slate-100 dark:border-[#383838] dark:text-slate-300 dark:hover:bg-slate-700"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -330,7 +330,7 @@ export default function DemoPage() {
       {/* ═══ STATS BAR ════════════════════════════════ */}
       <AnimatedSection className="relative z-10 -mt-10 px-4">
         <Container size="lg">
-          <motion.div variants={fadeUp} className="eo-glass rounded-2xl border border-white/20 p-6 shadow-[0_8px_40px_rgba(2,6,23,0.12)] dark:border-[#2D3B4F] dark:bg-[#111827]/90">
+          <motion.div variants={fadeUp} className="eo-glass rounded-2xl border border-white/20 p-6 shadow-[0_8px_40px_rgba(2,6,23,0.12)] dark:border-[#383838] dark:bg-[#1A1A1A]/90">
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {[
                 { value: 12500, suffix: "+", label: t("مسافر سعيد", "Happy Travelers"), icon: <Users className="h-5 w-5 text-sky-500" /> },
@@ -339,7 +339,7 @@ export default function DemoPage() {
                 { value: 4.9, suffix: "/5", label: t("تقييم المنصة", "Platform Rating"), icon: <Star className="h-5 w-5 text-orange-400" /> },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-[#1E293B]">
+                  <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-[#262626]">
                     {stat.icon}
                   </div>
                   <p className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl">
@@ -378,7 +378,7 @@ export default function DemoPage() {
                 className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   activeFilter === pill.id
                     ? "bg-sky-900 text-white dark:bg-sky-50 dark:text-sky-900"
-                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-[#2D3B4F] dark:bg-[#1E293B] dark:text-slate-200"
+                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200"
                 }`}
               >
                 <span>{pill.emoji}</span>
@@ -419,7 +419,7 @@ export default function DemoPage() {
               <Radio className="mb-1 inline h-5 w-5 text-sky-500" />{" "}
               {t("تتبع رحلتك مباشرة", "Track Your Trip Live")}
             </h3>
-            <div className="mx-auto max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-[#2D3B4F] dark:bg-[#1E293B]">
+            <div className="mx-auto max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-[#383838] dark:bg-[#262626]">
               <LiveTripTracker currentPhase={currentPhase} steps={trackerSteps} />
               <div className="mt-6 flex justify-start gap-2 overflow-x-auto pb-2 sm:justify-center sm:overflow-visible sm:pb-0">
                 {(["not_started", "departing", "in_destination", "returning", "completed"] as const).map((phase) => (
@@ -429,7 +429,7 @@ export default function DemoPage() {
                     className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
                       currentPhase === phase
                         ? "bg-sky-500 text-white"
-                        : "border border-slate-200 text-slate-600 hover:bg-slate-50 dark:border-[#2D3B4F] dark:text-slate-300 dark:hover:bg-slate-700"
+                        : "border border-slate-200 text-slate-600 hover:bg-slate-50 dark:border-[#383838] dark:text-slate-300 dark:hover:bg-slate-700"
                     }`}
                   >
                     {phase === "not_started" ? t("لم تبدأ", "Not Started")
@@ -474,7 +474,7 @@ export default function DemoPage() {
       {/* ═══ Wave: Light → Dark ════════════════════════ */}
       <div className="relative h-16 -mt-px overflow-hidden">
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="h-full w-full" style={{ display: "block" }}>
-          <path d="M0,30 C360,55 720,5 1080,30 C1260,45 1380,10 1440,25 L1440,60 L0,60 Z" className="fill-slate-50 dark:fill-[#0B1120]" />
+          <path d="M0,30 C360,55 720,5 1080,30 C1260,45 1380,10 1440,25 L1440,60 L0,60 Z" className="fill-slate-50 dark:fill-[#1A1A1A]" />
         </svg>
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(160deg, #020617, #0C4A6E, #4C1D95)" }} />
       </div>
@@ -568,7 +568,7 @@ export default function DemoPage() {
       {/* ═══ Wave: Dark → Light ════════════════════════ */}
       <div className="relative h-16 -mt-px overflow-hidden" style={{ background: "linear-gradient(160deg, #020617, #0C4A6E, #4C1D95)" }}>
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="h-full w-full" style={{ display: "block" }}>
-          <path d="M0,0 L1440,0 L1440,30 C1200,55 960,5 720,30 C480,55 240,5 0,30 Z" className="fill-slate-50 dark:fill-[#0B1120]" />
+          <path d="M0,0 L1440,0 L1440,30 C1200,55 960,5 720,30 C480,55 240,5 0,30 Z" className="fill-slate-50 dark:fill-[#1A1A1A]" />
         </svg>
       </div>
 
@@ -609,7 +609,7 @@ export default function DemoPage() {
                   <div key={item.id} className={`flex flex-col gap-3 rounded-2xl border p-4 transition-all sm:flex-row sm:items-center sm:justify-between ${
                     status === "approved" ? "border-emerald-200 bg-emerald-50 dark:border-emerald-800/30 dark:bg-emerald-900/10"
                     : status === "rejected" ? "border-red-200 bg-red-50 dark:border-red-800/30 dark:bg-red-900/10"
-                    : "border-slate-200 bg-white dark:border-[#2D3B4F] dark:bg-[#1E293B]"
+                    : "border-slate-200 bg-white dark:border-[#383838] dark:bg-[#262626]"
                   }`}>
                     <div className="flex items-center gap-3">
                       <Avatar alt={item.name} size="md" />
@@ -698,7 +698,7 @@ export default function DemoPage() {
               {t("اعرف ما يحدث في كل يوم من رحلتك", "Know exactly what happens each day of your trip")}
             </p>
           </motion.div>
-          <motion.div variants={fadeUp} className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-[#2D3B4F] dark:bg-[#1E293B]">
+          <motion.div variants={fadeUp} className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-[#383838] dark:bg-[#262626]">
             <ItineraryTimeline blocks={mockItinerary} />
           </motion.div>
         </Container>
@@ -741,7 +741,7 @@ export default function DemoPage() {
       </section>
 
       {/* ═══ FOOTER ═══════════════════════════════════ */}
-      <footer className="border-t border-slate-200 bg-white py-8 dark:border-[#2D3B4F] dark:bg-[#0B1120]">
+      <footer className="border-t border-slate-200 bg-white py-8 dark:border-[#383838] dark:bg-[#1A1A1A]">
         <Container>
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-2">
@@ -793,7 +793,7 @@ export default function DemoPage() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative mx-4 max-h-[85vh] w-full max-w-lg overflow-auto rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl dark:bg-[#1E293B]"
+              className="relative mx-4 max-h-[85vh] w-full max-w-lg overflow-auto rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl dark:bg-[#262626]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Cover image */}
@@ -870,7 +870,7 @@ export default function DemoPage() {
                 })()}
 
                 {/* Price + CTA */}
-                <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-[#2D3B4F]">
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-[#383838]">
                   <div>
                     <span className="text-xs text-slate-400 dark:text-slate-500">{t("يبدأ من", "From")}</span>
                     <p className="font-numbers text-2xl font-bold text-slate-900 dark:text-white">

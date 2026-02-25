@@ -48,7 +48,7 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
       <div className="fixed inset-0 bg-black/45 animate-fade-in" onClick={onClose} />
       <div
         className={cn(
-          "relative flex max-h-[calc(100vh-2rem)] w-full flex-col overflow-hidden rounded-[var(--radius-xl)] border border-slate-200 bg-white shadow-modal animate-scale-in dark:border-[#2D3B4F] dark:bg-[#111827]",
+          "relative flex max-h-[calc(100vh-2rem)] w-full flex-col overflow-hidden rounded-[var(--radius-xl)] border border-slate-200 bg-white shadow-modal animate-scale-in dark:border-[#383838] dark:bg-[#1A1A1A]",
           sizeMap[size],
           className
         )}
@@ -74,7 +74,7 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
             <button
               onClick={onClose}
               aria-label="Close dialog"
-              className="shrink-0 rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 dark:hover:bg-[#2D3B4F] transition-colors"
+              className="shrink-0 rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 dark:hover:bg-[#383838] transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -82,7 +82,7 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
         )}
         {children !== undefined && children !== null && <div className="overflow-y-auto px-4 py-4 sm:px-6 sm:py-6">{children}</div>}
         {footer && (
-          <div className="shrink-0 flex items-center justify-end gap-2 border-t border-slate-200/85 px-4 py-3 sm:px-6 sm:py-4 dark:border-[#2D3B4F]/85">
+          <div className="shrink-0 flex items-center justify-end gap-2 border-t border-slate-200/85 px-4 py-3 sm:px-6 sm:py-4 dark:border-[#383838]/85">
             {footer}
           </div>
         )}

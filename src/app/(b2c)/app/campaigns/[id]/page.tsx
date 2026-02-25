@@ -172,7 +172,7 @@ export default function CampaignDetailPage({
             <div className="space-y-2.5">
               {campaign.contactPhone && (
                 <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-slate-400">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#1E293B]/70">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#262626]/70">
                     <Phone className="h-4 w-4 text-slate-500" />
                   </div>
                   <span dir="ltr">{campaign.contactPhone}</span>
@@ -180,7 +180,7 @@ export default function CampaignDetailPage({
               )}
               {campaign.contactEmail && (
                 <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-slate-400">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#1E293B]/70">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#262626]/70">
                     <Mail className="h-4 w-4 text-slate-500" />
                   </div>
                   <span className="truncate">{campaign.contactEmail}</span>
@@ -188,7 +188,7 @@ export default function CampaignDetailPage({
               )}
               {campaign.website && (
                 <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-slate-400">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#1E293B]/70">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#262626]/70">
                     <Globe className="h-4 w-4 text-slate-500" />
                   </div>
                   <a
@@ -212,7 +212,7 @@ export default function CampaignDetailPage({
               {t("الرحلات المتاحة", "Available Trips")}
             </h3>
             {trips.length > 0 && (
-              <span className="rounded-full bg-slate-100/80 px-2 py-0.5 text-[11px] font-medium text-slate-600 dark:bg-[#1E293B]/80 dark:text-slate-400">
+              <span className="rounded-full bg-slate-100/80 px-2 py-0.5 text-[11px] font-medium text-slate-600 dark:bg-[#262626]/80 dark:text-slate-400">
                 {trips.length}
               </span>
             )}

@@ -51,7 +51,7 @@ const typeConfig: Record<string, { icon: React.ReactNode; color: string }> = {
   },
   free_time: {
     icon: <Clock className="h-4 w-4" />,
-    color: "bg-slate-100 text-slate-500 dark:bg-[#1E293B] dark:text-sky-200",
+    color: "bg-slate-100 text-slate-500 dark:bg-[#262626] dark:text-sky-200",
   },
 };
 
@@ -209,7 +209,7 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
           </div>
 
           {/* Timeline blocks */}
-          <div className="relative ms-3.5 border-s-2 border-slate-200 ps-5 dark:border-[#2D3B4F]">
+          <div className="relative ms-3.5 border-s-2 border-slate-200 ps-5 dark:border-[#383838]">
             {dayBlocks.map((block, i) => {
               const config = typeConfig[block.type] || typeConfig.activity;
               const title = language === "ar" ? (block.titleAr || block.title) : (block.title || block.titleAr);

@@ -138,7 +138,7 @@ export default function DashboardPage() {
   const loading = loadingTrips || loadingBookings;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={t("لوحة التحكم", "Dashboard")}
         breadcrumbs={[{ label: t("بوابة الحملة", "Campaign Portal") }, { label: t("لوحة التحكم", "Dashboard") }]}
@@ -245,9 +245,9 @@ export default function DashboardPage() {
                     <button
                       key={trip.id}
                       onClick={() => router.push(`/portal/trips/${trip.id}`)}
-                      className="group w-full text-start flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#2D3B4F] dark:bg-[#1E293B]"
+                      className="group w-full text-start flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#383838] dark:bg-[#262626]"
                     >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#1E293B]">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#262626]">
                         <Map className="h-5 w-5 text-slate-500 dark:text-slate-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -321,9 +321,9 @@ export default function DashboardPage() {
                   return (
                     <div
                       key={booking.id}
-                      className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50/50 p-2.5 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50"
+                      className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50/50 p-2.5 dark:border-[#383838] dark:bg-[#262626]/50"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#111827]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#1A1A1A]">
                         <BookOpen className="h-4 w-4 text-slate-500 dark:text-slate-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -372,7 +372,7 @@ export default function DashboardPage() {
               />
             ) : (
               <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
                   <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("متوسط قيمة الحجز", "Avg. Booking Value")}
                   </span>
@@ -380,7 +380,7 @@ export default function DashboardPage() {
                     {formatKWD(performanceStats.avgBookingValue)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
                   <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("نسبة الإشغال", "Occupancy Rate")}
                   </span>
@@ -388,7 +388,7 @@ export default function DashboardPage() {
                     {performanceStats.occupancyRate.toFixed(0)}%
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
                   <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("الحجوزات المكتملة", "Completed Bookings")}
                   </span>
@@ -396,7 +396,7 @@ export default function DashboardPage() {
                     {performanceStats.completedCount}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#2D3B4F] dark:bg-[#1E293B]/50">
+                <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
                   <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
                     {t("إجمالي الحجوزات", "Total Bookings")}
                   </span>

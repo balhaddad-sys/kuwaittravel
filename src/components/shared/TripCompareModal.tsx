@@ -56,7 +56,7 @@ function TripCompareModal({ open, onClose, trips, onSelect }: TripCompareModalPr
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr key={i} className={i % 2 === 0 ? "bg-slate-50/50 dark:bg-[#1E293B]/30" : ""}>
+              <tr key={i} className={i % 2 === 0 ? "bg-slate-50/50 dark:bg-[#262626]/30" : ""}>
                 <td className="p-3">
                   <span className="flex items-center gap-2 text-body-sm font-medium text-slate-600 dark:text-sky-200">
                     {row.icon}

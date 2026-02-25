@@ -150,7 +150,7 @@ export default function AdminLoginPage() {
             <div className="w-full border-t border-slate-200 dark:border-slate-600" />
           </div>
           <div className="relative flex justify-center text-body-sm">
-            <span className="bg-white dark:bg-[#1E293B] px-3 text-slate-400">{t("أو", "or")}</span>
+            <span className="bg-white dark:bg-[#262626] px-3 text-slate-400">{t("أو", "or")}</span>
           </div>
         </div>
 

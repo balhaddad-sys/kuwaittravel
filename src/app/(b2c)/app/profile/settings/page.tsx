@@ -99,7 +99,7 @@ export default function SettingsPage() {
           <Button
             variant="ghost"
             fullWidth
-            className="h-12 rounded-xl border border-red-100 bg-white text-red-500 hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-[#1E293B]/90 dark:text-red-400 dark:hover:bg-red-900/10"
+            className="h-12 rounded-xl border border-red-100 bg-white text-red-500 hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:bg-[#262626]/90 dark:text-red-400 dark:hover:bg-red-900/10"
             leftIcon={<LogOut className="h-[1.125rem] w-[1.125rem]" />}
             onClick={handleLogout}
           >

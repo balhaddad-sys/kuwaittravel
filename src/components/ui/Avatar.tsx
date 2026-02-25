@@ -48,7 +48,7 @@ function Avatar({ src, alt, name, size = "md", ring = false, className }: Avatar
   return (
     <div
       className={cn(
-        "flex items-center justify-center rounded-full border border-slate-200/85 bg-gradient-to-br from-sky-50 to-violet-50 text-sky-700 dark:border-[#2D3B4F] dark:from-sky-900/40 dark:to-violet-900/40 dark:text-sky-300",
+        "flex items-center justify-center rounded-full border border-slate-200/85 bg-gradient-to-br from-sky-50 to-violet-50 text-sky-700 dark:border-[#383838] dark:from-sky-900/40 dark:to-violet-900/40 dark:text-sky-300",
         ring && "ring-2 ring-white/90 ring-offset-2 ring-offset-transparent dark:ring-sky-400/40",
         sizeMap[size],
         className

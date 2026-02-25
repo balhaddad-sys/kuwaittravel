@@ -51,7 +51,7 @@ const STATUS_BADGE_CLASS: Record<string, string> = {
   in_transit: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300",
   completed: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
   cancelled: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300",
-  refunded: "bg-slate-100 text-slate-700 dark:bg-[#1E293B] dark:text-slate-200",
+  refunded: "bg-slate-100 text-slate-700 dark:bg-[#262626] dark:text-slate-200",
 };
 
 function toCsvCell(value: string | number): string {
@@ -223,7 +223,7 @@ export default function TripDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar
         title={tripLoading ? "تفاصيل الرحلة" : tripTitle}
         breadcrumbs={[
@@ -307,7 +307,7 @@ export default function TripDetailPage() {
                   return (
                     <div
                       key={booking.id}
-                      className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-[#2D3B4F] dark:bg-[#1E293B]"
+                      className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-[#383838] dark:bg-[#262626]"
                     >
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-0">

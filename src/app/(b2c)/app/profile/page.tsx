@@ -93,7 +93,7 @@ export default function ProfilePage() {
     return (
       <div className="min-h-screen">
         {/* Clean header */}
-        <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pt-10 pb-6">
+        <div className="bg-white dark:bg-[#1A1A1A] border-b border-[#EBEBEB] dark:border-[#383838] px-4 pt-10 pb-6">
           <Container>
             <div className="flex items-center gap-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 dark:bg-slate-700/50">
@@ -118,10 +118,10 @@ export default function ProfilePage() {
             {t("تسجيل الدخول", "Sign In")}
           </Button>
           {/* Settings still accessible for guests */}
-          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#383838]/60 dark:bg-[#262626]/90">
             <button
               onClick={() => router.push("/app/profile/settings")}
-              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40 border-b border-[#EBEBEB] dark:border-[#2D3B4F]/50"
+              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40 border-b border-[#EBEBEB] dark:border-[#383838]/50"
             >
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
               <div className="min-w-0 flex-1">
@@ -143,7 +143,7 @@ export default function ProfilePage() {
             </button>
           </div>
           {/* Language toggle */}
-          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white px-4 py-3.5 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white px-4 py-3.5 dark:border-[#383838]/60 dark:bg-[#262626]/90">
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-4">
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400"><Globe className="h-[1.125rem] w-[1.125rem]" /></span>
@@ -161,7 +161,7 @@ export default function ProfilePage() {
     <div className="min-h-screen">
 
       {/* ─── Clean Header ─── */}
-      <div className="bg-white dark:bg-[#111827] border-b border-[#EBEBEB] dark:border-[#2D3B4F] px-4 pt-10 pb-6">
+      <div className="bg-white dark:bg-[#1A1A1A] border-b border-[#EBEBEB] dark:border-[#383838] px-4 pt-10 pb-6">
         <Container>
           <div className="flex items-center gap-4">
             {/* Avatar */}
@@ -194,14 +194,14 @@ export default function ProfilePage() {
       <Container className="space-y-3 py-5">
 
         {/* ─── Menu Card ─── */}
-        <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+        <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#383838]/60 dark:bg-[#262626]/90">
           {menuItems.map((item, i) => (
             <button
               key={i}
               onClick={() => router.push(item.href)}
               className={`group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40 ${
                 i < menuItems.length - 1
-                  ? "border-b border-[#EBEBEB] dark:border-[#2D3B4F]/50"
+                  ? "border-b border-[#EBEBEB] dark:border-[#383838]/50"
                   : ""
               }`}
             >
@@ -229,7 +229,7 @@ export default function ProfilePage() {
 
         {/* ─── Admin Shortcut ─── */}
         {showAdminShortcut && (
-          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+          <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#383838]/60 dark:bg-[#262626]/90">
             <button
               onClick={() => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login")}
               className="group flex w-full items-center gap-4 px-4 py-4 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40"
@@ -251,7 +251,7 @@ export default function ProfilePage() {
         )}
 
         {/* ─── Language ─── */}
-        <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white px-4 py-3.5 dark:border-[#2D3B4F]/60 dark:bg-[#1E293B]/90">
+        <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white px-4 py-3.5 dark:border-[#383838]/60 dark:bg-[#262626]/90">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-4">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400">

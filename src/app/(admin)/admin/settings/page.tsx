@@ -14,7 +14,7 @@ export default function AdminSettingsPage() {
   const [savingSection, setSavingSection] = useState<"commission" | "payments" | null>(null);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0B1120]">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1A1A1A]">
       <AppBar title={t("إعدادات المنصة", "Platform Settings")} breadcrumbs={[{ label: t("المشرف العام", "Admin Console"), href: "/admin/dashboard" }, { label: t("الإعدادات", "Settings") }]} />
       <Container size="md" className="py-3 sm:py-6 space-y-3 sm:space-y-6">
         <Card variant="elevated" padding="lg" className="space-y-4">

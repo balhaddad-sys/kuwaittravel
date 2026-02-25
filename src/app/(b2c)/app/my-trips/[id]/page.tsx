@@ -126,7 +126,7 @@ export default function BookingDetailPage({
         {/* Booking Status */}
         <Card variant="elevated" padding="lg">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-[#1E293B] dark:text-slate-400">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-[#262626] dark:text-slate-400">
               {statusIcons[booking.status] || <CheckCircle2 className="h-5 w-5" />}
             </div>
             <div>
@@ -152,7 +152,7 @@ export default function BookingDetailPage({
             {t("المسافرون", "Passengers")}
           </h3>
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-slate-100 dark:bg-[#1E293B]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-slate-100 dark:bg-[#262626]">
               <Users className="h-5 w-5 text-slate-600 dark:text-slate-400" />
             </div>
             <div>
