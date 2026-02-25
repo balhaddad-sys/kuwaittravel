@@ -36,12 +36,15 @@ From `.env.example`:
 - `NEXT_PUBLIC_FIREBASE_APP_ID`
 - `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` (optional)
 - `NEXT_PUBLIC_ADMIN_EMAILS` (comma-separated emails that should see admin shortcut)
-- `FIREBASE_PROJECT_ID`
-- `FIREBASE_CLIENT_EMAIL`
-- `FIREBASE_PRIVATE_KEY`
+- `FB_ADMIN_PROJECT_ID`
+- `FB_ADMIN_CLIENT_EMAIL`
+- `FB_ADMIN_PRIVATE_KEY`
 - `ADMIN_SETUP_KEY` (optional)
 - `ADMIN_SETUP_ENABLED` (`false` in production)
 - `ADMIN_EMAILS` (optional server-side allowlist; falls back to `NEXT_PUBLIC_ADMIN_EMAILS`)
+
+Legacy aliases `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, and `FIREBASE_PRIVATE_KEY`
+are also accepted for backward compatibility.
 
 ## Production Readiness Commands
 

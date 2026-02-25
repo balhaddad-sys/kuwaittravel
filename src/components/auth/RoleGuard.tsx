@@ -34,6 +34,11 @@ export function RoleGuard({
   );
   const requiresAdminRole =
     allowedRoleSet.has("admin") || allowedRoleSet.has("super_admin");
+  const isAdminOnlyGuard =
+    allowedRoleSet.size > 0 &&
+    Array.from(allowedRoleSet).every(
+      (role) => role === "admin" || role === "super_admin"
+    );
   const hasAdminRole =
     userData?.role === "admin" || userData?.role === "super_admin";
   const hasRoleAccess = Boolean(userData && allowedRoleSet.has(userData.role));
@@ -45,7 +50,7 @@ export function RoleGuard({
     hasPrivilegedAdminEmail && !!firebaseUser && !hasRoleAccess;
   const pendingPrivilegedBootstrap = needsPrivilegedBootstrap && !bootstrapAttempted;
   const shouldRefreshAdminClaims =
-    requiresAdminRole &&
+    isAdminOnlyGuard &&
     hasAdminRole &&
     !!firebaseUser &&
     !claimsRefreshAttempted;

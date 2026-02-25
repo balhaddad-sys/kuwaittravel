@@ -11,9 +11,11 @@ const required = [
   "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
   "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
   "NEXT_PUBLIC_FIREBASE_APP_ID",
-  "FIREBASE_PROJECT_ID",
-  "FIREBASE_CLIENT_EMAIL",
-  "FIREBASE_PRIVATE_KEY",
+];
+
+const adminCredentialSets = [
+  ["FB_ADMIN_PROJECT_ID", "FB_ADMIN_CLIENT_EMAIL", "FB_ADMIN_PRIVATE_KEY"],
+  ["FIREBASE_PROJECT_ID", "FIREBASE_CLIENT_EMAIL", "FIREBASE_PRIVATE_KEY"],
 ];
 
 function parseEnvFile(filePath) {
@@ -39,13 +41,29 @@ function getConfig() {
   return { ...fromDotEnv, ...fromLocal, ...process.env };
 }
 
+function hasAll(env, keys) {
+  return keys.every((key) => String(env[key] || "").trim());
+}
+
 function main() {
   const env = getConfig();
   const missing = required.filter((key) => !String(env[key] || "").trim());
+  const hasAdminCredentials = adminCredentialSets.some((keys) => hasAll(env, keys));
 
-  if (missing.length > 0) {
+  if (missing.length > 0 || !hasAdminCredentials) {
     console.error("Missing required environment variables:");
     for (const key of missing) console.error(`- ${key}`);
+    if (!hasAdminCredentials) {
+      console.error(
+        "- One complete admin credential set is required:"
+      );
+      console.error(
+        "  * FB_ADMIN_PROJECT_ID + FB_ADMIN_CLIENT_EMAIL + FB_ADMIN_PRIVATE_KEY"
+      );
+      console.error(
+        "  * or FIREBASE_PROJECT_ID + FIREBASE_CLIENT_EMAIL + FIREBASE_PRIVATE_KEY"
+      );
+    }
     process.exit(1);
   }
 
