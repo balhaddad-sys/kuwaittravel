@@ -136,10 +136,9 @@ export default function DemoPage() {
   const isMobile = useIsMobile();
 
   /* ── Dark Mode ──────────────────────────────── */
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    setDarkMode(document.documentElement.classList.contains("dark"));
-  }, []);
+  const [darkMode, setDarkMode] = useState(() =>
+    typeof document !== "undefined" ? document.documentElement.classList.contains("dark") : false
+  );
   const toggleDarkMode = useCallback(() => {
     document.documentElement.classList.toggle("dark");
     setDarkMode((d) => !d);

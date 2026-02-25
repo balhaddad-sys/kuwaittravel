@@ -53,7 +53,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, role: userRole });
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") console.error("Admin claim sync failed:", error);
-    return NextResponse.json({ error: "Failed to sync admin claims" }, { status: 500 });
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Admin claim sync failed:", message);
+    return NextResponse.json({ error: "Failed to sync admin claims", detail: message }, { status: 500 });
   }
 }

@@ -16,11 +16,7 @@ function ProgressBarInner() {
   const [width, setWidth] = useState(0);
   const trickle = useRef<ReturnType<typeof setInterval>>(undefined);
   const hide = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const [isNative, setIsNative] = useState(false);
-
-  useEffect(() => {
-    setIsNative(isCapacitorNative());
-  }, []);
+  const [isNative] = useState(() => isCapacitorNative());
 
   const start = useCallback(() => {
     clearTimeout(hide.current);
