@@ -30,12 +30,12 @@ export default function PaymentMethodsPage() {
           <div className="space-y-3">
             {methods.map((m, i) => (
               <div key={i} className="flex items-center gap-3 rounded-lg border border-surface-border/70 p-3 dark:border-surface-dark-border/70">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-700/40 dark:text-slate-300">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600 dark:bg-neutral-700/40 dark:text-neutral-300">
                   <m.icon className="h-5 w-5" />
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="text-body-sm font-bold text-slate-900 dark:text-white">{t(m.nameAr, m.nameEn)}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{t(m.descAr, m.descEn)}</p>
+                  <p className="text-xs text-slate-500 dark:text-neutral-400">{t(m.descAr, m.descEn)}</p>
                 </div>
                 <Badge variant="success" size="sm">{t("متاح", "Available")}</Badge>
               </div>
@@ -48,7 +48,7 @@ export default function PaymentMethodsPage() {
             <ShieldCheck className="h-5 w-5 shrink-0 text-sky-500 mt-0.5" />
             <div>
               <p className="text-body-sm font-bold text-slate-900 dark:text-white mb-1">{t("دفع آمن ومشفر", "Secure & Encrypted")}</p>
-              <p className="text-body-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="text-body-sm text-slate-600 dark:text-neutral-400 leading-relaxed">
                 {t(
                   "يتم الدفع مباشرة عند حجز الرحلة عبر بوابة دفع آمنة. لا نقوم بتخزين بيانات بطاقتك — كل عملية دفع تتم عبر بوابة مشفرة.",
                   "Payment is processed at booking time via a secure gateway. We do not store your card details — every transaction goes through an encrypted gateway."

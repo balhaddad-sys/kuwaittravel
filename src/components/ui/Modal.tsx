@@ -66,7 +66,7 @@ function Modal({ open, onClose, title, description, children, footer, size = "md
                 </h2>
               )}
               {description && (
-                <p id="modal-description" className="mt-1 text-body-sm sm:text-body-md text-slate-500 dark:text-slate-400 truncate">
+                <p id="modal-description" className="mt-1 text-body-sm sm:text-body-md text-slate-500 dark:text-neutral-400 truncate">
                   {description}
                 </p>
               )}

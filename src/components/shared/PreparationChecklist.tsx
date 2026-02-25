@@ -66,7 +66,7 @@ function ChecklistItem({ id, title, titleAr, description, descriptionAr, categor
           {required && <span className="ms-1 text-orange-500">*</span>}
         </p>
         {(description || descriptionAr) && (
-          <p className="mt-0.5 text-body-sm text-slate-500 dark:text-slate-300/60">
+          <p className="mt-0.5 text-body-sm text-slate-500 dark:text-neutral-300/60">
             {language === "ar" ? descriptionAr || description : description || descriptionAr}
           </p>
         )}
@@ -104,7 +104,7 @@ function PreparationChecklist({ items, onToggle, className }: PreparationCheckli
       {/* Progress */}
       <div>
         <div className="mb-2 flex items-center justify-between text-body-sm">
-          <span className="font-medium text-slate-700 dark:text-slate-100">
+          <span className="font-medium text-slate-700 dark:text-neutral-100">
             {t("التحضيرات", "Preparation")}
           </span>
           <span className="font-medium text-sky-600 dark:text-sky-400">

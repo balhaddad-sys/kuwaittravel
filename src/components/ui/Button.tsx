@@ -38,16 +38,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         "border-[#222222] bg-[#222222] text-white hover:bg-[#000000] hover:border-[#000000] active:bg-[#333333] dark:border-sky-600 dark:bg-sky-500 dark:hover:bg-sky-600 dark:hover:border-sky-700",
       /* Secondary — clean white */
       secondary:
-        "border-[#EBEBEB] bg-white text-[#222222] hover:border-[#DDDDDD] hover:bg-[#F7F7F7] dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200 dark:hover:border-sky-600/50 dark:hover:bg-slate-700",
+        "border-[#EBEBEB] bg-white text-[#222222] hover:border-[#DDDDDD] hover:bg-[#F7F7F7] dark:border-[#383838] dark:bg-[#262626] dark:text-neutral-200 dark:hover:border-sky-600/50 dark:hover:bg-neutral-700",
       /* Accent — CTA orange */
       accent:
         "border-orange-600 bg-orange-500 text-white hover:bg-orange-600 hover:border-orange-700 active:bg-orange-700",
       /* Outline — clean border */
       outline:
-        "border-[#DDDDDD] bg-transparent text-[#222222] hover:border-[#222222] hover:bg-[#F7F7F7] dark:border-[#383838] dark:text-slate-200 dark:hover:border-sky-500/60 dark:hover:bg-slate-800/50",
+        "border-[#DDDDDD] bg-transparent text-[#222222] hover:border-[#222222] hover:bg-[#F7F7F7] dark:border-[#383838] dark:text-neutral-200 dark:hover:border-sky-500/60 dark:hover:bg-neutral-800/50",
       /* Ghost — minimal */
       ghost:
-        "border-transparent text-[#717171] hover:bg-[#F7F7F7] hover:text-[#222222] dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-slate-100",
+        "border-transparent text-[#717171] hover:bg-[#F7F7F7] hover:text-[#222222] dark:text-neutral-300 dark:hover:bg-neutral-800/50 dark:hover:text-neutral-100",
       /* Danger */
       danger:
         "border-red-600 bg-red-600 text-white hover:bg-red-700 hover:border-red-800",

@@ -42,7 +42,7 @@ function SearchInput({ placeholder = "بحث...", onSearch, delay = 300, classNa
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={placeholder}
-        className="w-full rounded-full border border-[#EBEBEB] bg-white py-2.5 ps-10 pe-10 text-sm text-[#222222] shadow-[0_2px_8px_rgba(34,34,34,0.08),0_0_0_1px_rgba(34,34,34,0.04)] transition-[border-color,box-shadow,background-color] duration-200 ease-out placeholder:text-[#717171] hover:shadow-[0_2px_12px_rgba(34,34,34,0.14),0_0_0_1px_rgba(34,34,34,0.06)] focus:border-[#222222] focus:shadow-[0_2px_12px_rgba(34,34,34,0.14),0_0_0_1px_rgba(34,34,34,0.06)] focus:outline-none dark:border-[#383838] dark:bg-[#262626]/90 dark:text-slate-100 dark:placeholder:text-slate-400 dark:hover:border-sky-600/40 dark:focus:border-sky-500 dark:focus:ring-2 dark:focus:ring-sky-500/25"
+        className="w-full rounded-full border border-[#EBEBEB] bg-white py-2.5 ps-10 pe-10 text-sm text-[#222222] shadow-[0_2px_8px_rgba(34,34,34,0.08),0_0_0_1px_rgba(34,34,34,0.04)] transition-[border-color,box-shadow,background-color] duration-200 ease-out placeholder:text-[#717171] hover:shadow-[0_2px_12px_rgba(34,34,34,0.14),0_0_0_1px_rgba(34,34,34,0.06)] focus:border-[#222222] focus:shadow-[0_2px_12px_rgba(34,34,34,0.14),0_0_0_1px_rgba(34,34,34,0.06)] focus:outline-none dark:border-[#383838] dark:bg-[#262626]/90 dark:text-neutral-100 dark:placeholder:text-slate-400 dark:hover:border-sky-600/40 dark:focus:border-sky-500 dark:focus:ring-2 dark:focus:ring-sky-500/25"
       />
       {value && (
         <button

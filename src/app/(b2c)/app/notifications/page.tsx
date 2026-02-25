@@ -122,18 +122,18 @@ export default function NotificationsPage() {
                 <div className="flex items-start gap-3">
                   <div className={cn(
                     "shrink-0 mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg",
-                    n.isRead ? "bg-slate-100 text-slate-400 dark:bg-slate-700/40 dark:text-slate-400/60" : "bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400"
+                    n.isRead ? "bg-slate-100 text-slate-400 dark:bg-neutral-700/40 dark:text-neutral-400/60" : "bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400"
                   )}>
                     {typeIcons[n.type] || <Bell className="h-4 w-4" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-[#717171] dark:text-slate-200" : "text-[#222222] dark:text-white")}>
+                      <p className={cn("text-body-sm font-bold truncate", n.isRead ? "text-[#717171] dark:text-neutral-200" : "text-[#222222] dark:text-white")}>
                         {language === "ar" ? n.titleAr : n.title}
                       </p>
                       {!n.isRead && <span className="h-2 w-2 shrink-0 rounded-full bg-sky-500" />}
                     </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">
+                    <p className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 line-clamp-2">
                       {language === "ar" ? n.bodyAr : n.body}
                     </p>
                     {date && (

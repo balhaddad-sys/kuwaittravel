@@ -36,14 +36,14 @@ function AppBar({
         {onMenuToggle && (
           <button
             onClick={onMenuToggle}
-            className="shrink-0 rounded-xl border border-transparent p-2 text-slate-500 transition-all duration-[var(--duration-ui)] hover:border-slate-200 hover:bg-slate-50 hover:text-slate-700 active:scale-95 dark:text-slate-300/60 dark:hover:border-sky-700/40 dark:hover:bg-slate-800/60 dark:hover:text-slate-100 lg:hidden"
+            className="shrink-0 rounded-xl border border-transparent p-2 text-slate-500 transition-all duration-[var(--duration-ui)] hover:border-slate-200 hover:bg-slate-50 hover:text-slate-700 active:scale-95 dark:text-neutral-300/60 dark:hover:border-sky-700/40 dark:hover:bg-neutral-800/60 dark:hover:text-neutral-100 lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
         )}
         <div className="min-w-0">
           {breadcrumbs && breadcrumbs.length > 0 && (
-            <nav className="hidden items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 sm:flex">
+            <nav className="hidden items-center gap-1.5 text-sm text-slate-500 dark:text-neutral-400 sm:flex">
               {breadcrumbs.map((crumb, i) => (
                 <span key={i} className="flex items-center gap-1.5">
                   {i > 0 && <span className="text-slate-300 dark:text-sky-700/60">/</span>}

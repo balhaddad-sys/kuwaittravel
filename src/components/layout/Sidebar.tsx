@@ -44,7 +44,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
         <button
           onClick={() => setCollapsed(!collapsed)}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-slate-400 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-spring)] hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600 active:scale-[0.97] dark:text-slate-400 dark:hover:border-sky-700/40 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+          className="shrink-0 rounded-[var(--radius-md)] border border-transparent p-2 text-slate-400 transition-[background-color,color,border-color,transform] duration-[var(--duration-ui)] ease-[var(--ease-spring)] hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600 active:scale-[0.97] dark:text-neutral-400 dark:hover:border-sky-700/40 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
         >
           {collapsed ? <PanelLeft className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
         </button>
@@ -66,7 +66,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                   "group relative flex items-center gap-3 overflow-hidden rounded-[var(--radius-lg)] px-3 py-2.5 text-body-md transform-gpu transition-[transform,background-color,color,box-shadow,border-color] duration-[var(--duration-ui)] ease-[var(--ease-spring)] active:scale-[0.985]",
                   isActive
                     ? "border border-sky-100 bg-sky-50 font-semibold text-sky-700 dark:border-sky-700/30 dark:bg-sky-800/60 dark:text-sky-300"
-                    : "border border-transparent text-slate-500 hover:border-slate-100 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:border-[#383838] dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                    : "border border-transparent text-slate-500 hover:border-slate-100 hover:bg-slate-50 hover:text-slate-700 dark:text-neutral-400 dark:hover:border-[#383838] dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
                 )}
                 title={collapsed ? item.label : undefined}
               >
@@ -85,7 +85,7 @@ function Sidebar({ items, header, footer }: SidebarProps) {
                           "flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold",
                           isActive
                             ? "bg-sky-100 text-sky-700 dark:bg-sky-700/30 dark:text-sky-300"
-                            : "bg-slate-100 text-slate-500 dark:bg-slate-800/60 dark:text-slate-300/60"
+                            : "bg-slate-100 text-slate-500 dark:bg-neutral-800/60 dark:text-neutral-300/60"
                         )}
                       >
                         {item.badge}

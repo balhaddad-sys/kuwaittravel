@@ -183,7 +183,7 @@ function FilterSheet({ open, onClose, filters, onApply, availableDestinations = 
         <button
           type="button"
           onClick={handleReset}
-          className="text-body-sm font-medium text-slate-500 underline underline-offset-2 transition-colors hover:text-slate-700 dark:hover:text-slate-200"
+          className="text-body-sm font-medium text-slate-500 underline underline-offset-2 transition-colors hover:text-slate-700 dark:hover:text-neutral-200"
         >
           {t("إعادة تعيين", "Reset All")}
         </button>

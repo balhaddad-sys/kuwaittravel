@@ -22,7 +22,7 @@ const variantMap = {
   outlined:
     "border border-[#EBEBEB] bg-white dark:border-[#383838] dark:bg-[#262626]",
   filled:
-    "bg-[#F7F7F7] dark:border dark:border-[#383838] dark:bg-slate-800/60",
+    "bg-[#F7F7F7] dark:border dark:border-[#383838] dark:bg-neutral-800/60",
   glass: "eo-glass",
 };
 

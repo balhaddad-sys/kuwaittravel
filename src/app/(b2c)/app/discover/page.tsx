@@ -195,8 +195,8 @@ export default function DiscoverPage() {
           <span className="text-lg font-bold text-[#222222] dark:text-white">Rahal</span>
           <div className="flex items-center gap-2">
             <LanguageToggle />
-            <Link href="/app/notifications" className="relative flex h-9 w-9 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700">
-              <Bell className="h-5 w-5 text-[#717171] dark:text-slate-300" />
+            <Link href="/app/notifications" className="relative flex h-9 w-9 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-neutral-700">
+              <Bell className="h-5 w-5 text-[#717171] dark:text-neutral-300" />
             </Link>
           </div>
         </div>
@@ -223,7 +223,7 @@ export default function DiscoverPage() {
                     className={`shrink-0 rounded-full px-4 py-1.5 text-[0.8125rem] font-medium transition-all duration-150 ${
                       isActive
                         ? "bg-[#222222] text-white dark:bg-sky-500 dark:text-white"
-                        : "border border-[#EBEBEB] bg-white text-[#222222] hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200"
+                        : "border border-[#EBEBEB] bg-white text-[#222222] hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-neutral-200"
                     }`}
                   >
                     {t(pill.labelAr, pill.labelEn)}
@@ -235,7 +235,7 @@ export default function DiscoverPage() {
             <button
               type="button"
               onClick={() => setFilterSheetOpen(true)}
-              className="relative flex shrink-0 items-center gap-1.5 rounded-full border border-[#EBEBEB] bg-white px-3.5 py-1.5 text-[0.8125rem] font-medium text-[#222222] transition-all hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200"
+              className="relative flex shrink-0 items-center gap-1.5 rounded-full border border-[#EBEBEB] bg-white px-3.5 py-1.5 text-[0.8125rem] font-medium text-[#222222] transition-all hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-neutral-200"
             >
               <SlidersHorizontal className="h-4 w-4" />
               {t("فلتر", "Filters")}
@@ -250,7 +250,7 @@ export default function DiscoverPage() {
           {activeFilterCount > 0 && (
             <div className="mt-2 flex flex-wrap gap-1.5">
               {filters.tripType && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-[#222222] dark:bg-slate-700 dark:text-slate-200">
+                <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-[#222222] dark:bg-neutral-700 dark:text-neutral-200">
                   {TRIP_TYPE_PILLS.find((p) => p.id === filters.tripType)?.[language === "ar" ? "labelAr" : "labelEn"]}
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, tripType: null }))}>
                     <X className="h-3 w-3" />
@@ -258,7 +258,7 @@ export default function DiscoverPage() {
                 </span>
               )}
               {(filters.priceMin !== null || filters.priceMax !== null) && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-[#222222] dark:bg-slate-700 dark:text-slate-200">
+                <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-[#222222] dark:bg-neutral-700 dark:text-neutral-200">
                   {filters.priceMin ?? 0} – {filters.priceMax ?? "∞"} KWD
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, priceMin: null, priceMax: null }))}>
                     <X className="h-3 w-3" />
@@ -266,7 +266,7 @@ export default function DiscoverPage() {
                 </span>
               )}
               {filters.destinations.map((dest) => (
-                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-[#222222] dark:bg-slate-700 dark:text-slate-200">
+                <span key={dest} className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-[#222222] dark:bg-neutral-700 dark:text-neutral-200">
                   {dest}
                   <button type="button" onClick={() => setFilters((prev) => ({ ...prev, destinations: prev.destinations.filter((d) => d !== dest) }))}>
                     <X className="h-3 w-3" />
@@ -369,7 +369,7 @@ export default function DiscoverPage() {
                   <button
                     type="button"
                     onClick={() => setVisibleCount((prev) => prev + 12)}
-                    className="w-full rounded-xl border border-[#EBEBEB] bg-white py-3 text-sm font-semibold text-[#222222] transition-all hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-200"
+                    className="w-full rounded-xl border border-[#EBEBEB] bg-white py-3 text-sm font-semibold text-[#222222] transition-all hover:bg-slate-50 dark:border-[#383838] dark:bg-[#262626] dark:text-neutral-200"
                   >
                     {t("عرض المزيد", "Show more")}
                   </button>

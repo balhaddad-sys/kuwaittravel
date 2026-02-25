@@ -94,7 +94,7 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, multiline }: { label: string; value: string; multiline?: boolean }) {
   return (
     <div>
-      <dt className="text-xs text-slate-500 dark:text-slate-400/70">{label}</dt>
+      <dt className="text-xs text-slate-500 dark:text-neutral-400/70">{label}</dt>
       <dd className={cn("font-medium text-slate-900 dark:text-white", !multiline && "truncate")}>
         {value}
       </dd>
@@ -312,7 +312,7 @@ export default function DisputesPage() {
                       "h-5 w-5",
                       dispute.type === "fraud" ? "text-red-500 dark:text-red-400" :
                       dispute.type === "refund" ? "text-orange-500 dark:text-orange-400" :
-                      "text-slate-500 dark:text-slate-400/70"
+                      "text-slate-500 dark:text-neutral-400/70"
                     )} />
                   </div>
 
@@ -327,7 +327,7 @@ export default function DisputesPage() {
                       <StatusBadge status={dispute.status} />
                       <TypeBadge type={dispute.type} />
                     </div>
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-slate-400/60">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-neutral-400/60">
                       <span className="flex items-center gap-1">
                         <MessageSquare className="h-3 w-3" />
                         {dispute.filedByRole === "traveler"
@@ -335,7 +335,7 @@ export default function DisputesPage() {
                           : t("\u0635\u0627\u062d\u0628 \u062d\u0645\u0644\u0629", "Campaign Owner")}
                       </span>
                       {dispute.amountDisputedKWD != null && dispute.amountDisputedKWD > 0 && (
-                        <span className="font-semibold text-slate-600 dark:text-slate-300">
+                        <span className="font-semibold text-slate-600 dark:text-neutral-300">
                           {dispute.amountDisputedKWD.toFixed(3)} KWD
                         </span>
                       )}
@@ -344,7 +344,7 @@ export default function DisputesPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-slate-500 dark:group-hover:text-slate-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-neutral-500 dark:group-hover:text-neutral-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -373,7 +373,7 @@ export default function DisputesPage() {
             <div className="shrink-0 flex items-center gap-3 border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-slate-400/70 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-neutral-400/70 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
@@ -560,7 +560,7 @@ export default function DisputesPage() {
       >
         {/* Status selector */}
         <div className="space-y-2 mb-4">
-          <label className="text-body-sm font-medium text-slate-700 dark:text-slate-300">
+          <label className="text-body-sm font-medium text-slate-700 dark:text-neutral-300">
             {t("\u0627\u0644\u062d\u0627\u0644\u0629 \u0627\u0644\u062c\u062f\u064a\u062f\u0629", "New Status")}
           </label>
           <div className="flex flex-wrap gap-2">
@@ -575,7 +575,7 @@ export default function DisputesPage() {
                     "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-sm font-medium border transition-all",
                     newStatus === opt.value
                       ? "border-sky-400 bg-sky-50 text-sky-800 dark:border-sky-600 dark:bg-sky-900/20 dark:text-sky-300"
-                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-[#383838] dark:bg-[#262626] dark:text-slate-400/70"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-[#383838] dark:bg-[#262626] dark:text-neutral-400/70"
                   )}
                 >
                   {opt.icon}

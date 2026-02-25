@@ -71,17 +71,17 @@ function SkeletonBooking() {
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white dark:border-[#383838]/60 dark:bg-[#262626]/80">
       <div className="flex items-center gap-4 p-5">
-        <div className="h-14 w-14 shrink-0 rounded-2xl bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
+        <div className="h-14 w-14 shrink-0 rounded-2xl bg-slate-100 dark:bg-neutral-700/40 animate-pulse" />
         <div className="flex-1 space-y-2.5">
-          <div className="h-4 w-2/3 rounded-lg bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
+          <div className="h-4 w-2/3 rounded-lg bg-slate-100 dark:bg-neutral-700/40 animate-pulse" />
           <div className="flex items-center gap-2">
-            <div className="h-3.5 w-28 rounded-lg bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
-            <div className="h-5 w-20 rounded-full bg-slate-100 dark:bg-slate-700/40 animate-pulse" />
+            <div className="h-3.5 w-28 rounded-lg bg-slate-100 dark:bg-neutral-700/40 animate-pulse" />
+            <div className="h-5 w-20 rounded-full bg-slate-100 dark:bg-neutral-700/40 animate-pulse" />
           </div>
         </div>
         <div className="shrink-0 space-y-2 text-end">
-          <div className="h-4 w-16 rounded-lg bg-slate-100 dark:bg-slate-700/40 animate-pulse ms-auto" />
-          <div className="h-4 w-4 rounded bg-slate-100 dark:bg-slate-700/40 animate-pulse ms-auto" />
+          <div className="h-4 w-16 rounded-lg bg-slate-100 dark:bg-neutral-700/40 animate-pulse ms-auto" />
+          <div className="h-4 w-4 rounded bg-slate-100 dark:bg-neutral-700/40 animate-pulse ms-auto" />
         </div>
       </div>
     </div>
@@ -200,13 +200,13 @@ export default function MyTripsPage() {
                   className={`relative pb-3 px-4 text-[0.9375rem] font-semibold transition-colors ${
                     isActive
                       ? "text-[#222222] dark:text-white"
-                      : "text-[#717171] dark:text-slate-400"
+                      : "text-[#717171] dark:text-neutral-400"
                   }`}
                 >
                   {tabKey === "upcoming" ? t("القادمة", "Upcoming") : t("السابقة", "Past")}
                   {!loading && count > 0 && (
                     <span className={`ms-1.5 rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
-                      isActive ? "bg-sky-500 text-white" : "bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-300"
+                      isActive ? "bg-sky-500 text-white" : "bg-slate-100 text-slate-500 dark:bg-neutral-700 dark:text-neutral-300"
                     }`}>
                       {count}
                     </span>
@@ -267,7 +267,7 @@ export default function MyTripsPage() {
                         {booking.tripTitle}
                       </h3>
                       <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-                        <span className="flex items-center gap-1.5 text-[0.8125rem] text-[#717171] dark:text-slate-400">
+                        <span className="flex items-center gap-1.5 text-[0.8125rem] text-[#717171] dark:text-neutral-400">
                           <Calendar className="h-3.5 w-3.5 shrink-0" />
                           {departureLabel}
                         </span>
@@ -285,7 +285,7 @@ export default function MyTripsPage() {
                       <p className="font-numbers text-[0.9375rem] font-bold text-[#222222] dark:text-white">
                         {formatKWD(booking.totalKWD)}
                       </p>
-                      <ChevronLeft className="ms-auto mt-1.5 h-4 w-4 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+                      <ChevronLeft className="ms-auto mt-1.5 h-4 w-4 text-slate-300 rtl:rotate-180 dark:text-neutral-500" />
                     </div>
                   </div>
                 </button>

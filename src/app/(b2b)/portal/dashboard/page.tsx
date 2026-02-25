@@ -248,13 +248,13 @@ export default function DashboardPage() {
                       className="group w-full text-start flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.99] dark:border-[#383838] dark:bg-[#262626]"
                     >
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#262626]">
-                        <Map className="h-5 w-5 text-slate-500 dark:text-slate-300/60" />
+                        <Map className="h-5 w-5 text-slate-500 dark:text-neutral-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-body-sm font-bold text-slate-900 dark:text-white truncate">
                           {language === "ar" ? trip.titleAr : trip.title}
                         </h3>
-                        <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-400 dark:text-slate-400/45">
+                        <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-400 dark:text-neutral-400/45">
                           <span className="flex items-center gap-1">
                             <Users className="h-3 w-3" />
                             {trip.bookedCount}/{trip.totalCapacity}
@@ -324,13 +324,13 @@ export default function DashboardPage() {
                       className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50/50 p-2.5 dark:border-[#383838] dark:bg-[#262626]/50"
                     >
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#1A1A1A]">
-                        <BookOpen className="h-4 w-4 text-slate-500 dark:text-slate-300/60" />
+                        <BookOpen className="h-4 w-4 text-slate-500 dark:text-neutral-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-body-sm font-semibold text-slate-900 dark:text-white truncate">
                           {booking.travelerName}
                         </p>
-                        <p className="text-[11px] text-slate-400 dark:text-slate-400/45 truncate">
+                        <p className="text-[11px] text-slate-400 dark:text-neutral-400/45 truncate">
                           {booking.tripTitle} &middot; {formatKWD(booking.totalKWD)}
                         </p>
                       </div>
@@ -373,7 +373,7 @@ export default function DashboardPage() {
             ) : (
               <div className="space-y-4">
                 <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
-                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
+                  <span className="text-body-sm text-slate-600 dark:text-neutral-300/60">
                     {t("متوسط قيمة الحجز", "Avg. Booking Value")}
                   </span>
                   <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums" dir="ltr">
@@ -381,7 +381,7 @@ export default function DashboardPage() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
-                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
+                  <span className="text-body-sm text-slate-600 dark:text-neutral-300/60">
                     {t("نسبة الإشغال", "Occupancy Rate")}
                   </span>
                   <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums">
@@ -389,7 +389,7 @@ export default function DashboardPage() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
-                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
+                  <span className="text-body-sm text-slate-600 dark:text-neutral-300/60">
                     {t("الحجوزات المكتملة", "Completed Bookings")}
                   </span>
                   <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums">
@@ -397,7 +397,7 @@ export default function DashboardPage() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/50 p-3 dark:border-[#383838] dark:bg-[#262626]/50">
-                  <span className="text-body-sm text-slate-600 dark:text-slate-300/60">
+                  <span className="text-body-sm text-slate-600 dark:text-neutral-300/60">
                     {t("إجمالي الحجوزات", "Total Bookings")}
                   </span>
                   <span className="text-body-sm font-bold text-slate-900 dark:text-white tabular-nums">

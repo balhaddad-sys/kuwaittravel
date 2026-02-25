@@ -78,7 +78,7 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, dir, multiline }: { label: string; value: string; dir?: string; multiline?: boolean }) {
   return (
     <div>
-      <dt className="text-xs text-slate-500 dark:text-slate-400/70">{label}</dt>
+      <dt className="text-xs text-slate-500 dark:text-neutral-400/70">{label}</dt>
       <dd className={cn("font-medium text-slate-900 dark:text-white", !multiline && "truncate")} dir={dir}>
         {value}
       </dd>
@@ -330,7 +330,7 @@ export default function AdminCampaignsPage() {
 
                   {/* Icon — desktop only */}
                   <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#262626]">
-                    <Building2 className="h-5 w-5 text-slate-500 dark:text-slate-400/70" />
+                    <Building2 className="h-5 w-5 text-slate-500 dark:text-neutral-400/70" />
                   </div>
 
                   {/* Content */}
@@ -341,10 +341,10 @@ export default function AdminCampaignsPage() {
                       </h3>
                       <VerificationChip status={campaign.verificationStatus} />
                     </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400/70 truncate mt-0.5" dir="ltr">
+                    <p className="text-xs text-slate-500 dark:text-neutral-400/70 truncate mt-0.5" dir="ltr">
                       {campaign.name}
                     </p>
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-slate-400/60">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-neutral-400/60">
                       <span className="flex items-center gap-1">
                         <FileText className="h-3 w-3" />
                         {campaign.licenseNumber}
@@ -358,7 +358,7 @@ export default function AdminCampaignsPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-slate-500 dark:group-hover:text-slate-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-neutral-500 dark:group-hover:text-neutral-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -392,7 +392,7 @@ export default function AdminCampaignsPage() {
               {/* Back arrow — mobile */}
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-slate-400/70 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-neutral-400/70 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
@@ -449,7 +449,7 @@ export default function AdminCampaignsPage() {
                 )}
                 {selected.licenseImageUrl && (
                   <div>
-                    <dt className="text-xs text-slate-500 dark:text-slate-400/70">{t("صورة الترخيص", "License Image")}</dt>
+                    <dt className="text-xs text-slate-500 dark:text-neutral-400/70">{t("صورة الترخيص", "License Image")}</dt>
                     <dd>
                       <a
                         href={selected.licenseImageUrl}
@@ -485,7 +485,7 @@ export default function AdminCampaignsPage() {
               {/* Verification Status */}
               <DetailSection icon={<ShieldAlert />} title={t("حالة التحقق", "Verification Status")}>
                 <div>
-                  <dt className="text-xs text-slate-500 dark:text-slate-400/70 mb-1">{t("الحالة", "Status")}</dt>
+                  <dt className="text-xs text-slate-500 dark:text-neutral-400/70 mb-1">{t("الحالة", "Status")}</dt>
                   <dd><VerificationChip status={selected.verificationStatus} /></dd>
                 </div>
                 <DetailRow label={t("تاريخ التسجيل", "Registered")} value={getCreatedDate(selected)} />

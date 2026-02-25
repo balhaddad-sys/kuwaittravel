@@ -34,7 +34,7 @@ function BottomNav({ items }: BottomNavProps) {
                 "group relative flex min-w-[64px] flex-col items-center justify-center gap-1 py-2 transition-colors duration-[var(--duration-ui)]",
                 isActive
                   ? "text-sky-500 dark:text-sky-400"
-                  : "text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
+                  : "text-slate-400 hover:text-slate-600 dark:text-neutral-500 dark:hover:text-neutral-300"
               )}
             >
               {/* Active indicator — solid line */}

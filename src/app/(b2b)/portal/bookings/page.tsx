@@ -183,7 +183,7 @@ export default function BookingsPage() {
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#262626]">
-                        <BookOpen className="h-5 w-5 text-slate-500 dark:text-slate-300/60" />
+                        <BookOpen className="h-5 w-5 text-slate-500 dark:text-neutral-300/60" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
@@ -194,15 +194,15 @@ export default function BookingsPage() {
                             {language === "ar" ? badge.labelAr : badge.label}
                           </Badge>
                         </div>
-                        <p className="text-[11px] text-slate-400 dark:text-slate-400/45 truncate mt-0.5">
+                        <p className="text-[11px] text-slate-400 dark:text-neutral-400/45 truncate mt-0.5">
                           {booking.tripTitle}
                         </p>
-                        <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-400 dark:text-slate-400/45">
+                        <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-400 dark:text-neutral-400/45">
                           <span className="flex items-center gap-1">
                             <Users className="h-3 w-3" />
                             {booking.numberOfPassengers} {t("مسافر", "pax")}
                           </span>
-                          <span className="font-semibold text-slate-600 dark:text-slate-200" dir="ltr">
+                          <span className="font-semibold text-slate-600 dark:text-neutral-200" dir="ltr">
                             {formatKWD(booking.totalKWD)}
                           </span>
                           {date && (
@@ -227,35 +227,35 @@ export default function BookingsPage() {
                     <div className="border-t border-surface-border/70 bg-slate-50/40 px-4 py-3 space-y-3 dark:border-surface-dark-border/70 dark:bg-white/[0.02]">
                       {/* Booking ID */}
                       <div className="flex items-center justify-between text-body-sm">
-                        <span className="text-slate-500 dark:text-slate-300/60">{t("رقم الحجز", "Booking ID")}</span>
-                        <span className="font-mono text-xs text-slate-700 dark:text-slate-200" dir="ltr">{booking.id}</span>
+                        <span className="text-slate-500 dark:text-neutral-300/60">{t("رقم الحجز", "Booking ID")}</span>
+                        <span className="font-mono text-xs text-slate-700 dark:text-neutral-200" dir="ltr">{booking.id}</span>
                       </div>
 
                       {/* Contact */}
                       <div className="flex items-center justify-between text-body-sm">
-                        <span className="text-slate-500 dark:text-slate-300/60 flex items-center gap-1">
+                        <span className="text-slate-500 dark:text-neutral-300/60 flex items-center gap-1">
                           <Phone className="h-3.5 w-3.5" />
                           {t("رقم التواصل", "Phone")}
                         </span>
-                        <span className="font-medium text-slate-700 dark:text-slate-200" dir="ltr">{booking.travelerPhone}</span>
+                        <span className="font-medium text-slate-700 dark:text-neutral-200" dir="ltr">{booking.travelerPhone}</span>
                       </div>
 
                       {/* Payment breakdown */}
                       <div className="rounded-lg border border-slate-100 bg-white p-3 dark:border-[#383838] dark:bg-[#262626]/50 space-y-2">
-                        <h4 className="text-xs font-bold text-slate-600 dark:text-slate-200 flex items-center gap-1.5">
+                        <h4 className="text-xs font-bold text-slate-600 dark:text-neutral-200 flex items-center gap-1.5">
                           <CreditCard className="h-3.5 w-3.5" />
                           {t("تفاصيل الدفع", "Payment Details")}
                         </h4>
                         <div className="flex items-center justify-between text-body-sm">
-                          <span className="text-slate-500 dark:text-slate-300/60">{t("الإجمالي", "Total")}</span>
+                          <span className="text-slate-500 dark:text-neutral-300/60">{t("الإجمالي", "Total")}</span>
                           <span className="font-semibold text-slate-900 dark:text-white" dir="ltr">{formatKWD(booking.totalKWD)}</span>
                         </div>
                         <div className="flex items-center justify-between text-body-sm">
-                          <span className="text-slate-500 dark:text-slate-300/60">{t("المدفوع", "Paid")}</span>
+                          <span className="text-slate-500 dark:text-neutral-300/60">{t("المدفوع", "Paid")}</span>
                           <span className="font-semibold text-emerald-600 dark:text-emerald-400" dir="ltr">{formatKWD(booking.paidKWD)}</span>
                         </div>
                         <div className="flex items-center justify-between text-body-sm">
-                          <span className="text-slate-500 dark:text-slate-300/60">{t("المتبقي", "Remaining")}</span>
+                          <span className="text-slate-500 dark:text-neutral-300/60">{t("المتبقي", "Remaining")}</span>
                           <span className={cn(
                             "font-semibold",
                             booking.remainingKWD > 0 ? "text-orange-600 dark:text-orange-400" : "text-slate-400"
@@ -265,7 +265,7 @@ export default function BookingsPage() {
                         </div>
                         {booking.discountKWD > 0 && (
                           <div className="flex items-center justify-between text-body-sm">
-                            <span className="text-slate-500 dark:text-slate-300/60">{t("الخصم", "Discount")}</span>
+                            <span className="text-slate-500 dark:text-neutral-300/60">{t("الخصم", "Discount")}</span>
                             <span className="font-semibold text-sky-600 dark:text-sky-400" dir="ltr">-{formatKWD(booking.discountKWD)}</span>
                           </div>
                         )}
@@ -274,10 +274,10 @@ export default function BookingsPage() {
                       {/* Special requests */}
                       {booking.specialRequests && (
                         <div className="rounded-lg border border-slate-100 bg-white p-3 dark:border-[#383838] dark:bg-[#262626]/50">
-                          <h4 className="text-xs font-bold text-slate-600 dark:text-slate-200 mb-1">
+                          <h4 className="text-xs font-bold text-slate-600 dark:text-neutral-200 mb-1">
                             {t("طلبات خاصة", "Special Requests")}
                           </h4>
-                          <p className="text-body-sm text-slate-700 dark:text-slate-200">{booking.specialRequests}</p>
+                          <p className="text-body-sm text-slate-700 dark:text-neutral-200">{booking.specialRequests}</p>
                         </div>
                       )}
 

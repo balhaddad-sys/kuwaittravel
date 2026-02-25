@@ -304,7 +304,7 @@ export default function CreateTripPage() {
             {ROOM_TYPES.filter((r) => r.id !== "single").map((room) => (
               <Card key={room.id} variant="outlined" padding="md">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-body-md font-medium text-slate-700 dark:text-slate-100">{room.nameAr}</span>
+                  <span className="text-body-md font-medium text-slate-700 dark:text-neutral-100">{room.nameAr}</span>
                   <Badge variant="default" size="sm">{room.capacity} {t("أشخاص", "persons")}</Badge>
                 </div>
                 <Input

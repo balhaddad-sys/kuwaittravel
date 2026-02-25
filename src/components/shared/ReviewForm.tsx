@@ -132,7 +132,7 @@ function ReviewForm({ onSubmit, loading = false, className }: ReviewFormProps) {
             </div>
           ))}
           {photos.length < 5 && (
-            <label className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-slate-300 text-slate-400 transition-colors hover:border-sky-400 hover:text-sky-500 dark:border-slate-600 dark:hover:border-sky-500">
+            <label className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-slate-300 text-slate-400 transition-colors hover:border-sky-400 hover:text-sky-500 dark:border-neutral-600 dark:hover:border-sky-500">
               <Camera className="h-5 w-5" />
               <input type="file" accept="image/*" onChange={handlePhotoAdd} className="hidden" />
             </label>

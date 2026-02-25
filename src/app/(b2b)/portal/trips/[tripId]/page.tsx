@@ -51,7 +51,7 @@ const STATUS_BADGE_CLASS: Record<string, string> = {
   in_transit: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300",
   completed: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
   cancelled: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300",
-  refunded: "bg-slate-100 text-slate-700 dark:bg-[#262626] dark:text-slate-200",
+  refunded: "bg-slate-100 text-slate-700 dark:bg-[#262626] dark:text-neutral-200",
 };
 
 function toCsvCell(value: string | number): string {
@@ -314,7 +314,7 @@ export default function TripDetailPage() {
                           <p className="truncate text-body-sm font-bold text-slate-900 dark:text-white">
                             {booking.travelerName}
                           </p>
-                          <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-slate-500 dark:text-slate-300/60">
+                          <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-slate-500 dark:text-neutral-300/60">
                             <span className="inline-flex items-center gap-1" dir="ltr">
                               <Hash className="h-3 w-3" />
                               {booking.id}
@@ -367,7 +367,7 @@ export default function TripDetailPage() {
                 <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">
                   البرنامج التفصيلي
                 </h3>
-                <p className="text-body-sm leading-7 text-slate-700 dark:text-slate-200 whitespace-pre-line">
+                <p className="text-body-sm leading-7 text-slate-700 dark:text-neutral-200 whitespace-pre-line">
                   {trip.descriptionAr || trip.description}
                 </p>
               </div>
@@ -398,7 +398,7 @@ export default function TripDetailPage() {
               </Button>
             </div>
 
-            <div className="rounded-lg border border-dashed border-surface-border p-4 text-body-sm text-slate-600 dark:border-surface-dark-border dark:text-slate-200">
+            <div className="rounded-lg border border-dashed border-surface-border p-4 text-body-sm text-slate-600 dark:border-surface-dark-border dark:text-neutral-200">
               يتم حالياً توفير كشف المسافرين بصيغة CSV. يمكن استخدامه للطباعة أو للمشاركة مع فرق التشغيل.
             </div>
 
@@ -476,7 +476,7 @@ export default function TripDetailPage() {
                           })}
                         </span>
                       </div>
-                      <p className="mt-1 text-body-sm text-slate-600 dark:text-slate-200">
+                      <p className="mt-1 text-body-sm text-slate-600 dark:text-neutral-200">
                         {announcement.body}
                       </p>
                     </div>

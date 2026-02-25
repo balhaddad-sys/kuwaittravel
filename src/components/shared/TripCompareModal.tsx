@@ -46,7 +46,7 @@ function TripCompareModal({ open, onClose, trips, onSelect }: TripCompareModalPr
         <table className="w-full min-w-[500px]">
           <thead>
             <tr>
-              <th className="p-3 text-start text-body-sm font-medium text-slate-500 dark:text-slate-300/60" />
+              <th className="p-3 text-start text-body-sm font-medium text-slate-500 dark:text-neutral-300/60" />
               {trips.map((trip) => (
                 <th key={trip.id} className="p-3 text-center">
                   <p className="text-body-md font-bold text-slate-900 dark:text-white">{trip.title}</p>
@@ -68,7 +68,7 @@ function TripCompareModal({ open, onClose, trips, onSelect }: TripCompareModalPr
                   const isBest = row.labelEn === "Price" && trip.price === Math.min(...trips.map((t) => t.price));
                   return (
                     <td key={trip.id} className="p-3 text-center">
-                      <span className={isBest ? "font-bold text-sky-600 dark:text-sky-400" : "text-slate-800 dark:text-slate-100"}>
+                      <span className={isBest ? "font-bold text-sky-600 dark:text-sky-400" : "text-slate-800 dark:text-neutral-100"}>
                         {value}
                       </span>
                     </td>

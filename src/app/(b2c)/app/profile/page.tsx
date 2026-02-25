@@ -31,7 +31,7 @@ const menuItems = [
     descEn: "ID, passport, visa",
     icon: FileText,
     href: "/app/profile/documents",
-    iconBg: "bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200",
+    iconBg: "bg-slate-100 text-slate-600 dark:bg-neutral-700/50 dark:text-neutral-200",
   },
   {
     labelAr: "طرق الدفع",
@@ -58,7 +58,7 @@ const menuItems = [
     descEn: "Preferences & notifications",
     icon: Settings,
     href: "/app/profile/settings",
-    iconBg: "bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200",
+    iconBg: "bg-slate-100 text-slate-600 dark:bg-neutral-700/50 dark:text-neutral-200",
   },
   {
     labelAr: "المساعدة والدعم",
@@ -96,12 +96,12 @@ export default function ProfilePage() {
         <div className="bg-white dark:bg-[#1A1A1A] border-b border-[#EBEBEB] dark:border-[#383838] px-4 pt-10 pb-6">
           <Container>
             <div className="flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 dark:bg-slate-700/50">
-                <User className="h-8 w-8 text-slate-400 dark:text-slate-500" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 dark:bg-neutral-700/50">
+                <User className="h-8 w-8 text-slate-400 dark:text-neutral-500" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-[#222222] dark:text-white">{t("مرحباً بك", "Welcome")}</h1>
-                <p className="mt-0.5 text-sm text-[#717171] dark:text-slate-400">{t("سجّل دخولك للوصول لحسابك", "Sign in to access your account")}</p>
+                <p className="mt-0.5 text-sm text-[#717171] dark:text-neutral-400">{t("سجّل دخولك للوصول لحسابك", "Sign in to access your account")}</p>
               </div>
             </div>
           </Container>
@@ -121,25 +121,25 @@ export default function ProfilePage() {
           <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#383838]/60 dark:bg-[#262626]/90">
             <button
               onClick={() => router.push("/app/profile/settings")}
-              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40 border-b border-[#EBEBEB] dark:border-[#383838]/50"
+              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-neutral-700/40 border-b border-[#EBEBEB] dark:border-[#383838]/50"
             >
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-neutral-700/50 dark:text-neutral-200"><Settings className="h-[1.125rem] w-[1.125rem]" /></span>
               <div className="min-w-0 flex-1">
                 <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">{t("الإعدادات", "Settings")}</p>
-                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
+                <p className="text-[0.75rem] text-[#717171] dark:text-neutral-400">{t("اللغة والوضع الداكن", "Language & dark mode")}</p>
               </div>
-              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-neutral-500" />
             </button>
             <button
               onClick={() => router.push("/app/help")}
-              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40"
+              className="group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-neutral-700/40"
             >
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400"><HelpCircle className="h-[1.125rem] w-[1.125rem]" /></span>
               <div className="min-w-0 flex-1">
                 <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">{t("المساعدة والدعم", "Help & Support")}</p>
-                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">{t("الأسئلة الشائعة", "FAQs & contact")}</p>
+                <p className="text-[0.75rem] text-[#717171] dark:text-neutral-400">{t("الأسئلة الشائعة", "FAQs & contact")}</p>
               </div>
-              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-neutral-500" />
             </button>
           </div>
           {/* Language toggle */}
@@ -182,7 +182,7 @@ export default function ProfilePage() {
                   <BadgeCheck className="h-5 w-5 shrink-0 text-sky-500" />
                 )}
               </div>
-              <p className="mt-0.5 text-sm text-[#717171] dark:text-slate-400">
+              <p className="mt-0.5 text-sm text-[#717171] dark:text-neutral-400">
                 {userData?.phone || userData?.email || ""}
               </p>
             </div>
@@ -199,7 +199,7 @@ export default function ProfilePage() {
             <button
               key={i}
               onClick={() => router.push(item.href)}
-              className={`group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40 ${
+              className={`group flex w-full items-center gap-4 px-4 py-3.5 text-start transition-colors hover:bg-slate-50 dark:hover:bg-neutral-700/40 ${
                 i < menuItems.length - 1
                   ? "border-b border-[#EBEBEB] dark:border-[#383838]/50"
                   : ""
@@ -217,12 +217,12 @@ export default function ProfilePage() {
                 <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">
                   {t(item.labelAr, item.labelEn)}
                 </p>
-                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">
+                <p className="text-[0.75rem] text-[#717171] dark:text-neutral-400">
                   {t(item.descAr, item.descEn)}
                 </p>
               </div>
 
-              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-neutral-500" />
             </button>
           ))}
         </div>
@@ -232,20 +232,20 @@ export default function ProfilePage() {
           <div className="overflow-hidden rounded-xl border border-[#EBEBEB] bg-white dark:border-[#383838]/60 dark:bg-[#262626]/90">
             <button
               onClick={() => router.push(hasAdminRole ? "/admin/dashboard" : "/admin-login")}
-              className="group flex w-full items-center gap-4 px-4 py-4 text-start transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/40"
+              className="group flex w-full items-center gap-4 px-4 py-4 text-start transition-colors hover:bg-slate-50 dark:hover:bg-neutral-700/40"
             >
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-neutral-700/50 dark:text-neutral-200">
                 <Sparkles className="h-[1.125rem] w-[1.125rem]" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">
                   {t("وضع الإدارة", "Admin Mode")}
                 </p>
-                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">
+                <p className="text-[0.75rem] text-[#717171] dark:text-neutral-400">
                   {t("إدارة الحملات والمستخدمين", "Manage campaigns and platform users")}
                 </p>
               </div>
-              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-slate-500" />
+              <ChevronLeft className="h-4 w-4 shrink-0 text-slate-300 rtl:rotate-180 dark:text-neutral-500" />
             </button>
           </div>
         )}
@@ -261,7 +261,7 @@ export default function ProfilePage() {
                 <p className="text-[0.9375rem] font-semibold text-[#222222] dark:text-white">
                   {t("اللغة", "Language")}
                 </p>
-                <p className="text-[0.75rem] text-[#717171] dark:text-slate-400">
+                <p className="text-[0.75rem] text-[#717171] dark:text-neutral-400">
                   {t("عربي / English", "Arabic / English")}
                 </p>
               </div>

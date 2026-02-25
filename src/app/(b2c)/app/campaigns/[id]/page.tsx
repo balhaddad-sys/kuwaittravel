@@ -125,7 +125,7 @@ export default function CampaignDetailPage({
                 className="h-16 w-16 rounded-xl object-cover"
               />
             ) : (
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-700/50">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-neutral-700/50">
                 <Building2 className="h-8 w-8 text-[#717171]" />
               </div>
             )}
@@ -140,7 +140,7 @@ export default function CampaignDetailPage({
                   </Badge>
                 )}
               </div>
-              <p className="mt-2 text-body-md leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="mt-2 text-body-md leading-relaxed text-slate-600 dark:text-neutral-400">
                 {getDescription(campaign)}
               </p>
               {campaign.stats && (
@@ -171,7 +171,7 @@ export default function CampaignDetailPage({
             </h3>
             <div className="space-y-2.5">
               {campaign.contactPhone && (
-                <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-slate-400">
+                <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-neutral-400">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#262626]/70">
                     <Phone className="h-4 w-4 text-slate-500" />
                   </div>
@@ -179,7 +179,7 @@ export default function CampaignDetailPage({
                 </div>
               )}
               {campaign.contactEmail && (
-                <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-slate-400">
+                <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-neutral-400">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#262626]/70">
                     <Mail className="h-4 w-4 text-slate-500" />
                   </div>
@@ -187,7 +187,7 @@ export default function CampaignDetailPage({
                 </div>
               )}
               {campaign.website && (
-                <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-slate-400">
+                <div className="flex items-center gap-2.5 text-body-md text-slate-600 dark:text-neutral-400">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100/70 dark:bg-[#262626]/70">
                     <Globe className="h-4 w-4 text-slate-500" />
                   </div>
@@ -195,7 +195,7 @@ export default function CampaignDetailPage({
                     href={campaign.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="truncate text-slate-700 underline dark:text-slate-100"
+                    className="truncate text-slate-700 underline dark:text-neutral-100"
                   >
                     {campaign.website}
                   </a>
@@ -212,7 +212,7 @@ export default function CampaignDetailPage({
               {t("الرحلات المتاحة", "Available Trips")}
             </h3>
             {trips.length > 0 && (
-              <span className="rounded-full bg-slate-100/80 px-2 py-0.5 text-[11px] font-medium text-slate-600 dark:bg-[#262626]/80 dark:text-slate-400">
+              <span className="rounded-full bg-slate-100/80 px-2 py-0.5 text-[11px] font-medium text-slate-600 dark:bg-[#262626]/80 dark:text-neutral-400">
                 {trips.length}
               </span>
             )}
@@ -236,7 +236,7 @@ export default function CampaignDetailPage({
                       }
                     >
                       <div className="flex items-center gap-3 sm:gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-700/50 sm:h-14 sm:w-14">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-neutral-700/50 sm:h-14 sm:w-14">
                           <Calendar className="h-5 w-5 text-[#717171] sm:h-6 sm:w-6" />
                         </div>
                         <div className="min-w-0 flex-1">

@@ -29,7 +29,7 @@ function TripCompareBar({ count, maxCount = 3, onCompare, onClear, className }: 
     >
       <div className="flex items-center gap-2">
         <ArrowLeftRight className="h-4 w-4 text-sky-600 dark:text-sky-400" />
-        <span className="text-body-sm font-medium text-slate-700 dark:text-slate-100">
+        <span className="text-body-sm font-medium text-slate-700 dark:text-neutral-100">
           {t(`${count} من ${maxCount} رحلات`, `${count} of ${maxCount} trips`)}
         </span>
       </div>
@@ -43,7 +43,7 @@ function TripCompareBar({ count, maxCount = 3, onCompare, onClear, className }: 
       </Button>
       <button
         onClick={onClear}
-        className="rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-[#262626]/60 dark:hover:text-slate-300"
+        className="rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-[#262626]/60 dark:hover:text-neutral-300"
       >
         <X className="h-4 w-4" />
       </button>

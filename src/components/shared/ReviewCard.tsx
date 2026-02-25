@@ -99,7 +99,7 @@ function ReviewCard({
         <div className="mt-3 border-t border-surface-border pt-3 dark:border-surface-dark-border">
           <button
             onClick={onHelpful}
-            className="flex items-center gap-1.5 text-body-sm text-slate-500 transition-colors hover:text-sky-600 dark:text-slate-300/60 dark:hover:text-sky-400"
+            className="flex items-center gap-1.5 text-body-sm text-slate-500 transition-colors hover:text-sky-600 dark:text-neutral-300/60 dark:hover:text-sky-400"
           >
             <ThumbsUp className="h-3.5 w-3.5" />
             {t("مفيد", "Helpful")} ({helpful})

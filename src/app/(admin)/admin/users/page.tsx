@@ -89,7 +89,7 @@ function DetailSection({ icon, title, children }: { icon: React.ReactNode; title
 function DetailRow({ label, value, dir }: { label: string; value: string; dir?: string }) {
   return (
     <div>
-      <dt className="text-xs text-slate-500 dark:text-slate-400/70">{label}</dt>
+      <dt className="text-xs text-slate-500 dark:text-neutral-400/70">{label}</dt>
       <dd className="font-medium text-slate-900 dark:text-white truncate" dir={dir}>
         {value}
       </dd>
@@ -264,7 +264,7 @@ export default function UsersPage() {
                           className="h-10 w-10 rounded-full object-cover"
                         />
                       ) : (
-                        <UserIcon className="h-5 w-5 text-slate-500 dark:text-slate-400/70" />
+                        <UserIcon className="h-5 w-5 text-slate-500 dark:text-neutral-400/70" />
                       )}
                     </div>
 
@@ -278,11 +278,11 @@ export default function UsersPage() {
                       <VerificationBadge isVerified={user.isVerified} />
                     </div>
                     {user.displayNameAr && user.displayName && (
-                      <p className="text-xs text-slate-500 dark:text-slate-400/70 truncate mt-0.5" dir="ltr">
+                      <p className="text-xs text-slate-500 dark:text-neutral-400/70 truncate mt-0.5" dir="ltr">
                         {user.displayName}
                       </p>
                     )}
-                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-slate-400/60">
+                    <div className="flex items-center gap-3 mt-1.5 text-[11px] text-slate-400 dark:text-neutral-400/60">
                       <span className="flex items-center gap-1">
                         <Phone className="h-3 w-3" />
                         <span dir="ltr">{formatPhone(user.phone)}</span>
@@ -298,7 +298,7 @@ export default function UsersPage() {
                   </div>
 
                   {/* Chevron */}
-                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-slate-500 dark:group-hover:text-slate-400 rtl:rotate-180" />
+                  <ChevronRight className="h-4 w-4 shrink-0 me-3 text-slate-300 group-hover:text-slate-500 transition-colors dark:text-neutral-500 dark:group-hover:text-neutral-400 rtl:rotate-180" />
                 </div>
               </button>
             ))}
@@ -328,7 +328,7 @@ export default function UsersPage() {
             <div className="shrink-0 flex items-center gap-3 border-b border-surface-border/80 px-4 py-3 dark:border-surface-dark-border/80">
               <button
                 onClick={() => setSelectedId(null)}
-                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-slate-400/70 dark:hover:bg-surface-dark-border sm:hidden"
+                className="shrink-0 rounded-lg p-1.5 -ms-1.5 text-slate-500 hover:bg-slate-100 transition-colors dark:text-neutral-400/70 dark:hover:bg-surface-dark-border sm:hidden"
               >
                 <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
               </button>
@@ -356,16 +356,16 @@ export default function UsersPage() {
                 <DetailRow label={t("\u0627\u0644\u0627\u0633\u0645 \u0628\u0627\u0644\u0639\u0631\u0628\u064a", "Name (AR)")} value={selected.displayNameAr || "\u2014"} />
                 <DetailRow label={t("\u0627\u0644\u0627\u0633\u0645 \u0628\u0627\u0644\u0625\u0646\u062c\u0644\u064a\u0632\u064a", "Name (EN)")} value={selected.displayName} dir="ltr" />
                 <div>
-                  <dt className="text-xs text-slate-500 dark:text-slate-400/70 mb-1">{t("\u0627\u0644\u062f\u0648\u0631", "Role")}</dt>
+                  <dt className="text-xs text-slate-500 dark:text-neutral-400/70 mb-1">{t("\u0627\u0644\u062f\u0648\u0631", "Role")}</dt>
                   <dd><RoleBadge role={selected.role} /></dd>
                 </div>
                 <div className="flex gap-2">
                   <div className="flex-1">
-                    <dt className="text-xs text-slate-500 dark:text-slate-400/70 mb-1">{t("\u0627\u0644\u062a\u0648\u062b\u064a\u0642", "Verification")}</dt>
+                    <dt className="text-xs text-slate-500 dark:text-neutral-400/70 mb-1">{t("\u0627\u0644\u062a\u0648\u062b\u064a\u0642", "Verification")}</dt>
                     <dd><VerificationBadge isVerified={selected.isVerified} /></dd>
                   </div>
                   <div className="flex-1">
-                    <dt className="text-xs text-slate-500 dark:text-slate-400/70 mb-1">{t("\u0627\u0644\u062d\u0627\u0644\u0629", "Status")}</dt>
+                    <dt className="text-xs text-slate-500 dark:text-neutral-400/70 mb-1">{t("\u0627\u0644\u062d\u0627\u0644\u0629", "Status")}</dt>
                     <dd>
                       <Badge variant={selected.isActive ? "success" : "error"} size="sm" dot>
                         {selected.isActive ? t("\u0646\u0634\u0637", "Active") : t("\u0645\u0639\u0637\u0644", "Inactive")}

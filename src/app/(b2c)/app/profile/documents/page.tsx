@@ -68,7 +68,7 @@ export default function DocumentsPage() {
         ))}
 
         <Card variant="outlined" padding="lg" className="border-[#EBEBEB] dark:border-[#383838]/60">
-          <p className="text-body-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-body-sm text-slate-600 dark:text-neutral-400 leading-relaxed">
             {t(
               "يتم تشفير جميع المستندات وتخزينها بشكل آمن. يمكنك تحديث مستنداتك عند إنشاء حجز جديد أو من خلال التواصل مع الحملة.",
               "All documents are encrypted and securely stored. You can update your documents when creating a new booking or by contacting the campaign."

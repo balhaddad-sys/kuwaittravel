@@ -9,9 +9,9 @@ function SkeletonCard({ variant = "trip", className }: SkeletonCardProps) {
   if (variant === "destination") {
     return (
       <div className={cn("skeleton-card rounded-2xl p-4", className)}>
-        <div className="h-8 w-8 rounded-xl bg-slate-200/50 dark:bg-slate-700/50" />
-        <div className="mt-3 h-4 w-20 rounded-md bg-slate-200/60 dark:bg-slate-700/60" />
-        <div className="mt-1 h-3 w-12 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
+        <div className="h-8 w-8 rounded-xl bg-slate-200/50 dark:bg-neutral-700/50" />
+        <div className="mt-3 h-4 w-20 rounded-md bg-slate-200/60 dark:bg-neutral-700/60" />
+        <div className="mt-1 h-3 w-12 rounded-md bg-slate-200/40 dark:bg-neutral-700/40" />
       </div>
     );
   }
@@ -19,13 +19,13 @@ function SkeletonCard({ variant = "trip", className }: SkeletonCardProps) {
   if (variant === "campaign") {
     return (
       <div className={cn("skeleton-card overflow-hidden", className)}>
-        <div className="h-28 bg-slate-200/50 dark:bg-slate-700/50" />
+        <div className="h-28 bg-slate-200/50 dark:bg-neutral-700/50" />
         <div className="space-y-3 px-4 pb-4 pt-8">
-          <div className="h-4 w-2/3 rounded-md bg-slate-200/60 dark:bg-slate-700/60" />
-          <div className="h-3 w-full rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
+          <div className="h-4 w-2/3 rounded-md bg-slate-200/60 dark:bg-neutral-700/60" />
+          <div className="h-3 w-full rounded-md bg-slate-200/40 dark:bg-neutral-700/40" />
           <div className="flex gap-4">
-            <div className="h-3 w-12 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
-            <div className="h-3 w-16 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
+            <div className="h-3 w-12 rounded-md bg-slate-200/40 dark:bg-neutral-700/40" />
+            <div className="h-3 w-16 rounded-md bg-slate-200/40 dark:bg-neutral-700/40" />
           </div>
         </div>
       </div>
@@ -35,12 +35,12 @@ function SkeletonCard({ variant = "trip", className }: SkeletonCardProps) {
   // Default: trip
   return (
     <div className={cn("skeleton-card overflow-hidden", className)}>
-      <div className="aspect-[3/2] bg-slate-200/50 dark:bg-slate-700/50 rounded-xl" />
+      <div className="aspect-[3/2] bg-slate-200/50 dark:bg-neutral-700/50 rounded-xl" />
       <div className="space-y-2 pt-2.5">
-        <div className="h-3 w-24 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
-        <div className="h-4 w-3/4 rounded-md bg-slate-200/60 dark:bg-slate-700/60" />
-        <div className="h-3 w-1/2 rounded-md bg-slate-200/40 dark:bg-slate-700/40" />
-        <div className="h-4 w-20 rounded-md bg-slate-200/60 dark:bg-slate-700/60" />
+        <div className="h-3 w-24 rounded-md bg-slate-200/40 dark:bg-neutral-700/40" />
+        <div className="h-4 w-3/4 rounded-md bg-slate-200/60 dark:bg-neutral-700/60" />
+        <div className="h-3 w-1/2 rounded-md bg-slate-200/40 dark:bg-neutral-700/40" />
+        <div className="h-4 w-20 rounded-md bg-slate-200/60 dark:bg-neutral-700/60" />
       </div>
     </div>
   );

@@ -202,7 +202,7 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
               <h4 className="truncate text-body-md font-bold text-slate-900 dark:text-white">
                 {dayMeta.title}
               </h4>
-              <p className="text-body-sm text-slate-500 dark:text-slate-300/60">
+              <p className="text-body-sm text-slate-500 dark:text-neutral-300/60">
                 {dayMeta.subtitle}
               </p>
             </div>
@@ -221,7 +221,7 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
                   className={cn("relative pb-5", i === dayBlocks.length - 1 && "pb-0")}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute -start-[1.625rem] top-1 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white bg-orange-400 dark:border-slate-900" />
+                  <div className="absolute -start-[1.625rem] top-1 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white bg-orange-400 dark:border-neutral-900" />
 
                   <div className="flex items-start gap-3">
                     {/* Type icon */}
@@ -235,19 +235,19 @@ function ItineraryTimeline({ blocks, className }: ItineraryTimelineProps) {
                           {title}
                         </p>
                         {block.startTime && (
-                          <span className="text-[11px] text-slate-400 dark:text-slate-300/45">
+                          <span className="text-[11px] text-slate-400 dark:text-neutral-300/45">
                             {block.startTime}
                             {block.endTime && ` - ${block.endTime}`}
                           </span>
                         )}
                       </div>
                       {desc && (
-                        <p className="mt-0.5 text-body-sm text-slate-500 dark:text-slate-300/60">
+                        <p className="mt-0.5 text-body-sm text-slate-500 dark:text-neutral-300/60">
                           {desc}
                         </p>
                       )}
                       {block.location && (
-                        <p className="mt-0.5 text-[11px] text-slate-400 dark:text-slate-300/45">
+                        <p className="mt-0.5 text-[11px] text-slate-400 dark:text-neutral-300/45">
                           {block.location}
                         </p>
                       )}

@@ -26,7 +26,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             <Check className="h-full w-full text-white opacity-0 peer-checked:opacity-100 transition-opacity p-0.5" />
           </div>
         </div>
-        {label && <span className="text-body-md text-slate-700 dark:text-slate-200">{label}</span>}
+        {label && <span className="text-body-md text-slate-700 dark:text-neutral-200">{label}</span>}
       </label>
     );
   }

@@ -71,7 +71,7 @@ function TripCard({
   const cardContent = (
     <>
       {/* ─── Image Section ─── */}
-      <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+      <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-slate-100 dark:bg-neutral-800">
         {images.length > 1 ? (
           <div
             ref={scrollRef}
@@ -81,8 +81,8 @@ function TripCard({
             {images.slice(0, 5).map((src, i) => (
               <div key={i} className="relative h-full w-full flex-shrink-0 snap-start">
                 {failedImages.has(i) ? (
-                  <div className="flex h-full items-center justify-center bg-slate-100 dark:bg-slate-800">
-                    <MapPin className="h-10 w-10 text-slate-300 dark:text-slate-600" />
+                  <div className="flex h-full items-center justify-center bg-slate-100 dark:bg-neutral-800">
+                    <MapPin className="h-10 w-10 text-slate-300 dark:text-neutral-600" />
                   </div>
                 ) : (
                   <Image
@@ -99,8 +99,8 @@ function TripCard({
           </div>
         ) : images.length === 1 ? (
           failedImages.has(0) ? (
-            <div className="flex h-full items-center justify-center bg-slate-100 dark:bg-slate-800">
-              <MapPin className="h-10 w-10 text-slate-300 dark:text-slate-600" />
+            <div className="flex h-full items-center justify-center bg-slate-100 dark:bg-neutral-800">
+              <MapPin className="h-10 w-10 text-slate-300 dark:text-neutral-600" />
             </div>
           ) : (
             <Image
@@ -113,8 +113,8 @@ function TripCard({
             />
           )
         ) : (
-          <div className="flex h-full items-center justify-center bg-slate-100 dark:bg-slate-800">
-            <MapPin className="h-10 w-10 text-slate-300 dark:text-slate-600" />
+          <div className="flex h-full items-center justify-center bg-slate-100 dark:bg-neutral-800">
+            <MapPin className="h-10 w-10 text-slate-300 dark:text-neutral-600" />
           </div>
         )}
 
@@ -144,27 +144,27 @@ function TripCard({
       {/* ─── Content Section ─── */}
       <div className="pt-2.5">
         {/* Location */}
-        <p className="flex items-center gap-1 text-[0.75rem] text-[#717171] dark:text-slate-400">
+        <p className="flex items-center gap-1 text-[0.75rem] text-[#717171] dark:text-neutral-400">
           <MapPin className="h-3 w-3 shrink-0" />
           <span className="truncate">{destination}</span>
         </p>
 
         {/* Title */}
-        <h3 className="mt-0.5 line-clamp-1 text-[0.9375rem] font-semibold text-[#222222] dark:text-slate-50">
+        <h3 className="mt-0.5 line-clamp-1 text-[0.9375rem] font-semibold text-[#222222] dark:text-neutral-50">
           {title}
         </h3>
 
         {/* Dates */}
-        <p className="mt-0.5 text-[0.75rem] text-[#717171] dark:text-slate-400">
+        <p className="mt-0.5 text-[0.75rem] text-[#717171] dark:text-neutral-400">
           {departureDate} — {returnDate}
         </p>
 
         {/* Price */}
         <p className="mt-1.5">
-          <span className="font-numbers text-[0.9375rem] font-bold text-[#222222] dark:text-slate-50">
+          <span className="font-numbers text-[0.9375rem] font-bold text-[#222222] dark:text-neutral-50">
             {formatKWD(price)}
           </span>
-          <span className="text-[0.75rem] text-[#717171] dark:text-slate-400">
+          <span className="text-[0.75rem] text-[#717171] dark:text-neutral-400">
             {" "}/{t("شخص", "person")}
           </span>
         </p>

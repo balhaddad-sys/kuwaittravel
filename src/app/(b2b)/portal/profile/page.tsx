@@ -249,24 +249,24 @@ export default function ProfilePage() {
             </div>
           ) : (
             <div className="space-y-4">
-              <p className="text-body-md sm:text-body-lg text-slate-700 dark:text-slate-100">
+              <p className="text-body-md sm:text-body-lg text-slate-700 dark:text-neutral-100">
                 {profile.descriptionAr || t("لم يتم إضافة وصف بعد", "No description added yet")}
               </p>
               {profile.description && (
-                <p className="text-body-sm text-slate-500 dark:text-slate-300/60" dir="ltr">
+                <p className="text-body-sm text-slate-500 dark:text-neutral-300/60" dir="ltr">
                   {profile.description}
                 </p>
               )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-slate-600 dark:text-slate-300/60">
+                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-slate-600 dark:text-neutral-300/60">
                   <span className="eo-icon-circle eo-icon-circle-sm"><Phone className="h-3.5 w-3.5 text-slate-500 shrink-0" /></span>
                   <span className="truncate" dir="ltr">{profile.contactPhone || "---"}</span>
                 </div>
-                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-slate-600 dark:text-slate-300/60">
+                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-slate-600 dark:text-neutral-300/60">
                   <span className="eo-icon-circle eo-icon-circle-sm"><Mail className="h-3.5 w-3.5 text-slate-500 shrink-0" /></span>
                   <span className="truncate" dir="ltr">{profile.contactEmail || "---"}</span>
                 </div>
-                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-slate-600 dark:text-slate-300/60">
+                <div className="flex items-center gap-2 text-body-sm sm:text-body-md text-slate-600 dark:text-neutral-300/60">
                   <span className="eo-icon-circle eo-icon-circle-sm"><Globe className="h-3.5 w-3.5 text-slate-500 shrink-0" /></span>
                   <span className="truncate" dir="ltr">{profile.website || "---"}</span>
                 </div>
@@ -281,13 +281,13 @@ export default function ProfilePage() {
             <Shield className="h-5 w-5 text-violet-500" />
             <h3 className="text-body-lg sm:text-heading-sm font-bold text-slate-900 dark:text-white">{t("رقم الترخيص", "License Number")}</h3>
           </div>
-          <p className="text-body-md sm:text-body-lg font-mono text-slate-600 dark:text-slate-300/60">
+          <p className="text-body-md sm:text-body-lg font-mono text-slate-600 dark:text-neutral-300/60">
             {profile.licenseNumber || "---"}
           </p>
           {campaign?.commercialRegNumber && (
             <div className="mt-3 pt-3 border-t border-violet-200/50 dark:border-violet-800/30">
-              <p className="text-xs text-slate-500 dark:text-slate-300/60 mb-0.5">{t("السجل التجاري", "Commercial Registration")}</p>
-              <p className="text-body-sm font-mono text-slate-600 dark:text-slate-300/60">{campaign.commercialRegNumber}</p>
+              <p className="text-xs text-slate-500 dark:text-neutral-300/60 mb-0.5">{t("السجل التجاري", "Commercial Registration")}</p>
+              <p className="text-body-sm font-mono text-slate-600 dark:text-neutral-300/60">{campaign.commercialRegNumber}</p>
             </div>
           )}
         </Card>
@@ -300,19 +300,19 @@ export default function ProfilePage() {
             </h3>
             <div className="space-y-2">
               {campaign.socialMedia.instagram && (
-                <div className="flex items-center gap-2 text-body-sm text-slate-600 dark:text-slate-300/60">
+                <div className="flex items-center gap-2 text-body-sm text-slate-600 dark:text-neutral-300/60">
                   <span className="font-medium text-slate-500">Instagram</span>
                   <span className="truncate" dir="ltr">{campaign.socialMedia.instagram}</span>
                 </div>
               )}
               {campaign.socialMedia.twitter && (
-                <div className="flex items-center gap-2 text-body-sm text-slate-600 dark:text-slate-300/60">
+                <div className="flex items-center gap-2 text-body-sm text-slate-600 dark:text-neutral-300/60">
                   <span className="font-medium text-slate-500">Twitter</span>
                   <span className="truncate" dir="ltr">{campaign.socialMedia.twitter}</span>
                 </div>
               )}
               {campaign.socialMedia.whatsapp && (
-                <div className="flex items-center gap-2 text-body-sm text-slate-600 dark:text-slate-300/60">
+                <div className="flex items-center gap-2 text-body-sm text-slate-600 dark:text-neutral-300/60">
                   <span className="font-medium text-slate-500">WhatsApp</span>
                   <span className="truncate" dir="ltr">{campaign.socialMedia.whatsapp}</span>
                 </div>
@@ -330,15 +330,15 @@ export default function ProfilePage() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#383838] dark:bg-[#262626]/50">
                 <p className="text-heading-md font-bold text-slate-900 dark:text-white">{campaign.stats.totalTrips}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-300/60">{t("إجمالي الرحلات", "Total Trips")}</p>
+                <p className="text-xs text-slate-500 dark:text-neutral-300/60">{t("إجمالي الرحلات", "Total Trips")}</p>
               </div>
               <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#383838] dark:bg-[#262626]/50">
                 <p className="text-heading-md font-bold text-slate-900 dark:text-white">{campaign.stats.totalBookings}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-300/60">{t("إجمالي الحجوزات", "Total Bookings")}</p>
+                <p className="text-xs text-slate-500 dark:text-neutral-300/60">{t("إجمالي الحجوزات", "Total Bookings")}</p>
               </div>
               <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-3 text-center dark:border-[#383838] dark:bg-[#262626]/50">
                 <p className="text-heading-md font-bold text-violet-600 dark:text-violet-400">{campaign.stats.averageRating > 0 ? campaign.stats.averageRating.toFixed(1) : "---"}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-300/60">{t("التقييم", "Rating")} ({campaign.stats.totalReviews})</p>
+                <p className="text-xs text-slate-500 dark:text-neutral-300/60">{t("التقييم", "Rating")} ({campaign.stats.totalReviews})</p>
               </div>
             </div>
           </Card>

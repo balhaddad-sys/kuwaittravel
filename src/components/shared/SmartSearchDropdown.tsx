@@ -30,14 +30,14 @@ function SmartSearchDropdown({
       {recentSearches.length > 0 && (
         <div className="p-3">
           <div className="mb-2 flex items-center justify-between">
-            <span className="flex items-center gap-1.5 text-body-sm font-medium text-slate-500 dark:text-slate-300/60">
+            <span className="flex items-center gap-1.5 text-body-sm font-medium text-slate-500 dark:text-neutral-300/60">
               <Clock className="h-3.5 w-3.5" />
               {t("بحث سابق", "Recent")}
             </span>
             {onClearRecent && (
               <button
                 onClick={onClearRecent}
-                className="text-[11px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                className="text-[11px] text-slate-400 hover:text-slate-600 dark:hover:text-neutral-300"
               >
                 {t("مسح", "Clear")}
               </button>
@@ -48,7 +48,7 @@ function SmartSearchDropdown({
               <button
                 key={query}
                 onClick={() => onSelect(query)}
-                className="flex w-full items-center gap-2 rounded-[var(--radius-md)] px-2 py-2 text-start text-body-sm text-slate-700 transition-colors hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-[#262626]/50"
+                className="flex w-full items-center gap-2 rounded-[var(--radius-md)] px-2 py-2 text-start text-body-sm text-slate-700 transition-colors hover:bg-slate-50 dark:text-neutral-100 dark:hover:bg-[#262626]/50"
               >
                 <Search className="h-3.5 w-3.5 text-slate-400" />
                 {query}
@@ -61,7 +61,7 @@ function SmartSearchDropdown({
       {/* Popular Destinations */}
       {popularDestinations.length > 0 && (
         <div className="border-t border-surface-border p-3 dark:border-surface-dark-border">
-          <span className="mb-2 flex items-center gap-1.5 text-body-sm font-medium text-slate-500 dark:text-slate-300/60">
+          <span className="mb-2 flex items-center gap-1.5 text-body-sm font-medium text-slate-500 dark:text-neutral-300/60">
             <TrendingUp className="h-3.5 w-3.5" />
             {t("وجهات رائجة", "Popular")}
           </span>

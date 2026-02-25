@@ -126,7 +126,7 @@ export default function BookingDetailPage({
         {/* Booking Status */}
         <Card variant="elevated" padding="lg">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-[#262626] dark:text-slate-400">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-[#262626] dark:text-neutral-400">
               {statusIcons[booking.status] || <CheckCircle2 className="h-5 w-5" />}
             </div>
             <div>
@@ -140,7 +140,7 @@ export default function BookingDetailPage({
           </div>
           <div className="flex items-center gap-2 text-body-sm text-slate-500">
             <span>{t("رقم الحجز:", "Booking ID:")}</span>
-            <span className="font-mono font-medium text-slate-700 dark:text-slate-100">
+            <span className="font-mono font-medium text-slate-700 dark:text-neutral-100">
               {booking.id}
             </span>
           </div>
@@ -153,7 +153,7 @@ export default function BookingDetailPage({
           </h3>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-slate-100 dark:bg-[#262626]">
-              <Users className="h-5 w-5 text-slate-600 dark:text-slate-400" />
+              <Users className="h-5 w-5 text-slate-600 dark:text-neutral-400" />
             </div>
             <div>
               <p className="text-body-md font-medium text-slate-900 dark:text-white">
@@ -262,7 +262,7 @@ export default function BookingDetailPage({
             <h3 className="mb-2 text-heading-sm font-bold text-slate-900 dark:text-white">
               {t("طلبات خاصة", "Special Requests")}
             </h3>
-            <p className="text-body-md text-slate-600 dark:text-slate-400">
+            <p className="text-body-md text-slate-600 dark:text-neutral-400">
               {booking.specialRequests}
             </p>
           </Card>

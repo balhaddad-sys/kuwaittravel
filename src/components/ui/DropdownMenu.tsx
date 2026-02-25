@@ -48,7 +48,7 @@ function DropdownMenu({ trigger, items, align = "end", className }: DropdownMenu
                 "flex w-full items-center gap-2 px-4 py-2.5 text-body-md transition-colors text-start",
                 item.danger
                   ? "text-error hover:bg-error-light"
-                  : "text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-[#383838]"
+                  : "text-slate-700 dark:text-neutral-200 hover:bg-slate-50 dark:hover:bg-[#383838]"
               )}
               onClick={() => {
                 item.onClick();

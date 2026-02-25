@@ -16,7 +16,7 @@ function LanguageToggle({ className }: LanguageToggleProps) {
       onClick={() => setLanguage(language === "ar" ? "en" : "ar")}
       aria-label={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-surface-border/80 bg-white/75 px-3 py-2 text-body-sm text-slate-700 backdrop-blur-sm transform-gpu transition-[transform,background-color,border-color,color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-spring)] hover:border-sky-300/70 hover:bg-white/92 active:scale-[0.97] dark:border-surface-dark-border/80 dark:bg-surface-dark-card/75 dark:text-slate-100 dark:hover:border-sky-700/60 dark:hover:bg-surface-dark-card",
+        "inline-flex items-center gap-2 rounded-full border border-surface-border/80 bg-white/75 px-3 py-2 text-body-sm text-slate-700 backdrop-blur-sm transform-gpu transition-[transform,background-color,border-color,color,box-shadow] duration-[var(--duration-ui)] ease-[var(--ease-spring)] hover:border-sky-300/70 hover:bg-white/92 active:scale-[0.97] dark:border-surface-dark-border/80 dark:bg-surface-dark-card/75 dark:text-neutral-100 dark:hover:border-sky-700/60 dark:hover:bg-surface-dark-card",
         className
       )}
     >

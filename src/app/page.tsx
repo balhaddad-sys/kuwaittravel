@@ -470,11 +470,11 @@ export default function HomePage() {
             >
               <Compass className="h-4 w-4 text-white" />
             </span>
-            <span className="text-body-md font-bold text-slate-800 dark:text-slate-200">
+            <span className="text-body-md font-bold text-slate-800 dark:text-neutral-200">
               Rahal
             </span>
           </div>
-          <p className="mt-3 text-body-sm text-slate-400 dark:text-slate-500">
+          <p className="mt-3 text-body-sm text-slate-400 dark:text-neutral-500">
             {t(
               "© ٢٠٢٦ رحّال — جميع الحقوق محفوظة",
               "© 2026 Rahal — All rights reserved"
@@ -519,7 +519,7 @@ function StatsSection({ t }: { t: (ar: string, en: string) => string }) {
               <p className="text-2xl font-black text-slate-900 sm:text-3xl dark:text-white">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="mt-1 text-body-sm text-slate-500 dark:text-slate-400">
+              <p className="mt-1 text-body-sm text-slate-500 dark:text-neutral-400">
                 {stat.label}
               </p>
             </div>
@@ -604,7 +604,7 @@ function DestinationsSection({
               >
                 {dest.name}
               </h3>
-              <p className="mt-1 text-body-sm text-slate-500 dark:text-slate-400">
+              <p className="mt-1 text-body-sm text-slate-500 dark:text-neutral-400">
                 {dest.subtitle}
               </p>
               {i === 0 && (
@@ -746,7 +746,7 @@ function EntryPointsSection({
           <h2 className="text-display-md font-black text-slate-900 dark:text-white">
             {t("ابدأ رحلتك", "Start Your Journey")}
           </h2>
-          <p className="mt-2 text-body-lg text-slate-500 dark:text-slate-400">
+          <p className="mt-2 text-body-lg text-slate-500 dark:text-neutral-400">
             {t(
               "اختر البوابة المناسبة لك",
               "Choose the right portal for you"
@@ -781,7 +781,7 @@ function EntryPointsSection({
               <h3 className="mt-4 text-heading-md font-bold text-slate-900 dark:text-white">
                 {card.title}
               </h3>
-              <p className="mt-1.5 text-body-md text-slate-500 dark:text-slate-400">
+              <p className="mt-1.5 text-body-md text-slate-500 dark:text-neutral-400">
                 {card.desc}
               </p>
               <div className="mt-4 inline-flex items-center gap-1.5 text-body-sm font-semibold text-sky-500 dark:text-sky-400">
@@ -800,7 +800,7 @@ function EntryPointsSection({
               onClick={() =>
                 navigateTo(hasAdminRole ? "/admin/dashboard" : "/admin-login")
               }
-              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-slate-300 sm:rounded-3xl sm:p-7 dark:border-[#383838] dark:bg-[#262626] dark:hover:border-slate-600"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 text-start shadow-[0_1px_3px_rgba(2,6,23,0.05),0_4px_16px_rgba(2,6,23,0.06)] transition-colors hover:border-slate-300 sm:rounded-3xl sm:p-7 dark:border-[#383838] dark:bg-[#262626] dark:hover:border-neutral-600"
             >
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -816,10 +816,10 @@ function EntryPointsSection({
               <h3 className="mt-4 text-heading-md font-bold text-slate-900 dark:text-white">
                 {t("إدارة المشرفين", "Admin Console")}
               </h3>
-              <p className="mt-1.5 text-body-md text-slate-500 dark:text-slate-400">
+              <p className="mt-1.5 text-body-md text-slate-500 dark:text-neutral-400">
                 {t("دخول مخصص لفريق الإدارة", "Dedicated entry for administrators")}
               </p>
-              <div className="mt-4 inline-flex items-center gap-1.5 text-body-sm font-semibold text-slate-600 dark:text-slate-300">
+              <div className="mt-4 inline-flex items-center gap-1.5 text-body-sm font-semibold text-slate-600 dark:text-neutral-300">
                 {t("الدخول", "Enter")}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
               </div>

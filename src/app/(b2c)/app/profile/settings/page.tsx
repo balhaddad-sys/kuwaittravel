@@ -19,7 +19,7 @@ function Toggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
       role="switch"
       aria-checked={on}
       onClick={onToggle}
-      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ${on ? "bg-sky-500" : "bg-slate-300 dark:bg-slate-700/50"}`}
+      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ${on ? "bg-sky-500" : "bg-slate-300 dark:bg-neutral-700/50"}`}
     >
       <span className={`inline-block h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-200 ${on ? "translate-x-6 rtl:-translate-x-6" : "translate-x-1 rtl:-translate-x-1"}`} />
     </button>
@@ -66,7 +66,7 @@ export default function SettingsPage() {
         <Card variant="elevated" padding="lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-700/50 dark:text-slate-200"><Moon className="h-4 w-4" /></span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 dark:bg-neutral-700/50 dark:text-neutral-200"><Moon className="h-4 w-4" /></span>
               <div>
                 <p className="text-body-sm sm:text-body-md font-semibold text-slate-900 dark:text-white">{t("الوضع الداكن", "Dark Mode")}</p>
                 <p className="text-xs text-slate-500">{isDark ? t("مفعّل", "Enabled") : t("معطّل", "Disabled")}</p>
@@ -88,7 +88,7 @@ export default function SettingsPage() {
             { labelAr: "العروض والتحديثات", labelEn: "Promotions", value: promotions, set: setPromotions },
           ].map((item, i) => (
             <div key={i} className="flex items-center justify-between gap-3 py-3 border-b border-surface-border/50 last:border-0 dark:border-surface-dark-border/50">
-              <span className="text-body-sm text-slate-700 dark:text-slate-200">{t(item.labelAr, item.labelEn)}</span>
+              <span className="text-body-sm text-slate-700 dark:text-neutral-200">{t(item.labelAr, item.labelEn)}</span>
               <Toggle on={item.value} onToggle={() => item.set(!item.value)} />
             </div>
           ))}

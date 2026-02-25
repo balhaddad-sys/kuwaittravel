@@ -18,7 +18,7 @@ export default function B2CError({
       <h2 className="text-xl font-bold text-slate-900 dark:text-white">
         Something went wrong
       </h2>
-      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-2 text-sm text-slate-500 dark:text-neutral-400">
         An unexpected error occurred. Please try again.
       </p>
       <button
